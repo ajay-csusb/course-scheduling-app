@@ -61,6 +61,7 @@
     "request-promise": "^4.2.2",
     "tslint-config-airbnb": "^5.11.1",
     "tsutils": "^3.7.0",
+    "uuid": "^3.3.2",
     "webpack": "^4.29.0",
     "winston": "^2.4.4"
   },
