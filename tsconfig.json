@@ -13,8 +13,35 @@
                 "node_modules/*",
                 "src/types/*"
             ]
-        }
+        },
+        "strict": true,
+        "noImplicitReturns": true,
+        "strictNullChecks": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports":true,
+        "lib": ["es5", "es6", "es7", "es2017", "dom"],
+        "allowJs": true,
+        "jsx": "react"
     },
+    "exclude": [
+        "node_modules",
+        "build",
+        "scripts",
+        "acceptance-tests",
+        "webpack",
+        "jest",
+        "src/setupTests.ts"
+    ],
+    "types": [
+        "typePatches"
+    ],
     "include": [
         "src/**/*"
     ]
