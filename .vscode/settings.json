@@ -14,5 +14,10 @@
         "csrf",
         "definitelytyped",
         "promisified"
-    ]
+    ],
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/215299bd-28b3-482b-a91b-f9dca65615e0/resourceGroups/appsvc_rg_linux_centralus/providers/Microsoft.Web/sites/course-scheduling-app",
+    "appService.deploySubpath": ""
 }
