@@ -13,6 +13,11 @@ html(lang='')
     link(rel='stylesheet', href='https://unpkg.com/@blueprintjs/icons@^3.4.0/lib/css/blueprint-icons.css')
     link(rel='stylesheet', href='https://unpkg.com/@blueprintjs/core@^3.10.0/lib/css/blueprint.css')
     link(rel='stylesheet', href='/css/main.css')
+    style(type='text/css').
+      .bp3-popover-content ul {
+        height: 300px;
+        overflow: auto;
+      }
 
   body
     include partials/header
