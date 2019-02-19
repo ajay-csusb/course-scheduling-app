@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test class search form component Class search form component snapshot 1`] = `
+<div>
+  <Blueprint3.FormGroup
+    label="Fill in one or more of the fields below:"
+  >
+    <Blueprint3.RadioGroup
+      className="bp3-inline quarter-select"
+      inline={true}
+      label="Quarter"
+      onChange={[Function]}
+      selectedValue="current"
+    >
+      <Blueprint3.Radio
+        label="Winter 2019"
+        value="current"
+      />
+      <Blueprint3.Radio
+        label="Spring 2019"
+        value="next"
+      />
+    </Blueprint3.RadioGroup>
+    <Blueprint3.RadioGroup
+      inline={true}
+      label="Campus"
+      onChange={[Function]}
+      selectedValue="both"
+    >
+      <Blueprint3.Radio
+        label="Both"
+        value="both"
+      />
+      <Blueprint3.Radio
+        label="San Bernardino"
+        value="san-bernardino"
+      />
+      <Blueprint3.Radio
+        label="Palm Desert"
+        value="palm-desert"
+      />
+    </Blueprint3.RadioGroup>
+    <div
+      className="bp3-input-group bp3-inline"
+    >
+      <Component
+        className="bp3-inline"
+        htmlFor="course-number"
+      >
+        Course Number
+      </Component>
+      <input
+        className="bp3-input bp3-inline"
+        id="course-number"
+        placeholder="begins with"
+        type="text"
+      />
+    </div>
+    <Blueprint3.RadioGroup
+      inline={true}
+      label="Desired Meeting Time"
+      onChange={[Function]}
+      selectedValue="all"
+    >
+      <Blueprint3.Radio
+        label="All"
+        value="all"
+      />
+      <Blueprint3.Radio
+        label="Before Noon"
+        value="before-noon"
+      />
+      <Blueprint3.Radio
+        label="After Noon"
+        value="after-noon"
+      />
+      <Blueprint3.Radio
+        label="4 PM and later"
+        value="4pm-later"
+      />
+    </Blueprint3.RadioGroup>
+    <div
+      className="bp3-select"
+    >
+      <select
+        onChange={[Function]}
+      >
+        <option
+          selected={true}
+          value="all"
+        >
+          Meeting Date
+        </option>
+        <option
+          value="mon"
+        >
+          Monday
+        </option>
+        <option
+          value="tue"
+        >
+          Tuesday
+        </option>
+        <option
+          value="wed"
+        >
+          Wednesday
+        </option>
+        <option
+          value="thu"
+        >
+          Thursday
+        </option>
+        <option
+          value="fri"
+        >
+          Friday
+        </option>
+        <option
+          value="Sat"
+        >
+          Saturday
+        </option>
+        <option
+          value="Sunday"
+        >
+          Sunday
+        </option>
+      </select>
+    </div>
+    <hr />
+    <Blueprint3.Button
+      className="bp3-intent-primary"
+      large={true}
+      text="Submit"
+      type="submit"
+    />
+    <Blueprint3.Button
+      large={true}
+      text="Reset"
+      type="reset"
+    />
+  </Blueprint3.FormGroup>
+</div>
+`;

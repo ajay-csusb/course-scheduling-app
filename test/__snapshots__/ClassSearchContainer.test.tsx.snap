@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test class search form component Class search form component snapshot 1`] = `
+<div>
+  <ClassSearchForm
+    campus="both"
+    classes={Array []}
+    courseId=""
+    meetingDate={
+      Object {
+        "all": true,
+        "fri": false,
+        "mon": false,
+        "sat": false,
+        "sun": false,
+        "thu": false,
+        "tue": false,
+        "wed": false,
+      }
+    }
+    meetingTime={
+      Object {
+        "afterNoon": false,
+        "all": true,
+        "beforeNoon": false,
+        "evening": false,
+      }
+    }
+    onChangeOfCampus={[Function]}
+    onChangeOfClassName={[Function]}
+    onChangeOfMeetingDate={[Function]}
+    onChangeOfMeetingTime={[Function]}
+    onChangeOfQuarter={[Function]}
+    quarter="current"
+  />
+  <ClassSearchResults
+    campus="both"
+    classes={Array []}
+    courseId=""
+    meetingDate={
+      Object {
+        "all": true,
+        "fri": false,
+        "mon": false,
+        "sat": false,
+        "sun": false,
+        "thu": false,
+        "tue": false,
+        "wed": false,
+      }
+    }
+    meetingTime={
+      Object {
+        "afterNoon": false,
+        "all": true,
+        "beforeNoon": false,
+        "evening": false,
+      }
+    }
+    quarter="current"
+  />
+</div>
+`;
