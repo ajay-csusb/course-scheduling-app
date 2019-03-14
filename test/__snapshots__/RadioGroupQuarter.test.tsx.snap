@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test radio group quarter component RadioGroupQuarter component snapshot 1`] = `
+<RadioGroupQuarter
+  onChangeOfQuarter={[MockFunction]}
+  quarter="current"
+>
+  <Blueprint3.RadioGroup
+    inline={true}
+    label="Quarter"
+    onChange={[Function]}
+    selectedValue="current"
+  >
+    <div>
+      <label
+        className="bp3-label"
+      >
+        Quarter
+      </label>
+      <Blueprint3.Radio
+        checked={true}
+        className="current-quarter"
+        inline={true}
+        key=".0"
+        name="Blueprint3.RadioGroup-6"
+        onChange={[Function]}
+        value="current"
+      >
+        <Control
+          checked={true}
+          className="current-quarter"
+          inline={true}
+          name="Blueprint3.RadioGroup-6"
+          onChange={[Function]}
+          type="radio"
+          typeClassName="bp3-radio"
+          value="current"
+        >
+          <label
+            className="bp3-control bp3-radio bp3-inline current-quarter"
+          >
+            <input
+              checked={true}
+              name="Blueprint3.RadioGroup-6"
+              onChange={[Function]}
+              type="radio"
+              value="current"
+            />
+            <span
+              className="bp3-control-indicator"
+            />
+          </label>
+        </Control>
+      </Blueprint3.Radio>
+      <Blueprint3.Radio
+        checked={false}
+        className="prev-quarter"
+        inline={true}
+        key=".1"
+        name="Blueprint3.RadioGroup-6"
+        onChange={[Function]}
+        value="prev"
+      >
+        <Control
+          checked={false}
+          className="prev-quarter"
+          inline={true}
+          name="Blueprint3.RadioGroup-6"
+          onChange={[Function]}
+          type="radio"
+          typeClassName="bp3-radio"
+          value="prev"
+        >
+          <label
+            className="bp3-control bp3-radio bp3-inline prev-quarter"
+          >
+            <input
+              checked={false}
+              name="Blueprint3.RadioGroup-6"
+              onChange={[Function]}
+              type="radio"
+              value="prev"
+            />
+            <span
+              className="bp3-control-indicator"
+            />
+          </label>
+        </Control>
+      </Blueprint3.Radio>
+    </div>
+  </Blueprint3.RadioGroup>
+</RadioGroupQuarter>
+`;
