@@ -1,6 +1,6 @@
 import React from 'react';
 import { ControlGroup, Checkbox, Label } from '@blueprintjs/core';
-import { IMeetingTime } from './ClassSearchContainer';
+import { IMeetingTime } from './Class';
 
 export interface IControlGroupMeetingTime {
   meetingTime: IMeetingTime;
