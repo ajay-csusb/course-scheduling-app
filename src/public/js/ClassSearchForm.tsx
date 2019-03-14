@@ -6,7 +6,7 @@ import { RadioGroupQuarter } from './RadioGroupQuarter';
 import { RadioGroupCampus } from './RadioGroupCampus';
 import { ControlGroupMeetingTime } from './ControlGroupMeetingTime';
 import { ControlGroupMeetingDate } from './ControlGroupMeetingDate';
-import { IClass, IMeetingTime, IMeetingDate } from './Class';
+import { IClass, IMeetingDate } from './Class';
 import { RadioGroupInstructionMode } from './RadioGroupInstructionMode';
 import { renderInstructorSuggestProps } from './SuggestInstructors';
 import { ISubject } from './Subject';
@@ -16,15 +16,17 @@ interface ClassSearchFormProps {
   quarter: string;
   campus: string;
   subjects: ISubject[];
-  meetingTime: IMeetingTime;
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructorName: string;
   instructors: string[];
   isReset?: boolean;
+  startTime: Date;
+  endTime: Date;
   onChangeOfQuarter: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
-  onChangeOfMeetingTime: (event: any) => void;
+  onChangeOfStartTime: (event: any) => void;
+  onChangeOfEndTime: (event: any) => void;
   onChangeOfMeetingDate: (event: any) => void;
   onChangeOfSubject: (event: any) => void;
   onChangeOfInstructionMode: (event: any) => void;
@@ -81,8 +83,10 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
           onChangeOfCampus={this.props.onChangeOfCampus}
         />
         <ControlGroupMeetingTime
-          meetingTime={this.props.meetingTime}
-          onChangeOfMeetingTime={this.props.onChangeOfMeetingTime}
+          onChangeOfStartTime={this.props.onChangeOfStartTime}
+          onChangeOfEndTime={this.props.onChangeOfEndTime}
+          startTime={this.props.startTime}
+          endTime={this.props.endTime}
         />
         <ControlGroupMeetingDate
           meetingDate={this.props.meetingDate}

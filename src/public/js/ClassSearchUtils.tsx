@@ -21,3 +21,7 @@ export function saveOrUpdateLocalStorage(key: string, value: string): void {
 export function isObjectEmpty(object: any): boolean {
   return (Object.keys(object).length === 0 && object.constructor === Object);
 }
+
+export function getDateIn12HourFormat(date: Date): string {
+  return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+}

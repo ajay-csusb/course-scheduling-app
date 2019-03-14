@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IClass, IMeetingTime, IMeetingDate } from './Class';
+import { IClass, IMeetingDate } from './Class';
 import { ISubject } from './Subject';
 import { FilterClasses } from './FilterClasses';
 import { UserInput } from './UserInput';
@@ -9,11 +9,12 @@ interface IClassSearchResultsProps {
   quarter: string;
   campus: string;
   subject: ISubject;
-  meetingTime: IMeetingTime;
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructorName: string;
   isReset?: boolean;
+  startTime: Date;
+  endTime: Date;
 }
 
 interface IClassSearchResultsState {
@@ -41,7 +42,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     let filteredResults: IClass[] = [];
     const userInput = new UserInput(
       this.props.campus, this.props.meetingDate, this.props.subject, this.props.quarter,
-      this.props.meetingTime, this.props.instructionMode, this.props.instructorName);
+      this.props.startTime, this.props.instructionMode, this.props.instructorName);
     if (this.props.classes) {
       filteredResults = FilterClasses.filter(this.props.classes, userInput);
       filteredResults.forEach((_class: any) => {
@@ -65,7 +66,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
           <thead>
             <tr>
               <th>Subject</th>
-              <th>Class No.</th>
+              <th>Course No.</th>
               <th>Session</th>
               <th>Title</th>
               <th>Instruction Mode</th>

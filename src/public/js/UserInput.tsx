@@ -1,4 +1,4 @@
-import { IMeetingDate, IMeetingTime } from './Class';
+import { IMeetingDate } from './Class';
 import { ISubject } from './Subject';
 
 export class UserInput {
@@ -15,17 +15,12 @@ export class UserInput {
   };
   private subject: string = '';
   private quarter: string = 'current';
-  private time: IMeetingTime = {
-    all: false,
-    beforeNoon: false,
-    afterNoon: false,
-    evening: false,
-  };
+  private time: Date = new Date();
   private instructionMode: string = 'all';
   private instructor: string = '';
 
   constructor(campus: string, day: IMeetingDate, subject: ISubject, quarter: string,
-              time: IMeetingTime, instructionMode: string, instructor: string) {
+              time: Date, instructionMode: string, instructor: string) {
     this.campus = campus;
     this.day = day;
     this.subject = subject.abbr;
@@ -91,22 +86,6 @@ export class UserInput {
     return (this.quarter === 'both');
   }
 
-  public isAllTimesChecked(): boolean  {
-    return (this.time.all);
-  }
-
-  public isBeforeNoonChecked(): boolean  {
-    return (this.time.beforeNoon);
-  }
-
-  public isAfterNoonChecked(): boolean  {
-    return (this.time.afterNoon);
-  }
-
-  public isEveningChecked(): boolean  {
-    return (this.time.evening);
-  }
-
   public isBothInstructionModeChecked(): boolean  {
     return (this.instructionMode === 'both');
   }
@@ -128,6 +107,10 @@ export class UserInput {
 
   public getInstructionMode(): string {
     return this.instructionMode;
+  }
+
+  public getTime(): Date {
+    return this.time;
   }
 
 }

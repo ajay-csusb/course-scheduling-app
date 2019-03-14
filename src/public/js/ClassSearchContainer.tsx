@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ClassSearchForm } from './ClassSearchForm';
 import { ClassSearchResults } from './ClassSearchResults';
-import { IClass, Class, IMeetingTime, IMeetingDate } from './Class';
+import { IClass, Class, IMeetingDate } from './Class';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { Instructor } from './Instructor';
 import { Subject, ISubject } from './Subject';
@@ -11,7 +11,8 @@ interface IClassSearchContainerState {
   quarter: string;
   campus: string;
   subject: ISubject;
-  meetingTime: IMeetingTime;
+  startTime: Date;
+  endTime: Date;
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructorName: string;
@@ -31,7 +32,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.state = this.defaultFromValues();
     this.updateQuarter = this.updateQuarter.bind(this);
     this.updateCampus = this.updateCampus.bind(this);
-    this.updateMeetingTime = this.updateMeetingTime.bind(this);
+    this.updateStartTime = this.updateStartTime.bind(this);
+    this.updateEndTime = this.updateEndTime.bind(this);
     this.updateMeetingDate = this.updateMeetingDate.bind(this);
     this.updateSubject = this.updateSubject.bind(this);
     this.updateInstructionMode = this.updateInstructionMode.bind(this);
@@ -57,20 +59,22 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
           quarter={this.state.quarter}
           campus={this.state.campus}
           subjects={this.subjects}
-          meetingTime={this.state.meetingTime}
           meetingDate={this.state.meetingDate}
           instructionMode={this.state.instructionMode}
           instructorName={this.state.instructorName}
           instructors={this.instructors}
           onChangeOfQuarter={this.updateQuarter}
           onChangeOfCampus={this.updateCampus}
-          onChangeOfMeetingTime={this.updateMeetingTime}
+          onChangeOfStartTime={this.updateStartTime}
+          onChangeOfEndTime={this.updateEndTime}
           onChangeOfMeetingDate={this.updateMeetingDate}
           onChangeOfSubject={this.updateSubject}
           onChangeOfInstructionMode={this.updateInstructionMode}
           onChangeOfInstructor={this.updateInstructorName}
           onSubmit={this.onSubmit}
           onReset={this.onReset}
+          startTime={this.state.startTime}
+          endTime={this.state.endTime}
         />
         {!this.state.beforeSubmit &&
           <ClassSearchResults
@@ -78,10 +82,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
             quarter={this.state.quarter}
             subject={this.state.subject}
             campus={this.state.campus}
-            meetingTime={this.state.meetingTime}
             meetingDate={this.state.meetingDate}
             instructionMode={this.state.instructionMode}
             instructorName={this.state.instructorName}
+            startTime={this.state.startTime}
+            endTime={this.state.endTime}
           />
         }
       </div>
@@ -102,18 +107,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateCampus(e: any): void {
     this.setState({
       campus: e.target.value,
-    });
-  }
-
-  private updateMeetingTime(e: any): void {
-    const checkBoxValue = e.target.value;
-    this.setState({
-      meetingTime: {
-        all: this.toggleAll(checkBoxValue),
-        beforeNoon: this.toggleBeforeNoon(checkBoxValue),
-        afterNoon: this.toggleAfterNoon(checkBoxValue),
-        evening: this.toggleEvening(checkBoxValue),
-      },
     });
   }
 
@@ -149,45 +142,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       instructorName: instructor,
     });
-  }
-
-  private toggleAll(checkBoxValue: string): boolean {
-    if (checkBoxValue === 'all') {
-      if (this.state.meetingTime.all) {
-        return false;
-      }
-      return true;
-    }
-    return false;
-  }
-
-  private toggleBeforeNoon(checkBoxValue: string): boolean {
-    if (checkBoxValue === 'before-noon') {
-      if (this.state.meetingTime.beforeNoon) {
-        return false;
-      }
-      return true;
-    }
-    return this.state.meetingTime.beforeNoon;
-  }
-
-  private toggleAfterNoon(checkBoxValue: string): boolean {
-    if (checkBoxValue === 'after-noon') {
-      if (this.state.meetingTime.afterNoon) {
-        return false;
-      }
-      return true;
-    }
-    return this.state.meetingTime.afterNoon;
-  }
-  private toggleEvening(checkBoxValue: string): boolean {
-    if (checkBoxValue === 'evening') {
-      if (this.state.meetingTime.evening) {
-        return false;
-      }
-      return true;
-    }
-    return this.state.meetingTime.evening;
   }
 
   private toggleAllMeetingDate(checkBoxValue: string): boolean {
@@ -301,12 +255,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         name: '',
         abbr: '',
       },
-      meetingTime: {
-        all: true,
-        beforeNoon: false,
-        afterNoon: false,
-        evening: false,
-      },
+      startTime: new Date('1899-01-01T08:00:00'),
+      endTime: new Date('1899-01-01T20:00:00'),
       meetingDate: {
         all: true,
         mon: false,
@@ -353,5 +303,17 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private subjectsNotFound(error: string): void {
     console.log(error);
+  }
+
+  private updateStartTime(e: Date): void {
+    this.setState({
+      startTime: e,
+    });
+  }
+
+  private updateEndTime(e: Date): void {
+    this.setState({
+      endTime: e,
+    });
   }
 }

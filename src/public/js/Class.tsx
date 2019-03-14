@@ -47,13 +47,6 @@ export interface IClass {
   instructorAltName?: string;
 }
 
-export interface IMeetingTime {
-  all: boolean;
-  beforeNoon: boolean;
-  afterNoon: boolean;
-  evening: boolean;
-}
-
 export interface IMeetingDate {
   all: boolean;
   mon: boolean;
