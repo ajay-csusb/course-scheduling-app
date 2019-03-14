@@ -1,73 +1,52 @@
 import * as React from 'react';
 import { ClassSearchForm } from './ClassSearchForm';
 import { ClassSearchResults } from './ClassSearchResults';
-import { IClass, getAllClasses } from './Class';
+import { IClass, Class, IMeetingTime, IMeetingDate } from './Class';
+import * as ClassSearchUtils from './ClassSearchUtils';
+import { Instructor } from './Instructor';
+import { Subject, ISubject } from './Subject';
 
-export interface IMeetingTime {
-  all: boolean;
-  beforeNoon: boolean;
-
-  afterNoon: boolean;
-
-  evening: boolean;
-}
-
-export interface IMeetingDate {
-  all: boolean;
-  mon: boolean;
-  tue: boolean;
-  wed: boolean;
-  thu: boolean;
-  fri: boolean;
-  sat: boolean;
-  sun: boolean;
-}
-
-interface ClassSearchContainerState {
+interface IClassSearchContainerState {
   updateAllResults: boolean;
   quarter: string;
   campus: string;
-  courseId: string;
+  subject: ISubject;
   meetingTime: IMeetingTime;
   meetingDate: IMeetingDate;
+  instructionMode: string;
+  instructorName: string;
   isReset: boolean;
+  isLoading: boolean;
+  beforeSubmit: boolean;
 }
-export class ClassSearchContainer extends React.Component<{}, ClassSearchContainerState> {
+export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
 
-  private allResults: [];
+  private allResults: IClass[];
+
+  private instructors: string[];
+
+  private subjects: ISubject[];
   constructor(props: any) {
     super(props);
-    this.state = {
-      updateAllResults: false,
-      quarter: 'current',
-      campus: 'both',
-      courseId: '',
-      meetingTime: {
-        all: true,
-        beforeNoon: false,
-        afterNoon: false,
-        evening: false,
-      },
-      meetingDate: {
-        all: true,
-        mon: false,
-        tue: false,
-        wed: false,
-        thu: false,
-        fri: false,
-        sat: false,
-        sun: false,
-      },
-      isReset: false,
-    };
-    this.onChangeOfQuarter = this.onChangeOfQuarter.bind(this);
-    this.onChangeOfCampus = this.onChangeOfCampus.bind(this);
-    this.onChangeOfMeetingTime = this.onChangeOfMeetingTime.bind(this);
-    this.onChangeOfMeetingDate = this.onChangeOfMeetingDate.bind(this);
-    this.onChangeOfClassName = this.onChangeOfClassName.bind(this);
+    this.state = this.defaultFromValues();
+    this.updateQuarter = this.updateQuarter.bind(this);
+    this.updateCampus = this.updateCampus.bind(this);
+    this.updateMeetingTime = this.updateMeetingTime.bind(this);
+    this.updateMeetingDate = this.updateMeetingDate.bind(this);
+    this.updateSubject = this.updateSubject.bind(this);
+    this.updateInstructionMode = this.updateInstructionMode.bind(this);
+    this.updateInstructorName = this.updateInstructorName.bind(this);
+    this.instructorsFound = this.instructorsFound.bind(this);
+    this.instructorsNotFound = this.instructorsNotFound.bind(this);
+    this.subjectsFound = this.subjectsFound.bind(this);
+    this.subjectsNotFound = this.subjectsNotFound.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onReset = this.onReset.bind(this);
     this.classesFound = this.classesFound.bind(this);
     this.classesNotFound = this.classesNotFound.bind(this);
     this.allResults = [];
+    this.instructors = [];
+    this.subjects = [];
   }
 
   public render(): JSX.Element {
@@ -77,42 +56,56 @@ export class ClassSearchContainer extends React.Component<{}, ClassSearchContain
           classes={this.allResults}
           quarter={this.state.quarter}
           campus={this.state.campus}
-          courseId={this.state.courseId}
+          subjects={this.subjects}
           meetingTime={this.state.meetingTime}
           meetingDate={this.state.meetingDate}
-          onChangeOfQuarter={this.onChangeOfQuarter}
-          onChangeOfCampus={this.onChangeOfCampus}
-          onChangeOfMeetingTime={this.onChangeOfMeetingTime}
-          onChangeOfMeetingDate={this.onChangeOfMeetingDate}
-          onChangeOfClassName={this.onChangeOfClassName}
+          instructionMode={this.state.instructionMode}
+          instructorName={this.state.instructorName}
+          instructors={this.instructors}
+          onChangeOfQuarter={this.updateQuarter}
+          onChangeOfCampus={this.updateCampus}
+          onChangeOfMeetingTime={this.updateMeetingTime}
+          onChangeOfMeetingDate={this.updateMeetingDate}
+          onChangeOfSubject={this.updateSubject}
+          onChangeOfInstructionMode={this.updateInstructionMode}
+          onChangeOfInstructor={this.updateInstructorName}
+          onSubmit={this.onSubmit}
+          onReset={this.onReset}
         />
-        <ClassSearchResults
-          classes={this.allResults}
-          quarter={this.state.quarter}
-          courseId={this.state.courseId}
-          campus={this.state.campus}
-          meetingTime={this.state.meetingTime}
-          meetingDate={this.state.meetingDate}
-        />
+        {!this.state.beforeSubmit &&
+          <ClassSearchResults
+            classes={this.allResults}
+            quarter={this.state.quarter}
+            subject={this.state.subject}
+            campus={this.state.campus}
+            meetingTime={this.state.meetingTime}
+            meetingDate={this.state.meetingDate}
+            instructionMode={this.state.instructionMode}
+            instructorName={this.state.instructorName}
+          />
+        }
       </div>
     );
   }
   componentDidMount() {
-    getAllClasses(this.classesFound, this.classesNotFound);
+    this.setState({ isLoading: true });
+    Class.getAllClasses(this.classesFound, this.classesNotFound);
+    Subject.getAllSubjects(this.subjectsFound, this.subjectsNotFound);
+    Instructor.getAllInstructors(this.instructorsFound, this.instructorsNotFound);
   }
-  private onChangeOfQuarter(e: any): void {
+  private updateQuarter(e: any): void {
     this.setState({
       quarter: e.target.value,
     });
   }
 
-  private onChangeOfCampus(e: any): void {
+  private updateCampus(e: any): void {
     this.setState({
       campus: e.target.value,
     });
   }
 
-  private onChangeOfMeetingTime(e: any): void {
+  private updateMeetingTime(e: any): void {
     const checkBoxValue = e.target.value;
     this.setState({
       meetingTime: {
@@ -124,7 +117,7 @@ export class ClassSearchContainer extends React.Component<{}, ClassSearchContain
     });
   }
 
-  private onChangeOfMeetingDate(e: any): void {
+  private updateMeetingDate(e: any): void {
     const checkBoxValue = e.target.value;
     this.setState({
       meetingDate: {
@@ -140,10 +133,21 @@ export class ClassSearchContainer extends React.Component<{}, ClassSearchContain
     });
   }
 
-  private onChangeOfClassName(classes: IClass): void {
-    const classValue = classes.courseId;
+  private updateSubject(subject: ISubject): void {
     this.setState({
-      courseId: classValue,
+      subject: subject,
+    });
+  }
+
+  private updateInstructionMode(e: any): void {
+    this.setState({
+      instructionMode: e.target.value,
+    });
+  }
+
+  private updateInstructorName(instructor: string): void {
+    this.setState({
+      instructorName: instructor,
     });
   }
 
@@ -261,14 +265,93 @@ export class ClassSearchContainer extends React.Component<{}, ClassSearchContain
   }
 
   private classesFound(data: any): void {
-    this.allResults = data;
+    const transformedClass: IClass[] = [];
+    if (ClassSearchUtils.isObjectEmpty(data)) {
+      return;
+    }
+    data.forEach((_data: any) => {
+      transformedClass.push(Class.transformToClass(_data));
+    });
+    this.allResults = transformedClass;
     this.setState({
-      updateAllResults: true,
+      isLoading: false,
     });
   }
 
   private classesNotFound(error: string): void {
-    throw error;
+    console.log(error);
   }
 
+  private onSubmit(_e: any): void {
+    this.setState({
+      beforeSubmit: false,
+    });
+  }
+
+  private onReset(_e: any): void {
+    this.setState(this.defaultFromValues());
+  }
+
+  private defaultFromValues(): IClassSearchContainerState {
+    return {
+      updateAllResults: false,
+      quarter: 'current',
+      campus: 'both',
+      subject: {
+        name: '',
+        abbr: '',
+      },
+      meetingTime: {
+        all: true,
+        beforeNoon: false,
+        afterNoon: false,
+        evening: false,
+      },
+      meetingDate: {
+        all: true,
+        mon: false,
+        tue: false,
+        wed: false,
+        thu: false,
+        fri: false,
+        sat: false,
+        sun: false,
+      },
+      instructionMode: 'all',
+      instructorName: '',
+      isReset: false,
+      isLoading: false,
+      beforeSubmit: true,
+    };
+  }
+
+  private instructorsFound(data: any): void {
+    if (data !== undefined) {
+      this.instructors = data;
+    }
+  }
+
+  private instructorsNotFound(error: string): void {
+    console.log(error);
+  }
+
+  private subjectsFound(data: any): void {
+    const subjects: ISubject[] = [];
+    if (data !== undefined) {
+      data.forEach((_subject: any) => {
+        const subject: ISubject = {
+          name: '',
+          abbr: '',
+        };
+        subject.abbr = _subject.subject;
+        subject.name = _subject.subject_DESC;
+        subjects.push(subject);
+      });
+      this.subjects = subjects;
+    }
+  }
+
+  private subjectsNotFound(error: string): void {
+    console.log(error);
+  }
 }
