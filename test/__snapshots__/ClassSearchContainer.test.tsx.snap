@@ -5,7 +5,9 @@ exports[`test class search form component Class search form component snapshot 1
   <ClassSearchForm
     campus="both"
     classes={Array []}
-    courseId=""
+    instructionMode="all"
+    instructorName=""
+    instructors={Array []}
     meetingDate={
       Object {
         "all": true,
@@ -27,37 +29,16 @@ exports[`test class search form component Class search form component snapshot 1
       }
     }
     onChangeOfCampus={[Function]}
-    onChangeOfClassName={[Function]}
+    onChangeOfInstructionMode={[Function]}
+    onChangeOfInstructor={[Function]}
     onChangeOfMeetingDate={[Function]}
     onChangeOfMeetingTime={[Function]}
     onChangeOfQuarter={[Function]}
+    onChangeOfSubject={[Function]}
+    onReset={[Function]}
+    onSubmit={[Function]}
     quarter="current"
-  />
-  <ClassSearchResults
-    campus="both"
-    classes={Array []}
-    courseId=""
-    meetingDate={
-      Object {
-        "all": true,
-        "fri": false,
-        "mon": false,
-        "sat": false,
-        "sun": false,
-        "thu": false,
-        "tue": false,
-        "wed": false,
-      }
-    }
-    meetingTime={
-      Object {
-        "afterNoon": false,
-        "all": true,
-        "beforeNoon": false,
-        "evening": false,
-      }
-    }
-    quarter="current"
+    subjects={Array []}
   />
 </div>
 `;
