@@ -1,3 +1,4 @@
+import * as ClassSearchUtils from './ClassSearchUtils';
 export declare var currentQuarterId: string;
 export class Quarter {
 
@@ -51,6 +52,7 @@ export class Quarter {
   public static setCurrentQuarterId(quarter: string) {
     if (!currentQuarterId) {
       currentQuarterId = quarter;
+      ClassSearchUtils.saveOrUpdateLocalStorage('currentQuarterId', quarter);
     }
   }
 

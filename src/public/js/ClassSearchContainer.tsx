@@ -223,8 +223,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     if (ClassSearchUtils.isObjectEmpty(data)) {
       return;
     }
-    data.forEach((_data: any) => {
-      transformedClass.push(Class.transformToClass(_data));
+    const classes = data.contentList;
+    classes.forEach((_class: any) => {
+      transformedClass.push(Class.transformToClass(_class));
     });
     this.allResults = transformedClass;
     this.setState({

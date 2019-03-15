@@ -59,7 +59,7 @@ export interface IMeetingDate {
 }
 
 export class Class {
-  static classesUrl = 'http://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCS';
+  static classesUrl = 'http://webdx.csusb.edu/ClassSchedule/getCurrentCS';
 
   private classInfo: IClass;
 
@@ -120,7 +120,13 @@ export class Class {
 
   static getAllClasses(onSuccess: (response: any) => void,
                        onFailure: (error: string) => void, url: string = this.classesUrl): void {
-    ClassSearchUtils.fetchData(url, onSuccess, onFailure);
+    const currentQuarterId = localStorage.getItem('currentQuarterId') ;
+    const params = {
+      currentPage: '1',
+      maximunPerPage: '4000',
+      conditions: ['strm = ' + currentQuarterId],
+    };
+    ClassSearchUtils.fetchWithArg(url, params, onSuccess, onFailure);
   }
 
   public getClassMeetingDates(): string {
