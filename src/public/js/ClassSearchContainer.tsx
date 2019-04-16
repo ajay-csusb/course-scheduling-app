@@ -288,11 +288,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private subjectsFound(data: any): void {
     const subjects: ISubject[] = [];
-    if (data !== undefined) {
-      data.forEach((_subject: any) => {
+    const subjectsArr = data.abbreviationList;
+    if (subjectsArr !== undefined) {
+      subjectsArr.forEach((_subject: any) => {
         const subject: ISubject = {
-          name: '',
           abbr: '',
+          name: '',
         };
         subject.abbr = _subject.subject;
         subject.name = _subject.subject_DESC;

@@ -7,7 +7,7 @@ export interface ISubject {
   abbr: string;
 }
 export class Subject {
-  static subjectUrl = 'http://webdx.csusb.edu/ClassSchedule/getAllAbbreviation';
+  static subjectUrl = 'http://webdx.csusb.edu/ClassSchedule/getDropDownList';
   public static getAllSubjects(onSuccess: (response: any) => void,
                                onFailure: (error: string) => void, url: string = this.subjectUrl): void {
     ClassSearchUtils.fetchData(url, onSuccess, onFailure);

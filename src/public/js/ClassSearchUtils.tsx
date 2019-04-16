@@ -1,7 +1,11 @@
 export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
                           callbackOnFailure: (error: string) => void): void {
-  fetch(url)
-      .then((res: any): any => {
+  fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res: any): any => {
     if (res.ok) {
       return res.json();
     } else {
