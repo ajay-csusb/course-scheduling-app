@@ -7,9 +7,9 @@ import { RadioGroupCampus } from './RadioGroupCampus';
 import { ControlGroupMeetingTime } from './ControlGroupMeetingTime';
 import { ControlGroupMeetingDate } from './ControlGroupMeetingDate';
 import { IClass, IMeetingDate } from './Class';
-import { RadioGroupInstructionMode } from './RadioGroupInstructionMode';
 import { renderInstructorSuggestProps } from './SuggestInstructors';
 import { ISubject } from './Subject';
+import { SelectListInstructionMode } from './SelectListInstructionMode';
 
 interface ClassSearchFormProps {
   classes: IClass[];
@@ -92,7 +92,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
           meetingDate={this.props.meetingDate}
           onChangeOfMeetingDate={this.props.onChangeOfMeetingDate}
         />
-        <RadioGroupInstructionMode
+        <SelectListInstructionMode
           instructionMode={this.props.instructionMode}
           onChangeOfInstructionMode={this.props.onChangeOfInstructionMode}
         />
