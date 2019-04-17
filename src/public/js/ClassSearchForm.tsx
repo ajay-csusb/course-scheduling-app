@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormGroup, Button, ControlGroup } from '@blueprintjs/core';
+import { FormGroup, Button, Label } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
 import { renderClassSuggestProps } from './SuggestClasses';
 import { RadioGroupQuarter } from './RadioGroupQuarter';
@@ -57,8 +57,8 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
           quarter={this.props.quarter}
           onChangeOfQuarter={this.props.onChangeOfQuarter}
         />
-        <ControlGroup>
-          <label>Select a Subject:</label>
+        <Label>
+          Select a Subject
           <SuggestClasses
             {...renderClassSuggestProps}
             items={this.getSubjects()}
@@ -66,10 +66,13 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
             openOnKeyDown={false}
             onItemSelect={this.props.onChangeOfSubject}
           />
-        </ControlGroup>
-        <br/>
-        <ControlGroup>
-          <label>Instructor:</label>
+        </Label>
+        <Label>
+          Course Number
+          <input className="bp3-input" type="text" placeholder="Course Number" dir="auto" />
+        </Label>
+        <Label>
+          Instructor
           <SuggestClasses
             {...renderInstructorSuggestProps}
             items={this.getInstructors()}
@@ -77,7 +80,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
             openOnKeyDown={false}
             onItemSelect={this.props.onChangeOfInstructor}
           />
-        </ControlGroup>
+        </Label>
         <RadioGroupCampus
           campus={this.props.campus}
           onChangeOfCampus={this.props.onChangeOfCampus}
