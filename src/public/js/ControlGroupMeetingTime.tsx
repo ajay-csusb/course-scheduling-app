@@ -1,6 +1,6 @@
 import React from 'react';
 import { TimePicker, TimePrecision } from '@blueprintjs/datetime';
-import { Label, FormGroup } from '@blueprintjs/core';
+import { Label, ControlGroup } from '@blueprintjs/core';
 
 export interface IControlGroupMeetingTime {
   onChangeOfStartTime: (event: Date) => void;
@@ -18,29 +18,33 @@ export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetin
 
   public render(): React.ReactNode {
     return (
-      <FormGroup>
-      <Label>Meeting Time:</Label>
-      <Label>Start Time:</Label>
-      <TimePicker
-        className="start-time"
-        precision={TimePrecision.MINUTE}
-        selectAllOnFocus={false}
-        showArrowButtons={true}
-        useAmPm={true}
-        onChange={(event: Date) => (this.handleChangeOfStartTime(event))}
-        value={this.props.startTime}
-      />
-      <Label>End Time:</Label>
-      <TimePicker
-        className="end-time"
-        precision={TimePrecision.MINUTE}
-        selectAllOnFocus={false}
-        showArrowButtons={true}
-        useAmPm={true}
-        onChange={(event: Date) => (this.handleChangeOfEndTime(event))}
-        value={this.props.endTime}
-      />
-      </FormGroup>
+        <ControlGroup>
+        <Label>
+          Meeting Time
+        <Label>
+          Start Time
+          <TimePicker
+            className="start-time"
+            precision={TimePrecision.MINUTE}
+            selectAllOnFocus={false}
+            useAmPm={true}
+            onChange={(event: Date) => (this.handleChangeOfStartTime(event))}
+            value={this.props.startTime}
+          />
+        </Label>
+        <Label>
+          End Time
+          <TimePicker
+            className="end-time"
+            precision={TimePrecision.MINUTE}
+            selectAllOnFocus={false}
+            useAmPm={true}
+            onChange={(event: Date) => (this.handleChangeOfEndTime(event))}
+            value={this.props.endTime}
+          />
+        </Label>
+        </Label>
+      </ControlGroup>
     );
   }
 
