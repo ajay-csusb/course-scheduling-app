@@ -4,6 +4,7 @@ import { Quarter } from './Quarter';
 import { MeetingDay } from './MeetingDay';
 import { Instructor } from './Instructor';
 import { Subject } from './Subject';
+import { MeetingTime } from './MeetingTime';
 
 export abstract class FilterClasses {
 
@@ -11,7 +12,8 @@ export abstract class FilterClasses {
     const result: IClass[] = [];
     const filterClassesBySubject = Subject.filter(classes, uInput);
     const filterClassesByInstructor = Instructor.filter(filterClassesBySubject, uInput);
-    filterClassesByInstructor.forEach((_class: IClass) => {
+    const filterClassesByMeetingTime = MeetingTime.filter(filterClassesByInstructor, uInput);
+    filterClassesByMeetingTime.forEach((_class: IClass) => {
       const meetingDays: MeetingDay = new MeetingDay(_class.mon, _class.tues, _class.wed,
                                                      _class.thurs, _class.fri, _class.sat, _class.sun);
       if (!FilterClasses.matchesUserSelectedCampus(_class.campus, uInput)) {
