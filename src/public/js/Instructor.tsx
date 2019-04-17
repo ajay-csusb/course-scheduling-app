@@ -3,7 +3,7 @@ import { UserInput } from './UserInput';
 import { IClass } from './Class';
 export class Instructor {
 
-  static instructorUrl = 'http://webdx.csusb.edu/ClassSchedule/getAllInstuctor ';
+  static instructorUrl = 'http://webdx.csusb.edu/ClassSchedule/getDropDownList ';
   public static getAllInstructors(onSuccess: (response: any) => void,
                                   onFailure: (error: string) => void, url: string = this.instructorUrl): void {
     ClassSearchUtils.fetchData(url, onSuccess, onFailure);
