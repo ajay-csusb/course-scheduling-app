@@ -160,4 +160,15 @@ export class Class {
     }
     return days;
   }
+  public getClassMeetingTimes(): string {
+    let meetingTimes = 'N/A';
+    if (!this.areStartTimeEndTimeEmpty()) {
+      meetingTimes = `${this.classInfo.classStartTime} - ${this.classInfo.classEndTime}`.toLowerCase();
+    }
+    return meetingTimes;
+  }
+
+  private areStartTimeEndTimeEmpty(): boolean {
+    return (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0);
+  }
 }
