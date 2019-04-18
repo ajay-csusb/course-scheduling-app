@@ -3,7 +3,7 @@ import { IClass, IMeetingDate } from './Class';
 import { ISubject } from './Subject';
 import { FilterClasses } from './FilterClasses';
 import { UserInput } from './UserInput';
-import { ClassesRow } from './ClassesRow';
+import { ClassesCards } from './ClassesCards';
 interface IClassSearchResultsProps {
   classes?: IClass[];
   quarter: string;
@@ -42,7 +42,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     let filteredResults: IClass[] = [];
     const userInput = new UserInput(
       this.props.campus, this.props.meetingDate, this.props.subject, this.props.quarter,
-      this.props.startTime, this.props.instructionMode, this.props.instructorName);
+      this.props.startTime, this.props.endTime, this.props.instructionMode, this.props.instructorName);
     if (this.props.classes) {
       filteredResults = FilterClasses.filter(this.props.classes, userInput);
       filteredResults.forEach((_class: any) => {
@@ -50,7 +50,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
           return;
         }
         rows.push(
-          <ClassesRow
+          <ClassesCards
             classes={_class}
             key={_class.classNumber}
           />
@@ -62,27 +62,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     }
     return (
       <div id="class-search-results-component">
-        <table className="bp3-html-table bp3-html-table-bordered bp3-html-table-striped bp3-interactive bp3-small">
-          <thead>
-            <tr>
-              <th>Subject</th>
-              <th>Course No.</th>
-              <th>Session</th>
-              <th>Title</th>
-              <th>Instruction Mode</th>
-              <th>Units</th>
-              <th>Days</th>
-              <th>Bldg/Room</th>
-              <th>Instructor</th>
-              <th>Available Seats/Enrolled/Max-Enroll</th>
-              <th>Type/Group</th>
-              <th>Campus</th>
-              <th>Lab/Activity Fee</th>
-              <th>Textbook</th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </table>
+        {rows}
       </div>
     );
   }
