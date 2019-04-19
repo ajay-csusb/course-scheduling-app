@@ -63,7 +63,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
             {...renderClassSuggestProps}
             items={this.getSubjects()}
             className="search-autocomplete"
-            openOnKeyDown={false}
+            openOnKeyDown={true}
             onItemSelect={this.props.onChangeOfSubject}
           />
         </Label>
@@ -77,7 +77,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
             {...renderInstructorSuggestProps}
             items={this.getInstructors()}
             className="search-instructor-autocomplete"
-            openOnKeyDown={false}
+            openOnKeyDown={true}
             onItemSelect={this.props.onChangeOfInstructor}
           />
         </Label>
