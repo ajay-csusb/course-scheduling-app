@@ -38,7 +38,10 @@ export function fetchWithArg(url: string, params: {}, callbackOnSuccess: (respon
 }
 
 export function saveOrUpdateLocalStorage(key: string, value: string): void {
-  if (!localStorage.getItem(key) && localStorage.getItem(key) !== value) {
+  if (isLocalStorageEmpty(key)) {
+    localStorage.setItem(key, value);
+  }
+  if (doesLocalStorageHaveStaleValue(key, value)) {
     localStorage.setItem(key, value);
   }
 }
@@ -134,4 +137,12 @@ export function compareEndTimes(userTime: string, classTime: string) {
 
 function isTimeEmpty(classTime: string): boolean {
   return (classTime.length === 0);
+}
+
+function doesLocalStorageHaveStaleValue(key: string, value: string): boolean {
+  return (localStorage.getItem(key) !== value);
+}
+
+function isLocalStorageEmpty(key: string): boolean {
+  return (!localStorage.getItem(key));
 }
