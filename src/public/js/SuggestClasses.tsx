@@ -22,6 +22,9 @@ export function renderMenuItem(subject: ISubject, classRenderer: IItemRendererPr
 }
 
 export function renderInputValue(subject: ISubject): string {
+  if (subject.abbr.length === 0) {
+    return '';
+  }
   return `${subject.name} (${subject.abbr})`;
 }
 

@@ -278,6 +278,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private instructorsFound(data: any): void {
     const instructorsArr: any[] = [];
+    instructorsArr.push(' -- Not Known -- ');
     if (data !== undefined && data.instructorList !== undefined) {
       data.instructorList.forEach((_instructor: any) => {
         instructorsArr.push(_instructor.name);
@@ -292,6 +293,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private subjectsFound(data: any): void {
     const subjects: ISubject[] = [];
+    const noOption: ISubject = {
+      abbr: '',
+      name: ' -- Not Known -- ',
+    };
+    subjects.push(noOption);
     const subjectsArr = data.abbreviationList;
     if (subjectsArr !== undefined) {
       subjectsArr.forEach((_subject: any) => {

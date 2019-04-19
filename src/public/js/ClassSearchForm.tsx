@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormGroup, Button, Label } from '@blueprintjs/core';
+import { FormGroup, Button, Label, MenuItem } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
 import { renderClassSuggestProps } from './SuggestClasses';
 import { RadioGroupQuarter } from './RadioGroupQuarter';
@@ -63,7 +63,9 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
             {...renderClassSuggestProps}
             items={this.getSubjects()}
             className="search-autocomplete"
-            openOnKeyDown={true}
+            openOnKeyDown={false}
+            resetOnClose={true}
+            noResults={<MenuItem disabled={true} text="Searching for subject..." />}
             onItemSelect={this.props.onChangeOfSubject}
           />
         </Label>
@@ -77,7 +79,9 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
             {...renderInstructorSuggestProps}
             items={this.getInstructors()}
             className="search-instructor-autocomplete"
-            openOnKeyDown={true}
+            openOnKeyDown={false}
+            resetOnClose={true}
+            noResults={<MenuItem disabled={true} text="Searching for instructor..." />}
             onItemSelect={this.props.onChangeOfInstructor}
           />
         </Label>

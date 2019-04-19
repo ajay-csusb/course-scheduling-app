@@ -20,7 +20,7 @@ export function renderMenuItem(instructor: string, instructorRenderer: IItemRend
 }
 
 export function renderInputValue(instructors: string): string {
-  return instructors;
+  return (instructors === ' -- Not Known -- ') ? '' : instructors;
 }
 
 export const renderInstructorSuggestProps = {
