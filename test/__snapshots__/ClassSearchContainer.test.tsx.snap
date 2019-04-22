@@ -5,6 +5,7 @@ exports[`test class search form component Class search form component snapshot 1
   <ClassSearchForm
     campus="both"
     classes={Array []}
+    endTime={1899-01-02T04:00:00.000Z}
     instructionMode="all"
     instructorName=""
     instructors={Array []}
@@ -20,25 +21,22 @@ exports[`test class search form component Class search form component snapshot 1
         "wed": false,
       }
     }
-    meetingTime={
-      Object {
-        "afterNoon": false,
-        "all": true,
-        "beforeNoon": false,
-        "evening": false,
-      }
-    }
     onChangeOfCampus={[Function]}
+    onChangeOfCourseNo={[Function]}
+    onChangeOfEndTime={[Function]}
     onChangeOfInstructionMode={[Function]}
     onChangeOfInstructor={[Function]}
     onChangeOfMeetingDate={[Function]}
-    onChangeOfMeetingTime={[Function]}
     onChangeOfQuarter={[Function]}
+    onChangeOfStartTime={[Function]}
     onChangeOfSubject={[Function]}
     onReset={[Function]}
     onSubmit={[Function]}
     quarter="current"
+    showGeClasses={false}
+    startTime={1899-01-01T16:00:00.000Z}
     subjects={Array []}
+    toggleGeClasses={[Function]}
   />
 </div>
 `;
