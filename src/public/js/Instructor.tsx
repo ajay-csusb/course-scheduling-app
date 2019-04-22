@@ -11,8 +11,12 @@ export class Instructor {
 
   public static filter(classes: IClass[] , uInput: UserInput): IClass[] {
     const result: IClass[] = [];
+    const instructorInstance = new Instructor();
     classes.forEach((_class: IClass) => {
-      if (uInput.getInstructor() === '') {
+      if (instructorInstance.isInstructorUnknown(uInput)) {
+        result.push(_class);
+      }
+      if (instructorInstance.isInstructorEmpty(uInput)) {
         result.push(_class);
       }
       if (_class.instructorName.toLowerCase() === uInput.getInstructor().toLowerCase()) {
@@ -20,6 +24,14 @@ export class Instructor {
       }
     });
     return result;
+  }
+
+  private isInstructorUnknown(uInput: UserInput): boolean {
+    return (uInput.getInstructor() === ' -- Not Known -- ');
+  }
+
+  private isInstructorEmpty(uInput: UserInput): boolean {
+    return (uInput.getInstructor() === '');
   }
 
 }
