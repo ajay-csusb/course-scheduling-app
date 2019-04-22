@@ -1,4 +1,4 @@
-import { IClass, IMeetingDate, IMeetingTime } from '../src/public/js/Class';
+import { IClass, IMeetingDate } from '../src/public/js/Class';
 
 export let baseClassJson: IClass = {
     quarter: '2194',
@@ -7,8 +7,8 @@ export let baseClassJson: IClass = {
     classSection: '01',
     textbook: '',
     employeeId: '001343367',
-    classStartTime: '6:00 PM',
-    classEndTime: '7:50 PM',
+    classStartTime: '8:00 AM',
+    classEndTime: '9:50 AM',
     enrolledCapacity: 30,
     enrolledTotal: 28,
     waitlistCapacity: 100,
@@ -36,12 +36,12 @@ export let baseClassJson: IClass = {
 export const classJson: IClass = {
     quarter: '2194',
     subject: 'ACCT',
-    catalogNo: ' 468',
+    catalogNo: '101',
     classSection: '01',
     textbook: '',
     employeeId: '001343367',
-    classStartTime: '6:00 PM',
-    classEndTime: '7:50 PM',
+    classStartTime: '12:00 PM',
+    classEndTime: '1:50 PM',
     enrolledCapacity: 30,
     enrolledTotal: 28,
     waitlistCapacity: 100,
@@ -68,7 +68,7 @@ export const classJson: IClass = {
 export const classPDC: IClass = {
     quarter: '2192',
     subject: 'ECON',
-    catalogNo: ' 468',
+    catalogNo: '201',
     classSection: '01',
     textbook: '',
     employeeId: '001343367',
@@ -109,9 +109,5 @@ export let meetingDates: IMeetingDate = {
     sun: false,
 };
 
-export const meetingTimes: IMeetingTime = {
-    all: false,
-    beforeNoon: true,
-    afterNoon: false,
-    evening: true,
-};
+export let startMeetingTime: Date = new Date('1899-01-01T08:00:00');
+export let endMeetingTime: Date = new Date('1899-01-01T20:00:00');
