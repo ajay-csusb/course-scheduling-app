@@ -1,16 +1,16 @@
 import React from 'react';
-import { RadioGroup, Radio } from '@blueprintjs/core';
+import { Label } from '@blueprintjs/core';
 import { Quarter } from './Quarter';
 import * as ClassSearchUtils from './ClassSearchUtils';
-export interface IRadioGroupQuarterProps {
+export interface ISelectListQuarterProps {
     quarter: string;
     onChangeOfQuarter: (event: React.FormEvent) => void;
 }
 
-export class RadioGroupQuarter extends React.Component<IRadioGroupQuarterProps, {}> {
+export class SelectListQuarter extends React.Component<ISelectListQuarterProps, {}> {
 
   readonly quarterUrl = 'http://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST';
-  constructor(props: IRadioGroupQuarterProps) {
+  constructor(props: ISelectListQuarterProps) {
     super(props);
     this.handleChangeOfQuarter = this.handleChangeOfQuarter.bind(this);
     this.getCurrentQuarterLabel = this.getCurrentQuarterLabel.bind(this);
@@ -25,15 +25,15 @@ export class RadioGroupQuarter extends React.Component<IRadioGroupQuarterProps, 
 
   public render(): React.ReactNode {
     return (
-      <RadioGroup
-        label="Quarter"
-        inline={true}
-        onChange={(event: React.FormEvent) => (this.handleChangeOfQuarter(event))}
-        selectedValue={this.props.quarter}
-      >
-        <Radio label={this.getCurrentQuarterLabel()} value="current" className="current-quarter" />
-        <Radio label={this.getPrevQuarterLabel()} value="prev" className="prev-quarter" />
-      </RadioGroup>
+      <Label>
+        Quarter
+        <div className="bp3-select select-quarter">
+          <select onChange={this.handleChangeOfQuarter}>
+            <option label={this.getCurrentQuarterLabel()} value="current" className="current-quarter" />            } />
+            <option label={this.getPrevQuarterLabel()} value="prev" className="prev-quarter" />
+            </select>
+        </div>
+      </Label>
     );
   }
 
