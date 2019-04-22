@@ -14,6 +14,7 @@ interface IClassSearchContainerState {
   courseNo: string;
   startTime: Date;
   endTime: Date;
+  showGeClasses: boolean;
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructorName: string;
@@ -35,6 +36,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.updateCampus = this.updateCampus.bind(this);
     this.updateStartTime = this.updateStartTime.bind(this);
     this.updateEndTime = this.updateEndTime.bind(this);
+    this.updateToggleGeClasses = this.updateToggleGeClasses.bind(this);
     this.updateMeetingDate = this.updateMeetingDate.bind(this);
     this.updateSubject = this.updateSubject.bind(this);
     this.updateCourseNo = this.updateCourseNo.bind(this);
@@ -61,6 +63,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
           quarter={this.state.quarter}
           campus={this.state.campus}
           subjects={this.subjects}
+          showGeClasses={this.state.showGeClasses}
           meetingDate={this.state.meetingDate}
           instructionMode={this.state.instructionMode}
           instructorName={this.state.instructorName}
@@ -69,6 +72,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
           onChangeOfCampus={this.updateCampus}
           onChangeOfStartTime={this.updateStartTime}
           onChangeOfEndTime={this.updateEndTime}
+          toggleGeClasses={this.updateToggleGeClasses}
           onChangeOfMeetingDate={this.updateMeetingDate}
           onChangeOfSubject={this.updateSubject}
           onChangeOfCourseNo={this.updateCourseNo}
@@ -152,6 +156,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       instructorName: instructor,
     });
+  }
+
+  private updateToggleGeClasses(_e: any): void {
+    this.setState(prevState => ({
+      showGeClasses: !prevState.showGeClasses,
+    }));
   }
 
   private toggleAllMeetingDate(checkBoxValue: string): boolean {
@@ -269,6 +279,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       courseNo: '',
       startTime: new Date('1899-01-01T08:00:00'),
       endTime: new Date('1899-01-01T20:00:00'),
+      showGeClasses: false,
       meetingDate: {
         all: true,
         mon: false,

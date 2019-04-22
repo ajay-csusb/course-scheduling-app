@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormGroup, Button, Label, MenuItem } from '@blueprintjs/core';
+import { FormGroup, Button, Label, MenuItem, Switch } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
 import { renderClassSuggestProps } from './SuggestClasses';
 import { RadioGroupQuarter } from './RadioGroupQuarter';
@@ -16,6 +16,7 @@ interface ClassSearchFormProps {
   quarter: string;
   campus: string;
   subjects: ISubject[];
+  showGeClasses: boolean;
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructorName: string;
@@ -27,6 +28,7 @@ interface ClassSearchFormProps {
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
   onChangeOfEndTime: (event: any) => void;
+  toggleGeClasses: (event: any) => void;
   onChangeOfMeetingDate: (event: any) => void;
   onChangeOfSubject: (event: any) => void;
   onChangeOfCourseNo: (event: any) => void;
@@ -101,6 +103,12 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
           onChangeOfEndTime={this.props.onChangeOfEndTime}
           startTime={this.props.startTime}
           endTime={this.props.endTime}
+        />
+        <Switch
+          checked={this.props.showGeClasses}
+          className="ge-classes"
+          labelElement="Show only GE classes"
+          onChange={this.props.toggleGeClasses}
         />
         <ControlGroupMeetingDate
           meetingDate={this.props.meetingDate}
