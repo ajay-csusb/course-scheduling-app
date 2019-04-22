@@ -9,6 +9,7 @@ interface IClassSearchResultsProps {
   quarter: string;
   campus: string;
   subject: ISubject;
+  courseNo: string;
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructorName: string;
@@ -41,12 +42,12 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     const rows: any = [];
     let filteredResults: IClass[] = [];
     const userInput = new UserInput(
-      this.props.campus, this.props.meetingDate, this.props.subject, this.props.quarter,
+      this.props.campus, this.props.meetingDate, this.props.subject, this.props.courseNo, this.props.quarter,
       this.props.startTime, this.props.endTime, this.props.instructionMode, this.props.instructorName);
     if (this.props.classes) {
       filteredResults = FilterClasses.filter(this.props.classes, userInput);
       filteredResults.forEach((_class: any) => {
-        if (rows.length > 300) {
+        if (rows.length > 100) {
           return;
         }
         rows.push(

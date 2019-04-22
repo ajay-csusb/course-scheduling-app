@@ -14,18 +14,22 @@ export class UserInput {
     sun: false,
   };
   private subject: string = '';
+  private courseNo: string = '';
   private quarter: string = 'current';
-  private time: Date = new Date();
+  private startTime: Date = new Date();
+  private endTime: Date = new Date();
   private instructionMode: string = 'all';
   private instructor: string = '';
 
-  constructor(campus: string, day: IMeetingDate, subject: ISubject, quarter: string,
-              time: Date, instructionMode: string, instructor: string) {
+  constructor(campus: string, day: IMeetingDate, subject: ISubject, courseNo: string, quarter: string,
+              startTime: Date, endTime: Date, instructionMode: string, instructor: string) {
     this.campus = campus;
     this.day = day;
     this.subject = subject.abbr;
+    this.courseNo = courseNo;
     this.quarter = quarter;
-    this.time = time;
+    this.startTime = startTime;
+    this.endTime = endTime;
     this.instructionMode = instructionMode;
     this.instructor = instructor;
   }
@@ -109,8 +113,16 @@ export class UserInput {
     return this.instructionMode;
   }
 
-  public getTime(): Date {
-    return this.time;
+  public getStartTime(): Date {
+    return this.startTime;
+  }
+
+  public getEndTime(): Date {
+    return this.endTime;
+  }
+
+  public getCourseNo(): string {
+    return this.courseNo;
   }
 
 }

@@ -11,6 +11,7 @@ interface IClassSearchContainerState {
   quarter: string;
   campus: string;
   subject: ISubject;
+  courseNo: string;
   startTime: Date;
   endTime: Date;
   meetingDate: IMeetingDate;
@@ -36,6 +37,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.updateEndTime = this.updateEndTime.bind(this);
     this.updateMeetingDate = this.updateMeetingDate.bind(this);
     this.updateSubject = this.updateSubject.bind(this);
+    this.updateCourseNo = this.updateCourseNo.bind(this);
     this.updateInstructionMode = this.updateInstructionMode.bind(this);
     this.updateInstructorName = this.updateInstructorName.bind(this);
     this.instructorsFound = this.instructorsFound.bind(this);
@@ -69,6 +71,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
           onChangeOfEndTime={this.updateEndTime}
           onChangeOfMeetingDate={this.updateMeetingDate}
           onChangeOfSubject={this.updateSubject}
+          onChangeOfCourseNo={this.updateCourseNo}
           onChangeOfInstructionMode={this.updateInstructionMode}
           onChangeOfInstructor={this.updateInstructorName}
           onSubmit={this.onSubmit}
@@ -81,6 +84,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
             classes={this.allResults}
             quarter={this.state.quarter}
             subject={this.state.subject}
+            courseNo={this.state.courseNo}
             campus={this.state.campus}
             meetingDate={this.state.meetingDate}
             instructionMode={this.state.instructionMode}
@@ -129,6 +133,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateSubject(subject: ISubject): void {
     this.setState({
       subject: subject,
+    });
+  }
+
+  private updateCourseNo(e: any): void {
+    this.setState({
+      courseNo: e.target.value,
     });
   }
 
@@ -256,6 +266,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         name: '',
         abbr: '',
       },
+      courseNo: '',
       startTime: new Date('1899-01-01T08:00:00'),
       endTime: new Date('1899-01-01T20:00:00'),
       meetingDate: {

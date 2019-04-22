@@ -29,6 +29,7 @@ interface ClassSearchFormProps {
   onChangeOfEndTime: (event: any) => void;
   onChangeOfMeetingDate: (event: any) => void;
   onChangeOfSubject: (event: any) => void;
+  onChangeOfCourseNo: (event: any) => void;
   onChangeOfInstructionMode: (event: any) => void;
   onChangeOfInstructor: (event: any) => void;
   onSubmit: (event: any) => void;
@@ -71,7 +72,13 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
         </Label>
         <Label>
           Course Number
-          <input className="bp3-input" type="text" placeholder="Course Number" dir="auto" />
+          <input
+            className="bp3-input"
+            type="text"
+            placeholder="E.g. 602"
+            dir="auto"
+            onChange={this.props.onChangeOfCourseNo}
+          />
         </Label>
         <Label>
           Instructor

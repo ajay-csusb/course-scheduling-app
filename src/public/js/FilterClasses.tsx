@@ -5,13 +5,15 @@ import { MeetingDay } from './MeetingDay';
 import { Instructor } from './Instructor';
 import { Subject } from './Subject';
 import { MeetingTime } from './MeetingTime';
+import { CourseNumber } from './CourseNumber';
 
 export abstract class FilterClasses {
 
   public static filter(classes: IClass[], uInput: UserInput): IClass[] {
     const result: IClass[] = [];
     const filterClassesBySubject = Subject.filter(classes, uInput);
-    const filterClassesByInstructor = Instructor.filter(filterClassesBySubject, uInput);
+    const filterClassesByCourseNumber = CourseNumber.filter(filterClassesBySubject, uInput);
+    const filterClassesByInstructor = Instructor.filter(filterClassesByCourseNumber, uInput);
     const filterClassesByMeetingTime = MeetingTime.filter(filterClassesByInstructor, uInput);
     filterClassesByMeetingTime.forEach((_class: IClass) => {
       const meetingDays: MeetingDay = new MeetingDay(_class.mon, _class.tues, _class.wed,
