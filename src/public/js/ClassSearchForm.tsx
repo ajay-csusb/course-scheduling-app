@@ -2,8 +2,8 @@ import * as React from 'react';
 import { FormGroup, Button, Label, MenuItem, Switch } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
 import { renderClassSuggestProps } from './SuggestClasses';
-import { RadioGroupQuarter } from './RadioGroupQuarter';
-import { RadioGroupCampus } from './RadioGroupCampus';
+import { SelectListQuarter } from './SelectListQuarter';
+import { SelectListCampus } from './SelectListCampus';
 import { ControlGroupMeetingTime } from './ControlGroupMeetingTime';
 import { ControlGroupMeetingDate } from './ControlGroupMeetingDate';
 import { IClass, IMeetingDate } from './Class';
@@ -56,7 +56,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
     const SuggestClasses = Suggest;
     return (
       <FormGroup label="Fill in one or more of the fields below:">
-        <RadioGroupQuarter
+        <SelectListQuarter
           quarter={this.props.quarter}
           onChangeOfQuarter={this.props.onChangeOfQuarter}
         />
@@ -94,7 +94,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
             onItemSelect={this.props.onChangeOfInstructor}
           />
         </Label>
-        <RadioGroupCampus
+        <SelectListCampus
           campus={this.props.campus}
           onChangeOfCampus={this.props.onChangeOfCampus}
         />
