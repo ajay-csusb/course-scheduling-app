@@ -6,6 +6,7 @@ import { Instructor } from './Instructor';
 import { Subject } from './Subject';
 import { MeetingTime } from './MeetingTime';
 import { CourseNumber } from './CourseNumber';
+import { GeClasses } from './GeClasses';
 
 export abstract class FilterClasses {
 
@@ -15,7 +16,8 @@ export abstract class FilterClasses {
     const filterClassesByCourseNumber = CourseNumber.filter(filterClassesBySubject, uInput);
     const filterClassesByInstructor = Instructor.filter(filterClassesByCourseNumber, uInput);
     const filterClassesByMeetingTime = MeetingTime.filter(filterClassesByInstructor, uInput);
-    filterClassesByMeetingTime.forEach((_class: IClass) => {
+    const filterClassesByGe = GeClasses.filter(filterClassesByMeetingTime, uInput);
+    filterClassesByGe.forEach((_class: IClass) => {
       const meetingDays: MeetingDay = new MeetingDay(_class.mon, _class.tues, _class.wed,
                                                      _class.thurs, _class.fri, _class.sat, _class.sun);
       if (!FilterClasses.matchesUserSelectedCampus(_class.campus, uInput)) {

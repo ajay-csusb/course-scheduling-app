@@ -45,6 +45,7 @@ export interface IClass {
   instructorName: string;
   instructorEmployeeId?: string;
   instructorAltName?: string;
+  courseAttr?: string;
 }
 
 export interface IMeetingDate {
@@ -114,6 +115,7 @@ export class Class {
       instructorName : object.name,
       instructorEmployeeId : object.emplid2,
       instructorAltName : object.name2,
+      courseAttr: object.crse_ATTR,
     };
     return result;
   }

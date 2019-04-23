@@ -95,6 +95,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
             instructorName={this.state.instructorName}
             startTime={this.state.startTime}
             endTime={this.state.endTime}
+            geClasses={this.state.showGeClasses}
           />
         }
       </div>

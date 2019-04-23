@@ -13,6 +13,7 @@ interface IClassSearchResultsProps {
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructorName: string;
+  geClasses: boolean;
   isReset?: boolean;
   startTime: Date;
   endTime: Date;
@@ -43,7 +44,8 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     let filteredResults: IClass[] = [];
     const userInput = new UserInput(
       this.props.campus, this.props.meetingDate, this.props.subject, this.props.courseNo, this.props.quarter,
-      this.props.startTime, this.props.endTime, this.props.instructionMode, this.props.instructorName);
+      this.props.startTime, this.props.endTime, this.props.instructionMode, this.props.instructorName,
+      this.props.geClasses);
     if (this.props.classes) {
       filteredResults = FilterClasses.filter(this.props.classes, userInput);
       filteredResults.forEach((_class: any) => {
