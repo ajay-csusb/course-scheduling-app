@@ -31,6 +31,7 @@ export let baseClassJson: IClass = {
     sat: 'N',
     sun: 'N',
     instructorName: 'Bakeman, Melissa',
+    courseAttr: 'GE',
 };
 
 export const classJson: IClass = {
@@ -64,6 +65,7 @@ export const classJson: IClass = {
     sat: 'N',
     sun: 'N',
     instructorName: 'Dyck, Harold',
+    courseAttr: '',
 };
 export const classPDC: IClass = {
     quarter: '2192',
@@ -96,6 +98,7 @@ export const classPDC: IClass = {
     sat: 'N',
     sun: 'N',
     instructorName: 'Coates, Breena',
+    courseAttr: '',
 };
 
 export let meetingDates: IMeetingDate = {
