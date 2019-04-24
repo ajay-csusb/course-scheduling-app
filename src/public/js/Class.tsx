@@ -121,14 +121,29 @@ export class Class {
   }
 
   static getAllClasses(onSuccess: (response: any) => void,
-                       onFailure: (error: string) => void, url: string = this.classesUrl): void {
+                       onFailure: (error: string) => void, subject: string): void {
     const currentQuarterId = localStorage.getItem('currentQuarterId') ;
     const params = {
       currentPage: '1',
-      maximunPerPage: '4000',
-      conditions: ['strm = ' + currentQuarterId],
+      maximunPerPage: '10000',
+      condition: {
+        strm: currentQuarterId,
+        subject: subject,
+        name: '',
+        campus: '',
+        crse_attr: '',
+        meeting_time_start: '',
+        mon: '',
+        tues: '',
+        wed: '',
+        thurs: '',
+        fri: '',
+        sat: '',
+        sun: '',
+        instruction_mode: '',
+      },
     };
-    ClassSearchUtils.fetchWithArg(url, params, onSuccess, onFailure);
+    ClassSearchUtils.fetchWithArg(this.classesUrl, params, onSuccess, onFailure);
   }
 
   public getClassMeetingDates(): string {

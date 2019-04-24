@@ -103,10 +103,16 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
   componentDidMount() {
     this.setState({ isLoading: true });
-    Class.getAllClasses(this.classesFound, this.classesNotFound);
     Subject.getAllSubjects(this.subjectsFound, this.subjectsNotFound);
     Instructor.getAllInstructors(this.instructorsFound, this.instructorsNotFound);
   }
+
+  componentDidUpdate(_prevProps: any, prevState: any, _snapshot: any) {
+    if (this.didSubjectChange(prevState)) {
+      this.updateClasses();
+    }
+  }
+
   private updateQuarter(e: any): void {
     this.setState({
       quarter: e.target.value,
@@ -245,9 +251,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       return;
     }
     const classes = data.contentList;
-    classes.forEach((_class: any) => {
-      transformedClass.push(Class.transformToClass(_class));
-    });
+    if (classes !== null && classes.length !== 0) {
+      classes.forEach((_class: any) => {
+        transformedClass.push(Class.transformToClass(_class));
+      });
+    }
     this.allResults = transformedClass;
     this.setState({
       isLoading: false,
@@ -307,6 +315,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         instructorsArr.push(_instructor.name);
       });
       this.instructors = instructorsArr;
+      this.setState({ isLoading: false });
     }
   }
 
@@ -334,6 +343,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       });
       this.subjects = subjects;
     }
+    this.setState({ isLoading: false });
   }
 
   private subjectsNotFound(error: string): void {
@@ -351,4 +361,17 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       endTime: e,
     });
   }
+
+  private didSubjectChange(prevState: any) {
+    const prevSubject = prevState.subject.abbr;
+    const currentSubject = this.state.subject.abbr;
+    return (prevSubject !== currentSubject);
+  }
+
+  private updateClasses(): void {
+    const subject = this.state.subject.abbr.toUpperCase();
+    this.allResults = [];
+    Class.getAllClasses(this.classesFound, this.classesNotFound, subject);
+  }
+
 }
