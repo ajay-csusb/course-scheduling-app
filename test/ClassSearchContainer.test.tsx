@@ -19,18 +19,41 @@ describe('test class search form component', () => {
     expect(fetchMock.lastUrl()).toMatch(new RegExp('http://webdx.csusb.edu/ClassSchedule/getDropDownList'));
   });
 
-  describe('test correct states are set', () => {
-    test('showGeClasses state when a user sets it', () => {
-      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      classSearchContainerWrapper.find('.ge-classes > input').simulate('change');
-      expect(classSearchContainerWrapper.state('showGeClasses')).toBeTruthy();
+  test('request made to fetch classes when subject is changed', () => {
+    const classSearchContainerWrapper = shallow(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+      subject: {
+        abbr: 'foo',
+        name: 'Foo',
+      },
     });
+    expect(fetchMock.lastUrl()).toMatch(new RegExp('http://webdx.csusb.edu/ClassSchedule/getCurrentCS'));
+  });
 
-    test('showGeClasses state when a user unsets it', () => {
-      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      classSearchContainerWrapper.find('.ge-classes > input').simulate('change');
-      classSearchContainerWrapper.find('.ge-classes > input').simulate('change');
-      expect(classSearchContainerWrapper.state('showGeClasses')).toBeFalsy();
+  test('parameters used when request is to fetch classes when subject is changed', () => {
+    const classSearchContainerWrapper = shallow(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+      subject: {
+        abbr: 'bar',
+        name: 'Bar',
+      },
     });
+    const subjectArgument = fetchMock.lastOptions();
+    expect(subjectArgument.body).toMatch(new RegExp('"subject":"BAR"'));
+  });
+});
+
+describe('test correct states are set', () => {
+  test('showGeClasses state when a user sets it', () => {
+    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.find('.ge-classes > input').simulate('change');
+    expect(classSearchContainerWrapper.state('showGeClasses')).toBeTruthy();
+  });
+
+  test('showGeClasses state when a user unsets it', () => {
+    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.find('.ge-classes > input').simulate('change');
+    classSearchContainerWrapper.find('.ge-classes > input').simulate('change');
+    expect(classSearchContainerWrapper.state('showGeClasses')).toBeFalsy();
   });
 });
