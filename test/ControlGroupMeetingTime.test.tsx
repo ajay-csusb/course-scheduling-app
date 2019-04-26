@@ -2,50 +2,33 @@ import { shallow, mount } from 'enzyme';
 import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
-
+// tslint:disable:max-line-length
 describe('test control group meeting time component', () => {
 
     beforeAll(() => {
         fetchMock.mock('*', {});
     });
 
-    test('state when all meeting times are checked', () => {
+    test('start time by default', () => {
         const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-        const resultObj = {
-            afterNoon: false,
-            all: true,
-            beforeNoon: false,
-            evening: false,
-        };
-        expect(classSearchContainerWrapper.state('meetingTime')).toEqual(resultObj);
-        // tslint:disable-next-line:max-line-length
-        classSearchContainerWrapper.find('.before-noon > input').simulate('change', { target: { value: 'before-noon' } });
-        resultObj.beforeNoon = true;
-        resultObj.all = false;
-        expect(classSearchContainerWrapper.state('meetingTime')).toEqual(resultObj);
-        classSearchContainerWrapper.find('.after-noon > input').simulate('change', { target: { value: 'after-noon' } });
-        resultObj.afterNoon = true;
-        expect(classSearchContainerWrapper.state('meetingTime')).toEqual(resultObj);
-        classSearchContainerWrapper.find('.evening > input').simulate('change', { target: { value: 'evening' } });
-        resultObj.evening = true;
-        expect(classSearchContainerWrapper.state('meetingTime')).toEqual(resultObj);
+        expect(classSearchContainerWrapper.state('startTime')).toEqual(new Date('1899-01-01T08:00:00'));
     });
 
-    test('all is set to false when other option is checked in meeting time', () => {
+    test('start time when hour arrow is clicked', () => {
         const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-        const resultObj = {
-            afterNoon: false,
-            all: true,
-            beforeNoon: false,
-            evening: false,
-        };
-        // tslint:disable-next-line:max-line-length
-        classSearchContainerWrapper.find('.before-noon > input').simulate('change', { target: { value: 'before-noon' } });
-        // tslint:disable-next-line:max-line-length
-        classSearchContainerWrapper.find('.before-noon > input').simulate('change', { target: { value: 'before-noon' } });
-        resultObj.beforeNoon = false;
-        resultObj.all = false;
-        expect(classSearchContainerWrapper.state('meetingTime')).toEqual(resultObj);
+        classSearchContainerWrapper.find('.start-time span.bp3-timepicker-hour .bp3-icon-chevron-up').simulate('click', { target: { value: new Date('1899-01-01T08:00:00' } });
+        expect(classSearchContainerWrapper.state('startTime')).toEqual(new Date('1899-01-01T09:00:00'));
+    });
+
+    test('end time by default', () => {
+        const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+        expect(classSearchContainerWrapper.state('endTime')).toEqual(new Date('1899-01-01T20:00:00'));
+    });
+
+    test('end time when hour arrow is clicked', () => {
+        const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+        classSearchContainerWrapper.find('.end-time span.bp3-timepicker-hour .bp3-icon-chevron-down').simulate('click', { target: { value: new Date('1899-01-01T08:00:00' } });
+        expect(classSearchContainerWrapper.state('endTime')).toEqual(new Date('1899-01-01T19:00:00'));
     });
 
 });
