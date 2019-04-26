@@ -74,6 +74,9 @@ export function compareStartTimes(userTime: string, classTime: string): boolean 
   const classInputMin = parseInt(cMin, 10);
   uTime.setHours(userInputHour, userInputMin, 0, 0);
   cTime.setHours(classInputHour, classInputMin, 0, 0);
+  if (uAmpm === 'PM' && cAmpm === 'AM') {
+    return false;
+  }
   if (uAmpm === 'AM' && cAmpm === 'PM') {
     return true;
   }
@@ -84,6 +87,9 @@ export function compareStartTimes(userTime: string, classTime: string): boolean 
     return true;
   }
   if (userInputHour === 12 && userInputMin === 0 && uAmpm === 'PM' && cAmpm === 'AM') {
+    return false;
+  }
+  if (userInputHour < 12 && classInputHour === 12 && uAmpm === 'PM' && cAmpm === 'PM') {
     return false;
   }
   if (classInputHour === 12 && classInputMin === 0

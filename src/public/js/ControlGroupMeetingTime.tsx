@@ -26,10 +26,11 @@ export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetin
           <TimePicker
             className="start-time"
             precision={TimePrecision.MINUTE}
-            selectAllOnFocus={false}
+            selectAllOnFocus={true}
             useAmPm={true}
             onChange={(event: Date) => (this.handleChangeOfStartTime(event))}
             value={this.props.startTime}
+            showArrowButtons={true}
           />
         </Label>
         <Label>
@@ -37,10 +38,11 @@ export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetin
           <TimePicker
             className="end-time"
             precision={TimePrecision.MINUTE}
-            selectAllOnFocus={false}
+            selectAllOnFocus={true}
             useAmPm={true}
             onChange={(event: Date) => (this.handleChangeOfEndTime(event))}
             value={this.props.endTime}
+            showArrowButtons={true}
           />
         </Label>
         </Label>

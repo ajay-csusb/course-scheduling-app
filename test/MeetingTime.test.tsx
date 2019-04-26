@@ -66,17 +66,45 @@ describe('compare start times', () => {
     });
   });
 
-  test('user entered start time is after the class start time', () => {
+  describe('user entered start time is after the class start time', () => {
+
+    test('classes are before noon', () => {
+      const data = [
+        ['8:00 AM', '6:00 AM'],
+        ['8:30 AM', '7:00 AM'],
+        ['8:30 AM', '8:15 AM'],
+        ['9:00 PM', '9:00 AM'],
+        ['9:30 PM', '9:30 AM'],
+        ['7:00 PM', '9:45 AM'],
+        ['7:00 PM', '9:45 AM'],
+      ];
+      data.forEach(_data => {
+        const result: boolean = ClassSearchUtils.compareStartTimes(_data[0], _data[1]);
+        expect(result).toBeFalsy();
+      });
+    });
+
+    test('classes are at around noon', () => {
+      const data = [
+        ['5:00 PM', '12:00 PM'],
+        ['10:30 PM', '12:00 PM'],
+        ['12:20 PM', '12:15 PM'],
+        ['7:00 PM', '12:30 PM'],
+        ['8:20 PM', '12:45 PM'],
+      ];
+      data.forEach(_data => {
+        const result: boolean = ClassSearchUtils.compareStartTimes(_data[0], _data[1]);
+        expect(result).toBeFalsy();
+      });
+    });
+  });
+
+  test('classes are in the evening', () => {
     const data = [
-      ['8:00 AM', '6:00 AM'],
-      ['9:00 PM', '8:00 AM'],
+      ['9:00 PM', '6:00 PM'],
       ['8:30 PM', '8:15 PM'],
-      ['10:00 PM', '6:00 PM'],
-      ['12:00 PM', '12:00 AM'],
-      ['12:20 PM', '12:10 PM'],
-      ['10:00 PM', '12:00 PM'],
-      ['10:30 PM', '12:00 PM'],
-      ['10:00 PM', '8:00 AM'],
+      ['10:00 PM', '8:30 PM'],
+      ['9:30 PM', '9:00 PM'],
     ];
     data.forEach(_data => {
       const result: boolean = ClassSearchUtils.compareStartTimes(_data[0], _data[1]);
