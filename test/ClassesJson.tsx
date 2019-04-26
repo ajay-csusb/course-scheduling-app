@@ -18,7 +18,7 @@ export let baseClassJson: IClass = {
     amount: 0,
     courseId: '000001',
     sessionCode: '1',
-    description: 'ACCT GOVT & NONPROFIT ORG',
+    description: 'Information technology systems',
     ssrComponent: 'SEM',
     campus: 'MAIN',
     instructionMode: 'OL',
