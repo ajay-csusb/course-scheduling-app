@@ -4,7 +4,7 @@ import { ISubject } from './Subject';
 import { FilterClasses } from './FilterClasses';
 import { UserInput } from './UserInput';
 import { ClassesCards } from './ClassesCards';
-interface IClassSearchResultsProps {
+export interface IClassSearchResultsProps {
   classes?: IClass[];
   quarter: string;
   campus: string;
@@ -49,13 +49,9 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     if (this.props.classes) {
       filteredResults = FilterClasses.filter(this.props.classes, userInput);
       filteredResults.forEach((_class: any) => {
-        if (rows.length > 100) {
-          return;
-        }
         rows.push(
           <ClassesCards
             classes={_class}
-            key={_class.classNumber}
           />
         );
       });
@@ -65,7 +61,9 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     }
     return (
       <div id="class-search-results-component">
-        {rows}
+        <ul>
+          {rows}
+        </ul>
       </div>
     );
   }

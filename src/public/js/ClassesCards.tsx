@@ -16,15 +16,18 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
     const time = classObj.getClassMeetingTimes();
     const instructorProfileURL = this.searchURL + classDetails.profile;
     return (
-      <Card interactive={true} elevation={Elevation.TWO}>
-        <span>{`${classDetails.subject} ${classDetails.catalogNo} ${classDetails.classSection}`}</span>
-        <h5><b>{classDetails.description}</b></h5><span>(Course No. {classDetails.courseId})</span>
-        <span>Instructor: <a href={instructorProfileURL}>{classDetails.instructorName}</a></span>
-        <span>Room: {classDetails.facilityId}</span>
-        <span>Meeting Time: {time}</span>
-        <span>Meeting Days: {days}</span>
-        <span dangerouslySetInnerHTML={{__html: classDetails.textbook}}/>
-      </Card>
-    );
+      <li key={classDetails.classNumber}>
+        <Card key={classDetails.classNumber} interactive={true} elevation={Elevation.TWO}>
+          <span>{`${classDetails.subject} ${classDetails.catalogNo} ${classDetails.classSection}`}</span>
+          <h5><b>{classDetails.description}</b></h5><span>(Course No. {classDetails.courseId})</span>
+          <span>Instructor: <a href={instructorProfileURL}>{classDetails.instructorName}</a></span>
+          <span>Room: {classDetails.facilityId}</span>
+          <span>Meeting Time: {time}</span>
+          <span>Meeting Days: {days}</span>
+          <span dangerouslySetInnerHTML={{__html: classDetails.textbook}}/>
+        </Card>
+        <br/>
+      </li>
+      );
+    }
   }
-}
