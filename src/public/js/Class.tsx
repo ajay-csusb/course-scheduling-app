@@ -1,4 +1,5 @@
 import * as ClassSearchUtils from './ClassSearchUtils';
+import { UserInput } from './UserInput';
 export interface IClass {
   quarter: string;
   subject: string;
@@ -121,14 +122,14 @@ export class Class {
   }
 
   static getAllClasses(onSuccess: (response: any) => void,
-                       onFailure: (error: string) => void, subject: string): void {
+                       onFailure: (error: string) => void, userInput: UserInput): void {
     const currentQuarterId = localStorage.getItem('currentQuarterId') ;
     const params = {
       currentPage: '1',
       maximunPerPage: '10000',
       condition: {
         strm: currentQuarterId,
-        subject: subject,
+        subject: userInput.getSubject().toUpperCase(),
         name: '',
         campus: '',
         crse_attr: '',

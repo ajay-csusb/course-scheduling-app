@@ -5,6 +5,8 @@ import { IClass, Class, IMeetingDate } from './Class';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { Instructor } from './Instructor';
 import { Subject, ISubject } from './Subject';
+import { UserInput } from './UserInput';
+import { FilterClasses } from './FilterClasses';
 
 interface IClassSearchContainerState {
   updateAllResults: boolean;
@@ -18,6 +20,7 @@ interface IClassSearchContainerState {
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructorName: string;
+  geClasses: boolean;
   isReset: boolean;
   isLoading: boolean;
   beforeSubmit: boolean;
@@ -267,6 +270,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private onSubmit(_e: any): void {
+    const userInput = new UserInput(
+      this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.quarter,
+      this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
+      this.state.geClasses);
+    const filteredResults: IClass[] = FilterClasses.filter(this.allResults, userInput);
+    this.allResults = filteredResults;
     this.setState({
       beforeSubmit: false,
     });
@@ -301,6 +310,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       },
       instructionMode: 'all',
       instructorName: '',
+      geClasses: false,
       isReset: false,
       isLoading: false,
       beforeSubmit: true,
@@ -369,9 +379,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateClasses(): void {
-    const subject = this.state.subject.abbr.toUpperCase();
     this.allResults = [];
-    Class.getAllClasses(this.classesFound, this.classesNotFound, subject);
+    const userInput = new UserInput(
+      this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.quarter,
+      this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
+      this.state.geClasses);
+    Class.getAllClasses(this.classesFound, this.classesNotFound, userInput);
   }
 
 }
