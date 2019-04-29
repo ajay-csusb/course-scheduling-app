@@ -54,6 +54,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
 
   private getForm(): JSX.Element {
     const SuggestClasses = Suggest;
+    const resetSubject = this.isReset();
     return (
       <FormGroup label="Fill in one or more of the fields below:">
         <SelectListQuarter
@@ -70,6 +71,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
             resetOnClose={true}
             noResults={<MenuItem disabled={true} text="Searching for subject..." />}
             onItemSelect={this.props.onChangeOfSubject}
+            selectedItem={resetSubject}
           />
         </Label>
         <Label>
@@ -131,4 +133,9 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
   private getInstructors(): string[] {
     return this.props.instructors;
   }
+
+  private isReset(): null | undefined {
+    return (this.props.isReset) ? null : undefined;
+  }
+
 }

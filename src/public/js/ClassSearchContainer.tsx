@@ -71,6 +71,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
           instructionMode={this.state.instructionMode}
           instructorName={this.state.instructorName}
           instructors={this.instructors}
+          isReset={this.state.isReset}
           onChangeOfQuarter={this.updateQuarter}
           onChangeOfCampus={this.updateCampus}
           onChangeOfStartTime={this.updateStartTime}
@@ -113,6 +114,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   componentDidUpdate(_prevProps: any, prevState: any, _snapshot: any) {
     if (this.didSubjectChange(prevState)) {
       this.updateClasses();
+    }
+    if (this.isReset()) {
+      this.setState({
+        isReset: false,
+      });
     }
   }
 
@@ -283,6 +289,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private onReset(_e: any): void {
     this.setState(this.defaultFromValues());
+    this.setState({
+      isReset: true,
+    });
   }
 
   private defaultFromValues(): IClassSearchContainerState {
@@ -385,6 +394,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
       this.state.geClasses);
     Class.getAllClasses(this.classesFound, this.classesNotFound, userInput);
+  }
+
+  private isReset() {
+    return (this.state.isReset && this.state.beforeSubmit && this.state.subject.abbr.length === 0);
   }
 
 }
