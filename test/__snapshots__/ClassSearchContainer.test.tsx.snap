@@ -9,6 +9,7 @@ exports[`test class search form component Class search form component snapshot 1
     instructionMode="all"
     instructorName=""
     instructors={Array []}
+    isReset={false}
     meetingDate={
       Object {
         "all": true,

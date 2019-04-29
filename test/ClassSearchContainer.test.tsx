@@ -16,7 +16,7 @@ describe('test class search form component', () => {
 
   test('fetch is called with correct URL on page load', () => {
     shallow(<ClassSearchContainer />);
-    expect(fetchMock.lastUrl()).toMatch(new RegExp('http://webdx.csusb.edu/ClassSchedule/getDropDownList'));
+    expect(fetchMock.lastUrl()).toMatch(new RegExp('https://webdx.csusb.edu/ClassSchedule/getDropDownList'));
   });
 
   test('request made to fetch classes when subject is changed', () => {
@@ -27,7 +27,7 @@ describe('test class search form component', () => {
         name: 'Foo',
       },
     });
-    expect(fetchMock.lastUrl()).toMatch(new RegExp('http://webdx.csusb.edu/ClassSchedule/getCurrentCS'));
+    expect(fetchMock.lastUrl()).toMatch(new RegExp('https://webdx.csusb.edu/ClassSchedule/getCurrentCS'));
   });
 
   test('parameters used when request is to fetch classes when subject is changed', () => {
@@ -55,5 +55,21 @@ describe('test correct states are set', () => {
     classSearchContainerWrapper.find('.ge-classes > input').simulate('change');
     classSearchContainerWrapper.find('.ge-classes > input').simulate('change');
     expect(classSearchContainerWrapper.state('showGeClasses')).toBeFalsy();
+  });
+});
+
+describe('When user clicks submit', () => {
+  it('sets isReset to false', () => {
+    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    expect(classSearchContainerWrapper.state('isReset')).toBeFalsy();
+  });
+});
+
+describe('When user clicks reset', () => {
+    it('sets isReset to false', () => {
+    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.find('button[type="reset"]').simulate('click');
+    expect(classSearchContainerWrapper.state('isReset')).toBeFalsy();
   });
 });
