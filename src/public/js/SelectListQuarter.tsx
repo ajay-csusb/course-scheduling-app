@@ -9,7 +9,7 @@ export interface ISelectListQuarterProps {
 
 export class SelectListQuarter extends React.Component<ISelectListQuarterProps, {}> {
 
-  readonly quarterUrl = 'http://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST';
+  readonly quarterUrl = 'https://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST';
   constructor(props: ISelectListQuarterProps) {
     super(props);
     this.handleChangeOfQuarter = this.handleChangeOfQuarter.bind(this);
@@ -29,7 +29,7 @@ export class SelectListQuarter extends React.Component<ISelectListQuarterProps, 
         Quarter
         <div className="bp3-select select-quarter">
           <select onChange={this.handleChangeOfQuarter}>
-            <option label={this.getCurrentQuarterLabel()} value="current" className="current-quarter" />            } />
+            <option label={this.getCurrentQuarterLabel()} value="current" className="current-quarter" />
             <option label={this.getPrevQuarterLabel()} value="prev" className="prev-quarter" />
             </select>
         </div>

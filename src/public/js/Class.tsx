@@ -61,7 +61,7 @@ export interface IMeetingDate {
 }
 
 export class Class {
-  static classesUrl = 'http://webdx.csusb.edu/ClassSchedule/getCurrentCS';
+  static classesUrl = 'https://webdx.csusb.edu/ClassSchedule/getCurrentCS';
 
   private classInfo: IClass;
 
