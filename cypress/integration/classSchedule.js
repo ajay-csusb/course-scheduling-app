@@ -75,5 +75,55 @@ describe('when a user searches all Biology classes', function () {
       cy.get('#class-search-results-component').should('contain', 'Meeting Days: N/A');
     });
   });
+  
+  describe('when a user searches for classes related to Accounting', () => {
+
+    before(() => {
+      cy.visit('http://localhost:3000/');
+      cy.get('.search-autocomplete input').click();
+      cy.get('.search-autocomplete input').type('accounting').click();
+      cy.wait(900);
+      cy.get('div').contains('Accounting').click();
+      cy.get('button').contains('Submit').click();
+      cy.wait(900);
+    });
+
+    context('and then presses the Reset button', () => {
+      before(() => {
+        cy.get('[type="reset"]').click();
+        cy.wait(100);
+      });
+
+      it('should remove Accounting from "Select a Subject" autocomplete box', () => {
+        cy.get(':nth-child(2) > .bp3-popover-wrapper > .bp3-popover-target > .bp3-input-group > .bp3-input').should('not.have.value', 'Accounting (ACCT)');
+      });
+
+      it('should not display classes related to Accounting', () => {
+        cy.get('a').should('not.contain', 'Liu, Xiang');
+        cy.get('a').should('not.contain', 'Munsif, Vishal');
+        cy.get('a').should('not.contain', 'Bazaz, Mohammad');
+      });
+    });
+
+    context('and then searches for classes related to Accounting again', () => {
+      before(() => {
+        cy.get('.search-autocomplete input').type('accounting').click();
+        cy.wait(600)
+        cy.get('div').contains('Accounting').click();
+        cy.get('button').contains('Submit').click();
+        cy.wait(100);
+      });
+
+      it('should show Accounting (ACCT) from "Select a Subject" autocomplete box', () => {
+        cy.get(':nth-child(2) > .bp3-popover-wrapper > .bp3-popover-target > .bp3-input-group > .bp3-input').should('have.value', 'Accounting (ACCT)');
+      });
+
+      it('should display classes related to Accounting', () => {
+        cy.get('a').should('contain', 'Liu, Xiang');
+        cy.get('a').should('contain', 'Munsif, Vishal');
+        cy.get('a').should('contain', 'Bazaz, Mohammad');
+      });
+    });
+  });
 
 });
