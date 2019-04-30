@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormGroup, Button, Label, MenuItem, Switch } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
-import { renderClassSuggestProps } from './SuggestClasses';
+import { autocompleteSubjectsProps } from './AutocompleteSubjects';
 import { SelectListQuarter } from './SelectListQuarter';
 import { SelectListCampus } from './SelectListCampus';
 import { ControlGroupMeetingTime } from './ControlGroupMeetingTime';
@@ -53,28 +53,16 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
   }
 
   private getForm(): JSX.Element {
-    const SuggestClasses = Suggest;
     const SuggestInstructors = Suggest;
     const resetValues = this.isReset();
+    const subjects = this.getSubjectsAutoCompleteComponent();
     return (
       <FormGroup label="Fill in one or more of the fields below:">
         <SelectListQuarter
           quarter={this.props.quarter}
           onChangeOfQuarter={this.props.onChangeOfQuarter}
         />
-        <Label>
-          Select a Subject
-          <SuggestClasses
-            {...renderClassSuggestProps}
-            items={this.getSubjects()}
-            className="search-autocomplete"
-            openOnKeyDown={false}
-            resetOnClose={true}
-            noResults={<MenuItem disabled={true} text="Searching for subject..." />}
-            onItemSelect={this.props.onChangeOfSubject}
-            selectedItem={resetValues}
-          />
-        </Label>
+        {subjects}
         <Label>
           Course Number
           <input
@@ -140,4 +128,22 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
     return (this.props.isReset) ? null : undefined;
   }
 
+  private getSubjectsAutoCompleteComponent(): JSX.Element {
+    const SuggestSubject = Suggest;
+    return (
+      <Label>
+        Select a Subject
+        <SuggestSubject
+          {...autocompleteSubjectsProps}
+          items={this.getSubjects()}
+          className="search-autocomplete"
+          openOnKeyDown={false}
+          resetOnClose={true}
+          noResults={<MenuItem disabled={true} text="Searching for subject..." />}
+          onItemSelect={this.props.onChangeOfSubject}
+          selectedItem={this.isReset()}
+        />
+      </Label>
+    );
+  }
 }
