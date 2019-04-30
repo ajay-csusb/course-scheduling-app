@@ -6,7 +6,7 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
     cy.visit('http://localhost:3000/');
     cy.get('.search-autocomplete input').click();
     cy.get('.search-autocomplete input').type('accounting').click();
-    cy.wait(600)
+    cy.wait(900)
     cy.get('div').contains('Accounting').click();
     cy.get('button').contains('Submit').click();
     cy.wait(900)
@@ -22,6 +22,55 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
   it('should not show accounting classes by other professors', function () {
     cy.get('a').should('not.contain', 'Munsif, Vishal');
     cy.get('a').should('not.contain', 'Bazaz, Mohammad');
+  });
+
+  context('and the user clicks on Reset button', () => {
+    before(() => {
+      cy.get('[type="reset"]').click();
+      cy.wait(100);
+    });
+
+    it('should remove Accounting from "Select a Subject" autocomplete box', () => {
+      cy.get(':nth-child(2) > .bp3-popover-wrapper > .bp3-popover-target > .bp3-input-group > .bp3-input').should('not.have.value', 'Accounting (ACCT)');
+    });
+
+    it('should remove Liu Xiang from "Instructor" autocomplete box', () => {
+      cy.get(':nth-child(4) > .bp3-popover-wrapper > .bp3-popover-target > .bp3-input-group > .bp3-input').should('not.have.value', 'Liu Xiang');
+    });
+
+    it('should not display classes related to Accounting', () => {
+      cy.get('a').should('not.contain', 'Liu, Xiang');
+      cy.get('a').should('not.contain', 'Munsif, Vishal');
+      cy.get('a').should('not.contain', 'Bazaz, Mohammad');
+    });
+
+  });
+
+  context('and searches for classes related to Accounting and Liu Xiang again', () => {
+    before(() => {
+      cy.visit('http://localhost:3000/');
+      cy.get('.search-autocomplete input').click();
+      cy.get('.search-autocomplete input').type('accounting').click();
+      cy.wait(600)
+      cy.get('div').contains('Accounting').click();
+      cy.get('button').contains('Submit').click();
+      cy.wait(900)
+      cy.get('.search-instructor-autocomplete input').click();
+      cy.wait(300)
+      cy.get('a.search-instructor-autocomplete-items div').contains('Liu, Xiang').click();
+    });
+
+    it('should show accounting classes by Liu Xiang', function () {
+      cy.get('a').should('contain', 'Liu, Xiang');
+    });
+
+    it('should show Accounting (ACCT) in "Select a Subject" autocomplete box', () => {
+      cy.get(':nth-child(2) > .bp3-popover-wrapper > .bp3-popover-target > .bp3-input-group > .bp3-input').should('have.value', 'Accounting (ACCT)');
+    });
+
+    it('should show Liu Xiang in "Instructor" autocomplete box', () => {
+      cy.get(':nth-child(4) > .bp3-popover-wrapper > .bp3-popover-target > .bp3-input-group > .bp3-input').should('have.value', 'Liu, Xiang');
+    });
   });
 
 });
