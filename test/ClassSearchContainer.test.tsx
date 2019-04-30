@@ -44,6 +44,13 @@ describe('test class search form component', () => {
     const subjectArgument = fetchMock.lastOptions();
     expect(subjectArgument.body).toMatch(new RegExp('"subject":"BAR"'));
   });
+
+  test('compare search form snapshot', () => {
+    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    const classSearchFormWrapper = classSearchContainerWrapper.children().childAt(0);
+    expect(classSearchFormWrapper).toMatchSnapshot();
+  });
+
 });
 
 describe('test correct states are set', () => {
