@@ -2,14 +2,17 @@ import { shallow, mount } from 'enzyme';
 import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
+import { rawClassesJson } from './ClassesJson';
 
 describe('test class search form component', () => {
 
   beforeAll(() => {
-    fetchMock.mock('*', {});
+    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/getDropDownList', {});
+    fetchMock.mock('https://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST', {});
+    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/getCurrentCS', rawClassesJson);
   });
 
-  test('Class search form component snapshot', () => {
+  test('Class search container component snapshot', () => {
     const classSearchContainerWrapper = shallow(<ClassSearchContainer />);
     expect(classSearchContainerWrapper).toMatchSnapshot();
   });
@@ -64,12 +67,34 @@ describe('When user clicks submit', () => {
     classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
     expect(classSearchContainerWrapper.state('isReset')).toBeFalsy();
   });
+
+  it.skip('and subject is not selected then it should not show ClassSearchResultsComponent');
+
 });
 
 describe('When user clicks reset', () => {
-    it('sets isReset to false', () => {
+
+  it('sets isReset to false', () => {
     const classSearchContainerWrapper = mount(<ClassSearchContainer />);
     classSearchContainerWrapper.find('button[type="reset"]').simulate('click');
     expect(classSearchContainerWrapper.state('isReset')).toBeFalsy();
+  });
+
+  it.skip('unsets classes props in ClassSearchResults component', () => {
+    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+      subject: {
+        name: 'Accounting',
+        abbr: 'ACCT',
+      },
+    });
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    classSearchContainerWrapper.update();
+    let classSearchResultsWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
+    expect(classSearchResultsWrapper.prop('classes')).not.toHaveLength(0);
+    classSearchContainerWrapper.find('button[type="reset"]').simulate('click');
+    classSearchContainerWrapper.update();
+    classSearchResultsWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
+    expect(classSearchResultsWrapper.prop('classes')).toHaveLength(0);
   });
 });
