@@ -388,6 +388,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateClasses(): void {
+    if (this.state.subject.abbr.length === 0) {
+      return;
+    }
     this.allResults = [];
     const userInput = new UserInput(
       this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.quarter,
