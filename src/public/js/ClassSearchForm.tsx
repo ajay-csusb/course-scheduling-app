@@ -7,7 +7,7 @@ import { SelectListCampus } from './SelectListCampus';
 import { ControlGroupMeetingTime } from './ControlGroupMeetingTime';
 import { ControlGroupMeetingDate } from './ControlGroupMeetingDate';
 import { IClass, IMeetingDate } from './Class';
-import { renderInstructorSuggestProps } from './SuggestInstructors';
+import { autocompleteInstructorsProps } from './AutocompleteInstructors';
 import { ISubject } from './Subject';
 import { SelectListInstructionMode } from './SelectListInstructionMode';
 
@@ -53,9 +53,8 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
   }
 
   private getForm(): JSX.Element {
-    const SuggestInstructors = Suggest;
-    const resetValues = this.isReset();
     const subjects = this.getSubjectsAutoCompleteComponent();
+    const instructors = this.getInstructorsAutoCompleteComponent();
     return (
       <FormGroup label="Fill in one or more of the fields below:">
         <SelectListQuarter
@@ -73,19 +72,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
             onChange={this.props.onChangeOfCourseNo}
           />
         </Label>
-        <Label>
-          Instructor
-          <SuggestInstructors
-            {...renderInstructorSuggestProps}
-            items={this.getInstructors()}
-            className="search-instructor-autocomplete"
-            openOnKeyDown={false}
-            resetOnClose={true}
-            noResults={<MenuItem disabled={true} text="Searching for instructor..." />}
-            onItemSelect={this.props.onChangeOfInstructor}
-            selectedItem={resetValues}
-          />
-        </Label>
+        {instructors}
         <SelectListCampus
           campus={this.props.campus}
           onChangeOfCampus={this.props.onChangeOfCampus}
@@ -146,4 +133,24 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
       </Label>
     );
   }
+
+  private getInstructorsAutoCompleteComponent(): JSX.Element {
+    const SuggestInstructor = Suggest;
+    return (
+      <Label>
+        Instructor
+        <SuggestInstructor
+          {...autocompleteInstructorsProps}
+          items={this.getInstructors()}
+          className="search-instructor-autocomplete"
+          openOnKeyDown={false}
+          resetOnClose={true}
+          noResults={<MenuItem disabled={true} text="Searching for instructor..." />}
+          onItemSelect={this.props.onChangeOfInstructor}
+          selectedItem={this.isReset()}
+        />
+      </Label>
+    );
+  }
+
 }
