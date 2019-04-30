@@ -115,7 +115,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     if (this.didSubjectChange(prevState)) {
       this.updateClasses();
     }
-    if (this.isReset()) {
+    if (this.resetComplete()) {
       this.setState({
         isReset: false,
       });
@@ -396,7 +396,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     Class.getAllClasses(this.classesFound, this.classesNotFound, userInput);
   }
 
-  private isReset() {
+  private resetComplete() {
     return (this.state.isReset && this.state.beforeSubmit && this.state.subject.abbr.length === 0);
   }
 
