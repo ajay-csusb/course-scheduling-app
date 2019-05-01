@@ -20,7 +20,6 @@ exports[`test radio group quarter component RadioGroupQuarter component snapshot
             className="current-quarter"
             value="current"
           />
-                      } /&gt;
           <option
             className="prev-quarter"
             value="prev"
