@@ -388,10 +388,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateClasses(): void {
-    if (this.state.subject.abbr.length === 0) {
+    this.allResults = [];
+    if (this.isSubjectEmpty()) {
       return;
     }
-    this.allResults = [];
     const userInput = new UserInput(
       this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.quarter,
       this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
@@ -401,6 +401,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private resetComplete() {
     return (this.state.isReset && this.state.beforeSubmit && this.state.subject.abbr.length === 0);
+  }
+
+  private isSubjectEmpty() {
+    return (this.state.subject.abbr.length === 0);
   }
 
 }
