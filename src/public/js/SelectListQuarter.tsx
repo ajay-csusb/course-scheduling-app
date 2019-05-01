@@ -9,7 +9,7 @@ export interface ISelectListQuarterProps {
 
 export class SelectListQuarter extends React.Component<ISelectListQuarterProps, {}> {
 
-  readonly quarterUrl = 'https://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST';
+  readonly quarterUrl = 'https://webdx.csusb.edu/ClassSchedule/getDropDownList';
   constructor(props: ISelectListQuarterProps) {
     super(props);
     this.handleChangeOfQuarter = this.handleChangeOfQuarter.bind(this);
@@ -50,18 +50,17 @@ export class SelectListQuarter extends React.Component<ISelectListQuarterProps, 
   }
 
   private async parseQuarterOnSuccess(results: any): Promise<any> {
-    let currQ: any = [];
     if (ClassSearchUtils.isObjectEmpty(results)) {
       return null;
     }
-    results.forEach((_result: any) => {
-      if (_result.displayed_FLAG === 'Y' && _result.default_FLG === 'Y') {
-        currQ = _result;
+    let currQ: any = [];
+    const quarters = results.termList;
+    quarters.forEach((_quarter: any) => {
+      if (this.hasCurrentQuarterFlag(_quarter)) {
+        currQ = _quarter;
       }
     });
-    const quarterClass = new Quarter(currQ);
-    this.setCurrentQuarterInStorage(quarterClass);
-    this.setPreviousQuarterInStorage(quarterClass);
+    this.updateLocalStorage(currQ);
     Quarter.setCurrentQuarterId(currQ.strm);
   }
 
@@ -79,6 +78,16 @@ export class SelectListQuarter extends React.Component<ISelectListQuarterProps, 
 
   private logOnError(error: string): void {
     console.log(error);
+  }
+
+  private hasCurrentQuarterFlag(quarter: any): boolean {
+    return (quarter.displayed_FLAG === 'Y' && quarter.default_FLG === 'Y');
+  }
+
+  private updateLocalStorage(quarter: any): void {
+    const quarterClass = new Quarter(quarter);
+    this.setCurrentQuarterInStorage(quarterClass);
+    this.setPreviousQuarterInStorage(quarterClass);
   }
 
 }
