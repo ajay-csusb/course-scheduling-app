@@ -6,7 +6,7 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
     cy.visit('http://localhost:3000/');
     cy.get('.search-autocomplete input').click();
     cy.get('.search-autocomplete input').type('accounting').click();
-    cy.wait(900)
+    cy.wait(1000)
     cy.get('div').contains('Accounting').click();
     cy.get('button').contains('Submit').click();
     cy.wait(900)
@@ -45,12 +45,22 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
 
   });
 
+  context('and clicks on submit without any values in any other fields', () => {
+    before(() => {
+      cy.get('button').contains('Submit').click();
+    });
+
+    it('should not display any classes', () => {
+      cy.get('#class-search-results-component', { timeout: 12000 }).should('not.exist');
+    })
+  });
+
   context('and searches for classes related to Accounting and Liu Xiang again', () => {
     before(() => {
       cy.visit('http://localhost:3000/');
       cy.get('.search-autocomplete input').click();
       cy.get('.search-autocomplete input').type('accounting').click();
-      cy.wait(600)
+      cy.wait(1100)
       cy.get('div').contains('Accounting').click();
       cy.get('button').contains('Submit').click();
       cy.wait(900)
