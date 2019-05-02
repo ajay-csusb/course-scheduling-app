@@ -31,7 +31,7 @@ export let baseClassJson: IClass = {
     sat: 'N',
     sun: 'N',
     instructorName: 'Bakeman, Melissa',
-    courseAttr: 'GE',
+    courseAttr: '',
 };
 
 export const classJson: IClass = {
