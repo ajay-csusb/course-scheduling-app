@@ -6,12 +6,12 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
     cy.visit('http://localhost:3000/');
     cy.get('.search-autocomplete input').click();
     cy.get('.search-autocomplete input').type('accounting').click();
-    cy.wait(1000)
+    cy.wait(5000)
     cy.get('div').contains('Accounting').click();
     cy.get('button').contains('Submit').click();
-    cy.wait(900)
+    cy.wait(2000)
     cy.get('.search-instructor-autocomplete input').click();
-    cy.wait(300)
+    cy.wait(3000)
     cy.get('a.search-instructor-autocomplete-items div').contains('Liu, Xiang').click();
   });
 
@@ -60,7 +60,7 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
       cy.visit('http://localhost:3000/');
       cy.get('.search-autocomplete input').click();
       cy.get('.search-autocomplete input').type('accounting').click();
-      cy.wait(1100)
+      cy.wait(5000)
       cy.get('div').contains('Accounting').click();
       cy.get('button').contains('Submit').click();
       cy.wait(900)
@@ -84,18 +84,18 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
 
 });
 
-describe('when a user searches all Biology classes', function () {
+describe('when a user searches for Biology classes', function () {
 
   before(function () {
       cy.visit('http://localhost:3000/');
       cy.get('.search-autocomplete input').type('Biology').click();
-      cy.get('div').contains('Biology').click();
+      cy.get('div').contains('Biology', { timeout: 7000 }).click();
       cy.get('button').contains('Submit').click();
-      cy.wait(900)
       cy.get('.start-time > .bp3-timepicker-arrow-row:first-child > .bp3-timepicker-hour:first-child').click();
       cy.get('.start-time > .bp3-timepicker-arrow-row:first-child > .bp3-timepicker-hour:first-child').click();
       cy.get('.start-time select').select('am') 
       cy.get('button').contains('Submit').click();
+      cy.wait(2000)
     });
 
   context('that start at 10:00 AM', () => {
@@ -131,6 +131,20 @@ describe('when a user searches all Biology classes', function () {
 
     it('should show online classes', function () {
       cy.get('#class-search-results-component').should('contain', 'Meeting Days: N/A');
+    });
+  });
+
+  context('and checks the GE box', () => {
+    it('should show only GE classes from Biology', () => {
+      cy.get('.bp3-switch > .bp3-control-indicator').click();
+      cy.get('div').should('contain', 'TOPICS IN BIOLOGY');
+      cy.get('#class-search-results-component').should('not.contain', 'CELL PHYSIOLOGY');
+    });
+
+    it('should show all classes from Biology when GE is unset', () => {
+      cy.get('.bp3-switch > .bp3-control-indicator').click();
+      cy.get('div').should('contain', 'TOPICS IN BIOLOGY');
+      cy.get('#class-search-results-component').should('contain', 'CELL PHYSIOLOGY');
     });
   });
   
