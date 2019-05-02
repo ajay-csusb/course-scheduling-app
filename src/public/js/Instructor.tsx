@@ -12,13 +12,13 @@ export class Instructor {
   public static filter(classes: IClass[] , uInput: UserInput): IClass[] {
     const result: IClass[] = [];
     const instructorInstance = new Instructor();
+    if (instructorInstance.isInstructorUnknown(uInput)) {
+      return classes;
+    }
+    if (instructorInstance.isInstructorEmpty(uInput)) {
+      return classes;
+    }
     classes.forEach((_class: IClass) => {
-      if (instructorInstance.isInstructorUnknown(uInput)) {
-        result.push(_class);
-      }
-      if (instructorInstance.isInstructorEmpty(uInput)) {
-        result.push(_class);
-      }
       if (_class.instructorName.toLowerCase() === uInput.getInstructor().toLowerCase()) {
         result.push(_class);
       }
