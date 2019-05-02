@@ -3,16 +3,28 @@ import { IClass } from './Class';
 
 export class GeClasses {
   public static filter(classes: IClass[], uInput: UserInput): IClass[] {
-    const result: IClass[] = [];
+    const geClassesInstance = new GeClasses();
     if (!uInput.isGeClassesSet()) {
       return classes;
     }
-    // Filter when GE option is set.
+    return geClassesInstance.isGeClass(classes);
+  }
+
+  private isGeClass(classes: IClass[]): IClass[] {
+    const geClasses: IClass[] = [];
     classes.forEach((_class: IClass) => {
-      if (_class.courseAttr === 'GE') {
-        result.push(_class);
+      if (_class.courseAttr === undefined) {
+        return;
+      }
+      if (_class.courseAttr.length === 0) {
+        return;
+      }
+      const attrs = _class.courseAttr.split(',');
+      if (attrs.includes('GE')) {
+        geClasses.push(_class);
       }
     });
-    return result;
+    return geClasses;
   }
+
 }
