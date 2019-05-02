@@ -342,7 +342,7 @@ describe('when GE filter is toggled', () => {
 
 });
 
-describe('when multiple filters', () => {
+describe('when multiple filters are selected', () => {
   const acctSubject: ISubject = subject;
   beforeAll(() => {
     classes = [];
@@ -388,6 +388,30 @@ describe('when multiple filters', () => {
 
   it('should show one class if filtered by instructor, subject and GE', () => {
     uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', 'Bakeman, Melissa', true);
+    const results = FilterClasses.filter(classes, uInput);
+    expect(results).toHaveLength(1);
+  });
+
+  it('should show all classes if user has not selected an instructor', () => {
+    uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
+    const results = FilterClasses.filter(classes, uInput);
+    expect(results).toHaveLength(2);
+  });
+
+  it('should show one class if user has not selected an instructor, but has selected Accounting and GE', () => {
+    uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', true);
+    const results = FilterClasses.filter(classes, uInput);
+    expect(results).toHaveLength(1);
+  });
+
+  it('should show all classes if user has selected an instructor as -- Not Known --', () => {
+    uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', ' -- Not Known -- ', false);
+    const results = FilterClasses.filter(classes, uInput);
+    expect(results).toHaveLength(2);
+  });
+
+  it('should show one class if user has selected an instructor as -- Not Known --, Accounting and GE', () => {
+    uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', ' -- Not Known -- ', true);
     const results = FilterClasses.filter(classes, uInput);
     expect(results).toHaveLength(1);
   });
