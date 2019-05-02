@@ -314,48 +314,80 @@ describe('test filter by course number', () => {
 
 });
 
-describe('test filter by GE courses', () => {
-  test('when GE option is not set', () => {
+describe('when GE filter is toggled', () => {
+  beforeEach(() => {
     classes = [];
-    classes.push(classJson);
+    const classWithOnlyGeOption = JSON.parse(JSON.stringify(baseClassJson));
+    classWithOnlyGeOption.courseAttr = 'GE';
+    const classWithMoreThanOneCourseAttr = JSON.parse(JSON.stringify(baseClassJson));
+    classWithMoreThanOneCourseAttr.courseAttr = 'FOO,GE,BAR';
+    const classWithNoGeOption = JSON.parse(JSON.stringify(baseClassJson));
+    classWithNoGeOption.courseAttr = '';
+    classes.push(classWithOnlyGeOption);
+    classes.push(classWithMoreThanOneCourseAttr);
+    classes.push(classWithNoGeOption);
     classes.push(classPDC);
-    classes.push(baseClassJson);
-    const results = GeClasses.filter(classes, uInput);
-    expect(results).toHaveLength(3);
   });
 
-  test('when GE option is set', () => {
-    classes = [];
-    classes.push(classJson);
-    classes.push(classPDC);
-    classes.push(baseClassJson);
+  it('should show all classes if unset', () => {
+    const results = GeClasses.filter(classes, uInput);
+    expect(results).toHaveLength(4);
+  });
+
+  it('should show two classes if it is set', () => {
     uInput = new UserInput('both', meetingDate, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', true);
     const results = GeClasses.filter(classes, uInput);
-    expect(results).toHaveLength(1);
+    expect(results).toHaveLength(2);
   });
 
 });
 
-describe('test multiple filters', () => {
+describe('when multiple filters', () => {
+  const acctSubject: ISubject = subject;
+  beforeAll(() => {
+    classes = [];
+    acctSubject.abbr = 'ACCT';
+    acctSubject.name = 'Accounting';
+    const acctClass = JSON.parse(JSON.stringify(baseClassJson));
+    acctClass.subject = 'ACCT';
+    acctClass.courseAttr = 'FOO,GE,BAR,BAZ';
+    classes.push(acctClass);
+    classes.push(classPDC);
+    classes.push(classJson);
+  });
 
   test('classes filtered by subject and instructor', () => {
-    const acctSubject = subject;
-    acctSubject.abbr = 'ACCT';
-    const acctClass = baseClassJson;
-    acctClass.subject = 'ACCT';
-    classes.push(acctClass);
     uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', 'Dyck, Harold', false);
     const results = FilterClasses.filter(classes, uInput);
     expect(results).toHaveLength(1);
   });
 
   test('classes filtered by subject, course number and instructor', () => {
-    const acctSubject = subject;
-    acctSubject.abbr = 'ACCT';
-    const acctClass = baseClassJson;
-    acctClass.subject = 'ACCT';
-    classes.push(acctClass);
     uInput = new UserInput('both', meetingDate, acctSubject, '101', 'current', startMeetingTime, endMeetingTime, 'all', 'Dyck, Harold', false);
+    const results = FilterClasses.filter(classes, uInput);
+    expect(results).toHaveLength(1);
+  });
+
+  it('should show all classes if GE is not set', () => {
+    uInput = new UserInput('both', meetingDate, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
+    const results = FilterClasses.filter(classes, uInput);
+    expect(results).toHaveLength(2);
+  });
+
+  it('should show only GE classes if it is set', () => {
+    uInput = new UserInput('both', meetingDate, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', true);
+    const results = FilterClasses.filter(classes, uInput);
+    expect(results).toHaveLength(1);
+  });
+
+  it('should show one class if filtered by instructor and GE', () => {
+    uInput = new UserInput('both', meetingDate, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', 'Bakeman, Melissa', true);
+    const results = FilterClasses.filter(classes, uInput);
+    expect(results).toHaveLength(1);
+  });
+
+  it('should show one class if filtered by instructor, subject and GE', () => {
+    uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', 'Bakeman, Melissa', true);
     const results = FilterClasses.filter(classes, uInput);
     expect(results).toHaveLength(1);
   });
