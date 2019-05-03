@@ -77,12 +77,13 @@ describe('filter by subject', () => {
     expect(results).toHaveLength(1);
   });
 
-  test('for accounting when combined with all filters', () => {
-    const acctSubject = subject;
-    acctSubject.abbr = 'ACCT';
-    uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
-    const results = FilterClasses.filter(classes, uInput);
-    expect(results).toHaveLength(1);
+  it('should show all classes if All is selected as a subject', () => {
+    const allSubject = subject;
+    allSubject.name = 'All';
+    allSubject.abbr = 'all';
+    uInput = new UserInput('both', meetingDate, allSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
+    const results = Subject.filter(classes, uInput);
+    expect(results).toHaveLength(3);
   });
 
 });
@@ -356,13 +357,19 @@ describe('when multiple filters are selected', () => {
     classes.push(classJson);
   });
 
-  test('classes filtered by subject and instructor', () => {
+  it('should show two classes if only Accounting is selected', () => {
+    uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
+    const results = FilterClasses.filter(classes, uInput);
+    expect(results).toHaveLength(2);
+  });
+
+  test('should show one class when filtered by subject and instructor', () => {
     uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', 'Dyck, Harold', false);
     const results = FilterClasses.filter(classes, uInput);
     expect(results).toHaveLength(1);
   });
 
-  test('classes filtered by subject, course number and instructor', () => {
+  test('should show one class when filtered by subject, course number and instructor', () => {
     uInput = new UserInput('both', meetingDate, acctSubject, '101', 'current', startMeetingTime, endMeetingTime, 'all', 'Dyck, Harold', false);
     const results = FilterClasses.filter(classes, uInput);
     expect(results).toHaveLength(1);
@@ -414,6 +421,15 @@ describe('when multiple filters are selected', () => {
     uInput = new UserInput('both', meetingDate, acctSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', ' -- Not Known -- ', true);
     const results = FilterClasses.filter(classes, uInput);
     expect(results).toHaveLength(1);
+  });
+
+  it('should show all classes if All is selected as a subject', () => {
+    const allSubject: ISubject = subject;
+    allSubject.abbr = 'all';
+    allSubject.name = 'All';
+    uInput = new UserInput('both', meetingDate, allSubject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
+    const results = FilterClasses.filter(classes, uInput);
+    expect(results).toHaveLength(2);
   });
 
 });

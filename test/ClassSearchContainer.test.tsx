@@ -105,3 +105,34 @@ describe('When user clicks reset', () => {
     expect(classSearchResultsWrapper.prop('classes')).toHaveLength(0);
   });
 });
+
+describe('when a user selects All in Subjects', () => {
+  it('should make a request to get all subjects', () => {
+    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+      subject: {
+        name: 'All',
+        abbr: 'all',
+      },
+    });
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    classSearchContainerWrapper.update();
+    const subjectArgument = fetchMock.lastOptions();
+    expect(subjectArgument.body).toMatch(new RegExp('"subject":""'));
+  });
+
+  it('should pass All as the subject props to ClassSearchResults component', () => {
+    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+      subject: {
+        name: 'All',
+        abbr: 'all',
+      },
+    });
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    classSearchContainerWrapper.update();
+    const classSearchResultsWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
+    expect(classSearchResultsWrapper.prop('subject')).toEqual({name: 'All', abbr: 'all'});
+  });
+
+});
