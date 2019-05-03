@@ -20,23 +20,12 @@ export interface IClassSearchResultsProps {
 }
 
 interface IClassSearchResultsState {
-  refreshTable: boolean;
 }
 
 export class ClassSearchResults extends React.Component<IClassSearchResultsProps, IClassSearchResultsState> {
 
   constructor(props: any) {
     super(props);
-    this.state = {
-      refreshTable: false,
-    };
-  }
-  componentDidUpdate(prevProps: IClassSearchResultsProps) {
-    if (this.props.classes !== prevProps.classes) {
-      this.setState({
-        refreshTable: true,
-      });
-    }
   }
 
   public render(): JSX.Element {
@@ -48,11 +37,12 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
       this.props.geClasses);
     if (this.props.classes) {
       filteredResults = FilterClasses.filter(this.props.classes, userInput);
-      filteredResults.forEach((_class: any) => {
+      filteredResults.forEach((_class: IClass) => {
         rows.push(
-          <ClassesCards
-            classes={_class}
-          />
+          <li key={_class.classNumber}>
+            <ClassesCards classes={_class} />
+            <br/>
+          </li>
         );
       });
     }

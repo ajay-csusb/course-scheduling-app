@@ -16,7 +16,6 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
     const time = classObj.getClassMeetingTimes();
     const instructorProfileURL = this.searchURL + classDetails.profile;
     return (
-      <li key={classDetails.classNumber}>
         <Card key={classDetails.classNumber} interactive={true} elevation={Elevation.TWO}>
           <span>{`${classDetails.subject} ${classDetails.catalogNo} ${classDetails.classSection}`}</span>
           <h5><b>{classDetails.description}</b></h5><span>(Course No. {classDetails.courseId})</span>
@@ -26,8 +25,6 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
           <span>Meeting Days: {days}</span>
           <span dangerouslySetInnerHTML={{__html: classDetails.textbook}}/>
         </Card>
-        <br/>
-      </li>
       );
     }
   }
