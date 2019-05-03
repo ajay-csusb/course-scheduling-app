@@ -152,5 +152,19 @@ describe('when a user searches for Biology classes', function () {
       cy.get('#class-search-results-component').should('contain', 'CELL PHYSIOLOGY');
     });
   });
+
+  describe('when All is selected as a subject', () => {
+    before(() => {
+      cy.visit('http://localhost:3000/');
+      cy.get('.search-autocomplete input').click();
+      cy.wait(7000)
+      cy.get('span').contains('all').click();
+      cy.get('button').contains('Submit').click();
+    });
+
+    it('should show all the classes or the first 3000 classes', () => {
+      cy.get('#class-search-results-component', { timeout: 50000 }).should('exist');
+    });
+  });
   
 });
