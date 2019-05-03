@@ -332,7 +332,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private instructorsFound(data: any): void {
     const instructorsArr: any[] = [];
-    instructorsArr.push(' -- Not Known -- ');
+    instructorsArr.push('All');
     if (data !== undefined && data.instructorList !== undefined) {
       data.instructorList.forEach((_instructor: any) => {
         instructorsArr.push(_instructor.name);

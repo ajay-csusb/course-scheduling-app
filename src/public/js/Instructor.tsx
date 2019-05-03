@@ -12,9 +12,6 @@ export class Instructor {
   public static filter(classes: IClass[] , uInput: UserInput): IClass[] {
     const result: IClass[] = [];
     const instructorInstance = new Instructor();
-    if (instructorInstance.isInstructorUnknown(uInput)) {
-      return classes;
-    }
     if (instructorInstance.isInstructorEmpty(uInput)) {
       return classes;
     }
@@ -24,10 +21,6 @@ export class Instructor {
       }
     });
     return result;
-  }
-
-  private isInstructorUnknown(uInput: UserInput): boolean {
-    return (uInput.getInstructor() === ' -- Not Known -- ');
   }
 
   private isInstructorEmpty(uInput: UserInput): boolean {

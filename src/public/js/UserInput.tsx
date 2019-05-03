@@ -111,6 +111,9 @@ export class UserInput {
   }
 
   public getInstructor(): string {
+    if (this.instructor === 'All') {
+      return '';
+    }
     return this.instructor;
   }
 
