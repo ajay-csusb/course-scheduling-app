@@ -52,7 +52,12 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
 
     it('should not display any classes', () => {
       cy.get('#class-search-results-component', { timeout: 12000 }).should('not.exist');
-    })
+    });
+
+    it('should display a warning message if the user clicks on Submit without selecting a subject', () => {
+      cy.get('button').contains('Submit').click();
+      cy.get('.select-a-subject').should('exist');
+    });
   });
 
   context('and searches for classes related to Accounting and Liu Xiang again', () => {
@@ -98,9 +103,9 @@ describe('when a user searches for Biology classes', function () {
       cy.wait(2000)
     });
 
-  context('that start at 10:00 AM', () => {
+  context('that starts at 10:00 AM', () => {
 
-    it('should not shhow classes before 10 AM', function () {
+    it('should not show classes before 10 AM', function () {
       cy.get('#class-search-results-component').should('not.contain', '9:00 am');
     });
 
@@ -134,8 +139,8 @@ describe('when a user searches for Biology classes', function () {
     });
   });
 
-  context('and checks the GE box', () => {
-    it('should show only GE classes from Biology', () => {
+  context('and toggles the GE box', () => {
+    it('should show only GE classes from Biology if GE is set', () => {
       cy.get('.bp3-switch > .bp3-control-indicator').click();
       cy.get('div').should('contain', 'TOPICS IN BIOLOGY');
       cy.get('#class-search-results-component').should('not.contain', 'CELL PHYSIOLOGY');
