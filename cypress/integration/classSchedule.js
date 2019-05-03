@@ -92,19 +92,32 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
 describe('when a user searches for Biology classes', function () {
 
   before(function () {
-      cy.visit('http://localhost:3000/');
-      cy.get('.search-autocomplete input').type('Biology').click();
-      cy.get('div').contains('Biology', { timeout: 7000 }).click();
-      cy.get('button').contains('Submit').click();
-      cy.get('.start-time > .bp3-timepicker-arrow-row:first-child > .bp3-timepicker-hour:first-child').click();
-      cy.get('.start-time > .bp3-timepicker-arrow-row:first-child > .bp3-timepicker-hour:first-child').click();
-      cy.get('.start-time select').select('am') 
-      cy.get('button').contains('Submit').click();
-      cy.wait(2000)
+    cy.visit('http://localhost:3000/');
+    cy.get('.search-autocomplete input').type('Biology').click();
+    cy.get('div').contains('Biology', { timeout: 7000 }).click();
+    cy.get('button').contains('Submit').click();
+    cy.get('.start-time > .bp3-timepicker-arrow-row:first-child > .bp3-timepicker-hour:first-child').click();
+    cy.get('.start-time > .bp3-timepicker-arrow-row:first-child > .bp3-timepicker-hour:first-child').click();
+    cy.get('.start-time select').select('am') 
+    cy.get('button').contains('Submit').click();
+    cy.wait(2000)
+  });
+
+  context('and selects "All" as instructor', () => {
+    before(() => {
+      cy.get('.search-instructor-autocomplete input').click();
+      cy.wait(3000)
+      cy.get('a.search-instructor-autocomplete-items div').contains('All').click();
     });
 
-  context('that starts at 10:00 AM', () => {
+    it('should show classes related to Biology', () => {
+      cy.get('#class-search-results-component', { timeout: 5000 }).should('exist');
+      cy.get('div').should('contain', 'TOPICS IN BIOLOGY');
+      cy.get('#class-search-results-component').should('contain', 'CELL PHYSIOLOGY');
+    });
+  });
 
+  context('that starts at 10:00 AM', () => {
     it('should not show classes before 10 AM', function () {
       cy.get('#class-search-results-component').should('not.contain', '9:00 am');
     });
@@ -119,7 +132,6 @@ describe('when a user searches for Biology classes', function () {
   });
 
   context('and ends at 4:50 PM', () => {
-
     before(() => {
       cy.get('.end-time input.bp3-timepicker-hour:first-child').type('4');
       cy.get('.end-time input.bp3-timepicker-minute').type('50');
