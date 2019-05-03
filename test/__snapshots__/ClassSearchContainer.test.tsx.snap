@@ -4,10 +4,8 @@ exports[`test class search form component Class search container component snaps
 <div>
   <ClassSearchForm
     campus="both"
-    classes={Array []}
     endTime={1899-01-02T04:00:00.000Z}
     instructionMode="all"
-    instructorName=""
     instructors={Array []}
     isReset={false}
     meetingDate={
@@ -45,10 +43,8 @@ exports[`test class search form component Class search container component snaps
 exports[`test class search form component compare search form snapshot 1`] = `
 <ClassSearchForm
   campus="both"
-  classes={Array []}
   endTime={1899-01-02T04:00:00.000Z}
   instructionMode="all"
-  instructorName=""
   instructors={Array []}
   isReset={false}
   meetingDate={
