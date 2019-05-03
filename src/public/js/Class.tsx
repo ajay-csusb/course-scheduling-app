@@ -126,7 +126,7 @@ export class Class {
     const currentQuarterId = localStorage.getItem('currentQuarterId') ;
     const params = {
       currentPage: '1',
-      maximunPerPage: '10000',
+      maximunPerPage: '3000',
       condition: {
         strm: currentQuarterId,
         subject: userInput.getSubject().toUpperCase(),
