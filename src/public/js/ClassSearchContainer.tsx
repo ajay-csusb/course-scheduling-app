@@ -7,6 +7,7 @@ import { Instructor } from './Instructor';
 import { Subject, ISubject } from './Subject';
 import { UserInput } from './UserInput';
 import { FilterClasses } from './FilterClasses';
+import { Toaster, Position, Intent } from '@blueprintjs/core';
 
 interface IClassSearchContainerState {
   updateAllResults: boolean;
@@ -282,6 +283,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       this.state.geClasses);
     const filteredResults: IClass[] = FilterClasses.filter(this.allResults, userInput);
     this.allResults = filteredResults;
+    if (this.isSubjectEmpty()) {
+      this.displayErrorMessageWhenSubjectIsEmpty();
+    }
     this.setState({
       beforeSubmit: false,
     });
@@ -405,6 +409,15 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private isSubjectEmpty() {
     return (this.state.subject.abbr.length === 0);
+  }
+
+  private displayErrorMessageWhenSubjectIsEmpty(): string {
+    return (
+      Toaster.create({
+        className: 'select-a-subject',
+        position: Position.BOTTOM,
+      }).show({ message: 'Please choose a subject', intent: Intent.DANGER, timeout: 2000 })
+    );
   }
 
 }
