@@ -349,8 +349,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private subjectsFound(data: any): void {
     const subjects: ISubject[] = [];
     const noOption: ISubject = {
-      abbr: '',
-      name: ' -- Not Known -- ',
+      abbr: 'all',
+      name: 'All',
     };
     subjects.push(noOption);
     const subjectsArr = data.abbreviationList;

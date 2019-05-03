@@ -104,6 +104,9 @@ export class UserInput {
     return (this.instructionMode === 'online');
   }
   public getSubject(): string {
+    if (this.subject === 'all') {
+      return '';
+    }
     return this.subject;
   }
 
