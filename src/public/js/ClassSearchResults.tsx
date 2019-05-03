@@ -5,7 +5,7 @@ import { FilterClasses } from './FilterClasses';
 import { UserInput } from './UserInput';
 import { ClassesCards } from './ClassesCards';
 export interface IClassSearchResultsProps {
-  classes?: IClass[];
+  classes: IClass[];
   quarter: string;
   campus: string;
   subject: ISubject;
@@ -19,10 +19,7 @@ export interface IClassSearchResultsProps {
   endTime: Date;
 }
 
-interface IClassSearchResultsState {
-}
-
-export class ClassSearchResults extends React.Component<IClassSearchResultsProps, IClassSearchResultsState> {
+export class ClassSearchResults extends React.Component<IClassSearchResultsProps, {}> {
 
   constructor(props: any) {
     super(props);
@@ -35,7 +32,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
       this.props.campus, this.props.meetingDate, this.props.subject, this.props.courseNo, this.props.quarter,
       this.props.startTime, this.props.endTime, this.props.instructionMode, this.props.instructorName,
       this.props.geClasses);
-    if (this.props.classes) {
+    if (this.props.classes.length !== 0) {
       filteredResults = FilterClasses.filter(this.props.classes, userInput);
       filteredResults.forEach((_class: IClass) => {
         rows.push(
