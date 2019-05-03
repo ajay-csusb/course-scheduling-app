@@ -85,9 +85,9 @@ export class SelectListQuarter extends React.Component<ISelectListQuarterProps, 
   }
 
   private updateLocalStorage(quarter: any): void {
-    const quarterClass = new Quarter(quarter);
-    this.setCurrentQuarterInStorage(quarterClass);
-    this.setPreviousQuarterInStorage(quarterClass);
+    const quarterInstance = new Quarter(quarter);
+    this.setCurrentQuarterInStorage(quarterInstance);
+    this.setPreviousQuarterInStorage(quarterInstance);
   }
 
 }
