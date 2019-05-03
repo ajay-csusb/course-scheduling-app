@@ -63,14 +63,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return (
       <div>
         <ClassSearchForm
-          classes={this.allResults}
           quarter={this.state.quarter}
           campus={this.state.campus}
           subjects={this.subjects}
           showGeClasses={this.state.showGeClasses}
           meetingDate={this.state.meetingDate}
           instructionMode={this.state.instructionMode}
-          instructorName={this.state.instructorName}
           instructors={this.instructors}
           isReset={this.state.isReset}
           onChangeOfQuarter={this.updateQuarter}

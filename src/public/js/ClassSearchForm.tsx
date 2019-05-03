@@ -6,20 +6,18 @@ import { SelectListQuarter } from './SelectListQuarter';
 import { SelectListCampus } from './SelectListCampus';
 import { ControlGroupMeetingTime } from './ControlGroupMeetingTime';
 import { ControlGroupMeetingDate } from './ControlGroupMeetingDate';
-import { IClass, IMeetingDate } from './Class';
+import { IMeetingDate } from './Class';
 import { autocompleteInstructorsProps } from './AutocompleteInstructors';
 import { ISubject } from './Subject';
 import { SelectListInstructionMode } from './SelectListInstructionMode';
 
 interface ClassSearchFormProps {
-  classes: IClass[];
   quarter: string;
   campus: string;
   subjects: ISubject[];
   showGeClasses: boolean;
   meetingDate: IMeetingDate;
   instructionMode: string;
-  instructorName: string;
   instructors: string[];
   isReset?: boolean;
   startTime: Date;
