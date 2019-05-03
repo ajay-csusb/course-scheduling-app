@@ -14,4 +14,15 @@ describe('test instructor autocomplete', () => {
     expect(classSearchContainerWrapper.state('instructorName')).toEqual('');
   });
 
+  it('should pass "All" as the instructorName props to ClassSearchResults component', () => {
+    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+        instructorName : 'All',
+    });
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    classSearchContainerWrapper.update();
+    const classSearchResultsWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
+    expect(classSearchResultsWrapper.prop('instructorName')).toEqual('All');
+  });
+
 });
