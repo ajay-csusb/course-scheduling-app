@@ -29,8 +29,12 @@ export class SelectListQuarter extends React.Component<ISelectListQuarterProps, 
         Quarter
         <div className="bp3-select select-quarter">
           <select onChange={this.handleChangeOfQuarter}>
-            <option label={this.getCurrentQuarterLabel()} value="current" className="current-quarter" />
-            <option label={this.getPrevQuarterLabel()} value="prev" className="prev-quarter" />
+            <option label={this.getCurrentQuarterLabel()} value="current" className="current-quarter">
+              {this.getCurrentQuarterLabel()}
+            </option>
+            <option label={this.getPrevQuarterLabel()} value="prev" className="prev-quarter">
+              {this.getPrevQuarterLabel()}
+            </option>
             </select>
         </div>
       </Label>
