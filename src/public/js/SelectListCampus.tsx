@@ -17,9 +17,9 @@
           Campus
           <div className="bp3-select campus-select">
             <select onChange={this.handleChangeOfCampus}>
-              <option label="Both" value="both" className="both" />
-              <option label="San Bernardino" value="san-bernardino" className="san-bernardino" />
-              <option label="Palm Desert" value="palm-desert" className="palm-desert"/>
+              <option label="Both" value="both" className="both">Both</option>
+              <option label="San Bernardino" value="san-bernardino" className="san-bernardino">San Bernardino</option>
+              <option label="Palm Desert" value="palm-desert" className="palm-desert">Palm Desert</option>
             </select>
           </div>
       </Label>

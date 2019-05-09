@@ -18,17 +18,27 @@ export class SelectListInstructionMode extends React.Component<ISelectListInstru
         Instruction Mode
       <div className="bp3-select">
           <select onChange={this.handleChangeOfInstructionMode}>
-            <option label="All" value="all" />
-            <option label="Classroom" value="p" />
-            <option label="Online" value="ol" />
-            <option label="Online CourseMatch Instruction" value="cm" />
-            <option label="Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)" value="fo" />
-            <option label="Hybrid Online Asynchronous and Synchronous Instruction" value="ho" />
-            <option label="Hybrid Classroom and Online Instruction" value="hc" />
-            <option label="Off-Campus " value="oc" />
-            <option label="Televised Instruction (origination site)" value="to" />
-            <option label="Televised Instruction (receiving site)" value="tr" />
-            <option label="Zero Unit Instruction " value="z" />
+            <option label="All" value="all">All</option>
+            <option label="Classroom" value="p">Classroom</option>
+            <option label="Online" value="ol">Online</option>
+            <option label="Online CourseMatch Instruction" value="cm">Online CourseMatch Instruction</option>
+            <option label="Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)" value="fo">
+              Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)
+            </option>
+            <option label="Hybrid Online Asynchronous and Synchronous Instruction" value="ho">
+              Hybrid Online Asynchronous and Synchronous Instruction
+            </option>
+            <option label="Hybrid Classroom and Online Instruction" value="hc">
+              Hybrid Classroom and Online Instruction
+            </option>
+            <option label="Off-Campus " value="oc">Off-Campus</option>
+            <option label="Televised Instruction (origination site)" value="to">
+              Televised Instruction (origination site)
+            </option>
+            <option label="Televised Instruction (receiving site)" value="tr">
+              Televised Instruction (receiving site)
+            </option>
+            <option label="Zero Unit Instruction " value="z">Zero Unit Instruction </option>
           </select>
         </div>
       </Label>
