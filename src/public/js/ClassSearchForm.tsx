@@ -22,6 +22,7 @@ interface ClassSearchFormProps {
   isReset?: boolean;
   startTime: Date;
   endTime: Date;
+  courseNo: string;
   onChangeOfQuarter: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
@@ -53,6 +54,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
   private getForm(): JSX.Element {
     const subjects = this.getSubjectsAutoCompleteComponent();
     const instructors = this.getInstructorsAutoCompleteComponent();
+    const courseNumber = this.getCourseNumberComponent();
     return (
       <FormGroup label="Fill in one or more of the fields below:">
         <SelectListQuarter
@@ -60,16 +62,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
           onChangeOfQuarter={this.props.onChangeOfQuarter}
         />
         {subjects}
-        <Label>
-          Course Number
-          <input
-            className="bp3-input"
-            type="text"
-            placeholder="E.g. 602"
-            dir="auto"
-            onChange={this.props.onChangeOfCourseNo}
-          />
-        </Label>
+        {courseNumber}
         {instructors}
         <SelectListCampus
           campus={this.props.campus}
@@ -146,6 +139,22 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
           noResults={<MenuItem disabled={true} text="Searching for instructor..." />}
           onItemSelect={this.props.onChangeOfInstructor}
           selectedItem={this.isReset()}
+        />
+      </Label>
+    );
+  }
+
+  private getCourseNumberComponent(): JSX.Element {
+    return (
+      <Label>
+        Course Number
+        <input
+          className="bp3-input course-number"
+          type="text"
+          placeholder="E.g. 602"
+          dir="auto"
+          onChange={this.props.onChangeOfCourseNo}
+          value={this.props.courseNo}
         />
       </Label>
     );
