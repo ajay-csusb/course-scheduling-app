@@ -17,6 +17,7 @@ export interface IClassSearchResultsProps {
   isReset?: boolean;
   startTime: Date;
   endTime: Date;
+  isLoading: boolean;
 }
 
 export class ClassSearchResults extends React.Component<IClassSearchResultsProps, {}> {
@@ -27,7 +28,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
 
   public render(): JSX.Element {
     const rows: any = [];
-    let filteredResults: IClass[] = [];
+    let filteredResults: IClass[] = this.props.classes;
     const userInput = new UserInput(
       this.props.campus, this.props.meetingDate, this.props.subject, this.props.courseNo, this.props.quarter,
       this.props.startTime, this.props.endTime, this.props.instructionMode, this.props.instructorName,
@@ -43,8 +44,8 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
         );
       });
     }
-    if (rows.length === 0) {
-      return <p>No classes found</p>;
+    if (!this.props.isLoading && filteredResults.length === 0) {
+      return <p>No classes found.</p>;
     }
     return (
       <div id="class-search-results-component">
