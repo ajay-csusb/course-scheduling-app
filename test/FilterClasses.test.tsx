@@ -223,29 +223,105 @@ describe('when classes are filtered by instructor', () => {
 
 });
 
-describe('filter by meeting time', () => {
-  test('when start time and end time is default', () => {
+describe('when classes are filtered by meeting time', () => {
+  beforeAll(() => {
     classes = [];
-    classes.push(classJson);
-    classes.push(classPDC);
-    classes.push(baseClassJson);
+    const classStartingAt8am = JSON.parse(JSON.stringify(baseClassJson));
+    classes.push(classStartingAt8am);
+    const classStartingAt12pm = JSON.parse(JSON.stringify(baseClassJson));
+    classStartingAt12pm.classStartTime = '12:00 PM';
+    classStartingAt12pm.classEndTime = '3:00 PM';
+    classes.push(classStartingAt12pm);
+    const classStartingAt6pm = JSON.parse(JSON.stringify(baseClassJson));
+    classStartingAt6pm.classStartTime = '6:00 PM';
+    classStartingAt6pm.classEndTime = '8:00 PM';
+    classes.push(classStartingAt6pm);
+    const classStartingAt8pm = JSON.parse(JSON.stringify(baseClassJson));
+    classStartingAt8pm.classStartTime = '8:00 PM';
+    classStartingAt8pm.classEndTime = '10:00 PM';
+    classes.push(classStartingAt8pm);
     uInput = new UserInput('both', meetingDate, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
-    const results = MeetingTime.filter(classes, uInput);
-    expect(results).toHaveLength(3);
   });
 
-  test('when start time is 10 PM', () => {
-    classes = [];
-    classes.push(classJson);
-    classes.push(classPDC);
-    classes.push(baseClassJson);
-    let startAt10PM: Date = startMeetingTime;
-    startAt10PM = new Date('1899-01-01T22:00:00');
-    let endAt11PM: Date = endMeetingTime;
-    endAt11PM = new Date('1899-01-01T23:00:00');
-    uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt10PM, endAt11PM, 'all', '', false);
-    const results = MeetingTime.filter(classes, uInput);
-    expect(results).toHaveLength(0);
+  describe('when start time and end time is not set', () => {
+    it('should show all classes', () => {
+      const results = FilterClasses.filter(classes, uInput);
+      expect(results).toHaveLength(4);
+    });
+  });
+
+  describe('when start time is set to 12 PM and end time is set to 11 PM', () => {
+    beforeAll(() => {
+      let startAt12PM: Date = startMeetingTime;
+      startAt12PM = new Date('1899-01-01T12:00:00');
+      let endAt11PM: Date = endMeetingTime;
+      endAt11PM = new Date('1899-01-01T23:00:00');
+      uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt12PM, endAt11PM, 'all', '', false);
+    });
+
+    it('should show three classes', () => {
+      const results = FilterClasses.filter(classes, uInput);
+      expect(results).toHaveLength(3);
+    });
+
+  });
+  describe('when start time is set to 8 AM and end time is set to 12 PM', () => {
+    beforeAll(() => {
+      let startAt8AM: Date = startMeetingTime;
+      startAt8AM = new Date('1899-01-01T08:00:00');
+      let endAt12PM: Date = endMeetingTime;
+      endAt12PM = new Date('1899-01-01T12:00:00');
+      uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt8AM, endAt12PM, 'all', '', false);
+    });
+
+    it('should show one class', () => {
+      const results = FilterClasses.filter(classes, uInput);
+      expect(results).toHaveLength(1);
+    });
+  });
+
+  describe('when start time is set to 11:30 AM and end time is set to 9:45 PM', () => {
+    beforeAll(() => {
+      let startAt1130AM: Date = startMeetingTime;
+      startAt1130AM = new Date('1899-01-01T11:30:00');
+      let endAt945PM: Date = endMeetingTime;
+      endAt945PM = new Date('1899-01-01T21:45:00');
+      uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt1130AM, endAt945PM, 'all', '', false);
+    });
+
+    it('should show two class', () => {
+      const results = FilterClasses.filter(classes, uInput);
+      expect(results).toHaveLength(2);
+    });
+  });
+
+  describe('when start time is set to 10:00 PM and end time is set to 12:00 AM', () => {
+    beforeAll(() => {
+      let startAt10PM: Date = startMeetingTime;
+      startAt10PM = new Date('1899-01-01T22:00:00');
+      let endAt12AM: Date = endMeetingTime;
+      endAt12AM = new Date('1899-01-01T00:00:00');
+      uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt10PM, endAt12AM, 'all', '', false);
+    });
+
+    it('should not show any classes', () => {
+      const results = FilterClasses.filter(classes, uInput);
+      expect(results).toHaveLength(0);
+    });
+  });
+  describe('when start time is set to 12:00 PM and end time is set to 8:00 PM', () => {
+    beforeAll(() => {
+      let startAt12PM: Date = startMeetingTime;
+      startAt12PM = new Date('1899-01-01T12:00:00');
+      let endAt8PM: Date = endMeetingTime;
+      endAt8PM = new Date('1899-01-01T20:00:00');
+      uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt12PM, endAt8PM, 'all', '', false);
+    });
+
+    it('should show two classes', () => {
+      const results = FilterClasses.filter(classes, uInput);
+      expect(results).toHaveLength(2);
+    });
   });
 
 });
