@@ -4,6 +4,7 @@ exports[`test class search form component Class search container component snaps
 <div>
   <ClassSearchForm
     campus="both"
+    courseNo=""
     endTime={1899-01-02T04:00:00.000Z}
     instructionMode="all"
     instructors={Array []}
@@ -43,6 +44,7 @@ exports[`test class search form component Class search container component snaps
 exports[`test class search form component compare search form snapshot 1`] = `
 <ClassSearchForm
   campus="both"
+  courseNo=""
   endTime={1899-01-02T04:00:00.000Z}
   instructionMode="all"
   instructors={Array []}
@@ -281,11 +283,12 @@ exports[`test class search form component compare search form snapshot 1`] = `
             >
               Course Number
               <input
-                className="bp3-input"
+                className="bp3-input course-number"
                 dir="auto"
                 onChange={[Function]}
                 placeholder="E.g. 602"
                 type="text"
+                value=""
               />
             </label>
           </Component>
