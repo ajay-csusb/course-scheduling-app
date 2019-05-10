@@ -1,9 +1,11 @@
 import { ContextMenu } from "@blueprintjs/core";
 
+const devUrl = 'https://dev-main.csusb.edu/course-schedule';
+const localUrl = 'http://localhost:3000/';
 describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', function () {
 
   before(() => {
-    cy.visit('http://localhost:3000/');
+    cy.visit(localUrl);
     cy.get('.search-autocomplete input').click();
     cy.get('.search-autocomplete input').type('accounting').click();
     cy.wait(5000)
@@ -62,7 +64,7 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
 
   context('and searches for classes related to Accounting and Liu Xiang again', () => {
     before(() => {
-      cy.visit('http://localhost:3000/');
+      cy.visit(localUrl);
       cy.get('.search-autocomplete input').click();
       cy.get('.search-autocomplete input').type('accounting').click();
       cy.wait(5000)
@@ -85,22 +87,48 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
     it('should show Liu Xiang in "Instructor" autocomplete box', () => {
       cy.get(':nth-child(4) > .bp3-popover-wrapper > .bp3-popover-target > .bp3-input-group > .bp3-input').should('have.value', 'Liu, Xiang');
     });
+
+    context('and filters by course number', () => {
+      before(() => {
+        cy.get('.course-number').type('21');
+      });
+
+      it('should show not show cost accounting class', () => {
+        cy.get('.course-number', {timeout: 2000}).should('contain.value', '21');
+        cy.get('h5').should('not.contain', 'COST ACCOUNTING');
+      });
+
+      context('and clicks reset', () => {
+        before(() => {
+          cy.get('button').contains('Reset').click();
+        });
+
+        it('should clear value in course number field', () => {
+          cy.get('.course-number').should('not.contain.value', '21');
+        });
+      });
+    });
+
   });
+
+
 
 });
 
 describe('when a user searches for Biology classes', function () {
 
   before(function () {
-    cy.visit('http://localhost:3000/');
+    cy.visit(localUrl);
     cy.get('.search-autocomplete input').type('Biology').click();
-    cy.get('div').contains('Biology', { timeout: 7000 }).click();
+    cy.get('div').contains('Biology', { timeout: 9000 }).click();
     cy.get('button').contains('Submit').click();
-    cy.get('.start-time > .bp3-timepicker-arrow-row:first-child > .bp3-timepicker-hour:first-child').click();
-    cy.get('.start-time > .bp3-timepicker-arrow-row:first-child > .bp3-timepicker-hour:first-child').click();
+    cy.get('.start-time input.bp3-timepicker-hour:first-child').type('10');
     cy.get('.start-time select').select('am') 
     cy.get('button').contains('Submit').click();
-    cy.wait(2000)
+  });
+
+  it('should show loading message after submit is clicked', () => {
+    cy.get('p').should('contain', 'Loading...');
   });
 
   context('and selects "All" as instructor', () => {
@@ -130,6 +158,24 @@ describe('when a user searches for Biology classes', function () {
       cy.get('#class-search-results-component').should('contain', 'Meeting Days: N/A');
     });
   });
+
+  context('that start at 12:30 PM', () => {
+    before(() => {
+    cy.get('.start-time input.bp3-timepicker-hour:first-child').type('12');
+    cy.get(':nth-child(1) > .bp3-timepicker > .bp3-timepicker-input-row > .bp3-timepicker-minute').type(30);
+    cy.get('.start-time select').select('pm') 
+    cy.get('button').contains('Submit').click();
+    });
+
+    it('should show classes at 3 PM', function () {
+      cy.get('#class-search-results-component').should('contain', '3:00 pm');
+    });
+
+    it('should not show classes at 12 PM', function () {
+      cy.get('#class-search-results-component').should('not.contain', '12:00 pm');
+    });
+  });
+
 
   context('and ends at 4:50 PM', () => {
     before(() => {
@@ -165,18 +211,71 @@ describe('when a user searches for Biology classes', function () {
     });
   });
 
-  describe('when All is selected as a subject', () => {
+  context('then selects Chinese, Accounting, Biology and Aerospace studies as subjects', () => {
+
     before(() => {
-      cy.visit('http://localhost:3000/');
-      cy.get('.search-autocomplete input').click();
-      cy.wait(7000)
-      cy.get('span').contains('all').click();
-      cy.get('button').contains('Submit').click();
+      cy.get('.search-autocomplete input').type('Chinese').click();
+      cy.get('div').contains('Chinese').click();
     });
 
-    it('should show all the classes or the first 3000 classes', () => {
-      cy.get('#class-search-results-component', { timeout: 50000 }).should('exist');
+    it('should not show loading message when Chinese is selected and before submit is clicked', () => {
+      cy.wait(10000);
+      cy.get('p').should('not.contain', 'Loading...');
+    });
+
+    it('should not show loading message when Chinese is selected and submit is clicked', () => {
+      cy.get('button').contains('Submit').click();
+      cy.wait(10000);
+      cy.get('p').should('contain', 'No classes found.');
+    });
+
+    it('should show loading message when Accounting is selected', () => {
+      cy.get('.search-autocomplete input').type('Accounting').click();
+      cy.get('div').contains('Accounting', { timeout: 7000 }).click();
+      cy.wait(10000);
+      cy.get('p').should('contain', 'Loading...');
+    });
+
+    it('should show loading message when Biology is selected', () => {
+      cy.get('.search-autocomplete input').type('Biology').click();
+      cy.get('div').contains('Biology', {timeout: 10000}).click();
+      cy.wait(10000);
+      cy.get('p').should('contain', 'Loading...');
+    });
+
+    it('should not show loading message when Aerospace studies is selected', () => {
+      cy.get('.search-autocomplete input').type('Aerospace studies').click();
+      cy.get('div').contains('Aerospace Studies', { timeout: 7000 }).click();
+      cy.wait(20000);
+      cy.get('p').should('not.contain', 'Loading...');
+      cy.get('p').should('contain', 'No classes found.');
     });
   });
+
+  context('then selects Sunday from meeting day', () => {
+    beforeEach(() => {
+      cy.get('.search-autocomplete input').type('Biology').click();
+      cy.get('div').contains('Biology', { timeout: 7000 }).click();
+      cy.get('.sun > .bp3-control-indicator').click();
+    });
+
+    it('should display no classes found', () => {
+      cy.get('p').should('contain', 'No classes found.');
+    });
+  })
   
+});
+
+describe('when All is selected as a subject', () => {
+  before(() => {
+    cy.visit(localUrl);
+    cy.get('.search-autocomplete input').click();
+    cy.wait(7000)
+    cy.get('span').contains('all').click();
+    cy.get('button').contains('Submit').click();
+  });
+
+  it('should show all the classes or the first 3000 classes', () => {
+    cy.get('#class-search-results-component', { timeout: 50000 }).should('exist');
+  });
 });
