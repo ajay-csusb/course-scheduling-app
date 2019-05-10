@@ -113,7 +113,7 @@ export let meetingDates: IMeetingDate = {
 };
 
 export let startMeetingTime: Date = new Date('1899-01-01T08:00:00');
-export let endMeetingTime: Date = new Date('1899-01-01T20:00:00');
+export let endMeetingTime: Date = new Date('1899-01-01T22:00:00');
 
 export const rawClassesJson = {
   contentList: [
