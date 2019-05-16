@@ -5,8 +5,8 @@ import { IClass, Class, IMeetingDate } from './Class';
 import { Instructor } from './Instructor';
 import { Subject, ISubject } from './Subject';
 import { UserInput } from './UserInput';
-import { FilterClasses } from './FilterClasses';
 import { Toaster, Position, Intent } from '@blueprintjs/core';
+import { FilterClasses } from './FilterClasses';
 interface IClassSearchContainerState {
   updateAllResults: boolean;
   quarter: string;
@@ -89,12 +89,14 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateQuarter(e: any): void {
     this.setState({
       quarter: e.target.value,
+      beforeSubmit: true,
     });
   }
 
   private updateCampus(e: any): void {
     this.setState({
       campus: e.target.value,
+      beforeSubmit: true,
     });
   }
 
@@ -111,37 +113,42 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         sat: this.toggleSat(checkBoxValue),
         sun: this.toggleSun(checkBoxValue),
       },
+      beforeSubmit: true,
     });
   }
 
   private updateSubject(subject: ISubject): void {
     this.setState({
       subject: subject,
-      isLoading: this.didSubmit() ? true : false,
+      beforeSubmit: true,
     });
   }
 
   private updateCourseNo(e: any): void {
     this.setState({
       courseNo: e.target.value,
+      beforeSubmit: true,
     });
   }
 
   private updateInstructionMode(e: any): void {
     this.setState({
       instructionMode: e.target.value,
+      beforeSubmit: true,
     });
   }
 
   private updateInstructorName(instructor: string): void {
     this.setState({
       instructorName: instructor,
+      beforeSubmit: true,
     });
   }
 
   private updateToggleGeClasses(_e: any): void {
     this.setState(prevState => ({
       showGeClasses: !prevState.showGeClasses,
+      beforeSubmit: true,
     }));
   }
 
@@ -258,11 +265,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       beforeSubmit: false,
     });
-    if (this.hasNoClasses()) {
-      this.setState({
-        isLoading: (!this.state.noClasses) ? true : false,
-      });
-    }
   }
 
   private onReset(_e: any): void {
@@ -351,15 +353,16 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateStartTime(e: Date): void {
     this.setState({
       startTime: e,
+      beforeSubmit: true,
     });
   }
 
   private updateEndTime(e: Date): void {
     this.setState({
       endTime: e,
+      beforeSubmit: true,
     });
   }
-
   private didSubjectChange(prevState: any) {
     const prevSubject = prevState.subject.abbr;
     const currentSubject = this.state.subject.abbr;
