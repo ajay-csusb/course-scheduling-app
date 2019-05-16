@@ -7,7 +7,6 @@ import { Subject, ISubject } from './Subject';
 import { UserInput } from './UserInput';
 import { Toaster, Position, Intent } from '@blueprintjs/core';
 interface IClassSearchContainerState {
-  updateAllResults: boolean;
   quarter: string;
   campus: string;
   subject: ISubject;
@@ -236,7 +235,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       this.setState({
         noClasses: true,
         isLoading: false,
-        updateAllResults: false,
       });
       return;
     }
@@ -248,7 +246,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.allResults = transformedClass;
     this.setState({
       noClasses: false,
-      updateAllResults: true,
     });
   }
 
@@ -275,7 +272,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private defaultFromValues(): IClassSearchContainerState {
     return {
-      updateAllResults: false,
       quarter: 'current',
       campus: 'both',
       subject: {
