@@ -18,6 +18,7 @@ export interface IClassSearchResultsProps {
   startTime: Date;
   endTime: Date;
   isLoading: boolean;
+  onChangeOfLoadingMessage: () => void;
 }
 
 export class ClassSearchResults extends React.Component<IClassSearchResultsProps, {}> {
@@ -29,6 +30,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   public render(): JSX.Element {
     const rows: any = [];
     let filteredResults: IClass[] = this.props.classes;
+    let counter = 0;
     const userInput = new UserInput(
       this.props.campus, this.props.meetingDate, this.props.subject, this.props.courseNo, this.props.quarter,
       this.props.startTime, this.props.endTime, this.props.instructionMode, this.props.instructorName,
@@ -36,19 +38,24 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     if (this.props.classes.length !== 0) {
       filteredResults = FilterClasses.filter(this.props.classes, userInput);
       filteredResults.forEach((_class: IClass) => {
+        counter++;
         rows.push(
           <li key={_class.classNumber}>
             <ClassesCards classes={_class} />
-            <br/>
+            <br />
           </li>
         );
       });
+    }
+    if (counter === filteredResults.length) {
+      this.props.onChangeOfLoadingMessage();
     }
     if (!this.props.isLoading && filteredResults.length === 0) {
       return <p>No classes found.</p>;
     }
     return (
       <div id="class-search-results-component">
+        <p>Found {counter} classes</p>
         <ul>
           {rows}
         </ul>

@@ -6,7 +6,6 @@ import { Instructor } from './Instructor';
 import { Subject, ISubject } from './Subject';
 import { UserInput } from './UserInput';
 import { Toaster, Position, Intent } from '@blueprintjs/core';
-import { FilterClasses } from './FilterClasses';
 interface IClassSearchContainerState {
   updateAllResults: boolean;
   quarter: string;
@@ -45,6 +44,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.updateCourseNo = this.updateCourseNo.bind(this);
     this.updateInstructionMode = this.updateInstructionMode.bind(this);
     this.updateInstructorName = this.updateInstructorName.bind(this);
+    this.updateLoadingMessage = this.updateLoadingMessage.bind(this);
     this.instructorsFound = this.instructorsFound.bind(this);
     this.instructorsNotFound = this.instructorsNotFound.bind(this);
     this.subjectsFound = this.subjectsFound.bind(this);
@@ -78,6 +78,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   componentDidUpdate(_prevProps: any, prevState: any, _snapshot: any) {
     if (this.didSubjectChange(prevState)) {
       this.updateClasses();
+    }
+    if (this.state.noClasses) {
+      this.updateLoadingMessage();
     }
     if (this.resetComplete()) {
       this.setState({
@@ -233,6 +236,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       this.setState({
         noClasses: true,
         isLoading: false,
+        updateAllResults: false,
       });
       return;
     }
@@ -244,7 +248,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.allResults = transformedClass;
     this.setState({
       noClasses: false,
-      isLoading: false,
+      updateAllResults: true,
     });
   }
 
@@ -252,18 +256,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     console.log(error);
   }
 
-  private onSubmit(_e: any): void {
-    const userInput = new UserInput(
-      this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.quarter,
-      this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
-      this.state.geClasses);
-    const filteredResults: IClass[] = FilterClasses.filter(this.allResults, userInput);
-    this.allResults = filteredResults;
+  private onSubmit(_e: any): any {
     if (this.isSubjectEmpty()) {
       this.displayErrorMessageWhenSubjectIsEmpty();
     }
     this.setState({
       beforeSubmit: false,
+      isLoading: true,
     });
   }
 
@@ -421,6 +420,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         endTime={this.state.endTime}
         geClasses={this.state.showGeClasses}
         isLoading={this.state.isLoading}
+        onChangeOfLoadingMessage={this.updateLoadingMessage}
       />
     );
   }
@@ -462,4 +462,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private didSubmit(): boolean {
     return !this.state.beforeSubmit;
   }
+
+  private updateLoadingMessage(): void {
+    if (this.state.isLoading) {
+      this.setState({
+        isLoading: false,
+      });
+    }
+  }
+
 }
