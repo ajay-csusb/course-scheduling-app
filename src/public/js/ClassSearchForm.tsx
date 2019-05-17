@@ -10,6 +10,7 @@ import { IMeetingDate } from './Class';
 import { autocompleteInstructorsProps } from './AutocompleteInstructors';
 import { ISubject } from './Subject';
 import { SelectListInstructionMode } from './SelectListInstructionMode';
+import { AdvancedFilterFieldset } from './AdvancedFilterFieldset';
 
 interface ClassSearchFormProps {
   quarter: string;
@@ -55,6 +56,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
     const subjects = this.getSubjectsAutoCompleteComponent();
     const instructors = this.getInstructorsAutoCompleteComponent();
     const courseNumber = this.getCourseNumberComponent();
+    const advancedFilter = this.getAdvancedFilterFieldset();
     return (
       <FormGroup label="Fill in one or more of the fields below:">
         <SelectListQuarter
@@ -88,6 +90,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
           instructionMode={this.props.instructionMode}
           onChangeOfInstructionMode={this.props.onChangeOfInstructionMode}
         />
+        {advancedFilter}
         <Button text="Submit" onClick={this.props.onSubmit} type="submit" className="bp3-intent-primary" />
         <Button text="Reset" onClick={this.props.onReset} style={{ float: 'right' }} type="reset" />
       </FormGroup >
@@ -158,6 +161,10 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
         />
       </Label>
     );
+  }
+
+  private getAdvancedFilterFieldset(): JSX.Element {
+    return <AdvancedFilterFieldset/>;
   }
 
 }
