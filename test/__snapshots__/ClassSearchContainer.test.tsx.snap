@@ -463,17 +463,23 @@ exports[`test class search form component compare search form snapshot 1`] = `
                       className="both"
                       label="Both"
                       value="both"
-                    />
+                    >
+                      Both
+                    </option>
                     <option
                       className="san-bernardino"
                       label="San Bernardino"
                       value="san-bernardino"
-                    />
+                    >
+                      San Bernardino
+                    </option>
                     <option
                       className="palm-desert"
                       label="Palm Desert"
                       value="palm-desert"
-                    />
+                    >
+                      Palm Desert
+                    </option>
                   </select>
                 </div>
               </label>
@@ -1296,52 +1302,112 @@ exports[`test class search form component compare search form snapshot 1`] = `
                     <option
                       label="All"
                       value="all"
-                    />
+                    >
+                      All
+                    </option>
                     <option
                       label="Classroom"
                       value="p"
-                    />
+                    >
+                      Classroom
+                    </option>
                     <option
                       label="Online"
                       value="ol"
-                    />
+                    >
+                      Online
+                    </option>
                     <option
                       label="Online CourseMatch Instruction"
                       value="cm"
-                    />
+                    >
+                      Online CourseMatch Instruction
+                    </option>
                     <option
                       label="Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)"
                       value="fo"
-                    />
+                    >
+                      Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)
+                    </option>
                     <option
                       label="Hybrid Online Asynchronous and Synchronous Instruction"
                       value="ho"
-                    />
+                    >
+                      Hybrid Online Asynchronous and Synchronous Instruction
+                    </option>
                     <option
                       label="Hybrid Classroom and Online Instruction"
                       value="hc"
-                    />
+                    >
+                      Hybrid Classroom and Online Instruction
+                    </option>
                     <option
                       label="Off-Campus "
                       value="oc"
-                    />
+                    >
+                      Off-Campus
+                    </option>
                     <option
                       label="Televised Instruction (origination site)"
                       value="to"
-                    />
+                    >
+                      Televised Instruction (origination site)
+                    </option>
                     <option
                       label="Televised Instruction (receiving site)"
                       value="tr"
-                    />
+                    >
+                      Televised Instruction (receiving site)
+                    </option>
                     <option
                       label="Zero Unit Instruction "
                       value="z"
-                    />
+                    >
+                      Zero Unit Instruction 
+                    </option>
                   </select>
                 </div>
               </label>
             </Component>
           </SelectListInstructionMode>
+          <AdvancedFilterFieldset>
+            <div>
+              <a
+                onClick={[Function]}
+              >
+                Show
+                 Additional Filters
+              </a>
+              <Blueprint3.Collapse
+                component="div"
+                isOpen={false}
+                keepChildrenMounted={false}
+                transitionDuration={200}
+              >
+                <div
+                  className="bp3-collapse"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "overflowY": undefined,
+                      "transition": undefined,
+                    }
+                  }
+                >
+                  <div
+                    aria-hidden={false}
+                    className="bp3-collapse-body"
+                    style={
+                      Object {
+                        "transform": "translateY(-0px)",
+                        "transition": undefined,
+                      }
+                    }
+                  />
+                </div>
+              </Blueprint3.Collapse>
+            </div>
+          </AdvancedFilterFieldset>
           <Blueprint3.Button
             className="bp3-intent-primary"
             onClick={[Function]}
