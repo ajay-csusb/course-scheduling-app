@@ -31,23 +31,47 @@ beforeAll(() => {
   meetingDate = meetingDates;
 });
 
-describe('filter by campus', () => {
-
-  test('filter when both is checked', () => {
-    const results = FilterClasses.filter(classes, uInput);
-    expect(results).toHaveLength(2);
+describe('Filter classes by campus', () => {
+  const campusClasses = [];
+  beforeAll(() => {
+    const palmDesertClass = JSON.parse(JSON.stringify(baseClassJson));
+    palmDesertClass.campus = 'PALM';
+    const mainCampusClass = JSON.parse(JSON.stringify(baseClassJson));
+    mainCampusClass.campus = 'MAIN';
+    campusClasses.push(classJson);
+    campusClasses.push(palmDesertClass);
+    campusClasses.push(mainCampusClass);
   });
 
-  test('filter by San Bernardino campus', () => {
-    uInput = new UserInput('san-bernardino', meetingDate, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
-    const results = FilterClasses.filter(classes, uInput);
-    expect(results).toHaveLength(2);
+  describe('When both is selected', () => {
+    it('should show all classes', () => {
+      uInput = new UserInput('both', meetingDates, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
+      const results = FilterClasses.filter(campusClasses, uInput);
+      expect(results).toHaveLength(3);
+    });
   });
 
+  describe('When San Bernardino is selected', () => {
+    it('should show one class', () => {
+      uInput = new UserInput('san-bernardino', meetingDate, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
+      const results = FilterClasses.filter(campusClasses, uInput);
+      expect(results).toHaveLength(2);
+    });
+  });
+
+  describe('When Palm Desert is selected', () => {
+    it('should show only one class', () => {
+      uInput = new UserInput('palm-desert', meetingDate, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
+      const results = FilterClasses.filter(campusClasses, uInput);
+      expect(results).toHaveLength(1);
+    });
+
+  });
 });
 
 describe('filter by quarter', () => {
   test('filter by current quarters', () => {
+    uInput = new UserInput('san-bernardino', meetingDate, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', false);
     const results = FilterClasses.filter(classes, uInput);
     expect(results).toHaveLength(2);
   });
