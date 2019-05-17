@@ -78,6 +78,16 @@ export function compareEndTimes(userTime: string, classTime: string) {
   return (userSelectedTime.isSameOrAfter(classesTime));
 }
 
+export function getCampusName(campusMachineName: string): string {
+  if (campusMachineName === 'MAIN') {
+    return 'San Bernardino';
+  }
+  if (campusMachineName === 'PALM') {
+    return 'Palm Desert';
+  }
+  return '';
+}
+
 function isTimeEmpty(classTime: string): boolean {
   return (classTime.length === 0);
 }
