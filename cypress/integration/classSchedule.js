@@ -15,10 +15,21 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
     cy.get('.search-instructor-autocomplete input').click();
     cy.wait(3000)
     cy.get('a.search-instructor-autocomplete-items div').contains('Liu, Xiang').click();
+    cy.get('button').contains('Submit').click();
+    cy.wait(10000)
   });
 
   it('should show an accounting class by Liu Xiang', function () {
     cy.get('a').should('contain', 'Liu, Xiang');
+  });
+
+  it('should show campus as San Bernardino', function () {
+    cy.get(':nth-child(1) > .bp3-card > :nth-child(10)').should('contain', 'Campus: San Bernardino');
+  });
+
+  it('should show Class No. instead of Course No.', function () {
+    cy.get('span').should('contain', 'Class No.');
+    cy.get('span').should('not.contain', 'Course No.');
   });
 
   it('should not show accounting classes by other professors', function () {
@@ -120,7 +131,7 @@ describe('when a user searches for Biology classes', function () {
   before(function () {
     cy.visit(localUrl);
     cy.get('.search-autocomplete input').type('Biology').click();
-    cy.get('div').contains('Biology', { timeout: 9000 }).click();
+    cy.get('div').contains('Biology', { timeout: 15000 }).click();
     cy.get('button').contains('Submit').click();
     cy.get('.start-time input.bp3-timepicker-hour:first-child').type('10');
     cy.get('.start-time select').select('am') 
@@ -134,8 +145,10 @@ describe('when a user searches for Biology classes', function () {
   context('and selects "All" as instructor', () => {
     before(() => {
       cy.get('.search-instructor-autocomplete input').click();
-      cy.wait(3000)
+      cy.wait(3000);
       cy.get('a.search-instructor-autocomplete-items div').contains('All').click();
+      cy.get('button').contains('Submit').click();
+      cy.wait(20000);
     });
 
     it('should show classes related to Biology', () => {
@@ -181,7 +194,8 @@ describe('when a user searches for Biology classes', function () {
     before(() => {
       cy.get('.end-time input.bp3-timepicker-hour:first-child').type('4');
       cy.get('.end-time input.bp3-timepicker-minute').type('50');
-      cy.get('.end-time select').select('pm') 
+      cy.get('.end-time select').select('pm');
+    cy.get('button').contains('Submit').click();
     });
 
     it('should not show classes after 4:50 PM', function () {
@@ -200,14 +214,16 @@ describe('when a user searches for Biology classes', function () {
   context('and toggles the GE box', () => {
     it('should show only GE classes from Biology if GE is set', () => {
       cy.get('.bp3-switch > .bp3-control-indicator').click();
+      cy.get('button').contains('Submit').click();
       cy.get('div').should('contain', 'TOPICS IN BIOLOGY');
       cy.get('#class-search-results-component').should('not.contain', 'CELL PHYSIOLOGY');
     });
 
     it('should show all classes from Biology when GE is unset', () => {
       cy.get('.bp3-switch > .bp3-control-indicator').click();
+      cy.get('button').contains('Submit').click();
       cy.get('div').should('contain', 'TOPICS IN BIOLOGY');
-      cy.get('#class-search-results-component').should('contain', 'CELL PHYSIOLOGY');
+      cy.get('#class-search-results-component').should('contain', 'HUMAN PHYS');
     });
   });
 
@@ -216,37 +232,33 @@ describe('when a user searches for Biology classes', function () {
     before(() => {
       cy.get('.search-autocomplete input').type('Chinese').click();
       cy.get('div').contains('Chinese').click();
-    });
-
-    it('should not show loading message when Chinese is selected and before submit is clicked', () => {
-      cy.wait(10000);
-      cy.get('p').should('not.contain', 'Loading...');
+      cy.get('button').contains('Submit').click();
+      cy.wait(40000);
     });
 
     it('should not show loading message when Chinese is selected and submit is clicked', () => {
-      cy.get('button').contains('Submit').click();
-      cy.wait(10000);
       cy.get('p').should('contain', 'No classes found.');
     });
 
     it('should show loading message when Accounting is selected', () => {
       cy.get('.search-autocomplete input').type('Accounting').click();
       cy.get('div').contains('Accounting', { timeout: 7000 }).click();
-      cy.wait(10000);
-      cy.get('p').should('contain', 'Loading...');
+      cy.get('button').contains('Submit').click();
+      cy.get('p').should('not.contain', 'Loading...');
     });
 
     it('should show loading message when Biology is selected', () => {
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', {timeout: 10000}).click();
-      cy.wait(10000);
+      cy.get('button').contains('Submit').click();
       cy.get('p').should('contain', 'Loading...');
     });
 
     it('should not show loading message when Aerospace studies is selected', () => {
       cy.get('.search-autocomplete input').type('Aerospace studies').click();
       cy.get('div').contains('Aerospace Studies', { timeout: 7000 }).click();
-      cy.wait(20000);
+      cy.get('button').contains('Submit').click();
+      cy.wait(40000);
       cy.get('p').should('not.contain', 'Loading...');
       cy.get('p').should('contain', 'No classes found.');
     });
@@ -257,6 +269,7 @@ describe('when a user searches for Biology classes', function () {
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', { timeout: 7000 }).click();
       cy.get('.sun > .bp3-control-indicator').click();
+      cy.get('button').contains('Submit').click();
     });
 
     it('should display no classes found', () => {
@@ -277,5 +290,17 @@ describe('when All is selected as a subject', () => {
 
   it('should show all the classes or the first 3000 classes', () => {
     cy.get('#class-search-results-component', { timeout: 50000 }).should('exist');
+  });
+
+  context('And Palm Desert is selected as a campus', () => {
+    before(() => {
+      cy.get(':nth-child(5) > .bp3-select > select').select('palm-desert');
+      cy.get('button').contains('Submit').click();
+    });
+
+    it('should display classes related to Palm Desert', () => {
+      cy.get(':nth-child(1) > .bp3-card > :nth-child(10)').should('contain', 'Campus: Palm Desert');
+      cy.get('span').should('not.contain', 'Campus: San Bernardino');
+    });
   });
 });
