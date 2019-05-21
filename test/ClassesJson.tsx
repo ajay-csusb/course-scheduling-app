@@ -139,7 +139,7 @@ export const rawClassesJson = {
       name: ' ',
       emplid2: '',
       name2: '',
-      crse_ATTR: '',
+      crse_ATTR: 'CEL, GE, CLSI, SOTE, CLEV',
       descrlong_VC: '',
       class_START_TIME: '',
       class_END_TIME: '',
