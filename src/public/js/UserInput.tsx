@@ -21,9 +21,11 @@ export class UserInput {
   private instructionMode: string = 'all';
   private instructor: string = '';
   private geClasses: boolean = false;
+  private courseAttr: string | undefined = '';
 
   constructor(campus: string, day: IMeetingDate, subject: ISubject, courseNo: string, quarter: string,
-              startTime: Date, endTime: Date, instructionMode: string, instructor: string, geClasses: boolean) {
+              startTime: Date, endTime: Date, instructionMode: string, instructor: string, geClasses: boolean,
+              courseAttr?: string) {
     this.campus = campus;
     this.day = day;
     this.subject = subject.abbr;
@@ -34,6 +36,7 @@ export class UserInput {
     this.instructionMode = instructionMode;
     this.instructor = instructor;
     this.geClasses = geClasses;
+    this.courseAttr = courseAttr;
   }
 
   public isBothCampusChecked(): boolean {
@@ -46,6 +49,16 @@ export class UserInput {
 
   public isPalmDesertChecked(): boolean {
     return (this.campus === 'palm-desert');
+  }
+
+  public getCampus(): string {
+    if (this.campus === 'san-bernardino') {
+      return 'MAIN';
+    }
+    if (this.campus === 'palm-desert') {
+      return 'PALM';
+    }
+    return '';
   }
 
   public isAllDaysChecked(): boolean {
@@ -118,7 +131,7 @@ export class UserInput {
   }
 
   public getInstructionMode(): string {
-    return this.instructionMode;
+    return (this.instructionMode === 'all') ? '' : this.instructionMode;
   }
 
   public getStartTime(): Date {
@@ -135,6 +148,10 @@ export class UserInput {
 
   public isGeClassesSet(): boolean {
     return this.geClasses;
+  }
+
+  public getCourseAttr(): string | undefined {
+    return (this.courseAttr === 'All' || this.courseAttr === undefined) ? '' : this.courseAttr;
   }
 
 }
