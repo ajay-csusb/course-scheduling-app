@@ -50,9 +50,6 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     if (counter === filteredResults.length) {
       this.props.onChangeOfLoadingMessage();
     }
-    if (!this.props.isLoading && filteredResults.length === 0) {
-      return <p>No classes found.</p>;
-    }
     return (
       <div id="class-search-results-component">
         <p>Found {counter} classes</p>
