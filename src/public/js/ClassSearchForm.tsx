@@ -24,6 +24,7 @@ interface ClassSearchFormProps {
   startTime: Date;
   endTime: Date;
   courseNo: string;
+  courseAttr: string[];
   onChangeOfQuarter: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
@@ -34,6 +35,7 @@ interface ClassSearchFormProps {
   onChangeOfCourseNo: (event: any) => void;
   onChangeOfInstructionMode: (event: any) => void;
   onChangeOfInstructor: (event: any) => void;
+  onChangeOfCourseAttr: (event: any) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;
 }
@@ -164,7 +166,12 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
   }
 
   private getAdvancedFilterFieldset(): JSX.Element {
-    return <AdvancedFilterFieldset/>;
+    return(
+    <AdvancedFilterFieldset
+      courseAttr={this.props.courseAttr}
+      onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
+    />
+    );
   }
 
 }
