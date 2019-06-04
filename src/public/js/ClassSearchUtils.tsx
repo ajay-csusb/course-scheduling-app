@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import { IClass } from './Class';
 
 export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
                           callbackOnFailure: (error: string) => void): void {
@@ -86,6 +87,38 @@ export function getCampusName(campusMachineName: string): string {
     return 'Palm Desert';
   }
   return '';
+}
+
+export function getNoOfAvailableSeats(classes: IClass): number {
+  const availableSeats = classes.enrolledCapacity - classes.enrolledTotal;
+  if (availableSeats > -1) {
+    return availableSeats;
+  }
+  return 0;
+}
+
+export function getClassType(classes: IClass): string | null {
+  if (classes.ssrComponent === 'LEC') {
+    return 'Lecture';
+  }
+  if (classes.ssrComponent === 'LAB') {
+    return 'Lab';
+  }
+  if (classes.ssrComponent === 'SEM') {
+    return 'Seminar';
+  }
+  if (classes.ssrComponent === 'SUP') {
+    return 'Supplemental';
+  }
+  return null;
+}
+
+export function getClassStatus(classes: IClass): string {
+  const availableSeats = classes.enrolledCapacity - classes.enrolledTotal;
+  if (availableSeats > -1) {
+    return 'Open';
+  }
+  return 'Close';
 }
 
 function isTimeEmpty(classTime: string): boolean {
