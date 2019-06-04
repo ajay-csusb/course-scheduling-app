@@ -2,15 +2,15 @@ import React from 'react';
 import { TimePicker, TimePrecision } from '@blueprintjs/datetime';
 import { Label, ControlGroup } from '@blueprintjs/core';
 
-export interface IControlGroupMeetingTime {
+export interface IControlGroupMeetingTimeProps {
   onChangeOfStartTime: (event: Date) => void;
   onChangeOfEndTime: (event: Date) => void;
   startTime: Date;
   endTime: Date;
 }
 
-export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetingTime, {}> {
-  constructor(props: IControlGroupMeetingTime) {
+export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetingTimeProps, {}> {
+  constructor(props: IControlGroupMeetingTimeProps) {
     super(props);
     this.handleChangeOfStartTime = this.handleChangeOfStartTime.bind(this);
     this.handleChangeOfEndTime = this.handleChangeOfEndTime.bind(this);
