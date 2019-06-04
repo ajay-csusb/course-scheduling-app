@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { IClass, IMeetingDate } from './Class';
 import { ISubject } from './Subject';
-import { FilterClasses } from './FilterClasses';
-import { UserInput } from './UserInput';
 import { ClassesCards } from './ClassesCards';
 export interface IClassSearchResultsProps {
   classes: IClass[];
@@ -13,7 +11,6 @@ export interface IClassSearchResultsProps {
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructorName: string;
-  geClasses: boolean;
   isReset?: boolean;
   startTime: Date;
   endTime: Date;
@@ -23,7 +20,7 @@ export interface IClassSearchResultsProps {
 
 export class ClassSearchResults extends React.Component<IClassSearchResultsProps, {}> {
 
-  constructor(props: any) {
+  constructor(props: IClassSearchResultsProps) {
     super(props);
   }
 
@@ -31,12 +28,8 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     const rows: any = [];
     let filteredResults: IClass[] = this.props.classes;
     let counter = 0;
-    const userInput = new UserInput(
-      this.props.campus, this.props.meetingDate, this.props.subject, this.props.courseNo, this.props.quarter,
-      this.props.startTime, this.props.endTime, this.props.instructionMode, this.props.instructorName,
-      this.props.geClasses);
     if (this.props.classes.length !== 0) {
-      filteredResults = FilterClasses.filter(this.props.classes, userInput);
+      filteredResults = this.props.classes;
       filteredResults.forEach((_class: IClass) => {
         counter++;
         rows.push(
