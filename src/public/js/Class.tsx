@@ -61,7 +61,7 @@ export interface IMeetingDate {
 }
 
 export class Class {
-  static classesUrl = 'https://webdx.csusb.edu/ClassSchedule/getCurrentCS';
+  static classesUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS';
 
   private classInfo: IClass;
 
@@ -132,6 +132,8 @@ export class Class {
         subject: userInput.getSubject().toUpperCase(),
         name: userInput.getInstructor(),
         campus: userInput.getCampus(),
+        catalog_nbr: userInput.getCourseNo(),
+        crse_id: userInput.getClassNo(),
         crse_attr: userInput.getCourseAttr(),
         meeting_time_start: '',
         mon: userInput.isMondayChecked() ? 'Y' : '',
@@ -142,6 +144,7 @@ export class Class {
         sat: userInput.isSaturdayChecked() ? 'Y' : '',
         sun: userInput.isSundayChecked() ? 'Y' : '',
         instruction_mode: userInput.getInstructionMode(),
+        section_code: userInput.getSessionCode(),
       },
     };
     ClassSearchUtils.fetchWithArg(this.classesUrl, params, onSuccess, onFailure);
