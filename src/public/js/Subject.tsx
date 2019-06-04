@@ -1,4 +1,3 @@
-import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
 import { IClass } from './Class';
 
@@ -7,11 +6,6 @@ export interface ISubject {
   abbr: string;
 }
 export class Subject {
-  static subjectUrl = 'https://webdx.csusb.edu/ClassSchedule/getDropDownList';
-  public static getAllSubjects(onSuccess: (response: any) => void,
-                               onFailure: (error: string) => void, url: string = this.subjectUrl): void {
-    ClassSearchUtils.fetchData(url, onSuccess, onFailure);
-  }
 
   public static filter(classes: IClass[], uInput: UserInput): IClass[] {
     const result: IClass[] = [];
