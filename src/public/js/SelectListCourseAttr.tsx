@@ -1,8 +1,8 @@
 import React from 'react';
-import { Label, HTMLSelect } from '@blueprintjs/core';
+import { Label, HTMLSelect, IOptionProps } from '@blueprintjs/core';
 
 export interface ISelectListCourseAttrProps {
-  courseAttr: string[];
+  courseAttr: IOptionProps[];
   onChangeOfCourseAttr: (event: any) => void;
 }
 
@@ -21,7 +21,7 @@ export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrP
     );
   }
 
-  private getCourseAttr(): string[] {
+  private getCourseAttr(): IOptionProps[] {
     return this.props.courseAttr;
   }
 
