@@ -20,12 +20,13 @@ export class UserInput {
   private endTime: Date = new Date();
   private instructionMode: string = 'all';
   private instructor: string = '';
-  private geClasses: boolean = false;
   private courseAttr: string | undefined = '';
+  private sessionCode: string | undefined = '';
+  private classNo: string | undefined = '';
 
   constructor(campus: string, day: IMeetingDate, subject: ISubject, courseNo: string, quarter: string,
-              startTime: Date, endTime: Date, instructionMode: string, instructor: string, geClasses: boolean,
-              courseAttr?: string) {
+              startTime: Date, endTime: Date, instructionMode: string, instructor: string,
+              courseAttr?: string, classNo?: string, sessionCode?: string) {
     this.campus = campus;
     this.day = day;
     this.subject = subject.abbr;
@@ -35,8 +36,9 @@ export class UserInput {
     this.endTime = endTime;
     this.instructionMode = instructionMode;
     this.instructor = instructor;
-    this.geClasses = geClasses;
     this.courseAttr = courseAttr;
+    this.sessionCode = sessionCode;
+    this.classNo = classNo;
   }
 
   public isBothCampusChecked(): boolean {
@@ -146,12 +148,16 @@ export class UserInput {
     return this.courseNo;
   }
 
-  public isGeClassesSet(): boolean {
-    return this.geClasses;
+  public getCourseAttr(): string | undefined {
+    return (this.courseAttr === 'all' || this.courseAttr === undefined) ? '' : this.courseAttr.toLowerCase();
   }
 
-  public getCourseAttr(): string | undefined {
-    return (this.courseAttr === 'All' || this.courseAttr === undefined) ? '' : this.courseAttr;
+  public getSessionCode(): string | undefined {
+    return (this.sessionCode === 'all' || this.sessionCode === undefined) ? '' : this.sessionCode;
+  }
+
+  public getClassNo(): string | undefined {
+    return this.classNo;
   }
 
 }
