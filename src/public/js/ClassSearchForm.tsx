@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormGroup, Button, Label, MenuItem, Switch } from '@blueprintjs/core';
+import { FormGroup, Button, Label, MenuItem, IOptionProps } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
 import { autocompleteSubjectsProps } from './AutocompleteSubjects';
 import { SelectListQuarter } from './SelectListQuarter';
@@ -12,11 +12,10 @@ import { ISubject } from './Subject';
 import { SelectListInstructionMode } from './SelectListInstructionMode';
 import { AdvancedFilterFieldset } from './AdvancedFilterFieldset';
 
-interface ClassSearchFormProps {
+interface IClassSearchFormProps {
   quarter: string;
   campus: string;
   subjects: ISubject[];
-  showGeClasses: boolean;
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructors: string[];
@@ -24,25 +23,28 @@ interface ClassSearchFormProps {
   startTime: Date;
   endTime: Date;
   courseNo: string;
-  courseAttr: string[];
+  courseAttr: IOptionProps[];
+  sessionCodes: IOptionProps[];
+  classNo: string;
   onChangeOfQuarter: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
   onChangeOfEndTime: (event: any) => void;
-  toggleGeClasses: (event: any) => void;
   onChangeOfMeetingDate: (event: any) => void;
   onChangeOfSubject: (event: any) => void;
   onChangeOfCourseNo: (event: any) => void;
   onChangeOfInstructionMode: (event: any) => void;
   onChangeOfInstructor: (event: any) => void;
   onChangeOfCourseAttr: (event: any) => void;
+  onChangeOfSessionCode: (event: any) => void;
+  onChangeOfClassNo: (event: any) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;
 }
 
-export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
+export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> {
 
-  constructor(props: ClassSearchFormProps) {
+  constructor(props: IClassSearchFormProps) {
     super(props);
   }
   public render(): JSX.Element {
@@ -77,12 +79,6 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
           onChangeOfEndTime={this.props.onChangeOfEndTime}
           startTime={this.props.startTime}
           endTime={this.props.endTime}
-        />
-        <Switch
-          checked={this.props.showGeClasses}
-          className="ge-classes"
-          labelElement="Show only GE classes"
-          onChange={this.props.toggleGeClasses}
         />
         <ControlGroupMeetingDate
           meetingDate={this.props.meetingDate}
@@ -169,7 +165,11 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
     return(
     <AdvancedFilterFieldset
       courseAttr={this.props.courseAttr}
+      sessionCodes={this.props.sessionCodes}
+      classNo={this.props.classNo}
       onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
+      onChangeOfSessionCode={this.props.onChangeOfSessionCode}
+      onChangeOfClassNo={this.props.onChangeOfClassNo}
     />
     );
   }
