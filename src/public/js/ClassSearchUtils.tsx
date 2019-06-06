@@ -121,6 +121,40 @@ export function getClassStatus(classes: IClass): string {
   return 'Close';
 }
 
+export function getInstructionMode(classes: IClass): string {
+  if (classes.instructionMode === 'P') {
+    return 'Classroom';
+  }
+  if (classes.instructionMode === 'OL') {
+    return 'Online';
+  }
+  if (classes.instructionMode === 'CM') {
+    return 'Online CourseMatch Instruction';
+  }
+  if (classes.instructionMode === 'FO') {
+    return 'Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)';
+  }
+  if (classes.instructionMode === 'HO') {
+    return 'Hybrid Online Asynchronous and Synchronous Instruction';
+  }
+  if (classes.instructionMode === 'HC') {
+    return 'Hybrid Classroom and Online Instruction';
+  }
+  if (classes.instructionMode === 'OC') {
+    return 'Off-Campus';
+  }
+  if (classes.instructionMode === 'TO') {
+    return 'Televised Instruction (origination site)';
+  }
+  if (classes.instructionMode === 'TR') {
+    return 'Televised Instruction (receiving site)';
+  }
+  if (classes.instructionMode === 'Z') {
+    return 'Zero Unit Instruction';
+  }
+  return 'N/A';
+}
+
 function isTimeEmpty(classTime: string): boolean {
   return (classTime.length === 0);
 }
