@@ -133,7 +133,7 @@ export class Class {
         name: userInput.getInstructor(),
         campus: userInput.getCampus(),
         catalog_nbr: userInput.getCourseNo(),
-        crse_id: userInput.getClassNo(),
+        class_nbr: userInput.getClassNo(),
         crse_attr: userInput.getCourseAttr(),
         meeting_time_start: '',
         mon: userInput.isMondayChecked() ? 'Y' : '',
