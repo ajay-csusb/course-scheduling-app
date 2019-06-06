@@ -20,6 +20,7 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
     const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(classDetails);
     const classType = ClassSearchUtils.getClassType(classDetails);
     const classStatus = ClassSearchUtils.getClassStatus(classDetails);
+    const instructionMode = ClassSearchUtils.getInstructionMode(classDetails);
     return (
       <Card key={classDetails.classNumber} interactive={true} elevation={Elevation.TWO}>
         <span>{`${classDetails.subject} ${classDetails.catalogNo} ${classDetails.classSection}`}</span><br />
@@ -31,9 +32,9 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
           <h5><b className={Classes.TOOLTIP_INDICATOR}>{classDetails.description}</b></h5>
         </Popover>
         <br />
-        <span>(Class No. {classDetails.courseId})</span>
+        <span>(Class No. {classDetails.classNumber})</span>
         <span>Instructor: <a href={instructorProfileURL}>{classDetails.instructorName}</a></span>
-        <span>Room: {classDetails.facilityId}</span>
+        <span>Room: {classDetails.buildingCode} {classDetails.room}</span>
         <span>Meeting Time: {time}</span>
         <span>Meeting Days: {days}</span>
         <span dangerouslySetInnerHTML={{ __html: classDetails.textbook }} /> <br />
@@ -42,8 +43,10 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
         <span>No. of units: {classDetails.csuUnits}</span> <br />
         <span>No. of seats available: {noOfSeatsAvailable}</span> <br />
         <span>In waitlist  : {classDetails.waitlistTotal}</span> <br />
+        <span>Session type: {classDetails.sessionCode}</span> <br />
         <span>{classType}</span> <br />
         <span>{classStatus}</span> <br />
+        <span>{instructionMode}</span> <br />
       </Card >
       );
     }
