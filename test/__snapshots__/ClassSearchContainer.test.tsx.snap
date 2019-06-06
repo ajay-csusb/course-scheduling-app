@@ -4,8 +4,10 @@ exports[`test class search form component Class search container component snaps
 <div>
   <ClassSearchForm
     campus="both"
+    classNo=""
+    courseAttr={Array []}
     courseNo=""
-    endTime={1899-01-02T04:00:00.000Z}
+    endTime={1899-01-02T07:00:00.000Z}
     instructionMode="all"
     instructors={Array []}
     isReset={false}
@@ -22,21 +24,38 @@ exports[`test class search form component Class search container component snaps
       }
     }
     onChangeOfCampus={[Function]}
+    onChangeOfClassNo={[Function]}
+    onChangeOfCourseAttr={[Function]}
     onChangeOfCourseNo={[Function]}
     onChangeOfEndTime={[Function]}
     onChangeOfInstructionMode={[Function]}
     onChangeOfInstructor={[Function]}
     onChangeOfMeetingDate={[Function]}
     onChangeOfQuarter={[Function]}
+    onChangeOfSessionCode={[Function]}
     onChangeOfStartTime={[Function]}
     onChangeOfSubject={[Function]}
     onReset={[Function]}
     onSubmit={[Function]}
     quarter="current"
-    showGeClasses={false}
-    startTime={1899-01-01T16:00:00.000Z}
+    sessionCodes={
+      Array [
+        Object {
+          "label": "All",
+          "value": "all",
+        },
+        Object {
+          "label": "6 weeks",
+          "value": "6W",
+        },
+        Object {
+          "label": "10 weeks",
+          "value": "10W",
+        },
+      ]
+    }
+    startTime={1899-01-01T08:00:00.000Z}
     subjects={Array []}
-    toggleGeClasses={[Function]}
   />
 </div>
 `;
@@ -44,8 +63,10 @@ exports[`test class search form component Class search container component snaps
 exports[`test class search form component compare search form snapshot 1`] = `
 <ClassSearchForm
   campus="both"
+  classNo=""
+  courseAttr={Array []}
   courseNo=""
-  endTime={1899-01-02T04:00:00.000Z}
+  endTime={1899-01-02T07:00:00.000Z}
   instructionMode="all"
   instructors={Array []}
   isReset={false}
@@ -62,21 +83,38 @@ exports[`test class search form component compare search form snapshot 1`] = `
     }
   }
   onChangeOfCampus={[Function]}
+  onChangeOfClassNo={[Function]}
+  onChangeOfCourseAttr={[Function]}
   onChangeOfCourseNo={[Function]}
   onChangeOfEndTime={[Function]}
   onChangeOfInstructionMode={[Function]}
   onChangeOfInstructor={[Function]}
   onChangeOfMeetingDate={[Function]}
   onChangeOfQuarter={[Function]}
+  onChangeOfSessionCode={[Function]}
   onChangeOfStartTime={[Function]}
   onChangeOfSubject={[Function]}
   onReset={[Function]}
   onSubmit={[Function]}
   quarter="current"
-  showGeClasses={false}
-  startTime={1899-01-01T16:00:00.000Z}
+  sessionCodes={
+    Array [
+      Object {
+        "label": "All",
+        "value": "all",
+      },
+      Object {
+        "label": "6 weeks",
+        "value": "6W",
+      },
+      Object {
+        "label": "10 weeks",
+        "value": "10W",
+      },
+    ]
+  }
+  startTime={1899-01-01T08:00:00.000Z}
   subjects={Array []}
-  toggleGeClasses={[Function]}
 >
   <div>
     <Blueprint3.FormGroup
@@ -105,7 +143,7 @@ exports[`test class search form component compare search form snapshot 1`] = `
               <label
                 className="bp3-label"
               >
-                Quarter
+                Term
                 <div
                   className="bp3-select select-quarter"
                 >
@@ -486,10 +524,10 @@ exports[`test class search form component compare search form snapshot 1`] = `
             </Component>
           </SelectListCampus>
           <ControlGroupMeetingTime
-            endTime={1899-01-02T04:00:00.000Z}
+            endTime={1899-01-02T07:00:00.000Z}
             onChangeOfEndTime={[Function]}
             onChangeOfStartTime={[Function]}
-            startTime={1899-01-01T16:00:00.000Z}
+            startTime={1899-01-01T08:00:00.000Z}
           >
             <Blueprint3.ControlGroup>
               <div
@@ -515,7 +553,7 @@ exports[`test class search form component compare search form snapshot 1`] = `
                           selectAllOnFocus={true}
                           showArrowButtons={true}
                           useAmPm={true}
-                          value={1899-01-01T16:00:00.000Z}
+                          value={1899-01-01T08:00:00.000Z}
                         >
                           <div
                             className="bp3-timepicker start-time"
@@ -592,7 +630,7 @@ exports[`test class search form component compare search form snapshot 1`] = `
                                 onChange={[Function]}
                                 onFocus={[Function]}
                                 onKeyDown={[Function]}
-                                value="8"
+                                value="12"
                               />
                               <span
                                 className="bp3-timepicker-divider-text"
@@ -742,7 +780,7 @@ exports[`test class search form component compare search form snapshot 1`] = `
                           selectAllOnFocus={true}
                           showArrowButtons={true}
                           useAmPm={true}
-                          value={1899-01-02T04:00:00.000Z}
+                          value={1899-01-02T07:00:00.000Z}
                         >
                           <div
                             className="bp3-timepicker end-time"
@@ -819,7 +857,7 @@ exports[`test class search form component compare search form snapshot 1`] = `
                                 onChange={[Function]}
                                 onFocus={[Function]}
                                 onKeyDown={[Function]}
-                                value="8"
+                                value="11"
                               />
                               <span
                                 className="bp3-timepicker-divider-text"
@@ -959,35 +997,6 @@ exports[`test class search form component compare search form snapshot 1`] = `
               </div>
             </Blueprint3.ControlGroup>
           </ControlGroupMeetingTime>
-          <Blueprint3.Switch
-            checked={false}
-            className="ge-classes"
-            labelElement="Show only GE classes"
-            onChange={[Function]}
-          >
-            <Control
-              checked={false}
-              className="ge-classes"
-              labelElement="Show only GE classes"
-              onChange={[Function]}
-              type="checkbox"
-              typeClassName="bp3-switch"
-            >
-              <label
-                className="bp3-control bp3-switch ge-classes"
-              >
-                <input
-                  checked={false}
-                  onChange={[Function]}
-                  type="checkbox"
-                />
-                <span
-                  className="bp3-control-indicator"
-                />
-                Show only GE classes
-              </label>
-            </Control>
-          </Blueprint3.Switch>
           <ControlGroupMeetingDate
             meetingDate={
               Object {
@@ -1370,12 +1379,34 @@ exports[`test class search form component compare search form snapshot 1`] = `
               </label>
             </Component>
           </SelectListInstructionMode>
-          <AdvancedFilterFieldset>
+          <AdvancedFilterFieldset
+            classNo=""
+            courseAttr={Array []}
+            onChangeOfClassNo={[Function]}
+            onChangeOfCourseAttr={[Function]}
+            onChangeOfSessionCode={[Function]}
+            sessionCodes={
+              Array [
+                Object {
+                  "label": "All",
+                  "value": "all",
+                },
+                Object {
+                  "label": "6 weeks",
+                  "value": "6W",
+                },
+                Object {
+                  "label": "10 weeks",
+                  "value": "10W",
+                },
+              ]
+            }
+          >
             <div>
               <a
+                id="additional-filters"
                 onClick={[Function]}
               >
-                Show
                  Additional Filters
               </a>
               <Blueprint3.Collapse

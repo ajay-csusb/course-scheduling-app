@@ -9,7 +9,7 @@ exports[`test radio group quarter component RadioGroupQuarter component snapshot
     <label
       className="bp3-label"
     >
-      Quarter
+      Term
       <div
         className="bp3-select select-quarter"
       >
