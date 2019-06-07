@@ -2,10 +2,11 @@ import * as React from 'react';
 import { ClassSearchForm } from './ClassSearchForm';
 import { ClassSearchResults } from './ClassSearchResults';
 import { IClass, Class, IMeetingDate } from './Class';
-import { Instructor } from './Instructor';
-import { Subject, ISubject } from './Subject';
+import { ISubject } from './Subject';
 import { UserInput } from './UserInput';
-import { Toaster, Position, Intent } from '@blueprintjs/core';
+import { Toaster, Position, Intent, IOptionProps } from '@blueprintjs/core';
+import * as ClassSearchUtils from './ClassSearchUtils';
+import { MeetingTime } from './MeetingTime';
 interface IClassSearchContainerState {
   quarter: string;
   campus: string;
@@ -13,7 +14,6 @@ interface IClassSearchContainerState {
   courseNo: string;
   startTime: Date;
   endTime: Date;
-  showGeClasses: boolean;
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructorName: string;
@@ -22,6 +22,9 @@ interface IClassSearchContainerState {
   isLoading: boolean;
   beforeSubmit: boolean;
   noClasses: boolean;
+  courseAttr: string;
+  sessionCode: string;
+  classNo: string;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
 
@@ -30,24 +33,34 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private instructors: string[];
 
   private subjects: ISubject[];
+
+  private courseAttr: IOptionProps[];
+
+  private sessionCodes: IOptionProps[];
+
+  private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList ';
+
   constructor(props: any) {
     super(props);
-    this.state = this.defaultFromValues();
+    this.state = this.defaultFormValues();
     this.updateQuarter = this.updateQuarter.bind(this);
     this.updateCampus = this.updateCampus.bind(this);
     this.updateStartTime = this.updateStartTime.bind(this);
     this.updateEndTime = this.updateEndTime.bind(this);
-    this.updateToggleGeClasses = this.updateToggleGeClasses.bind(this);
     this.updateMeetingDate = this.updateMeetingDate.bind(this);
     this.updateSubject = this.updateSubject.bind(this);
     this.updateCourseNo = this.updateCourseNo.bind(this);
     this.updateInstructionMode = this.updateInstructionMode.bind(this);
     this.updateInstructorName = this.updateInstructorName.bind(this);
     this.updateLoadingMessage = this.updateLoadingMessage.bind(this);
+    this.updateCourseAttr = this.updateCourseAttr.bind(this);
+    this.updateSessionCode = this.updateSessionCode.bind(this);
+    this.updateClassNo = this.updateClassNo.bind(this);
     this.instructorsFound = this.instructorsFound.bind(this);
-    this.instructorsNotFound = this.instructorsNotFound.bind(this);
     this.subjectsFound = this.subjectsFound.bind(this);
-    this.subjectsNotFound = this.subjectsNotFound.bind(this);
+    this.courseAttrFound = this.courseAttrFound.bind(this);
+    this.processDropDownListData = this.processDropDownListData.bind(this);
+    this.errorProcessingData = this.errorProcessingData.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onReset = this.onReset.bind(this);
     this.classesFound = this.classesFound.bind(this);
@@ -55,6 +68,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
+    this.courseAttr = [];
+    this.sessionCodes = [
+      { label: 'All', value: 'all' },
+      { label: '6 weeks', value: '6W' },
+      { label: '10 weeks', value: '10W' },
+    ];
   }
 
   public render(): JSX.Element {
@@ -63,24 +82,16 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return (
       <div>
         {classSearchFormComponent}
-        {(this.hasNoClasses() && this.didSubmit() && !this.isLoadingClasses()) && <p>No classes found.</p>}
         {this.isLoadingClasses() && <p>Loading...</p>}
-        {(this.didSubmit() && !this.hasNoClasses()) && classSearchResultsComponent}
+        {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) && classSearchResultsComponent}
       </div>
     );
   }
   componentDidMount() {
-    Subject.getAllSubjects(this.subjectsFound, this.subjectsNotFound);
-    Instructor.getAllInstructors(this.instructorsFound, this.instructorsNotFound);
+    ClassSearchUtils.fetchData(this.dropDownUrl, this.processDropDownListData, this.errorProcessingData);
   }
 
-  componentDidUpdate(_prevProps: any, prevState: any, _snapshot: any) {
-    if (this.didSubjectChange(prevState)) {
-      this.updateClasses();
-    }
-    if (this.state.noClasses) {
-      this.updateLoadingMessage();
-    }
+  componentDidUpdate() {
     if (this.resetComplete()) {
       this.setState({
         isReset: false,
@@ -145,13 +156,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       instructorName: instructor,
       beforeSubmit: true,
     });
-  }
-
-  private updateToggleGeClasses(_e: any): void {
-    this.setState(prevState => ({
-      showGeClasses: !prevState.showGeClasses,
-      beforeSubmit: true,
-    }));
   }
 
   private toggleAllMeetingDate(checkBoxValue: string): boolean {
@@ -231,6 +235,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private classesFound(data: any): void {
     const transformedClass: IClass[] = [];
     const classes = data.contentList;
+    this.allResults = [];
     if (classes === null || classes.length === 0) {
       this.setState({
         noClasses: true,
@@ -243,34 +248,42 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         transformedClass.push(Class.transformToClass(_class));
       });
     }
-    this.allResults = transformedClass;
+    this.allResults = MeetingTime.filter(transformedClass, this.state.startTime, this.state.endTime);
     this.setState({
       noClasses: false,
+      isLoading: false,
     });
   }
 
-  private classesNotFound(error: string): void {
-    console.log(error);
+  private classesNotFound(_error: string): void {
+    this.setState({
+      noClasses: true,
+      isLoading: false,
+    });
   }
 
   private onSubmit(_e: any): any {
     if (this.isSubjectEmpty()) {
-      this.displayErrorMessageWhenSubjectIsEmpty();
+      return this.displayErrorMessageWhenSubjectIsEmpty();
     }
+    this.allResults = [];
     this.setState({
       beforeSubmit: false,
       isLoading: true,
-    });
+    }, () => {
+      this.updateAllClasses();
+      }
+    );
   }
 
   private onReset(_e: any): void {
-    this.setState(this.defaultFromValues());
+    this.setState(this.defaultFormValues());
     this.setState({
       isReset: true,
     });
   }
 
-  private defaultFromValues(): IClassSearchContainerState {
+  private defaultFormValues(): IClassSearchContainerState {
     return {
       quarter: 'current',
       campus: 'both',
@@ -279,9 +292,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         abbr: '',
       },
       courseNo: '',
-      startTime: new Date('1899-01-01T08:00:00'),
-      endTime: new Date('1899-01-01T20:00:00'),
-      showGeClasses: false,
+      startTime: new Date('1899-01-01T00:00:00'),
+      endTime: new Date('1899-01-01T23:00:00'),
       meetingDate: {
         all: true,
         mon: false,
@@ -299,6 +311,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       isLoading: false,
       beforeSubmit: true,
       noClasses: false,
+      courseAttr: 'all',
+      sessionCode: 'all',
+      classNo: '',
     };
   }
 
@@ -312,10 +327,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       this.instructors = instructorsArr;
       this.setState({ isLoading: false });
     }
-  }
-
-  private instructorsNotFound(error: string): void {
-    console.log(error);
   }
 
   private subjectsFound(data: any): void {
@@ -341,10 +352,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({ isLoading: false });
   }
 
-  private subjectsNotFound(error: string): void {
-    console.log(error);
-  }
-
   private updateStartTime(e: Date): void {
     this.setState({
       startTime: e,
@@ -357,23 +364,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       endTime: e,
       beforeSubmit: true,
     });
-  }
-  private didSubjectChange(prevState: any) {
-    const prevSubject = prevState.subject.abbr;
-    const currentSubject = this.state.subject.abbr;
-    return (prevSubject !== currentSubject);
-  }
-
-  private updateClasses(): void {
-    this.allResults = [];
-    if (this.isSubjectEmpty()) {
-      return;
-    }
-    const userInput = new UserInput(
-      this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.quarter,
-      this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
-      this.state.geClasses);
-    Class.getAllClasses(this.classesFound, this.classesNotFound, userInput);
   }
 
   private resetComplete() {
@@ -414,7 +404,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         instructorName={this.state.instructorName}
         startTime={this.state.startTime}
         endTime={this.state.endTime}
-        geClasses={this.state.showGeClasses}
         isLoading={this.state.isLoading}
         onChangeOfLoadingMessage={this.updateLoadingMessage}
       />
@@ -427,7 +416,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         quarter={this.state.quarter}
         campus={this.state.campus}
         subjects={this.subjects}
-        showGeClasses={this.state.showGeClasses}
         meetingDate={this.state.meetingDate}
         instructionMode={this.state.instructionMode}
         instructors={this.instructors}
@@ -436,17 +424,22 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfCampus={this.updateCampus}
         onChangeOfStartTime={this.updateStartTime}
         onChangeOfEndTime={this.updateEndTime}
-        toggleGeClasses={this.updateToggleGeClasses}
         onChangeOfMeetingDate={this.updateMeetingDate}
         onChangeOfSubject={this.updateSubject}
         onChangeOfCourseNo={this.updateCourseNo}
         onChangeOfInstructionMode={this.updateInstructionMode}
         onChangeOfInstructor={this.updateInstructorName}
+        onChangeOfCourseAttr={this.updateCourseAttr}
+        onChangeOfSessionCode={this.updateSessionCode}
+        onChangeOfClassNo={this.updateClassNo}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         startTime={this.state.startTime}
         endTime={this.state.endTime}
         courseNo={this.state.courseNo}
+        courseAttr={this.courseAttr}
+        sessionCodes={this.sessionCodes}
+        classNo={this.state.classNo}
       />
     );
   }
@@ -465,6 +458,61 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         isLoading: false,
       });
     }
+  }
+
+  private updateCourseAttr(e: any) {
+    this.setState({
+      courseAttr: e.target.value,
+      beforeSubmit: true,
+    });
+  }
+
+  private updateSessionCode(e: any) {
+    this.setState({
+      sessionCode: e.target.value,
+      beforeSubmit: true,
+    });
+  }
+
+  private updateClassNo(e: any) {
+    this.setState({
+      classNo: e.target.value,
+      beforeSubmit: true,
+    });
+  }
+
+  private processDropDownListData(data: any): void {
+    this.instructorsFound(data);
+    this.subjectsFound(data);
+    this.courseAttrFound(data);
+  }
+
+  private errorProcessingData(_error: any): void {
+    console.log('error processing drop down data: ' + _error);
+  }
+
+  private courseAttrFound(data: any): void {
+    let courseAttr: IOptionProps = { label: 'All', value: '' };
+    const courseAttrArr: IOptionProps[] = [];
+    courseAttrArr.push(courseAttr);
+    if (data !== undefined && data.classAttributeList !== undefined) {
+      data.classAttributeList.forEach((_sessionCode: any) => {
+        courseAttr = { label: _sessionCode.descr, value: _sessionCode.crse_ATTR };
+        if (!courseAttrArr.includes(courseAttr)) {
+          courseAttrArr.push(courseAttr);
+        }
+      });
+      this.courseAttr = courseAttrArr;
+    }
+    this.setState({ isLoading: false });
+  }
+
+  private updateAllClasses() {
+    const userInput = new UserInput(
+      this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.quarter,
+      this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
+      this.state.courseAttr, this.state.classNo, this.state.sessionCode);
+    Class.getAllClasses(this.classesFound, this.classesNotFound, userInput);
   }
 
 }
