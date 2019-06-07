@@ -155,6 +155,13 @@ export function getInstructionMode(classes: IClass): string {
   return 'N/A';
 }
 
+export function getInstructorName(classes: IClass): string {
+  if (classes.instructorName === ' ') {
+    return 'N/A';
+  }
+  return classes.instructorName;
+}
+
 function isTimeEmpty(classTime: string): boolean {
   return (classTime.length === 0);
 }
