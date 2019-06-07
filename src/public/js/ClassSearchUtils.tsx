@@ -91,7 +91,7 @@ export function getCampusName(campusMachineName: string): string {
 
 export function getNoOfAvailableSeats(classes: IClass): number {
   const availableSeats = classes.enrolledCapacity - classes.enrolledTotal;
-  if (availableSeats > -1) {
+  if (availableSeats > 0) {
     return availableSeats;
   }
   return 0;
@@ -115,7 +115,7 @@ export function getClassType(classes: IClass): string | null {
 
 export function getClassStatus(classes: IClass): string {
   const availableSeats = classes.enrolledCapacity - classes.enrolledTotal;
-  if (availableSeats > -1) {
+  if (availableSeats > 0) {
     return 'Open';
   }
   return 'Close';
