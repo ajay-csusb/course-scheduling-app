@@ -75,6 +75,10 @@ describe('Filter classes by All instructors', function () {
       cy.get('a').should('contain', 'Munsif, Vishal');
       cy.get('a').should('contain', 'Bazaz, Mohammad');
     });
+
+    it('should show N/A if instructor name is absent', () => {
+      cy.get('span').should('contain', 'Instructor: N/A');
+    });
   });
 });
 
@@ -100,5 +104,6 @@ describe('Filter classes by All and specific instructor', function () {
       cy.get('a').should('not.contain', 'Munsif, Vishal');
       cy.get('a').should('not.contain', 'Bazaz, Mohammad');
     });
+
   });
 });
