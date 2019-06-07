@@ -21,6 +21,11 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
     const classType = ClassSearchUtils.getClassType(classDetails);
     const classStatus = ClassSearchUtils.getClassStatus(classDetails);
     const instructionMode = ClassSearchUtils.getInstructionMode(classDetails);
+    const instructorName = ClassSearchUtils.getInstructorName(classDetails);
+    let instructor = <span>Instructor: N/A</span>;
+    if (instructorName !== 'N/A') {
+      instructor = <span>Instructor: <a href={instructorProfileURL}> {instructorName}</a></span>;
+    }
     return (
       <Card key={classDetails.classNumber} interactive={true} elevation={Elevation.TWO}>
         <span>{`${classDetails.subject} ${classDetails.catalogNo} ${classDetails.classSection}`}</span><br />
@@ -33,7 +38,7 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
         </Popover>
         <br />
         <span>(Class No. {classDetails.classNumber})</span>
-        <span>Instructor: <a href={instructorProfileURL}>{classDetails.instructorName}</a></span>
+        {instructor}
         <span>Room: {classDetails.buildingCode} {classDetails.room}</span>
         <span>Meeting Time: {time}</span>
         <span>Meeting Days: {days}</span>
