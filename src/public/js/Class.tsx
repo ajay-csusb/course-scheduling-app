@@ -143,7 +143,7 @@ export class Class {
         fri: userInput.isFridayChecked() ? 'Y' : '',
         sat: userInput.isSaturdayChecked() ? 'Y' : '',
         sun: userInput.isSundayChecked() ? 'Y' : '',
-        instruction_mode: userInput.getInstructionMode(),
+        instruction_mode: userInput.getInstructionMode().toUpperCase(),
         section_code: userInput.getSessionCode(),
       },
     };
