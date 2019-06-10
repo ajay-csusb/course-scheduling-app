@@ -24,7 +24,6 @@ interface IClassSearchFormProps {
   endTime: Date;
   courseNo: string;
   courseAttr: IOptionProps[];
-  sessionCodes: IOptionProps[];
   classNo: string;
   onChangeOfQuarter: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
@@ -165,7 +164,6 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
     return(
     <AdvancedFilterFieldset
       courseAttr={this.props.courseAttr}
-      sessionCodes={this.props.sessionCodes}
       classNo={this.props.classNo}
       onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
       onChangeOfSessionCode={this.props.onChangeOfSessionCode}

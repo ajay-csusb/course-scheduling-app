@@ -5,7 +5,6 @@ import { SelectListSelectionCode } from './SelectListSessionCode';
 
 interface IAdvancedFilterFieldsetProps {
   courseAttr: IOptionProps[];
-  sessionCodes: IOptionProps[];
   classNo: string;
   onChangeOfCourseAttr: (event: any) => void;
   onChangeOfSessionCode: (event: any) => void;
@@ -77,7 +76,6 @@ export class AdvancedFilterFieldset extends React.Component<
   private getSelectListSessionCodeComponent(): JSX.Element {
     return (
       <SelectListSelectionCode
-        sessionCodes={this.props.sessionCodes}
         onChangeOfSessionCode={this.props.onChangeOfSessionCode}
       />
     );

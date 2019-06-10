@@ -36,8 +36,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private courseAttr: IOptionProps[];
 
-  private sessionCodes: IOptionProps[];
-
   private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList ';
 
   constructor(props: any) {
@@ -76,11 +74,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       { label: 'Study Abroad', value: 'SA' },
       { label: 'Zero Cost Course Materials', value: 'ZCCM' },
       { label: 'eBook', value: 'EBK' },
-    ];
-    this.sessionCodes = [
-      { label: 'All', value: 'all' },
-      { label: '6 weeks', value: '6W' },
-      { label: '10 weeks', value: '10W' },
     ];
   }
 
@@ -446,7 +439,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         endTime={this.state.endTime}
         courseNo={this.state.courseNo}
         courseAttr={this.courseAttr}
-        sessionCodes={this.sessionCodes}
         classNo={this.state.classNo}
       />
     );
