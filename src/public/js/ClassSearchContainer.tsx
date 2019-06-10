@@ -4,7 +4,7 @@ import { ClassSearchResults } from './ClassSearchResults';
 import { IClass, Class, IMeetingDate } from './Class';
 import { ISubject } from './Subject';
 import { UserInput } from './UserInput';
-import { Toaster, Position, Intent, IOptionProps } from '@blueprintjs/core';
+import { Toaster, Position, Intent } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { MeetingTime } from './MeetingTime';
 interface IClassSearchContainerState {
@@ -33,8 +33,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private instructors: string[];
 
   private subjects: ISubject[];
-
-  private courseAttr: IOptionProps[];
 
   private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList ';
 
@@ -65,16 +63,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
-    this.courseAttr = [
-      { label: 'All', value: '' },
-      { label: 'Early Start Program', value: 'ESP' },
-      { label: 'Fully On line', value: 'FONL' },
-      { label: 'General Education', value: 'GE' },
-      { label: 'Service Learning', value: 'CSLI' },
-      { label: 'Study Abroad', value: 'SA' },
-      { label: 'Zero Cost Course Materials', value: 'ZCCM' },
-      { label: 'eBook', value: 'EBK' },
-    ];
   }
 
   public render(): JSX.Element {
@@ -438,7 +426,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         startTime={this.state.startTime}
         endTime={this.state.endTime}
         courseNo={this.state.courseNo}
-        courseAttr={this.courseAttr}
         classNo={this.state.classNo}
       />
     );

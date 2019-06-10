@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormGroup, Button, Label, MenuItem, IOptionProps } from '@blueprintjs/core';
+import { FormGroup, Button, Label, MenuItem } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
 import { autocompleteSubjectsProps } from './AutocompleteSubjects';
 import { SelectListQuarter } from './SelectListQuarter';
@@ -23,7 +23,6 @@ interface IClassSearchFormProps {
   startTime: Date;
   endTime: Date;
   courseNo: string;
-  courseAttr: IOptionProps[];
   classNo: string;
   onChangeOfQuarter: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
@@ -163,7 +162,6 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
   private getAdvancedFilterFieldset(): JSX.Element {
     return(
     <AdvancedFilterFieldset
-      courseAttr={this.props.courseAttr}
       classNo={this.props.classNo}
       onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
       onChangeOfSessionCode={this.props.onChangeOfSessionCode}

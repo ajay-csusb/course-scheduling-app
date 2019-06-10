@@ -2,11 +2,21 @@ import React from 'react';
 import { Label, HTMLSelect, IOptionProps } from '@blueprintjs/core';
 
 export interface ISelectListCourseAttrProps {
-  courseAttr: IOptionProps[];
   onChangeOfCourseAttr: (event: any) => void;
 }
 
 export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrProps, {}> {
+
+  private readonly courseAttr: IOptionProps[] = [
+      { label: 'All', value: '' },
+      { label: 'Early Start Program', value: 'ESP' },
+      { label: 'Fully On line', value: 'FONL' },
+      { label: 'General Education', value: 'GE' },
+      { label: 'Service Learning', value: 'CSLI' },
+      { label: 'Study Abroad', value: 'SA' },
+      { label: 'Zero Cost Course Materials', value: 'ZCCM' },
+      { label: 'eBook', value: 'EBK' },
+    ];
 
   public render(): React.ReactNode {
     return(
@@ -15,14 +25,10 @@ export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrP
         <HTMLSelect
           className="course-attribute"
           onChange={this.props.onChangeOfCourseAttr}
-          options={this.getCourseAttr()}
+          options={this.courseAttr}
         />
       </Label>
     );
-  }
-
-  private getCourseAttr(): IOptionProps[] {
-    return this.props.courseAttr;
   }
 
 }
