@@ -73,22 +73,6 @@ exports[`test class search form component Class search container component snaps
     onReset={[Function]}
     onSubmit={[Function]}
     quarter="current"
-    sessionCodes={
-      Array [
-        Object {
-          "label": "All",
-          "value": "all",
-        },
-        Object {
-          "label": "6 weeks",
-          "value": "6W",
-        },
-        Object {
-          "label": "10 weeks",
-          "value": "10W",
-        },
-      ]
-    }
     startTime={1899-01-01T08:00:00.000Z}
     subjects={Array []}
   />
@@ -167,22 +151,6 @@ exports[`test class search form component compare search form snapshot 1`] = `
   onReset={[Function]}
   onSubmit={[Function]}
   quarter="current"
-  sessionCodes={
-    Array [
-      Object {
-        "label": "All",
-        "value": "all",
-      },
-      Object {
-        "label": "6 weeks",
-        "value": "6W",
-      },
-      Object {
-        "label": "10 weeks",
-        "value": "10W",
-      },
-    ]
-  }
   startTime={1899-01-01T08:00:00.000Z}
   subjects={Array []}
 >
@@ -1490,22 +1458,6 @@ exports[`test class search form component compare search form snapshot 1`] = `
             onChangeOfClassNo={[Function]}
             onChangeOfCourseAttr={[Function]}
             onChangeOfSessionCode={[Function]}
-            sessionCodes={
-              Array [
-                Object {
-                  "label": "All",
-                  "value": "all",
-                },
-                Object {
-                  "label": "6 weeks",
-                  "value": "6W",
-                },
-                Object {
-                  "label": "10 weeks",
-                  "value": "10W",
-                },
-              ]
-            }
           >
             <div>
               <a

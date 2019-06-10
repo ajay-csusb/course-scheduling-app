@@ -2,7 +2,7 @@ import { ContextMenu } from "@blueprintjs/core";
 
 const devUrl = 'https://dev-main.csusb.edu/course-schedule';
 const localUrl = 'http://localhost:3000/';
-describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', function () {
+describe('when a user filter by subject(ACCT) followed by instructor(Liu Xiang)', function () {
 
   before(() => {
     cy.visit(localUrl);
@@ -24,12 +24,18 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
   });
 
   it('should show campus as San Bernardino', function () {
-    cy.get(':nth-child(1) > .bp3-card > :nth-child(10)').should('contain', 'Campus: San Bernardino');
+    cy.get('span').should('contain', 'Campus: San Bernardino');
   });
 
   it('should show Class No. instead of Course No.', function () {
     cy.get('span').should('contain', 'Class No.');
     cy.get('span').should('not.contain', 'Course No.');
+    // @Todo add new assertions for each.
+    cy.get('span').should('contain', 'No. of units');
+    cy.get('span').should('contain', 'No. of seats available');
+    cy.get('span').should('contain', 'In waitlist');
+    cy.get('span').should('contain', 'Lecture');
+    cy.get('span').should('contain', 'Open');
   });
 
   it('should not show accounting classes by other professors', function () {
@@ -37,6 +43,11 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
     cy.get('a').should('not.contain', 'Bazaz, Mohammad');
   });
 
+  it('should show description when class name is clicked', () => {
+    cy.get(':nth-child(1) > .bp3-card > .bp3-popover-wrapper > .bp3-popover-target > h5 > .bp3-tooltip-indicator').click();
+    cy.get('.bp3-popover-content').should('contain', 'Prerequisite: ACCT 347 or equivalent.');
+  });
+  
   context('and the user clicks on Reset button', () => {
     before(() => {
       cy.get('[type="reset"]').click();
@@ -121,9 +132,6 @@ describe('when a user filter by subject(ACCT) and instructor(Liu Xiang)', functi
     });
 
   });
-
-
-
 });
 
 describe('when a user searches for Biology classes', function () {
@@ -136,19 +144,32 @@ describe('when a user searches for Biology classes', function () {
     cy.get('.start-time input.bp3-timepicker-hour:first-child').type('10');
     cy.get('.start-time select').select('am') 
     cy.get('button').contains('Submit').click();
-  });
-
-  it('should show loading message after submit is clicked', () => {
     cy.get('p').should('contain', 'Loading...');
   });
 
+  beforeEach(() => {
+    cy.wait(10000);
+  });
+
+  context.skip('and selects GE from Course Attribute', () => {
+    before(() => {
+      cy.get('#additional-filters').click();
+      cy.get(':nth-child(2) > .bp3-html-select > select').select('GE');
+      cy.get('button').contains('Submit').click();
+      cy.wait(2000);
+    });
+
+    it('should show all GE classes', () => {
+      cy.get('div').should('contain', 'TOPICS IN BIOLOGY');
+      cy.get('#class-search-results-component').should('not.contain', 'CELL PHYSIOLOGY');
+    });
+  });
   context('and selects "All" as instructor', () => {
     before(() => {
       cy.get('.search-instructor-autocomplete input').click();
       cy.wait(3000);
       cy.get('a.search-instructor-autocomplete-items div').contains('All').click();
       cy.get('button').contains('Submit').click();
-      cy.wait(20000);
     });
 
     it('should show classes related to Biology', () => {
@@ -158,86 +179,75 @@ describe('when a user searches for Biology classes', function () {
     });
   });
 
-  context('that starts at 10:00 AM', () => {
-    it('should not show classes before 10 AM', function () {
-      cy.get('#class-search-results-component').should('not.contain', '9:00 am');
+  context('and searches by start and end time', () => {
+    context('that starts at 10:00 AM', () => {
+      it('should not show classes before 10 AM', function () {
+        cy.get('#class-search-results-component').should('not.contain', '9:00 am');
+      });
+
+      it('should show classes after 10 AM', function () {
+        cy.get('#class-search-results-component').should('contain', '3:00 pm');
+      });
+
+      it('should show online classes', function () {
+        cy.get('#class-search-results-component').should('contain', 'Meeting Days: N/A');
+      });
     });
 
-    it('should show classes after 10 AM', function () {
-      cy.get('#class-search-results-component').should('contain', '3:00 pm');
+    context('that start at 12:30 PM', () => {
+      before(() => {
+        cy.get('.start-time input.bp3-timepicker-hour:first-child').type('12');
+        cy.get(':nth-child(1) > .bp3-timepicker > .bp3-timepicker-input-row > .bp3-timepicker-minute').type(30);
+        cy.get('.start-time select').select('pm')
+        cy.get('button').contains('Submit').click();
+        cy.wait(10000);
+      });
+
+      it('should show classes at 3 PM', function () {
+        cy.contains('#class-search-results-component', '3:00 PM').should('be.visible');
+      });
+
+      it('should not show classes at 12 PM', function () {
+        cy.get('#class-search-results-component').should('not.contain', '12:00 pm');
+      });
     });
 
-    it('should show online classes', function () {
-      cy.get('#class-search-results-component').should('contain', 'Meeting Days: N/A');
-    });
-  });
 
-  context('that start at 12:30 PM', () => {
-    before(() => {
-    cy.get('.start-time input.bp3-timepicker-hour:first-child').type('12');
-    cy.get(':nth-child(1) > .bp3-timepicker > .bp3-timepicker-input-row > .bp3-timepicker-minute').type(30);
-    cy.get('.start-time select').select('pm') 
-    cy.get('button').contains('Submit').click();
-    });
+    context('and ends at 4:50 PM', () => {
+      before(() => {
+        cy.get('.end-time input.bp3-timepicker-hour:first-child').type('4');
+        cy.get('.end-time input.bp3-timepicker-minute').type('50');
+        cy.get('.end-time select').select('pm');
+        cy.get('button').contains('Submit').click();
+        cy.wait(30000);
+      });
 
-    it('should show classes at 3 PM', function () {
-      cy.get('#class-search-results-component').should('contain', '3:00 pm');
-    });
+      it('should not show classes after 4:50 PM', function () {
+        cy.get('#class-search-results-component').should('not.contain', '5:50 pm');
+      });
 
-    it('should not show classes at 12 PM', function () {
-      cy.get('#class-search-results-component').should('not.contain', '12:00 pm');
-    });
-  });
+      it('should show classes at 4:50 PM or before', function () {
+        cy.get('#class-search-results-component').should('contain', '4:50 pm');
+      });
 
-
-  context('and ends at 4:50 PM', () => {
-    before(() => {
-      cy.get('.end-time input.bp3-timepicker-hour:first-child').type('4');
-      cy.get('.end-time input.bp3-timepicker-minute').type('50');
-      cy.get('.end-time select').select('pm');
-    cy.get('button').contains('Submit').click();
-    });
-
-    it('should not show classes after 4:50 PM', function () {
-      cy.get('#class-search-results-component').should('not.contain', '5:50 pm');
-    });
-
-    it('should show classes at 4:50 PM or before', function () {
-      cy.get('#class-search-results-component').should('contain', '4:50 pm');
-    });
-
-    it('should show online classes', function () {
-      cy.get('#class-search-results-component').should('contain', 'Meeting Days: N/A');
-    });
-  });
-
-  context('and toggles the GE box', () => {
-    it('should show only GE classes from Biology if GE is set', () => {
-      cy.get('.bp3-switch > .bp3-control-indicator').click();
-      cy.get('button').contains('Submit').click();
-      cy.get('div').should('contain', 'TOPICS IN BIOLOGY');
-      cy.get('#class-search-results-component').should('not.contain', 'CELL PHYSIOLOGY');
-    });
-
-    it('should show all classes from Biology when GE is unset', () => {
-      cy.get('.bp3-switch > .bp3-control-indicator').click();
-      cy.get('button').contains('Submit').click();
-      cy.get('div').should('contain', 'TOPICS IN BIOLOGY');
-      cy.get('#class-search-results-component').should('contain', 'HUMAN PHYS');
+      it('should show online classes', function () {
+        cy.get('#class-search-results-component').should('contain', 'Meeting Days: N/A');
+      });
     });
   });
 
-  context('then selects Chinese, Accounting, Biology and Aerospace studies as subjects', () => {
+  context('then selects Astronomy, Accounting, Biology and Aerospace studies as subjects', () => {
 
     before(() => {
-      cy.get('.search-autocomplete input').type('Chinese').click();
-      cy.get('div').contains('Chinese').click();
+      cy.wait(10000);
+      cy.get('.search-autocomplete input').type('Military Science').click();
+      cy.get('div').contains('Military Science', {timeout: 5000}).click();
       cy.get('button').contains('Submit').click();
-      cy.wait(40000);
+      cy.wait(10000);
     });
 
-    it('should not show loading message when Chinese is selected and submit is clicked', () => {
-      cy.get('p').should('contain', 'No classes found.');
+    it('should not show loading message when Astronomy is selected and submit is clicked', () => {
+      cy.get('p').should('contain', 'Found 0 classes');
     });
 
     it('should show loading message when Accounting is selected', () => {
@@ -258,9 +268,9 @@ describe('when a user searches for Biology classes', function () {
       cy.get('.search-autocomplete input').type('Aerospace studies').click();
       cy.get('div').contains('Aerospace Studies', { timeout: 7000 }).click();
       cy.get('button').contains('Submit').click();
-      cy.wait(40000);
+      cy.wait(10000);
       cy.get('p').should('not.contain', 'Loading...');
-      cy.get('p').should('contain', 'No classes found.');
+      cy.get('p').should('contain', 'Found 0 classes');
     });
   });
 
@@ -273,7 +283,7 @@ describe('when a user searches for Biology classes', function () {
     });
 
     it('should display no classes found', () => {
-      cy.get('p').should('contain', 'No classes found.');
+      cy.get('p').should('contain', 'Found 0 classes');
     });
   })
   
@@ -303,4 +313,72 @@ describe('when All is selected as a subject', () => {
       cy.get('span').should('not.contain', 'Campus: San Bernardino');
     });
   });
+  
+});
+
+describe('Multiple filters are selected at the same time', () => {
+  afterEach(() => {
+    cy.get('[type="reset"]').click();
+    cy.wait(100);
+  });
+
+  context('when a user selects Accounting and course no. at the same time', () => {
+    before(() => {
+      cy.visit(localUrl);
+      cy.get('.search-autocomplete input').click();
+      cy.get('.search-autocomplete input').type('accounting').click();
+      cy.wait(5000);
+      cy.get('div').contains('Accounting').click();
+      cy.get('.course-number').type('315');
+      cy.get('button').contains('Submit').click();
+      cy.wait(10000);
+    });
+    it('should show Accounting classes with course number 315', () => {
+      cy.get('#class-search-results-component > p').should('contain', 'Found 2 classes');
+      cy.get('span').should('contain', 'ACCT  70');
+      cy.get('span').should('contain', 'ACCT  71');
+    });
+  });
+
+  context('when a user selects Accounting, course no. and class no. at the same time', () => {
+    before(() => {
+      cy.visit(localUrl);
+      cy.get('.search-autocomplete input').click();
+      cy.get('.search-autocomplete input').type('accounting').click();
+      cy.wait(5000);
+      cy.get('div').contains('Accounting').click();
+      cy.get('.course-number').type('315');
+      cy.get('#additional-filters').click();
+      cy.get('.class-number').type('010002');
+      cy.get('button').contains('Submit').click();
+      cy.wait(10000);
+    });
+
+    it('should show Accounting classes with course number 010002', () => {
+      cy.get('#class-search-results-component > p').should('contain', 'Found 2 classes');
+      cy.get('span').should('contain', 'ACCT  70');
+      cy.get('span').should('contain', 'ACCT  71');
+    });
+  });
+
+  context('when a user selects Accounting and Liu Xiang as instructor', () => {
+    before(() => {
+    cy.visit(localUrl);
+    cy.get('.search-autocomplete input').click();
+    cy.get('.search-autocomplete input').type('accounting').click();
+    cy.wait(5000)
+    cy.get('div').contains('Accounting').click();
+    cy.get('.search-instructor-autocomplete input').click();
+    cy.wait(3000)
+    cy.get('a.search-instructor-autocomplete-items div').contains('Liu, Xiang').click();
+    cy.get('button').contains('Submit').click();
+    cy.wait(10000)
+  });
+
+  it('should show Accounting classes with Liu Xiang as instructor', () => {
+      cy.get('#class-search-results-component > p').should('contain', 'Found 2 classes');
+      cy.get('a').should('contain', 'Liu, Xiang');
+    });
+  });
+
 });
