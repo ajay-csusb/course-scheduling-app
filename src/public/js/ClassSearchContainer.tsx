@@ -58,7 +58,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.updateClassNo = this.updateClassNo.bind(this);
     this.instructorsFound = this.instructorsFound.bind(this);
     this.subjectsFound = this.subjectsFound.bind(this);
-    this.courseAttrFound = this.courseAttrFound.bind(this);
     this.processDropDownListData = this.processDropDownListData.bind(this);
     this.errorProcessingData = this.errorProcessingData.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -68,7 +67,16 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
-    this.courseAttr = [];
+    this.courseAttr = [
+      { label: 'All', value: '' },
+      { label: 'Early Start Program', value: 'ESP' },
+      { label: 'Fully On line', value: 'FONL' },
+      { label: 'General Education', value: 'GE' },
+      { label: 'Service Learning', value: 'CSLI' },
+      { label: 'Study Abroad', value: 'SA' },
+      { label: 'Zero Cost Course Materials', value: 'ZCCM' },
+      { label: 'eBook', value: 'EBK' },
+    ];
     this.sessionCodes = [
       { label: 'All', value: 'all' },
       { label: '6 weeks', value: '6W' },
@@ -484,27 +492,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private processDropDownListData(data: any): void {
     this.instructorsFound(data);
     this.subjectsFound(data);
-    this.courseAttrFound(data);
   }
 
   private errorProcessingData(_error: any): void {
     console.log('error processing drop down data: ' + _error);
-  }
-
-  private courseAttrFound(data: any): void {
-    let courseAttr: IOptionProps = { label: 'All', value: '' };
-    const courseAttrArr: IOptionProps[] = [];
-    courseAttrArr.push(courseAttr);
-    if (data !== undefined && data.classAttributeList !== undefined) {
-      data.classAttributeList.forEach((_sessionCode: any) => {
-        courseAttr = { label: _sessionCode.descr, value: _sessionCode.crse_ATTR };
-        if (!courseAttrArr.includes(courseAttr)) {
-          courseAttrArr.push(courseAttr);
-        }
-      });
-      this.courseAttr = courseAttrArr;
-    }
-    this.setState({ isLoading: false });
   }
 
   private updateAllClasses() {
