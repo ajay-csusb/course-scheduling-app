@@ -5,7 +5,42 @@ exports[`test class search form component Class search container component snaps
   <ClassSearchForm
     campus="both"
     classNo=""
-    courseAttr={Array []}
+    courseAttr={
+      Array [
+        Object {
+          "label": "All",
+          "value": "",
+        },
+        Object {
+          "label": "Early Start Program",
+          "value": "ESP",
+        },
+        Object {
+          "label": "Fully On line",
+          "value": "FONL",
+        },
+        Object {
+          "label": "General Education",
+          "value": "GE",
+        },
+        Object {
+          "label": "Service Learning",
+          "value": "CSLI",
+        },
+        Object {
+          "label": "Study Abroad",
+          "value": "SA",
+        },
+        Object {
+          "label": "Zero Cost Course Materials",
+          "value": "ZCCM",
+        },
+        Object {
+          "label": "eBook",
+          "value": "EBK",
+        },
+      ]
+    }
     courseNo=""
     endTime={1899-01-02T07:00:00.000Z}
     instructionMode="all"
@@ -64,7 +99,42 @@ exports[`test class search form component compare search form snapshot 1`] = `
 <ClassSearchForm
   campus="both"
   classNo=""
-  courseAttr={Array []}
+  courseAttr={
+    Array [
+      Object {
+        "label": "All",
+        "value": "",
+      },
+      Object {
+        "label": "Early Start Program",
+        "value": "ESP",
+      },
+      Object {
+        "label": "Fully On line",
+        "value": "FONL",
+      },
+      Object {
+        "label": "General Education",
+        "value": "GE",
+      },
+      Object {
+        "label": "Service Learning",
+        "value": "CSLI",
+      },
+      Object {
+        "label": "Study Abroad",
+        "value": "SA",
+      },
+      Object {
+        "label": "Zero Cost Course Materials",
+        "value": "ZCCM",
+      },
+      Object {
+        "label": "eBook",
+        "value": "EBK",
+      },
+    ]
+  }
   courseNo=""
   endTime={1899-01-02T07:00:00.000Z}
   instructionMode="all"
@@ -1381,7 +1451,42 @@ exports[`test class search form component compare search form snapshot 1`] = `
           </SelectListInstructionMode>
           <AdvancedFilterFieldset
             classNo=""
-            courseAttr={Array []}
+            courseAttr={
+              Array [
+                Object {
+                  "label": "All",
+                  "value": "",
+                },
+                Object {
+                  "label": "Early Start Program",
+                  "value": "ESP",
+                },
+                Object {
+                  "label": "Fully On line",
+                  "value": "FONL",
+                },
+                Object {
+                  "label": "General Education",
+                  "value": "GE",
+                },
+                Object {
+                  "label": "Service Learning",
+                  "value": "CSLI",
+                },
+                Object {
+                  "label": "Study Abroad",
+                  "value": "SA",
+                },
+                Object {
+                  "label": "Zero Cost Course Materials",
+                  "value": "ZCCM",
+                },
+                Object {
+                  "label": "eBook",
+                  "value": "EBK",
+                },
+              ]
+            }
             onChangeOfClassNo={[Function]}
             onChangeOfCourseAttr={[Function]}
             onChangeOfSessionCode={[Function]}
