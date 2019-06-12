@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormGroup, Button, Label, MenuItem } from '@blueprintjs/core';
+import { FormGroup, Button, Label, MenuItem, IOptionProps } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
 import { autocompleteSubjectsProps } from './AutocompleteSubjects';
 import { SelectListQuarter } from './SelectListQuarter';
@@ -13,7 +13,7 @@ import { SelectListInstructionMode } from './SelectListInstructionMode';
 import { AdvancedFilterFieldset } from './AdvancedFilterFieldset';
 
 interface IClassSearchFormProps {
-  quarter: string;
+  term: IOptionProps[];
   campus: string;
   subjects: ISubject[];
   meetingDate: IMeetingDate;
@@ -24,7 +24,7 @@ interface IClassSearchFormProps {
   endTime: Date;
   courseNo: string;
   classNo: string;
-  onChangeOfQuarter: (event: React.FormEvent) => void;
+  onChangeOfTerm: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
   onChangeOfEndTime: (event: any) => void;
@@ -62,8 +62,8 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
     return (
       <FormGroup label="Fill in one or more of the fields below:">
         <SelectListQuarter
-          quarter={this.props.quarter}
-          onChangeOfQuarter={this.props.onChangeOfQuarter}
+          term={this.props.term}
+          onChangeOfTerm={this.props.onChangeOfTerm}
         />
         {subjects}
         {courseNumber}
@@ -109,7 +109,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
     const SuggestSubject = Suggest;
     return (
       <Label>
-        Select a Subject
+        Subject
         <SuggestSubject
           {...autocompleteSubjectsProps}
           items={this.getSubjects()}
