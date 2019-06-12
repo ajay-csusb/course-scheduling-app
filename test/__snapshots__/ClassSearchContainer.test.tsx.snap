@@ -30,15 +30,15 @@ exports[`test class search form component Class search container component snaps
     onChangeOfInstructionMode={[Function]}
     onChangeOfInstructor={[Function]}
     onChangeOfMeetingDate={[Function]}
-    onChangeOfQuarter={[Function]}
     onChangeOfSessionCode={[Function]}
     onChangeOfStartTime={[Function]}
     onChangeOfSubject={[Function]}
+    onChangeOfTerm={[Function]}
     onReset={[Function]}
     onSubmit={[Function]}
-    quarter="current"
     startTime={1899-01-01T08:00:00.000Z}
     subjects={Array []}
+    term={Array []}
   />
 </div>
 `;
@@ -72,15 +72,15 @@ exports[`test class search form component compare search form snapshot 1`] = `
   onChangeOfInstructionMode={[Function]}
   onChangeOfInstructor={[Function]}
   onChangeOfMeetingDate={[Function]}
-  onChangeOfQuarter={[Function]}
   onChangeOfSessionCode={[Function]}
   onChangeOfStartTime={[Function]}
   onChangeOfSubject={[Function]}
+  onChangeOfTerm={[Function]}
   onReset={[Function]}
   onSubmit={[Function]}
-  quarter="current"
   startTime={1899-01-01T08:00:00.000Z}
   subjects={Array []}
+  term={Array []}
 >
   <div>
     <Blueprint3.FormGroup
@@ -102,30 +102,52 @@ exports[`test class search form component compare search form snapshot 1`] = `
           className="bp3-form-content"
         >
           <SelectListQuarter
-            onChangeOfQuarter={[Function]}
-            quarter="current"
+            onChangeOfTerm={[Function]}
+            term={Array []}
           >
             <Component>
               <label
                 className="bp3-label"
               >
                 Term
-                <div
-                  className="bp3-select select-quarter"
+                <HTMLSelect
+                  className="select-quarter"
+                  onChange={[Function]}
+                  options={Array []}
                 >
-                  <select
-                    onChange={[Function]}
+                  <div
+                    className="bp3-html-select select-quarter"
                   >
-                    <option
-                      className="current-quarter"
-                      value="current"
+                    <select
+                      multiple={false}
+                      onChange={[Function]}
                     />
-                    <option
-                      className="prev-quarter"
-                      value="prev"
-                    />
-                  </select>
-                </div>
+                    <Blueprint3.Icon
+                      icon="double-caret-vertical"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-double-caret-vertical"
+                        icon="double-caret-vertical"
+                      >
+                        <svg
+                          data-icon="double-caret-vertical"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            double-caret-vertical
+                          </desc>
+                          <path
+                            d="M5 7h6a1.003 1.003 0 0 0 .71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 0 0 5 7zm6 2H5a1.003 1.003 0 0 0-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0 0 11 9z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </div>
+                </HTMLSelect>
               </label>
             </Component>
           </SelectListQuarter>
@@ -133,7 +155,7 @@ exports[`test class search form component compare search form snapshot 1`] = `
             <label
               className="bp3-label"
             >
-              Select a Subject
+              Subject
               <Blueprint3.Suggest
                 className="search-autocomplete"
                 closeOnSelect={true}
