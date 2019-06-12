@@ -4,7 +4,6 @@ import { ISubject } from './Subject';
 import { ClassesCards } from './ClassesCards';
 export interface IClassSearchResultsProps {
   classes: IClass[];
-  quarter: string;
   campus: string;
   subject: ISubject;
   courseNo: string;
