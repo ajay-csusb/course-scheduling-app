@@ -4,11 +4,11 @@ import { ClassSearchResults } from './ClassSearchResults';
 import { IClass, Class, IMeetingDate } from './Class';
 import { ISubject } from './Subject';
 import { UserInput } from './UserInput';
-import { Toaster, Position, Intent } from '@blueprintjs/core';
+import { Toaster, Position, Intent, IOptionProps } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { MeetingTime } from './MeetingTime';
 interface IClassSearchContainerState {
-  quarter: string;
+  term: string;
   campus: string;
   subject: ISubject;
   courseNo: string;
@@ -34,12 +34,16 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private subjects: ISubject[];
 
+  private term: IOptionProps[];
+
+  private currentTermId: string;
+
   private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList ';
 
   constructor(props: any) {
     super(props);
     this.state = this.defaultFormValues();
-    this.updateQuarter = this.updateQuarter.bind(this);
+    this.updateTerm = this.updateTerm.bind(this);
     this.updateCampus = this.updateCampus.bind(this);
     this.updateStartTime = this.updateStartTime.bind(this);
     this.updateEndTime = this.updateEndTime.bind(this);
@@ -54,6 +58,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.updateClassNo = this.updateClassNo.bind(this);
     this.instructorsFound = this.instructorsFound.bind(this);
     this.subjectsFound = this.subjectsFound.bind(this);
+    this.termFound = this.termFound.bind(this);
     this.processDropDownListData = this.processDropDownListData.bind(this);
     this.errorProcessingData = this.errorProcessingData.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -63,6 +68,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
+    this.term = [];
+    this.currentTermId = '';
   }
 
   public render(): JSX.Element {
@@ -88,9 +95,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     }
   }
 
-  private updateQuarter(e: any): void {
+  private updateTerm(e: any): void {
     this.setState({
-      quarter: e.target.value,
+      term: e.target.value,
       beforeSubmit: true,
     });
   }
@@ -274,7 +281,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private defaultFormValues(): IClassSearchContainerState {
     return {
-      quarter: 'current',
+      term: this.currentTermId,
       campus: 'both',
       subject: {
         name: '',
@@ -341,6 +348,29 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({ isLoading: false });
   }
 
+  private termFound(data: any): void {
+    const terms = data.termList;
+    const termArr: IOptionProps[] = [];
+    terms.forEach((_term: any) => {
+      if (this.hasCurrentQuarterFlag(_term)) {
+        this.currentTermId = _term.strm;
+      }
+      termArr.push({
+        label: _term.display_STR, value: _term.strm,
+      });
+    });
+    this.term = termArr;
+    this.setState({
+      // @Todo unit test this.
+      term: this.currentTermId,
+      isLoading: false,
+    });
+  }
+
+  private hasCurrentQuarterFlag(quarter: any): boolean {
+    return (quarter.displayed_FLAG === 'Y' && quarter.default_FLG === 'Y');
+  }
+
   private updateStartTime(e: Date): void {
     this.setState({
       startTime: e,
@@ -384,7 +414,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return (
       <ClassSearchResults
         classes={this.allResults}
-        quarter={this.state.quarter}
         subject={this.state.subject}
         courseNo={this.state.courseNo}
         campus={this.state.campus}
@@ -402,14 +431,14 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private getClassSearchFormComponent(): JSX.Element {
     return (
       <ClassSearchForm
-        quarter={this.state.quarter}
+        term={this.term}
         campus={this.state.campus}
         subjects={this.subjects}
         meetingDate={this.state.meetingDate}
         instructionMode={this.state.instructionMode}
         instructors={this.instructors}
         isReset={this.state.isReset}
-        onChangeOfQuarter={this.updateQuarter}
+        onChangeOfTerm={this.updateTerm}
         onChangeOfCampus={this.updateCampus}
         onChangeOfStartTime={this.updateStartTime}
         onChangeOfEndTime={this.updateEndTime}
@@ -469,6 +498,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private processDropDownListData(data: any): void {
+    this.termFound(data);
     this.instructorsFound(data);
     this.subjectsFound(data);
   }
@@ -479,7 +509,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private updateAllClasses() {
     const userInput = new UserInput(
-      this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.quarter,
+      this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.term,
       this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
       this.state.courseAttr, this.state.classNo, this.state.sessionCode);
     Class.getAllClasses(this.classesFound, this.classesNotFound, userInput);
