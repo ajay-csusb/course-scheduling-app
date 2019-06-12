@@ -15,7 +15,7 @@ export class UserInput {
   };
   private subject: string = '';
   private courseNo: string = '';
-  private quarter: string = 'current';
+  private quarter: string = '';
   private startTime: Date = new Date();
   private endTime: Date = new Date();
   private instructionMode: string = 'all';
@@ -39,18 +39,6 @@ export class UserInput {
     this.courseAttr = courseAttr;
     this.sessionCode = sessionCode;
     this.classNo = classNo;
-  }
-
-  public isBothCampusChecked(): boolean {
-    return (this.campus === 'both');
-  }
-
-  public isSanBernardinoChecked(): boolean {
-    return (this.campus === 'san-bernardino');
-  }
-
-  public isPalmDesertChecked(): boolean {
-    return (this.campus === 'palm-desert');
   }
 
   public getCampus(): string {
@@ -95,29 +83,6 @@ export class UserInput {
     return (this.day.sun);
   }
 
-  public isCurrentQuarterChecked(): boolean  {
-    return (this.quarter === 'current');
-  }
-
-  public isPreviousQuarterChecked(): boolean  {
-    return (this.quarter === 'prev');
-  }
-
-  public isBothQuartersChecked(): boolean {
-    return (this.quarter === 'both');
-  }
-
-  public isBothInstructionModeChecked(): boolean  {
-    return (this.instructionMode === 'both');
-  }
-
-  public isInPersonChecked(): boolean  {
-    return (this.instructionMode === 'classroom');
-  }
-
-  public isOnlineChecked(): boolean  {
-    return (this.instructionMode === 'online');
-  }
   public getSubject(): string {
     if (this.subject === 'all') {
       return '';
@@ -158,6 +123,10 @@ export class UserInput {
 
   public getClassNo(): string | undefined {
     return this.classNo;
+  }
+
+  public getTerm(): string | undefined {
+    return this.quarter;
   }
 
 }
