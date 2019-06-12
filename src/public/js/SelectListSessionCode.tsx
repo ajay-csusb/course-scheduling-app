@@ -47,7 +47,7 @@ export class SelectListSelectionCode extends React.Component<ISelectListSessionC
   public render(): React.ReactNode {
     return (
       <Label>
-        Session Code
+        Session
         <HTMLSelect
           className="session-code"
           onChange={this.props.onChangeOfSessionCode}
