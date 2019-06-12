@@ -123,12 +123,11 @@ export class Class {
 
   static getAllClasses(onSuccess: (response: any) => void,
                        onFailure: (error: string) => void, userInput: UserInput): void {
-    const currentQuarterId = localStorage.getItem('currentQuarterId') ;
     const params = {
       currentPage: '1',
       maximunPerPage: '3000',
       condition: {
-        strm: currentQuarterId,
+        strm: userInput.getTerm(),
         subject: userInput.getSubject().toUpperCase(),
         name: userInput.getInstructor(),
         campus: userInput.getCampus(),
