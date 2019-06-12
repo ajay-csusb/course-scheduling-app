@@ -22,6 +22,7 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
     const classStatus = ClassSearchUtils.getClassStatus(classDetails);
     const instructionMode = ClassSearchUtils.getInstructionMode(classDetails);
     const instructorName = ClassSearchUtils.getInstructorName(classDetails);
+    const sessionCode = ClassSearchUtils.getSessionCode(classDetails);
     let instructor = <span>Instructor: N/A</span>;
     if (instructorName !== 'N/A') {
       instructor = <span>Instructor: <a href={instructorProfileURL}> {instructorName}</a></span>;
@@ -48,7 +49,7 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
         <span>No. of units: {classDetails.csuUnits}</span> <br />
         <span>No. of seats available: {noOfSeatsAvailable}</span> <br />
         <span>In waitlist  : {classDetails.waitlistTotal}</span> <br />
-        <span>Session type: {classDetails.sessionCode}</span> <br />
+        <span>Session type: {sessionCode}</span> <br />
         <span>{classType}</span> <br />
         <span>{classStatus}</span> <br />
         <span>{instructionMode}</span> <br />
