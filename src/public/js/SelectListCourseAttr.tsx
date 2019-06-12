@@ -10,7 +10,7 @@ export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrP
   private readonly courseAttr: IOptionProps[] = [
       { label: 'All', value: '' },
       { label: 'Early Start Program', value: 'ESP' },
-      { label: 'Fully On line', value: 'FONL' },
+      { label: 'Fully Online', value: 'FONL' },
       { label: 'General Education', value: 'GE' },
       { label: 'Service Learning', value: 'CSLI' },
       { label: 'Study Abroad', value: 'SA' },
