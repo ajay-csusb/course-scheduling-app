@@ -12,7 +12,6 @@ exports[`test class search form component Class search container component snaps
     isReset={false}
     meetingDate={
       Object {
-        "all": true,
         "fri": false,
         "mon": false,
         "sat": false,
@@ -54,7 +53,6 @@ exports[`test class search form component compare search form snapshot 1`] = `
   isReset={false}
   meetingDate={
     Object {
-      "all": true,
       "fri": false,
       "mon": false,
       "sat": false,
@@ -985,10 +983,9 @@ exports[`test class search form component compare search form snapshot 1`] = `
               </div>
             </Blueprint3.ControlGroup>
           </ControlGroupMeetingTime>
-          <ControlGroupMeetingDate
+          <ControlGroupMeetingDay
             meetingDate={
               Object {
-                "all": true,
                 "fri": false,
                 "mon": false,
                 "sat": false,
@@ -1011,42 +1008,9 @@ exports[`test class search form component compare search form snapshot 1`] = `
                   <label
                     className="bp3-label"
                   >
-                    Meeting Date
+                    Meeting Day
                   </label>
                 </Component>
-                <Blueprint3.Checkbox
-                  checked={true}
-                  className="all-date"
-                  label="All"
-                  onChange={[Function]}
-                  value="all"
-                >
-                  <Control
-                    checked={true}
-                    className="all-date"
-                    inputRef={[Function]}
-                    label="All"
-                    onChange={[Function]}
-                    type="checkbox"
-                    typeClassName="bp3-checkbox"
-                    value="all"
-                  >
-                    <label
-                      className="bp3-control bp3-checkbox all-date"
-                    >
-                      <input
-                        checked={true}
-                        onChange={[Function]}
-                        type="checkbox"
-                        value="all"
-                      />
-                      <span
-                        className="bp3-control-indicator"
-                      />
-                      All
-                    </label>
-                  </Control>
-                </Blueprint3.Checkbox>
                 <Blueprint3.Checkbox
                   checked={false}
                   className="mon"
@@ -1280,7 +1244,7 @@ exports[`test class search form component compare search form snapshot 1`] = `
                 </Blueprint3.Checkbox>
               </div>
             </Blueprint3.ControlGroup>
-          </ControlGroupMeetingDate>
+          </ControlGroupMeetingDay>
           <SelectListInstructionMode
             instructionMode="all"
             onChangeOfInstructionMode={[Function]}

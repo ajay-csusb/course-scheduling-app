@@ -5,6 +5,7 @@ import { ClassesCards } from './ClassesCards';
 export interface IClassSearchResultsProps {
   classes: IClass[];
   campus: string;
+  // @Todo delete this.
   subject: ISubject;
   courseNo: string;
   meetingDate: IMeetingDate;
