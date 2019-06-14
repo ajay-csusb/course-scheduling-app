@@ -117,7 +117,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const checkBoxValue = e.target.value;
     this.setState({
       meetingDate: {
-        all: this.toggleAllMeetingDate(checkBoxValue),
         mon: this.toggleMon(checkBoxValue),
         tue: this.toggleTue(checkBoxValue),
         wed: this.toggleWed(checkBoxValue),
@@ -156,16 +155,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       instructorName: instructor,
       beforeSubmit: true,
     });
-  }
-
-  private toggleAllMeetingDate(checkBoxValue: string): boolean {
-    if (checkBoxValue === 'all') {
-      if (this.state.meetingDate.all) {
-        return false;
-      }
-      return true;
-    }
-    return false;
   }
 
   private toggleMon(checkBoxValue: string): boolean {
@@ -299,7 +288,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       startTime: new Date('1899-01-01T00:00:00'),
       endTime: new Date('1899-01-01T23:00:00'),
       meetingDate: {
-        all: true,
         mon: false,
         tue: false,
         wed: false,

@@ -50,7 +50,6 @@ export interface IClass {
 }
 
 export interface IMeetingDate {
-  all: boolean;
   mon: boolean;
   tue: boolean;
   wed: boolean;

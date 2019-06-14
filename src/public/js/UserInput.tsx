@@ -4,7 +4,6 @@ import { ISubject } from './Subject';
 export class UserInput {
   private campus: string = 'both';
   private day: IMeetingDate = {
-    all: false,
     mon: false,
     tue: false,
     wed: false,
@@ -49,10 +48,6 @@ export class UserInput {
       return 'PALM';
     }
     return '';
-  }
-
-  public isAllDaysChecked(): boolean {
-    return (this.day.all);
   }
 
   public isMondayChecked(): boolean  {

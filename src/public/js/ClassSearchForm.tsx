@@ -5,7 +5,7 @@ import { autocompleteSubjectsProps } from './AutocompleteSubjects';
 import { SelectListQuarter } from './SelectListQuarter';
 import { SelectListCampus } from './SelectListCampus';
 import { ControlGroupMeetingTime } from './ControlGroupMeetingTime';
-import { ControlGroupMeetingDate } from './ControlGroupMeetingDate';
+import { ControlGroupMeetingDay } from './ControlGroupMeetingDay';
 import { IMeetingDate } from './Class';
 import { autocompleteInstructorsProps } from './AutocompleteInstructors';
 import { ISubject } from './Subject';
@@ -78,7 +78,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           startTime={this.props.startTime}
           endTime={this.props.endTime}
         />
-        <ControlGroupMeetingDate
+        <ControlGroupMeetingDay
           meetingDate={this.props.meetingDate}
           onChangeOfMeetingDate={this.props.onChangeOfMeetingDate}
         />
