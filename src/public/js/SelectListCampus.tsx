@@ -2,7 +2,6 @@
   import { Label } from '@blueprintjs/core';
 
   export interface ISelectListCampusProps {
-    // @Todo delete this; it's not used
     campus: string;
     onChangeOfCampus: (event: React.FormEvent) => void;
   }
