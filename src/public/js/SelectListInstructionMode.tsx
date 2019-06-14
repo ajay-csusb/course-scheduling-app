@@ -16,7 +16,7 @@ export class SelectListInstructionMode extends React.Component<ISelectListInstru
     return (
       <Label>
         Instruction Mode
-      <div className="bp3-select">
+      <div className="bp3-select select-instruction-mode">
           <select onChange={this.handleChangeOfInstructionMode}>
             <option label="All" value="all">All</option>
             <option label="Classroom" value="p">Classroom</option>
@@ -38,7 +38,6 @@ export class SelectListInstructionMode extends React.Component<ISelectListInstru
             <option label="Televised Instruction (receiving site)" value="tr">
               Televised Instruction (receiving site)
             </option>
-            <option label="Zero Unit Instruction " value="z">Zero Unit Instruction </option>
           </select>
         </div>
       </Label>
