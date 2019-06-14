@@ -3,9 +3,6 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
 import { rawClassesJson } from './ClassesJson';
-import { ContextMenu, Label } from '@blueprintjs/core';
-import { ClassSearchForm } from '../src/public/js/ClassSearchForm';
-import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
 
 describe('test class search form component', () => {
 
@@ -25,20 +22,15 @@ describe('test class search form component', () => {
     expect(fetchMock.lastUrl()).toMatch(new RegExp('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList'));
   });
 
-  test.skip('request made to fetch classes when subject is changed', () => {
+  test('parameters used when request is to fetch classes when subject is changed', () => {
     const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-    classSearchContainerWrapper.find('.search-autocomplete input').prop('onItemSelect')();
-    expect(fetchMock.lastUrl()).toMatch(new RegExp('https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS'));
-  });
-
-  test.skip('parameters used when request is to fetch classes when subject is changed', () => {
-    const classSearchContainerWrapper = shallow(<ClassSearchContainer />);
     classSearchContainerWrapper.setState({
       subject: {
         abbr: 'bar',
         name: 'Bar',
       },
     });
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
     const subjectArgument = fetchMock.lastOptions();
     expect(subjectArgument.body).toMatch(new RegExp('"subject":"BAR"'));
   });
@@ -60,19 +52,6 @@ describe('test correct states are set', () => {
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       expect(classSearchContainerWrapper.state('courseAttr')).toEqual('ge');
     });
-
-    it.skip('should set the correct courseAttr props in ClassSearchResults component', () => {
-      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      classSearchContainerWrapper.find('#additional-filters').simulate('click');
-      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'ge' } });
-      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      classSearchContainerWrapper.setState({
-        isLoading: false,
-        noClasses: true,
-      });
-      classSearchContainerWrapper.update();
-      expect(classSearchContainerWrapper.find(ClassSearchResults).prop('courseAttr')).toEqual('ge');
-    });
   });
   describe('when class number is entered', () => {
     it('should set the correct classNo state', () => {
@@ -83,6 +62,14 @@ describe('test correct states are set', () => {
       expect(classSearchContainerWrapper.state('classNo')).toEqual('000');
     });
   });
+
+  describe('when subject is not entered', () => {
+    it('should set the showErrorMessage', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('showErrorMessage')).toBeTruthy();
+    });
+  });
 });
 
 describe('When user clicks submit', () => {
@@ -91,8 +78,6 @@ describe('When user clicks submit', () => {
     classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
     expect(classSearchContainerWrapper.state('isReset')).toBeFalsy();
   });
-
-  it.skip('and subject is not selected then it should not show ClassSearchResultsComponent');
 });
 
 describe('When user clicks reset', () => {
@@ -155,7 +140,7 @@ describe('When user clicks reset', () => {
   });
 });
 
-describe.skip('when a user selects All in Subjects', () => {
+describe('when a user selects All in Subjects', () => {
   let classSearchContainerWrapper = null;
   beforeAll(() => {
     classSearchContainerWrapper = mount(<ClassSearchContainer />);
@@ -173,74 +158,59 @@ describe.skip('when a user selects All in Subjects', () => {
     const subjectArgument = fetchMock.lastOptions();
     expect(subjectArgument.body).toMatch(new RegExp('"subject":""'));
   });
+});
+describe('When a search is performed which takes unusually long time', () => {
+  let classSearchContainerWrapper = null;
+  beforeEach(() => {
+    classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+      subject: {
+        name: 'All',
+        abbr: 'all',
+      },
+    });
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+  });
 
-  it('should pass All as the subject props to ClassSearchResults component', () => {
+  it('should set beforeSubmit to false after submit is clicked', () => {
+    expect(classSearchContainerWrapper.state('beforeSubmit')).toBeFalsy();
+  });
+
+  it('should set isLoading when submit is clicked', () => {
+    expect(classSearchContainerWrapper.state('isLoading')).toBeTruthy();
+  });
+
+  it('should display a loading indicator when submit is clicked', () => {
+    const loadingWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
+    expect(loadingWrapper.contains(<p>Loading...</p>)).toBeTruthy();
+  });
+
+  it('should not display a loading indicator after isLoading is set to false', () => {
     classSearchContainerWrapper.setState({
       isLoading: false,
     });
-    const classSearchResultsWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
-    expect(classSearchResultsWrapper.prop('subject')).toEqual({name: 'All', abbr: 'all'});
+    const loadingWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
+    expect(loadingWrapper.contains(<p>Loading...</p>)).toBeFalsy();
   });
 
-  describe('When a search is performed which takes unusually long time', () => {
-    beforeEach(() => {
-      classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      classSearchContainerWrapper.setState({
-        subject: {
-          name: 'All',
-          abbr: 'all',
-        },
-      });
-      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+  it('should display no classes found if no classes are found', () => {
+    classSearchContainerWrapper.setState({
+      isLoading: false,
+      noClasses: true,
     });
+    expect(classSearchContainerWrapper.html()).toContain('<p>Found 0 classes');
+  });
+});
 
-    it('should set beforeSubmit to false after submit is clicked', () => {
-      expect(classSearchContainerWrapper.state('beforeSubmit')).toBeFalsy();
-    });
+describe('When a search is performed without entering subject', () => {
+  let classSearchContainerWrapper = null;
+  beforeEach(() => {
+    classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+  });
 
-    it('should set isLoading when submit is clicked', () => {
-      expect(classSearchContainerWrapper.state('isLoading')).toBeTruthy();
-    });
-
-    it.skip('should display a loading indicator when submit is clicked', () => {
-      const loadingWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
-      expect(loadingWrapper.contains(<p>Loading...</p>)).toBeTruthy();
-    });
-
-    it.skip('should not display a loading indicator after subjects are updated and no classes are found', () => {
-      classSearchContainerWrapper.setState({
-        subject: {
-          name: 'Foo',
-          abbr: 'foo',
-        },
-        isLoading: false,
-        noClasses: false,
-      });
-      const loadingWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
-      expect(loadingWrapper.contains(<p>Loading...</p>)).toBeFalsy();
-    });
-
-    it.skip('should display no classes found message if noClasses is set', () => {
-      classSearchContainerWrapper.setState({
-        isLoading: false,
-        noClasses: true,
-      });
-      const noClassesWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
-      expect(noClassesWrapper.contains(<p>No classes found.</p>)).toBeTruthy();
-    });
-
-    it.skip('should display no classes found if no classes are found', () => {
-      classSearchContainerWrapper.setState({
-        subject: {
-          name: 'Foo',
-          abbr: 'foo',
-        },
-        isLoading: false,
-        noClasses: false,
-      });
-      const noClassesWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
-      expect(noClassesWrapper.contains(<p>No classes found.</p>)).toBeTruthy();
-    });
+  it('should display error message', () => {
+    expect(classSearchContainerWrapper.html()).toContain('Please select a Subject');
   });
 
 });
