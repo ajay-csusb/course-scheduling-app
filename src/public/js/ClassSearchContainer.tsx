@@ -4,7 +4,7 @@ import { ClassSearchResults } from './ClassSearchResults';
 import { IClass, Class, IMeetingDate } from './Class';
 import { ISubject } from './Subject';
 import { UserInput } from './UserInput';
-import { Toaster, Position, Intent, IOptionProps } from '@blueprintjs/core';
+import { Intent, IOptionProps, Callout } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { MeetingTime } from './MeetingTime';
 interface IClassSearchContainerState {
@@ -25,6 +25,7 @@ interface IClassSearchContainerState {
   courseAttr: string;
   sessionCode: string;
   classNo: string;
+  showErrorMessage: boolean;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
 
@@ -75,8 +76,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   public render(): JSX.Element {
     const classSearchResultsComponent = this.getClassSearchResultsComponent();
     const classSearchFormComponent = this.getClassSearchFormComponent();
+    const errorMessage: JSX.Element = this.displayErrorMessageWhenSubjectIsEmpty();
+
     return (
       <div>
+        {this.state.showErrorMessage && errorMessage}
         {classSearchFormComponent}
         {this.isLoadingClasses() && <p>Loading...</p>}
         {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) && classSearchResultsComponent}
@@ -260,10 +264,14 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private onSubmit(_e: any): any {
     if (this.isSubjectEmpty()) {
+      this.setState({
+        showErrorMessage: true,
+      });
       return this.displayErrorMessageWhenSubjectIsEmpty();
     }
     this.allResults = [];
     this.setState({
+      showErrorMessage: false,
       beforeSubmit: false,
       isLoading: true,
     }, () => {
@@ -310,6 +318,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       courseAttr: 'all',
       sessionCode: 'all',
       classNo: '',
+      showErrorMessage: false,
     };
   }
 
@@ -393,12 +402,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return (this.state.subject.abbr.length === 0);
   }
 
-  private displayErrorMessageWhenSubjectIsEmpty(): string {
+  private displayErrorMessageWhenSubjectIsEmpty(): JSX.Element {
     return (
-      Toaster.create({
-        className: 'select-a-subject',
-        position: Position.BOTTOM,
-      }).show({ message: 'Please choose a subject', intent: Intent.DANGER, timeout: 2000 })
+      <Callout intent={Intent.WARNING}>
+        Please select a Subject
+      </Callout >
     );
   }
 
