@@ -16,7 +16,7 @@ export class SelectListQuarter extends React.Component<ISelectListQuarterProps, 
       <Label>
         Term
         <HTMLSelect
-          className="select-quarter"
+          className="select-term"
           onChange={this.props.onChangeOfTerm}
           options={this.props.term}
         />
