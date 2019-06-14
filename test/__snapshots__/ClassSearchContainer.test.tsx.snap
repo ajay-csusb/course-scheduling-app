@@ -111,12 +111,12 @@ exports[`test class search form component compare search form snapshot 1`] = `
               >
                 Term
                 <HTMLSelect
-                  className="select-quarter"
+                  className="select-term"
                   onChange={[Function]}
                   options={Array []}
                 >
                   <div
-                    className="bp3-html-select select-quarter"
+                    className="bp3-html-select select-term"
                   >
                     <select
                       multiple={false}
@@ -1291,7 +1291,7 @@ exports[`test class search form component compare search form snapshot 1`] = `
               >
                 Instruction Mode
                 <div
-                  className="bp3-select"
+                  className="bp3-select select-instruction-mode"
                 >
                   <select
                     onChange={[Function]}
@@ -1355,12 +1355,6 @@ exports[`test class search form component compare search form snapshot 1`] = `
                       value="tr"
                     >
                       Televised Instruction (receiving site)
-                    </option>
-                    <option
-                      label="Zero Unit Instruction "
-                      value="z"
-                    >
-                      Zero Unit Instruction 
                     </option>
                   </select>
                 </div>
