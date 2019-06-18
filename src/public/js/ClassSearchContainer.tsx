@@ -410,15 +410,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return (
       <ClassSearchResults
         classes={this.allResults}
-        subject={this.state.subject}
-        courseNo={this.state.courseNo}
-        campus={this.state.campus}
-        meetingDate={this.state.meetingDate}
-        instructionMode={this.state.instructionMode}
-        instructorName={this.state.instructorName}
-        startTime={this.state.startTime}
-        endTime={this.state.endTime}
-        isLoading={this.state.isLoading}
         onChangeOfLoadingMessage={this.updateLoadingMessage}
       />
     );

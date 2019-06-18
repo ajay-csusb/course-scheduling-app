@@ -1,37 +1,39 @@
 import * as React from 'react';
-import { IClass, IMeetingDate } from './Class';
-import { ISubject } from './Subject';
+import { IClass } from './Class';
 import { ClassesCards } from './ClassesCards';
 export interface IClassSearchResultsProps {
   classes: IClass[];
-  campus: string;
-  subject: ISubject;
-  courseNo: string;
-  meetingDate: IMeetingDate;
-  instructionMode: string;
-  instructorName: string;
-  isReset?: boolean;
-  startTime: Date;
-  endTime: Date;
-  isLoading: boolean;
   onChangeOfLoadingMessage: () => void;
 }
 
 export class ClassSearchResults extends React.Component<IClassSearchResultsProps, {}> {
 
+  private noOfClasses: number;
   constructor(props: IClassSearchResultsProps) {
     super(props);
+    this.noOfClasses = 0;
   }
 
   public render(): JSX.Element {
-    const rows: any = [];
-    let filteredResults: IClass[] = this.props.classes;
-    let counter = 0;
+    const classes: JSX.Element[] =  this.getClasses();
+    this.props.onChangeOfLoadingMessage();
+    return (
+      <div id="class-search-results-component">
+        <p>Found {this.noOfClasses} classes</p>
+        <ul>
+          {classes}
+        </ul>
+      </div>
+    );
+  }
+
+  private getClasses(): JSX.Element[] {
+    const classes: JSX.Element[] = [];
+    const filteredResults = this.props.classes;
     if (this.props.classes.length !== 0) {
-      filteredResults = this.props.classes;
       filteredResults.forEach((_class: IClass) => {
-        counter++;
-        rows.push(
+        this.noOfClasses++;
+        classes.push(
           <li key={_class.classNumber}>
             <ClassesCards classes={_class} />
             <br />
@@ -39,17 +41,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
         );
       });
     }
-    if (counter === filteredResults.length) {
-      this.props.onChangeOfLoadingMessage();
-    }
-    return (
-      <div id="class-search-results-component">
-        <p>Found {counter} classes</p>
-        <ul>
-          {rows}
-        </ul>
-      </div>
-    );
+    return classes;
   }
 
 }
