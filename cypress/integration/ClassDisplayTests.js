@@ -27,8 +27,14 @@ describe('Displayed fields in classes', function () {
       cy.get('span').should('contain', 'No. of units: 1');
       cy.get('span').should('contain', 'Lab');
       cy.get('span').should('contain', 'Open');
-      cy.get('span').should('contain', 'Session type: 6W1');
+      cy.get('span').should('contain', 'Session type: 6 weeks');
       cy.get('span').should('contain', 'Classroom');
     });
+
+    it('should show description when class name is clicked', () => {
+      cy.get(':nth-child(1) > .bp3-card > .bp3-popover-wrapper > .bp3-popover-target > h5 > .bp3-tooltip-indicator').click();
+      cy.get('.bp3-popover-content').should('contain', 'Materials fee required. (GE=B2) (5 units)');
+    });
+
   });
 });
