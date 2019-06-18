@@ -11,7 +11,7 @@ describe('Filter classes by session code', function () {
         cy.wait(5000);
         cy.get('span').contains('all', { timeout: 20000 }).click();
         cy.get('#additional-filters').click();
-        cy.get('.session-code select').select('10 weeks');
+        cy.get('.session-code select').select('Ten weeks');
         cy.get('button').contains('Submit').click();
         cy.wait(25000);
       });
