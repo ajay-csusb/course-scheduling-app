@@ -1,19 +1,15 @@
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import * as React from 'react';
 import fetchMock from 'fetch-mock';
-import { classJson, meetingDates, startMeetingTime, endMeetingTime, classPDC, baseClassJson } from './ClassesJson';
-import { ClassSearchResults, IClassSearchResultsProps } from '../src/public/js/ClassSearchResults';
-import { IClass, Class } from '../src/public/js/Class';
-import { ISubject } from '../src/public/js/Subject';
+import { classJson, classPDC, baseClassJson } from './ClassesJson';
+import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
+import { IClass } from '../src/public/js/Class';
 
 const classes: IClass[] = [];
 classes.push(classJson);
 classes.push(classPDC);
 classes.push(baseClassJson);
-const subject: ISubject = {
-  name: 'Accounting',
-  abbr: 'ACCT',
-};
+
 describe('Given a class search results component', () => {
 
   beforeAll(() => {
