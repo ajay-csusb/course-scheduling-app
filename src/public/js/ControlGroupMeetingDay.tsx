@@ -1,14 +1,14 @@
 import React from 'react';
 import { ControlGroup, Checkbox, Label } from '@blueprintjs/core';
 import { IMeetingDate } from './Class';
-export interface IControlGroupMeetingDate {
+export interface IControlGroupMeetingDayProps {
   meetingDate: IMeetingDate;
   onChangeOfMeetingDate: (event: React.FormEvent) => void;
 }
 
-export class ControlGroupMeetingDate extends React.Component<IControlGroupMeetingDate, {}> {
+export class ControlGroupMeetingDay extends React.Component<IControlGroupMeetingDayProps, {}> {
 
-  constructor(props: IControlGroupMeetingDate) {
+  constructor(props: IControlGroupMeetingDayProps) {
     super(props);
     this.handleChangeOfMeetingDate = this.handleChangeOfMeetingDate.bind(this);
   }
@@ -16,14 +16,7 @@ export class ControlGroupMeetingDate extends React.Component<IControlGroupMeetin
   public render(): React.ReactNode {
     return (
       <ControlGroup fill={true} vertical={false}>
-        <Label>Meeting Date</Label>
-        <Checkbox
-          label="All"
-          value="all"
-          className="all-date"
-          onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
-          checked={this.props.meetingDate.all}
-        />
+        <Label>Meeting Day</Label>
         <Checkbox
           label="Mon"
           value="mon"

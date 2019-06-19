@@ -1,45 +1,39 @@
 import * as React from 'react';
-import { IClass, IMeetingDate } from './Class';
-import { ISubject } from './Subject';
-import { FilterClasses } from './FilterClasses';
-import { UserInput } from './UserInput';
+import { IClass } from './Class';
 import { ClassesCards } from './ClassesCards';
 export interface IClassSearchResultsProps {
   classes: IClass[];
-  quarter: string;
-  campus: string;
-  subject: ISubject;
-  courseNo: string;
-  meetingDate: IMeetingDate;
-  instructionMode: string;
-  instructorName: string;
-  geClasses: boolean;
-  isReset?: boolean;
-  startTime: Date;
-  endTime: Date;
-  isLoading: boolean;
   onChangeOfLoadingMessage: () => void;
 }
 
 export class ClassSearchResults extends React.Component<IClassSearchResultsProps, {}> {
 
-  constructor(props: any) {
+  private noOfClasses: number;
+  constructor(props: IClassSearchResultsProps) {
     super(props);
+    this.noOfClasses = 0;
   }
 
   public render(): JSX.Element {
-    const rows: any = [];
-    let filteredResults: IClass[] = this.props.classes;
-    let counter = 0;
-    const userInput = new UserInput(
-      this.props.campus, this.props.meetingDate, this.props.subject, this.props.courseNo, this.props.quarter,
-      this.props.startTime, this.props.endTime, this.props.instructionMode, this.props.instructorName,
-      this.props.geClasses);
+    const classes: JSX.Element[] =  this.getClasses();
+    this.props.onChangeOfLoadingMessage();
+    return (
+      <div id="class-search-results-component">
+        <p>Found {this.noOfClasses} classes</p>
+        <ul>
+          {classes}
+        </ul>
+      </div>
+    );
+  }
+
+  private getClasses(): JSX.Element[] {
+    const classes: JSX.Element[] = [];
+    const filteredResults = this.props.classes;
     if (this.props.classes.length !== 0) {
-      filteredResults = FilterClasses.filter(this.props.classes, userInput);
       filteredResults.forEach((_class: IClass) => {
-        counter++;
-        rows.push(
+        this.noOfClasses++;
+        classes.push(
           <li key={_class.classNumber}>
             <ClassesCards classes={_class} />
             <br />
@@ -47,20 +41,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
         );
       });
     }
-    if (counter === filteredResults.length) {
-      this.props.onChangeOfLoadingMessage();
-    }
-    if (!this.props.isLoading && filteredResults.length === 0) {
-      return <p>No classes found.</p>;
-    }
-    return (
-      <div id="class-search-results-component">
-        <p>Found {counter} classes</p>
-        <ul>
-          {rows}
-        </ul>
-      </div>
-    );
+    return classes;
   }
 
 }

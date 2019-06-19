@@ -4,7 +4,6 @@ import { ISubject } from './Subject';
 export class UserInput {
   private campus: string = 'both';
   private day: IMeetingDate = {
-    all: false,
     mon: false,
     tue: false,
     wed: false,
@@ -15,15 +14,18 @@ export class UserInput {
   };
   private subject: string = '';
   private courseNo: string = '';
-  private quarter: string = 'current';
+  private quarter: string = '';
   private startTime: Date = new Date();
   private endTime: Date = new Date();
   private instructionMode: string = 'all';
   private instructor: string = '';
-  private geClasses: boolean = false;
+  private courseAttr: string | undefined = '';
+  private sessionCode: string | undefined = '';
+  private classNo: string | undefined = '';
 
   constructor(campus: string, day: IMeetingDate, subject: ISubject, courseNo: string, quarter: string,
-              startTime: Date, endTime: Date, instructionMode: string, instructor: string, geClasses: boolean) {
+              startTime: Date, endTime: Date, instructionMode: string, instructor: string,
+              courseAttr?: string, classNo?: string, sessionCode?: string) {
     this.campus = campus;
     this.day = day;
     this.subject = subject.abbr;
@@ -33,23 +35,19 @@ export class UserInput {
     this.endTime = endTime;
     this.instructionMode = instructionMode;
     this.instructor = instructor;
-    this.geClasses = geClasses;
+    this.courseAttr = courseAttr;
+    this.sessionCode = sessionCode;
+    this.classNo = classNo;
   }
 
-  public isBothCampusChecked(): boolean {
-    return (this.campus === 'both');
-  }
-
-  public isSanBernardinoChecked(): boolean {
-    return (this.campus === 'san-bernardino');
-  }
-
-  public isPalmDesertChecked(): boolean {
-    return (this.campus === 'palm-desert');
-  }
-
-  public isAllDaysChecked(): boolean {
-    return (this.day.all);
+  public getCampus(): string {
+    if (this.campus === 'san-bernardino') {
+      return 'MAIN';
+    }
+    if (this.campus === 'palm-desert') {
+      return 'PALM';
+    }
+    return '';
   }
 
   public isMondayChecked(): boolean  {
@@ -80,29 +78,6 @@ export class UserInput {
     return (this.day.sun);
   }
 
-  public isCurrentQuarterChecked(): boolean  {
-    return (this.quarter === 'current');
-  }
-
-  public isPreviousQuarterChecked(): boolean  {
-    return (this.quarter === 'prev');
-  }
-
-  public isBothQuartersChecked(): boolean {
-    return (this.quarter === 'both');
-  }
-
-  public isBothInstructionModeChecked(): boolean  {
-    return (this.instructionMode === 'both');
-  }
-
-  public isInPersonChecked(): boolean  {
-    return (this.instructionMode === 'classroom');
-  }
-
-  public isOnlineChecked(): boolean  {
-    return (this.instructionMode === 'online');
-  }
   public getSubject(): string {
     if (this.subject === 'all') {
       return '';
@@ -118,7 +93,7 @@ export class UserInput {
   }
 
   public getInstructionMode(): string {
-    return this.instructionMode;
+    return (this.instructionMode === 'all') ? '' : this.instructionMode;
   }
 
   public getStartTime(): Date {
@@ -133,8 +108,20 @@ export class UserInput {
     return this.courseNo;
   }
 
-  public isGeClassesSet(): boolean {
-    return this.geClasses;
+  public getCourseAttr(): string | undefined {
+    return (this.courseAttr === 'all' || this.courseAttr === undefined) ? '' : this.courseAttr.toLowerCase();
+  }
+
+  public getSessionCode(): string | undefined {
+    return (this.sessionCode === 'all' || this.sessionCode === undefined) ? '' : this.sessionCode;
+  }
+
+  public getClassNo(): string | undefined {
+    return this.classNo;
+  }
+
+  public getTerm(): string | undefined {
+    return this.quarter;
   }
 
 }

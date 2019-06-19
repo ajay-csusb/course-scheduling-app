@@ -1,22 +1,21 @@
 import * as React from 'react';
-import { FormGroup, Button, Label, MenuItem, Switch } from '@blueprintjs/core';
+import { FormGroup, Button, Label, MenuItem, IOptionProps } from '@blueprintjs/core';
 import { Suggest } from '@blueprintjs/select';
 import { autocompleteSubjectsProps } from './AutocompleteSubjects';
 import { SelectListQuarter } from './SelectListQuarter';
 import { SelectListCampus } from './SelectListCampus';
 import { ControlGroupMeetingTime } from './ControlGroupMeetingTime';
-import { ControlGroupMeetingDate } from './ControlGroupMeetingDate';
+import { ControlGroupMeetingDay } from './ControlGroupMeetingDay';
 import { IMeetingDate } from './Class';
 import { autocompleteInstructorsProps } from './AutocompleteInstructors';
 import { ISubject } from './Subject';
 import { SelectListInstructionMode } from './SelectListInstructionMode';
 import { AdvancedFilterFieldset } from './AdvancedFilterFieldset';
 
-interface ClassSearchFormProps {
-  quarter: string;
+interface IClassSearchFormProps {
+  term: IOptionProps[];
   campus: string;
   subjects: ISubject[];
-  showGeClasses: boolean;
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructors: string[];
@@ -24,23 +23,26 @@ interface ClassSearchFormProps {
   startTime: Date;
   endTime: Date;
   courseNo: string;
-  onChangeOfQuarter: (event: React.FormEvent) => void;
+  classNo: string;
+  onChangeOfTerm: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
   onChangeOfEndTime: (event: any) => void;
-  toggleGeClasses: (event: any) => void;
   onChangeOfMeetingDate: (event: any) => void;
   onChangeOfSubject: (event: any) => void;
   onChangeOfCourseNo: (event: any) => void;
   onChangeOfInstructionMode: (event: any) => void;
   onChangeOfInstructor: (event: any) => void;
+  onChangeOfCourseAttr: (event: any) => void;
+  onChangeOfSessionCode: (event: any) => void;
+  onChangeOfClassNo: (event: any) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;
 }
 
-export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
+export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> {
 
-  constructor(props: ClassSearchFormProps) {
+  constructor(props: IClassSearchFormProps) {
     super(props);
   }
   public render(): JSX.Element {
@@ -60,8 +62,8 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
     return (
       <FormGroup label="Fill in one or more of the fields below:">
         <SelectListQuarter
-          quarter={this.props.quarter}
-          onChangeOfQuarter={this.props.onChangeOfQuarter}
+          term={this.props.term}
+          onChangeOfTerm={this.props.onChangeOfTerm}
         />
         {subjects}
         {courseNumber}
@@ -76,13 +78,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
           startTime={this.props.startTime}
           endTime={this.props.endTime}
         />
-        <Switch
-          checked={this.props.showGeClasses}
-          className="ge-classes"
-          labelElement="Show only GE classes"
-          onChange={this.props.toggleGeClasses}
-        />
-        <ControlGroupMeetingDate
+        <ControlGroupMeetingDay
           meetingDate={this.props.meetingDate}
           onChangeOfMeetingDate={this.props.onChangeOfMeetingDate}
         />
@@ -113,7 +109,7 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
     const SuggestSubject = Suggest;
     return (
       <Label>
-        Select a Subject
+        Subject
         <SuggestSubject
           {...autocompleteSubjectsProps}
           items={this.getSubjects()}
@@ -164,7 +160,14 @@ export class ClassSearchForm extends React.Component<ClassSearchFormProps, {}> {
   }
 
   private getAdvancedFilterFieldset(): JSX.Element {
-    return <AdvancedFilterFieldset/>;
+    return(
+    <AdvancedFilterFieldset
+      classNo={this.props.classNo}
+      onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
+      onChangeOfSessionCode={this.props.onChangeOfSessionCode}
+      onChangeOfClassNo={this.props.onChangeOfClassNo}
+    />
+    );
   }
 
 }

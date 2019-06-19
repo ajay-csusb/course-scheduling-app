@@ -50,7 +50,6 @@ export interface IClass {
 }
 
 export interface IMeetingDate {
-  all: boolean;
   mon: boolean;
   tue: boolean;
   wed: boolean;
@@ -61,7 +60,7 @@ export interface IMeetingDate {
 }
 
 export class Class {
-  static classesUrl = 'https://webdx.csusb.edu/ClassSchedule/getCurrentCS';
+  static classesUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS';
 
   private classInfo: IClass;
 
@@ -123,25 +122,27 @@ export class Class {
 
   static getAllClasses(onSuccess: (response: any) => void,
                        onFailure: (error: string) => void, userInput: UserInput): void {
-    const currentQuarterId = localStorage.getItem('currentQuarterId') ;
     const params = {
       currentPage: '1',
       maximunPerPage: '3000',
       condition: {
-        strm: currentQuarterId,
+        strm: userInput.getTerm(),
         subject: userInput.getSubject().toUpperCase(),
-        name: '',
-        campus: '',
-        crse_attr: '',
+        name: userInput.getInstructor(),
+        campus: userInput.getCampus(),
+        catalog_nbr: userInput.getCourseNo(),
+        class_nbr: userInput.getClassNo(),
+        crse_attr: userInput.getCourseAttr(),
         meeting_time_start: '',
-        mon: '',
-        tues: '',
-        wed: '',
-        thurs: '',
-        fri: '',
-        sat: '',
-        sun: '',
-        instruction_mode: '',
+        mon: userInput.isMondayChecked() ? 'Y' : '',
+        tues: userInput.isTuesdayChecked() ? 'Y' : '',
+        wed: userInput.isWednesdayChecked() ? 'Y' : '',
+        thurs: userInput.isThursdayChecked() ? 'Y' : '',
+        fri: userInput.isFridayChecked() ? 'Y' : '',
+        sat: userInput.isSaturdayChecked() ? 'Y' : '',
+        sun: userInput.isSundayChecked() ? 'Y' : '',
+        instruction_mode: userInput.getInstructionMode().toUpperCase(),
+        section_code: userInput.getSessionCode(),
       },
     };
     ClassSearchUtils.fetchWithArg(this.classesUrl, params, onSuccess, onFailure);
