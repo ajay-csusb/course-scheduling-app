@@ -1,0 +1,1479 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test class search form component Class search container component snapshot 1`] = `
+<div>
+  <ClassSearchForm
+    campus="both"
+    courseNo=""
+    endTime={1899-01-02T04:00:00.000Z}
+    instructionMode="all"
+    instructors={Array []}
+    isReset={false}
+    meetingDate={
+      Object {
+        "all": true,
+        "fri": false,
+        "mon": false,
+        "sat": false,
+        "sun": false,
+        "thu": false,
+        "tue": false,
+        "wed": false,
+      }
+    }
+    onChangeOfCampus={[Function]}
+    onChangeOfCourseNo={[Function]}
+    onChangeOfEndTime={[Function]}
+    onChangeOfInstructionMode={[Function]}
+    onChangeOfInstructor={[Function]}
+    onChangeOfMeetingDate={[Function]}
+    onChangeOfQuarter={[Function]}
+    onChangeOfStartTime={[Function]}
+    onChangeOfSubject={[Function]}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    quarter="current"
+    showGeClasses={false}
+    startTime={1899-01-01T16:00:00.000Z}
+    subjects={Array []}
+    toggleGeClasses={[Function]}
+  />
+</div>
+`;
+
+exports[`test class search form component compare search form snapshot 1`] = `
+<ClassSearchForm
+  campus="both"
+  courseNo=""
+  endTime={1899-01-02T04:00:00.000Z}
+  instructionMode="all"
+  instructors={Array []}
+  isReset={false}
+  meetingDate={
+    Object {
+      "all": true,
+      "fri": false,
+      "mon": false,
+      "sat": false,
+      "sun": false,
+      "thu": false,
+      "tue": false,
+      "wed": false,
+    }
+  }
+  onChangeOfCampus={[Function]}
+  onChangeOfCourseNo={[Function]}
+  onChangeOfEndTime={[Function]}
+  onChangeOfInstructionMode={[Function]}
+  onChangeOfInstructor={[Function]}
+  onChangeOfMeetingDate={[Function]}
+  onChangeOfQuarter={[Function]}
+  onChangeOfStartTime={[Function]}
+  onChangeOfSubject={[Function]}
+  onReset={[Function]}
+  onSubmit={[Function]}
+  quarter="current"
+  showGeClasses={false}
+  startTime={1899-01-01T16:00:00.000Z}
+  subjects={Array []}
+  toggleGeClasses={[Function]}
+>
+  <div>
+    <Blueprint3.FormGroup
+      label="Fill in one or more of the fields below:"
+    >
+      <div
+        className="bp3-form-group"
+      >
+        <label
+          className="bp3-label"
+        >
+          Fill in one or more of the fields below:
+           
+          <span
+            className="bp3-text-muted"
+          />
+        </label>
+        <div
+          className="bp3-form-content"
+        >
+          <SelectListQuarter
+            onChangeOfQuarter={[Function]}
+            quarter="current"
+          >
+            <Component>
+              <label
+                className="bp3-label"
+              >
+                Quarter
+                <div
+                  className="bp3-select select-quarter"
+                >
+                  <select
+                    onChange={[Function]}
+                  >
+                    <option
+                      className="current-quarter"
+                      value="current"
+                    />
+                    <option
+                      className="prev-quarter"
+                      value="prev"
+                    />
+                  </select>
+                </div>
+              </label>
+            </Component>
+          </SelectListQuarter>
+          <Component>
+            <label
+              className="bp3-label"
+            >
+              Select a Subject
+              <Blueprint3.Suggest
+                className="search-autocomplete"
+                closeOnSelect={true}
+                inputValueRenderer={[Function]}
+                itemPredicate={[Function]}
+                itemRenderer={[Function]}
+                items={Array []}
+                noResults={
+                  <Blueprint3.MenuItem
+                    disabled={true}
+                    multiline={false}
+                    popoverProps={Object {}}
+                    shouldDismissPopover={true}
+                    text="Searching for subject..."
+                  />
+                }
+                onItemSelect={[Function]}
+                openOnKeyDown={false}
+                resetOnClose={true}
+              >
+                <Blueprint3.QueryList
+                  className="search-autocomplete"
+                  closeOnSelect={true}
+                  inputValueRenderer={[Function]}
+                  itemPredicate={[Function]}
+                  itemRenderer={[Function]}
+                  items={Array []}
+                  noResults={
+                    <Blueprint3.MenuItem
+                      disabled={true}
+                      multiline={false}
+                      popoverProps={Object {}}
+                      shouldDismissPopover={true}
+                      text="Searching for subject..."
+                    />
+                  }
+                  onItemSelect={[Function]}
+                  openOnKeyDown={false}
+                  renderer={[Function]}
+                  resetOnClose={true}
+                  resetOnQuery={true}
+                >
+                  <Blueprint3.Popover
+                    autoFocus={false}
+                    boundary="scrollParent"
+                    captureDismiss={false}
+                    className="search-autocomplete"
+                    defaultIsOpen={false}
+                    disabled={false}
+                    enforceFocus={false}
+                    hasBackdrop={false}
+                    hoverCloseDelay={300}
+                    hoverOpenDelay={150}
+                    inheritDarkTheme={true}
+                    interactionKind="click"
+                    isOpen={false}
+                    minimal={false}
+                    modifiers={Object {}}
+                    onInteraction={[Function]}
+                    onOpened={[Function]}
+                    onOpening={[Function]}
+                    openOnTargetFocus={true}
+                    popoverClassName="bp3-select-popover"
+                    position="bottom-left"
+                    targetTagName="span"
+                    transitionDuration={300}
+                    usePortal={true}
+                    wrapperTagName="span"
+                  >
+                    <Manager>
+                      <span
+                        className="bp3-popover-wrapper search-autocomplete"
+                      >
+                        <Reference
+                          innerRef={[Function]}
+                        >
+                          <InnerReference
+                            innerRef={[Function]}
+                            setReferenceNode={[Function]}
+                          >
+                            <Blueprint3.ResizeSensor
+                              onResize={[Function]}
+                            >
+                              <span
+                                className="bp3-popover-target"
+                                onClick={[Function]}
+                              >
+                                <Blueprint3.InputGroup
+                                  className=""
+                                  inputRef={[Function]}
+                                  key=".0"
+                                  onChange={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  placeholder="Search..."
+                                  value=""
+                                >
+                                  <div
+                                    className="bp3-input-group"
+                                  >
+                                    <Blueprint3.Icon />
+                                    <input
+                                      className="bp3-input"
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      onKeyDown={[Function]}
+                                      onKeyUp={[Function]}
+                                      placeholder="Search..."
+                                      style={
+                                        Object {
+                                          "paddingRight": 10,
+                                        }
+                                      }
+                                      type="text"
+                                      value=""
+                                    />
+                                  </div>
+                                </Blueprint3.InputGroup>
+                              </span>
+                            </Blueprint3.ResizeSensor>
+                          </InnerReference>
+                        </Reference>
+                        <Blueprint3.Overlay
+                          autoFocus={false}
+                          backdropClassName="bp3-popover-backdrop"
+                          backdropProps={Object {}}
+                          canEscapeKeyClose={true}
+                          canOutsideClickClose={true}
+                          enforceFocus={false}
+                          hasBackdrop={false}
+                          isOpen={false}
+                          lazy={true}
+                          onClose={[Function]}
+                          onOpened={[Function]}
+                          onOpening={[Function]}
+                          transitionDuration={300}
+                          transitionName="bp3-popover"
+                          usePortal={true}
+                        />
+                      </span>
+                    </Manager>
+                  </Blueprint3.Popover>
+                </Blueprint3.QueryList>
+              </Blueprint3.Suggest>
+            </label>
+          </Component>
+          <Component>
+            <label
+              className="bp3-label"
+            >
+              Course Number
+              <input
+                className="bp3-input course-number"
+                dir="auto"
+                onChange={[Function]}
+                placeholder="E.g. 602"
+                type="text"
+                value=""
+              />
+            </label>
+          </Component>
+          <Component>
+            <label
+              className="bp3-label"
+            >
+              Instructor
+              <Blueprint3.Suggest
+                className="search-instructor-autocomplete"
+                closeOnSelect={true}
+                inputValueRenderer={[Function]}
+                itemPredicate={[Function]}
+                itemRenderer={[Function]}
+                items={Array []}
+                noResults={
+                  <Blueprint3.MenuItem
+                    disabled={true}
+                    multiline={false}
+                    popoverProps={Object {}}
+                    shouldDismissPopover={true}
+                    text="Searching for instructor..."
+                  />
+                }
+                onItemSelect={[Function]}
+                openOnKeyDown={false}
+                resetOnClose={true}
+              >
+                <Blueprint3.QueryList
+                  className="search-instructor-autocomplete"
+                  closeOnSelect={true}
+                  inputValueRenderer={[Function]}
+                  itemPredicate={[Function]}
+                  itemRenderer={[Function]}
+                  items={Array []}
+                  noResults={
+                    <Blueprint3.MenuItem
+                      disabled={true}
+                      multiline={false}
+                      popoverProps={Object {}}
+                      shouldDismissPopover={true}
+                      text="Searching for instructor..."
+                    />
+                  }
+                  onItemSelect={[Function]}
+                  openOnKeyDown={false}
+                  renderer={[Function]}
+                  resetOnClose={true}
+                  resetOnQuery={true}
+                >
+                  <Blueprint3.Popover
+                    autoFocus={false}
+                    boundary="scrollParent"
+                    captureDismiss={false}
+                    className="search-instructor-autocomplete"
+                    defaultIsOpen={false}
+                    disabled={false}
+                    enforceFocus={false}
+                    hasBackdrop={false}
+                    hoverCloseDelay={300}
+                    hoverOpenDelay={150}
+                    inheritDarkTheme={true}
+                    interactionKind="click"
+                    isOpen={false}
+                    minimal={false}
+                    modifiers={Object {}}
+                    onInteraction={[Function]}
+                    onOpened={[Function]}
+                    onOpening={[Function]}
+                    openOnTargetFocus={true}
+                    popoverClassName="bp3-select-popover"
+                    position="bottom-left"
+                    targetTagName="span"
+                    transitionDuration={300}
+                    usePortal={true}
+                    wrapperTagName="span"
+                  >
+                    <Manager>
+                      <span
+                        className="bp3-popover-wrapper search-instructor-autocomplete"
+                      >
+                        <Reference
+                          innerRef={[Function]}
+                        >
+                          <InnerReference
+                            innerRef={[Function]}
+                            setReferenceNode={[Function]}
+                          >
+                            <Blueprint3.ResizeSensor
+                              onResize={[Function]}
+                            >
+                              <span
+                                className="bp3-popover-target"
+                                onClick={[Function]}
+                              >
+                                <Blueprint3.InputGroup
+                                  className=""
+                                  inputRef={[Function]}
+                                  key=".0"
+                                  onChange={[Function]}
+                                  onFocus={[Function]}
+                                  onKeyDown={[Function]}
+                                  onKeyUp={[Function]}
+                                  placeholder="Search..."
+                                  value=""
+                                >
+                                  <div
+                                    className="bp3-input-group"
+                                  >
+                                    <Blueprint3.Icon />
+                                    <input
+                                      className="bp3-input"
+                                      onChange={[Function]}
+                                      onFocus={[Function]}
+                                      onKeyDown={[Function]}
+                                      onKeyUp={[Function]}
+                                      placeholder="Search..."
+                                      style={
+                                        Object {
+                                          "paddingRight": 10,
+                                        }
+                                      }
+                                      type="text"
+                                      value=""
+                                    />
+                                  </div>
+                                </Blueprint3.InputGroup>
+                              </span>
+                            </Blueprint3.ResizeSensor>
+                          </InnerReference>
+                        </Reference>
+                        <Blueprint3.Overlay
+                          autoFocus={false}
+                          backdropClassName="bp3-popover-backdrop"
+                          backdropProps={Object {}}
+                          canEscapeKeyClose={true}
+                          canOutsideClickClose={true}
+                          enforceFocus={false}
+                          hasBackdrop={false}
+                          isOpen={false}
+                          lazy={true}
+                          onClose={[Function]}
+                          onOpened={[Function]}
+                          onOpening={[Function]}
+                          transitionDuration={300}
+                          transitionName="bp3-popover"
+                          usePortal={true}
+                        />
+                      </span>
+                    </Manager>
+                  </Blueprint3.Popover>
+                </Blueprint3.QueryList>
+              </Blueprint3.Suggest>
+            </label>
+          </Component>
+          <SelectListCampus
+            campus="both"
+            onChangeOfCampus={[Function]}
+          >
+            <Component>
+              <label
+                className="bp3-label"
+              >
+                Campus
+                <div
+                  className="bp3-select campus-select"
+                >
+                  <select
+                    onChange={[Function]}
+                  >
+                    <option
+                      className="both"
+                      label="Both"
+                      value="both"
+                    >
+                      Both
+                    </option>
+                    <option
+                      className="san-bernardino"
+                      label="San Bernardino"
+                      value="san-bernardino"
+                    >
+                      San Bernardino
+                    </option>
+                    <option
+                      className="palm-desert"
+                      label="Palm Desert"
+                      value="palm-desert"
+                    >
+                      Palm Desert
+                    </option>
+                  </select>
+                </div>
+              </label>
+            </Component>
+          </SelectListCampus>
+          <ControlGroupMeetingTime
+            endTime={1899-01-02T04:00:00.000Z}
+            onChangeOfEndTime={[Function]}
+            onChangeOfStartTime={[Function]}
+            startTime={1899-01-01T16:00:00.000Z}
+          >
+            <Blueprint3.ControlGroup>
+              <div
+                className="bp3-control-group"
+              >
+                <Component>
+                  <label
+                    className="bp3-label"
+                  >
+                    Meeting Time
+                    <Component>
+                      <label
+                        className="bp3-label"
+                      >
+                        Start Time
+                        <Blueprint3.TimePicker
+                          className="start-time"
+                          disabled={false}
+                          maxTime={1900-01-01T07:59:59.999Z}
+                          minTime={1899-12-31T08:00:00.000Z}
+                          onChange={[Function]}
+                          precision="minute"
+                          selectAllOnFocus={true}
+                          showArrowButtons={true}
+                          useAmPm={true}
+                          value={1899-01-01T16:00:00.000Z}
+                        >
+                          <div
+                            className="bp3-timepicker start-time"
+                          >
+                            <div
+                              className="bp3-timepicker-arrow-row"
+                            >
+                              <span
+                                className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                                onClick={[Function]}
+                              >
+                                <Blueprint3.Icon
+                                  icon="chevron-up"
+                                >
+                                  <span
+                                    className="bp3-icon bp3-icon-chevron-up"
+                                    icon="chevron-up"
+                                  >
+                                    <svg
+                                      data-icon="chevron-up"
+                                      height={16}
+                                      viewBox="0 0 16 16"
+                                      width={16}
+                                    >
+                                      <desc>
+                                        chevron-up
+                                      </desc>
+                                      <path
+                                        d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                                        fillRule="evenodd"
+                                        key="0"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Blueprint3.Icon>
+                              </span>
+                              <span
+                                className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                                onClick={[Function]}
+                              >
+                                <Blueprint3.Icon
+                                  icon="chevron-up"
+                                >
+                                  <span
+                                    className="bp3-icon bp3-icon-chevron-up"
+                                    icon="chevron-up"
+                                  >
+                                    <svg
+                                      data-icon="chevron-up"
+                                      height={16}
+                                      viewBox="0 0 16 16"
+                                      width={16}
+                                    >
+                                      <desc>
+                                        chevron-up
+                                      </desc>
+                                      <path
+                                        d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                                        fillRule="evenodd"
+                                        key="0"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Blueprint3.Icon>
+                              </span>
+                            </div>
+                            <div
+                              className="bp3-timepicker-input-row"
+                            >
+                              <input
+                                className="bp3-timepicker-input bp3-timepicker-hour"
+                                disabled={false}
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                onKeyDown={[Function]}
+                                value="8"
+                              />
+                              <span
+                                className="bp3-timepicker-divider-text"
+                              >
+                                :
+                              </span>
+                              <input
+                                className="bp3-timepicker-input bp3-timepicker-minute"
+                                disabled={false}
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                onKeyDown={[Function]}
+                                value="00"
+                              />
+                            </div>
+                            <HTMLSelect
+                              className="bp3-timepicker-ampm-select"
+                              disabled={false}
+                              onChange={[Function]}
+                              value="am"
+                            >
+                              <div
+                                className="bp3-html-select bp3-timepicker-ampm-select"
+                              >
+                                <select
+                                  disabled={false}
+                                  multiple={false}
+                                  onChange={[Function]}
+                                  value="am"
+                                >
+                                  <option
+                                    value="am"
+                                  >
+                                    AM
+                                  </option>
+                                  <option
+                                    value="pm"
+                                  >
+                                    PM
+                                  </option>
+                                </select>
+                                <Blueprint3.Icon
+                                  icon="double-caret-vertical"
+                                >
+                                  <span
+                                    className="bp3-icon bp3-icon-double-caret-vertical"
+                                    icon="double-caret-vertical"
+                                  >
+                                    <svg
+                                      data-icon="double-caret-vertical"
+                                      height={16}
+                                      viewBox="0 0 16 16"
+                                      width={16}
+                                    >
+                                      <desc>
+                                        double-caret-vertical
+                                      </desc>
+                                      <path
+                                        d="M5 7h6a1.003 1.003 0 0 0 .71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 0 0 5 7zm6 2H5a1.003 1.003 0 0 0-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0 0 11 9z"
+                                        fillRule="evenodd"
+                                        key="0"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Blueprint3.Icon>
+                              </div>
+                            </HTMLSelect>
+                            <div
+                              className="bp3-timepicker-arrow-row"
+                            >
+                              <span
+                                className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                                onClick={[Function]}
+                              >
+                                <Blueprint3.Icon
+                                  icon="chevron-down"
+                                >
+                                  <span
+                                    className="bp3-icon bp3-icon-chevron-down"
+                                    icon="chevron-down"
+                                  >
+                                    <svg
+                                      data-icon="chevron-down"
+                                      height={16}
+                                      viewBox="0 0 16 16"
+                                      width={16}
+                                    >
+                                      <desc>
+                                        chevron-down
+                                      </desc>
+                                      <path
+                                        d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                                        fillRule="evenodd"
+                                        key="0"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Blueprint3.Icon>
+                              </span>
+                              <span
+                                className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                                onClick={[Function]}
+                              >
+                                <Blueprint3.Icon
+                                  icon="chevron-down"
+                                >
+                                  <span
+                                    className="bp3-icon bp3-icon-chevron-down"
+                                    icon="chevron-down"
+                                  >
+                                    <svg
+                                      data-icon="chevron-down"
+                                      height={16}
+                                      viewBox="0 0 16 16"
+                                      width={16}
+                                    >
+                                      <desc>
+                                        chevron-down
+                                      </desc>
+                                      <path
+                                        d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                                        fillRule="evenodd"
+                                        key="0"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Blueprint3.Icon>
+                              </span>
+                            </div>
+                          </div>
+                        </Blueprint3.TimePicker>
+                      </label>
+                    </Component>
+                    <Component>
+                      <label
+                        className="bp3-label"
+                      >
+                        End Time
+                        <Blueprint3.TimePicker
+                          className="end-time"
+                          disabled={false}
+                          maxTime={1900-01-01T07:59:59.999Z}
+                          minTime={1899-12-31T08:00:00.000Z}
+                          onChange={[Function]}
+                          precision="minute"
+                          selectAllOnFocus={true}
+                          showArrowButtons={true}
+                          useAmPm={true}
+                          value={1899-01-02T04:00:00.000Z}
+                        >
+                          <div
+                            className="bp3-timepicker end-time"
+                          >
+                            <div
+                              className="bp3-timepicker-arrow-row"
+                            >
+                              <span
+                                className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                                onClick={[Function]}
+                              >
+                                <Blueprint3.Icon
+                                  icon="chevron-up"
+                                >
+                                  <span
+                                    className="bp3-icon bp3-icon-chevron-up"
+                                    icon="chevron-up"
+                                  >
+                                    <svg
+                                      data-icon="chevron-up"
+                                      height={16}
+                                      viewBox="0 0 16 16"
+                                      width={16}
+                                    >
+                                      <desc>
+                                        chevron-up
+                                      </desc>
+                                      <path
+                                        d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                                        fillRule="evenodd"
+                                        key="0"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Blueprint3.Icon>
+                              </span>
+                              <span
+                                className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                                onClick={[Function]}
+                              >
+                                <Blueprint3.Icon
+                                  icon="chevron-up"
+                                >
+                                  <span
+                                    className="bp3-icon bp3-icon-chevron-up"
+                                    icon="chevron-up"
+                                  >
+                                    <svg
+                                      data-icon="chevron-up"
+                                      height={16}
+                                      viewBox="0 0 16 16"
+                                      width={16}
+                                    >
+                                      <desc>
+                                        chevron-up
+                                      </desc>
+                                      <path
+                                        d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                                        fillRule="evenodd"
+                                        key="0"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Blueprint3.Icon>
+                              </span>
+                            </div>
+                            <div
+                              className="bp3-timepicker-input-row"
+                            >
+                              <input
+                                className="bp3-timepicker-input bp3-timepicker-hour"
+                                disabled={false}
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                onKeyDown={[Function]}
+                                value="8"
+                              />
+                              <span
+                                className="bp3-timepicker-divider-text"
+                              >
+                                :
+                              </span>
+                              <input
+                                className="bp3-timepicker-input bp3-timepicker-minute"
+                                disabled={false}
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                onKeyDown={[Function]}
+                                value="00"
+                              />
+                            </div>
+                            <HTMLSelect
+                              className="bp3-timepicker-ampm-select"
+                              disabled={false}
+                              onChange={[Function]}
+                              value="pm"
+                            >
+                              <div
+                                className="bp3-html-select bp3-timepicker-ampm-select"
+                              >
+                                <select
+                                  disabled={false}
+                                  multiple={false}
+                                  onChange={[Function]}
+                                  value="pm"
+                                >
+                                  <option
+                                    value="am"
+                                  >
+                                    AM
+                                  </option>
+                                  <option
+                                    value="pm"
+                                  >
+                                    PM
+                                  </option>
+                                </select>
+                                <Blueprint3.Icon
+                                  icon="double-caret-vertical"
+                                >
+                                  <span
+                                    className="bp3-icon bp3-icon-double-caret-vertical"
+                                    icon="double-caret-vertical"
+                                  >
+                                    <svg
+                                      data-icon="double-caret-vertical"
+                                      height={16}
+                                      viewBox="0 0 16 16"
+                                      width={16}
+                                    >
+                                      <desc>
+                                        double-caret-vertical
+                                      </desc>
+                                      <path
+                                        d="M5 7h6a1.003 1.003 0 0 0 .71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 0 0 5 7zm6 2H5a1.003 1.003 0 0 0-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0 0 11 9z"
+                                        fillRule="evenodd"
+                                        key="0"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Blueprint3.Icon>
+                              </div>
+                            </HTMLSelect>
+                            <div
+                              className="bp3-timepicker-arrow-row"
+                            >
+                              <span
+                                className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                                onClick={[Function]}
+                              >
+                                <Blueprint3.Icon
+                                  icon="chevron-down"
+                                >
+                                  <span
+                                    className="bp3-icon bp3-icon-chevron-down"
+                                    icon="chevron-down"
+                                  >
+                                    <svg
+                                      data-icon="chevron-down"
+                                      height={16}
+                                      viewBox="0 0 16 16"
+                                      width={16}
+                                    >
+                                      <desc>
+                                        chevron-down
+                                      </desc>
+                                      <path
+                                        d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                                        fillRule="evenodd"
+                                        key="0"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Blueprint3.Icon>
+                              </span>
+                              <span
+                                className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                                onClick={[Function]}
+                              >
+                                <Blueprint3.Icon
+                                  icon="chevron-down"
+                                >
+                                  <span
+                                    className="bp3-icon bp3-icon-chevron-down"
+                                    icon="chevron-down"
+                                  >
+                                    <svg
+                                      data-icon="chevron-down"
+                                      height={16}
+                                      viewBox="0 0 16 16"
+                                      width={16}
+                                    >
+                                      <desc>
+                                        chevron-down
+                                      </desc>
+                                      <path
+                                        d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                                        fillRule="evenodd"
+                                        key="0"
+                                      />
+                                    </svg>
+                                  </span>
+                                </Blueprint3.Icon>
+                              </span>
+                            </div>
+                          </div>
+                        </Blueprint3.TimePicker>
+                      </label>
+                    </Component>
+                  </label>
+                </Component>
+              </div>
+            </Blueprint3.ControlGroup>
+          </ControlGroupMeetingTime>
+          <Blueprint3.Switch
+            checked={false}
+            className="ge-classes"
+            labelElement="Show only GE classes"
+            onChange={[Function]}
+          >
+            <Control
+              checked={false}
+              className="ge-classes"
+              labelElement="Show only GE classes"
+              onChange={[Function]}
+              type="checkbox"
+              typeClassName="bp3-switch"
+            >
+              <label
+                className="bp3-control bp3-switch ge-classes"
+              >
+                <input
+                  checked={false}
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Show only GE classes
+              </label>
+            </Control>
+          </Blueprint3.Switch>
+          <ControlGroupMeetingDate
+            meetingDate={
+              Object {
+                "all": true,
+                "fri": false,
+                "mon": false,
+                "sat": false,
+                "sun": false,
+                "thu": false,
+                "tue": false,
+                "wed": false,
+              }
+            }
+            onChangeOfMeetingDate={[Function]}
+          >
+            <Blueprint3.ControlGroup
+              fill={true}
+              vertical={false}
+            >
+              <div
+                className="bp3-control-group bp3-fill"
+              >
+                <Component>
+                  <label
+                    className="bp3-label"
+                  >
+                    Meeting Date
+                  </label>
+                </Component>
+                <Blueprint3.Checkbox
+                  checked={true}
+                  className="all-date"
+                  label="All"
+                  onChange={[Function]}
+                  value="all"
+                >
+                  <Control
+                    checked={true}
+                    className="all-date"
+                    inputRef={[Function]}
+                    label="All"
+                    onChange={[Function]}
+                    type="checkbox"
+                    typeClassName="bp3-checkbox"
+                    value="all"
+                  >
+                    <label
+                      className="bp3-control bp3-checkbox all-date"
+                    >
+                      <input
+                        checked={true}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="all"
+                      />
+                      <span
+                        className="bp3-control-indicator"
+                      />
+                      All
+                    </label>
+                  </Control>
+                </Blueprint3.Checkbox>
+                <Blueprint3.Checkbox
+                  checked={false}
+                  className="mon"
+                  label="Mon"
+                  onChange={[Function]}
+                  value="mon"
+                >
+                  <Control
+                    checked={false}
+                    className="mon"
+                    inputRef={[Function]}
+                    label="Mon"
+                    onChange={[Function]}
+                    type="checkbox"
+                    typeClassName="bp3-checkbox"
+                    value="mon"
+                  >
+                    <label
+                      className="bp3-control bp3-checkbox mon"
+                    >
+                      <input
+                        checked={false}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="mon"
+                      />
+                      <span
+                        className="bp3-control-indicator"
+                      />
+                      Mon
+                    </label>
+                  </Control>
+                </Blueprint3.Checkbox>
+                <Blueprint3.Checkbox
+                  checked={false}
+                  className="tue"
+                  label="Tue"
+                  onChange={[Function]}
+                  value="tue"
+                >
+                  <Control
+                    checked={false}
+                    className="tue"
+                    inputRef={[Function]}
+                    label="Tue"
+                    onChange={[Function]}
+                    type="checkbox"
+                    typeClassName="bp3-checkbox"
+                    value="tue"
+                  >
+                    <label
+                      className="bp3-control bp3-checkbox tue"
+                    >
+                      <input
+                        checked={false}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="tue"
+                      />
+                      <span
+                        className="bp3-control-indicator"
+                      />
+                      Tue
+                    </label>
+                  </Control>
+                </Blueprint3.Checkbox>
+                <Blueprint3.Checkbox
+                  checked={false}
+                  className="wed"
+                  label="Wed"
+                  onChange={[Function]}
+                  value="wed"
+                >
+                  <Control
+                    checked={false}
+                    className="wed"
+                    inputRef={[Function]}
+                    label="Wed"
+                    onChange={[Function]}
+                    type="checkbox"
+                    typeClassName="bp3-checkbox"
+                    value="wed"
+                  >
+                    <label
+                      className="bp3-control bp3-checkbox wed"
+                    >
+                      <input
+                        checked={false}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="wed"
+                      />
+                      <span
+                        className="bp3-control-indicator"
+                      />
+                      Wed
+                    </label>
+                  </Control>
+                </Blueprint3.Checkbox>
+                <Blueprint3.Checkbox
+                  checked={false}
+                  className="thu"
+                  label="Thu"
+                  onChange={[Function]}
+                  value="thu"
+                >
+                  <Control
+                    checked={false}
+                    className="thu"
+                    inputRef={[Function]}
+                    label="Thu"
+                    onChange={[Function]}
+                    type="checkbox"
+                    typeClassName="bp3-checkbox"
+                    value="thu"
+                  >
+                    <label
+                      className="bp3-control bp3-checkbox thu"
+                    >
+                      <input
+                        checked={false}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="thu"
+                      />
+                      <span
+                        className="bp3-control-indicator"
+                      />
+                      Thu
+                    </label>
+                  </Control>
+                </Blueprint3.Checkbox>
+                <Blueprint3.Checkbox
+                  checked={false}
+                  className="fri"
+                  label="Fri"
+                  onChange={[Function]}
+                  value="fri"
+                >
+                  <Control
+                    checked={false}
+                    className="fri"
+                    inputRef={[Function]}
+                    label="Fri"
+                    onChange={[Function]}
+                    type="checkbox"
+                    typeClassName="bp3-checkbox"
+                    value="fri"
+                  >
+                    <label
+                      className="bp3-control bp3-checkbox fri"
+                    >
+                      <input
+                        checked={false}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="fri"
+                      />
+                      <span
+                        className="bp3-control-indicator"
+                      />
+                      Fri
+                    </label>
+                  </Control>
+                </Blueprint3.Checkbox>
+                <Blueprint3.Checkbox
+                  checked={false}
+                  className="sat"
+                  label="Sat"
+                  onChange={[Function]}
+                  value="sat"
+                >
+                  <Control
+                    checked={false}
+                    className="sat"
+                    inputRef={[Function]}
+                    label="Sat"
+                    onChange={[Function]}
+                    type="checkbox"
+                    typeClassName="bp3-checkbox"
+                    value="sat"
+                  >
+                    <label
+                      className="bp3-control bp3-checkbox sat"
+                    >
+                      <input
+                        checked={false}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="sat"
+                      />
+                      <span
+                        className="bp3-control-indicator"
+                      />
+                      Sat
+                    </label>
+                  </Control>
+                </Blueprint3.Checkbox>
+                <Blueprint3.Checkbox
+                  checked={false}
+                  className="sun"
+                  label="Sun"
+                  onChange={[Function]}
+                  value="sun"
+                >
+                  <Control
+                    checked={false}
+                    className="sun"
+                    inputRef={[Function]}
+                    label="Sun"
+                    onChange={[Function]}
+                    type="checkbox"
+                    typeClassName="bp3-checkbox"
+                    value="sun"
+                  >
+                    <label
+                      className="bp3-control bp3-checkbox sun"
+                    >
+                      <input
+                        checked={false}
+                        onChange={[Function]}
+                        type="checkbox"
+                        value="sun"
+                      />
+                      <span
+                        className="bp3-control-indicator"
+                      />
+                      Sun
+                    </label>
+                  </Control>
+                </Blueprint3.Checkbox>
+              </div>
+            </Blueprint3.ControlGroup>
+          </ControlGroupMeetingDate>
+          <SelectListInstructionMode
+            instructionMode="all"
+            onChangeOfInstructionMode={[Function]}
+          >
+            <Component>
+              <label
+                className="bp3-label"
+              >
+                Instruction Mode
+                <div
+                  className="bp3-select"
+                >
+                  <select
+                    onChange={[Function]}
+                  >
+                    <option
+                      label="All"
+                      value="all"
+                    >
+                      All
+                    </option>
+                    <option
+                      label="Classroom"
+                      value="p"
+                    >
+                      Classroom
+                    </option>
+                    <option
+                      label="Online"
+                      value="ol"
+                    >
+                      Online
+                    </option>
+                    <option
+                      label="Online CourseMatch Instruction"
+                      value="cm"
+                    >
+                      Online CourseMatch Instruction
+                    </option>
+                    <option
+                      label="Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)"
+                      value="fo"
+                    >
+                      Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)
+                    </option>
+                    <option
+                      label="Hybrid Online Asynchronous and Synchronous Instruction"
+                      value="ho"
+                    >
+                      Hybrid Online Asynchronous and Synchronous Instruction
+                    </option>
+                    <option
+                      label="Hybrid Classroom and Online Instruction"
+                      value="hc"
+                    >
+                      Hybrid Classroom and Online Instruction
+                    </option>
+                    <option
+                      label="Off-Campus "
+                      value="oc"
+                    >
+                      Off-Campus
+                    </option>
+                    <option
+                      label="Televised Instruction (origination site)"
+                      value="to"
+                    >
+                      Televised Instruction (origination site)
+                    </option>
+                    <option
+                      label="Televised Instruction (receiving site)"
+                      value="tr"
+                    >
+                      Televised Instruction (receiving site)
+                    </option>
+                    <option
+                      label="Zero Unit Instruction "
+                      value="z"
+                    >
+                      Zero Unit Instruction 
+                    </option>
+                  </select>
+                </div>
+              </label>
+            </Component>
+          </SelectListInstructionMode>
+          <AdvancedFilterFieldset>
+            <div>
+              <a
+                onClick={[Function]}
+              >
+                Show
+                 Additional Filters
+              </a>
+              <Blueprint3.Collapse
+                component="div"
+                isOpen={false}
+                keepChildrenMounted={false}
+                transitionDuration={200}
+              >
+                <div
+                  className="bp3-collapse"
+                  style={
+                    Object {
+                      "height": undefined,
+                      "overflowY": undefined,
+                      "transition": undefined,
+                    }
+                  }
+                >
+                  <div
+                    aria-hidden={false}
+                    className="bp3-collapse-body"
+                    style={
+                      Object {
+                        "transform": "translateY(-0px)",
+                        "transition": undefined,
+                      }
+                    }
+                  />
+                </div>
+              </Blueprint3.Collapse>
+            </div>
+          </AdvancedFilterFieldset>
+          <Blueprint3.Button
+            className="bp3-intent-primary"
+            onClick={[Function]}
+            text="Submit"
+            type="submit"
+          >
+            <button
+              className="bp3-button bp3-intent-primary"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              type="submit"
+            >
+              <Blueprint3.Icon
+                key="leftIcon"
+              />
+              <span
+                className="bp3-button-text"
+                key="text"
+              >
+                Submit
+              </span>
+              <Blueprint3.Icon
+                key="rightIcon"
+              />
+            </button>
+          </Blueprint3.Button>
+          <Blueprint3.Button
+            onClick={[Function]}
+            style={
+              Object {
+                "float": "right",
+              }
+            }
+            text="Reset"
+            type="reset"
+          >
+            <button
+              className="bp3-button"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              style={
+                Object {
+                  "float": "right",
+                }
+              }
+              type="reset"
+            >
+              <Blueprint3.Icon
+                key="leftIcon"
+              />
+              <span
+                className="bp3-button-text"
+                key="text"
+              >
+                Reset
+              </span>
+              <Blueprint3.Icon
+                key="rightIcon"
+              />
+            </button>
+          </Blueprint3.Button>
+        </div>
+      </div>
+    </Blueprint3.FormGroup>
+  </div>
+</ClassSearchForm>
+`;

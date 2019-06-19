@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test radio group quarter component RadioGroupQuarter component snapshot 1`] = `
+<SelectListQuarter
+  onChangeOfQuarter={[MockFunction]}
+  quarter="current"
+>
+  <Component>
+    <label
+      className="bp3-label"
+    >
+      Quarter
+      <div
+        className="bp3-select select-quarter"
+      >
+        <select
+          onChange={[Function]}
+        >
+          <option
+            className="current-quarter"
+            value="current"
+          />
+          <option
+            className="prev-quarter"
+            value="prev"
+          />
+        </select>
+      </div>
+    </label>
+  </Component>
+</SelectListQuarter>
+`;

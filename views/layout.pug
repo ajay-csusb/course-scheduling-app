@@ -13,6 +13,11 @@ html(lang='')
     link(rel='stylesheet', href='https://unpkg.com/@blueprintjs/icons@^3.4.0/lib/css/blueprint-icons.css')
     link(rel='stylesheet', href='https://unpkg.com/@blueprintjs/core@^3.10.0/lib/css/blueprint.css')
     link(rel='stylesheet', href='/css/main.css')
+    style(type='text/css').
+      .bp3-popover-content ul {
+        height: 300px;
+        overflow: auto;
+      }
 
   body
     include partials/header
@@ -28,7 +33,7 @@ html(lang='')
     script(src='https://unpkg.com/dom4@^1.8')
     script(src='https://unpkg.com/tslib@^1.9.0')
     script(async defer src="https://buttons.github.io/buttons.js")
-    script(crossorigin src='https://unpkg.com/react@16/umd/react.production.min.js')
+    script(crossorigin src='https://cdnjs.cloudflare.com/ajax/libs/react/16.7.0/umd/react.production.min.js')
     script(crossorigin src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.7.0/umd/react-dom.production.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/react-transition-group/2.5.3/react-transition-group.js')
     script(src='https://unpkg.com/popper.js@^1.14.1/dist/umd/popper.js')

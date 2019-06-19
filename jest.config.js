@@ -5,14 +5,20 @@ module.exports = {
 		}
 	},
 	moduleFileExtensions: [
-		'ts',
-		'js'
+		"ts",
+		"tsx",
+		"js",
+		"jsx",
+		"json",
+		"node"
 	],
 	transform: {
 		'^.+\\.(ts|tsx)$': './node_modules/ts-jest/preprocessor.js'
 	},
 	testMatch: [
-		'**/test/**/*.test.(ts|js)'
+		'**/test/**/*.test.(ts|js|tsx)'
 	],
+	"snapshotSerializers": ["enzyme-to-json/serializer"],
+	"setupTestFrameworkScriptFile": "<rootDir>/setupEnzyme.ts",
 	testEnvironment: 'node'
 };
