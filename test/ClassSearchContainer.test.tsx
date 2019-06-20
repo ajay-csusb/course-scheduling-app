@@ -82,6 +82,15 @@ describe('states', () => {
     });
   });
 
+  describe('when course number is entered', () => {
+    it('should set the correct state of courseNumber', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('.course-number').simulate('change', { target: { value: '111' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('courseNo')).toEqual('111');
+    });
+  });
+
   describe('When user clicks submit', () => {
     let classSearchContainerWrapper = null;
     beforeEach(() => {

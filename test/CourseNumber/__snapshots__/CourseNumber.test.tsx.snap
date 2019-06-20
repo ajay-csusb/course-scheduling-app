@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Course number component Given a class search form snapshot 1`] = `
+<input
+  className="bp3-input course-number"
+  dir="auto"
+  onChange={[Function]}
+  placeholder="E.g. 602"
+  type="text"
+  value=""
+/>
+`;

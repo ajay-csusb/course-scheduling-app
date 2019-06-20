@@ -472,4 +472,20 @@ describe('fetch parameters', () => {
       expect(subjectArgument.body).toMatch(new RegExp('"section_code":"foo"'));
     });
   });
+
+  describe('when course number is set', () => {
+    it('should pass the chosen value', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({
+        subject: {
+          abbr: 'bar',
+          name: 'Bar',
+        },
+      });
+      classSearchContainerWrapper.find('.course-number').simulate('change', { target: { value: '100' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const subjectArgument = fetchMock.lastOptions();
+      expect(subjectArgument.body).toMatch(new RegExp('"catalog_nbr":"100"'));
+    });
+  });
 });
