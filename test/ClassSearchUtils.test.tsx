@@ -1,5 +1,9 @@
+import * as React from 'react';
+import fetchMock from 'fetch-mock';
 import * as ClassSearchUtils from '../src/public/js/ClassSearchUtils';
-import { classJson} from './ClassesJson';
+import { classJson, rawClassesJson} from './ClassesJson';
+import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
+import { mount, shallow } from 'enzyme';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -320,5 +324,52 @@ describe('Session code values', () => {
       });
     });
   });
+});
 
+describe('fetch parameters', () => {
+  beforeAll(() => {
+    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList', {});
+    fetchMock.mock('https://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST', {});
+    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS', rawClassesJson);
+  });
+
+  test('fetch is called with correct URL on page load', () => {
+    shallow(<ClassSearchContainer />);
+    expect(fetchMock.lastUrl()).toMatch(new RegExp('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList'));
+  });
+
+  describe('when a user selects All in Subjects', () => {
+    let classSearchContainerWrapper = null;
+    beforeEach(() => {
+      classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({
+        subject: {
+          name: 'All',
+          abbr: 'all',
+        },
+      });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      classSearchContainerWrapper.update();
+    });
+
+    it('should make a request to get all subjects', () => {
+      const subjectArgument = fetchMock.lastOptions();
+      expect(subjectArgument.body).toMatch(new RegExp('"subject":""'));
+    });
+  });
+
+  describe('when subject is updated', () => {
+    it('should use correct parameters', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({
+        subject: {
+          abbr: 'bar',
+          name: 'Bar',
+        },
+      });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const subjectArgument = fetchMock.lastOptions();
+      expect(subjectArgument.body).toMatch(new RegExp('"subject":"BAR"'));
+    });
+  });
 });

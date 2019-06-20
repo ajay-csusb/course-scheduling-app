@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test class search form component Class search container component snapshot 1`] = `
+exports[`snapshots Class search container component snapshot 1`] = `
 <div>
   <ClassSearchForm
     campus="both"
@@ -42,7 +42,7 @@ exports[`test class search form component Class search container component snaps
 </div>
 `;
 
-exports[`test class search form component compare search form snapshot 1`] = `
+exports[`snapshots compare search form snapshot 1`] = `
 <ClassSearchForm
   campus="both"
   classNo=""
