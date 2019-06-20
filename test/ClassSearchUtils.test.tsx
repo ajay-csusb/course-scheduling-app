@@ -438,4 +438,38 @@ describe('fetch parameters', () => {
       expect(subjectArgument.body).toMatch(new RegExp('"crse_attr":"foo"'));
     });
   });
+
+  describe('when sessionCode is set to all', () => {
+    it('should pass an empty string', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({
+        subject: {
+          abbr: 'bar',
+          name: 'Bar',
+        },
+      });
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.session-code > select').simulate('change', { target: { value: 'all' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const subjectArgument = fetchMock.lastOptions();
+      expect(subjectArgument.body).toMatch(new RegExp('"section_code":""'));
+    });
+  });
+
+  describe('when sessionCode is set', () => {
+    it('should pass the chosen value', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({
+        subject: {
+          abbr: 'bar',
+          name: 'Bar',
+        },
+      });
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.session-code > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const subjectArgument = fetchMock.lastOptions();
+      expect(subjectArgument.body).toMatch(new RegExp('"section_code":"foo"'));
+    });
+  });
 });

@@ -72,6 +72,16 @@ describe('states', () => {
     });
   });
 
+  describe('when an option is selected from session code', () => {
+    it('should set the correct state of sessionCode', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.session-code > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('sessionCode')).toEqual('foo');
+    });
+  });
+
   describe('When user clicks submit', () => {
     let classSearchContainerWrapper = null;
     beforeEach(() => {
