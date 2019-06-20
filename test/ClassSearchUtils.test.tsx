@@ -372,4 +372,36 @@ describe('fetch parameters', () => {
       expect(subjectArgument.body).toMatch(new RegExp('"subject":"BAR"'));
     });
   });
+
+  describe('when instructionMode is set to all', () => {
+    it('should pass empty string', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({
+        subject: {
+          abbr: 'bar',
+          name: 'Bar',
+        },
+      });
+      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'all' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const subjectArgument = fetchMock.lastOptions();
+      expect(subjectArgument.body).toMatch(new RegExp('"instruction_mode":""'));
+    });
+  });
+
+  describe('when instructionMode is set', () => {
+    it('should use pass the value in uppercase', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({
+        subject: {
+          abbr: 'bar',
+          name: 'Bar',
+        },
+      });
+      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const subjectArgument = fetchMock.lastOptions();
+      expect(subjectArgument.body).toMatch(new RegExp('"instruction_mode":"FOO"'));
+    });
+  });
 });

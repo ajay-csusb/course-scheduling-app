@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
 import { rawClassesJson } from './ClassesJson';
-// tslint:disable-max-line-length
+// tslint:disable:max-line-length
 
 describe('snapshots', () => {
 
@@ -60,6 +60,15 @@ describe('states', () => {
       classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'foo' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       expect(classSearchContainerWrapper.state('campus')).toEqual('foo');
+    });
+  });
+
+  describe('when an option is selected from instruction mode', () => {
+    it('should set the correct state of instructionMode', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('instructionMode')).toEqual('foo');
     });
   });
 
@@ -126,6 +135,10 @@ describe('states', () => {
 
     it('sets campus to both', () => {
       expect(classSearchContainerWrapper.state('campus')).toEqual('both');
+    });
+
+    it('sets instructionMode to all', () => {
+      expect(classSearchContainerWrapper.state('instructionMode')).toEqual('all');
     });
   });
 });

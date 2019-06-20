@@ -1308,74 +1308,160 @@ exports[`snapshots compare search form snapshot 1`] = `
                 className="bp3-label"
               >
                 Instruction Mode
-                <div
-                  className="bp3-select select-instruction-mode"
+                <HTMLSelect
+                  className="select-instruction-mode"
+                  onChange={[Function]}
+                  options={
+                    Array [
+                      Object {
+                        "label": "All",
+                        "value": "all",
+                      },
+                      Object {
+                        "label": "Classroom",
+                        "value": "p",
+                      },
+                      Object {
+                        "label": "Online",
+                        "value": "ol",
+                      },
+                      Object {
+                        "label": "Online CourseMatch Instruction",
+                        "value": "cm",
+                      },
+                      Object {
+                        "label": "Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)",
+                        "value": "fo",
+                      },
+                      Object {
+                        "label": "Hybrid Online Asynchronous and Synchronous Instruction",
+                        "value": "ho",
+                      },
+                      Object {
+                        "label": "Hybrid Classroom and Online Instruction",
+                        "value": "hc",
+                      },
+                      Object {
+                        "label": "Off-Campus ",
+                        "value": "oc",
+                      },
+                      Object {
+                        "label": "Televised Instruction (origination site)",
+                        "value": "to",
+                      },
+                      Object {
+                        "label": "Televised Instruction (receiving site)",
+                        "value": "tr",
+                      },
+                    ]
+                  }
+                  value="all"
                 >
-                  <select
-                    onChange={[Function]}
+                  <div
+                    className="bp3-html-select select-instruction-mode"
                   >
-                    <option
-                      label="All"
+                    <select
+                      multiple={false}
+                      onChange={[Function]}
                       value="all"
                     >
-                      All
-                    </option>
-                    <option
-                      label="Classroom"
-                      value="p"
+                      <option
+                        key="all"
+                        label="All"
+                        value="all"
+                      >
+                        All
+                      </option>
+                      <option
+                        key="p"
+                        label="Classroom"
+                        value="p"
+                      >
+                        Classroom
+                      </option>
+                      <option
+                        key="ol"
+                        label="Online"
+                        value="ol"
+                      >
+                        Online
+                      </option>
+                      <option
+                        key="cm"
+                        label="Online CourseMatch Instruction"
+                        value="cm"
+                      >
+                        Online CourseMatch Instruction
+                      </option>
+                      <option
+                        key="fo"
+                        label="Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)"
+                        value="fo"
+                      >
+                        Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)
+                      </option>
+                      <option
+                        key="ho"
+                        label="Hybrid Online Asynchronous and Synchronous Instruction"
+                        value="ho"
+                      >
+                        Hybrid Online Asynchronous and Synchronous Instruction
+                      </option>
+                      <option
+                        key="hc"
+                        label="Hybrid Classroom and Online Instruction"
+                        value="hc"
+                      >
+                        Hybrid Classroom and Online Instruction
+                      </option>
+                      <option
+                        key="oc"
+                        label="Off-Campus "
+                        value="oc"
+                      >
+                        Off-Campus 
+                      </option>
+                      <option
+                        key="to"
+                        label="Televised Instruction (origination site)"
+                        value="to"
+                      >
+                        Televised Instruction (origination site)
+                      </option>
+                      <option
+                        key="tr"
+                        label="Televised Instruction (receiving site)"
+                        value="tr"
+                      >
+                        Televised Instruction (receiving site)
+                      </option>
+                    </select>
+                    <Blueprint3.Icon
+                      icon="double-caret-vertical"
                     >
-                      Classroom
-                    </option>
-                    <option
-                      label="Online"
-                      value="ol"
-                    >
-                      Online
-                    </option>
-                    <option
-                      label="Online CourseMatch Instruction"
-                      value="cm"
-                    >
-                      Online CourseMatch Instruction
-                    </option>
-                    <option
-                      label="Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)"
-                      value="fo"
-                    >
-                      Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)
-                    </option>
-                    <option
-                      label="Hybrid Online Asynchronous and Synchronous Instruction"
-                      value="ho"
-                    >
-                      Hybrid Online Asynchronous and Synchronous Instruction
-                    </option>
-                    <option
-                      label="Hybrid Classroom and Online Instruction"
-                      value="hc"
-                    >
-                      Hybrid Classroom and Online Instruction
-                    </option>
-                    <option
-                      label="Off-Campus "
-                      value="oc"
-                    >
-                      Off-Campus
-                    </option>
-                    <option
-                      label="Televised Instruction (origination site)"
-                      value="to"
-                    >
-                      Televised Instruction (origination site)
-                    </option>
-                    <option
-                      label="Televised Instruction (receiving site)"
-                      value="tr"
-                    >
-                      Televised Instruction (receiving site)
-                    </option>
-                  </select>
-                </div>
+                      <span
+                        className="bp3-icon bp3-icon-double-caret-vertical"
+                        icon="double-caret-vertical"
+                      >
+                        <svg
+                          data-icon="double-caret-vertical"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            double-caret-vertical
+                          </desc>
+                          <path
+                            d="M5 7h6a1.003 1.003 0 0 0 .71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 0 0 5 7zm6 2H5a1.003 1.003 0 0 0-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0 0 11 9z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </div>
+                </HTMLSelect>
               </label>
             </Component>
           </SelectListInstructionMode>
