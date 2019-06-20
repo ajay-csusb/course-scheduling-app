@@ -1,5 +1,5 @@
   import React from 'react';
-  import { Label } from '@blueprintjs/core';
+  import { Label, HTMLSelect, IOptionProps } from '@blueprintjs/core';
 
   export interface ISelectListCampusProps {
     campus: string;
@@ -12,17 +12,21 @@
     }
 
     public render(): React.ReactNode {
+      const campus: IOptionProps[] = [
+        { label: 'Both', value: 'both', className: 'both'},
+        { label: 'San Bernardino', value: 'san-bernardino', className: 'san-bernardino'},
+        { label: 'Palm Desert', value: 'palm-desert', className: 'palm-desert'},
+      ];
       return (
         <Label>
           Campus
-          <div className="bp3-select campus-select">
-            <select onChange={this.handleChangeOfCampus}>
-              <option label="Both" value="both" className="both">Both</option>
-              <option label="San Bernardino" value="san-bernardino" className="san-bernardino">San Bernardino</option>
-              <option label="Palm Desert" value="palm-desert" className="palm-desert">Palm Desert</option>
-            </select>
-          </div>
-      </Label>
+          <HTMLSelect
+            value={this.props.campus}
+            options={campus}
+            onChange={this.handleChangeOfCampus}
+            className="campus-select"
+          />
+        </Label>
       );
     }
 
