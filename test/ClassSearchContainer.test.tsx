@@ -3,7 +3,6 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
 import { rawClassesJson } from './ClassesJson';
-import { ClassSearchForm } from '../src/public/js/ClassSearchForm';
 
 describe('test class search form component', () => {
 
@@ -69,6 +68,15 @@ describe('test correct states are set', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       expect(classSearchContainerWrapper.state('showErrorMessage')).toBeTruthy();
+    });
+  });
+
+  describe('when an option is selected from campus', () => {
+    it('should set the correct state of campus', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('campus')).toEqual('foo');
     });
   });
 });
