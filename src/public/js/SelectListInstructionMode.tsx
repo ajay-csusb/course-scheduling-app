@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label } from '@blueprintjs/core';
+import { Label, HTMLSelect, IOptionProps } from '@blueprintjs/core';
 export interface ISelectListInstructionMode {
   instructionMode: string;
   onChangeOfInstructionMode: (event: React.FormEvent) => void;
@@ -13,33 +13,27 @@ export class SelectListInstructionMode extends React.Component<ISelectListInstru
   }
 
   public render(): React.ReactNode {
+    const instructionMode: IOptionProps[] = [
+      { label: 'All', value: 'all'},
+      { label: 'Classroom', value: 'p'},
+      { label: 'Online', value: 'ol'},
+      { label: 'Online CourseMatch Instruction', value: 'cm'},
+      { label: 'Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)', value: 'fo'},
+      { label: 'Hybrid Online Asynchronous and Synchronous Instruction', value: 'ho'},
+      { label: 'Hybrid Classroom and Online Instruction', value: 'hc'},
+      { label: 'Off-Campus ', value: 'oc'},
+      { label: 'Televised Instruction (origination site)', value: 'to'},
+      { label: 'Televised Instruction (receiving site)', value: 'tr'},
+    ];
     return (
       <Label>
         Instruction Mode
-      <div className="bp3-select select-instruction-mode">
-          <select onChange={this.handleChangeOfInstructionMode}>
-            <option label="All" value="all">All</option>
-            <option label="Classroom" value="p">Classroom</option>
-            <option label="Online" value="ol">Online</option>
-            <option label="Online CourseMatch Instruction" value="cm">Online CourseMatch Instruction</option>
-            <option label="Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)" value="fo">
-              Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)
-            </option>
-            <option label="Hybrid Online Asynchronous and Synchronous Instruction" value="ho">
-              Hybrid Online Asynchronous and Synchronous Instruction
-            </option>
-            <option label="Hybrid Classroom and Online Instruction" value="hc">
-              Hybrid Classroom and Online Instruction
-            </option>
-            <option label="Off-Campus " value="oc">Off-Campus</option>
-            <option label="Televised Instruction (origination site)" value="to">
-              Televised Instruction (origination site)
-            </option>
-            <option label="Televised Instruction (receiving site)" value="tr">
-              Televised Instruction (receiving site)
-            </option>
-          </select>
-        </div>
+        <HTMLSelect
+          value={this.props.instructionMode}
+          options={instructionMode}
+          onChange={this.handleChangeOfInstructionMode}
+          className="select-instruction-mode"
+        />
       </Label>
     );
   }
