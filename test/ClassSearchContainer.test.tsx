@@ -3,6 +3,7 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
 import { rawClassesJson } from './ClassesJson';
+import { ClassSearchForm } from '../src/public/js/ClassSearchForm';
 
 describe('test class search form component', () => {
 
@@ -137,6 +138,10 @@ describe('When user clicks reset', () => {
     classSearchContainerWrapper.find('#additional-filters').simulate('click');
     const classSearchFormWrapper = classSearchContainerWrapper.find('.class-number');
     expect(classSearchFormWrapper.prop('value')).toHaveLength(0);
+  });
+
+  it('sets campus to both', () => {
+    expect(classSearchContainerWrapper.state('campus')).toEqual('both');
   });
 });
 
