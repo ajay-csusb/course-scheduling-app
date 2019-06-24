@@ -1,10 +1,12 @@
 import React from 'react';
 import { Collapse, Label } from '@blueprintjs/core';
 import { SelectListCourseAttr } from './SelectListCourseAttr';
-import { SelectListSelectionCode } from './SelectListSessionCode';
+import { SelectListSessionCode } from './SelectListSessionCode';
 
 interface IAdvancedFilterFieldsetProps {
   classNo: string;
+  courseAttr: string;
+  sessionCode: string;
   onChangeOfCourseAttr: (event: any) => void;
   onChangeOfSessionCode: (event: any) => void;
   onChangeOfClassNo: (event: any) => void;
@@ -50,6 +52,7 @@ export class AdvancedFilterFieldset extends React.Component<
   private getSelectListCourseAttrComponent(): JSX.Element {
     return (
       <SelectListCourseAttr
+        courseAttr={this.props.courseAttr}
         onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
       />
     );
@@ -73,7 +76,8 @@ export class AdvancedFilterFieldset extends React.Component<
 
   private getSelectListSessionCodeComponent(): JSX.Element {
     return (
-      <SelectListSelectionCode
+      <SelectListSessionCode
+        sessionCode={this.props.sessionCode}
         onChangeOfSessionCode={this.props.onChangeOfSessionCode}
       />
     );

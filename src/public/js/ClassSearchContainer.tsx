@@ -443,6 +443,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         endTime={this.state.endTime}
         courseNo={this.state.courseNo}
         classNo={this.state.classNo}
+        courseAttr={this.state.courseAttr}
+        sessionCode={this.state.sessionCode}
       />
     );
   }

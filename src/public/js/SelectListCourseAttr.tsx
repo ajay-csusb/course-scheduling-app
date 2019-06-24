@@ -2,6 +2,7 @@ import React from 'react';
 import { Label, HTMLSelect, IOptionProps } from '@blueprintjs/core';
 
 export interface ISelectListCourseAttrProps {
+  courseAttr: string;
   onChangeOfCourseAttr: (event: any) => void;
 }
 
@@ -25,6 +26,7 @@ export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrP
       <Label>
         Course Attribute
         <HTMLSelect
+          value={this.props.courseAttr}
           className="course-attribute"
           onChange={this.props.onChangeOfCourseAttr}
           options={this.courseAttr}

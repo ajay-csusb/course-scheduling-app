@@ -2,10 +2,11 @@ import React from 'react';
 import { Label, HTMLSelect, IOptionProps } from '@blueprintjs/core';
 
 export interface ISelectListSessionCodeProps {
+  sessionCode: string;
   onChangeOfSessionCode: (event: any) => void;
 }
 
-export class SelectListSelectionCode extends React.Component<ISelectListSessionCodeProps, {}> {
+export class SelectListSessionCode extends React.Component<ISelectListSessionCodeProps, {}> {
   private readonly sessionCodes: IOptionProps[] = [
     { label: 'All', value: 'all' },
     { label: 'Early Start Program', value: 'ES' },
@@ -35,6 +36,7 @@ export class SelectListSelectionCode extends React.Component<ISelectListSessionC
       <Label>
         Session
         <HTMLSelect
+          value={this.props.sessionCode}
           className="session-code"
           onChange={this.props.onChangeOfSessionCode}
           options={this.sessionCodes}
