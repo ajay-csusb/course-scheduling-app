@@ -473,7 +473,7 @@ describe('fetch parameters', () => {
     });
   });
 
-  describe('when course number is set', () => {
+  describe('when courseNo is set', () => {
     it('should pass the chosen value', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
       classSearchContainerWrapper.setState({

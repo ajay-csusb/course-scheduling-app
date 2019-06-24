@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SelectListComponent> Given a class Search form snapshot 1`] = `
+exports[`<SelectListComponent> Given a class search form snapshot 1`] = `
 Array [
   <HTMLSelect
     className="campus-select"

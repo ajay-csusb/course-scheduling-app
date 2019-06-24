@@ -49,6 +49,7 @@ Array [
         },
       ]
     }
+    value="all"
   >
     <div
       className="bp3-html-select course-attribute"
@@ -56,6 +57,7 @@ Array [
       <select
         multiple={false}
         onChange={[Function]}
+        value="all"
       >
         <option
           key=""
@@ -160,6 +162,7 @@ Array [
     <select
       multiple={false}
       onChange={[Function]}
+      value="all"
     >
       <option
         key=""

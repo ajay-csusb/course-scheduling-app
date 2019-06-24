@@ -93,6 +93,7 @@ Array [
         },
       ]
     }
+    value="all"
   >
     <div
       className="bp3-html-select session-code"
@@ -100,6 +101,7 @@ Array [
       <select
         multiple={false}
         onChange={[Function]}
+        value="all"
       >
         <option
           key="all"
@@ -281,6 +283,7 @@ Array [
     <select
       multiple={false}
       onChange={[Function]}
+      value="all"
     >
       <option
         key="all"

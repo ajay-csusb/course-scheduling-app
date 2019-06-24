@@ -5,6 +5,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
   <ClassSearchForm
     campus="both"
     classNo=""
+    courseAttr="all"
     courseNo=""
     endTime={1899-01-02T07:00:00.000Z}
     instructionMode="all"
@@ -35,6 +36,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
     onChangeOfTerm={[Function]}
     onReset={[Function]}
     onSubmit={[Function]}
+    sessionCode="all"
     startTime={1899-01-01T08:00:00.000Z}
     subjects={Array []}
     term={Array []}
@@ -46,6 +48,7 @@ exports[`snapshots compare search form snapshot 1`] = `
 <ClassSearchForm
   campus="both"
   classNo=""
+  courseAttr="all"
   courseNo=""
   endTime={1899-01-02T07:00:00.000Z}
   instructionMode="all"
@@ -76,6 +79,7 @@ exports[`snapshots compare search form snapshot 1`] = `
   onChangeOfTerm={[Function]}
   onReset={[Function]}
   onSubmit={[Function]}
+  sessionCode="all"
   startTime={1899-01-01T08:00:00.000Z}
   subjects={Array []}
   term={Array []}
@@ -1467,9 +1471,11 @@ exports[`snapshots compare search form snapshot 1`] = `
           </SelectListInstructionMode>
           <AdvancedFilterFieldset
             classNo=""
+            courseAttr="all"
             onChangeOfClassNo={[Function]}
             onChangeOfCourseAttr={[Function]}
             onChangeOfSessionCode={[Function]}
+            sessionCode="all"
           >
             <div>
               <a
