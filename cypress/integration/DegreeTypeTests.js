@@ -13,7 +13,7 @@ describe('Filter classes by degree type', function () {
           cy.wait(5000);
           cy.get('span').contains('ACCT', { timeout: 20000 }).click();
           cy.get('#additional-filters').click();
-          cy.get('.select-degree-type select').select('Graduate');
+          cy.get('.course-attribute select').select('Graduate classes');
           cy.get('button').contains('Submit').click();
           cy.wait(10000);
         });

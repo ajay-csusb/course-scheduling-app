@@ -36,6 +36,15 @@ describe('states', () => {
       expect(classSearchContainerWrapper.state('courseAttr')).toEqual('ge');
     });
   });
+  describe('when Undergraduate is selected from course attribute', () => {
+    it('should set the correct state of degreeType', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'UGRD' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('degreeType')).toEqual('UGRD');
+    });
+  });
   describe('when class number is entered', () => {
     it('should set the correct classNo state', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
@@ -88,16 +97,6 @@ describe('states', () => {
       classSearchContainerWrapper.find('.course-number').simulate('change', { target: { value: '111' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       expect(classSearchContainerWrapper.state('courseNo')).toEqual('111');
-    });
-  });
-
-  describe('when Degree type is selected', () => {
-    it('should set the correct state of degreeType', () => {
-      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      classSearchContainerWrapper.find('#additional-filters').simulate('click');
-      classSearchContainerWrapper.find('.select-degree-type > select').simulate('change', { target: { value: 'foo' } });
-      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      expect(classSearchContainerWrapper.state('degreeType')).toEqual('foo');
     });
   });
 

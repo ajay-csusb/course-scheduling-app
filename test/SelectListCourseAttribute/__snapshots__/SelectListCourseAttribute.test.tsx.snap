@@ -25,7 +25,11 @@ Array [
         },
         Object {
           "label": "Graduate classes",
-          "value": "grad",
+          "value": "PBAC",
+        },
+        Object {
+          "label": "Open University Course",
+          "value": "EXED",
         },
         Object {
           "label": "Service Learning",
@@ -45,7 +49,7 @@ Array [
         },
         Object {
           "label": "Undergraduate classes",
-          "value": "ugrad",
+          "value": "UGRD",
         },
       ]
     }
@@ -88,11 +92,18 @@ Array [
           General Education
         </option>
         <option
-          key="grad"
+          key="PBAC"
           label="Graduate classes"
-          value="grad"
+          value="PBAC"
         >
           Graduate classes
+        </option>
+        <option
+          key="EXED"
+          label="Open University Course"
+          value="EXED"
+        >
+          Open University Course
         </option>
         <option
           key="CSLI"
@@ -123,9 +134,9 @@ Array [
           eBook
         </option>
         <option
-          key="ugrad"
+          key="UGRD"
           label="Undergraduate classes"
-          value="ugrad"
+          value="UGRD"
         >
           Undergraduate classes
         </option>
@@ -193,11 +204,18 @@ Array [
         General Education
       </option>
       <option
-        key="grad"
+        key="PBAC"
         label="Graduate classes"
-        value="grad"
+        value="PBAC"
       >
         Graduate classes
+      </option>
+      <option
+        key="EXED"
+        label="Open University Course"
+        value="EXED"
+      >
+        Open University Course
       </option>
       <option
         key="CSLI"
@@ -228,9 +246,9 @@ Array [
         eBook
       </option>
       <option
-        key="ugrad"
+        key="UGRD"
         label="Undergraduate classes"
-        value="ugrad"
+        value="UGRD"
       >
         Undergraduate classes
       </option>

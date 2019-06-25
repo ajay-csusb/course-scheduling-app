@@ -442,7 +442,7 @@ describe('fetch parameters', () => {
   describe('when degreeType is set to all', () => {
     it('should pass an empty string', () => {
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
-      classSearchContainerWrapper.find('.select-degree-type > select').simulate('change', { target: { value: 'all' } });
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'all' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const degreeTypeArgument = fetchMock.lastOptions();
       expect(degreeTypeArgument.body).toMatch(new RegExp('"acad_career":""'));
@@ -452,10 +452,10 @@ describe('fetch parameters', () => {
   describe('when degreeType is set', () => {
     it('should pass the chosen value', () => {
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
-      classSearchContainerWrapper.find('.select-degree-type > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'UGRD' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const degreeTypeArgument = fetchMock.lastOptions();
-      expect(degreeTypeArgument.body).toMatch(new RegExp('"acad_career":"foo"'));
+      expect(degreeTypeArgument.body).toMatch(new RegExp('"acad_career":"UGRD"'));
     });
   });
 
