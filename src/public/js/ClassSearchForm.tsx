@@ -26,6 +26,7 @@ interface IClassSearchFormProps {
   classNo: string;
   courseAttr: string;
   sessionCode: string;
+  degreeType: string;
   onChangeOfTerm: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
@@ -38,6 +39,7 @@ interface IClassSearchFormProps {
   onChangeOfCourseAttr: (event: any) => void;
   onChangeOfSessionCode: (event: any) => void;
   onChangeOfClassNo: (event: any) => void;
+  onChangeOfDegreeType: (event: any) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;
 }
@@ -167,9 +169,11 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
       courseAttr={this.props.courseAttr}
       classNo={this.props.classNo}
       sessionCode={this.props.sessionCode}
+      degreeType={this.props.degreeType}
       onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
       onChangeOfSessionCode={this.props.onChangeOfSessionCode}
       onChangeOfClassNo={this.props.onChangeOfClassNo}
+      onChangeOfDegreeType={this.props.onChangeOfDegreeType}
     />
     );
   }

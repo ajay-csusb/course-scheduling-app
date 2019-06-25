@@ -26,6 +26,7 @@ interface IClassSearchContainerState {
   sessionCode: string;
   classNo: string;
   showErrorMessage: boolean;
+  degreeType: string;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
 
@@ -57,6 +58,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.updateCourseAttr = this.updateCourseAttr.bind(this);
     this.updateSessionCode = this.updateSessionCode.bind(this);
     this.updateClassNo = this.updateClassNo.bind(this);
+    this.updateDegreeType = this.updateDegreeType.bind(this);
     this.instructorsFound = this.instructorsFound.bind(this);
     this.subjectsFound = this.subjectsFound.bind(this);
     this.termFound = this.termFound.bind(this);
@@ -307,6 +309,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       sessionCode: 'all',
       classNo: '',
       showErrorMessage: false,
+      degreeType: 'all',
     };
   }
 
@@ -437,6 +440,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfCourseAttr={this.updateCourseAttr}
         onChangeOfSessionCode={this.updateSessionCode}
         onChangeOfClassNo={this.updateClassNo}
+        onChangeOfDegreeType={this.updateDegreeType}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         startTime={this.state.startTime}
@@ -445,6 +449,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         classNo={this.state.classNo}
         courseAttr={this.state.courseAttr}
         sessionCode={this.state.sessionCode}
+        degreeType={this.state.degreeType}
       />
     );
   }
@@ -486,6 +491,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     });
   }
 
+  private updateDegreeType(e: any) {
+    this.setState({
+      degreeType: e.target.value,
+      beforeSubmit: true,
+    });
+  }
+
   private processDropDownListData(data: any): void {
     this.termFound(data);
     this.instructorsFound(data);
@@ -501,6 +513,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.term,
       this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
       this.state.courseAttr, this.state.classNo, this.state.sessionCode);
+    userInput.setDegreeType(this.state.degreeType);
     Class.getAllClasses(this.classesFound, this.classesNotFound, userInput);
   }
 

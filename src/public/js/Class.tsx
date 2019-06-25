@@ -47,6 +47,7 @@ export interface IClass {
   instructorEmployeeId?: string;
   instructorAltName?: string;
   courseAttr?: string;
+  degreeType: string;
 }
 
 export interface IMeetingDate {
@@ -116,6 +117,7 @@ export class Class {
       instructorEmployeeId : object.emplid2,
       instructorAltName : object.name2,
       courseAttr: object.crse_ATTR,
+      degreeType: object.acad_CAREER,
     };
     return result;
   }
@@ -143,6 +145,7 @@ export class Class {
         sun: userInput.isSundayChecked() ? 'Y' : '',
         instruction_mode: userInput.getInstructionMode().toUpperCase(),
         section_code: userInput.getSessionCode(),
+        acad_career: userInput.getDegreeType(),
       },
     };
     ClassSearchUtils.fetchWithArg(this.classesUrl, params, onSuccess, onFailure);

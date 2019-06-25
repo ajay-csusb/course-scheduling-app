@@ -287,3 +287,16 @@ export function getSessionCode(classes: IClass): string {
   }
   return classes.sessionCode;
 }
+
+export function getDegreeType(classes: IClass): string {
+  if (classes.degreeType === 'UGRD') {
+    return 'Undergraduate';
+  }
+  if (classes.degreeType === 'PBAC') {
+    return 'Graduate';
+  }
+  if (classes.degreeType === 'EXED') {
+    return 'Open University Course';
+  }
+  return '';
+}

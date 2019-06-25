@@ -22,6 +22,7 @@ export class UserInput {
   private courseAttr: string | undefined = '';
   private sessionCode: string | undefined = '';
   private classNo: string | undefined = '';
+  private degreeType: string;
 
   constructor(campus: string, day: IMeetingDate, subject: ISubject, courseNo: string, quarter: string,
               startTime: Date, endTime: Date, instructionMode: string, instructor: string,
@@ -38,6 +39,7 @@ export class UserInput {
     this.courseAttr = courseAttr;
     this.sessionCode = sessionCode;
     this.classNo = classNo;
+    this.degreeType = '';
   }
 
   public getCampus(): string {
@@ -124,4 +126,11 @@ export class UserInput {
     return this.quarter;
   }
 
+  public getDegreeType(): string {
+    return (this.degreeType === 'all') ? '' : this.degreeType;
+  }
+
+  public setDegreeType(degreeType: string): void {
+    this.degreeType = degreeType;
+  }
 }

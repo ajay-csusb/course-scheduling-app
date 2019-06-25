@@ -2,14 +2,17 @@ import React from 'react';
 import { Collapse, Label } from '@blueprintjs/core';
 import { SelectListCourseAttr } from './SelectListCourseAttr';
 import { SelectListSessionCode } from './SelectListSessionCode';
+import { SelectListDegreeType } from './SelectListDegreeType';
 
 interface IAdvancedFilterFieldsetProps {
   classNo: string;
   courseAttr: string;
   sessionCode: string;
+  degreeType: string;
   onChangeOfCourseAttr: (event: any) => void;
   onChangeOfSessionCode: (event: any) => void;
   onChangeOfClassNo: (event: any) => void;
+  onChangeOfDegreeType: (event: any) => void;
 }
 
 interface IAdvancedFilterFieldsetState {
@@ -30,6 +33,7 @@ export class AdvancedFilterFieldset extends React.Component<
     const courseAttr = this.getSelectListCourseAttrComponent();
     const classNumber = this.getClassNumberComponent();
     const sessionCode = this.getSelectListSessionCodeComponent();
+    const degreeType = this.getDegreeTypeComponent();
     return (
       <div>
         <a id="additional-filters" onClick={this.handleClick}>
@@ -40,6 +44,7 @@ export class AdvancedFilterFieldset extends React.Component<
           {courseAttr}
           {classNumber}
           {sessionCode}
+          {degreeType}
         </Collapse>
       </div>
     );
@@ -79,6 +84,15 @@ export class AdvancedFilterFieldset extends React.Component<
       <SelectListSessionCode
         sessionCode={this.props.sessionCode}
         onChangeOfSessionCode={this.props.onChangeOfSessionCode}
+      />
+    );
+  }
+
+  private getDegreeTypeComponent(): JSX.Element {
+    return (
+      <SelectListDegreeType
+        degreeType={this.props.degreeType}
+        onChangeOfDegreeType={this.props.onChangeOfDegreeType}
       />
     );
   }
