@@ -91,6 +91,16 @@ describe('states', () => {
     });
   });
 
+  describe('when Degree type is selected', () => {
+    it('should set the correct state of degreeType', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.select-degree-type > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('degreeType')).toEqual('foo');
+    });
+  });
+
   describe('When user clicks submit', () => {
     let classSearchContainerWrapper = null;
     beforeEach(() => {
