@@ -131,6 +131,8 @@ export class UserInput {
   }
 
   public setDegreeType(degreeType: string): void {
-    this.degreeType = degreeType;
+    if (degreeType === 'UGRD' || degreeType === 'PBAC' || degreeType === 'EXED') {
+      this.degreeType = degreeType;
+    }
   }
 }

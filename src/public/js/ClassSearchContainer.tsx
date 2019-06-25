@@ -440,7 +440,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfCourseAttr={this.updateCourseAttr}
         onChangeOfSessionCode={this.updateSessionCode}
         onChangeOfClassNo={this.updateClassNo}
-        onChangeOfDegreeType={this.updateDegreeType}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         startTime={this.state.startTime}
@@ -449,7 +448,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         classNo={this.state.classNo}
         courseAttr={this.state.courseAttr}
         sessionCode={this.state.sessionCode}
-        degreeType={this.state.degreeType}
       />
     );
   }
@@ -471,8 +469,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateCourseAttr(e: any) {
+    let selectedValue = e.target.value;
+    if (selectedValue === 'UGRD' || selectedValue === 'PBAC' || selectedValue === 'EXED') {
+      this.updateDegreeType(selectedValue);
+      selectedValue = 'all';
+    }
     this.setState({
-      courseAttr: e.target.value,
+      courseAttr: selectedValue,
       beforeSubmit: true,
     });
   }
@@ -491,9 +494,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     });
   }
 
-  private updateDegreeType(e: any) {
+  private updateDegreeType(value: string) {
     this.setState({
-      degreeType: e.target.value,
+      degreeType: value,
       beforeSubmit: true,
     });
   }

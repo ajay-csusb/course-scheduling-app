@@ -13,12 +13,13 @@ export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrP
       { label: 'Early Start Program', value: 'ESP' },
       { label: 'Fully Online', value: 'FONL' },
       { label: 'General Education', value: 'GE' },
-      { label: 'Graduate classes', value: 'grad' },
+      { label: 'Graduate classes', value: 'PBAC' },
+      { label: 'Open University Course', value: 'EXED'},
       { label: 'Service Learning', value: 'CSLI' },
       { label: 'Study Abroad', value: 'SA' },
       { label: 'Zero Cost Course Materials', value: 'ZCCM' },
       { label: 'eBook', value: 'EBK' },
-      { label: 'Undergraduate classes', value: 'ugrad' },
+      { label: 'Undergraduate classes', value: 'UGRD' },
     ];
 
   public render(): React.ReactNode {
