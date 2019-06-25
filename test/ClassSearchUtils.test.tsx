@@ -459,30 +459,40 @@ describe('fetch parameters', () => {
     });
   });
 
-  describe('Degree type values', () => {
-    describe('When the degree type value is UGRD', () => {
-      const undergraduateClasses = JSON.parse(JSON.stringify(classJson));
-      undergraduateClasses.degreeType = 'UGRD';
-      it('should return Undergraduate', () => {
-        expect(ClassSearchUtils.getDegreeType(undergraduateClasses)).toEqual('Undergraduate');
-      });
-    });
-
-    describe('When the degree type value is PBAC', () => {
-      const graduateClasses = JSON.parse(JSON.stringify(classJson));
-      graduateClasses.degreeType = 'PBAC';
-      it('should return Graduate', () => {
-        expect(ClassSearchUtils.getDegreeType(graduateClasses)).toEqual('Graduate');
-      });
-    });
-
-    describe('When the degree type value is EXED', () => {
-      const openUniversityClasses = JSON.parse(JSON.stringify(classJson));
-      openUniversityClasses.degreeType = 'EXED';
-      it('should return Open University Course', () => {
-        expect(ClassSearchUtils.getDegreeType(openUniversityClasses)).toEqual('Open University Course');
-      });
+  describe('when classNo is set', () => {
+    it('should pass the chosen value', () => {
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.class-number').simulate('change', { target: { value: '100' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const courseNoArgument = fetchMock.lastOptions();
+      expect(courseNoArgument.body).toMatch(new RegExp('"class_nbr":"100"'));
     });
   });
 
+});
+
+describe('Degree type values', () => {
+  describe('When the degree type value is UGRD', () => {
+    const undergraduateClasses = JSON.parse(JSON.stringify(classJson));
+    undergraduateClasses.degreeType = 'UGRD';
+    it('should return Undergraduate', () => {
+      expect(ClassSearchUtils.getDegreeType(undergraduateClasses)).toEqual('Undergraduate');
+    });
+  });
+
+  describe('When the degree type value is PBAC', () => {
+    const graduateClasses = JSON.parse(JSON.stringify(classJson));
+    graduateClasses.degreeType = 'PBAC';
+    it('should return Graduate', () => {
+      expect(ClassSearchUtils.getDegreeType(graduateClasses)).toEqual('Graduate');
+    });
+  });
+
+  describe('When the degree type value is EXED', () => {
+    const openUniversityClasses = JSON.parse(JSON.stringify(classJson));
+    openUniversityClasses.degreeType = 'EXED';
+    it('should return Open University Course', () => {
+      expect(ClassSearchUtils.getDegreeType(openUniversityClasses)).toEqual('Open University Course');
+    });
+  });
 });
