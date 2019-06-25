@@ -169,6 +169,10 @@ describe('states', () => {
     it('sets instructionMode to all', () => {
       expect(classSearchContainerWrapper.state('instructionMode')).toEqual('all');
     });
+
+    it('sets degreeType to all', () => {
+      expect(classSearchContainerWrapper.state('degreeType')).toEqual('all');
+    });
   });
 });
 
