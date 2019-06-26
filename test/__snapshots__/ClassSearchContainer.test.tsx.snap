@@ -1056,11 +1056,12 @@ exports[`snapshots compare search form snapshot 1`] = `
             onChangeOfMeetingDate={[Function]}
           >
             <Blueprint3.ControlGroup
+              className="meeting-day"
               fill={true}
               vertical={false}
             >
               <div
-                className="bp3-control-group bp3-fill"
+                className="bp3-control-group bp3-fill meeting-day"
               >
                 <Component>
                   <label
