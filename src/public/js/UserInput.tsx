@@ -110,8 +110,17 @@ export class UserInput {
     return this.courseNo;
   }
 
-  public getCourseAttr(): string | undefined {
-    return (this.courseAttr === 'all' || this.courseAttr === undefined) ? '' : this.courseAttr.toLowerCase();
+  public getCourseAttr(): string {
+
+    if (this.courseAttr === 'UGRD'
+      || this.courseAttr === 'PBAC'
+      || this.courseAttr === 'EXED'
+      || this.courseAttr === 'all'
+      || this.courseAttr === undefined
+    ) {
+      return '';
+    }
+    return this.courseAttr.toLowerCase();
   }
 
   public getSessionCode(): string | undefined {

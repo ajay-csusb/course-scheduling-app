@@ -419,6 +419,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private getClassSearchFormComponent(): JSX.Element {
+    // @Todo subjects, instructors and terms can be abstracted into
+    // a new class.
     return (
       <ClassSearchForm
         term={this.term}
@@ -469,10 +471,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateCourseAttr(e: any) {
-    let selectedValue = e.target.value;
+    const selectedValue = e.target.value;
+    this.updateDegreeType('all');
     if (selectedValue === 'UGRD' || selectedValue === 'PBAC' || selectedValue === 'EXED') {
       this.updateDegreeType(selectedValue);
-      selectedValue = 'all';
     }
     this.setState({
       courseAttr: selectedValue,
