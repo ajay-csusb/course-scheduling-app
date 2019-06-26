@@ -2,11 +2,14 @@ import { shallow, mount } from 'enzyme';
 import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
+import { rawClassesJson } from './ClassesJson';
 
 describe('test control group meeting date component', () => {
 
   beforeAll(() => {
-    fetchMock.mock('*', {});
+    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList', {});
+    fetchMock.mock('https://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST', {});
+    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS', rawClassesJson);
   });
 
   test('state when no option is checked in meeting day', () => {
@@ -55,6 +58,25 @@ describe('test control group meeting date component', () => {
     classSearchContainerWrapper.find('.wed > input').simulate('change', { target: { value: 'wed' } });
     classSearchContainerWrapper.find('.sun > input').simulate('change', { target: { value: 'sun' } });
     classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    expect(classSearchContainerWrapper.state('meetingDate')).toEqual(resultObj);
+  });
+  test('When reset is clicked it should set all days to false', () => {
+    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    const resultObj = {
+      mon: false,
+      tue: false,
+      wed: false,
+      thu: false,
+      fri: false,
+      sat: false,
+      sun: false,
+    };
+    classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
+    classSearchContainerWrapper.find('.wed > input').simulate('change', { target: { value: 'wed' } });
+    classSearchContainerWrapper.find('.fri > input').simulate('change', { target: { value: 'fri' } });
+    classSearchContainerWrapper.find('.sun > input').simulate('change', { target: { value: 'sun' } });
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    classSearchContainerWrapper.find('button[type="reset"]').simulate('click');
     expect(classSearchContainerWrapper.state('meetingDate')).toEqual(resultObj);
   });
 });

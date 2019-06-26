@@ -489,6 +489,32 @@ describe('fetch parameters', () => {
     });
   });
 
+  describe('when no meetingDay is set', () => {
+    it('should not pass any value for days', () => {
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const courseNoArgument = fetchMock.lastOptions();
+      expect(courseNoArgument.body).toMatch(new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
+    });
+  });
+
+  describe('when Monday is set', () => {
+    it('should pass value for Monday', () => {
+      classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const courseNoArgument = fetchMock.lastOptions();
+      expect(courseNoArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
+    });
+  });
+
+  describe('when Monday and Friday are set', () => {
+    it('should pass values for Monday and Friday', () => {
+      classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
+      classSearchContainerWrapper.find('.fri > input').simulate('change', { target: { value: 'fri' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const courseNoArgument = fetchMock.lastOptions();
+      expect(courseNoArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"Y","sat":"","sun":""'));
+    });
+  });
 });
 
 describe('Degree type values', () => {
