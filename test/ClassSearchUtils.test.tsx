@@ -515,6 +515,33 @@ describe('fetch parameters', () => {
       expect(courseNoArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"Y","sat":"","sun":""'));
     });
   });
+
+  describe('when campus is set to both', () => {
+    it('should pass an empty string', () => {
+      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'both' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const degreeTypeArgument = fetchMock.lastOptions();
+      expect(degreeTypeArgument.body).toMatch(new RegExp('"campus":""'));
+    });
+  });
+
+  describe('when campus is set to San Bernardino', () => {
+    it('should pass MAIN as a parameter', () => {
+      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'san-bernardino' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const degreeTypeArgument = fetchMock.lastOptions();
+      expect(degreeTypeArgument.body).toMatch(new RegExp('"campus":"MAIN"'));
+    });
+  });
+
+  describe('when campus is set to Palm Desert', () => {
+    it('should pass PALM as a parameter', () => {
+      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'palm-desert' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const degreeTypeArgument = fetchMock.lastOptions();
+      expect(degreeTypeArgument.body).toMatch(new RegExp('"campus":"PALM"'));
+    });
+  });
 });
 
 describe('Degree type values', () => {
