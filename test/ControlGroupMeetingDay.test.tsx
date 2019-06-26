@@ -60,6 +60,7 @@ describe('test control group meeting date component', () => {
     classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
     expect(classSearchContainerWrapper.state('meetingDate')).toEqual(resultObj);
   });
+
   test('When reset is clicked it should set all days to false', () => {
     const classSearchContainerWrapper = mount(<ClassSearchContainer />);
     const resultObj = {
@@ -79,4 +80,5 @@ describe('test control group meeting date component', () => {
     classSearchContainerWrapper.find('button[type="reset"]').simulate('click');
     expect(classSearchContainerWrapper.state('meetingDate')).toEqual(resultObj);
   });
+
 });
