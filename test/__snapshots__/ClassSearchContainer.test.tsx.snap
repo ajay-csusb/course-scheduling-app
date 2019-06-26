@@ -573,9 +573,11 @@ exports[`snapshots compare search form snapshot 1`] = `
             onChangeOfStartTime={[Function]}
             startTime={1899-01-01T08:00:00.000Z}
           >
-            <Blueprint3.ControlGroup>
+            <Blueprint3.ControlGroup
+              className="meeting-time"
+            >
               <div
-                className="bp3-control-group"
+                className="bp3-control-group meeting-time"
               >
                 <Component>
                   <label

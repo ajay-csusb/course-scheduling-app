@@ -1,0 +1,940 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Meeting time component Given a class search form meeting time component snapshot 1`] = `
+Array [
+  <Blueprint3.ControlGroup
+    className="meeting-time"
+  >
+    <div
+      className="bp3-control-group meeting-time"
+    >
+      <Component>
+        <label
+          className="bp3-label"
+        >
+          Meeting Time
+          <Component>
+            <label
+              className="bp3-label"
+            >
+              Start Time
+              <Blueprint3.TimePicker
+                className="start-time"
+                disabled={false}
+                maxTime={1900-01-01T07:59:59.999Z}
+                minTime={1899-12-31T08:00:00.000Z}
+                onChange={[Function]}
+                precision="minute"
+                selectAllOnFocus={true}
+                showArrowButtons={true}
+                useAmPm={true}
+                value={1899-01-01T08:00:00.000Z}
+              >
+                <div
+                  className="bp3-timepicker start-time"
+                >
+                  <div
+                    className="bp3-timepicker-arrow-row"
+                  >
+                    <span
+                      className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                      onClick={[Function]}
+                    >
+                      <Blueprint3.Icon
+                        icon="chevron-up"
+                      >
+                        <span
+                          className="bp3-icon bp3-icon-chevron-up"
+                          icon="chevron-up"
+                        >
+                          <svg
+                            data-icon="chevron-up"
+                            height={16}
+                            viewBox="0 0 16 16"
+                            width={16}
+                          >
+                            <desc>
+                              chevron-up
+                            </desc>
+                            <path
+                              d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                              fillRule="evenodd"
+                              key="0"
+                            />
+                          </svg>
+                        </span>
+                      </Blueprint3.Icon>
+                    </span>
+                    <span
+                      className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                      onClick={[Function]}
+                    >
+                      <Blueprint3.Icon
+                        icon="chevron-up"
+                      >
+                        <span
+                          className="bp3-icon bp3-icon-chevron-up"
+                          icon="chevron-up"
+                        >
+                          <svg
+                            data-icon="chevron-up"
+                            height={16}
+                            viewBox="0 0 16 16"
+                            width={16}
+                          >
+                            <desc>
+                              chevron-up
+                            </desc>
+                            <path
+                              d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                              fillRule="evenodd"
+                              key="0"
+                            />
+                          </svg>
+                        </span>
+                      </Blueprint3.Icon>
+                    </span>
+                  </div>
+                  <div
+                    className="bp3-timepicker-input-row"
+                  >
+                    <input
+                      className="bp3-timepicker-input bp3-timepicker-hour"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      value="12"
+                    />
+                    <span
+                      className="bp3-timepicker-divider-text"
+                    >
+                      :
+                    </span>
+                    <input
+                      className="bp3-timepicker-input bp3-timepicker-minute"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      value="00"
+                    />
+                  </div>
+                  <HTMLSelect
+                    className="bp3-timepicker-ampm-select"
+                    disabled={false}
+                    onChange={[Function]}
+                    value="am"
+                  >
+                    <div
+                      className="bp3-html-select bp3-timepicker-ampm-select"
+                    >
+                      <select
+                        disabled={false}
+                        multiple={false}
+                        onChange={[Function]}
+                        value="am"
+                      >
+                        <option
+                          value="am"
+                        >
+                          AM
+                        </option>
+                        <option
+                          value="pm"
+                        >
+                          PM
+                        </option>
+                      </select>
+                      <Blueprint3.Icon
+                        icon="double-caret-vertical"
+                      >
+                        <span
+                          className="bp3-icon bp3-icon-double-caret-vertical"
+                          icon="double-caret-vertical"
+                        >
+                          <svg
+                            data-icon="double-caret-vertical"
+                            height={16}
+                            viewBox="0 0 16 16"
+                            width={16}
+                          >
+                            <desc>
+                              double-caret-vertical
+                            </desc>
+                            <path
+                              d="M5 7h6a1.003 1.003 0 0 0 .71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 0 0 5 7zm6 2H5a1.003 1.003 0 0 0-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0 0 11 9z"
+                              fillRule="evenodd"
+                              key="0"
+                            />
+                          </svg>
+                        </span>
+                      </Blueprint3.Icon>
+                    </div>
+                  </HTMLSelect>
+                  <div
+                    className="bp3-timepicker-arrow-row"
+                  >
+                    <span
+                      className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                      onClick={[Function]}
+                    >
+                      <Blueprint3.Icon
+                        icon="chevron-down"
+                      >
+                        <span
+                          className="bp3-icon bp3-icon-chevron-down"
+                          icon="chevron-down"
+                        >
+                          <svg
+                            data-icon="chevron-down"
+                            height={16}
+                            viewBox="0 0 16 16"
+                            width={16}
+                          >
+                            <desc>
+                              chevron-down
+                            </desc>
+                            <path
+                              d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                              fillRule="evenodd"
+                              key="0"
+                            />
+                          </svg>
+                        </span>
+                      </Blueprint3.Icon>
+                    </span>
+                    <span
+                      className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                      onClick={[Function]}
+                    >
+                      <Blueprint3.Icon
+                        icon="chevron-down"
+                      >
+                        <span
+                          className="bp3-icon bp3-icon-chevron-down"
+                          icon="chevron-down"
+                        >
+                          <svg
+                            data-icon="chevron-down"
+                            height={16}
+                            viewBox="0 0 16 16"
+                            width={16}
+                          >
+                            <desc>
+                              chevron-down
+                            </desc>
+                            <path
+                              d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                              fillRule="evenodd"
+                              key="0"
+                            />
+                          </svg>
+                        </span>
+                      </Blueprint3.Icon>
+                    </span>
+                  </div>
+                </div>
+              </Blueprint3.TimePicker>
+            </label>
+          </Component>
+          <Component>
+            <label
+              className="bp3-label"
+            >
+              End Time
+              <Blueprint3.TimePicker
+                className="end-time"
+                disabled={false}
+                maxTime={1900-01-01T07:59:59.999Z}
+                minTime={1899-12-31T08:00:00.000Z}
+                onChange={[Function]}
+                precision="minute"
+                selectAllOnFocus={true}
+                showArrowButtons={true}
+                useAmPm={true}
+                value={1899-01-02T07:00:00.000Z}
+              >
+                <div
+                  className="bp3-timepicker end-time"
+                >
+                  <div
+                    className="bp3-timepicker-arrow-row"
+                  >
+                    <span
+                      className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                      onClick={[Function]}
+                    >
+                      <Blueprint3.Icon
+                        icon="chevron-up"
+                      >
+                        <span
+                          className="bp3-icon bp3-icon-chevron-up"
+                          icon="chevron-up"
+                        >
+                          <svg
+                            data-icon="chevron-up"
+                            height={16}
+                            viewBox="0 0 16 16"
+                            width={16}
+                          >
+                            <desc>
+                              chevron-up
+                            </desc>
+                            <path
+                              d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                              fillRule="evenodd"
+                              key="0"
+                            />
+                          </svg>
+                        </span>
+                      </Blueprint3.Icon>
+                    </span>
+                    <span
+                      className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                      onClick={[Function]}
+                    >
+                      <Blueprint3.Icon
+                        icon="chevron-up"
+                      >
+                        <span
+                          className="bp3-icon bp3-icon-chevron-up"
+                          icon="chevron-up"
+                        >
+                          <svg
+                            data-icon="chevron-up"
+                            height={16}
+                            viewBox="0 0 16 16"
+                            width={16}
+                          >
+                            <desc>
+                              chevron-up
+                            </desc>
+                            <path
+                              d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                              fillRule="evenodd"
+                              key="0"
+                            />
+                          </svg>
+                        </span>
+                      </Blueprint3.Icon>
+                    </span>
+                  </div>
+                  <div
+                    className="bp3-timepicker-input-row"
+                  >
+                    <input
+                      className="bp3-timepicker-input bp3-timepicker-hour"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      value="11"
+                    />
+                    <span
+                      className="bp3-timepicker-divider-text"
+                    >
+                      :
+                    </span>
+                    <input
+                      className="bp3-timepicker-input bp3-timepicker-minute"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      value="00"
+                    />
+                  </div>
+                  <HTMLSelect
+                    className="bp3-timepicker-ampm-select"
+                    disabled={false}
+                    onChange={[Function]}
+                    value="pm"
+                  >
+                    <div
+                      className="bp3-html-select bp3-timepicker-ampm-select"
+                    >
+                      <select
+                        disabled={false}
+                        multiple={false}
+                        onChange={[Function]}
+                        value="pm"
+                      >
+                        <option
+                          value="am"
+                        >
+                          AM
+                        </option>
+                        <option
+                          value="pm"
+                        >
+                          PM
+                        </option>
+                      </select>
+                      <Blueprint3.Icon
+                        icon="double-caret-vertical"
+                      >
+                        <span
+                          className="bp3-icon bp3-icon-double-caret-vertical"
+                          icon="double-caret-vertical"
+                        >
+                          <svg
+                            data-icon="double-caret-vertical"
+                            height={16}
+                            viewBox="0 0 16 16"
+                            width={16}
+                          >
+                            <desc>
+                              double-caret-vertical
+                            </desc>
+                            <path
+                              d="M5 7h6a1.003 1.003 0 0 0 .71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 0 0 5 7zm6 2H5a1.003 1.003 0 0 0-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0 0 11 9z"
+                              fillRule="evenodd"
+                              key="0"
+                            />
+                          </svg>
+                        </span>
+                      </Blueprint3.Icon>
+                    </div>
+                  </HTMLSelect>
+                  <div
+                    className="bp3-timepicker-arrow-row"
+                  >
+                    <span
+                      className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                      onClick={[Function]}
+                    >
+                      <Blueprint3.Icon
+                        icon="chevron-down"
+                      >
+                        <span
+                          className="bp3-icon bp3-icon-chevron-down"
+                          icon="chevron-down"
+                        >
+                          <svg
+                            data-icon="chevron-down"
+                            height={16}
+                            viewBox="0 0 16 16"
+                            width={16}
+                          >
+                            <desc>
+                              chevron-down
+                            </desc>
+                            <path
+                              d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                              fillRule="evenodd"
+                              key="0"
+                            />
+                          </svg>
+                        </span>
+                      </Blueprint3.Icon>
+                    </span>
+                    <span
+                      className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                      onClick={[Function]}
+                    >
+                      <Blueprint3.Icon
+                        icon="chevron-down"
+                      >
+                        <span
+                          className="bp3-icon bp3-icon-chevron-down"
+                          icon="chevron-down"
+                        >
+                          <svg
+                            data-icon="chevron-down"
+                            height={16}
+                            viewBox="0 0 16 16"
+                            width={16}
+                          >
+                            <desc>
+                              chevron-down
+                            </desc>
+                            <path
+                              d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                              fillRule="evenodd"
+                              key="0"
+                            />
+                          </svg>
+                        </span>
+                      </Blueprint3.Icon>
+                    </span>
+                  </div>
+                </div>
+              </Blueprint3.TimePicker>
+            </label>
+          </Component>
+        </label>
+      </Component>
+    </div>
+  </Blueprint3.ControlGroup>,
+  <div
+    className="bp3-control-group meeting-time"
+  >
+    <Component>
+      <label
+        className="bp3-label"
+      >
+        Meeting Time
+        <Component>
+          <label
+            className="bp3-label"
+          >
+            Start Time
+            <Blueprint3.TimePicker
+              className="start-time"
+              disabled={false}
+              maxTime={1900-01-01T07:59:59.999Z}
+              minTime={1899-12-31T08:00:00.000Z}
+              onChange={[Function]}
+              precision="minute"
+              selectAllOnFocus={true}
+              showArrowButtons={true}
+              useAmPm={true}
+              value={1899-01-01T08:00:00.000Z}
+            >
+              <div
+                className="bp3-timepicker start-time"
+              >
+                <div
+                  className="bp3-timepicker-arrow-row"
+                >
+                  <span
+                    className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                    onClick={[Function]}
+                  >
+                    <Blueprint3.Icon
+                      icon="chevron-up"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-chevron-up"
+                        icon="chevron-up"
+                      >
+                        <svg
+                          data-icon="chevron-up"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            chevron-up
+                          </desc>
+                          <path
+                            d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </span>
+                  <span
+                    className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                    onClick={[Function]}
+                  >
+                    <Blueprint3.Icon
+                      icon="chevron-up"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-chevron-up"
+                        icon="chevron-up"
+                      >
+                        <svg
+                          data-icon="chevron-up"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            chevron-up
+                          </desc>
+                          <path
+                            d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </span>
+                </div>
+                <div
+                  className="bp3-timepicker-input-row"
+                >
+                  <input
+                    className="bp3-timepicker-input bp3-timepicker-hour"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    value="12"
+                  />
+                  <span
+                    className="bp3-timepicker-divider-text"
+                  >
+                    :
+                  </span>
+                  <input
+                    className="bp3-timepicker-input bp3-timepicker-minute"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    value="00"
+                  />
+                </div>
+                <HTMLSelect
+                  className="bp3-timepicker-ampm-select"
+                  disabled={false}
+                  onChange={[Function]}
+                  value="am"
+                >
+                  <div
+                    className="bp3-html-select bp3-timepicker-ampm-select"
+                  >
+                    <select
+                      disabled={false}
+                      multiple={false}
+                      onChange={[Function]}
+                      value="am"
+                    >
+                      <option
+                        value="am"
+                      >
+                        AM
+                      </option>
+                      <option
+                        value="pm"
+                      >
+                        PM
+                      </option>
+                    </select>
+                    <Blueprint3.Icon
+                      icon="double-caret-vertical"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-double-caret-vertical"
+                        icon="double-caret-vertical"
+                      >
+                        <svg
+                          data-icon="double-caret-vertical"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            double-caret-vertical
+                          </desc>
+                          <path
+                            d="M5 7h6a1.003 1.003 0 0 0 .71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 0 0 5 7zm6 2H5a1.003 1.003 0 0 0-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0 0 11 9z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </div>
+                </HTMLSelect>
+                <div
+                  className="bp3-timepicker-arrow-row"
+                >
+                  <span
+                    className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                    onClick={[Function]}
+                  >
+                    <Blueprint3.Icon
+                      icon="chevron-down"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-chevron-down"
+                        icon="chevron-down"
+                      >
+                        <svg
+                          data-icon="chevron-down"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            chevron-down
+                          </desc>
+                          <path
+                            d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </span>
+                  <span
+                    className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                    onClick={[Function]}
+                  >
+                    <Blueprint3.Icon
+                      icon="chevron-down"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-chevron-down"
+                        icon="chevron-down"
+                      >
+                        <svg
+                          data-icon="chevron-down"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            chevron-down
+                          </desc>
+                          <path
+                            d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </span>
+                </div>
+              </div>
+            </Blueprint3.TimePicker>
+          </label>
+        </Component>
+        <Component>
+          <label
+            className="bp3-label"
+          >
+            End Time
+            <Blueprint3.TimePicker
+              className="end-time"
+              disabled={false}
+              maxTime={1900-01-01T07:59:59.999Z}
+              minTime={1899-12-31T08:00:00.000Z}
+              onChange={[Function]}
+              precision="minute"
+              selectAllOnFocus={true}
+              showArrowButtons={true}
+              useAmPm={true}
+              value={1899-01-02T07:00:00.000Z}
+            >
+              <div
+                className="bp3-timepicker end-time"
+              >
+                <div
+                  className="bp3-timepicker-arrow-row"
+                >
+                  <span
+                    className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                    onClick={[Function]}
+                  >
+                    <Blueprint3.Icon
+                      icon="chevron-up"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-chevron-up"
+                        icon="chevron-up"
+                      >
+                        <svg
+                          data-icon="chevron-up"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            chevron-up
+                          </desc>
+                          <path
+                            d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </span>
+                  <span
+                    className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                    onClick={[Function]}
+                  >
+                    <Blueprint3.Icon
+                      icon="chevron-up"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-chevron-up"
+                        icon="chevron-up"
+                      >
+                        <svg
+                          data-icon="chevron-up"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            chevron-up
+                          </desc>
+                          <path
+                            d="M12.71 9.29l-4-4C8.53 5.11 8.28 5 8 5s-.53.11-.71.29l-4 4a1.003 1.003 0 0 0 1.42 1.42L8 7.41l3.29 3.29c.18.19.43.3.71.3a1.003 1.003 0 0 0 .71-1.71z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </span>
+                </div>
+                <div
+                  className="bp3-timepicker-input-row"
+                >
+                  <input
+                    className="bp3-timepicker-input bp3-timepicker-hour"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    value="11"
+                  />
+                  <span
+                    className="bp3-timepicker-divider-text"
+                  >
+                    :
+                  </span>
+                  <input
+                    className="bp3-timepicker-input bp3-timepicker-minute"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    value="00"
+                  />
+                </div>
+                <HTMLSelect
+                  className="bp3-timepicker-ampm-select"
+                  disabled={false}
+                  onChange={[Function]}
+                  value="pm"
+                >
+                  <div
+                    className="bp3-html-select bp3-timepicker-ampm-select"
+                  >
+                    <select
+                      disabled={false}
+                      multiple={false}
+                      onChange={[Function]}
+                      value="pm"
+                    >
+                      <option
+                        value="am"
+                      >
+                        AM
+                      </option>
+                      <option
+                        value="pm"
+                      >
+                        PM
+                      </option>
+                    </select>
+                    <Blueprint3.Icon
+                      icon="double-caret-vertical"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-double-caret-vertical"
+                        icon="double-caret-vertical"
+                      >
+                        <svg
+                          data-icon="double-caret-vertical"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            double-caret-vertical
+                          </desc>
+                          <path
+                            d="M5 7h6a1.003 1.003 0 0 0 .71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 0 0 5 7zm6 2H5a1.003 1.003 0 0 0-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0 0 11 9z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </div>
+                </HTMLSelect>
+                <div
+                  className="bp3-timepicker-arrow-row"
+                >
+                  <span
+                    className="bp3-timepicker-arrow-button bp3-timepicker-hour"
+                    onClick={[Function]}
+                  >
+                    <Blueprint3.Icon
+                      icon="chevron-down"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-chevron-down"
+                        icon="chevron-down"
+                      >
+                        <svg
+                          data-icon="chevron-down"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            chevron-down
+                          </desc>
+                          <path
+                            d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </span>
+                  <span
+                    className="bp3-timepicker-arrow-button bp3-timepicker-minute"
+                    onClick={[Function]}
+                  >
+                    <Blueprint3.Icon
+                      icon="chevron-down"
+                    >
+                      <span
+                        className="bp3-icon bp3-icon-chevron-down"
+                        icon="chevron-down"
+                      >
+                        <svg
+                          data-icon="chevron-down"
+                          height={16}
+                          viewBox="0 0 16 16"
+                          width={16}
+                        >
+                          <desc>
+                            chevron-down
+                          </desc>
+                          <path
+                            d="M12 5c-.28 0-.53.11-.71.29L8 8.59l-3.29-3.3a1.003 1.003 0 0 0-1.42 1.42l4 4c.18.18.43.29.71.29s.53-.11.71-.29l4-4A1.003 1.003 0 0 0 12 5z"
+                            fillRule="evenodd"
+                            key="0"
+                          />
+                        </svg>
+                      </span>
+                    </Blueprint3.Icon>
+                  </span>
+                </div>
+              </div>
+            </Blueprint3.TimePicker>
+          </label>
+        </Component>
+      </label>
+    </Component>
+  </div>,
+]
+`;
