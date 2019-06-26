@@ -184,6 +184,7 @@ describe('props on reset', () => {
         name: 'Accounting',
         abbr: 'ACCT',
       },
+      instructor: 'foo',
       courseNo: '000',
       classNo: '1111',
     });
@@ -209,8 +210,18 @@ describe('props on reset', () => {
 
   it('sets the value of class number input field to empty value', () => {
     classSearchContainerWrapper.find('#additional-filters').simulate('click');
-    const classSearchFormWrapper = classSearchContainerWrapper.find('.class-number');
-    expect(classSearchFormWrapper.prop('value')).toHaveLength(0);
+    const classNumberWrapper = classSearchContainerWrapper.find('.class-number');
+    expect(classNumberWrapper.prop('value')).toHaveLength(0);
+  });
+
+  it('sets the value of subject to empty value', () => {
+    const subjectWrapper = classSearchContainerWrapper.find('.search-autocomplete input');
+    expect(subjectWrapper.prop('value')).toHaveLength(0);
+  });
+
+  it('sets the value of instructor to empty value', () => {
+    const instructorWrapper = classSearchContainerWrapper.find('.search-instructor-autocomplete input');
+    expect(instructorWrapper.prop('value')).toHaveLength(0);
   });
 });
 

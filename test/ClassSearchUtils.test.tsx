@@ -341,6 +341,7 @@ describe('fetch parameters', () => {
         name: 'bar',
         abbr: 'BAR',
       },
+      instructorName: 'foo',
     });
   });
 
@@ -369,6 +370,25 @@ describe('fetch parameters', () => {
       classSearchContainerWrapper.update();
       const subjectArgument = fetchMock.lastOptions();
       expect(subjectArgument.body).toMatch(new RegExp('"subject":""'));
+    });
+  });
+
+  describe('when instructor is set to All', () => {
+    it('should pass empty value', () => {
+      classSearchContainerWrapper.setState({
+        instructorName: 'All',
+      });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const instructorNameArgument = fetchMock.lastOptions();
+      expect(instructorNameArgument.body).toMatch(new RegExp('"name":""'));
+    });
+  });
+
+  describe('when instructor is updated', () => {
+    it('should use correct value', () => {
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const instructorNameArgument = fetchMock.lastOptions();
+      expect(instructorNameArgument.body).toMatch(new RegExp('"name":"foo"'));
     });
   });
 

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
 // tslint:disable:max-line-length
-describe('Class number component', () => {
+describe('Subject autocomplete component', () => {
 
   beforeAll(() => {
     fetchMock.mock('*', {});
@@ -11,11 +11,10 @@ describe('Class number component', () => {
 
   describe('Given a class search form', () => {
 
-    test('snapshot', () => {
+    test('subject component snapshot', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      classSearchContainerWrapper.find('#additional-filters').simulate('click');
-      const classNumberWrapper = classSearchContainerWrapper.find('.class-number');
-      expect(classNumberWrapper).toMatchSnapshot();
+      const subjectWrapper = classSearchContainerWrapper.find('.search-autocomplete');
+      expect(subjectWrapper).toMatchSnapshot();
     });
   });
 });
