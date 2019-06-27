@@ -450,6 +450,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         classNo={this.state.classNo}
         courseAttr={this.state.courseAttr}
         sessionCode={this.state.sessionCode}
+        currentTermId={this.state.term}
       />
     );
   }

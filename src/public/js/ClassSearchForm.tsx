@@ -26,6 +26,7 @@ interface IClassSearchFormProps {
   classNo: string;
   courseAttr: string;
   sessionCode: string;
+  currentTermId: string;
   onChangeOfTerm: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
@@ -64,6 +65,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
     return (
       <FormGroup label="Fill in one or more of the fields below:">
         <SelectListQuarter
+          currentTermId={this.props.currentTermId}
           term={this.props.term}
           onChangeOfTerm={this.props.onChangeOfTerm}
         />
