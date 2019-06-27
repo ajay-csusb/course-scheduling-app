@@ -396,8 +396,8 @@ describe('fetch parameters', () => {
     it('should pass empty string', () => {
       classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'all' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      const subjectArgument = fetchMock.lastOptions();
-      expect(subjectArgument.body).toMatch(new RegExp('"instruction_mode":""'));
+      const instructionModeArgument = fetchMock.lastOptions();
+      expect(instructionModeArgument.body).toMatch(new RegExp('"instruction_mode":""'));
     });
   });
 
@@ -484,16 +484,16 @@ describe('fetch parameters', () => {
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
       classSearchContainerWrapper.find('.class-number').simulate('change', { target: { value: '100' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      const courseNoArgument = fetchMock.lastOptions();
-      expect(courseNoArgument.body).toMatch(new RegExp('"class_nbr":"100"'));
+      const classNoArgument = fetchMock.lastOptions();
+      expect(classNoArgument.body).toMatch(new RegExp('"class_nbr":"100"'));
     });
   });
 
   describe('when no meetingDay is set', () => {
     it('should not pass any value for days', () => {
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      const courseNoArgument = fetchMock.lastOptions();
-      expect(courseNoArgument.body).toMatch(new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
+      const meetingDayArgument = fetchMock.lastOptions();
+      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
     });
   });
 
@@ -501,8 +501,8 @@ describe('fetch parameters', () => {
     it('should pass value for Monday', () => {
       classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      const courseNoArgument = fetchMock.lastOptions();
-      expect(courseNoArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
+      const meetingDayArgument = fetchMock.lastOptions();
+      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
     });
   });
 
@@ -511,8 +511,8 @@ describe('fetch parameters', () => {
       classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
       classSearchContainerWrapper.find('.fri > input').simulate('change', { target: { value: 'fri' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      const courseNoArgument = fetchMock.lastOptions();
-      expect(courseNoArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"Y","sat":"","sun":""'));
+      const meetingDayArgument = fetchMock.lastOptions();
+      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"Y","sat":"","sun":""'));
     });
   });
 
@@ -520,8 +520,8 @@ describe('fetch parameters', () => {
     it('should pass an empty string', () => {
       classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'both' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      const degreeTypeArgument = fetchMock.lastOptions();
-      expect(degreeTypeArgument.body).toMatch(new RegExp('"campus":""'));
+      const campusArgument = fetchMock.lastOptions();
+      expect(campusArgument.body).toMatch(new RegExp('"campus":""'));
     });
   });
 
@@ -529,8 +529,8 @@ describe('fetch parameters', () => {
     it('should pass MAIN as a parameter', () => {
       classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'san-bernardino' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      const degreeTypeArgument = fetchMock.lastOptions();
-      expect(degreeTypeArgument.body).toMatch(new RegExp('"campus":"MAIN"'));
+      const campusArgument = fetchMock.lastOptions();
+      expect(campusArgument.body).toMatch(new RegExp('"campus":"MAIN"'));
     });
   });
 
@@ -538,8 +538,8 @@ describe('fetch parameters', () => {
     it('should pass PALM as a parameter', () => {
       classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'palm-desert' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      const degreeTypeArgument = fetchMock.lastOptions();
-      expect(degreeTypeArgument.body).toMatch(new RegExp('"campus":"PALM"'));
+      const campusArgument = fetchMock.lastOptions();
+      expect(campusArgument.body).toMatch(new RegExp('"campus":"PALM"'));
     });
   });
 
