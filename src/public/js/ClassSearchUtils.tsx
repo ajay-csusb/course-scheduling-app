@@ -110,6 +110,9 @@ export function getClassType(classes: IClass): string | null {
   if (classes.ssrComponent === 'SUP') {
     return 'Supplemental';
   }
+  if (classes.ssrComponent === 'ACT') {
+    return 'Activity';
+  }
   return null;
 }
 
