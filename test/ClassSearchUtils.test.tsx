@@ -542,6 +542,16 @@ describe('fetch parameters', () => {
       expect(degreeTypeArgument.body).toMatch(new RegExp('"campus":"PALM"'));
     });
   });
+
+  describe('when term is set', () => {
+    it('should pass the selected value', () => {
+      classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '1111' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const termArgument = fetchMock.lastOptions();
+      expect(termArgument.body).toMatch(new RegExp('"strm":"1111"'));
+    });
+  });
+
 });
 
 describe('Degree type values', () => {

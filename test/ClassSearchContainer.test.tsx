@@ -98,6 +98,15 @@ describe('states', () => {
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       expect(classSearchContainerWrapper.state('courseNo')).toEqual('111');
     });
+
+    describe('when an option is selected from term', () => {
+      it('should set the correct term state', () => {
+        const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+        classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '000' } });
+        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+        expect(classSearchContainerWrapper.state('term')).toEqual('000');
+      });
+    });
   });
 
   describe('When user clicks submit', () => {
@@ -128,6 +137,7 @@ describe('states', () => {
     beforeAll(() => {
       classSearchContainerWrapper = mount(<ClassSearchContainer />);
       classSearchContainerWrapper.setState({
+        term: '2222',
         subject: {
           name: 'Accounting',
           abbr: 'ACCT',
@@ -171,6 +181,10 @@ describe('states', () => {
 
     it('sets degreeType to all', () => {
       expect(classSearchContainerWrapper.state('degreeType')).toEqual('all');
+    });
+
+    it('sets term to current term value', () => {
+      expect(classSearchContainerWrapper.state('term')).toEqual('');
     });
   });
 });
