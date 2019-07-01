@@ -579,3 +579,23 @@ describe('Degree type values', () => {
     });
   });
 });
+
+describe('Number of available seat', () => {
+  describe('When no seats are available', () => {
+    it('should return 0', () => {
+      const zeroAvailableSeats = JSON.parse(JSON.stringify(classJson));
+      zeroAvailableSeats.enrolledCapacity = 30;
+      zeroAvailableSeats.enrolledTotal = 30;
+      expect(ClassSearchUtils.getNoOfAvailableSeats(zeroAvailableSeats)).toEqual(0);
+    });
+  });
+
+  describe('When seats are available', () => {
+    it('should return number of seats', () => {
+      const twoAvailableSeats = JSON.parse(JSON.stringify(classJson));
+      twoAvailableSeats.enrolledCapacity = 30;
+      twoAvailableSeats.enrolledTotal = 28;
+      expect(ClassSearchUtils.getNoOfAvailableSeats(twoAvailableSeats)).toEqual(2);
+    });
+  });
+});
