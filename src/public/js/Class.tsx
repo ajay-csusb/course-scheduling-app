@@ -34,8 +34,8 @@ export interface IClass {
   sbCourseZccm?: string;
   consent?: string;
   facilityId: string;
-  buildingCode?: string;
-  room?: string;
+  buildingCode: string;
+  room: string;
   mon: string;
   tues: string;
   wed: string;

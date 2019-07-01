@@ -303,3 +303,10 @@ export function getDegreeType(classes: IClass): string {
   }
   return '';
 }
+
+export function getRoomNumber(classes: IClass): string {
+  if (classes.buildingCode.length === 0 && classes.room.length === 0) {
+    return 'TBD';
+  }
+  return `${classes.buildingCode} ${classes.room}`;
+}

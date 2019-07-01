@@ -24,6 +24,7 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
     const instructorName = ClassSearchUtils.getInstructorName(classDetails);
     const sessionCode = ClassSearchUtils.getSessionCode(classDetails);
     const degreeType = ClassSearchUtils.getDegreeType(classDetails);
+    const roomNumber = ClassSearchUtils.getRoomNumber(classDetails);
     let instructor = <span>Instructor: N/A</span>;
     if (instructorName !== 'N/A') {
       instructor = <span>Instructor: <a href={instructorProfileURL}> {instructorName}</a></span>;
@@ -41,7 +42,7 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
         <br />
         <span>(Class No. {classDetails.classNumber})</span>
         {instructor}
-        <span>Room: {classDetails.buildingCode} {classDetails.room}</span>
+        <span>Room: {roomNumber}</span>
         <span>Meeting Time: {time}</span>
         <span>Meeting Days: {days}</span>
         <span dangerouslySetInnerHTML={{ __html: classDetails.textbook }} /> <br />
