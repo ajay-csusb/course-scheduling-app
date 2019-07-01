@@ -36,5 +36,12 @@ describe('Displayed fields in classes', function () {
       cy.get('.bp3-popover-content').should('contain', 'Materials fee required. (GE=B2) (5 units)');
     });
 
+    it('should show TBD if room number is not assigned', () => {
+      cy.get('.mon > .bp3-control-indicator').click();
+      cy.get('button').contains('Submit').click();
+      cy.wait(5000);
+      cy.get('span').should('contain', 'Room: TBD');
+    });
+
   });
 });
