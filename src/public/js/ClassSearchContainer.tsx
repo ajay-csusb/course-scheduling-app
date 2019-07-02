@@ -42,6 +42,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList ';
 
+  private userInput: UserInput;
+
   constructor(props: any) {
     super(props);
     this.state = this.defaultFormValues();
@@ -73,6 +75,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.subjects = [];
     this.term = [];
     this.currentTermId = '';
+    this.userInput = new UserInput();
   }
 
   public render(): JSX.Element {
@@ -106,6 +109,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       term: e.target.value,
       beforeSubmit: true,
     });
+    this.userInput.setTerm(e.target.value);
   }
 
   private updateCampus(e: any): void {
@@ -113,6 +117,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       campus: e.target.value,
       beforeSubmit: true,
     });
+    this.userInput.setCampus(e.target.value);
   }
 
   private updateMeetingDate(e: any): void {
@@ -143,6 +148,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       courseNo: e.target.value,
       beforeSubmit: true,
     });
+    this.userInput.setCourseNo(e.target.value);
   }
 
   private updateInstructionMode(e: any): void {
@@ -150,6 +156,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       instructionMode: e.target.value,
       beforeSubmit: true,
     });
+    this.userInput.setInstructionMode(e.target.value);
   }
 
   private updateInstructorName(instructor: string): void {
@@ -376,6 +383,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       startTime: e,
       beforeSubmit: true,
     });
+    this.userInput.setStartTime(e);
   }
 
   private updateEndTime(e: Date): void {
@@ -383,6 +391,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       endTime: e,
       beforeSubmit: true,
     });
+    this.userInput.setEndTime(e);
   }
 
   private resetComplete() {
@@ -481,6 +490,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       courseAttr: selectedValue,
       beforeSubmit: true,
     });
+    this.userInput.setCourseAttr(selectedValue);
   }
 
   private updateSessionCode(e: any) {
@@ -488,6 +498,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       sessionCode: e.target.value,
       beforeSubmit: true,
     });
+    this.userInput.setSessionCode(e.target.value);
   }
 
   private updateClassNo(e: any) {
@@ -495,6 +506,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       classNo: e.target.value,
       beforeSubmit: true,
     });
+    this.userInput.setClassNo(e.target.value);
   }
 
   private updateDegreeType(value: string) {
@@ -502,6 +514,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       degreeType: value,
       beforeSubmit: true,
     });
+    this.userInput.setDegreeType(value);
   }
 
   private processDropDownListData(data: any): void {
@@ -515,12 +528,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateAllClasses() {
-    const userInput = new UserInput(
-      this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.term,
-      this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
-      this.state.courseAttr, this.state.classNo, this.state.sessionCode);
-    userInput.setDegreeType(this.state.degreeType);
-    Class.getAllClasses(this.classesFound, this.classesNotFound, userInput);
+    this.userInput.setInstructor(this.state.instructorName);
+    this.userInput.setSubject(this.state.subject.abbr);
+    this.userInput.setMeetingDay(this.state.meetingDate);
+    Class.getAllClasses(this.classesFound, this.classesNotFound, this.userInput);
   }
 
 }
