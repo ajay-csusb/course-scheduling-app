@@ -27,6 +27,7 @@ interface IClassSearchContainerState {
   classNo: string;
   showErrorMessage: boolean;
   degreeType: string;
+  forceReload: boolean;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
 
@@ -100,6 +101,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     if (this.resetComplete()) {
       this.setState({
         isReset: false,
+      });
+    }
+    if (this.state.forceReload) {
+      this.setState({
+        forceReload: false,
       });
     }
   }
@@ -317,6 +323,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       classNo: '',
       showErrorMessage: false,
       degreeType: 'all',
+      forceReload: false,
     };
   }
 
@@ -328,7 +335,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         instructorsArr.push(_instructor.name);
       });
       this.instructors = instructorsArr;
-      this.setState({ isLoading: false });
+      this.setState({ forceReload: true});
     }
   }
 
@@ -352,7 +359,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       });
       this.subjects = subjects;
     }
-    this.setState({ isLoading: false });
+    this.setState({ forceReload: true});
   }
 
   private termFound(data: any): void {
@@ -370,7 +377,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       // @Todo unit test this.
       term: this.currentTermId,
-      isLoading: false,
+      forceReload: true,
     });
   }
 
