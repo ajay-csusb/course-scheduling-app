@@ -71,6 +71,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.onReset = this.onReset.bind(this);
     this.classesFound = this.classesFound.bind(this);
     this.classesNotFound = this.classesNotFound.bind(this);
+    this.onEnterKeyPress = this.onEnterKeyPress.bind(this);
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
@@ -266,7 +267,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     });
   }
 
-  private onSubmit(_e: any): any {
+  private onSubmit(): any {
     if (this.isSubjectEmpty()) {
       this.setState({
         showErrorMessage: true,
@@ -284,7 +285,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     );
   }
 
-  private onReset(_e: any): void {
+  private onReset(): void {
     this.setState(this.defaultFormValues());
     this.setState({
       isReset: true,
@@ -460,6 +461,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfClassNo={this.updateClassNo}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
+        onKeyDown={this.onEnterKeyPress}
         startTime={this.state.startTime}
         endTime={this.state.endTime}
         courseNo={this.state.courseNo}
@@ -539,6 +541,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.userInput.setSubject(this.state.subject.abbr);
     this.userInput.setMeetingDay(this.state.meetingDate);
     Class.getAllClasses(this.classesFound, this.classesNotFound, this.userInput);
+  }
+
+  private onEnterKeyPress(event: React.KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.onSubmit();
+    }
   }
 
 }

@@ -4,6 +4,7 @@ import { IMeetingDate } from './Class';
 export interface IControlGroupMeetingDayProps {
   meetingDate: IMeetingDate;
   onChangeOfMeetingDate: (event: React.FormEvent) => void;
+  onKeyDown: (event: React.KeyboardEvent) => void;
 }
 
 export class ControlGroupMeetingDay extends React.Component<IControlGroupMeetingDayProps, {}> {
@@ -23,6 +24,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
           className="mon"
           onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
           checked={this.props.meetingDate.mon}
+          onKeyDown={this.props.onKeyDown}
         />
         <Checkbox
           label="Tue"
@@ -30,6 +32,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
           className="tue"
           onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
           checked={this.props.meetingDate.tue}
+          onKeyDown={this.props.onKeyDown}
         />
         <Checkbox
           label="Wed"
@@ -37,6 +40,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
           className="wed"
           onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
           checked={this.props.meetingDate.wed}
+          onKeyDown={this.props.onKeyDown}
         />
         <Checkbox
           label="Thu"
@@ -44,6 +48,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
           className="thu"
           onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
           checked={this.props.meetingDate.thu}
+          onKeyDown={this.props.onKeyDown}
         />
         <Checkbox
           label="Fri"
@@ -51,6 +56,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
           className="fri"
           onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
           checked={this.props.meetingDate.fri}
+          onKeyDown={this.props.onKeyDown}
         />
         <Checkbox
           label="Sat"
@@ -58,6 +64,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
           className="sat"
           onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
           checked={this.props.meetingDate.sat}
+          onKeyDown={this.props.onKeyDown}
         />
         <Checkbox
           label="Sun"
@@ -65,6 +72,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
           className="sun"
           onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
           checked={this.props.meetingDate.sun}
+          onKeyDown={this.props.onKeyDown}
         />
       </ControlGroup>
     );

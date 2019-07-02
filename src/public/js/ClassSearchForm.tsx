@@ -39,6 +39,7 @@ interface IClassSearchFormProps {
   onChangeOfCourseAttr: (event: any) => void;
   onChangeOfSessionCode: (event: any) => void;
   onChangeOfClassNo: (event: any) => void;
+  onKeyDown: (event: React.KeyboardEvent) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;
 }
@@ -85,6 +86,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
         <ControlGroupMeetingDay
           meetingDate={this.props.meetingDate}
           onChangeOfMeetingDate={this.props.onChangeOfMeetingDate}
+          onKeyDown={this.props.onKeyDown}
         />
         <SelectListInstructionMode
           instructionMode={this.props.instructionMode}
@@ -158,6 +160,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           dir="auto"
           onChange={this.props.onChangeOfCourseNo}
           value={this.props.courseNo}
+          onKeyDown={this.props.onKeyDown}
         />
       </Label>
     );
@@ -172,6 +175,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
       onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
       onChangeOfSessionCode={this.props.onChangeOfSessionCode}
       onChangeOfClassNo={this.props.onChangeOfClassNo}
+      onKeyDown={this.props.onKeyDown}
     />
     );
   }

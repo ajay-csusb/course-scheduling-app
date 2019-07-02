@@ -10,6 +10,7 @@ interface IAdvancedFilterFieldsetProps {
   onChangeOfCourseAttr: (event: any) => void;
   onChangeOfSessionCode: (event: any) => void;
   onChangeOfClassNo: (event: any) => void;
+  onKeyDown: (event: React.KeyboardEvent) => void;
 }
 
 interface IAdvancedFilterFieldsetState {
@@ -69,6 +70,7 @@ export class AdvancedFilterFieldset extends React.Component<
           dir="auto"
           onChange={this.props.onChangeOfClassNo}
           value={this.props.classNo}
+          onKeyDown={this.props.onKeyDown}
       />
       </Label>
     );
