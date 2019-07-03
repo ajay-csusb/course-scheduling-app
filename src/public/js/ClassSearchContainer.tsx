@@ -116,7 +116,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       term: e.target.value,
       beforeSubmit: true,
     });
-    this.userInput.setTerm(e.target.value);
   }
 
   private updateCampus(e: any): void {
@@ -537,6 +536,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateAllClasses() {
+    this.userInput.setTerm(this.state.term);
     this.userInput.setInstructor(this.state.instructorName);
     this.userInput.setSubject(this.state.subject.abbr);
     this.userInput.setMeetingDay(this.state.meetingDate);
