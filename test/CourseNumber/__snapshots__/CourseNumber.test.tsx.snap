@@ -5,6 +5,7 @@ exports[`Course number component Given a class search form snapshot 1`] = `
   className="bp3-input course-number"
   dir="auto"
   onChange={[Function]}
+  onKeyDown={[Function]}
   placeholder="E.g. 602"
   type="text"
   value=""

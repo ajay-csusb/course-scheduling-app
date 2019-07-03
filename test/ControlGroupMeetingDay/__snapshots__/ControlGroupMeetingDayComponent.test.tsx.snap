@@ -22,6 +22,7 @@ Array [
         className="mon"
         label="Mon"
         onChange={[Function]}
+        onKeyDown={[Function]}
         value="mon"
       >
         <Control
@@ -30,6 +31,7 @@ Array [
           inputRef={[Function]}
           label="Mon"
           onChange={[Function]}
+          onKeyDown={[Function]}
           type="checkbox"
           typeClassName="bp3-checkbox"
           value="mon"
@@ -40,6 +42,7 @@ Array [
             <input
               checked={false}
               onChange={[Function]}
+              onKeyDown={[Function]}
               type="checkbox"
               value="mon"
             />
@@ -55,6 +58,7 @@ Array [
         className="tue"
         label="Tue"
         onChange={[Function]}
+        onKeyDown={[Function]}
         value="tue"
       >
         <Control
@@ -63,6 +67,7 @@ Array [
           inputRef={[Function]}
           label="Tue"
           onChange={[Function]}
+          onKeyDown={[Function]}
           type="checkbox"
           typeClassName="bp3-checkbox"
           value="tue"
@@ -73,6 +78,7 @@ Array [
             <input
               checked={false}
               onChange={[Function]}
+              onKeyDown={[Function]}
               type="checkbox"
               value="tue"
             />
@@ -88,6 +94,7 @@ Array [
         className="wed"
         label="Wed"
         onChange={[Function]}
+        onKeyDown={[Function]}
         value="wed"
       >
         <Control
@@ -96,6 +103,7 @@ Array [
           inputRef={[Function]}
           label="Wed"
           onChange={[Function]}
+          onKeyDown={[Function]}
           type="checkbox"
           typeClassName="bp3-checkbox"
           value="wed"
@@ -106,6 +114,7 @@ Array [
             <input
               checked={false}
               onChange={[Function]}
+              onKeyDown={[Function]}
               type="checkbox"
               value="wed"
             />
@@ -121,6 +130,7 @@ Array [
         className="thu"
         label="Thu"
         onChange={[Function]}
+        onKeyDown={[Function]}
         value="thu"
       >
         <Control
@@ -129,6 +139,7 @@ Array [
           inputRef={[Function]}
           label="Thu"
           onChange={[Function]}
+          onKeyDown={[Function]}
           type="checkbox"
           typeClassName="bp3-checkbox"
           value="thu"
@@ -139,6 +150,7 @@ Array [
             <input
               checked={false}
               onChange={[Function]}
+              onKeyDown={[Function]}
               type="checkbox"
               value="thu"
             />
@@ -154,6 +166,7 @@ Array [
         className="fri"
         label="Fri"
         onChange={[Function]}
+        onKeyDown={[Function]}
         value="fri"
       >
         <Control
@@ -162,6 +175,7 @@ Array [
           inputRef={[Function]}
           label="Fri"
           onChange={[Function]}
+          onKeyDown={[Function]}
           type="checkbox"
           typeClassName="bp3-checkbox"
           value="fri"
@@ -172,6 +186,7 @@ Array [
             <input
               checked={false}
               onChange={[Function]}
+              onKeyDown={[Function]}
               type="checkbox"
               value="fri"
             />
@@ -187,6 +202,7 @@ Array [
         className="sat"
         label="Sat"
         onChange={[Function]}
+        onKeyDown={[Function]}
         value="sat"
       >
         <Control
@@ -195,6 +211,7 @@ Array [
           inputRef={[Function]}
           label="Sat"
           onChange={[Function]}
+          onKeyDown={[Function]}
           type="checkbox"
           typeClassName="bp3-checkbox"
           value="sat"
@@ -205,6 +222,7 @@ Array [
             <input
               checked={false}
               onChange={[Function]}
+              onKeyDown={[Function]}
               type="checkbox"
               value="sat"
             />
@@ -220,6 +238,7 @@ Array [
         className="sun"
         label="Sun"
         onChange={[Function]}
+        onKeyDown={[Function]}
         value="sun"
       >
         <Control
@@ -228,6 +247,7 @@ Array [
           inputRef={[Function]}
           label="Sun"
           onChange={[Function]}
+          onKeyDown={[Function]}
           type="checkbox"
           typeClassName="bp3-checkbox"
           value="sun"
@@ -238,6 +258,7 @@ Array [
             <input
               checked={false}
               onChange={[Function]}
+              onKeyDown={[Function]}
               type="checkbox"
               value="sun"
             />
@@ -265,6 +286,7 @@ Array [
       className="mon"
       label="Mon"
       onChange={[Function]}
+      onKeyDown={[Function]}
       value="mon"
     >
       <Control
@@ -273,6 +295,7 @@ Array [
         inputRef={[Function]}
         label="Mon"
         onChange={[Function]}
+        onKeyDown={[Function]}
         type="checkbox"
         typeClassName="bp3-checkbox"
         value="mon"
@@ -283,6 +306,7 @@ Array [
           <input
             checked={false}
             onChange={[Function]}
+            onKeyDown={[Function]}
             type="checkbox"
             value="mon"
           />
@@ -298,6 +322,7 @@ Array [
       className="tue"
       label="Tue"
       onChange={[Function]}
+      onKeyDown={[Function]}
       value="tue"
     >
       <Control
@@ -306,6 +331,7 @@ Array [
         inputRef={[Function]}
         label="Tue"
         onChange={[Function]}
+        onKeyDown={[Function]}
         type="checkbox"
         typeClassName="bp3-checkbox"
         value="tue"
@@ -316,6 +342,7 @@ Array [
           <input
             checked={false}
             onChange={[Function]}
+            onKeyDown={[Function]}
             type="checkbox"
             value="tue"
           />
@@ -331,6 +358,7 @@ Array [
       className="wed"
       label="Wed"
       onChange={[Function]}
+      onKeyDown={[Function]}
       value="wed"
     >
       <Control
@@ -339,6 +367,7 @@ Array [
         inputRef={[Function]}
         label="Wed"
         onChange={[Function]}
+        onKeyDown={[Function]}
         type="checkbox"
         typeClassName="bp3-checkbox"
         value="wed"
@@ -349,6 +378,7 @@ Array [
           <input
             checked={false}
             onChange={[Function]}
+            onKeyDown={[Function]}
             type="checkbox"
             value="wed"
           />
@@ -364,6 +394,7 @@ Array [
       className="thu"
       label="Thu"
       onChange={[Function]}
+      onKeyDown={[Function]}
       value="thu"
     >
       <Control
@@ -372,6 +403,7 @@ Array [
         inputRef={[Function]}
         label="Thu"
         onChange={[Function]}
+        onKeyDown={[Function]}
         type="checkbox"
         typeClassName="bp3-checkbox"
         value="thu"
@@ -382,6 +414,7 @@ Array [
           <input
             checked={false}
             onChange={[Function]}
+            onKeyDown={[Function]}
             type="checkbox"
             value="thu"
           />
@@ -397,6 +430,7 @@ Array [
       className="fri"
       label="Fri"
       onChange={[Function]}
+      onKeyDown={[Function]}
       value="fri"
     >
       <Control
@@ -405,6 +439,7 @@ Array [
         inputRef={[Function]}
         label="Fri"
         onChange={[Function]}
+        onKeyDown={[Function]}
         type="checkbox"
         typeClassName="bp3-checkbox"
         value="fri"
@@ -415,6 +450,7 @@ Array [
           <input
             checked={false}
             onChange={[Function]}
+            onKeyDown={[Function]}
             type="checkbox"
             value="fri"
           />
@@ -430,6 +466,7 @@ Array [
       className="sat"
       label="Sat"
       onChange={[Function]}
+      onKeyDown={[Function]}
       value="sat"
     >
       <Control
@@ -438,6 +475,7 @@ Array [
         inputRef={[Function]}
         label="Sat"
         onChange={[Function]}
+        onKeyDown={[Function]}
         type="checkbox"
         typeClassName="bp3-checkbox"
         value="sat"
@@ -448,6 +486,7 @@ Array [
           <input
             checked={false}
             onChange={[Function]}
+            onKeyDown={[Function]}
             type="checkbox"
             value="sat"
           />
@@ -463,6 +502,7 @@ Array [
       className="sun"
       label="Sun"
       onChange={[Function]}
+      onKeyDown={[Function]}
       value="sun"
     >
       <Control
@@ -471,6 +511,7 @@ Array [
         inputRef={[Function]}
         label="Sun"
         onChange={[Function]}
+        onKeyDown={[Function]}
         type="checkbox"
         typeClassName="bp3-checkbox"
         value="sun"
@@ -481,6 +522,7 @@ Array [
           <input
             checked={false}
             onChange={[Function]}
+            onKeyDown={[Function]}
             type="checkbox"
             value="sun"
           />
