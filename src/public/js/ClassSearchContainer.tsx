@@ -114,14 +114,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateTerm(e: any): void {
     this.setState({
       term: e.target.value,
-      beforeSubmit: true,
     });
   }
 
   private updateCampus(e: any): void {
     this.setState({
       campus: e.target.value,
-      beforeSubmit: true,
     });
     this.userInput.setCampus(e.target.value);
   }
@@ -138,21 +136,18 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         sat: this.toggleSat(checkBoxValue),
         sun: this.toggleSun(checkBoxValue),
       },
-      beforeSubmit: true,
     });
   }
 
   private updateSubject(subject: ISubject): void {
     this.setState({
       subject: subject,
-      beforeSubmit: true,
     });
   }
 
   private updateCourseNo(e: any): void {
     this.setState({
       courseNo: e.target.value,
-      beforeSubmit: true,
     });
     this.userInput.setCourseNo(e.target.value);
   }
@@ -160,7 +155,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateInstructionMode(e: any): void {
     this.setState({
       instructionMode: e.target.value,
-      beforeSubmit: true,
     });
     this.userInput.setInstructionMode(e.target.value);
   }
@@ -168,7 +162,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateInstructorName(instructor: string): void {
     this.setState({
       instructorName: instructor,
-      beforeSubmit: true,
     });
   }
 
@@ -388,7 +381,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateStartTime(e: Date): void {
     this.setState({
       startTime: e,
-      beforeSubmit: true,
     });
     this.userInput.setStartTime(e);
   }
@@ -396,7 +388,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateEndTime(e: Date): void {
     this.setState({
       endTime: e,
-      beforeSubmit: true,
     });
     this.userInput.setEndTime(e);
   }
@@ -496,7 +487,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     }
     this.setState({
       courseAttr: selectedValue,
-      beforeSubmit: true,
     });
     this.userInput.setCourseAttr(selectedValue);
   }
@@ -504,7 +494,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateSessionCode(e: any) {
     this.setState({
       sessionCode: e.target.value,
-      beforeSubmit: true,
     });
     this.userInput.setSessionCode(e.target.value);
   }
@@ -512,7 +501,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateClassNo(e: any) {
     this.setState({
       classNo: e.target.value,
-      beforeSubmit: true,
     });
     this.userInput.setClassNo(e.target.value);
   }
@@ -520,7 +508,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateDegreeType(value: string) {
     this.setState({
       degreeType: value,
-      beforeSubmit: true,
     });
     this.userInput.setDegreeType(value);
   }

@@ -124,7 +124,7 @@ describe('states', () => {
     it('sets isReset to false', () => {
       expect(classSearchContainerWrapper.state('isReset')).toBeFalsy();
     });
-    it('sets beforeSubmit to true', () => {
+    it('sets beforeSubmit to false', () => {
       expect(classSearchContainerWrapper.state('beforeSubmit')).toBeFalsy();
     });
     it('should set isLoading when submit is clicked', () => {
@@ -185,6 +185,9 @@ describe('states', () => {
 
     it('sets term to current term value', () => {
       expect(classSearchContainerWrapper.state('term')).toEqual('');
+    });
+    it('sets beforeSubmit to true', () => {
+      expect(classSearchContainerWrapper.state('beforeSubmit')).toBeTruthy();
     });
   });
 });
