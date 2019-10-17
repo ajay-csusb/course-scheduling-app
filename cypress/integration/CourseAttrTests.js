@@ -12,7 +12,7 @@ describe('Filter classes by course attribute', function () {
         cy.get('#additional-filters').click();
         cy.get('.course-attribute select').select('General Education');
         cy.get('button').contains('Submit').click();
-        cy.wait(5000);
+        cy.wait(20000);
       });
       assertGeClasses();
     });
@@ -36,9 +36,9 @@ describe('Filter classes by course attribute', function () {
 
 function assertGeClasses() {
   it('should show classes that belong to GE', () => {
-    cy.get('span').should('contain', 'BIOL  100 01');
-    cy.get('span').should('contain', 'BIOL  100 02');
-    cy.get('span').should('contain', 'BIOL  100 03');
-    cy.get('span').should('contain', 'BIOL  100 04');
+    cy.get('span').should('contain', 'BIOL 100 01');
+    cy.get('span').should('contain', 'BIOL 100 02');
+    cy.get('span').should('contain', 'BIOL 100 03');
+    cy.get('span').should('contain', 'BIOL 100 04');
   });
 }

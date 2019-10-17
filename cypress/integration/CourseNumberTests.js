@@ -34,6 +34,6 @@ function assertClassesByClassNumber() {
     cy.wait(10000);
   });
   it('should show classes having the course number', () => {
-    cy.get('span').should('contain', 'BIOL  300 01');
+    cy.get('span').should('contain', 'BIOL 300 01');
   });
 }
