@@ -552,6 +552,30 @@ describe('fetch parameters', () => {
     });
   });
 
+  describe('when reset is clicked after submit', () => {
+    it('fetch should be called with correct parameters', () => {
+      classSearchContainerWrapper.setState({
+        subject: {
+          name: 'All',
+          abbr: 'all',
+        },
+      });
+      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'san-bernardino' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      classSearchContainerWrapper.find('button[type="reset"]').simulate('click');
+      classSearchContainerWrapper.setState({
+        subject: {
+          name: 'Biology',
+          abbr: 'BIOL',
+        },
+      });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const fetchArgument = fetchMock.lastOptions();
+      expect(fetchArgument.body).toMatch(new RegExp('"subject":"BIOL"'));
+      expect(fetchArgument.body).toMatch(new RegExp('"campus":""'));
+    });
+  });
+
 });
 
 describe('Degree type values', () => {
