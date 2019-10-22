@@ -495,9 +495,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private updateCourseAttr(e: any) {
     const selectedValue = e.target.value;
+    // @Todo simplify this.
     this.updateDegreeType('all');
-    if (selectedValue === 'UGRD' || selectedValue === 'PBAC' || selectedValue === 'EXED') {
+    if (this.isDegreeType(selectedValue)) {
       this.updateDegreeType(selectedValue);
+      return;
     }
     this.setState({
       courseAttr: selectedValue,
@@ -548,6 +550,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     if (event.key === 'Enter') {
       this.onSubmit();
     }
+  }
+
+  private isDegreeType(degreeAbbr: string): boolean {
+    return (degreeAbbr === 'UGRD' || degreeAbbr === 'PBAC' || degreeAbbr === 'EXED');
   }
 
 }
