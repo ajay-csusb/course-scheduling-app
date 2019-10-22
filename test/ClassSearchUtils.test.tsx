@@ -576,6 +576,28 @@ describe('fetch parameters', () => {
     });
   });
 
+  describe('when degree type is set and then unset', () => {
+    it('fetch should be called with correct parameters', () => {
+      classSearchContainerWrapper.setState({
+        subject: {
+          name: 'All',
+          abbr: 'all',
+        },
+      });
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'UGRD' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      let fetchArgument = fetchMock.lastOptions();
+      expect(fetchArgument.body).toMatch(new RegExp('"crse_attr":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"acad_career":"UGRD"'));
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      fetchArgument = fetchMock.lastOptions();
+      expect(fetchArgument.body).toMatch(new RegExp('"crse_attr":"foo"'));
+      expect(fetchArgument.body).toMatch(new RegExp('"acad_career":""'));
+    });
+  });
+
 });
 
 describe('Degree type values', () => {

@@ -32,6 +32,25 @@ describe('Filter classes by course attribute', function () {
       assertGeClasses();
     });
   });
+
+  context('When a user searches for Graduate level classes followed by GE classes', () => {
+    before(function () {
+      cy.visit(localUrl);
+      cy.get('.search-autocomplete input').type('Fin').click();
+      cy.get('div').contains('Finance', { timeout: 15000 }).click();
+      cy.get('#additional-filters').click();
+      cy.get('.course-attribute select').select('Graduate classes');
+      cy.get('button').contains('Submit').click();
+      cy.wait(5000);
+      cy.get('span').should('contain', 'FIN 602 01');
+      cy.get('.course-attribute select').select('General Education');
+      cy.get('button').contains('Submit').click();
+      cy.wait(5000);
+    });
+    it('should show classes that only belong to GE', () => {
+      cy.get('span').should('contain', 'FIN 101 02');
+    });
+  });
 });
 
 function assertGeClasses() {
