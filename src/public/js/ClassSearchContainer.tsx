@@ -295,7 +295,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       this.userInput.setCourseAttr(this.state.courseAttr);
       this.userInput.setSessionCode(this.state.sessionCode);
       this.userInput.setClassNo(this.state.classNo);
-      this.userInput.setDegreeType(this.state.degreeType);
     });
   }
 
