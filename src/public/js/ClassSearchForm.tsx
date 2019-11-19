@@ -154,7 +154,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
       <Label>
         Course Number
         <input
-          className="bp3-input course-number"
+          className="course-number"
           type="text"
           placeholder="E.g. 602"
           dir="auto"
