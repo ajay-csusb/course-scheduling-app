@@ -313,7 +313,7 @@ exports[`snapshots compare search form snapshot 1`] = `
             >
               Course Number
               <input
-                className="bp3-input course-number"
+                className="course-number"
                 dir="auto"
                 onChange={[Function]}
                 onKeyDown={[Function]}

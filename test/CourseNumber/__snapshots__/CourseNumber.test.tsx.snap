@@ -2,7 +2,7 @@
 
 exports[`Course number component Given a class search form snapshot 1`] = `
 <input
-  className="bp3-input course-number"
+  className="course-number"
   dir="auto"
   onChange={[Function]}
   onKeyDown={[Function]}
