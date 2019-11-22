@@ -3,6 +3,7 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
 import { rawClassesJson } from './ClassesJson';
+import { Spinner } from '@blueprintjs/core';
 // tslint:disable:max-line-length
 
 describe('snapshots', () => {
@@ -295,7 +296,7 @@ describe('Loading message', () => {
 
   it('should display a loading indicator when submit is clicked', () => {
     const loadingWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
-    expect(loadingWrapper.contains(<p>Loading...</p>)).toBeTruthy();
+    expect(loadingWrapper.find(Spinner)).toHaveLength(1);
   });
 
   it('should not display a loading indicator after isLoading is set to false', () => {
@@ -303,7 +304,7 @@ describe('Loading message', () => {
       isLoading: false,
     });
     const loadingWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
-    expect(loadingWrapper.contains(<p>Loading...</p>)).toBeFalsy();
+    expect(loadingWrapper.find(Spinner)).toHaveLength(0);
   });
 
   it('should display no classes found if no classes are found', () => {
