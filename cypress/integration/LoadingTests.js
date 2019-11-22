@@ -30,7 +30,6 @@ describe('Loading message behavior', function () {
       cy.get('button').contains('Submit').click();
       cy.wait(10000);
       cy.get('.sun > .bp3-control-indicator').click();
-      cy.get('.all-date > .bp3-control-indicator').click();
       cy.get('button').contains('Submit').click();
       cy.get('p').should('contain', 'Loading...');
     });

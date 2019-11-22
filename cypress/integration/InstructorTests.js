@@ -53,7 +53,7 @@ describe('Filter classes by All instructors', function () {
     });
     it('should show all Accounting classes', () => {
       cy.get('a').should('contain', 'Liu, Xiang');
-      cy.get('a').should('contain', 'Munsif, Vishal');
+      cy.get('a').should('contain', 'Yang, Taewon');
       cy.get('a').should('contain', 'Bazaz, Mohammad');
     });
   });
@@ -72,7 +72,7 @@ describe('Filter classes by All instructors', function () {
     });
     it('should show all Accounting classes', () => {
       cy.get('a').should('contain', 'Liu, Xiang');
-      cy.get('a').should('contain', 'Munsif, Vishal');
+      cy.get('a').should('contain', 'Yang, Taewon');
       cy.get('a').should('contain', 'Bazaz, Mohammad');
     });
 
@@ -101,7 +101,7 @@ describe('Filter classes by All and specific instructor', function () {
     });
     it('should show Accounting classes by Liu, Xiang', () => {
       cy.get('a').should('contain', 'Liu, Xiang');
-      cy.get('a').should('not.contain', 'Munsif, Vishal');
+      cy.get('a').should('not.contain', 'Yang, Taewon');
       cy.get('a').should('not.contain', 'Bazaz, Mohammad');
     });
 

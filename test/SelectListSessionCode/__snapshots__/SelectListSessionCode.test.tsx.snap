@@ -1,0 +1,462 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SelectListSessionCode> Given a class search form snapshot 1`] = `
+Array [
+  <HTMLSelect
+    className="session-code"
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "label": "All",
+          "value": "all",
+        },
+        Object {
+          "label": "Early Start Program",
+          "value": "ES",
+        },
+        Object {
+          "label": "Eight weeks",
+          "value": "8W",
+        },
+        Object {
+          "label": "Four weeks",
+          "value": "4W",
+        },
+        Object {
+          "label": "Mini",
+          "value": "MIN",
+        },
+        Object {
+          "label": "OEE",
+          "value": "OEE",
+        },
+        Object {
+          "label": "OSHER",
+          "value": "OLL",
+        },
+        Object {
+          "label": "Palm Desert 1, 4 week",
+          "value": "A11",
+        },
+        Object {
+          "label": "Palm Desert 1, 8 week",
+          "value": "A12",
+        },
+        Object {
+          "label": "Palm Desert 1,12 week",
+          "value": "A13",
+        },
+        Object {
+          "label": "Palm Desert 2, 4 week",
+          "value": "A21",
+        },
+        Object {
+          "label": "Palm Desert 2, 8 week",
+          "value": "A22",
+        },
+        Object {
+          "label": "Palm Desert 2,12 week",
+          "value": "A23",
+        },
+        Object {
+          "label": "Regular",
+          "value": "1",
+        },
+        Object {
+          "label": "Regular Non Standard",
+          "value": "RNS",
+        },
+        Object {
+          "label": "Self Non Standard",
+          "value": "SNS",
+        },
+        Object {
+          "label": "Self Support",
+          "value": "SD",
+        },
+        Object {
+          "label": "Six weeks",
+          "value": "6W",
+        },
+        Object {
+          "label": "Ten weeks",
+          "value": "10W",
+        },
+        Object {
+          "label": "Three weeks",
+          "value": "3W",
+        },
+        Object {
+          "label": "Twelve weeks",
+          "value": "12W",
+        },
+      ]
+    }
+    value="all"
+  >
+    <div
+      className="bp3-html-select session-code"
+    >
+      <select
+        multiple={false}
+        onChange={[Function]}
+        value="all"
+      >
+        <option
+          key="all"
+          label="All"
+          value="all"
+        >
+          All
+        </option>
+        <option
+          key="ES"
+          label="Early Start Program"
+          value="ES"
+        >
+          Early Start Program
+        </option>
+        <option
+          key="8W"
+          label="Eight weeks"
+          value="8W"
+        >
+          Eight weeks
+        </option>
+        <option
+          key="4W"
+          label="Four weeks"
+          value="4W"
+        >
+          Four weeks
+        </option>
+        <option
+          key="MIN"
+          label="Mini"
+          value="MIN"
+        >
+          Mini
+        </option>
+        <option
+          key="OEE"
+          label="OEE"
+          value="OEE"
+        >
+          OEE
+        </option>
+        <option
+          key="OLL"
+          label="OSHER"
+          value="OLL"
+        >
+          OSHER
+        </option>
+        <option
+          key="A11"
+          label="Palm Desert 1, 4 week"
+          value="A11"
+        >
+          Palm Desert 1, 4 week
+        </option>
+        <option
+          key="A12"
+          label="Palm Desert 1, 8 week"
+          value="A12"
+        >
+          Palm Desert 1, 8 week
+        </option>
+        <option
+          key="A13"
+          label="Palm Desert 1,12 week"
+          value="A13"
+        >
+          Palm Desert 1,12 week
+        </option>
+        <option
+          key="A21"
+          label="Palm Desert 2, 4 week"
+          value="A21"
+        >
+          Palm Desert 2, 4 week
+        </option>
+        <option
+          key="A22"
+          label="Palm Desert 2, 8 week"
+          value="A22"
+        >
+          Palm Desert 2, 8 week
+        </option>
+        <option
+          key="A23"
+          label="Palm Desert 2,12 week"
+          value="A23"
+        >
+          Palm Desert 2,12 week
+        </option>
+        <option
+          key="1"
+          label="Regular"
+          value="1"
+        >
+          Regular
+        </option>
+        <option
+          key="RNS"
+          label="Regular Non Standard"
+          value="RNS"
+        >
+          Regular Non Standard
+        </option>
+        <option
+          key="SNS"
+          label="Self Non Standard"
+          value="SNS"
+        >
+          Self Non Standard
+        </option>
+        <option
+          key="SD"
+          label="Self Support"
+          value="SD"
+        >
+          Self Support
+        </option>
+        <option
+          key="6W"
+          label="Six weeks"
+          value="6W"
+        >
+          Six weeks
+        </option>
+        <option
+          key="10W"
+          label="Ten weeks"
+          value="10W"
+        >
+          Ten weeks
+        </option>
+        <option
+          key="3W"
+          label="Three weeks"
+          value="3W"
+        >
+          Three weeks
+        </option>
+        <option
+          key="12W"
+          label="Twelve weeks"
+          value="12W"
+        >
+          Twelve weeks
+        </option>
+      </select>
+      <Blueprint3.Icon
+        icon="double-caret-vertical"
+      >
+        <span
+          className="bp3-icon bp3-icon-double-caret-vertical"
+          icon="double-caret-vertical"
+        >
+          <svg
+            data-icon="double-caret-vertical"
+            height={16}
+            viewBox="0 0 16 16"
+            width={16}
+          >
+            <desc>
+              double-caret-vertical
+            </desc>
+            <path
+              d="M5 7h6a1.003 1.003 0 0 0 .71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 0 0 5 7zm6 2H5a1.003 1.003 0 0 0-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0 0 11 9z"
+              fillRule="evenodd"
+              key="0"
+            />
+          </svg>
+        </span>
+      </Blueprint3.Icon>
+    </div>
+  </HTMLSelect>,
+  <div
+    className="bp3-html-select session-code"
+  >
+    <select
+      multiple={false}
+      onChange={[Function]}
+      value="all"
+    >
+      <option
+        key="all"
+        label="All"
+        value="all"
+      >
+        All
+      </option>
+      <option
+        key="ES"
+        label="Early Start Program"
+        value="ES"
+      >
+        Early Start Program
+      </option>
+      <option
+        key="8W"
+        label="Eight weeks"
+        value="8W"
+      >
+        Eight weeks
+      </option>
+      <option
+        key="4W"
+        label="Four weeks"
+        value="4W"
+      >
+        Four weeks
+      </option>
+      <option
+        key="MIN"
+        label="Mini"
+        value="MIN"
+      >
+        Mini
+      </option>
+      <option
+        key="OEE"
+        label="OEE"
+        value="OEE"
+      >
+        OEE
+      </option>
+      <option
+        key="OLL"
+        label="OSHER"
+        value="OLL"
+      >
+        OSHER
+      </option>
+      <option
+        key="A11"
+        label="Palm Desert 1, 4 week"
+        value="A11"
+      >
+        Palm Desert 1, 4 week
+      </option>
+      <option
+        key="A12"
+        label="Palm Desert 1, 8 week"
+        value="A12"
+      >
+        Palm Desert 1, 8 week
+      </option>
+      <option
+        key="A13"
+        label="Palm Desert 1,12 week"
+        value="A13"
+      >
+        Palm Desert 1,12 week
+      </option>
+      <option
+        key="A21"
+        label="Palm Desert 2, 4 week"
+        value="A21"
+      >
+        Palm Desert 2, 4 week
+      </option>
+      <option
+        key="A22"
+        label="Palm Desert 2, 8 week"
+        value="A22"
+      >
+        Palm Desert 2, 8 week
+      </option>
+      <option
+        key="A23"
+        label="Palm Desert 2,12 week"
+        value="A23"
+      >
+        Palm Desert 2,12 week
+      </option>
+      <option
+        key="1"
+        label="Regular"
+        value="1"
+      >
+        Regular
+      </option>
+      <option
+        key="RNS"
+        label="Regular Non Standard"
+        value="RNS"
+      >
+        Regular Non Standard
+      </option>
+      <option
+        key="SNS"
+        label="Self Non Standard"
+        value="SNS"
+      >
+        Self Non Standard
+      </option>
+      <option
+        key="SD"
+        label="Self Support"
+        value="SD"
+      >
+        Self Support
+      </option>
+      <option
+        key="6W"
+        label="Six weeks"
+        value="6W"
+      >
+        Six weeks
+      </option>
+      <option
+        key="10W"
+        label="Ten weeks"
+        value="10W"
+      >
+        Ten weeks
+      </option>
+      <option
+        key="3W"
+        label="Three weeks"
+        value="3W"
+      >
+        Three weeks
+      </option>
+      <option
+        key="12W"
+        label="Twelve weeks"
+        value="12W"
+      >
+        Twelve weeks
+      </option>
+    </select>
+    <Blueprint3.Icon
+      icon="double-caret-vertical"
+    >
+      <span
+        className="bp3-icon bp3-icon-double-caret-vertical"
+        icon="double-caret-vertical"
+      >
+        <svg
+          data-icon="double-caret-vertical"
+          height={16}
+          viewBox="0 0 16 16"
+          width={16}
+        >
+          <desc>
+            double-caret-vertical
+          </desc>
+          <path
+            d="M5 7h6a1.003 1.003 0 0 0 .71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 0 0 5 7zm6 2H5a1.003 1.003 0 0 0-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0 0 11 9z"
+            fillRule="evenodd"
+            key="0"
+          />
+        </svg>
+      </span>
+    </Blueprint3.Icon>
+  </div>,
+]
+`;

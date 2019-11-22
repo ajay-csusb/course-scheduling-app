@@ -26,6 +26,8 @@ interface IClassSearchContainerState {
   sessionCode: string;
   classNo: string;
   showErrorMessage: boolean;
+  degreeType: string;
+  forceReload: boolean;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
 
@@ -40,6 +42,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private currentTermId: string;
 
   private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList ';
+
+  private userInput: UserInput;
 
   constructor(props: any) {
     super(props);
@@ -57,6 +61,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.updateCourseAttr = this.updateCourseAttr.bind(this);
     this.updateSessionCode = this.updateSessionCode.bind(this);
     this.updateClassNo = this.updateClassNo.bind(this);
+    this.updateDegreeType = this.updateDegreeType.bind(this);
     this.instructorsFound = this.instructorsFound.bind(this);
     this.subjectsFound = this.subjectsFound.bind(this);
     this.termFound = this.termFound.bind(this);
@@ -66,11 +71,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.onReset = this.onReset.bind(this);
     this.classesFound = this.classesFound.bind(this);
     this.classesNotFound = this.classesNotFound.bind(this);
+    this.onEnterKeyPress = this.onEnterKeyPress.bind(this);
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
     this.term = [];
     this.currentTermId = '';
+    this.userInput = new UserInput();
   }
 
   public render(): JSX.Element {
@@ -97,20 +104,24 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         isReset: false,
       });
     }
+    if (this.state.forceReload) {
+      this.setState({
+        forceReload: false,
+      });
+    }
   }
 
   private updateTerm(e: any): void {
     this.setState({
       term: e.target.value,
-      beforeSubmit: true,
     });
   }
 
   private updateCampus(e: any): void {
     this.setState({
       campus: e.target.value,
-      beforeSubmit: true,
     });
+    this.userInput.setCampus(e.target.value);
   }
 
   private updateMeetingDate(e: any): void {
@@ -125,35 +136,32 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         sat: this.toggleSat(checkBoxValue),
         sun: this.toggleSun(checkBoxValue),
       },
-      beforeSubmit: true,
     });
   }
 
   private updateSubject(subject: ISubject): void {
     this.setState({
       subject: subject,
-      beforeSubmit: true,
     });
   }
 
   private updateCourseNo(e: any): void {
     this.setState({
       courseNo: e.target.value,
-      beforeSubmit: true,
     });
+    this.userInput.setCourseNo(e.target.value);
   }
 
   private updateInstructionMode(e: any): void {
     this.setState({
       instructionMode: e.target.value,
-      beforeSubmit: true,
     });
+    this.userInput.setInstructionMode(e.target.value);
   }
 
   private updateInstructorName(instructor: string): void {
     this.setState({
       instructorName: instructor,
-      beforeSubmit: true,
     });
   }
 
@@ -251,7 +259,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     });
   }
 
-  private onSubmit(_e: any): any {
+  private onSubmit(): any {
     if (this.isSubjectEmpty()) {
       this.setState({
         showErrorMessage: true,
@@ -269,7 +277,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     );
   }
 
-  private onReset(_e: any): void {
+  private onReset(): void {
     this.setState(this.defaultFormValues());
     this.setState({
       isReset: true,
@@ -307,6 +315,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       sessionCode: 'all',
       classNo: '',
       showErrorMessage: false,
+      degreeType: 'all',
+      forceReload: false,
     };
   }
 
@@ -318,7 +328,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         instructorsArr.push(_instructor.name);
       });
       this.instructors = instructorsArr;
-      this.setState({ isLoading: false });
+      this.setState({ forceReload: true});
     }
   }
 
@@ -342,7 +352,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       });
       this.subjects = subjects;
     }
-    this.setState({ isLoading: false });
+    this.setState({ forceReload: true});
   }
 
   private termFound(data: any): void {
@@ -360,7 +370,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       // @Todo unit test this.
       term: this.currentTermId,
-      isLoading: false,
+      forceReload: true,
     });
   }
 
@@ -371,15 +381,15 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateStartTime(e: Date): void {
     this.setState({
       startTime: e,
-      beforeSubmit: true,
     });
+    this.userInput.setStartTime(e);
   }
 
   private updateEndTime(e: Date): void {
     this.setState({
       endTime: e,
-      beforeSubmit: true,
     });
+    this.userInput.setEndTime(e);
   }
 
   private resetComplete() {
@@ -416,6 +426,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private getClassSearchFormComponent(): JSX.Element {
+    // @Todo subjects, instructors and terms can be abstracted into
+    // a new class.
     return (
       <ClassSearchForm
         term={this.term}
@@ -439,10 +451,14 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfClassNo={this.updateClassNo}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
+        onKeyDown={this.onEnterKeyPress}
         startTime={this.state.startTime}
         endTime={this.state.endTime}
         courseNo={this.state.courseNo}
         classNo={this.state.classNo}
+        courseAttr={this.state.courseAttr}
+        sessionCode={this.state.sessionCode}
+        currentTermId={this.state.term}
       />
     );
   }
@@ -464,24 +480,36 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateCourseAttr(e: any) {
+    const selectedValue = e.target.value;
+    this.updateDegreeType('all');
+    if (selectedValue === 'UGRD' || selectedValue === 'PBAC' || selectedValue === 'EXED') {
+      this.updateDegreeType(selectedValue);
+    }
     this.setState({
-      courseAttr: e.target.value,
-      beforeSubmit: true,
+      courseAttr: selectedValue,
     });
+    this.userInput.setCourseAttr(selectedValue);
   }
 
   private updateSessionCode(e: any) {
     this.setState({
       sessionCode: e.target.value,
-      beforeSubmit: true,
     });
+    this.userInput.setSessionCode(e.target.value);
   }
 
   private updateClassNo(e: any) {
     this.setState({
       classNo: e.target.value,
-      beforeSubmit: true,
     });
+    this.userInput.setClassNo(e.target.value);
+  }
+
+  private updateDegreeType(value: string) {
+    this.setState({
+      degreeType: value,
+    });
+    this.userInput.setDegreeType(value);
   }
 
   private processDropDownListData(data: any): void {
@@ -495,11 +523,17 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateAllClasses() {
-    const userInput = new UserInput(
-      this.state.campus, this.state.meetingDate, this.state.subject, this.state.courseNo, this.state.term,
-      this.state.startTime, this.state.endTime, this.state.instructionMode, this.state.instructorName,
-      this.state.courseAttr, this.state.classNo, this.state.sessionCode);
-    Class.getAllClasses(this.classesFound, this.classesNotFound, userInput);
+    this.userInput.setTerm(this.state.term);
+    this.userInput.setInstructor(this.state.instructorName);
+    this.userInput.setSubject(this.state.subject.abbr);
+    this.userInput.setMeetingDay(this.state.meetingDate);
+    Class.getAllClasses(this.classesFound, this.classesNotFound, this.userInput);
+  }
+
+  private onEnterKeyPress(event: React.KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.onSubmit();
+    }
   }
 
 }

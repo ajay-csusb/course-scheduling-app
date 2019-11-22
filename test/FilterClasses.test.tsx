@@ -1,11 +1,8 @@
-import { FilterClasses } from '../src/public/js/FilterClasses';
 import { classJson, meetingDates, startMeetingTime, endMeetingTime, classPDC, baseClassJson } from './ClassesJson';
 import { IClass, IMeetingDate } from '../src/public/js/Class';
 import { UserInput } from '../src/public/js/UserInput';
-import { Instructor } from '../src/public/js/Instructor';
-import { Subject, ISubject } from '../src/public/js/Subject';
+import { ISubject } from '../src/public/js/Subject';
 import { MeetingTime } from '../src/public/js/MeetingTime';
-import { CourseNumber } from '../src/public/js/CourseNumber';
 // tslint:disable:max-line-length
 
 let classes: IClass[] = [];
@@ -30,7 +27,7 @@ beforeAll(() => {
   meetingDate = meetingDates;
 });
 
-describe('when classes are filtered by meeting time', () => {
+describe('Filter by meeting time', () => {
   beforeAll(() => {
     classes = [];
     const classStartingAt8am = JSON.parse(JSON.stringify(baseClassJson));

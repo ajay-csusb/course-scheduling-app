@@ -3,8 +3,9 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
 import { rawClassesJson } from './ClassesJson';
+// tslint:disable:max-line-length
 
-describe('test class search form component', () => {
+describe('snapshots', () => {
 
   beforeAll(() => {
     fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList', {});
@@ -17,24 +18,6 @@ describe('test class search form component', () => {
     expect(classSearchContainerWrapper).toMatchSnapshot();
   });
 
-  test('fetch is called with correct URL on page load', () => {
-    shallow(<ClassSearchContainer />);
-    expect(fetchMock.lastUrl()).toMatch(new RegExp('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList'));
-  });
-
-  test('parameters used when request is to fetch classes when subject is changed', () => {
-    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-    classSearchContainerWrapper.setState({
-      subject: {
-        abbr: 'bar',
-        name: 'Bar',
-      },
-    });
-    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-    const subjectArgument = fetchMock.lastOptions();
-    expect(subjectArgument.body).toMatch(new RegExp('"subject":"BAR"'));
-  });
-
   test('compare search form snapshot', () => {
     const classSearchContainerWrapper = mount(<ClassSearchContainer />);
     const classSearchFormWrapper = classSearchContainerWrapper.children().childAt(0);
@@ -43,7 +26,7 @@ describe('test class search form component', () => {
 
 });
 
-describe('test correct states are set', () => {
+describe('states', () => {
   describe('when an option is selected from course attribute', () => {
     it('should set the correct courseAttr state', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
@@ -51,6 +34,15 @@ describe('test correct states are set', () => {
       classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'ge' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       expect(classSearchContainerWrapper.state('courseAttr')).toEqual('ge');
+    });
+  });
+  describe('when Undergraduate is selected from course attribute', () => {
+    it('should set the correct state of degreeType', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'UGRD' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('degreeType')).toEqual('UGRD');
     });
   });
   describe('when class number is entered', () => {
@@ -70,17 +62,137 @@ describe('test correct states are set', () => {
       expect(classSearchContainerWrapper.state('showErrorMessage')).toBeTruthy();
     });
   });
-});
 
-describe('When user clicks submit', () => {
-  it('sets isReset to false', () => {
-    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-    expect(classSearchContainerWrapper.state('isReset')).toBeFalsy();
+  describe('when an option is selected from campus', () => {
+    it('should set the correct state of campus', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('campus')).toEqual('foo');
+    });
+  });
+
+  describe('when an option is selected from instruction mode', () => {
+    it('should set the correct state of instructionMode', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('instructionMode')).toEqual('foo');
+    });
+  });
+
+  describe('when an option is selected from session code', () => {
+    it('should set the correct state of sessionCode', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.session-code > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('sessionCode')).toEqual('foo');
+    });
+  });
+
+  describe('when course number is entered', () => {
+    it('should set the correct state of courseNumber', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('.course-number').simulate('change', { target: { value: '111' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('courseNo')).toEqual('111');
+    });
+
+    describe('when an option is selected from term', () => {
+      it('should set the correct term state', () => {
+        const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+        classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '000' } });
+        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+        expect(classSearchContainerWrapper.state('term')).toEqual('000');
+      });
+    });
+  });
+
+  describe('When user clicks submit', () => {
+    let classSearchContainerWrapper = null;
+    beforeEach(() => {
+      classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({
+        subject: {
+          name: 'All',
+          abbr: 'all',
+        },
+      });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    });
+    it('sets isReset to false', () => {
+      expect(classSearchContainerWrapper.state('isReset')).toBeFalsy();
+    });
+    it('sets beforeSubmit to false', () => {
+      expect(classSearchContainerWrapper.state('beforeSubmit')).toBeFalsy();
+    });
+    it('should set isLoading when submit is clicked', () => {
+      expect(classSearchContainerWrapper.state('isLoading')).toBeTruthy();
+    });
+  });
+
+  describe('When user clicks reset', () => {
+    let classSearchContainerWrapper = null;
+    beforeAll(() => {
+      classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({
+        term: '2222',
+        subject: {
+          name: 'Accounting',
+          abbr: 'ACCT',
+        },
+        courseNo: '000',
+        classNo: '1111',
+      });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      classSearchContainerWrapper.update();
+      classSearchContainerWrapper.find('button[type="reset"]').simulate('click');
+    });
+
+    it('sets isReset to false', () => {
+      // isReset is first set to true then it is set to false.
+      expect(classSearchContainerWrapper.state('isReset')).toBeFalsy();
+    });
+
+    it('sets courseNo state to empty value', () => {
+      expect(classSearchContainerWrapper.state('courseNo')).toHaveLength(0);
+    });
+
+    it('sets the courseAttr to all', () => {
+      expect(classSearchContainerWrapper.state('courseAttr')).toEqual('all');
+    });
+
+    it('sets the sessionCode to all', () => {
+      expect(classSearchContainerWrapper.state('sessionCode')).toEqual('all');
+    });
+
+    it('unsets the classNo', () => {
+      expect(classSearchContainerWrapper.state('classNo')).toEqual('');
+    });
+
+    it('sets campus to both', () => {
+      expect(classSearchContainerWrapper.state('campus')).toEqual('both');
+    });
+
+    it('sets instructionMode to all', () => {
+      expect(classSearchContainerWrapper.state('instructionMode')).toEqual('all');
+    });
+
+    it('sets degreeType to all', () => {
+      expect(classSearchContainerWrapper.state('degreeType')).toEqual('all');
+    });
+
+    it('sets term to current term value', () => {
+      expect(classSearchContainerWrapper.state('term')).toEqual('');
+    });
+    it('sets beforeSubmit to true', () => {
+      expect(classSearchContainerWrapper.state('beforeSubmit')).toBeTruthy();
+    });
   });
 });
 
-describe('When user clicks reset', () => {
+describe('props on reset', () => {
   let classSearchContainerWrapper = null;
   beforeAll(() => {
     classSearchContainerWrapper = mount(<ClassSearchContainer />);
@@ -89,33 +201,13 @@ describe('When user clicks reset', () => {
         name: 'Accounting',
         abbr: 'ACCT',
       },
+      instructor: 'foo',
       courseNo: '000',
       classNo: '1111',
     });
     classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
     classSearchContainerWrapper.update();
     classSearchContainerWrapper.find('button[type="reset"]').simulate('click');
-  });
-
-  it('sets isReset to false', () => {
-    // isReset is first set to true then it is set to false.
-    expect(classSearchContainerWrapper.state('isReset')).toBeFalsy();
-  });
-
-  it('sets courseNo state to empty value', () => {
-    expect(classSearchContainerWrapper.state('courseNo')).toHaveLength(0);
-  });
-
-  it('sets the courseAttr to all', () => {
-    expect(classSearchContainerWrapper.state('courseAttr')).toEqual('all');
-  });
-
-  it('sets the sessionCode to all', () => {
-    expect(classSearchContainerWrapper.state('sessionCode')).toEqual('all');
-  });
-
-  it('unsets the classNo', () => {
-    expect(classSearchContainerWrapper.state('classNo')).toEqual('');
   });
 
   it('sets courseNo props to empty value', () => {
@@ -135,31 +227,22 @@ describe('When user clicks reset', () => {
 
   it('sets the value of class number input field to empty value', () => {
     classSearchContainerWrapper.find('#additional-filters').simulate('click');
-    const classSearchFormWrapper = classSearchContainerWrapper.find('.class-number');
-    expect(classSearchFormWrapper.prop('value')).toHaveLength(0);
+    const classNumberWrapper = classSearchContainerWrapper.find('.class-number');
+    expect(classNumberWrapper.prop('value')).toHaveLength(0);
+  });
+
+  it('sets the value of subject to empty value', () => {
+    const subjectWrapper = classSearchContainerWrapper.find('.search-autocomplete input');
+    expect(subjectWrapper.prop('value')).toHaveLength(0);
+  });
+
+  it('sets the value of instructor to empty value', () => {
+    const instructorWrapper = classSearchContainerWrapper.find('.search-instructor-autocomplete input');
+    expect(instructorWrapper.prop('value')).toHaveLength(0);
   });
 });
 
-describe('when a user selects All in Subjects', () => {
-  let classSearchContainerWrapper = null;
-  beforeAll(() => {
-    classSearchContainerWrapper = mount(<ClassSearchContainer />);
-    classSearchContainerWrapper.setState({
-      subject: {
-        name: 'All',
-        abbr: 'all',
-      },
-    });
-    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-    classSearchContainerWrapper.update();
-  });
-
-  it('should make a request to get all subjects', () => {
-    const subjectArgument = fetchMock.lastOptions();
-    expect(subjectArgument.body).toMatch(new RegExp('"subject":""'));
-  });
-});
-describe('When a search is performed which takes unusually long time', () => {
+describe('Loading message', () => {
   let classSearchContainerWrapper = null;
   beforeEach(() => {
     classSearchContainerWrapper = mount(<ClassSearchContainer />);
@@ -170,14 +253,6 @@ describe('When a search is performed which takes unusually long time', () => {
       },
     });
     classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-  });
-
-  it('should set beforeSubmit to false after submit is clicked', () => {
-    expect(classSearchContainerWrapper.state('beforeSubmit')).toBeFalsy();
-  });
-
-  it('should set isLoading when submit is clicked', () => {
-    expect(classSearchContainerWrapper.state('isLoading')).toBeTruthy();
   });
 
   it('should display a loading indicator when submit is clicked', () => {

@@ -33,6 +33,9 @@ export let baseClassJson: IClass = {
     instructorName: 'Bakeman, Melissa',
     courseAttr: '',
     classNumber: 100,
+    buildingCode: 'JB',
+    room: '100',
+    degreeType: 'UGRD',
 };
 
 export const classJson: IClass = {
@@ -68,6 +71,9 @@ export const classJson: IClass = {
     instructorName: 'Dyck, Harold',
     courseAttr: '',
     classNumber: 101,
+    buildingCode: 'COE',
+    room: '101',
+    degreeType: 'PBAC',
 };
 export const classPDC: IClass = {
     quarter: '2192',
@@ -102,6 +108,9 @@ export const classPDC: IClass = {
     instructorName: 'Coates, Breena',
     courseAttr: '',
     classNumber: 102,
+    buildingCode: 'PF',
+    room: '101',
+    degreeType: 'EXED',
 };
 
 export let meetingDates: IMeetingDate = {

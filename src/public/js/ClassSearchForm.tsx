@@ -24,6 +24,9 @@ interface IClassSearchFormProps {
   endTime: Date;
   courseNo: string;
   classNo: string;
+  courseAttr: string;
+  sessionCode: string;
+  currentTermId: string;
   onChangeOfTerm: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
@@ -36,6 +39,7 @@ interface IClassSearchFormProps {
   onChangeOfCourseAttr: (event: any) => void;
   onChangeOfSessionCode: (event: any) => void;
   onChangeOfClassNo: (event: any) => void;
+  onKeyDown: (event: React.KeyboardEvent) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;
 }
@@ -62,6 +66,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
     return (
       <FormGroup label="Fill in one or more of the fields below:">
         <SelectListQuarter
+          currentTermId={this.props.currentTermId}
           term={this.props.term}
           onChangeOfTerm={this.props.onChangeOfTerm}
         />
@@ -81,6 +86,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
         <ControlGroupMeetingDay
           meetingDate={this.props.meetingDate}
           onChangeOfMeetingDate={this.props.onChangeOfMeetingDate}
+          onKeyDown={this.props.onKeyDown}
         />
         <SelectListInstructionMode
           instructionMode={this.props.instructionMode}
@@ -154,6 +160,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           dir="auto"
           onChange={this.props.onChangeOfCourseNo}
           value={this.props.courseNo}
+          onKeyDown={this.props.onKeyDown}
         />
       </Label>
     );
@@ -162,10 +169,13 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
   private getAdvancedFilterFieldset(): JSX.Element {
     return(
     <AdvancedFilterFieldset
+      courseAttr={this.props.courseAttr}
       classNo={this.props.classNo}
+      sessionCode={this.props.sessionCode}
       onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
       onChangeOfSessionCode={this.props.onChangeOfSessionCode}
       onChangeOfClassNo={this.props.onChangeOfClassNo}
+      onKeyDown={this.props.onKeyDown}
     />
     );
   }

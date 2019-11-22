@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Class number component Given a class search form snapshot 1`] = `
+<input
+  className="bp3-input class-number"
+  dir="auto"
+  onChange={[Function]}
+  onKeyDown={[Function]}
+  placeholder="E.g. 60256"
+  type="text"
+  value=""
+/>
+`;

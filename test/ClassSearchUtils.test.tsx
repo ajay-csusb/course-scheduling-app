@@ -1,5 +1,9 @@
+import * as React from 'react';
+import fetchMock from 'fetch-mock';
 import * as ClassSearchUtils from '../src/public/js/ClassSearchUtils';
-import { classJson} from './ClassesJson';
+import { classJson, rawClassesJson} from './ClassesJson';
+import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
+import { mount, shallow } from 'enzyme';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -320,5 +324,278 @@ describe('Session code values', () => {
       });
     });
   });
+});
 
+describe('fetch parameters', () => {
+  let classSearchContainerWrapper;
+  beforeAll(() => {
+    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList', {});
+    fetchMock.mock('https://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST', {});
+    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS', rawClassesJson);
+  });
+
+  beforeEach(() => {
+    classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+      subject: {
+        name: 'bar',
+        abbr: 'BAR',
+      },
+      instructorName: 'foo',
+    });
+  });
+
+  test('fetch is called with correct URL on page load', () => {
+    shallow(<ClassSearchContainer />);
+    expect(fetchMock.lastUrl()).toMatch(new RegExp('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList'));
+  });
+
+  describe('when subject is updated', () => {
+    it('should use correct parameters', () => {
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const subjectArgument = fetchMock.lastOptions();
+      expect(subjectArgument.body).toMatch(new RegExp('"subject":"BAR"'));
+    });
+  });
+
+  describe('when a user selects All in Subjects', () => {
+    it('should make a request to get all subjects', () => {
+      classSearchContainerWrapper.setState({
+        subject: {
+          name: 'All',
+          abbr: 'all',
+        },
+      });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      classSearchContainerWrapper.update();
+      const subjectArgument = fetchMock.lastOptions();
+      expect(subjectArgument.body).toMatch(new RegExp('"subject":""'));
+    });
+  });
+
+  describe('when instructor is set to All', () => {
+    it('should pass empty value', () => {
+      classSearchContainerWrapper.setState({
+        instructorName: 'All',
+      });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const instructorNameArgument = fetchMock.lastOptions();
+      expect(instructorNameArgument.body).toMatch(new RegExp('"name":""'));
+    });
+  });
+
+  describe('when instructor is updated', () => {
+    it('should use correct value', () => {
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const instructorNameArgument = fetchMock.lastOptions();
+      expect(instructorNameArgument.body).toMatch(new RegExp('"name":"foo"'));
+    });
+  });
+
+  describe('when instructionMode is set to all', () => {
+    it('should pass empty string', () => {
+      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'all' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const instructionModeArgument = fetchMock.lastOptions();
+      expect(instructionModeArgument.body).toMatch(new RegExp('"instruction_mode":""'));
+    });
+  });
+
+  describe('when instructionMode is set', () => {
+    it('should use pass the value in uppercase', () => {
+      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const instructionModeArgument = fetchMock.lastOptions();
+      expect(instructionModeArgument.body).toMatch(new RegExp('"instruction_mode":"FOO"'));
+    });
+  });
+
+  describe('when courseAttribute is set to all', () => {
+    it('should pass an empty string', () => {
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'all' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const courseAttrArgument = fetchMock.lastOptions();
+      expect(courseAttrArgument.body).toMatch(new RegExp('"crse_attr":""'));
+    });
+  });
+
+  describe('when courseAttribute is set', () => {
+    it('should pass the value without any changes', () => {
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const courseAttrArgument = fetchMock.lastOptions();
+      expect(courseAttrArgument.body).toMatch(new RegExp('"crse_attr":"foo"'));
+    });
+  });
+
+  describe('when sessionCode is set to all', () => {
+    it('should pass an empty string', () => {
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.session-code > select').simulate('change', { target: { value: 'all' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const sessionCodeArgument = fetchMock.lastOptions();
+      expect(sessionCodeArgument.body).toMatch(new RegExp('"section_code":""'));
+    });
+  });
+
+  describe('when sessionCode is set', () => {
+    it('should pass the chosen value', () => {
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.session-code > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const sessionCodeArgument = fetchMock.lastOptions();
+      expect(sessionCodeArgument.body).toMatch(new RegExp('"section_code":"foo"'));
+    });
+  });
+
+  describe('when courseNo is set', () => {
+    it('should pass the chosen value', () => {
+      classSearchContainerWrapper.find('.course-number').simulate('change', { target: { value: '100' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const courseNoArgument = fetchMock.lastOptions();
+      expect(courseNoArgument.body).toMatch(new RegExp('"catalog_nbr":"100"'));
+    });
+  });
+
+  describe('when degreeType is set to all', () => {
+    it('should pass an empty string', () => {
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'all' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const degreeTypeArgument = fetchMock.lastOptions();
+      expect(degreeTypeArgument.body).toMatch(new RegExp('"acad_career":""'));
+    });
+  });
+
+  describe('when degreeType is set', () => {
+    it('should pass the chosen value', () => {
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'UGRD' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const degreeTypeArgument = fetchMock.lastOptions();
+      expect(degreeTypeArgument.body).toMatch(new RegExp('"acad_career":"UGRD"'));
+    });
+  });
+
+  describe('when classNo is set', () => {
+    it('should pass the chosen value', () => {
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.class-number').simulate('change', { target: { value: '100' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const classNoArgument = fetchMock.lastOptions();
+      expect(classNoArgument.body).toMatch(new RegExp('"class_nbr":"100"'));
+    });
+  });
+
+  describe('when no meetingDay is set', () => {
+    it('should not pass any value for days', () => {
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const meetingDayArgument = fetchMock.lastOptions();
+      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
+    });
+  });
+
+  describe('when Monday is set', () => {
+    it('should pass value for Monday', () => {
+      classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const meetingDayArgument = fetchMock.lastOptions();
+      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
+    });
+  });
+
+  describe('when Monday and Friday are set', () => {
+    it('should pass values for Monday and Friday', () => {
+      classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
+      classSearchContainerWrapper.find('.fri > input').simulate('change', { target: { value: 'fri' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const meetingDayArgument = fetchMock.lastOptions();
+      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"Y","sat":"","sun":""'));
+    });
+  });
+
+  describe('when campus is set to both', () => {
+    it('should pass an empty string', () => {
+      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'both' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const campusArgument = fetchMock.lastOptions();
+      expect(campusArgument.body).toMatch(new RegExp('"campus":""'));
+    });
+  });
+
+  describe('when campus is set to San Bernardino', () => {
+    it('should pass MAIN as a parameter', () => {
+      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'san-bernardino' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const campusArgument = fetchMock.lastOptions();
+      expect(campusArgument.body).toMatch(new RegExp('"campus":"MAIN"'));
+    });
+  });
+
+  describe('when campus is set to Palm Desert', () => {
+    it('should pass PALM as a parameter', () => {
+      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'palm-desert' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const campusArgument = fetchMock.lastOptions();
+      expect(campusArgument.body).toMatch(new RegExp('"campus":"PALM"'));
+    });
+  });
+
+  describe('when term is set', () => {
+    it('should pass the selected value', () => {
+      classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '1111' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const termArgument = fetchMock.lastOptions();
+      expect(termArgument.body).toMatch(new RegExp('"strm":"1111"'));
+    });
+  });
+
+});
+
+describe('Degree type values', () => {
+  describe('When the degree type value is UGRD', () => {
+    const undergraduateClasses = JSON.parse(JSON.stringify(classJson));
+    undergraduateClasses.degreeType = 'UGRD';
+    it('should return Undergraduate', () => {
+      expect(ClassSearchUtils.getDegreeType(undergraduateClasses)).toEqual('Undergraduate');
+    });
+  });
+
+  describe('When the degree type value is PBAC', () => {
+    const graduateClasses = JSON.parse(JSON.stringify(classJson));
+    graduateClasses.degreeType = 'PBAC';
+    it('should return Graduate', () => {
+      expect(ClassSearchUtils.getDegreeType(graduateClasses)).toEqual('Graduate');
+    });
+  });
+
+  describe('When the degree type value is EXED', () => {
+    const openUniversityClasses = JSON.parse(JSON.stringify(classJson));
+    openUniversityClasses.degreeType = 'EXED';
+    it('should return Open University Course', () => {
+      expect(ClassSearchUtils.getDegreeType(openUniversityClasses)).toEqual('Open University Course');
+    });
+  });
+});
+
+describe('Number of available seat', () => {
+  describe('When no seats are available', () => {
+    it('should return 0', () => {
+      const zeroAvailableSeats = JSON.parse(JSON.stringify(classJson));
+      zeroAvailableSeats.enrolledCapacity = 30;
+      zeroAvailableSeats.enrolledTotal = 30;
+      expect(ClassSearchUtils.getNoOfAvailableSeats(zeroAvailableSeats)).toEqual(0);
+    });
+  });
+
+  describe('When seats are available', () => {
+    it('should return number of seats', () => {
+      const twoAvailableSeats = JSON.parse(JSON.stringify(classJson));
+      twoAvailableSeats.enrolledCapacity = 30;
+      twoAvailableSeats.enrolledTotal = 28;
+      expect(ClassSearchUtils.getNoOfAvailableSeats(twoAvailableSeats)).toEqual(2);
+    });
+  });
 });

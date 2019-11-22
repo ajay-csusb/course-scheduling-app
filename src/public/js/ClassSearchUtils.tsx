@@ -110,6 +110,9 @@ export function getClassType(classes: IClass): string | null {
   if (classes.ssrComponent === 'SUP') {
     return 'Supplemental';
   }
+  if (classes.ssrComponent === 'ACT') {
+    return 'Activity';
+  }
   return null;
 }
 
@@ -286,4 +289,24 @@ export function getSessionCode(classes: IClass): string {
     return '12 weeks';
   }
   return classes.sessionCode;
+}
+
+export function getDegreeType(classes: IClass): string {
+  if (classes.degreeType === 'UGRD') {
+    return 'Undergraduate';
+  }
+  if (classes.degreeType === 'PBAC') {
+    return 'Graduate';
+  }
+  if (classes.degreeType === 'EXED') {
+    return 'Open University Course';
+  }
+  return '';
+}
+
+export function getRoomNumber(classes: IClass): string {
+  if (classes.buildingCode.length === 0 && classes.room.length === 0) {
+    return 'TBD';
+  }
+  return `${classes.buildingCode} ${classes.room}`;
 }

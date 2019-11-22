@@ -1,43 +1,42 @@
 import { IMeetingDate } from './Class';
-import { ISubject } from './Subject';
 
 export class UserInput {
-  private campus: string = 'both';
-  private day: IMeetingDate = {
-    mon: false,
-    tue: false,
-    wed: false,
-    thu: false,
-    fri: false,
-    sat: false,
-    sun: false,
-  };
-  private subject: string = '';
-  private courseNo: string = '';
-  private quarter: string = '';
-  private startTime: Date = new Date();
-  private endTime: Date = new Date();
-  private instructionMode: string = 'all';
-  private instructor: string = '';
-  private courseAttr: string | undefined = '';
-  private sessionCode: string | undefined = '';
-  private classNo: string | undefined = '';
+  private campus: string;
+  private day: IMeetingDate;
+  private subject: string;
+  private courseNo: string;
+  private term: string;
+  private startTime: Date;
+  private endTime: Date;
+  private instructionMode: string;
+  private instructor: string;
+  private courseAttr: string;
+  private sessionCode: string;
+  private classNo: string;
+  private degreeType: string;
 
-  constructor(campus: string, day: IMeetingDate, subject: ISubject, courseNo: string, quarter: string,
-              startTime: Date, endTime: Date, instructionMode: string, instructor: string,
-              courseAttr?: string, classNo?: string, sessionCode?: string) {
-    this.campus = campus;
-    this.day = day;
-    this.subject = subject.abbr;
-    this.courseNo = courseNo;
-    this.quarter = quarter;
-    this.startTime = startTime;
-    this.endTime = endTime;
-    this.instructionMode = instructionMode;
-    this.instructor = instructor;
-    this.courseAttr = courseAttr;
-    this.sessionCode = sessionCode;
-    this.classNo = classNo;
+  constructor() {
+    this.campus = '';
+    this.day = {
+      mon: false,
+      tue: false,
+      wed: false,
+      thu: false,
+      fri: false,
+      sat: false,
+      sun: false,
+    };
+    this.subject = '';
+    this.courseNo = '';
+    this.term = '';
+    this.startTime = new Date();
+    this.endTime = new Date();
+    this.instructionMode = '';
+    this.instructor = '';
+    this.courseAttr = '';
+    this.sessionCode = '';
+    this.classNo = '';
+    this.degreeType = '';
   }
 
   public getCampus(): string {
@@ -108,8 +107,17 @@ export class UserInput {
     return this.courseNo;
   }
 
-  public getCourseAttr(): string | undefined {
-    return (this.courseAttr === 'all' || this.courseAttr === undefined) ? '' : this.courseAttr.toLowerCase();
+  public getCourseAttr(): string {
+
+    if (this.courseAttr === 'UGRD'
+      || this.courseAttr === 'PBAC'
+      || this.courseAttr === 'EXED'
+      || this.courseAttr === 'all'
+      || this.courseAttr === undefined
+    ) {
+      return '';
+    }
+    return this.courseAttr.toLowerCase();
   }
 
   public getSessionCode(): string | undefined {
@@ -121,7 +129,69 @@ export class UserInput {
   }
 
   public getTerm(): string | undefined {
-    return this.quarter;
+    return this.term;
+  }
+
+  public getDegreeType(): string {
+    return (this.degreeType === 'all') ? '' : this.degreeType;
+  }
+
+  public setDegreeType(degreeType: string): void {
+    if (degreeType === 'UGRD' || degreeType === 'PBAC' || degreeType === 'EXED') {
+      this.degreeType = degreeType;
+    }
+  }
+
+  public setCampus(campus: string): void {
+    this.campus = campus;
+  }
+
+  public getMeetingDay(): IMeetingDate {
+    return this.day;
+  }
+
+  public setMeetingDay(meetingDay: IMeetingDate): void {
+    this.day = meetingDay;
+  }
+
+  public setSubject(subject: string): void {
+    this.subject = subject;
+  }
+
+  public setCourseNo(courseNumber: string): void {
+    this.courseNo = courseNumber;
+  }
+
+  public setTerm(term: string): void {
+    this.term = term;
+  }
+
+  public setStartTime(startTime: Date): void {
+    this.startTime = startTime;
+  }
+
+  public setEndTime(endTime: Date): void {
+    this.endTime = endTime;
+  }
+
+  public setInstructionMode(instructionMode: string): void {
+    this.instructionMode = instructionMode;
+  }
+
+  public setInstructor(instructor: string): void {
+    this.instructor = instructor;
+  }
+
+  public setCourseAttr(courseAttr: string): void {
+    this.courseAttr = courseAttr;
+  }
+
+  public setClassNo(classNo: string): void {
+    this.classNo = classNo;
+  }
+
+  public setSessionCode(sessionCode: string): void {
+    this.sessionCode = sessionCode;
   }
 
 }

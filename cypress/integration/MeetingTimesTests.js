@@ -12,7 +12,7 @@ describe('Filter classes by meeting times', function () {
       cy.get('.start-time input.bp3-timepicker-hour:first-child').type('10');
       cy.get('.start-time select').select('am')
       cy.get('button').contains('Submit').click();
-      cy.wait(10000);
+      cy.wait(15000);
     });
 
     it('should not show classes before 10 AM', function () {
@@ -36,7 +36,7 @@ describe('Filter classes by meeting times', function () {
       cy.get('.start-time input.bp3-timepicker-hour:first-child').type('3');
       cy.get('.start-time select').select('pm')
       cy.get('button').contains('Submit').click();
-      cy.wait(10000);
+      cy.wait(15000);
     });
 
     it('should show classes at 3 PM', function () {
@@ -81,8 +81,7 @@ describe('Filter classes by meeting times', function () {
       cy.visit(localUrl);
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', { timeout: 15000 }).click();
-      cy.get('.end-time input.bp3-timepicker-hour:first-child').type('4');
-      cy.get('.end-time input.bp3-timepicker-minute').type('50');
+      cy.get('.end-time input.bp3-timepicker-hour:first-child').type('5');
       cy.get('.end-time select').select('pm');
       cy.get('button').contains('Submit').click();
       cy.wait(10000);
@@ -166,8 +165,7 @@ describe('Filter classes by meeting times after filtering by subject', function 
         cy.get('div').contains('Biology', { timeout: 15000 }).click();
         cy.get('button').contains('Submit').click();
         cy.wait(10000);
-        cy.get('.end-time input.bp3-timepicker-hour:first-child').type('4');
-        cy.get('.end-time input.bp3-timepicker-minute').type('50');
+        cy.get('.end-time input.bp3-timepicker-hour:first-child').type('5');
         cy.get('.end-time select').select('pm');
         cy.get('button').contains('Submit').click();
         cy.wait(10000);
