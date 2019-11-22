@@ -10,7 +10,6 @@ describe('No classes behavior', function () {
       cy.get('div').contains('Biology', { timeout: 7000 }).click();
       cy.get('.sun > .bp3-control-indicator').click();
       cy.get('button').contains('Submit').click();
-      cy.wait(10000);
       cy.get('p').should('contain', 'Found 0 classes');
     });
   });
