@@ -30,6 +30,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   private getClasses(): JSX.Element[] {
     const classes: JSX.Element[] = [];
     const filteredResults = this.props.classes;
+    this.noOfClasses = 0;
     if (this.props.classes.length !== 0) {
       filteredResults.forEach((_class: IClass) => {
         this.noOfClasses++;
