@@ -43,7 +43,6 @@ describe('Given a class search form', function () {
       cy.get('button').contains('Submit').click();
       cy.wait(5000);
       cy.get('button').contains('Reset').click();
-      cy.wait(5000);
       cy.get('.search-autocomplete input').type('Art').click();
       cy.get('div').contains('Art', { timeout: 15000 }).click();
       cy.get('button').contains('Submit').click();
