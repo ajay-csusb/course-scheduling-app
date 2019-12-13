@@ -64,37 +64,92 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
     const courseNumber = this.getCourseNumberComponent();
     const advancedFilter = this.getAdvancedFilterFieldset();
     return (
-      <FormGroup label="Fill in one or more of the fields below:">
-        <SelectListQuarter
-          currentTermId={this.props.currentTermId}
-          term={this.props.term}
-          onChangeOfTerm={this.props.onChangeOfTerm}
-        />
-        {subjects}
-        {courseNumber}
-        {instructors}
-        <SelectListCampus
-          campus={this.props.campus}
-          onChangeOfCampus={this.props.onChangeOfCampus}
-        />
-        <ControlGroupMeetingTime
-          onChangeOfStartTime={this.props.onChangeOfStartTime}
-          onChangeOfEndTime={this.props.onChangeOfEndTime}
-          startTime={this.props.startTime}
-          endTime={this.props.endTime}
-        />
-        <ControlGroupMeetingDay
-          meetingDate={this.props.meetingDate}
-          onChangeOfMeetingDate={this.props.onChangeOfMeetingDate}
-          onKeyDown={this.props.onKeyDown}
-        />
-        <SelectListInstructionMode
-          instructionMode={this.props.instructionMode}
-          onChangeOfInstructionMode={this.props.onChangeOfInstructionMode}
-        />
-        {advancedFilter}
-        <Button text="Submit" onClick={this.props.onSubmit} type="submit" className="btn btn-primary btn-solid" />
-        <Button text="Reset" onClick={this.props.onReset} style={{ float: 'right' }} type="reset" className="btn btn-secondary btn-solid"/>
+      <FormGroup>
+        <div className="form-grid">
+          <div className="grid-row">
+            <div className="grid-col-66">
+              <div className="grid-row">
+                <div className="grid-col-50">
+                  <div className="grid-item">
+                  <SelectListQuarter
+                    currentTermId={this.props.currentTermId}
+                    term={this.props.term}
+                    onChangeOfTerm={this.props.onChangeOfTerm}
+                  />
+                  </div>
+                </div>
+                <div className="grid-col-50">
+                  <div className="grid-item">{subjects}</div>
+                </div >
+                <div className="grid-col-50">
+                  <div className="grid-item">{courseNumber}</div>
+                </div >
+                <div className="grid-col-50">
+                  <div className="grid-item">{instructors}</div>
+                </div >
+                <div className="grid-col-50">
+                  <div className="grid-item">
+                    <SelectListCampus
+                      campus={this.props.campus}
+                      onChangeOfCampus={this.props.onChangeOfCampus}
+                    />
+                  </div>
+                </div>
+                <div className="grid-col-50">
+                  <div className="grid-item">
+                    <ControlGroupMeetingTime
+                      onChangeOfStartTime={this.props.onChangeOfStartTime}
+                      onChangeOfEndTime={this.props.onChangeOfEndTime}
+                      startTime={this.props.startTime}
+                      endTime={this.props.endTime}
+                    />
+                  </div>
+                </div>
+                <div className="grid-col-50">
+                  <div className="grid-item">
+                    <SelectListInstructionMode
+                      instructionMode={this.props.instructionMode}
+                      onChangeOfInstructionMode={this.props.onChangeOfInstructionMode}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="grid-col-33">
+              <div className="grid-item">
+                <ControlGroupMeetingDay
+                  meetingDate={this.props.meetingDate}
+                  onChangeOfMeetingDate={this.props.onChangeOfMeetingDate}
+                  onKeyDown={this.props.onKeyDown}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="grid-row">
+            <div className="grid-item">
+              {advancedFilter}
+            </div>
+          </div>
+          <div className="grid-row">
+            <div className="grid-item">
+              <div className="form-buttons">
+                <Button
+                  text="Submit"
+                  onClick={this.props.onSubmit}
+                  type="submit"
+                  className="btn btn-primary btn-solid"
+                />
+                <Button
+                  text="Reset"
+                  onClick={this.props.onReset}
+                  style={{ float: 'right' }}
+                  type="reset"
+                  className="btn btn-secondary btn-solid"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </FormGroup >
     );
   }
@@ -135,16 +190,16 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
     return (
       <Label>
         Instructor
-        <SuggestInstructor
-          {...autocompleteInstructorsProps}
-          items={this.getInstructors()}
-          className="search-instructor-autocomplete"
-          openOnKeyDown={false}
-          resetOnClose={true}
-          noResults={<MenuItem disabled={true} text="Searching for instructor..." />}
-          onItemSelect={this.props.onChangeOfInstructor}
-          selectedItem={this.isReset()}
-        />
+          <SuggestInstructor
+            {...autocompleteInstructorsProps}
+            items={this.getInstructors()}
+            className="search-instructor-autocomplete"
+            openOnKeyDown={false}
+            resetOnClose={true}
+            noResults={<MenuItem disabled={true} text="Searching for instructor..." />}
+            onItemSelect={this.props.onChangeOfInstructor}
+            selectedItem={this.isReset()}
+          />
       </Label>
     );
   }
@@ -167,16 +222,16 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
   }
 
   private getAdvancedFilterFieldset(): JSX.Element {
-    return(
-    <AdvancedFilterFieldset
-      courseAttr={this.props.courseAttr}
-      classNo={this.props.classNo}
-      sessionCode={this.props.sessionCode}
-      onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
-      onChangeOfSessionCode={this.props.onChangeOfSessionCode}
-      onChangeOfClassNo={this.props.onChangeOfClassNo}
-      onKeyDown={this.props.onKeyDown}
-    />
+    return (
+      <AdvancedFilterFieldset
+        courseAttr={this.props.courseAttr}
+        classNo={this.props.classNo}
+        sessionCode={this.props.sessionCode}
+        onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
+        onChangeOfSessionCode={this.props.onChangeOfSessionCode}
+        onChangeOfClassNo={this.props.onChangeOfClassNo}
+        onKeyDown={this.props.onKeyDown}
+      />
     );
   }
 

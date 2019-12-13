@@ -38,9 +38,15 @@ export class AdvancedFilterFieldset extends React.Component<
         </a>
         <Collapse isOpen={this.state.isOpen}>
           <p>Filter classes by</p>
-          {courseAttr}
-          {classNumber}
-          {sessionCode}
+          <div className="grid-col-33">
+            <div className="grid-item">{courseAttr}</div>
+          </div>
+          <div className="grid-col-33">
+            <div className="grid-item">{classNumber}</div>
+          </div>
+          <div className="grid-col-33">
+            <div className="grid-item">{sessionCode}</div>
+          </div>
         </Collapse>
       </div>
     );
