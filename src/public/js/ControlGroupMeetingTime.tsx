@@ -18,7 +18,7 @@ export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetin
 
   public render(): React.ReactNode {
     return (
-      <ControlGroup className="meeting-time">
+      <ControlGroup className="meeting-time row">
         <div className="col-md-6">
           <div className="grid-item">
             <Label>Meeting Start Time</Label>
