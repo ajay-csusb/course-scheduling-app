@@ -37,14 +37,13 @@ export class AdvancedFilterFieldset extends React.Component<
           {this.state.isOpen ? 'Hide' : ''} Additional Filters
         </a>
         <Collapse isOpen={this.state.isOpen}>
-          <p>Filter classes by</p>
-          <div className="grid-col-33">
-            <div className="grid-item">{courseAttr}</div>
-          </div>
-          <div className="grid-col-33">
+          <div className="col-md-4">
             <div className="grid-item">{classNumber}</div>
           </div>
-          <div className="grid-col-33">
+          <div className="col-md-4">
+            <div className="grid-item">{courseAttr}</div>
+          </div>
+          <div className="col-md-4">
             <div className="grid-item">{sessionCode}</div>
           </div>
         </Collapse>

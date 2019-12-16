@@ -66,28 +66,19 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
     return (
       <FormGroup>
         <div className="form-grid">
-          <div className="grid-row">
-            <div className="grid-col-66">
-              <div className="grid-row">
-                <div className="grid-col-50">
+          <div className="row">
+            <div className="col-md-8">
+              <div className="row">
+                <div className="col-md-6">
                   <div className="grid-item">
-                  <SelectListQuarter
-                    currentTermId={this.props.currentTermId}
-                    term={this.props.term}
-                    onChangeOfTerm={this.props.onChangeOfTerm}
-                  />
+                    <SelectListQuarter
+                      currentTermId={this.props.currentTermId}
+                      term={this.props.term}
+                      onChangeOfTerm={this.props.onChangeOfTerm}
+                    />
                   </div>
                 </div>
-                <div className="grid-col-50">
-                  <div className="grid-item">{subjects}</div>
-                </div >
-                <div className="grid-col-50">
-                  <div className="grid-item">{courseNumber}</div>
-                </div >
-                <div className="grid-col-50">
-                  <div className="grid-item">{instructors}</div>
-                </div >
-                <div className="grid-col-50">
+                <div className="col-md-6">
                   <div className="grid-item">
                     <SelectListCampus
                       campus={this.props.campus}
@@ -95,7 +86,13 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                     />
                   </div>
                 </div>
-                <div className="grid-col-50">
+                <div className="col-md-6">
+                  <div className="grid-item">{subjects}</div>
+                </div>
+                <div className="col-md-6">
+                  <div className="grid-item">{courseNumber}</div>
+                </div>
+                <div className="col-md-10">
                   <div className="grid-item">
                     <ControlGroupMeetingTime
                       onChangeOfStartTime={this.props.onChangeOfStartTime}
@@ -105,7 +102,10 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                     />
                   </div>
                 </div>
-                <div className="grid-col-50">
+                <div className="col-md-6">
+                  <div className="grid-item">{instructors}</div>
+                </div>
+                <div className="col-md-6">
                   <div className="grid-item">
                     <SelectListInstructionMode
                       instructionMode={this.props.instructionMode}
@@ -115,7 +115,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                 </div>
               </div>
             </div>
-            <div className="grid-col-33">
+            <div className="col-md-4">
               <div className="grid-item">
                 <ControlGroupMeetingDay
                   meetingDate={this.props.meetingDate}
@@ -125,27 +125,31 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
               </div>
             </div>
           </div>
-          <div className="grid-row">
-            <div className="grid-item">
-              {advancedFilter}
+          <div className="col-md-12">
+            <div className="row">
+              <div className="grid-item">
+                {advancedFilter}
+              </div>
             </div>
           </div>
-          <div className="grid-row">
-            <div className="grid-item">
-              <div className="form-buttons">
-                <Button
-                  text="Submit"
-                  onClick={this.props.onSubmit}
-                  type="submit"
-                  className="btn btn-primary btn-solid"
-                />
-                <Button
-                  text="Reset"
-                  onClick={this.props.onReset}
-                  style={{ float: 'right' }}
-                  type="reset"
-                  className="btn btn-secondary btn-solid"
-                />
+          <div className="col-md-12">
+            <div className="row">
+              <div className="grid-item">
+                <div className="form-buttons">
+                  <Button
+                    text="Submit"
+                    onClick={this.props.onSubmit}
+                    type="submit"
+                    className="btn btn-primary btn-solid"
+                  />
+                  <Button
+                    text="Reset"
+                    onClick={this.props.onReset}
+                    style={{ float: 'right' }}
+                    type="reset"
+                    className="btn btn-secondary btn-solid"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -170,7 +174,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
     const SuggestSubject = Suggest;
     return (
       <Label>
-        Subject
+        Course Subject
         <SuggestSubject
           {...autocompleteSubjectsProps}
           items={this.getSubjects()}

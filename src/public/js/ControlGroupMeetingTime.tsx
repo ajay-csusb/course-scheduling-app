@@ -20,32 +20,29 @@ export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetin
     return (
         <ControlGroup className="meeting-time">
         <Label>
-          Meeting Time
+          Meeting Start Time
+        </Label>
+        <TimePicker
+          className="start-time col-md-3"
+          precision={TimePrecision.MINUTE}
+          selectAllOnFocus={true}
+          useAmPm={true}
+          onChange={(event: Date) => (this.handleChangeOfStartTime(event))}
+          value={this.props.startTime}
+          showArrowButtons={true}
+        />
         <Label>
-          Start Time
-          <TimePicker
-            className="start-time"
-            precision={TimePrecision.MINUTE}
-            selectAllOnFocus={true}
-            useAmPm={true}
-            onChange={(event: Date) => (this.handleChangeOfStartTime(event))}
-            value={this.props.startTime}
-            showArrowButtons={true}
-          />
+          Meeting End Time
         </Label>
-        <Label>
-          End Time
-          <TimePicker
-            className="end-time"
-            precision={TimePrecision.MINUTE}
-            selectAllOnFocus={true}
-            useAmPm={true}
-            onChange={(event: Date) => (this.handleChangeOfEndTime(event))}
-            value={this.props.endTime}
-            showArrowButtons={true}
-          />
-        </Label>
-        </Label>
+        <TimePicker
+          className="end-time col-md-3"
+          precision={TimePrecision.MINUTE}
+          selectAllOnFocus={true}
+          useAmPm={true}
+          onChange={(event: Date) => (this.handleChangeOfEndTime(event))}
+          value={this.props.endTime}
+          showArrowButtons={true}
+        />
       </ControlGroup>
     );
   }
