@@ -127,10 +127,8 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           </div>
           <div className="row">
             <div className="col-md-12">
-              <div className="row">
-                <div className="grid-item">
-                  {advancedFilter}
-                </div>
+              <div className="grid-item">
+                {advancedFilter}
               </div>
             </div>
           </div>
