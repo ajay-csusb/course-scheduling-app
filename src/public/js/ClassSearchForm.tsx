@@ -92,12 +92,16 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                 <div className="col-md-6">
                   <div className="grid-item">{courseNumber}</div>
                 </div>
-                <ControlGroupMeetingTime
-                  onChangeOfStartTime={this.props.onChangeOfStartTime}
-                  onChangeOfEndTime={this.props.onChangeOfEndTime}
-                  startTime={this.props.startTime}
-                  endTime={this.props.endTime}
-                />
+                <div className="col-md-12">
+                  <div className="grid-item">
+                    <ControlGroupMeetingTime
+                      onChangeOfStartTime={this.props.onChangeOfStartTime}
+                      onChangeOfEndTime={this.props.onChangeOfEndTime}
+                      startTime={this.props.startTime}
+                      endTime={this.props.endTime}
+                    />
+                  </div>
+                </div>
                 <div className="col-md-6">
                   <div className="grid-item">{instructors}</div>
                 </div>
@@ -121,13 +125,17 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
               </div>
             </div>
           </div>
-          <div className="col-md-12">
-            <div className="row">
-              {advancedFilter}
+          <div className="row">
+            <div className="col-md-12">
+              <div className="row">
+                <div className="grid-item">
+                  {advancedFilter}
+                </div>
+              </div>
             </div>
           </div>
-          <div className="col-md-12">
-            <div className="row">
+          <div className="row">
+            <div className="col-md-12">
               <div className="grid-item">
                 <div className="form-buttons">
                   <Button
@@ -139,14 +147,13 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                   <Button
                     text="Reset"
                     onClick={this.props.onReset}
-                    style={{ float: 'right' }}
                     type="reset"
                     className="btn btn-secondary btn-solid"
                   />
-                </div>
               </div>
             </div>
           </div>
+        </div>
         </div>
       </FormGroup >
     );
