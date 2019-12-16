@@ -18,31 +18,35 @@ export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetin
 
   public render(): React.ReactNode {
     return (
-        <ControlGroup className="meeting-time">
-        <Label>
-          Meeting Start Time
-        </Label>
-        <TimePicker
-          className="start-time col-md-3"
-          precision={TimePrecision.MINUTE}
-          selectAllOnFocus={true}
-          useAmPm={true}
-          onChange={(event: Date) => (this.handleChangeOfStartTime(event))}
-          value={this.props.startTime}
-          showArrowButtons={true}
-        />
-        <Label>
-          Meeting End Time
-        </Label>
-        <TimePicker
-          className="end-time col-md-3"
-          precision={TimePrecision.MINUTE}
-          selectAllOnFocus={true}
-          useAmPm={true}
-          onChange={(event: Date) => (this.handleChangeOfEndTime(event))}
-          value={this.props.endTime}
-          showArrowButtons={true}
-        />
+      <ControlGroup className="meeting-time">
+        <div className="col-md-6">
+          <div className="grid-item">
+            <Label>Meeting Start Time</Label>
+            <TimePicker
+              className="start-time"
+              precision={TimePrecision.MINUTE}
+              selectAllOnFocus={true}
+              useAmPm={true}
+              onChange={(event: Date) => (this.handleChangeOfStartTime(event))}
+              value={this.props.startTime}
+              showArrowButtons={true}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="grid-item">
+            <Label>Meeting End Time</Label>
+            <TimePicker
+              className="end-time"
+              precision={TimePrecision.MINUTE}
+              selectAllOnFocus={true}
+              useAmPm={true}
+              onChange={(event: Date) => (this.handleChangeOfEndTime(event))}
+              value={this.props.endTime}
+              showArrowButtons={true}
+            />
+          </div>
+        </div>
       </ControlGroup>
     );
   }
