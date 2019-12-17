@@ -14,15 +14,17 @@ export class SelectListQuarter extends React.Component<ISelectListQuarterProps, 
 
   public render(): React.ReactNode {
     return (
-      <Label>
-        Term
+      <div>
+        <Label htmlFor="term">Term</Label>
         <HTMLSelect
+          id="term"
           value={this.props.currentTermId}
           className="select-term"
           onChange={this.props.onChangeOfTerm}
           options={this.props.term}
         />
-      </Label>
+      </div>
+
     );
   }
 

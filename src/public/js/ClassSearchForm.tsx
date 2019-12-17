@@ -52,7 +52,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
   public render(): JSX.Element {
     const form = this.getForm();
     return (
-      <div>
+      <div className="container">
         {form}
       </div>
     );
@@ -70,7 +70,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
             <div className="col-md-8">
               <div className="row">
                 <div className="col-md-6">
-                  <div className="grid-item">
+                  <div className="form-item">
                     <SelectListQuarter
                       currentTermId={this.props.currentTermId}
                       term={this.props.term}
@@ -79,7 +79,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="grid-item">
+                  <div className="form-item">
                     <SelectListCampus
                       campus={this.props.campus}
                       onChangeOfCampus={this.props.onChangeOfCampus}
@@ -87,13 +87,13 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="grid-item">{subjects}</div>
+                  <div className="form-item">{subjects}</div>
                 </div>
                 <div className="col-md-6">
-                  <div className="grid-item">{courseNumber}</div>
+                  <div className="form-item">{courseNumber}</div>
                 </div>
                 <div className="col-md-12">
-                  <div className="grid-item">
+                  <div className="form-item">
                     <ControlGroupMeetingTime
                       onChangeOfStartTime={this.props.onChangeOfStartTime}
                       onChangeOfEndTime={this.props.onChangeOfEndTime}
@@ -103,10 +103,10 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="grid-item">{instructors}</div>
+                  <div className="form-item">{instructors}</div>
                 </div>
                 <div className="col-md-6">
-                  <div className="grid-item">
+                  <div className="form-item">
                     <SelectListInstructionMode
                       instructionMode={this.props.instructionMode}
                       onChangeOfInstructionMode={this.props.onChangeOfInstructionMode}
@@ -116,7 +116,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
               </div>
             </div>
             <div className="col-md-4">
-              <div className="grid-item">
+              <div className="form-item">
                 <ControlGroupMeetingDay
                   meetingDate={this.props.meetingDate}
                   onChangeOfMeetingDate={this.props.onChangeOfMeetingDate}
@@ -127,14 +127,14 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           </div>
           <div className="row">
             <div className="col-md-12">
-              <div className="grid-item">
+              <div className="form-item">
                 {advancedFilter}
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-md-12">
-              <div className="grid-item">
+              <div className="form-item">
                 <div className="form-buttons">
                   <Button
                     text="Submit"
@@ -172,8 +172,8 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
   private getSubjectsAutoCompleteComponent(): JSX.Element {
     const SuggestSubject = Suggest;
     return (
-      <Label>
-        Course Subject
+      <React.Fragment>
+        <Label htmlFor="subject">Course Subject</Label>
         <SuggestSubject
           {...autocompleteSubjectsProps}
           items={this.getSubjects()}
@@ -184,34 +184,36 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           onItemSelect={this.props.onChangeOfSubject}
           selectedItem={this.isReset()}
         />
-      </Label>
+      </React.Fragment>
+
     );
   }
 
   private getInstructorsAutoCompleteComponent(): JSX.Element {
     const SuggestInstructor = Suggest;
     return (
-      <Label>
-        Instructor
-          <SuggestInstructor
-            {...autocompleteInstructorsProps}
-            items={this.getInstructors()}
-            className="search-instructor-autocomplete"
-            openOnKeyDown={false}
-            resetOnClose={true}
-            noResults={<MenuItem disabled={true} text="Searching for instructor..." />}
-            onItemSelect={this.props.onChangeOfInstructor}
-            selectedItem={this.isReset()}
-          />
-      </Label>
+      <React.Fragment>
+        <Label htmlFor="instructor">Instructor</Label>
+        <SuggestInstructor
+          {...autocompleteInstructorsProps}
+          items={this.getInstructors()}
+          className="search-instructor-autocomplete"
+          openOnKeyDown={false}
+          resetOnClose={true}
+          noResults={<MenuItem disabled={true} text="Searching for instructor..." />}
+          onItemSelect={this.props.onChangeOfInstructor}
+          selectedItem={this.isReset()}
+        />
+      </React.Fragment>
     );
   }
 
   private getCourseNumberComponent(): JSX.Element {
     return (
-      <Label>
-        Course Number
+      <React.Fragment>
+        <Label htmlFor="course-number">Course Number</Label>
         <input
+          id="course-number"
           className="course-number"
           type="text"
           placeholder="E.g. 602"
@@ -220,7 +222,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           value={this.props.courseNo}
           onKeyDown={this.props.onKeyDown}
         />
-      </Label>
+      </React.Fragment>
     );
   }
 

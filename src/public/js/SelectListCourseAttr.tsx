@@ -24,15 +24,16 @@ export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrP
 
   public render(): React.ReactNode {
     return(
-      <Label>
-        Course Attribute
+      <React.Fragment>
+        <Label htmlFor="course-attribute">Course Attribute</Label>
         <HTMLSelect
+          id="course-attribute"
           value={this.props.courseAttr}
           className="course-attribute"
           onChange={this.props.onChangeOfCourseAttr}
           options={this.courseAttr}
         />
-      </Label>
+      </React.Fragment>
     );
   }
 
