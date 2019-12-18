@@ -3,6 +3,7 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import fetchMock from 'fetch-mock';
 import { rawClassesJson } from './ClassesJson';
+import { Spinner } from '@blueprintjs/core';
 // tslint:disable:max-line-length
 
 describe('snapshots', () => {
@@ -132,7 +133,7 @@ describe('states', () => {
     });
   });
 
-  describe('When user clicks reset', () => {
+  describe('states on reset', () => {
     let classSearchContainerWrapper = null;
     beforeAll(() => {
       classSearchContainerWrapper = mount(<ClassSearchContainer />);
@@ -186,8 +187,46 @@ describe('states', () => {
     it('sets term to current term value', () => {
       expect(classSearchContainerWrapper.state('term')).toEqual('');
     });
+
     it('sets beforeSubmit to true', () => {
       expect(classSearchContainerWrapper.state('beforeSubmit')).toBeTruthy();
+    });
+
+    it('unsets subject name and abbreviation', () => {
+      expect(classSearchContainerWrapper.state('subject')).toEqual({name: '', abbr: ''});
+    });
+
+    it('resets start time', () => {
+      expect(classSearchContainerWrapper.state('startTime')).toEqual(new Date('1899-01-01T00:00:00'));
+    });
+
+    it('resets end time', () => {
+      expect(classSearchContainerWrapper.state('endTime')).toEqual(new Date('1899-01-01T23:00:00'));
+    });
+
+    it('sets meetingDate to false', () => {
+      expect(classSearchContainerWrapper.state('meetingDate')).toEqual(
+        {
+          mon: false,
+          tue: false,
+          wed: false,
+          thu: false,
+          fri: false,
+          sat: false,
+          sun: false,
+        });
+    });
+
+    it('unsets instructorName', () => {
+      expect(classSearchContainerWrapper.state('instructorName')).toHaveLength(0);
+    });
+
+    it('sets geClasses to false', () => {
+      expect(classSearchContainerWrapper.state('geClasses')).toBeFalsy();
+    });
+
+    it('sets isLoading to false', () => {
+      expect(classSearchContainerWrapper.state('isLoading')).toBeFalsy();
     });
   });
 });
@@ -257,7 +296,7 @@ describe('Loading message', () => {
 
   it('should display a loading indicator when submit is clicked', () => {
     const loadingWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
-    expect(loadingWrapper.contains(<p>Loading...</p>)).toBeTruthy();
+    expect(loadingWrapper.find(Spinner)).toHaveLength(1);
   });
 
   it('should not display a loading indicator after isLoading is set to false', () => {
@@ -265,7 +304,7 @@ describe('Loading message', () => {
       isLoading: false,
     });
     const loadingWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
-    expect(loadingWrapper.contains(<p>Loading...</p>)).toBeFalsy();
+    expect(loadingWrapper.find(Spinner)).toHaveLength(0);
   });
 
   it('should display no classes found if no classes are found', () => {

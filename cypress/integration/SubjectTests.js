@@ -1,15 +1,15 @@
-const devUrl = 'https://dev-main.csusb.edu/course-schedule';
+const devUrl = 'http://theme-csusb.pantheonsite.io/class-schedule';
 const localUrl = 'http://localhost:3000/';
 
 describe('Filter classes by subject', function () {
 
   context('when a user searches by subject', () => {
     before(function () {
-      cy.visit(localUrl);
+      cy.visit(devUrl);
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', { timeout: 15000 }).click();
-      cy.get('button').contains('Submit').click();
-      cy.wait(10000)
+      cy.get('.btn-primary').click();
+      cy.wait(15000)
     });
 
     it('should show Biology classes', () => {
@@ -20,12 +20,16 @@ describe('Filter classes by subject', function () {
 
   context('when a user does not enter asubject', () => {
     before(function () {
-      cy.visit(localUrl);
-      cy.get('button').contains('Submit').click();
+      cy.visit(devUrl);
+      cy.get('.btn-primary').click();
     });
 
     it('should show an error message', () => {
       cy.get('div').should('contain', 'Please select a Subject');
+    });
+
+    it('should highlight the subject textfield', () => {
+      cy.get('input').should('contain.class', 'bp3-intent-danger');
     });
   });
 

@@ -4,7 +4,7 @@ import { ClassSearchResults } from './ClassSearchResults';
 import { IClass, Class, IMeetingDate } from './Class';
 import { ISubject } from './Subject';
 import { UserInput } from './UserInput';
-import { Intent, IOptionProps, Callout } from '@blueprintjs/core';
+import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { MeetingTime } from './MeetingTime';
 interface IClassSearchContainerState {
@@ -84,12 +84,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const classSearchResultsComponent = this.getClassSearchResultsComponent();
     const classSearchFormComponent = this.getClassSearchFormComponent();
     const errorMessage: JSX.Element = this.displayErrorMessageWhenSubjectIsEmpty();
-
     return (
       <div>
         {this.state.showErrorMessage && errorMessage}
         {classSearchFormComponent}
-        {this.isLoadingClasses() && <p>Loading...</p>}
+        {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
         {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) && classSearchResultsComponent}
       </div>
     );
@@ -167,64 +166,43 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private toggleMon(checkBoxValue: string): boolean {
     if (checkBoxValue === 'mon') {
-      if (this.state.meetingDate.mon) {
-        return false;
-      }
-      return true;
+      return (!this.state.meetingDate.mon);
     }
     return this.state.meetingDate.mon;
   }
   private toggleTue(checkBoxValue: string): boolean {
     if (checkBoxValue === 'tue') {
-      if (this.state.meetingDate.tue) {
-        return false;
-      }
-      return true;
+      return (!this.state.meetingDate.tue);
     }
     return this.state.meetingDate.tue;
   }
   private toggleWed(checkBoxValue: string): boolean {
     if (checkBoxValue === 'wed') {
-      if (this.state.meetingDate.wed) {
-        return false;
-      }
-      return true;
+      return (!this.state.meetingDate.wed);
     }
     return this.state.meetingDate.wed;
   }
   private toggleThu(checkBoxValue: string): boolean {
     if (checkBoxValue === 'thu') {
-      if (this.state.meetingDate.thu) {
-        return false;
-      }
-      return true;
+      return (!this.state.meetingDate.thu);
     }
     return this.state.meetingDate.thu;
   }
   private toggleFri(checkBoxValue: string): boolean {
     if (checkBoxValue === 'fri') {
-      if (this.state.meetingDate.fri) {
-        return false;
-      }
-      return true;
+      return (!this.state.meetingDate.fri);
     }
     return this.state.meetingDate.fri;
   }
   private toggleSat(checkBoxValue: string): boolean {
     if (checkBoxValue === 'sat') {
-      if (this.state.meetingDate.sat) {
-        return false;
-      }
-      return true;
+      return (!this.state.meetingDate.sat);
     }
     return this.state.meetingDate.sat;
   }
   private toggleSun(checkBoxValue: string): boolean {
     if (checkBoxValue === 'sun') {
-      if (this.state.meetingDate.sun) {
-        return false;
-      }
-      return true;
+      return (!this.state.meetingDate.sun);
     }
     return this.state.meetingDate.sun;
   }
@@ -281,6 +259,20 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState(this.defaultFormValues());
     this.setState({
       isReset: true,
+    }, () => {
+      this.userInput.setTerm(this.state.term);
+      this.userInput.setCampus(this.state.campus);
+      this.userInput.setSubject(this.state.subject.abbr);
+      this.userInput.setCourseNo(this.state.courseNo);
+      this.userInput.setStartTime(this.state.startTime);
+      this.userInput.setEndTime(this.state.endTime);
+      this.userInput.setMeetingDay(this.state.meetingDate);
+      this.userInput.setInstructionMode(this.state.instructionMode);
+      this.userInput.setInstructor(this.state.instructorName);
+      this.userInput.setDegreeType(this.state.degreeType);
+      this.userInput.setCourseAttr(this.state.courseAttr);
+      this.userInput.setSessionCode(this.state.sessionCode);
+      this.userInput.setClassNo(this.state.classNo);
     });
   }
 
@@ -481,9 +473,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private updateCourseAttr(e: any) {
     const selectedValue = e.target.value;
+    // @Todo simplify this.
     this.updateDegreeType('all');
-    if (selectedValue === 'UGRD' || selectedValue === 'PBAC' || selectedValue === 'EXED') {
+    if (this.isDegreeType(selectedValue)) {
       this.updateDegreeType(selectedValue);
+      return;
     }
     this.setState({
       courseAttr: selectedValue,
@@ -534,6 +528,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     if (event.key === 'Enter') {
       this.onSubmit();
     }
+  }
+
+  private isDegreeType(degreeAbbr: string): boolean {
+    return (degreeAbbr === 'UGRD' || degreeAbbr === 'PBAC' || degreeAbbr === 'EXED');
   }
 
 }

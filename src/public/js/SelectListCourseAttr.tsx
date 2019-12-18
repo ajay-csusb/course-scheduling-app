@@ -9,7 +9,7 @@ export interface ISelectListCourseAttrProps {
 export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrProps, {}> {
 
   private readonly courseAttr: IOptionProps[] = [
-      { label: 'All', value: '' },
+      { label: 'All', value: 'all' },
       { label: 'Early Start Program', value: 'ESP' },
       { label: 'Fully Online', value: 'FONL' },
       { label: 'General Education', value: 'GE' },

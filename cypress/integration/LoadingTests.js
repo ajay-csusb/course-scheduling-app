@@ -7,19 +7,19 @@ describe('Loading message behavior', function () {
       cy.visit(localUrl);
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', { timeout: 7000 }).click();
+      cy.get('.mon > .bp3-control-indicator').click();
       cy.get('button').contains('Submit').click();
     });
 
     it('should show loading message', () => {
-      cy.get('p').should('contain', 'Loading...');
-      cy.wait(10000);
+      cy.get('div').should('contain.class', 'bp3-spinner-animation');
     });
 
     it('should show loading message if the results are filtered further', () => {
       cy.get('.course-number').type('300');
       cy.get('button').contains('Submit').click();
-      cy.get('p').should('contain', 'Loading...');
-      cy.wait(10000);
+      cy.get('.mon > .bp3-control-indicator').click();
+      cy.get('div').should('contain.class', 'bp3-spinner-animation');
     });
 
     it('should show loading message after a search is made where no results are found', () => {
@@ -28,10 +28,9 @@ describe('Loading message behavior', function () {
       cy.get('div').contains('Biology', { timeout: 7000 }).click();
       cy.get('.sun > .bp3-control-indicator').click();
       cy.get('button').contains('Submit').click();
-      cy.wait(10000);
       cy.get('.sun > .bp3-control-indicator').click();
       cy.get('button').contains('Submit').click();
-      cy.get('p').should('contain', 'Loading...');
+      cy.get('div').should('contain.class', 'bp3-spinner-animation');
     });
   });
 });

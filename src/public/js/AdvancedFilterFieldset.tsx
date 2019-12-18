@@ -64,7 +64,7 @@ export class AdvancedFilterFieldset extends React.Component<
       <Label>
         Class Number
       <input
-          className="bp3-input class-number"
+          className="class-number"
           type="text"
           placeholder="E.g. 60256"
           dir="auto"

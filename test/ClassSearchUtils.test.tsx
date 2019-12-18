@@ -552,6 +552,77 @@ describe('fetch parameters', () => {
     });
   });
 
+  describe('when a user clicks submit, followed by reset, and submit again', () => {
+    it('should unset parameters which are not explicitly set', () => {
+      classSearchContainerWrapper.setState({
+        subject: {
+          name: 'All',
+          abbr: 'all',
+        },
+        instructorName: 'John Doe',
+        startTime: new Date('1899-01-01T11:00:00'),
+        endTime: new Date('1899-01-01T19:00:00'),
+      });
+      classSearchContainerWrapper.find('.course-number').simulate('change', { target: { value: '100' } });
+      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'MAIN' } });
+      classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
+      classSearchContainerWrapper.find('.fri > input').simulate('change', { target: { value: 'fri' } });
+      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'OL' } });
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('.class-number').simulate('change', { target: { value: '2' } });
+      classSearchContainerWrapper.find('.session-code > select').simulate('change', { target: { value: '3000' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      classSearchContainerWrapper.find('button[type="reset"]').simulate('click');
+      classSearchContainerWrapper.setState({
+        subject: {
+          name: 'Chemistry',
+          abbr: 'CHEM',
+        },
+      });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const fetchArgument = fetchMock.lastOptions();
+      expect(fetchArgument.body).toMatch(new RegExp('"subject":"CHEM"'));
+      expect(fetchArgument.body).toMatch(new RegExp('"catalog_nbr":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"name":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"campus":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"meeting_time_start":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"mon":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"tues":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"wed":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"thurs":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"fri":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"sat":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"sun":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"instruction_mode":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"crse_attr":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"class_nbr":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"section_code":""'));
+    });
+  });
+
+  describe('when degree type is set and then unset', () => {
+    it('fetch should be called with correct parameters', () => {
+      classSearchContainerWrapper.setState({
+        subject: {
+          name: 'All',
+          abbr: 'all',
+        },
+      });
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'UGRD' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      let fetchArgument = fetchMock.lastOptions();
+      expect(fetchArgument.body).toMatch(new RegExp('"crse_attr":""'));
+      expect(fetchArgument.body).toMatch(new RegExp('"acad_career":"UGRD"'));
+      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      fetchArgument = fetchMock.lastOptions();
+      expect(fetchArgument.body).toMatch(new RegExp('"crse_attr":"foo"'));
+      expect(fetchArgument.body).toMatch(new RegExp('"acad_career":""'));
+    });
+  });
+
 });
 
 describe('Degree type values', () => {

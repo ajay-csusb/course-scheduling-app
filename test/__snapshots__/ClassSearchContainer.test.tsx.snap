@@ -313,7 +313,7 @@ exports[`snapshots compare search form snapshot 1`] = `
             >
               Course Number
               <input
-                className="bp3-input course-number"
+                className="course-number"
                 dir="auto"
                 onChange={[Function]}
                 onKeyDown={[Function]}
@@ -1544,13 +1544,13 @@ exports[`snapshots compare search form snapshot 1`] = `
             </div>
           </AdvancedFilterFieldset>
           <Blueprint3.Button
-            className="bp3-intent-primary"
+            className="btn btn-primary btn-solid"
             onClick={[Function]}
             text="Submit"
             type="submit"
           >
             <button
-              className="bp3-button bp3-intent-primary"
+              className="bp3-button btn btn-primary btn-solid"
               onClick={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}
@@ -1571,6 +1571,7 @@ exports[`snapshots compare search form snapshot 1`] = `
             </button>
           </Blueprint3.Button>
           <Blueprint3.Button
+            className="btn btn-secondary btn-solid"
             onClick={[Function]}
             style={
               Object {
@@ -1581,7 +1582,7 @@ exports[`snapshots compare search form snapshot 1`] = `
             type="reset"
           >
             <button
-              className="bp3-button"
+              className="bp3-button btn btn-secondary btn-solid"
               onClick={[Function]}
               onKeyDown={[Function]}
               onKeyUp={[Function]}

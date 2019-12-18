@@ -9,7 +9,7 @@ Array [
       Array [
         Object {
           "label": "All",
-          "value": "",
+          "value": "all",
         },
         Object {
           "label": "Early Start Program",
@@ -64,9 +64,9 @@ Array [
         value="all"
       >
         <option
-          key=""
+          key="all"
           label="All"
-          value=""
+          value="all"
         >
           All
         </option>
@@ -176,9 +176,9 @@ Array [
       value="all"
     >
       <option
-        key=""
+        key="all"
         label="All"
-        value=""
+        value="all"
       >
         All
       </option>

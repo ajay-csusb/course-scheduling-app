@@ -93,8 +93,8 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           onChangeOfInstructionMode={this.props.onChangeOfInstructionMode}
         />
         {advancedFilter}
-        <Button text="Submit" onClick={this.props.onSubmit} type="submit" className="bp3-intent-primary" />
-        <Button text="Reset" onClick={this.props.onReset} style={{ float: 'right' }} type="reset" />
+        <Button text="Submit" onClick={this.props.onSubmit} type="submit" className="btn btn-primary btn-solid" />
+        <Button text="Reset" onClick={this.props.onReset} style={{ float: 'right' }} type="reset" className="btn btn-secondary btn-solid"/>
       </FormGroup >
     );
   }
@@ -154,7 +154,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
       <Label>
         Course Number
         <input
-          className="bp3-input course-number"
+          className="course-number"
           type="text"
           placeholder="E.g. 602"
           dir="auto"
