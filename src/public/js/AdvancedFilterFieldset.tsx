@@ -36,11 +36,16 @@ export class AdvancedFilterFieldset extends React.Component<
         <a id="additional-filters" onClick={this.handleClick}>
           {this.state.isOpen ? 'Hide' : ''} Additional Filters
         </a>
-        <Collapse isOpen={this.state.isOpen}>
-          <p>Filter classes by</p>
-          {courseAttr}
-          {classNumber}
-          {sessionCode}
+        <Collapse isOpen={this.state.isOpen} className="row">
+          <div className="col-md-4">
+            <div className="form-item">{classNumber}</div>
+          </div>
+          <div className="col-md-4">
+            <div className="form-item">{courseAttr}</div>
+          </div>
+          <div className="col-md-4">
+            <div className="form-item">{sessionCode}</div>
+          </div>
         </Collapse>
       </div>
     );
@@ -61,9 +66,10 @@ export class AdvancedFilterFieldset extends React.Component<
 
   private getClassNumberComponent(): JSX.Element {
     return (
-      <Label>
-        Class Number
-      <input
+      <React.Fragment>
+        <Label htmlFor="class-number">Class Number</Label>
+        <input
+          id="class-number"
           className="class-number"
           type="text"
           placeholder="E.g. 60256"
@@ -71,8 +77,8 @@ export class AdvancedFilterFieldset extends React.Component<
           onChange={this.props.onChangeOfClassNo}
           value={this.props.classNo}
           onKeyDown={this.props.onKeyDown}
-      />
-      </Label>
+        />
+      </React.Fragment>
     );
   }
 

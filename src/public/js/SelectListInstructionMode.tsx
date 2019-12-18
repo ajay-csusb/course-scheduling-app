@@ -26,15 +26,15 @@ export class SelectListInstructionMode extends React.Component<ISelectListInstru
       { label: 'Televised Instruction (receiving site)', value: 'tr'},
     ];
     return (
-      <Label>
-        Instruction Mode
+      <React.Fragment>
+        <Label>Instruction Mode</Label>
         <HTMLSelect
           value={this.props.instructionMode}
           options={instructionMode}
           onChange={this.handleChangeOfInstructionMode}
           className="select-instruction-mode"
         />
-      </Label>
+      </React.Fragment>
     );
   }
 

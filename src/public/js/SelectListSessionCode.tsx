@@ -33,15 +33,16 @@ export class SelectListSessionCode extends React.Component<ISelectListSessionCod
 
   public render(): React.ReactNode {
     return (
-      <Label>
-        Session
+      <React.Fragment>
+        <Label htmlFor="session-code">Session Code</Label>
         <HTMLSelect
+          id="session-code"
           value={this.props.sessionCode}
           className="session-code"
           onChange={this.props.onChangeOfSessionCode}
           options={this.sessionCodes}
         />
-      </Label>
+      </React.Fragment>
     );
   }
 

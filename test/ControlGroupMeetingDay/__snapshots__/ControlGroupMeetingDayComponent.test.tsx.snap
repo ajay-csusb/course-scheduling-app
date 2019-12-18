@@ -14,7 +14,7 @@ Array [
         <label
           className="bp3-label"
         >
-          Meeting Day
+          Course Meeting Day
         </label>
       </Component>
       <Blueprint3.Checkbox
@@ -278,7 +278,7 @@ Array [
       <label
         className="bp3-label"
       >
-        Meeting Day
+        Course Meeting Day
       </label>
     </Component>
     <Blueprint3.Checkbox

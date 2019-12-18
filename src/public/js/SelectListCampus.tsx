@@ -18,15 +18,15 @@
         { label: 'Palm Desert', value: 'palm-desert', className: 'palm-desert'},
       ];
       return (
-        <Label>
-          Campus
+        <React.Fragment>
+        <Label htmlFor="campus">Campus</Label>
           <HTMLSelect
             value={this.props.campus}
             options={campus}
             onChange={this.handleChangeOfCampus}
             className="campus-select"
           />
-        </Label>
+        </React.Fragment>
       );
     }
 

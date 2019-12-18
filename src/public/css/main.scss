@@ -68,3 +68,54 @@ textarea {
 .fa {
   margin-right: 6px;
 }
+
+.content {
+  width: 50vw;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+}
+
+.hidden-content {
+  opacity: 0.25;
+}
+
+.form-grid {
+  display: block;
+  margin: 0 -10px;
+
+  .grid-row {
+    float: left;
+    width: 100%;
+    
+    > div[class^=grid-col-] {
+      float: left;
+      
+      &.grid-col-66 {
+        width: 66.6666666666%;
+      }
+      
+      &.grid-col-33 {
+        width: 33.3333333333%;
+      }
+
+      &.grid-col-50 {
+        width: 50%;
+      }
+    }
+    
+    .grid-item {
+      width: 100%;
+      padding: 0 10px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.form-buttons {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 20px;
+  text-align: right;
+}
