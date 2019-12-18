@@ -30,7 +30,7 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
       instructor = <span>Instructor: <a href={instructorProfileURL}> {instructorName}</a></span>;
     }
     return (
-      <Card key={classDetails.classNumber} interactive={true} elevation={Elevation.TWO}>
+      <Card key={classDetails.classNumber} interactive={false} elevation={Elevation.TWO}>
         <span>{`${classDetails.subject} ${classDetails.catalogNo} ${classDetails.classSection}`}</span><br />
         <Popover
           content={classDetails.longDescription}
