@@ -85,7 +85,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const classSearchFormComponent = this.getClassSearchFormComponent();
     const errorMessage: JSX.Element = this.displayErrorMessageWhenSubjectIsEmpty();
     return (
-      <div>
+      <div className="form-section">
         {this.state.showErrorMessage && errorMessage}
         {classSearchFormComponent}
         {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
