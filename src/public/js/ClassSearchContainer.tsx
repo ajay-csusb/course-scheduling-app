@@ -7,6 +7,7 @@ import { UserInput } from './UserInput';
 import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { MeetingTime } from './MeetingTime';
+import { Watchdog } from './Watchdog';
 interface IClassSearchContainerState {
   term: string;
   campus: string;
@@ -41,7 +42,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private currentTermId: string;
 
-  private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList ';
+  private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList';
 
   private userInput: UserInput;
 
@@ -85,12 +86,14 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const classSearchFormComponent = this.getClassSearchFormComponent();
     const errorMessage: JSX.Element = this.displayErrorMessageWhenSubjectIsEmpty();
     return (
-      <div>
-        {this.state.showErrorMessage && errorMessage}
-        {classSearchFormComponent}
-        {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
+      <React.Fragment>
+        <div className="form-section">
+          {this.state.showErrorMessage && errorMessage}
+          {classSearchFormComponent}
+          {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
+        </div>
         {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) && classSearchResultsComponent}
-      </div>
+      </React.Fragment>
     );
   }
   componentDidMount() {
@@ -230,7 +233,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     });
   }
 
-  private classesNotFound(_error: string): void {
+  private classesNotFound(_error: any): void {
+    const errorMsg = {
+      name: Error().name,
+      msg: _error.message,
+      stack: Error().stack,
+    };
+    Watchdog.log(errorMsg);
     this.setState({
       noClasses: true,
       isLoading: false,
@@ -513,7 +522,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private errorProcessingData(_error: any): void {
-    console.log('error processing drop down data: ' + _error);
+    const errorMsg = {
+      name: Error().name,
+      msg: _error.message,
+      stack: Error().stack,
+    };
+    Watchdog.log(errorMsg);
   }
 
   private updateAllClasses() {
