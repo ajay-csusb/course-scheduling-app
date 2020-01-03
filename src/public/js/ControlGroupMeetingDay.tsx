@@ -1,5 +1,5 @@
 import React from 'react';
-import { ControlGroup, Checkbox, Label } from '@blueprintjs/core';
+import { ControlGroup, Checkbox, Alignment } from '@blueprintjs/core';
 import { IMeetingDate } from './Class';
 export interface IControlGroupMeetingDayProps {
   meetingDate: IMeetingDate;
@@ -17,10 +17,9 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
   public render(): React.ReactNode {
     return (
       <ControlGroup fill={true} vertical={false} className="meeting-day">
-        <Label htmlFor="meeting-day">Course Meeting Day</Label>
+        <div className="label">Course Meeting Day</div>
         <div id="meeting-day">
           <div className="form-item">
-            <Label htmlFor="mon">Mon</Label>
             <Checkbox
               id="mon"
               value="mon"
@@ -28,10 +27,12 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
               checked={this.props.meetingDate.mon}
               onKeyDown={this.props.onKeyDown}
+              inline={true}
+              alignIndicator={Alignment.LEFT}
+              label="Mon"
             />
           </div>
           <div className="form-item">
-            <Label htmlFor="tue">Tue</Label>
             <Checkbox
               id="tue"
               value="tue"
@@ -39,10 +40,12 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
               checked={this.props.meetingDate.tue}
               onKeyDown={this.props.onKeyDown}
+              inline={true}
+              alignIndicator={Alignment.LEFT}
+              label="Tue"
             />
           </div>
           <div className="form-item">
-            <Label htmlFor="wed">Wed</Label>
             <Checkbox
               id="wed"
               value="wed"
@@ -50,10 +53,12 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
               checked={this.props.meetingDate.wed}
               onKeyDown={this.props.onKeyDown}
+              inline={true}
+              alignIndicator={Alignment.LEFT}
+              label="Wed"
             />
           </div>
           <div className="form-item">
-            <Label htmlFor="thu">Thu</Label>
             <Checkbox
               id="thu"
               value="thu"
@@ -61,10 +66,12 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
               checked={this.props.meetingDate.thu}
               onKeyDown={this.props.onKeyDown}
+              inline={true}
+              alignIndicator={Alignment.LEFT}
+              label="Thu"
             />
           </div>
           <div className="form-item">
-            <Label htmlFor="fri">Fri</Label>
             <Checkbox
               id="fri"
               value="fri"
@@ -72,10 +79,12 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
               checked={this.props.meetingDate.fri}
               onKeyDown={this.props.onKeyDown}
+              inline={true}
+              alignIndicator={Alignment.LEFT}
+              label="Fri"
             />
           </div>
           <div className="form-item">
-            <Label htmlFor="sat">Sat</Label>
             <Checkbox
               id="sat"
               value="sat"
@@ -83,10 +92,12 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
               checked={this.props.meetingDate.sat}
               onKeyDown={this.props.onKeyDown}
+              inline={true}
+              alignIndicator={Alignment.LEFT}
+              label="Sat"
             />
           </div>
           <div className="form-item">
-            <Label htmlFor="sun">Sun</Label>
             <Checkbox
               id="sun"
               value="sun"
@@ -94,6 +105,9 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onChange={(event: React.FormEvent) => (this.handleChangeOfMeetingDate(event))}
               checked={this.props.meetingDate.sun}
               onKeyDown={this.props.onKeyDown}
+              inline={true}
+              alignIndicator={Alignment.LEFT}
+              label="Sun"
             />
           </div>
         </div>
