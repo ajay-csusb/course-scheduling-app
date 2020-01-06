@@ -52,9 +52,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
   public render(): JSX.Element {
     const form = this.getForm();
     return (
-      <div className="container">
-        {form}
-      </div>
+      <React.Fragment>{form}</React.Fragment>
     );
   }
 
