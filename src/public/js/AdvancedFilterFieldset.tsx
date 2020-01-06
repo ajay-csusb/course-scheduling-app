@@ -31,7 +31,7 @@ export class AdvancedFilterFieldset extends React.Component<
     const courseAttr = this.getSelectListCourseAttrComponent();
     const classNumber = this.getClassNumberComponent();
     const sessionCode = this.getSelectListSessionCodeComponent();
-    const arrow = (this.state.isOpen) ? <i className='fal fa-chevron-down'></i> : <i className='fal fa-chevron-up'></i>;
+    const arrow = (this.state.isOpen) ? <i className='fal fa-chevron-up'></i> : <i className='fal fa-chevron-down'></i>;
     return (
       <React.Fragment>
         <a id="additional-filters" onClick={this.handleClick}>
