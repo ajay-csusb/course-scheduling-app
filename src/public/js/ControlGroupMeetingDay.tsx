@@ -29,7 +29,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onKeyDown={this.props.onKeyDown}
               inline={true}
               alignIndicator={Alignment.LEFT}
-              label="Mon"
+              label="Monday"
             />
           </div>
           <div className="form-item">
@@ -42,7 +42,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onKeyDown={this.props.onKeyDown}
               inline={true}
               alignIndicator={Alignment.LEFT}
-              label="Tue"
+              label="Tuesday"
             />
           </div>
           <div className="form-item">
@@ -55,7 +55,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onKeyDown={this.props.onKeyDown}
               inline={true}
               alignIndicator={Alignment.LEFT}
-              label="Wed"
+              label="Wednesday"
             />
           </div>
           <div className="form-item">
@@ -68,7 +68,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onKeyDown={this.props.onKeyDown}
               inline={true}
               alignIndicator={Alignment.LEFT}
-              label="Thu"
+              label="Thursday"
             />
           </div>
           <div className="form-item">
@@ -81,7 +81,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onKeyDown={this.props.onKeyDown}
               inline={true}
               alignIndicator={Alignment.LEFT}
-              label="Fri"
+              label="Friday"
             />
           </div>
           <div className="form-item">
@@ -94,7 +94,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onKeyDown={this.props.onKeyDown}
               inline={true}
               alignIndicator={Alignment.LEFT}
-              label="Sat"
+              label="Saturday"
             />
           </div>
           <div className="form-item">
@@ -107,7 +107,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
               onKeyDown={this.props.onKeyDown}
               inline={true}
               alignIndicator={Alignment.LEFT}
-              label="Sun"
+              label="Sunday"
             />
           </div>
         </div>
