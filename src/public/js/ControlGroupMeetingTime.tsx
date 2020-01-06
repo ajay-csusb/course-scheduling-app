@@ -19,7 +19,7 @@ export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetin
   public render(): React.ReactNode {
     return (
       <ControlGroup className="meeting-time row">
-        <div className="col-md-6">
+        <div className="col-6">
           <Label htmlFor="start-time">Meeting Start Time</Label>
           <TimePicker
             className="start-time"
@@ -30,7 +30,7 @@ export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetin
             value={this.props.startTime}
           />
         </div>
-        <div className="col-md-6">
+        <div className="col-6">
           <Label>Meeting End Time</Label>
           <TimePicker
             className="end-time"

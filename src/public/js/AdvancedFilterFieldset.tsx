@@ -31,23 +31,26 @@ export class AdvancedFilterFieldset extends React.Component<
     const courseAttr = this.getSelectListCourseAttrComponent();
     const classNumber = this.getClassNumberComponent();
     const sessionCode = this.getSelectListSessionCodeComponent();
+    const arrow = (this.state.isOpen) ? <i className="fal fa-chevron-up"/> : <i className="fal fa-chevron-down"/>;
     return (
-      <div>
+      <React.Fragment>
         <a id="additional-filters" onClick={this.handleClick}>
-          {this.state.isOpen ? 'Hide' : ''} Additional Filters
+          {this.state.isOpen ? 'Hide' : ''} Additional Filters {arrow}
         </a>
-        <Collapse isOpen={this.state.isOpen} className="row">
-          <div className="col-md-4">
-            <div className="form-item">{classNumber}</div>
-          </div>
-          <div className="col-md-4">
-            <div className="form-item">{courseAttr}</div>
-          </div>
-          <div className="col-md-4">
-            <div className="form-item">{sessionCode}</div>
+        <Collapse isOpen={this.state.isOpen} >
+          <div className="row">
+            <div className="col-6 col-md-4">
+              <div className="form-item">{classNumber}</div>
+            </div>
+            <div className="col-6 col-md-4">
+              <div className="form-item">{courseAttr}</div>
+            </div>
+            <div className="col-6 col-md-4">
+              <div className="form-item">{sessionCode}</div>
+            </div>
           </div>
         </Collapse>
-      </div>
+      </React.Fragment>
     );
   }
 

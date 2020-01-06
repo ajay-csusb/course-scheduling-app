@@ -88,10 +88,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return (
       <React.Fragment>
         <div className="form-section">
-          {this.state.showErrorMessage && errorMessage}
-          {classSearchFormComponent}
-          {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
+          <div className="container">
+            {this.state.showErrorMessage && errorMessage}
+            {classSearchFormComponent}
           </div>
+        </div>
+        {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
         {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) && classSearchResultsComponent}
       </React.Fragment>
     );
