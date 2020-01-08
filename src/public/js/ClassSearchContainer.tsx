@@ -91,7 +91,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
           {this.state.showErrorMessage && errorMessage}
           {classSearchFormComponent}
           {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
-        </div>
+          </div>
         {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) && classSearchResultsComponent}
       </React.Fragment>
     );
@@ -247,7 +247,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private onSubmit(): any {
-    if (this.isSubjectEmpty()) {
+    if (this.isSubjectEmpty() && this.areOtherFieldsEmpty()) {
       this.setState({
         showErrorMessage: true,
       });
@@ -397,8 +397,56 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return (this.state.isReset && this.state.beforeSubmit && this.state.subject.abbr.length === 0);
   }
 
-  private isSubjectEmpty() {
+  private isSubjectEmpty(): boolean {
     return (this.state.subject.abbr.length === 0);
+  }
+
+  private isInstructorEmpty(): boolean {
+    return (this.state.instructorName === '');
+  }
+
+  private isCourseNumberEmpty(): boolean {
+    return (this.state.courseNo === '');
+  }
+
+  private isMeetingDayEmpty(): boolean {
+    return (!this.state.meetingDate.mon
+    && !this.state.meetingDate.tue
+    && !this.state.meetingDate.wed
+    && !this.state.meetingDate.thu
+    && !this.state.meetingDate.fri
+    && !this.state.meetingDate.sat
+    && !this.state.meetingDate.sun);
+  }
+
+  private isClassNoEmpty(): boolean {
+    return (this.state.classNo === '');
+  }
+
+  private isValidInstructionModeSelected(): boolean {
+    return (this.state.instructionMode !== 'all'
+      && this.state.instructionMode !== 'p'
+      && this.state.instructionMode !== 'ol'
+    );
+  }
+
+  private areOtherFieldsEmpty(): boolean {
+    if (!this.isInstructorEmpty()) {
+      return false;
+    }
+    if (!this.isCourseNumberEmpty()) {
+      return false;
+    }
+    if (!this.isMeetingDayEmpty()) {
+      return false;
+    }
+    if (!this.isClassNoEmpty()) {
+      return false;
+    }
+    if (this.isValidInstructionModeSelected()) {
+      return false;
+    }
+    return true;
   }
 
   private displayErrorMessageWhenSubjectIsEmpty(): JSX.Element {
