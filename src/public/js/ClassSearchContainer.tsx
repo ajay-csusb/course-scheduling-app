@@ -7,6 +7,7 @@ import { UserInput } from './UserInput';
 import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { MeetingTime } from './MeetingTime';
+import { Watchdog } from './Watchdog';
 interface IClassSearchContainerState {
   term: string;
   campus: string;
@@ -41,7 +42,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private currentTermId: string;
 
-  private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList ';
+  private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList';
 
   private userInput: UserInput;
 
@@ -85,12 +86,14 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const classSearchFormComponent = this.getClassSearchFormComponent();
     const errorMessage: JSX.Element = this.displayErrorMessageWhenSubjectIsEmpty();
     return (
-      <div>
-        {this.state.showErrorMessage && errorMessage}
-        {classSearchFormComponent}
-        {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
+      <React.Fragment>
+        <div className="form-section">
+          {this.state.showErrorMessage && errorMessage}
+          {classSearchFormComponent}
+          {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
+          </div>
         {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) && classSearchResultsComponent}
-      </div>
+      </React.Fragment>
     );
   }
   componentDidMount() {
@@ -230,7 +233,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     });
   }
 
-  private classesNotFound(_error: string): void {
+  private classesNotFound(_error: any): void {
+    const errorMsg = {
+      name: Error().name,
+      msg: _error.message,
+      stack: Error().stack,
+    };
+    Watchdog.log(errorMsg);
     this.setState({
       noClasses: true,
       isLoading: false,
@@ -238,7 +247,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private onSubmit(): any {
-    if (this.isSubjectEmpty()) {
+    if (this.isSubjectEmpty() && this.areOtherFieldsEmpty()) {
       this.setState({
         showErrorMessage: true,
       });
@@ -388,8 +397,56 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return (this.state.isReset && this.state.beforeSubmit && this.state.subject.abbr.length === 0);
   }
 
-  private isSubjectEmpty() {
+  private isSubjectEmpty(): boolean {
     return (this.state.subject.abbr.length === 0);
+  }
+
+  private isInstructorEmpty(): boolean {
+    return (this.state.instructorName === '');
+  }
+
+  private isCourseNumberEmpty(): boolean {
+    return (this.state.courseNo === '');
+  }
+
+  private isMeetingDayEmpty(): boolean {
+    return (!this.state.meetingDate.mon
+    && !this.state.meetingDate.tue
+    && !this.state.meetingDate.wed
+    && !this.state.meetingDate.thu
+    && !this.state.meetingDate.fri
+    && !this.state.meetingDate.sat
+    && !this.state.meetingDate.sun);
+  }
+
+  private isClassNoEmpty(): boolean {
+    return (this.state.classNo === '');
+  }
+
+  private isValidInstructionModeSelected(): boolean {
+    return (this.state.instructionMode !== 'all'
+      && this.state.instructionMode !== 'p'
+      && this.state.instructionMode !== 'ol'
+    );
+  }
+
+  private areOtherFieldsEmpty(): boolean {
+    if (!this.isInstructorEmpty()) {
+      return false;
+    }
+    if (!this.isCourseNumberEmpty()) {
+      return false;
+    }
+    if (!this.isMeetingDayEmpty()) {
+      return false;
+    }
+    if (!this.isClassNoEmpty()) {
+      return false;
+    }
+    if (this.isValidInstructionModeSelected()) {
+      return false;
+    }
+    return true;
   }
 
   private displayErrorMessageWhenSubjectIsEmpty(): JSX.Element {
@@ -513,7 +570,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private errorProcessingData(_error: any): void {
-    console.log('error processing drop down data: ' + _error);
+    const errorMsg = {
+      name: Error().name,
+      msg: _error.message,
+      stack: Error().stack,
+    };
+    Watchdog.log(errorMsg);
   }
 
   private updateAllClasses() {

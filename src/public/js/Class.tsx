@@ -1,5 +1,6 @@
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
+import { Watchdog } from './Watchdog';
 export interface IClass {
   quarter: string;
   subject: string;
@@ -149,6 +150,7 @@ export class Class {
       },
     };
     ClassSearchUtils.fetchWithArg(this.classesUrl, params, onSuccess, onFailure);
+    Watchdog.log(params.condition);
   }
 
   public getClassMeetingDates(): string {
