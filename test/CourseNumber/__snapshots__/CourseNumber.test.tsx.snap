@@ -4,6 +4,7 @@ exports[`Course number component Given a class search form snapshot 1`] = `
 <input
   className="course-number"
   dir="auto"
+  id="course-number"
   onChange={[Function]}
   onKeyDown={[Function]}
   placeholder="E.g. 602"

@@ -4,6 +4,7 @@ exports[`<SelectListCourseAttr> Given a class search form snapshot 1`] = `
 Array [
   <HTMLSelect
     className="course-attribute"
+    id="course-attribute"
     onChange={[Function]}
     options={
       Array [
@@ -59,6 +60,7 @@ Array [
       className="bp3-html-select course-attribute"
     >
       <select
+        id="course-attribute"
         multiple={false}
         onChange={[Function]}
         value="all"
@@ -171,6 +173,7 @@ Array [
     className="bp3-html-select course-attribute"
   >
     <select
+      id="course-attribute"
       multiple={false}
       onChange={[Function]}
       value="all"

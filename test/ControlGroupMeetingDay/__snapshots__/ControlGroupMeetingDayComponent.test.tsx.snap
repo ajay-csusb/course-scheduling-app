@@ -10,529 +10,687 @@ Array [
     <div
       className="bp3-control-group bp3-fill meeting-day"
     >
-      <Component>
-        <label
-          className="bp3-label"
-        >
-          Course Meeting Day
-        </label>
-      </Component>
-      <Blueprint3.Checkbox
-        checked={false}
-        className="mon"
-        label="Mon"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        value="mon"
+      <div
+        className="label"
       >
-        <Control
-          checked={false}
-          className="mon"
-          inputRef={[Function]}
-          label="Mon"
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          type="checkbox"
-          typeClassName="bp3-checkbox"
-          value="mon"
+        Course Meeting Day
+      </div>
+      <div
+        id="meeting-day"
+      >
+        <div
+          className="form-item"
         >
-          <label
-            className="bp3-control bp3-checkbox mon"
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="mon"
+            id="mon"
+            inline={true}
+            label="Mon"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="mon"
           >
-            <input
+            <Control
+              alignIndicator="left"
               checked={false}
+              className="mon"
+              id="mon"
+              inline={true}
+              inputRef={[Function]}
+              label="Mon"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
+              typeClassName="bp3-checkbox"
               value="mon"
-            />
-            <span
-              className="bp3-control-indicator"
-            />
-            Mon
-          </label>
-        </Control>
-      </Blueprint3.Checkbox>
-      <Blueprint3.Checkbox
-        checked={false}
-        className="tue"
-        label="Tue"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        value="tue"
-      >
-        <Control
-          checked={false}
-          className="tue"
-          inputRef={[Function]}
-          label="Tue"
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          type="checkbox"
-          typeClassName="bp3-checkbox"
-          value="tue"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left mon"
+              >
+                <input
+                  checked={false}
+                  id="mon"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="mon"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Mon
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+        <div
+          className="form-item"
         >
-          <label
-            className="bp3-control bp3-checkbox tue"
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="tue"
+            id="tue"
+            inline={true}
+            label="Tue"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="tue"
           >
-            <input
+            <Control
+              alignIndicator="left"
               checked={false}
+              className="tue"
+              id="tue"
+              inline={true}
+              inputRef={[Function]}
+              label="Tue"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
+              typeClassName="bp3-checkbox"
               value="tue"
-            />
-            <span
-              className="bp3-control-indicator"
-            />
-            Tue
-          </label>
-        </Control>
-      </Blueprint3.Checkbox>
-      <Blueprint3.Checkbox
-        checked={false}
-        className="wed"
-        label="Wed"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        value="wed"
-      >
-        <Control
-          checked={false}
-          className="wed"
-          inputRef={[Function]}
-          label="Wed"
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          type="checkbox"
-          typeClassName="bp3-checkbox"
-          value="wed"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left tue"
+              >
+                <input
+                  checked={false}
+                  id="tue"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="tue"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Tue
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+        <div
+          className="form-item"
         >
-          <label
-            className="bp3-control bp3-checkbox wed"
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="wed"
+            id="wed"
+            inline={true}
+            label="Wed"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="wed"
           >
-            <input
+            <Control
+              alignIndicator="left"
               checked={false}
+              className="wed"
+              id="wed"
+              inline={true}
+              inputRef={[Function]}
+              label="Wed"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
+              typeClassName="bp3-checkbox"
               value="wed"
-            />
-            <span
-              className="bp3-control-indicator"
-            />
-            Wed
-          </label>
-        </Control>
-      </Blueprint3.Checkbox>
-      <Blueprint3.Checkbox
-        checked={false}
-        className="thu"
-        label="Thu"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        value="thu"
-      >
-        <Control
-          checked={false}
-          className="thu"
-          inputRef={[Function]}
-          label="Thu"
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          type="checkbox"
-          typeClassName="bp3-checkbox"
-          value="thu"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left wed"
+              >
+                <input
+                  checked={false}
+                  id="wed"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="wed"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Wed
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+        <div
+          className="form-item"
         >
-          <label
-            className="bp3-control bp3-checkbox thu"
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="thu"
+            id="thu"
+            inline={true}
+            label="Thu"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="thu"
           >
-            <input
+            <Control
+              alignIndicator="left"
               checked={false}
+              className="thu"
+              id="thu"
+              inline={true}
+              inputRef={[Function]}
+              label="Thu"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
+              typeClassName="bp3-checkbox"
               value="thu"
-            />
-            <span
-              className="bp3-control-indicator"
-            />
-            Thu
-          </label>
-        </Control>
-      </Blueprint3.Checkbox>
-      <Blueprint3.Checkbox
-        checked={false}
-        className="fri"
-        label="Fri"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        value="fri"
-      >
-        <Control
-          checked={false}
-          className="fri"
-          inputRef={[Function]}
-          label="Fri"
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          type="checkbox"
-          typeClassName="bp3-checkbox"
-          value="fri"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left thu"
+              >
+                <input
+                  checked={false}
+                  id="thu"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="thu"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Thu
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+        <div
+          className="form-item"
         >
-          <label
-            className="bp3-control bp3-checkbox fri"
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="fri"
+            id="fri"
+            inline={true}
+            label="Fri"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="fri"
           >
-            <input
+            <Control
+              alignIndicator="left"
               checked={false}
+              className="fri"
+              id="fri"
+              inline={true}
+              inputRef={[Function]}
+              label="Fri"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
+              typeClassName="bp3-checkbox"
               value="fri"
-            />
-            <span
-              className="bp3-control-indicator"
-            />
-            Fri
-          </label>
-        </Control>
-      </Blueprint3.Checkbox>
-      <Blueprint3.Checkbox
-        checked={false}
-        className="sat"
-        label="Sat"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        value="sat"
-      >
-        <Control
-          checked={false}
-          className="sat"
-          inputRef={[Function]}
-          label="Sat"
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          type="checkbox"
-          typeClassName="bp3-checkbox"
-          value="sat"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left fri"
+              >
+                <input
+                  checked={false}
+                  id="fri"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="fri"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Fri
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+        <div
+          className="form-item"
         >
-          <label
-            className="bp3-control bp3-checkbox sat"
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="sat"
+            id="sat"
+            inline={true}
+            label="Sat"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="sat"
           >
-            <input
+            <Control
+              alignIndicator="left"
               checked={false}
+              className="sat"
+              id="sat"
+              inline={true}
+              inputRef={[Function]}
+              label="Sat"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
+              typeClassName="bp3-checkbox"
               value="sat"
-            />
-            <span
-              className="bp3-control-indicator"
-            />
-            Sat
-          </label>
-        </Control>
-      </Blueprint3.Checkbox>
-      <Blueprint3.Checkbox
-        checked={false}
-        className="sun"
-        label="Sun"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        value="sun"
-      >
-        <Control
-          checked={false}
-          className="sun"
-          inputRef={[Function]}
-          label="Sun"
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          type="checkbox"
-          typeClassName="bp3-checkbox"
-          value="sun"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left sat"
+              >
+                <input
+                  checked={false}
+                  id="sat"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="sat"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Sat
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+        <div
+          className="form-item"
         >
-          <label
-            className="bp3-control bp3-checkbox sun"
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="sun"
+            id="sun"
+            inline={true}
+            label="Sun"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="sun"
           >
-            <input
+            <Control
+              alignIndicator="left"
               checked={false}
+              className="sun"
+              id="sun"
+              inline={true}
+              inputRef={[Function]}
+              label="Sun"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
+              typeClassName="bp3-checkbox"
               value="sun"
-            />
-            <span
-              className="bp3-control-indicator"
-            />
-            Sun
-          </label>
-        </Control>
-      </Blueprint3.Checkbox>
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left sun"
+              >
+                <input
+                  checked={false}
+                  id="sun"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="sun"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Sun
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+      </div>
     </div>
   </Blueprint3.ControlGroup>,
   <div
     className="bp3-control-group bp3-fill meeting-day"
   >
-    <Component>
-      <label
-        className="bp3-label"
-      >
-        Course Meeting Day
-      </label>
-    </Component>
-    <Blueprint3.Checkbox
-      checked={false}
-      className="mon"
-      label="Mon"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      value="mon"
+    <div
+      className="label"
     >
-      <Control
-        checked={false}
-        className="mon"
-        inputRef={[Function]}
-        label="Mon"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        type="checkbox"
-        typeClassName="bp3-checkbox"
-        value="mon"
+      Course Meeting Day
+    </div>
+    <div
+      id="meeting-day"
+    >
+      <div
+        className="form-item"
       >
-        <label
-          className="bp3-control bp3-checkbox mon"
+        <Blueprint3.Checkbox
+          alignIndicator="left"
+          checked={false}
+          className="mon"
+          id="mon"
+          inline={true}
+          label="Mon"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          value="mon"
         >
-          <input
+          <Control
+            alignIndicator="left"
             checked={false}
+            className="mon"
+            id="mon"
+            inline={true}
+            inputRef={[Function]}
+            label="Mon"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
+            typeClassName="bp3-checkbox"
             value="mon"
-          />
-          <span
-            className="bp3-control-indicator"
-          />
-          Mon
-        </label>
-      </Control>
-    </Blueprint3.Checkbox>
-    <Blueprint3.Checkbox
-      checked={false}
-      className="tue"
-      label="Tue"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      value="tue"
-    >
-      <Control
-        checked={false}
-        className="tue"
-        inputRef={[Function]}
-        label="Tue"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        type="checkbox"
-        typeClassName="bp3-checkbox"
-        value="tue"
+          >
+            <label
+              className="bp3-control bp3-checkbox bp3-inline bp3-align-left mon"
+            >
+              <input
+                checked={false}
+                id="mon"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                type="checkbox"
+                value="mon"
+              />
+              <span
+                className="bp3-control-indicator"
+              />
+              Mon
+            </label>
+          </Control>
+        </Blueprint3.Checkbox>
+      </div>
+      <div
+        className="form-item"
       >
-        <label
-          className="bp3-control bp3-checkbox tue"
+        <Blueprint3.Checkbox
+          alignIndicator="left"
+          checked={false}
+          className="tue"
+          id="tue"
+          inline={true}
+          label="Tue"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          value="tue"
         >
-          <input
+          <Control
+            alignIndicator="left"
             checked={false}
+            className="tue"
+            id="tue"
+            inline={true}
+            inputRef={[Function]}
+            label="Tue"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
+            typeClassName="bp3-checkbox"
             value="tue"
-          />
-          <span
-            className="bp3-control-indicator"
-          />
-          Tue
-        </label>
-      </Control>
-    </Blueprint3.Checkbox>
-    <Blueprint3.Checkbox
-      checked={false}
-      className="wed"
-      label="Wed"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      value="wed"
-    >
-      <Control
-        checked={false}
-        className="wed"
-        inputRef={[Function]}
-        label="Wed"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        type="checkbox"
-        typeClassName="bp3-checkbox"
-        value="wed"
+          >
+            <label
+              className="bp3-control bp3-checkbox bp3-inline bp3-align-left tue"
+            >
+              <input
+                checked={false}
+                id="tue"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                type="checkbox"
+                value="tue"
+              />
+              <span
+                className="bp3-control-indicator"
+              />
+              Tue
+            </label>
+          </Control>
+        </Blueprint3.Checkbox>
+      </div>
+      <div
+        className="form-item"
       >
-        <label
-          className="bp3-control bp3-checkbox wed"
+        <Blueprint3.Checkbox
+          alignIndicator="left"
+          checked={false}
+          className="wed"
+          id="wed"
+          inline={true}
+          label="Wed"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          value="wed"
         >
-          <input
+          <Control
+            alignIndicator="left"
             checked={false}
+            className="wed"
+            id="wed"
+            inline={true}
+            inputRef={[Function]}
+            label="Wed"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
+            typeClassName="bp3-checkbox"
             value="wed"
-          />
-          <span
-            className="bp3-control-indicator"
-          />
-          Wed
-        </label>
-      </Control>
-    </Blueprint3.Checkbox>
-    <Blueprint3.Checkbox
-      checked={false}
-      className="thu"
-      label="Thu"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      value="thu"
-    >
-      <Control
-        checked={false}
-        className="thu"
-        inputRef={[Function]}
-        label="Thu"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        type="checkbox"
-        typeClassName="bp3-checkbox"
-        value="thu"
+          >
+            <label
+              className="bp3-control bp3-checkbox bp3-inline bp3-align-left wed"
+            >
+              <input
+                checked={false}
+                id="wed"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                type="checkbox"
+                value="wed"
+              />
+              <span
+                className="bp3-control-indicator"
+              />
+              Wed
+            </label>
+          </Control>
+        </Blueprint3.Checkbox>
+      </div>
+      <div
+        className="form-item"
       >
-        <label
-          className="bp3-control bp3-checkbox thu"
+        <Blueprint3.Checkbox
+          alignIndicator="left"
+          checked={false}
+          className="thu"
+          id="thu"
+          inline={true}
+          label="Thu"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          value="thu"
         >
-          <input
+          <Control
+            alignIndicator="left"
             checked={false}
+            className="thu"
+            id="thu"
+            inline={true}
+            inputRef={[Function]}
+            label="Thu"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
+            typeClassName="bp3-checkbox"
             value="thu"
-          />
-          <span
-            className="bp3-control-indicator"
-          />
-          Thu
-        </label>
-      </Control>
-    </Blueprint3.Checkbox>
-    <Blueprint3.Checkbox
-      checked={false}
-      className="fri"
-      label="Fri"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      value="fri"
-    >
-      <Control
-        checked={false}
-        className="fri"
-        inputRef={[Function]}
-        label="Fri"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        type="checkbox"
-        typeClassName="bp3-checkbox"
-        value="fri"
+          >
+            <label
+              className="bp3-control bp3-checkbox bp3-inline bp3-align-left thu"
+            >
+              <input
+                checked={false}
+                id="thu"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                type="checkbox"
+                value="thu"
+              />
+              <span
+                className="bp3-control-indicator"
+              />
+              Thu
+            </label>
+          </Control>
+        </Blueprint3.Checkbox>
+      </div>
+      <div
+        className="form-item"
       >
-        <label
-          className="bp3-control bp3-checkbox fri"
+        <Blueprint3.Checkbox
+          alignIndicator="left"
+          checked={false}
+          className="fri"
+          id="fri"
+          inline={true}
+          label="Fri"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          value="fri"
         >
-          <input
+          <Control
+            alignIndicator="left"
             checked={false}
+            className="fri"
+            id="fri"
+            inline={true}
+            inputRef={[Function]}
+            label="Fri"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
+            typeClassName="bp3-checkbox"
             value="fri"
-          />
-          <span
-            className="bp3-control-indicator"
-          />
-          Fri
-        </label>
-      </Control>
-    </Blueprint3.Checkbox>
-    <Blueprint3.Checkbox
-      checked={false}
-      className="sat"
-      label="Sat"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      value="sat"
-    >
-      <Control
-        checked={false}
-        className="sat"
-        inputRef={[Function]}
-        label="Sat"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        type="checkbox"
-        typeClassName="bp3-checkbox"
-        value="sat"
+          >
+            <label
+              className="bp3-control bp3-checkbox bp3-inline bp3-align-left fri"
+            >
+              <input
+                checked={false}
+                id="fri"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                type="checkbox"
+                value="fri"
+              />
+              <span
+                className="bp3-control-indicator"
+              />
+              Fri
+            </label>
+          </Control>
+        </Blueprint3.Checkbox>
+      </div>
+      <div
+        className="form-item"
       >
-        <label
-          className="bp3-control bp3-checkbox sat"
+        <Blueprint3.Checkbox
+          alignIndicator="left"
+          checked={false}
+          className="sat"
+          id="sat"
+          inline={true}
+          label="Sat"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          value="sat"
         >
-          <input
+          <Control
+            alignIndicator="left"
             checked={false}
+            className="sat"
+            id="sat"
+            inline={true}
+            inputRef={[Function]}
+            label="Sat"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
+            typeClassName="bp3-checkbox"
             value="sat"
-          />
-          <span
-            className="bp3-control-indicator"
-          />
-          Sat
-        </label>
-      </Control>
-    </Blueprint3.Checkbox>
-    <Blueprint3.Checkbox
-      checked={false}
-      className="sun"
-      label="Sun"
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      value="sun"
-    >
-      <Control
-        checked={false}
-        className="sun"
-        inputRef={[Function]}
-        label="Sun"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        type="checkbox"
-        typeClassName="bp3-checkbox"
-        value="sun"
+          >
+            <label
+              className="bp3-control bp3-checkbox bp3-inline bp3-align-left sat"
+            >
+              <input
+                checked={false}
+                id="sat"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                type="checkbox"
+                value="sat"
+              />
+              <span
+                className="bp3-control-indicator"
+              />
+              Sat
+            </label>
+          </Control>
+        </Blueprint3.Checkbox>
+      </div>
+      <div
+        className="form-item"
       >
-        <label
-          className="bp3-control bp3-checkbox sun"
+        <Blueprint3.Checkbox
+          alignIndicator="left"
+          checked={false}
+          className="sun"
+          id="sun"
+          inline={true}
+          label="Sun"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          value="sun"
         >
-          <input
+          <Control
+            alignIndicator="left"
             checked={false}
+            className="sun"
+            id="sun"
+            inline={true}
+            inputRef={[Function]}
+            label="Sun"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
+            typeClassName="bp3-checkbox"
             value="sun"
-          />
-          <span
-            className="bp3-control-indicator"
-          />
-          Sun
-        </label>
-      </Control>
-    </Blueprint3.Checkbox>
+          >
+            <label
+              className="bp3-control bp3-checkbox bp3-inline bp3-align-left sun"
+            >
+              <input
+                checked={false}
+                id="sun"
+                onChange={[Function]}
+                onKeyDown={[Function]}
+                type="checkbox"
+                value="sun"
+              />
+              <span
+                className="bp3-control-indicator"
+              />
+              Sun
+            </label>
+          </Control>
+        </Blueprint3.Checkbox>
+      </div>
+    </div>
   </div>,
 ]
 `;

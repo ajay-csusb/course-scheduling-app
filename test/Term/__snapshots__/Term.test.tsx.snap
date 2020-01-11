@@ -4,6 +4,7 @@ exports[`Term component Given a class search form snapshot 1`] = `
 Array [
   <HTMLSelect
     className="select-term"
+    id="term"
     onChange={[Function]}
     options={Array []}
   >
@@ -11,6 +12,7 @@ Array [
       className="bp3-html-select select-term"
     >
       <select
+        id="term"
         multiple={false}
         onChange={[Function]}
       />
@@ -44,6 +46,7 @@ Array [
     className="bp3-html-select select-term"
   >
     <select
+      id="term"
       multiple={false}
       onChange={[Function]}
     />
