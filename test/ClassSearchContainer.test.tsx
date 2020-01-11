@@ -1,17 +1,14 @@
 import { shallow, mount } from 'enzyme';
 import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
-import fetchMock from 'fetch-mock';
-import { rawClassesJson } from './ClassesJson';
 import { Spinner } from '@blueprintjs/core';
+import { TestUtils } from './TestUtils';
 // tslint:disable:max-line-length
 
 describe('snapshots', () => {
 
   beforeAll(() => {
-    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList', {});
-    fetchMock.mock('https://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST', {});
-    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS', rawClassesJson);
+    TestUtils.ajax();
   });
 
   test('Class search container component snapshot', () => {

@@ -4,6 +4,7 @@ exports[`<SelectListSessionCode> Given a class search form snapshot 1`] = `
 Array [
   <HTMLSelect
     className="session-code"
+    id="session-code"
     onChange={[Function]}
     options={
       Array [
@@ -99,6 +100,7 @@ Array [
       className="bp3-html-select session-code"
     >
       <select
+        id="session-code"
         multiple={false}
         onChange={[Function]}
         value="all"
@@ -281,6 +283,7 @@ Array [
     className="bp3-html-select session-code"
   >
     <select
+      id="session-code"
       multiple={false}
       onChange={[Function]}
       value="all"

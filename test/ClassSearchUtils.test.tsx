@@ -4,6 +4,7 @@ import * as ClassSearchUtils from '../src/public/js/ClassSearchUtils';
 import { classJson, rawClassesJson} from './ClassesJson';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { mount, shallow } from 'enzyme';
+import { TestUtils } from './TestUtils';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -329,9 +330,7 @@ describe('Session code values', () => {
 describe('fetch parameters', () => {
   let classSearchContainerWrapper;
   beforeAll(() => {
-    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList', {});
-    fetchMock.mock('https://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST', {});
-    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS', rawClassesJson);
+    TestUtils.ajax();
   });
 
   beforeEach(() => {
@@ -355,6 +354,20 @@ describe('fetch parameters', () => {
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const subjectArgument = fetchMock.lastOptions();
       expect(subjectArgument.body).toMatch(new RegExp('"subject":"BAR"'));
+    });
+  });
+
+  describe('when the request is logged ', () => {
+    it('should call the correct URL to log the request', () => {
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(fetchMock.lastUrl()).toContain('/api/create/log');
+    });
+
+    it('should call the URL with correct paramters', () => {
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const fetchArgument = fetchMock.lastOptions();
+      expect(fetchArgument.body).toContain('"subject":"BAR"');
+      expect(fetchArgument.body).toContain('"name":"foo"');
     });
   });
 

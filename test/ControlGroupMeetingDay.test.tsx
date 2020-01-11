@@ -1,15 +1,12 @@
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
-import fetchMock from 'fetch-mock';
-import { rawClassesJson } from './ClassesJson';
+import { TestUtils } from './TestUtils';
 
 describe('test control group meeting date component', () => {
 
   beforeAll(() => {
-    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList', {});
-    fetchMock.mock('https://webdx.csusb.edu/FacultyStaffProfileDrupal/cs/getAllCST', {});
-    fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS', rawClassesJson);
+    TestUtils.ajax();
   });
 
   test('state when no option is checked in meeting day', () => {

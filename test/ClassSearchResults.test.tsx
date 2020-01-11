@@ -1,9 +1,9 @@
 import { mount } from 'enzyme';
 import * as React from 'react';
-import fetchMock from 'fetch-mock';
 import { classJson, classPDC, baseClassJson } from './ClassesJson';
 import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
 import { IClass } from '../src/public/js/Class';
+import { TestUtils } from './TestUtils';
 
 const classes: IClass[] = [];
 classes.push(classJson);
@@ -13,7 +13,7 @@ classes.push(baseClassJson);
 describe('Given a class search results component', () => {
 
   beforeAll(() => {
-    fetchMock.mock('*', {});
+    TestUtils.ajax();
   });
 
   describe('When no classes are present', () => {
