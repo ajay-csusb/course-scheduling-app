@@ -52,9 +52,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
   public render(): JSX.Element {
     const form = this.getForm();
     return (
-      <div className="container">
-        {form}
-      </div>
+      <React.Fragment>{form}</React.Fragment>
     );
   }
 
@@ -69,7 +67,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           <div className="row">
             <div className="col-md-8">
               <div className="row">
-                <div className="col-md-6">
+                <div className="col-6">
                   <div className="form-item">
                     <SelectListQuarter
                       currentTermId={this.props.currentTermId}
@@ -78,7 +76,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                     />
                   </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-6">
                   <div className="form-item">
                     <SelectListCampus
                       campus={this.props.campus}
@@ -86,10 +84,10 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                     />
                   </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-6">
                   <div className="form-item">{subjects}</div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-6">
                   <div className="form-item">{courseNumber}</div>
                 </div>
                 <div className="col-md-12">
@@ -100,10 +98,10 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                     endTime={this.props.endTime}
                   />
                 </div>
-                <div className="col-md-6">
+                <div className="col-6">
                   <div className="form-item">{instructors}</div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-6">
                   <div className="form-item">
                     <SelectListInstructionMode
                       instructionMode={this.props.instructionMode}
