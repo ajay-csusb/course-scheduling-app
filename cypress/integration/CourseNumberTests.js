@@ -7,7 +7,7 @@ describe('Filter classes by course number', function () {
       before(function () {
         cy.visit(url);
         cy.get('.btn-primary').click();
-        cy.wait(100);
+        cy.wait(5000);
       });
       assertClassesByClassNumber();
     });

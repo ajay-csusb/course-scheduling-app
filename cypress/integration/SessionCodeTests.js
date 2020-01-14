@@ -1,18 +1,16 @@
-const devUrl = 'https://dev-main.csusb.edu/course-schedule';
-const localUrl = 'http://localhost:3000/';
-
+const url = require('./Utils');
 describe('Filter classes by session code', function () {
 
   context('Given class search form', () => {
     context('when a user searches by a subject and Regular is selected as session code', () => {
       before(function () {
-        cy.visit(localUrl);
+        cy.visit(url);
         cy.get('.search-autocomplete input').type('adm').click();
         cy.wait(5000);
         cy.get('span').contains('ADMN', { timeout: 20000 }).click();
         cy.get('#additional-filters').click();
         cy.get('.session-code select').select('Regular');
-        cy.get('button').contains('Submit').click();
+        cy.get('.btn-primary').click();
         cy.wait(5000);
       });
       it('should show Regular classes', () => {

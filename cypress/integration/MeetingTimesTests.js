@@ -1,17 +1,16 @@
-const devUrl = 'https://dev-main.csusb.edu/course-schedule';
-const localUrl = 'http://localhost:3000/';
+const url = require('./Utils');
 
 describe('Filter classes by meeting times', function () {
 
   context('when a user searches by start time', () => {
     context('and sets the start time before noon', () => {
     before(function () {
-      cy.visit(localUrl);
+      cy.visit(url);
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', { timeout: 15000 }).click();
       cy.get('.start-time input.bp3-timepicker-hour:first-child').type('10');
       cy.get('.start-time select').select('am')
-      cy.get('button').contains('Submit').click();
+      cy.get('.btn-primary').click();
       cy.wait(15000);
     });
 
@@ -30,12 +29,12 @@ describe('Filter classes by meeting times', function () {
 
   context('when a user sets the start time after noon', () => {
     before(function () {
-      cy.visit(localUrl);
+      cy.visit(url);
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', { timeout: 15000 }).click();
       cy.get('.start-time input.bp3-timepicker-hour:first-child').type('3');
       cy.get('.start-time select').select('pm')
-      cy.get('button').contains('Submit').click();
+      cy.get('.btn-primary').click();
       cy.wait(15000);
     });
 
@@ -52,13 +51,13 @@ describe('Filter classes by meeting times', function () {
   context('when a user searches by end time', () => {
     context('and sets the end time before noon', () => {
     before(() => {
-      cy.visit(localUrl);
+      cy.visit(url);
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', { timeout: 15000 }).click();
       cy.get('.end-time input.bp3-timepicker-hour:first-child').type('11');
       cy.get('.end-time input.bp3-timepicker-minute').type('30');
       cy.get('.end-time select').select('am');
-      cy.get('button').contains('Submit').click();
+      cy.get('.btn-primary').click();
       cy.wait(30000);
     });
 
@@ -78,12 +77,12 @@ describe('Filter classes by meeting times', function () {
   });
   context('and sets the end time after noon', () => {
     before(() => {
-      cy.visit(localUrl);
+      cy.visit(url);
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', { timeout: 15000 }).click();
       cy.get('.end-time input.bp3-timepicker-hour:first-child').type('5');
       cy.get('.end-time select').select('pm');
-      cy.get('button').contains('Submit').click();
+      cy.get('.btn-primary').click();
       cy.wait(10000);
     });
 
@@ -106,14 +105,14 @@ describe('Filter classes by meeting times after filtering by subject', function 
 
   context('when a user searches by start time', () => {
     before(function () {
-      cy.visit(localUrl);
+      cy.visit(url);
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', { timeout: 15000 }).click();
-      cy.get('button').contains('Submit').click();
+      cy.get('.btn-primary').click();
       cy.wait(10000);
       cy.get('.start-time input.bp3-timepicker-hour:first-child').type('10');
       cy.get('.start-time select').select('am')
-      cy.get('button').contains('Submit').click();
+      cy.get('.btn-primary').click();
       cy.wait(10000);
     });
     it('should not show classes before 10 AM', function () {
@@ -132,15 +131,15 @@ describe('Filter classes by meeting times after filtering by subject', function 
   context('when a user searches by end time', () => {
     context('and sets the end time before noon', () => {
       before(() => {
-        cy.visit(localUrl);
+        cy.visit(url);
         cy.get('.search-autocomplete input').type('Biology').click();
         cy.get('div').contains('Biology', { timeout: 15000 }).click();
-        cy.get('button').contains('Submit').click();
+        cy.get('.btn-primary').click();
         cy.wait(10000);
         cy.get('.end-time input.bp3-timepicker-hour:first-child').type('11');
         cy.get('.end-time input.bp3-timepicker-minute').type('30');
         cy.get('.end-time select').select('am');
-        cy.get('button').contains('Submit').click();
+        cy.get('.btn-primary').click();
         cy.wait(10000);
       });
 
@@ -160,14 +159,14 @@ describe('Filter classes by meeting times after filtering by subject', function 
     });
     context('and sets the end time after noon', () => {
       before(() => {
-        cy.visit(localUrl);
+        cy.visit(url);
         cy.get('.search-autocomplete input').type('Biology').click();
         cy.get('div').contains('Biology', { timeout: 15000 }).click();
-        cy.get('button').contains('Submit').click();
+        cy.get('.btn-primary').click();
         cy.wait(10000);
         cy.get('.end-time input.bp3-timepicker-hour:first-child').type('5');
         cy.get('.end-time select').select('pm');
-        cy.get('button').contains('Submit').click();
+        cy.get('.btn-primary').click();
         cy.wait(10000);
       });
 

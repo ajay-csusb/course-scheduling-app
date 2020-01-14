@@ -32,7 +32,7 @@ describe('Filter classes by meeting day', function () {
     it('should should classes on Monday and Tuesday', () => {
       cy.get('.tue > .bp3-control-indicator').click();
       cy.get('.btn-primary').click();
-      cy.wait(50000);
+      cy.wait(5000);
       cy.get('span').should('contain', 'M-W');
       cy.get('span').should('contain', 'Tu-Th');
     });

@@ -46,7 +46,6 @@ describe('Filter classes by instructor', function () {
       cy.get('a').should('contain', 'Liu, Xiang');
     });
   });
-
 });
 
 
@@ -86,13 +85,11 @@ describe('Filter classes by All instructors', function () {
       cy.get('a').should('contain', 'Yang, Taewon');
       cy.get('a').should('contain', 'Bazaz, Mohammad');
     });
-
-    it('should show N/A if instructor name is absent', () => {
+    it.skip('should show N/A if instructor name is absent', () => {
       cy.get('span').should('contain', 'Instructor: N/A');
     });
   });
 });
-
 
 describe('Filter classes by All and specific instructor', function () {
   context('when a user searches by all instructors followed specific instructor', () => {
@@ -115,6 +112,5 @@ describe('Filter classes by All and specific instructor', function () {
       cy.get('a').should('not.contain', 'Yang, Taewon');
       cy.get('a').should('not.contain', 'Bazaz, Mohammad');
     });
-
   });
 });

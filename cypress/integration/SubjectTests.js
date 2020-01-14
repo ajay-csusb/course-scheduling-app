@@ -1,11 +1,10 @@
-const devUrl = 'http://theme-csusb.pantheonsite.io/class-schedule';
-const localUrl = 'http://localhost:3000/';
+const url = require('./Utils');
 
 describe('Filter classes by subject', function () {
 
   context('when a user searches by subject', () => {
     before(function () {
-      cy.visit(devUrl);
+      cy.visit(url);
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology', { timeout: 15000 }).click();
       cy.get('.btn-primary').click();
@@ -20,7 +19,7 @@ describe('Filter classes by subject', function () {
 
   context('when a user does not enter asubject', () => {
     before(function () {
-      cy.visit(devUrl);
+      cy.visit(url);
       cy.get('.btn-primary').click();
     });
 
