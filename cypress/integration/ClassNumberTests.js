@@ -9,7 +9,6 @@ describe('Filter classes by class number', function () {
         cy.get('#additional-filters').click();
         cy.get('.class-number').type('20894');
         cy.get('.btn-primary').click();
-        cy.wait(100);
       });
       it('should ADM 602 in the results', () => {
         cy.get('span').should('contain', 'ADMN 602');

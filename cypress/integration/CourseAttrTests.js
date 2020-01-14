@@ -1,17 +1,16 @@
-const devUrl = 'https://dev-main.csusb.edu/course-schedule';
-const localUrl = 'http://localhost:3000/';
+const url = require('./Utils');
 
 describe('Filter classes by course attribute', function () {
 
   context('Given class search form', () => {
     context('when a user searches by subject and GE is selected as course attribute', () => {
       before(function () {
-        cy.visit(localUrl);
+        cy.visit(url);
         cy.get('.search-autocomplete input').type('Biology').click();
         cy.get('div').contains('Biology', { timeout: 15000 }).click();
         cy.get('#additional-filters').click();
         cy.get('.course-attribute select').select('General Education');
-        cy.get('button').contains('Submit').click();
+        cy.get('.btn-primary').click();
         cy.wait(20000);
       });
       assertGeClasses();
@@ -19,15 +18,13 @@ describe('Filter classes by course attribute', function () {
 
     context('when a user searches by subject and followed by GE as course attribute', () => {
       before(function () {
-        cy.visit(localUrl);
+        cy.visit(url);
         cy.get('.search-autocomplete input').type('Biology').click();
-        cy.get('div').contains('Biology', { timeout: 15000 }).click();
-        cy.get('button').contains('Submit').click();
-        cy.wait(5000);
+        cy.get('div').contains('Biology').click();
+        cy.get('.btn-primary').click();
         cy.get('#additional-filters').click();
         cy.get('.course-attribute select').select('General Education');
-        cy.get('button').contains('Submit').click();
-        cy.wait(5000);
+        cy.get('.btn-primary').click();
       });
       assertGeClasses();
     });
@@ -35,17 +32,15 @@ describe('Filter classes by course attribute', function () {
 
   context('When a user searches for Graduate level classes followed by GE classes', () => {
     before(function () {
-      cy.visit(localUrl);
+      cy.visit(url);
       cy.get('.search-autocomplete input').type('Fin').click();
-      cy.get('div').contains('Finance', { timeout: 15000 }).click();
+      cy.get('div').contains('Finance').click();
       cy.get('#additional-filters').click();
       cy.get('.course-attribute select').select('Graduate classes');
-      cy.get('button').contains('Submit').click();
-      cy.wait(5000);
-      cy.get('span').should('contain', 'FIN 602 01');
+      cy.get('.btn-primary').click();
+      cy.get('span').should('contain', 'FIN 602');
       cy.get('.course-attribute select').select('General Education');
-      cy.get('button').contains('Submit').click();
-      cy.wait(5000);
+      cy.get('.btn-primary').click();
     });
     it('should show classes that only belong to GE', () => {
       cy.get('span').should('contain', 'FIN 101 02');

@@ -1,12 +1,10 @@
-const devUrl = 'http://theme-csusb.pantheonsite.io/class-schedule';
-const localUrl = 'http://localhost:3000/';
-
+const url = require('./Utils');
 describe('Show scroll to top icon', function () {
 
   context('when a user searches by subject', () => {
     context('and scrolls through the results', () => {
       before(function () {
-        cy.visit(devUrl);
+        cy.visit(url);
         cy.get('.search-autocomplete input').type('Biology').click();
         cy.get('div').contains('Biology', { timeout: 15000 }).click();
         cy.get('.mon > .bp3-control-indicator').click();

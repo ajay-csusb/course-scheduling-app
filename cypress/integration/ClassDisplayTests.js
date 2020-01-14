@@ -1,21 +1,19 @@
-const devUrl = 'https://dev-main.csusb.edu/course-schedule';
-const localUrl = 'http://localhost:3000/';
+const url = require('./Utils');
 
 describe('Displayed fields in classes', function () {
   context('when Biology is searched', () => {
 
     before(function () {
-      cy.visit(localUrl);
+      cy.visit(url);
       cy.get('.search-autocomplete input').type('Biology').click();
-      cy.get('div').contains('Biology', { timeout: 15000 }).click();
+      cy.get('div').contains('Biology').click();
       cy.get('.course-number').type('100');
       cy.get('.mon > .bp3-control-indicator').click();
-      cy.get('button').contains('Submit').click();
-      cy.wait(5000);
+      cy.get('.btn-primary').click();
     });
 
     it('should display information related to a class', () => {
-      cy.get('span').should('contain', 'BIOL 100 02');
+      cy.get('span').should('contain', 'BIOL 100');
       cy.get('b').should('contain', 'TOPICS IN BIOLOGY');
       cy.get('span').should('contain', 'BI 106');
       cy.get('span').should('contain', 'Meeting Time: 9:00 am - 11:50 am');
@@ -35,8 +33,7 @@ describe('Displayed fields in classes', function () {
 
     it.skip('should show TBD if room number is not assigned', () => {
       cy.get('.mon > .bp3-control-indicator').click();
-      cy.get('button').contains('Submit').click();
-      cy.wait(5000);
+      cy.get('.btn-primary').click();
       cy.get('span').should('contain', 'Room: TBD');
     });
 

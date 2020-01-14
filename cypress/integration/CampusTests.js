@@ -6,10 +6,9 @@ describe('Filter classes by campus', function () {
     before(function () {
       cy.visit(url);
       cy.get('.search-autocomplete input').type('Communication Studies').click();
-      cy.get('div').contains('Communication Studies', { timeout: 15000 }).click();
+      cy.get('div').contains('Communication Studies').click();
       cy.get('.campus-select select').select('Palm Desert');
       cy.get('.btn-primary').click();
-      cy.wait(1000);
     });
     it('should show classes in Palm Desert', () => {
       cy.get('span').should('contain', 'Campus: Palm Desert');
@@ -21,10 +20,9 @@ describe('Filter classes by campus', function () {
     before(function () {
       cy.visit(url);
       cy.get('.search-autocomplete input').type('Communication Studies').click();
-      cy.get('div').contains('Communication Studies', { timeout: 15000 }).click();
+      cy.get('div').contains('Communication Studies').click();
       cy.get('.campus-select select').select('San Bernardino');
       cy.get('.btn-primary').click();
-      cy.wait(10000);
     });
     it('should show classes in Palm Desert', () => {
       cy.get('span').should('contain', 'Campus: San Bernardino');
@@ -36,10 +34,9 @@ describe('Filter classes by campus', function () {
     before(function () {
       cy.visit(url);
       cy.get('.search-autocomplete input').type('Communication Studies').click();
-      cy.get('div').contains('Communication Studies', { timeout: 15000 }).click();
+      cy.get('div').contains('Communication Studies').click();
       cy.get('.campus-select select').select('Both');
       cy.get('.btn-primary').click();
-      cy.wait(15000);
     });
     it('should show classes on San Bernardino and Palm Desert campus', () => {
       cy.get('span').should('contain', 'Campus: Palm Desert');
