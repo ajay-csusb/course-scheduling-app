@@ -9,7 +9,7 @@ Array [
       className="bp3-control-group meeting-time row"
     >
       <div
-        className="col-md-6"
+        className="col-6"
       >
         <Component
           htmlFor="start-time"
@@ -125,7 +125,7 @@ Array [
         </Blueprint3.TimePicker>
       </div>
       <div
-        className="col-md-6"
+        className="col-6"
       >
         <Component>
           <label
@@ -243,7 +243,7 @@ Array [
     className="bp3-control-group meeting-time row"
   >
     <div
-      className="col-md-6"
+      className="col-6"
     >
       <Component
         htmlFor="start-time"
@@ -359,7 +359,7 @@ Array [
       </Blueprint3.TimePicker>
     </div>
     <div
-      className="col-md-6"
+      className="col-6"
     >
       <Component>
         <label

@@ -246,16 +246,6 @@ describe('props on reset', () => {
     classSearchContainerWrapper.find('button[type="reset"]').simulate('click');
   });
 
-  it('sets courseNo props to empty value', () => {
-    const classSearchFormWrapper = classSearchContainerWrapper.childAt(0).childAt(0);
-    expect(classSearchFormWrapper.prop('courseNo')).toHaveLength(0);
-  });
-
-  it('sets classNo props to empty value', () => {
-    const classSearchFormWrapper = classSearchContainerWrapper.childAt(0).childAt(0);
-    expect(classSearchFormWrapper.prop('classNo')).toHaveLength(0);
-  });
-
   it('sets the value of course number input field to empty value', () => {
     const classSearchFormWrapper = classSearchContainerWrapper.find('.course-number');
     expect(classSearchFormWrapper.prop('value')).toHaveLength(0);
@@ -292,7 +282,7 @@ describe('Loading message', () => {
   });
 
   it('should display a loading indicator when submit is clicked', () => {
-    const loadingWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
+    const loadingWrapper = classSearchContainerWrapper.childAt(1);
     expect(loadingWrapper.find(Spinner)).toHaveLength(1);
   });
 
@@ -300,7 +290,7 @@ describe('Loading message', () => {
     classSearchContainerWrapper.setState({
       isLoading: false,
     });
-    const loadingWrapper = classSearchContainerWrapper.childAt(0).childAt(1);
+    const loadingWrapper = classSearchContainerWrapper.childAt(1);
     expect(loadingWrapper.find(Spinner)).toHaveLength(0);
   });
 

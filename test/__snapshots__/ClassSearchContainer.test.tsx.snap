@@ -5,93 +5,97 @@ exports[`snapshots Class search container component snapshot 1`] = `
   <div
     className="form-section"
   >
-    <ClassSearchForm
-      campus="both"
-      classNo=""
-      courseAttr="all"
-      courseNo=""
-      endTime={1899-01-02T07:00:00.000Z}
-      instructionMode="all"
-      instructors={Array []}
-      isReset={false}
-      meetingDate={
-        Object {
-          "fri": false,
-          "mon": false,
-          "sat": false,
-          "sun": false,
-          "thu": false,
-          "tue": false,
-          "wed": false,
+    <div
+      className="container"
+    >
+      <ClassSearchForm
+        campus="both"
+        classNo=""
+        courseAttr="all"
+        courseNo=""
+        endTime={1899-01-02T07:00:00.000Z}
+        instructionMode="all"
+        instructors={Array []}
+        isReset={false}
+        meetingDate={
+          Object {
+            "fri": false,
+            "mon": false,
+            "sat": false,
+            "sun": false,
+            "thu": false,
+            "tue": false,
+            "wed": false,
+          }
         }
-      }
-      onChangeOfCampus={[Function]}
-      onChangeOfClassNo={[Function]}
-      onChangeOfCourseAttr={[Function]}
-      onChangeOfCourseNo={[Function]}
-      onChangeOfEndTime={[Function]}
-      onChangeOfInstructionMode={[Function]}
-      onChangeOfInstructor={[Function]}
-      onChangeOfMeetingDate={[Function]}
-      onChangeOfSessionCode={[Function]}
-      onChangeOfStartTime={[Function]}
-      onChangeOfSubject={[Function]}
-      onChangeOfTerm={[Function]}
-      onKeyDown={[Function]}
-      onReset={[Function]}
-      onSubmit={[Function]}
-      sessionCode="all"
-      startTime={1899-01-01T08:00:00.000Z}
-      subjects={Array []}
-      term={Array []}
-    />
+        onChangeOfCampus={[Function]}
+        onChangeOfClassNo={[Function]}
+        onChangeOfCourseAttr={[Function]}
+        onChangeOfCourseNo={[Function]}
+        onChangeOfEndTime={[Function]}
+        onChangeOfInstructionMode={[Function]}
+        onChangeOfInstructor={[Function]}
+        onChangeOfMeetingDate={[Function]}
+        onChangeOfSessionCode={[Function]}
+        onChangeOfStartTime={[Function]}
+        onChangeOfSubject={[Function]}
+        onChangeOfTerm={[Function]}
+        onKeyDown={[Function]}
+        onReset={[Function]}
+        onSubmit={[Function]}
+        sessionCode="all"
+        startTime={1899-01-01T08:00:00.000Z}
+        subjects={Array []}
+        term={Array []}
+      />
+    </div>
   </div>
 </Fragment>
 `;
 
 exports[`snapshots compare search form snapshot 1`] = `
-<ClassSearchForm
-  campus="both"
-  classNo=""
-  courseAttr="all"
-  courseNo=""
-  endTime={1899-01-02T07:00:00.000Z}
-  instructionMode="all"
-  instructors={Array []}
-  isReset={false}
-  meetingDate={
-    Object {
-      "fri": false,
-      "mon": false,
-      "sat": false,
-      "sun": false,
-      "thu": false,
-      "tue": false,
-      "wed": false,
-    }
-  }
-  onChangeOfCampus={[Function]}
-  onChangeOfClassNo={[Function]}
-  onChangeOfCourseAttr={[Function]}
-  onChangeOfCourseNo={[Function]}
-  onChangeOfEndTime={[Function]}
-  onChangeOfInstructionMode={[Function]}
-  onChangeOfInstructor={[Function]}
-  onChangeOfMeetingDate={[Function]}
-  onChangeOfSessionCode={[Function]}
-  onChangeOfStartTime={[Function]}
-  onChangeOfSubject={[Function]}
-  onChangeOfTerm={[Function]}
-  onKeyDown={[Function]}
-  onReset={[Function]}
-  onSubmit={[Function]}
-  sessionCode="all"
-  startTime={1899-01-01T08:00:00.000Z}
-  subjects={Array []}
-  term={Array []}
+<div
+  className="container"
 >
-  <div
-    className="container"
+  <ClassSearchForm
+    campus="both"
+    classNo=""
+    courseAttr="all"
+    courseNo=""
+    endTime={1899-01-02T07:00:00.000Z}
+    instructionMode="all"
+    instructors={Array []}
+    isReset={false}
+    meetingDate={
+      Object {
+        "fri": false,
+        "mon": false,
+        "sat": false,
+        "sun": false,
+        "thu": false,
+        "tue": false,
+        "wed": false,
+      }
+    }
+    onChangeOfCampus={[Function]}
+    onChangeOfClassNo={[Function]}
+    onChangeOfCourseAttr={[Function]}
+    onChangeOfCourseNo={[Function]}
+    onChangeOfEndTime={[Function]}
+    onChangeOfInstructionMode={[Function]}
+    onChangeOfInstructor={[Function]}
+    onChangeOfMeetingDate={[Function]}
+    onChangeOfSessionCode={[Function]}
+    onChangeOfStartTime={[Function]}
+    onChangeOfSubject={[Function]}
+    onChangeOfTerm={[Function]}
+    onKeyDown={[Function]}
+    onReset={[Function]}
+    onSubmit={[Function]}
+    sessionCode="all"
+    startTime={1899-01-01T08:00:00.000Z}
+    subjects={Array []}
+    term={Array []}
   >
     <Blueprint3.FormGroup>
       <div
@@ -113,7 +117,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                   className="row"
                 >
                   <div
-                    className="col-md-6"
+                    className="col-6"
                   >
                     <div
                       className="form-item"
@@ -178,7 +182,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                     </div>
                   </div>
                   <div
-                    className="col-md-6"
+                    className="col-6"
                   >
                     <div
                       className="form-item"
@@ -284,7 +288,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                     </div>
                   </div>
                   <div
-                    className="col-md-6"
+                    className="col-6"
                   >
                     <div
                       className="form-item"
@@ -447,7 +451,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                     </div>
                   </div>
                   <div
-                    className="col-md-6"
+                    className="col-6"
                   >
                     <div
                       className="form-item"
@@ -490,7 +494,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                           className="bp3-control-group meeting-time row"
                         >
                           <div
-                            className="col-md-6"
+                            className="col-6"
                           >
                             <Component
                               htmlFor="start-time"
@@ -606,7 +610,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                             </Blueprint3.TimePicker>
                           </div>
                           <div
-                            className="col-md-6"
+                            className="col-6"
                           >
                             <Component>
                               <label
@@ -723,7 +727,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                     </ControlGroupMeetingTime>
                   </div>
                   <div
-                    className="col-md-6"
+                    className="col-6"
                   >
                     <div
                       className="form-item"
@@ -886,7 +890,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                     </div>
                   </div>
                   <div
-                    className="col-md-6"
+                    className="col-6"
                   >
                     <div
                       className="form-item"
@@ -1107,7 +1111,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                               className="mon"
                               id="mon"
                               inline={true}
-                              label="Mon"
+                              label="Monday"
                               onChange={[Function]}
                               onKeyDown={[Function]}
                               value="mon"
@@ -1119,7 +1123,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                 id="mon"
                                 inline={true}
                                 inputRef={[Function]}
-                                label="Mon"
+                                label="Monday"
                                 onChange={[Function]}
                                 onKeyDown={[Function]}
                                 type="checkbox"
@@ -1140,7 +1144,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                   <span
                                     className="bp3-control-indicator"
                                   />
-                                  Mon
+                                  Monday
                                 </label>
                               </Control>
                             </Blueprint3.Checkbox>
@@ -1154,7 +1158,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                               className="tue"
                               id="tue"
                               inline={true}
-                              label="Tue"
+                              label="Tuesday"
                               onChange={[Function]}
                               onKeyDown={[Function]}
                               value="tue"
@@ -1166,7 +1170,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                 id="tue"
                                 inline={true}
                                 inputRef={[Function]}
-                                label="Tue"
+                                label="Tuesday"
                                 onChange={[Function]}
                                 onKeyDown={[Function]}
                                 type="checkbox"
@@ -1187,7 +1191,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                   <span
                                     className="bp3-control-indicator"
                                   />
-                                  Tue
+                                  Tuesday
                                 </label>
                               </Control>
                             </Blueprint3.Checkbox>
@@ -1201,7 +1205,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                               className="wed"
                               id="wed"
                               inline={true}
-                              label="Wed"
+                              label="Wednesday"
                               onChange={[Function]}
                               onKeyDown={[Function]}
                               value="wed"
@@ -1213,7 +1217,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                 id="wed"
                                 inline={true}
                                 inputRef={[Function]}
-                                label="Wed"
+                                label="Wednesday"
                                 onChange={[Function]}
                                 onKeyDown={[Function]}
                                 type="checkbox"
@@ -1234,7 +1238,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                   <span
                                     className="bp3-control-indicator"
                                   />
-                                  Wed
+                                  Wednesday
                                 </label>
                               </Control>
                             </Blueprint3.Checkbox>
@@ -1248,7 +1252,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                               className="thu"
                               id="thu"
                               inline={true}
-                              label="Thu"
+                              label="Thursday"
                               onChange={[Function]}
                               onKeyDown={[Function]}
                               value="thu"
@@ -1260,7 +1264,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                 id="thu"
                                 inline={true}
                                 inputRef={[Function]}
-                                label="Thu"
+                                label="Thursday"
                                 onChange={[Function]}
                                 onKeyDown={[Function]}
                                 type="checkbox"
@@ -1281,7 +1285,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                   <span
                                     className="bp3-control-indicator"
                                   />
-                                  Thu
+                                  Thursday
                                 </label>
                               </Control>
                             </Blueprint3.Checkbox>
@@ -1295,7 +1299,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                               className="fri"
                               id="fri"
                               inline={true}
-                              label="Fri"
+                              label="Friday"
                               onChange={[Function]}
                               onKeyDown={[Function]}
                               value="fri"
@@ -1307,7 +1311,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                 id="fri"
                                 inline={true}
                                 inputRef={[Function]}
-                                label="Fri"
+                                label="Friday"
                                 onChange={[Function]}
                                 onKeyDown={[Function]}
                                 type="checkbox"
@@ -1328,7 +1332,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                   <span
                                     className="bp3-control-indicator"
                                   />
-                                  Fri
+                                  Friday
                                 </label>
                               </Control>
                             </Blueprint3.Checkbox>
@@ -1342,7 +1346,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                               className="sat"
                               id="sat"
                               inline={true}
-                              label="Sat"
+                              label="Saturday"
                               onChange={[Function]}
                               onKeyDown={[Function]}
                               value="sat"
@@ -1354,7 +1358,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                 id="sat"
                                 inline={true}
                                 inputRef={[Function]}
-                                label="Sat"
+                                label="Saturday"
                                 onChange={[Function]}
                                 onKeyDown={[Function]}
                                 type="checkbox"
@@ -1375,7 +1379,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                   <span
                                     className="bp3-control-indicator"
                                   />
-                                  Sat
+                                  Saturday
                                 </label>
                               </Control>
                             </Blueprint3.Checkbox>
@@ -1389,7 +1393,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                               className="sun"
                               id="sun"
                               inline={true}
-                              label="Sun"
+                              label="Sunday"
                               onChange={[Function]}
                               onKeyDown={[Function]}
                               value="sun"
@@ -1401,7 +1405,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                 id="sun"
                                 inline={true}
                                 inputRef={[Function]}
-                                label="Sun"
+                                label="Sunday"
                                 onChange={[Function]}
                                 onKeyDown={[Function]}
                                 type="checkbox"
@@ -1422,7 +1426,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                                   <span
                                     className="bp3-control-indicator"
                                   />
-                                  Sun
+                                  Sunday
                                 </label>
                               </Control>
                             </Blueprint3.Checkbox>
@@ -1452,43 +1456,43 @@ exports[`snapshots compare search form snapshot 1`] = `
                     onKeyDown={[Function]}
                     sessionCode="all"
                   >
-                    <div>
-                      <a
-                        id="additional-filters"
-                        onClick={[Function]}
-                      >
-                         Additional Filters
-                      </a>
-                      <Blueprint3.Collapse
-                        className="row"
-                        component="div"
-                        isOpen={false}
-                        keepChildrenMounted={false}
-                        transitionDuration={200}
+                    <a
+                      id="additional-filters"
+                      onClick={[Function]}
+                    >
+                       Additional Filters 
+                      <i
+                        className="fal fa-chevron-down"
+                      />
+                    </a>
+                    <Blueprint3.Collapse
+                      component="div"
+                      isOpen={false}
+                      keepChildrenMounted={false}
+                      transitionDuration={200}
+                    >
+                      <div
+                        className="bp3-collapse"
+                        style={
+                          Object {
+                            "height": undefined,
+                            "overflowY": undefined,
+                            "transition": undefined,
+                          }
+                        }
                       >
                         <div
-                          className="bp3-collapse row"
+                          aria-hidden={false}
+                          className="bp3-collapse-body"
                           style={
                             Object {
-                              "height": undefined,
-                              "overflowY": undefined,
+                              "transform": "translateY(-0px)",
                               "transition": undefined,
                             }
                           }
-                        >
-                          <div
-                            aria-hidden={false}
-                            className="bp3-collapse-body"
-                            style={
-                              Object {
-                                "transform": "translateY(-0px)",
-                                "transition": undefined,
-                              }
-                            }
-                          />
-                        </div>
-                      </Blueprint3.Collapse>
-                    </div>
+                        />
+                      </div>
+                    </Blueprint3.Collapse>
                   </AdvancedFilterFieldset>
                 </div>
               </div>
@@ -1567,6 +1571,6 @@ exports[`snapshots compare search form snapshot 1`] = `
         </div>
       </div>
     </Blueprint3.FormGroup>
-  </div>
-</ClassSearchForm>
+  </ClassSearchForm>
+</div>
 `;
