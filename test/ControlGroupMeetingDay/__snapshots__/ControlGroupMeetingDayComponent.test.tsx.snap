@@ -27,7 +27,7 @@ Array [
             className="mon"
             id="mon"
             inline={true}
-            label="Mon"
+            label="Monday"
             onChange={[Function]}
             onKeyDown={[Function]}
             value="mon"
@@ -39,7 +39,7 @@ Array [
               id="mon"
               inline={true}
               inputRef={[Function]}
-              label="Mon"
+              label="Monday"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
@@ -60,7 +60,7 @@ Array [
                 <span
                   className="bp3-control-indicator"
                 />
-                Mon
+                Monday
               </label>
             </Control>
           </Blueprint3.Checkbox>
@@ -74,7 +74,7 @@ Array [
             className="tue"
             id="tue"
             inline={true}
-            label="Tue"
+            label="Tuesday"
             onChange={[Function]}
             onKeyDown={[Function]}
             value="tue"
@@ -86,7 +86,7 @@ Array [
               id="tue"
               inline={true}
               inputRef={[Function]}
-              label="Tue"
+              label="Tuesday"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
@@ -107,7 +107,7 @@ Array [
                 <span
                   className="bp3-control-indicator"
                 />
-                Tue
+                Tuesday
               </label>
             </Control>
           </Blueprint3.Checkbox>
@@ -121,7 +121,7 @@ Array [
             className="wed"
             id="wed"
             inline={true}
-            label="Wed"
+            label="Wednesday"
             onChange={[Function]}
             onKeyDown={[Function]}
             value="wed"
@@ -133,7 +133,7 @@ Array [
               id="wed"
               inline={true}
               inputRef={[Function]}
-              label="Wed"
+              label="Wednesday"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
@@ -154,7 +154,7 @@ Array [
                 <span
                   className="bp3-control-indicator"
                 />
-                Wed
+                Wednesday
               </label>
             </Control>
           </Blueprint3.Checkbox>
@@ -168,7 +168,7 @@ Array [
             className="thu"
             id="thu"
             inline={true}
-            label="Thu"
+            label="Thursday"
             onChange={[Function]}
             onKeyDown={[Function]}
             value="thu"
@@ -180,7 +180,7 @@ Array [
               id="thu"
               inline={true}
               inputRef={[Function]}
-              label="Thu"
+              label="Thursday"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
@@ -201,7 +201,7 @@ Array [
                 <span
                   className="bp3-control-indicator"
                 />
-                Thu
+                Thursday
               </label>
             </Control>
           </Blueprint3.Checkbox>
@@ -215,7 +215,7 @@ Array [
             className="fri"
             id="fri"
             inline={true}
-            label="Fri"
+            label="Friday"
             onChange={[Function]}
             onKeyDown={[Function]}
             value="fri"
@@ -227,7 +227,7 @@ Array [
               id="fri"
               inline={true}
               inputRef={[Function]}
-              label="Fri"
+              label="Friday"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
@@ -248,7 +248,7 @@ Array [
                 <span
                   className="bp3-control-indicator"
                 />
-                Fri
+                Friday
               </label>
             </Control>
           </Blueprint3.Checkbox>
@@ -262,7 +262,7 @@ Array [
             className="sat"
             id="sat"
             inline={true}
-            label="Sat"
+            label="Saturday"
             onChange={[Function]}
             onKeyDown={[Function]}
             value="sat"
@@ -274,7 +274,7 @@ Array [
               id="sat"
               inline={true}
               inputRef={[Function]}
-              label="Sat"
+              label="Saturday"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
@@ -295,7 +295,7 @@ Array [
                 <span
                   className="bp3-control-indicator"
                 />
-                Sat
+                Saturday
               </label>
             </Control>
           </Blueprint3.Checkbox>
@@ -309,7 +309,7 @@ Array [
             className="sun"
             id="sun"
             inline={true}
-            label="Sun"
+            label="Sunday"
             onChange={[Function]}
             onKeyDown={[Function]}
             value="sun"
@@ -321,7 +321,7 @@ Array [
               id="sun"
               inline={true}
               inputRef={[Function]}
-              label="Sun"
+              label="Sunday"
               onChange={[Function]}
               onKeyDown={[Function]}
               type="checkbox"
@@ -342,7 +342,7 @@ Array [
                 <span
                   className="bp3-control-indicator"
                 />
-                Sun
+                Sunday
               </label>
             </Control>
           </Blueprint3.Checkbox>
@@ -370,7 +370,7 @@ Array [
           className="mon"
           id="mon"
           inline={true}
-          label="Mon"
+          label="Monday"
           onChange={[Function]}
           onKeyDown={[Function]}
           value="mon"
@@ -382,7 +382,7 @@ Array [
             id="mon"
             inline={true}
             inputRef={[Function]}
-            label="Mon"
+            label="Monday"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
@@ -403,7 +403,7 @@ Array [
               <span
                 className="bp3-control-indicator"
               />
-              Mon
+              Monday
             </label>
           </Control>
         </Blueprint3.Checkbox>
@@ -417,7 +417,7 @@ Array [
           className="tue"
           id="tue"
           inline={true}
-          label="Tue"
+          label="Tuesday"
           onChange={[Function]}
           onKeyDown={[Function]}
           value="tue"
@@ -429,7 +429,7 @@ Array [
             id="tue"
             inline={true}
             inputRef={[Function]}
-            label="Tue"
+            label="Tuesday"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
@@ -450,7 +450,7 @@ Array [
               <span
                 className="bp3-control-indicator"
               />
-              Tue
+              Tuesday
             </label>
           </Control>
         </Blueprint3.Checkbox>
@@ -464,7 +464,7 @@ Array [
           className="wed"
           id="wed"
           inline={true}
-          label="Wed"
+          label="Wednesday"
           onChange={[Function]}
           onKeyDown={[Function]}
           value="wed"
@@ -476,7 +476,7 @@ Array [
             id="wed"
             inline={true}
             inputRef={[Function]}
-            label="Wed"
+            label="Wednesday"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
@@ -497,7 +497,7 @@ Array [
               <span
                 className="bp3-control-indicator"
               />
-              Wed
+              Wednesday
             </label>
           </Control>
         </Blueprint3.Checkbox>
@@ -511,7 +511,7 @@ Array [
           className="thu"
           id="thu"
           inline={true}
-          label="Thu"
+          label="Thursday"
           onChange={[Function]}
           onKeyDown={[Function]}
           value="thu"
@@ -523,7 +523,7 @@ Array [
             id="thu"
             inline={true}
             inputRef={[Function]}
-            label="Thu"
+            label="Thursday"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
@@ -544,7 +544,7 @@ Array [
               <span
                 className="bp3-control-indicator"
               />
-              Thu
+              Thursday
             </label>
           </Control>
         </Blueprint3.Checkbox>
@@ -558,7 +558,7 @@ Array [
           className="fri"
           id="fri"
           inline={true}
-          label="Fri"
+          label="Friday"
           onChange={[Function]}
           onKeyDown={[Function]}
           value="fri"
@@ -570,7 +570,7 @@ Array [
             id="fri"
             inline={true}
             inputRef={[Function]}
-            label="Fri"
+            label="Friday"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
@@ -591,7 +591,7 @@ Array [
               <span
                 className="bp3-control-indicator"
               />
-              Fri
+              Friday
             </label>
           </Control>
         </Blueprint3.Checkbox>
@@ -605,7 +605,7 @@ Array [
           className="sat"
           id="sat"
           inline={true}
-          label="Sat"
+          label="Saturday"
           onChange={[Function]}
           onKeyDown={[Function]}
           value="sat"
@@ -617,7 +617,7 @@ Array [
             id="sat"
             inline={true}
             inputRef={[Function]}
-            label="Sat"
+            label="Saturday"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
@@ -638,7 +638,7 @@ Array [
               <span
                 className="bp3-control-indicator"
               />
-              Sat
+              Saturday
             </label>
           </Control>
         </Blueprint3.Checkbox>
@@ -652,7 +652,7 @@ Array [
           className="sun"
           id="sun"
           inline={true}
-          label="Sun"
+          label="Sunday"
           onChange={[Function]}
           onKeyDown={[Function]}
           value="sun"
@@ -664,7 +664,7 @@ Array [
             id="sun"
             inline={true}
             inputRef={[Function]}
-            label="Sun"
+            label="Sunday"
             onChange={[Function]}
             onKeyDown={[Function]}
             type="checkbox"
@@ -685,7 +685,7 @@ Array [
               <span
                 className="bp3-control-indicator"
               />
-              Sun
+              Sunday
             </label>
           </Control>
         </Blueprint3.Checkbox>
