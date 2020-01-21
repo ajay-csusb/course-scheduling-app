@@ -1,63 +1,121 @@
 import * as React from 'react';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { IClass, Class } from './Class';
-import { Card, Elevation, Position, Popover, Classes } from '@blueprintjs/core';
+import { Popover, Position, Classes } from '@blueprintjs/core';
 
 interface ClassesCardsProps {
   classes: IClass;
 }
-export class ClassesCards extends React.Component<ClassesCardsProps> {
 
+export class ClassesCards extends React.Component<ClassesCardsProps> {
   readonly searchURL = 'https://search.csusb.edu';
 
   public render(): JSX.Element {
     const classDetails: IClass = this.props.classes;
+    // @Todo add degree type and Session code
+    const courseBodyMarkup = this.getCourseBodyMarkup(classDetails);
+    const courseInfoMarkup = this.getCourseInfoMarkup(classDetails);
+    const courseDetailsMarkup = this.getCourseDetailsMarkup(classDetails);
+    return (
+      <div className="course result-item">
+        <div className="item-header">
+          <div className="course-header">
+            <div className="course-title">
+              {courseDetailsMarkup}
+            </div>
+            <div className="course-id">Class No. {classDetails.classNumber}</div>
+          </div>
+          {courseInfoMarkup}
+        </div>
+        {courseBodyMarkup}
+      </div>
+    );
+  }
+  public getCourseBodyMarkup(classDetails: any): JSX.Element {
     const classObj = new Class(classDetails);
+    const campus = ClassSearchUtils.getCampusName(classDetails.campus);
     const days = classObj.getClassMeetingDates();
     const time = classObj.getClassMeetingTimes();
-    const instructorProfileURL = this.searchURL + classDetails.profile;
-    const campus = ClassSearchUtils.getCampusName(classDetails.campus);
-    const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(classDetails);
-    const classType = ClassSearchUtils.getClassType(classDetails);
-    const classStatus = ClassSearchUtils.getClassStatus(classDetails);
-    const instructionMode = ClassSearchUtils.getInstructionMode(classDetails);
-    const instructorName = ClassSearchUtils.getInstructorName(classDetails);
-    const sessionCode = ClassSearchUtils.getSessionCode(classDetails);
-    const degreeType = ClassSearchUtils.getDegreeType(classDetails);
     const roomNumber = ClassSearchUtils.getRoomNumber(classDetails);
+    const instructionMode = ClassSearchUtils.getInstructionMode(classDetails);
+    const textBookMarkup = this.getTextBookMarkup(classDetails);
+    const instructorMarkup = this.getInstructorMarkup(classDetails);
+    return (
+      <div className="item-body">
+        <ul className="course-desc">
+          <li><span>Units </span>{classDetails.csuUnits}</li>
+          <li><span>Meeting Time </span>{time}</li>
+          <li><span>Meeting Days </span>{days}</li>
+          <li><span>Room </span>{roomNumber}</li>
+          <li><span>Campus </span>{campus}</li>
+          <li>{instructorMarkup}</li>
+          <li><span>Instruction Mode </span>{instructionMode}</li>
+        </ul>
+        {textBookMarkup}
+      </div>
+    );
+  }
+
+  public getCourseInfoMarkup(classDetails: any): JSX.Element {
+    const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(classDetails);
+    const classStatus = ClassSearchUtils.getClassStatus(classDetails);
+    const openCloseClassName = (classStatus === 'Open') ? 'course-status course-status--open' : 'course-status course-status--close';
+    return (
+      <div className="course-info">
+        <div className={openCloseClassName}><span />{classStatus}</div>
+        <div className="course-availability">Available Seats: <span>{noOfSeatsAvailable}</span></div>
+      </div>
+    );
+  }
+
+  public getTextBookMarkup(classDetails: any): JSX.Element {
+    return (
+      <div className="course-btns">
+        <button className="btn-utilit btn-white">
+          <i className="fas fa-book" dangerouslySetInnerHTML={{ __html: classDetails.textbook }} />
+          <span className="sr-only">
+            for {`${classDetails.subject} ${classDetails.catalogNo}`}, Section {classDetails.classSection}
+          </span>
+        </button>
+      </div>
+    );
+  }
+
+  public getInstructorMarkup(classDetails: any): JSX.Element {
+    const instructorName = ClassSearchUtils.getInstructorName(classDetails);
+    const instructorProfileURL = this.searchURL + classDetails.profile;
     let instructor = <span>Instructor: N/A</span>;
     if (instructorName !== 'N/A') {
-      instructor = <span>Instructor: <a href={instructorProfileURL}> {instructorName}</a></span>;
+      instructor = <span>Instructor <a href={instructorProfileURL}> {instructorName}</a></span>;
     }
-    return (
-      <Card key={classDetails.classNumber} interactive={false} elevation={Elevation.TWO}>
-        <span>{`${classDetails.subject} ${classDetails.catalogNo} ${classDetails.classSection}`}</span><br />
-        <Popover
-          content={classDetails.longDescription}
-          position={Position.RIGHT}
-          popoverClassName={Classes.POPOVER_CONTENT_SIZING}
-        >
-          <h5><b className={Classes.TOOLTIP_INDICATOR}>{classDetails.description}</b></h5>
-        </Popover>
-        <br />
-        <span>(Class No. {classDetails.classNumber})</span>
-        {instructor}
-        <span>Room: {roomNumber}</span>
-        <span>Meeting Time: {time}</span>
-        <span>Meeting Days: {days}</span>
-        <span dangerouslySetInnerHTML={{ __html: classDetails.textbook }} /> <br />
-        <span>Campus: {campus}</span> <br />
-        <span>{classDetails.courseAttr}</span> <br />
-        <span>No. of units: {classDetails.csuUnits}</span> <br />
-        <span>No. of seats available: {noOfSeatsAvailable}</span> <br />
-        <span>In waitlist  : {classDetails.waitlistTotal}</span> <br />
-        <span>Session type: {sessionCode}</span> <br />
-        <span>{classType}</span> <br />
-        <span>{classStatus}</span> <br />
-        <span>{instructionMode}</span> <br />
-        <span>{degreeType}</span> <br />
-      </Card >
-      );
-    }
-
+    return instructor;
   }
+
+  public getCourseDetailsMarkup(classDetails: any): JSX.Element {
+    const classType = ClassSearchUtils.getClassType(classDetails);
+    const classDescription = this.getClassDescription(classDetails);
+    return (
+      <React.Fragment>
+        <div className="course-details">
+          <span>{`${classDetails.subject} ${classDetails.catalogNo}`}</span>
+          <span>Section {classDetails.classSection}</span>
+          <span>{classType}</span>
+        </div>
+        {classDescription}
+      </React.Fragment>
+    );
+  }
+
+  public getClassDescription(classDetails: any): JSX.Element {
+    return (
+      <Popover
+        content={classDetails.longDescription}
+        position={Position.RIGHT}
+        popoverClassName={Classes.POPOVER_CONTENT_SIZING}
+      >
+        <div className="course-name"><span className={Classes.TOOLTIP_INDICATOR}>{classDetails.description}</span></div>
+      </Popover>
+    );
+  }
+
+}
