@@ -123,34 +123,31 @@ export class Class {
     return result;
   }
 
-  static getAllClasses(onSuccess: (response: any) => void,
-                       onFailure: (error: string) => void, userInput: UserInput): void {
+  static getAllClasses(onSuccess: (response: any) => void, onFailure: (error: string) => void, userInput: UserInput): void {
     const params = {
-      currentPage: '1',
-      maximunPerPage: '3000',
-      condition: {
-        strm: userInput.getTerm(),
-        subject: userInput.getSubject().toUpperCase(),
-        name: userInput.getInstructor(),
-        campus: userInput.getCampus(),
-        catalog_nbr: userInput.getCourseNo(),
-        class_nbr: userInput.getClassNo(),
-        crse_attr: userInput.getCourseAttr(),
-        meeting_time_start: '',
-        mon: userInput.isMondayChecked() ? 'Y' : '',
-        tues: userInput.isTuesdayChecked() ? 'Y' : '',
-        wed: userInput.isWednesdayChecked() ? 'Y' : '',
-        thurs: userInput.isThursdayChecked() ? 'Y' : '',
-        fri: userInput.isFridayChecked() ? 'Y' : '',
-        sat: userInput.isSaturdayChecked() ? 'Y' : '',
-        sun: userInput.isSundayChecked() ? 'Y' : '',
-        instruction_mode: userInput.getInstructionMode().toUpperCase(),
-        section_code: userInput.getSessionCode(),
-        acad_career: userInput.getDegreeType(),
-      },
+      strm: userInput.getTerm(),
+      class_nbr: userInput.getClassNo(),
+      section_code: userInput.getSessionCode(),
+      subject: userInput.getSubject().toUpperCase(),
+      name: userInput.getInstructor(),
+      catalog_nbr: userInput.getCourseNo(),
+      campus: userInput.getCampus(),
+      crse_attr: userInput.getCourseAttr(),
+      crse_attr_value: userInput.getGeClassesAttr(),
+      meeting_time_start: '',
+      ssr_component: '',
+      mon: userInput.isMondayChecked() ? 'Y' : '',
+      tues: userInput.isTuesdayChecked() ? 'Y' : '',
+      wed: userInput.isWednesdayChecked() ? 'Y' : '',
+      thurs: userInput.isThursdayChecked() ? 'Y' : '',
+      fri: userInput.isFridayChecked() ? 'Y' : '',
+      sat: userInput.isSaturdayChecked() ? 'Y' : '',
+      sun: userInput.isSundayChecked() ? 'Y' : '',
+      instruction_mode: userInput.getInstructionMode().toUpperCase(),
+      acad_career: userInput.getDegreeType(),
     };
     ClassSearchUtils.fetchWithArg(this.classesUrl, params, onSuccess, onFailure);
-    Watchdog.log(params.condition);
+    Watchdog.log(params);
   }
 
   public getClassMeetingDates(): string {
