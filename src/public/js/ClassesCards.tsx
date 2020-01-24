@@ -3,31 +3,28 @@ import * as ClassSearchUtils from './ClassSearchUtils';
 import { IClass, Class } from './Class';
 import { Popover, Position, Classes } from '@blueprintjs/core';
 
-interface ClassesCardsProps {
+interface IClassesCardsProps {
   classes: IClass;
 }
 
-export class ClassesCards extends React.Component<ClassesCardsProps> {
+export class ClassesCards extends React.Component<IClassesCardsProps> {
   readonly searchURL = 'https://search.csusb.edu';
 
   public render(): JSX.Element {
     const classDetails: IClass = this.props.classes;
     // @Todo add degree type and Session code
+    const courseHeaderMarkup = this.getCourseHeaderMarkup(classDetails);
     const courseBodyMarkup = this.getCourseBodyMarkup(classDetails);
     const courseInfoMarkup = this.getCourseInfoMarkup(classDetails);
-    const courseDetailsMarkup = this.getCourseDetailsMarkup(classDetails);
     return (
       <div className="course result-item">
         <div className="item-header">
-          <div className="course-header">
-            <div className="course-title">
-              {courseDetailsMarkup}
-            </div>
-            <div className="course-id">Class No. {classDetails.classNumber}</div>
-          </div>
+          {courseHeaderMarkup}
           {courseInfoMarkup}
         </div>
-        {courseBodyMarkup}
+        <div className="item-body">
+          {courseBodyMarkup}
+        </div>
       </div>
     );
   }
@@ -41,7 +38,7 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
     const textBookMarkup = this.getTextBookMarkup(classDetails);
     const instructorMarkup = this.getInstructorMarkup(classDetails);
     return (
-      <div className="item-body">
+      <React.Fragment>
         <ul className="course-desc">
           <li><span>Units </span>{classDetails.csuUnits}</li>
           <li><span>Meeting Time </span>{time}</li>
@@ -52,7 +49,7 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
           <li><span>Instruction Mode </span>{instructionMode}</li>
         </ul>
         {textBookMarkup}
-      </div>
+      </React.Fragment>
     );
   }
 
@@ -63,28 +60,26 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
     return (
       <div className="course-info">
         <div className={openCloseClassName}><span />{classStatus}</div>
-        <div className="course-availability">Available Seats: <span>{noOfSeatsAvailable}</span></div>
+        <div className="course-availability">Available Seats <span>{noOfSeatsAvailable}</span></div>
       </div>
     );
   }
 
   public getTextBookMarkup(classDetails: any): JSX.Element {
     return (
-      <div className="course-btns">
-        <button className="btn-utilit btn-white">
-          <i className="fas fa-book" dangerouslySetInnerHTML={{ __html: classDetails.textbook }} />
-          <span className="sr-only">
-            for {`${classDetails.subject} ${classDetails.catalogNo}`}, Section {classDetails.classSection}
-          </span>
-        </button>
-      </div>
+      <React.Fragment>
+        <span className="fas fa-book" dangerouslySetInnerHTML={{ __html: classDetails.textbook }} />
+        <span className="sr-only">
+          for {`${classDetails.subject} ${classDetails.catalogNo}`}, Section {classDetails.classSection}
+        </span>
+      </React.Fragment>
     );
   }
 
   public getInstructorMarkup(classDetails: any): JSX.Element {
     const instructorName = ClassSearchUtils.getInstructorName(classDetails);
     const instructorProfileURL = this.searchURL + classDetails.profile;
-    let instructor = <span>Instructor: N/A</span>;
+    let instructor = <span>Instructor N/A</span>;
     if (instructorName !== 'N/A') {
       instructor = <span>Instructor <a href={instructorProfileURL}> {instructorName}</a></span>;
     }
@@ -95,14 +90,14 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
     const classType = ClassSearchUtils.getClassType(classDetails);
     const classDescription = this.getClassDescription(classDetails);
     return (
-      <React.Fragment>
+      <div className="course-title">
         <div className="course-details">
           <span>{`${classDetails.subject} ${classDetails.catalogNo}`}</span>
           <span>Section {classDetails.classSection}</span>
           <span>{classType}</span>
         </div>
         {classDescription}
-      </React.Fragment>
+      </div>
     );
   }
 
@@ -115,6 +110,16 @@ export class ClassesCards extends React.Component<ClassesCardsProps> {
       >
         <div className="course-name"><span className={Classes.TOOLTIP_INDICATOR}>{classDetails.description}</span></div>
       </Popover>
+    );
+  }
+
+  public getCourseHeaderMarkup(classDetails: any): JSX.Element {
+    const courseDetailsMarkup = this.getCourseDetailsMarkup(classDetails);
+    return (
+      <div className="course-header">
+          {courseDetailsMarkup}
+        <div className="course-id">Class No. {classDetails.classNumber}</div>
+      </div>
     );
   }
 
