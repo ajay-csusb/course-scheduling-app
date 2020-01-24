@@ -14,6 +14,7 @@ export class UserInput {
   private sessionCode: string;
   private classNo: string;
   private degreeType: string;
+  private geClassesAttr: string;
 
   constructor() {
     this.campus = '';
@@ -37,6 +38,7 @@ export class UserInput {
     this.sessionCode = '';
     this.classNo = '';
     this.degreeType = '';
+    this.geClassesAttr = '';
   }
 
   public getCampus(): string {
@@ -136,6 +138,10 @@ export class UserInput {
     return (this.degreeType === 'all') ? '' : this.degreeType;
   }
 
+  public getGeClassesAttr(): string {
+    return this.geClassesAttr;
+  }
+
   public setDegreeType(degreeType: string): void {
     this.degreeType = degreeType;
   }
@@ -190,6 +196,10 @@ export class UserInput {
 
   public setSessionCode(sessionCode: string): void {
     this.sessionCode = sessionCode;
+  }
+
+  public setGeClassesAttr(geClassesAttr: string): void {
+    this.geClassesAttr = geClassesAttr;
   }
 
 }
