@@ -1,14 +1,12 @@
 const url = require('./Utils');
 
-describe('Displayed fields in classes', function () {
+describe('Displayed markup of results', function () {
   context('when classes related to Biology are searched', () => {
 
     before(function () {
       cy.visit(url);
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology').click();
-      cy.get('.course-number').type('100');
-      cy.get('.mon > .bp3-control-indicator').click();
       cy.get('.btn-primary').click();
     });
 
@@ -46,6 +44,27 @@ describe('Displayed fields in classes', function () {
         'course-info',
         'course-availability',
         'course-status',
+      ]
+      for (const _class of classes) {
+        cy.get('div').should('have.class', _class);
+      }
+    });
+
+
+    it.only('should display correct markup', () => {
+      const classes = [
+        'course result-item',
+        'course-header',
+        'course-title',
+        'course-details',
+        'course-name',
+        'course-id',
+        'item-body',
+        'course-btns',
+        'course-info',
+        'course-availability',
+        'course-status',
+        '',
       ]
       for (const _class of classes) {
         cy.get('div').should('have.class', _class);
