@@ -14,6 +14,8 @@ exports[`snapshots Class search container component snapshot 1`] = `
         courseAttr="all"
         courseNo=""
         endTime={1899-01-02T07:00:00.000Z}
+        geClassesAttribute=""
+        geClassesAttributes={Array []}
         instructionMode="all"
         instructors={Array []}
         isReset={false}
@@ -33,6 +35,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
         onChangeOfCourseAttr={[Function]}
         onChangeOfCourseNo={[Function]}
         onChangeOfEndTime={[Function]}
+        onChangeOfGeClassesAttributes={[Function]}
         onChangeOfInstructionMode={[Function]}
         onChangeOfInstructor={[Function]}
         onChangeOfMeetingDate={[Function]}
@@ -63,6 +66,8 @@ exports[`snapshots compare search form snapshot 1`] = `
     courseAttr="all"
     courseNo=""
     endTime={1899-01-02T07:00:00.000Z}
+    geClassesAttribute=""
+    geClassesAttributes={Array []}
     instructionMode="all"
     instructors={Array []}
     isReset={false}
@@ -82,6 +87,7 @@ exports[`snapshots compare search form snapshot 1`] = `
     onChangeOfCourseAttr={[Function]}
     onChangeOfCourseNo={[Function]}
     onChangeOfEndTime={[Function]}
+    onChangeOfGeClassesAttributes={[Function]}
     onChangeOfInstructionMode={[Function]}
     onChangeOfInstructor={[Function]}
     onChangeOfMeetingDate={[Function]}
@@ -1436,6 +1442,11 @@ exports[`snapshots compare search form snapshot 1`] = `
                     </Blueprint3.ControlGroup>
                   </ControlGroupMeetingDay>
                 </div>
+                <div
+                  className="form-item"
+                >
+                  Open Classes
+                </div>
               </div>
             </div>
             <div
@@ -1450,8 +1461,11 @@ exports[`snapshots compare search form snapshot 1`] = `
                   <AdvancedFilterFieldset
                     classNo=""
                     courseAttr="all"
+                    geClassesAttribute=""
+                    geClassesAttributes={Array []}
                     onChangeOfClassNo={[Function]}
                     onChangeOfCourseAttr={[Function]}
+                    onChangeOfGeClassesAttributes={[Function]}
                     onChangeOfSessionCode={[Function]}
                     onKeyDown={[Function]}
                     sessionCode="all"
