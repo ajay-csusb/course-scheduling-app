@@ -212,9 +212,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return this.state.meetingDate.sun;
   }
 
-  private classesFound(data: any): void {
+  private classesFound(classes: any): void {
     const transformedClass: IClass[] = [];
-    const classes = data.contentList;
     this.allResults = [];
     if (classes === null || classes.length === 0) {
       this.setState({
