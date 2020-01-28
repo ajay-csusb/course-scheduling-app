@@ -4,14 +4,14 @@ import { Label, HTMLSelect, IOptionProps } from '@blueprintjs/core';
 export interface ISelectListGeClassesAttributesProps {
   geClassesAttribute: string;
   geClassesAttributes: IOptionProps[];
-  onChangeOfGeClassesAttributes: (event: any) => void;
+  onChangeOfGeClassesAttribute: (event: any) => void;
 }
 
 export class SelectListGeClassesAttributes extends React.Component<ISelectListGeClassesAttributesProps> {
 
   constructor(props: ISelectListGeClassesAttributesProps) {
     super(props);
-    this.onChangeOfGeClassesAttributes = this.onChangeOfGeClassesAttributes.bind(this);
+    this.onChangeOfGeClassesAttribute = this.onChangeOfGeClassesAttribute.bind(this);
   }
 
   public render(): React.ReactNode {
@@ -22,15 +22,15 @@ export class SelectListGeClassesAttributes extends React.Component<ISelectListGe
           id="ge-classes-attributes"
           value={this.props.geClassesAttribute}
           className="select-ge-classes-attr"
-          onChange={this.onChangeOfGeClassesAttributes}
+          onChange={this.onChangeOfGeClassesAttribute}
           options={this.props.geClassesAttributes}
         />
       </React.Fragment>
     );
   }
 
-  private onChangeOfGeClassesAttributes(event: React.FormEvent): void {
-    this.props.onChangeOfGeClassesAttributes(event);
+  private onChangeOfGeClassesAttribute(event: React.FormEvent): void {
+    this.props.onChangeOfGeClassesAttribute(event);
   }
 
 }

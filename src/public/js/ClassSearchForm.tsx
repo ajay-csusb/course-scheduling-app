@@ -41,7 +41,7 @@ interface IClassSearchFormProps {
   onChangeOfCourseAttr: (event: any) => void;
   onChangeOfSessionCode: (event: any) => void;
   onChangeOfClassNo: (event: any) => void;
-  onChangeOfGeClassesAttributes: (event: any) => void;
+  onChangeOfGeClassesAttribute: (event: any) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;
@@ -236,7 +236,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
         onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
         onChangeOfSessionCode={this.props.onChangeOfSessionCode}
         onChangeOfClassNo={this.props.onChangeOfClassNo}
-        onChangeOfGeClassesAttributes={this.props.onChangeOfGeClassesAttributes}
+        onChangeOfGeClassesAttributes={this.props.onChangeOfGeClassesAttribute}
         onKeyDown={this.props.onKeyDown}
       />
     );

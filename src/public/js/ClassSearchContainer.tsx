@@ -514,7 +514,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfCourseAttr={this.updateCourseAttr}
         onChangeOfSessionCode={this.updateSessionCode}
         onChangeOfClassNo={this.updateClassNo}
-        onChangeOfGeClassesAttributes={this.updateGeClassAttr}
+        onChangeOfGeClassesAttribute={this.updateGeClassAttr}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         onKeyDown={this.onEnterKeyPress}
@@ -583,7 +583,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateGeClassAttr(e: any) {
     this.setState({
       geClassesAttribute: e.target.value,
-      forceReload: true,
     });
     this.userInput.setGeClassesAttr(e.target.value);
   }

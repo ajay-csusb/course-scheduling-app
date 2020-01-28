@@ -107,7 +107,7 @@ export class AdvancedFilterFieldset extends React.Component<
       <SelectListGeClassesAttributes
         geClassesAttributes={this.props.geClassesAttributes}
         geClassesAttribute={this.props.geClassesAttribute}
-        onChangeOfGeClassesAttributes={this.props.onChangeOfGeClassesAttributes}
+        onChangeOfGeClassesAttribute={this.props.onChangeOfGeClassesAttributes}
       />
     );
   }
