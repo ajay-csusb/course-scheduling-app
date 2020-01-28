@@ -19,7 +19,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     this.props.onChangeOfLoadingMessage();
     return (
       <div id="class-search-results-component">
-        <p>Found {this.noOfClasses} classes</p>
+        <p>{this.noOfClasses} classes found</p>
         <ul>
           {classes}
         </ul>
