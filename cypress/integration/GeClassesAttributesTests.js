@@ -8,6 +8,7 @@ describe('Filter classes by GE attributes', function () {
       cy.get('.search-autocomplete input').type('Biology').click();
       cy.get('div').contains('Biology').click();
       cy.get('#additional-filters').click();
+      cy.get('#course-attribute').select('General Education');
       cy.get('.btn-primary').click();
     });
     assertBioGeClasses();
@@ -16,6 +17,8 @@ describe('Filter classes by GE attributes', function () {
   context('when a user searches for GE classes related to GE-B2 Life Sciences', () => {
     before(function () {
       cy.visit(url);
+      cy.get('.search-autocomplete input').type('Biology').click();
+      cy.get('div').contains('Biology').click();
       cy.get('#additional-filters').click();
       cy.get('.select-ge-classes-attr select').select('GE-B2 Life Sciences');
       cy.get('.btn-primary').click();
