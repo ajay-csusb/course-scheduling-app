@@ -19,6 +19,7 @@ interface IClassSearchContainerState {
   instructionMode: string;
   instructorName: string;
   geClasses: boolean;
+  geClassesAttribute: string;
   isReset: boolean;
   isLoading: boolean;
   beforeSubmit: boolean;
@@ -39,6 +40,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private subjects: ISubject[];
 
   private term: IOptionProps[];
+
+  private geClassesAttributes: IOptionProps[];
 
   private currentTermId: string;
 
@@ -63,6 +66,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.updateSessionCode = this.updateSessionCode.bind(this);
     this.updateClassNo = this.updateClassNo.bind(this);
     this.updateDegreeType = this.updateDegreeType.bind(this);
+    this.updateGeClassAttr = this.updateGeClassAttr.bind(this);
     this.instructorsFound = this.instructorsFound.bind(this);
     this.subjectsFound = this.subjectsFound.bind(this);
     this.termFound = this.termFound.bind(this);
@@ -77,6 +81,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.instructors = [];
     this.subjects = [];
     this.term = [];
+    this.geClassesAttributes = [];
     this.currentTermId = '';
     this.userInput = new UserInput();
   }
@@ -212,9 +217,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return this.state.meetingDate.sun;
   }
 
-  private classesFound(data: any): void {
+  private classesFound(classes: any): void {
     const transformedClass: IClass[] = [];
-    const classes = data.contentList;
     this.allResults = [];
     if (classes === null || classes.length === 0) {
       this.setState({
@@ -319,6 +323,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       classNo: '',
       showErrorMessage: false,
       degreeType: 'all',
+      geClassesAttribute: '',
       forceReload: false,
     };
   }
@@ -432,6 +437,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     );
   }
 
+  private isGeClassesAttributeEmpty(): boolean {
+    return (this.state.geClassesAttribute === '');
+  }
+
   private areOtherFieldsEmpty(): boolean {
     if (!this.isInstructorEmpty()) {
       return false;
@@ -446,6 +455,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       return false;
     }
     if (this.isValidInstructionModeSelected()) {
+      return false;
+    }
+    if (!this.isGeClassesAttributeEmpty()) {
       return false;
     }
     return true;
@@ -487,6 +499,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         meetingDate={this.state.meetingDate}
         instructionMode={this.state.instructionMode}
         instructors={this.instructors}
+        geClassesAttribute={this.state.geClassesAttribute}
+        geClassesAttributes={this.geClassesAttributes}
         isReset={this.state.isReset}
         onChangeOfTerm={this.updateTerm}
         onChangeOfCampus={this.updateCampus}
@@ -500,6 +514,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfCourseAttr={this.updateCourseAttr}
         onChangeOfSessionCode={this.updateSessionCode}
         onChangeOfClassNo={this.updateClassNo}
+        onChangeOfGeClassesAttribute={this.updateGeClassAttr}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         onKeyDown={this.onEnterKeyPress}
@@ -565,10 +580,18 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.userInput.setDegreeType(value);
   }
 
+  private updateGeClassAttr(e: any) {
+    this.setState({
+      geClassesAttribute: e.target.value,
+    });
+    this.userInput.setGeClassesAttr(e.target.value);
+  }
+
   private processDropDownListData(data: any): void {
     this.termFound(data);
     this.instructorsFound(data);
     this.subjectsFound(data);
+    this.geClassesAttributesFound(data);
   }
 
   private errorProcessingData(_error: any): void {
@@ -596,6 +619,26 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private isDegreeType(degreeAbbr: string): boolean {
     return (degreeAbbr === 'UGRD' || degreeAbbr === 'PBAC' || degreeAbbr === 'EXED');
+  }
+
+  private geClassesAttributesFound(data: any): void {
+    const geClasses = data.classAttributeList;
+    const noOption: IOptionProps = {
+      value: '',
+      label: 'All',
+    };
+    this.geClassesAttributes.push(noOption);
+    geClasses.forEach((attribute: any) => {
+      if (attribute.crse_ATTR === 'GE') {
+        this.geClassesAttributes.push({
+          label: attribute.descr,
+          value: attribute.descr.split(' ')[0],
+        });
+      }
+    });
+    this.setState({
+      forceReload: true,
+    });
   }
 
 }

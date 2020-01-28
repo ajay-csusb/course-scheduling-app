@@ -105,6 +105,16 @@ describe('states', () => {
         expect(classSearchContainerWrapper.state('term')).toEqual('000');
       });
     });
+
+    describe('when an option is selected from GE classes', () => {
+      it('should set the correct GE classes attribute state', () => {
+        const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+        classSearchContainerWrapper.find('#additional-filters').simulate('click');
+        classSearchContainerWrapper.find('.select-ge-classes-attr > select').simulate('change', { target: { value: 'GE-001' } });
+        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+        expect(classSearchContainerWrapper.state('geClassesAttribute')).toEqual('GE-001');
+      });
+    });
   });
 
   describe('When user clicks submit', () => {
@@ -222,6 +232,10 @@ describe('states', () => {
       expect(classSearchContainerWrapper.state('geClasses')).toBeFalsy();
     });
 
+    it('unsets geClassesAttribute', () => {
+      expect(classSearchContainerWrapper.state('geClassesAttribute')).toHaveLength(0);
+    });
+
     it('sets isLoading to false', () => {
       expect(classSearchContainerWrapper.state('isLoading')).toBeFalsy();
     });
@@ -240,6 +254,7 @@ describe('props on reset', () => {
       instructor: 'foo',
       courseNo: '000',
       classNo: '1111',
+      geClassesAttribute: 'GE-000',
     });
     classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
     classSearchContainerWrapper.update();
@@ -265,6 +280,12 @@ describe('props on reset', () => {
   it('sets the value of instructor to empty value', () => {
     const instructorWrapper = classSearchContainerWrapper.find('.search-instructor-autocomplete input');
     expect(instructorWrapper.prop('value')).toHaveLength(0);
+  });
+
+  it('sets the value of GE classes attributes to empty value', () => {
+    classSearchContainerWrapper.find('#additional-filters').simulate('click');
+    const geClassesAttrWrapper = classSearchContainerWrapper.find('#ge-classes-attributes');
+    expect(geClassesAttrWrapper.at(0).prop('value')).toHaveLength(0);
   });
 });
 

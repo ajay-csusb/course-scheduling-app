@@ -19,6 +19,8 @@ interface IClassSearchFormProps {
   meetingDate: IMeetingDate;
   instructionMode: string;
   instructors: string[];
+  geClassesAttribute: string;
+  geClassesAttributes: IOptionProps[];
   isReset?: boolean;
   startTime: Date;
   endTime: Date;
@@ -39,6 +41,7 @@ interface IClassSearchFormProps {
   onChangeOfCourseAttr: (event: any) => void;
   onChangeOfSessionCode: (event: any) => void;
   onChangeOfClassNo: (event: any) => void;
+  onChangeOfGeClassesAttribute: (event: any) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;
@@ -226,11 +229,14 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
     return (
       <AdvancedFilterFieldset
         courseAttr={this.props.courseAttr}
+        geClassesAttribute={this.props.geClassesAttribute}
+        geClassesAttributes={this.props.geClassesAttributes}
         classNo={this.props.classNo}
         sessionCode={this.props.sessionCode}
         onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
         onChangeOfSessionCode={this.props.onChangeOfSessionCode}
         onChangeOfClassNo={this.props.onChangeOfClassNo}
+        onChangeOfGeClassesAttributes={this.props.onChangeOfGeClassesAttribute}
         onKeyDown={this.props.onKeyDown}
       />
     );
