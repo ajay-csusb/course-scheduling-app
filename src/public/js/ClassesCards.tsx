@@ -47,6 +47,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
           <li><span>Campus </span>{campus}</li>
           <li>{instructorMarkup}</li>
           <li><span>Instruction Mode </span>{instructionMode}</li>
+          <li><span>Course Attribute </span>{classDetails.courseAttr}</li>
         </ul>
         {textBookMarkup}
       </React.Fragment>

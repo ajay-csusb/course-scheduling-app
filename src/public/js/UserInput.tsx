@@ -119,7 +119,7 @@ export class UserInput {
     ) {
       return '';
     }
-    return this.courseAttr.toLowerCase();
+    return this.courseAttr.toUpperCase();
   }
 
   public getSessionCode(): string | undefined {
