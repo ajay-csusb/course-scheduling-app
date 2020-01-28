@@ -23,6 +23,7 @@ describe('Displayed markup of results', function () {
       cy.get('span').should('contain', 'Instruction Mode');
       cy.get('div').should('contain', 'Available Seats');
       cy.get('span').should('contain', 'Section');
+      cy.get('span').should('contain', 'Course Attribute');
       // @Todo test Instructor URL
     });
 

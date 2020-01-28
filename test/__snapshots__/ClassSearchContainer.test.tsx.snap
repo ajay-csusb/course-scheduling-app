@@ -35,7 +35,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
         onChangeOfCourseAttr={[Function]}
         onChangeOfCourseNo={[Function]}
         onChangeOfEndTime={[Function]}
-        onChangeOfGeClassesAttributes={[Function]}
+        onChangeOfGeClassesAttribute={[Function]}
         onChangeOfInstructionMode={[Function]}
         onChangeOfInstructor={[Function]}
         onChangeOfMeetingDate={[Function]}
@@ -87,7 +87,7 @@ exports[`snapshots compare search form snapshot 1`] = `
     onChangeOfCourseAttr={[Function]}
     onChangeOfCourseNo={[Function]}
     onChangeOfEndTime={[Function]}
-    onChangeOfGeClassesAttributes={[Function]}
+    onChangeOfGeClassesAttribute={[Function]}
     onChangeOfInstructionMode={[Function]}
     onChangeOfInstructor={[Function]}
     onChangeOfMeetingDate={[Function]}
@@ -1441,11 +1441,6 @@ exports[`snapshots compare search form snapshot 1`] = `
                       </div>
                     </Blueprint3.ControlGroup>
                   </ControlGroupMeetingDay>
-                </div>
-                <div
-                  className="form-item"
-                >
-                  Open Classes
                 </div>
               </div>
             </div>
