@@ -26,7 +26,7 @@ describe('Given a class search results component', () => {
         />
       );
       const classSearchResultsWrapper = mount(classSearchResultsComponent);
-      expect(classSearchResultsWrapper.html()).toContain('Found 0 classes');
+      expect(classSearchResultsWrapper.html()).toContain('0 classes found');
     });
   });
 
@@ -40,7 +40,7 @@ describe('Given a class search results component', () => {
         />
       );
       const classSearchResultsWrapper = mount(classSearchResultsComponent);
-      expect(classSearchResultsWrapper.html()).toContain('Found 3 classes');
+      expect(classSearchResultsWrapper.html()).toContain('3 classes found');
     });
   });
 

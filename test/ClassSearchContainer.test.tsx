@@ -320,7 +320,7 @@ describe('Loading message', () => {
       isLoading: false,
       noClasses: true,
     });
-    expect(classSearchContainerWrapper.html()).toContain('<p>Found 0 classes');
+    expect(classSearchContainerWrapper.html()).toContain('<p>0 classes found');
   });
 });
 
