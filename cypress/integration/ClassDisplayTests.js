@@ -1,19 +1,16 @@
-const url = require('./Utils');
+const { url, selectSubject } = require('./Utils');
 
 describe('Displayed markup of results', function () {
   context('when classes related to Biology are searched', () => {
-
     before(function () {
       cy.visit(url);
-      cy.get('.search-autocomplete input').type('Biology').click();
-      cy.get('div').contains('Biology').click();
+      selectSubject();
       cy.get('.btn-primary').click();
     });
 
     it('should display information related to a class', () => {
       cy.get('span').should('contain', 'BIOL 100');
-      cy.get(':nth-child(1) > .course > .item-header > .course-header > .course-title > .course-name > span').should('contain', 'TOPICS IN BIOLOGY');
-      cy.get(':nth-child(4) > .course > .item-body > .course-desc > :nth-child(4)').should('contain', 'BI 106');
+      cy.get('span').should('contain', 'TOPICS IN BIOLOGY');
       cy.get('span').should('contain', 'Units');
       cy.get('span').should('contain', 'Meeting Time');
       cy.get('span').should('contain', 'Meeting Days');
@@ -50,27 +47,29 @@ describe('Displayed markup of results', function () {
         cy.get('div').should('have.class', _class);
       }
     });
+  });
 
-
-    it.only('should display correct markup', () => {
-      const classes = [
-        'course result-item',
-        'course-header',
-        'course-title',
-        'course-details',
-        'course-name',
-        'course-id',
-        'item-body',
-        'course-btns',
-        'course-info',
-        'course-availability',
-        'course-status',
-        '',
-      ]
-      for (const _class of classes) {
-        cy.get('div').should('have.class', _class);
-      }
+  context('When Biology classes from past terms are searched', () => {
+    before(function () {
+      cy.visit(url);
+      selectPreviousTerm();
+      selectSubject();
+      cy.get('.btn-primary').click();
     });
 
+    it('should display classes as Closed', () => {
+      cy.get('div').should('contain', 'Closed');
+    });
   });
 });
+
+function selectPreviousTerm() {
+  let prevYear = '';
+  cy.wait(5000).then(() => {
+    cy.get('#term option').each((e) => {
+      prevYear = Cypress.$(e).text();
+    }).then(() => {
+      cy.get("#term").select(prevYear)
+    });
+  });
+}
