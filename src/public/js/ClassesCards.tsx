@@ -5,6 +5,7 @@ import { Popover, Position, Classes } from '@blueprintjs/core';
 
 interface IClassesCardsProps {
   classes: IClass;
+  currentTerm: string;
 }
 
 export class ClassesCards extends React.Component<IClassesCardsProps> {
@@ -55,13 +56,12 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public getCourseInfoMarkup(classDetails: any): JSX.Element {
-    const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(classDetails);
-    const classStatus = ClassSearchUtils.getClassStatus(classDetails);
-    const openCloseClassName = (classStatus === 'Open') ? 'course-status course-status--open' : 'course-status course-status--close';
+    const classStatus = this.getClassStatusMarkup(classDetails);
+    const classAvailability = this.getClassAvailabilityMarkup(classDetails);
     return (
       <div className="course-info">
-        <div className={openCloseClassName}><span />{classStatus}</div>
-        <div className="course-availability">Available Seats <span>{noOfSeatsAvailable}</span></div>
+        {classStatus}
+        {classAvailability}
       </div>
     );
   }
@@ -124,4 +124,28 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     );
   }
 
+  public isCurrentTerm(classDetails: any): boolean {
+    return (this.props.currentTerm === classDetails.quarter);
+  }
+
+  public getClassStatusMarkup(classDetails: any): JSX.Element {
+    let classStatus = 'Closed';
+    let classStatusClassName = 'course-status course-status--close';
+    if (this.isCurrentTerm(classDetails)) {
+      classStatus = ClassSearchUtils.getClassStatus(classDetails);
+      if (classStatus === 'Open') {
+        classStatusClassName = 'course-status course-status--open';
+      }
+    }
+    return (
+      <div className={classStatusClassName}><span />{classStatus}</div>
+    );
+  }
+
+  public getClassAvailabilityMarkup(classDetails: any): JSX.Element {
+    const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(classDetails);
+    return (
+      <div className="course-availability">Available Seats <span>{noOfSeatsAvailable}</span></div>
+    );
+  }
 }

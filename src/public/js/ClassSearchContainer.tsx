@@ -483,6 +483,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return (
       <ClassSearchResults
         classes={this.allResults}
+        currentTerm={this.currentTermId}
         onChangeOfLoadingMessage={this.updateLoadingMessage}
       />
     );

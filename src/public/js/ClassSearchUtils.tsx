@@ -121,7 +121,7 @@ export function getClassStatus(classes: IClass): string {
   if (availableSeats > 0) {
     return 'Open';
   }
-  return 'Close';
+  return 'Closed';
 }
 
 export function getInstructionMode(classes: IClass): string {
