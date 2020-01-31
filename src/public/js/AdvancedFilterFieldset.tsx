@@ -40,7 +40,7 @@ export class AdvancedFilterFieldset extends React.Component<
     return (
       <React.Fragment>
         <a id="additional-filters" onClick={this.handleClick}>
-          {this.state.isOpen ? 'Hide' : ''} Additional Filters {arrow}
+          {this.state.isOpen ? 'Hide' : ''} Additional Search Criteria {arrow}
         </a>
         <Collapse isOpen={this.state.isOpen} >
           <div className="row">
