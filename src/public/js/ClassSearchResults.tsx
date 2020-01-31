@@ -3,6 +3,7 @@ import { IClass } from './Class';
 import { ClassesCards } from './ClassesCards';
 export interface IClassSearchResultsProps {
   classes: IClass[];
+  currentTerm: string;
   onChangeOfLoadingMessage: () => void;
 }
 
@@ -36,7 +37,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
         this.noOfClasses++;
         classes.push(
           <li key={_class.classNumber}>
-            <ClassesCards classes={_class} />
+            <ClassesCards classes={_class} currentTerm={this.props.currentTerm}/>
             <br />
           </li>
         );
