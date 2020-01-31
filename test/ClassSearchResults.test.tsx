@@ -45,7 +45,7 @@ describe('Given a class search results component', () => {
       );
       classSearchResultsWrapper = mount(classSearchResultsComponent);
     });
-    it('should display the 3 classes in the message', () => {
+    it('should display the 2 classes in the message', () => {
       expect(classSearchResultsWrapper.html()).toContain('2 classes found');
     });
 
