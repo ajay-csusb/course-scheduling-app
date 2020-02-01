@@ -144,6 +144,12 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
 
   public getClassAvailabilityMarkup(classDetails: any): JSX.Element {
     const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(classDetails);
+    if (ClassSearchUtils.getClassStatus(classDetails) === 'Closed') {
+      return (<div />);
+    }
+    if (!this.isCurrentTerm(classDetails)) {
+      return (<div />);
+    }
     return (
       <div className="course-availability">Available Seats <span>{noOfSeatsAvailable}</span></div>
     );
