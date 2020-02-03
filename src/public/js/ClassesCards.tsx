@@ -10,13 +10,18 @@ interface IClassesCardsProps {
 
 export class ClassesCards extends React.Component<IClassesCardsProps> {
   readonly searchURL = 'https://search.csusb.edu';
+  private classDetails: IClass;
+
+  public constructor(props: IClassesCardsProps) {
+    super(props);
+    this.classDetails = this.props.classes;
+  }
 
   public render(): JSX.Element {
-    const classDetails: IClass = this.props.classes;
     // @Todo add degree type and Session code
-    const courseHeaderMarkup = this.getCourseHeaderMarkup(classDetails);
-    const courseBodyMarkup = this.getCourseBodyMarkup(classDetails);
-    const courseInfoMarkup = this.getCourseInfoMarkup(classDetails);
+    const courseHeaderMarkup = this.getCourseHeaderMarkup();
+    const courseBodyMarkup = this.getCourseBodyMarkup();
+    const courseInfoMarkup = this.getCourseInfoMarkup();
     return (
       <div className="course result-item">
         <div className="item-header">
@@ -29,35 +34,35 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       </div>
     );
   }
-  public getCourseBodyMarkup(classDetails: any): JSX.Element {
-    const classObj = new Class(classDetails);
-    const campus = ClassSearchUtils.getCampusName(classDetails.campus);
+  public getCourseBodyMarkup(): JSX.Element {
+    const classObj = new Class(this.classDetails);
+    const campus = ClassSearchUtils.getCampusName(this.classDetails.campus);
     const days = classObj.getClassMeetingDates();
     const time = classObj.getClassMeetingTimes();
-    const roomNumber = ClassSearchUtils.getRoomNumber(classDetails);
-    const instructionMode = ClassSearchUtils.getInstructionMode(classDetails);
-    const textBookMarkup = this.getTextBookMarkup(classDetails);
-    const instructorMarkup = this.getInstructorMarkup(classDetails);
+    const roomNumber = ClassSearchUtils.getRoomNumber(this.classDetails);
+    const instructionMode = ClassSearchUtils.getInstructionMode(this.classDetails);
+    const textBookMarkup = this.getTextBookMarkup();
+    const instructorMarkup = this.getInstructorMarkup();
     return (
       <React.Fragment>
         <ul className="course-desc">
-          <li><span>Units </span>{classDetails.csuUnits}</li>
+          <li><span>Units </span>{this.classDetails.csuUnits}</li>
           <li><span>Meeting Time </span>{time}</li>
           <li><span>Meeting Days </span>{days}</li>
           <li><span>Room </span>{roomNumber}</li>
           <li><span>Campus </span>{campus}</li>
           <li>{instructorMarkup}</li>
           <li><span>Instruction Mode </span>{instructionMode}</li>
-          <li><span>Course Attribute </span>{classDetails.courseAttr}</li>
+          <li><span>Course Attribute </span>{this.classDetails.courseAttr}</li>
         </ul>
         {textBookMarkup}
       </React.Fragment>
     );
   }
 
-  public getCourseInfoMarkup(classDetails: any): JSX.Element {
-    const classStatus = this.getClassStatusMarkup(classDetails);
-    const classAvailability = this.getClassAvailabilityMarkup(classDetails);
+  public getCourseInfoMarkup(): JSX.Element {
+    const classStatus = this.getClassStatusMarkup();
+    const classAvailability = this.getClassAvailabilityMarkup();
     return (
       <div className="course-info">
         {classStatus}
@@ -66,20 +71,20 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     );
   }
 
-  public getTextBookMarkup(classDetails: any): JSX.Element {
+  public getTextBookMarkup(): JSX.Element {
     return (
       <React.Fragment>
-        <span className="fas fa-book" dangerouslySetInnerHTML={{ __html: classDetails.textbook }} />
+        <span className="fas fa-book" dangerouslySetInnerHTML={{ __html: this.classDetails.textbook }} />
         <span className="sr-only">
-          for {`${classDetails.subject} ${classDetails.catalogNo}`}, Section {classDetails.classSection}
+          for {`${this.classDetails.subject} ${this.classDetails.catalogNo}`}, Section {this.classDetails.classSection}
         </span>
       </React.Fragment>
     );
   }
 
-  public getInstructorMarkup(classDetails: any): JSX.Element {
-    const instructorName = ClassSearchUtils.getInstructorName(classDetails);
-    const instructorProfileURL = this.searchURL + classDetails.profile;
+  public getInstructorMarkup(): JSX.Element {
+    const instructorName = ClassSearchUtils.getInstructorName(this.classDetails);
+    const instructorProfileURL = this.searchURL + this.classDetails.profile;
     let instructor = <span>Instructor N/A</span>;
     if (instructorName !== 'N/A') {
       instructor = <span>Instructor <a href={instructorProfileURL}> {instructorName}</a></span>;
@@ -87,14 +92,14 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     return instructor;
   }
 
-  public getCourseDetailsMarkup(classDetails: any): JSX.Element {
-    const classType = ClassSearchUtils.getClassType(classDetails);
-    const classDescription = this.getClassDescription(classDetails);
+  public getCourseDetailsMarkup(): JSX.Element {
+    const classType = ClassSearchUtils.getClassType(this.classDetails);
+    const classDescription = this.getClassDescription();
     return (
       <div className="course-title">
         <div className="course-details">
-          <span>{`${classDetails.subject} ${classDetails.catalogNo}`}</span>
-          <span>Section {classDetails.classSection}</span>
+          <span>{`${this.classDetails.subject} ${this.classDetails.catalogNo}`}</span>
+          <span>Section {this.classDetails.classSection}</span>
           <span>{classType}</span>
         </div>
         {classDescription}
@@ -102,37 +107,40 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     );
   }
 
-  public getClassDescription(classDetails: any): JSX.Element {
+  public getClassDescription(): JSX.Element {
     return (
       <Popover
-        content={classDetails.longDescription}
+        content={this.classDetails.longDescription}
         position={Position.RIGHT}
         popoverClassName={Classes.POPOVER_CONTENT_SIZING}
       >
-        <div className="course-name"><span className={Classes.TOOLTIP_INDICATOR}>{classDetails.description}</span></div>
+        <div className="course-name">
+          <span className={Classes.TOOLTIP_INDICATOR}>{this.classDetails.description}
+          </span>
+        </div>
       </Popover>
     );
   }
 
-  public getCourseHeaderMarkup(classDetails: any): JSX.Element {
-    const courseDetailsMarkup = this.getCourseDetailsMarkup(classDetails);
+  public getCourseHeaderMarkup(): JSX.Element {
+    const courseDetailsMarkup = this.getCourseDetailsMarkup();
     return (
       <div className="course-header">
           {courseDetailsMarkup}
-        <div className="course-id">Class No. {classDetails.classNumber}</div>
+        <div className="course-id">Class No. {this.classDetails.classNumber}</div>
       </div>
     );
   }
 
-  public isCurrentTerm(classDetails: any): boolean {
-    return (this.props.currentTerm === classDetails.quarter);
+  public isCurrentTerm(): boolean {
+    return (this.props.currentTerm === this.classDetails.quarter);
   }
 
-  public getClassStatusMarkup(classDetails: any): JSX.Element {
+  public getClassStatusMarkup(): JSX.Element {
     let classStatus = 'Closed';
     let classStatusClassName = 'course-status course-status--close';
-    if (this.isCurrentTerm(classDetails)) {
-      classStatus = ClassSearchUtils.getClassStatus(classDetails);
+    if (this.isCurrentTerm()) {
+      classStatus = ClassSearchUtils.getClassStatus(this.classDetails);
       if (classStatus === 'Open') {
         classStatusClassName = 'course-status course-status--open';
       }
@@ -142,16 +150,17 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     );
   }
 
-  public getClassAvailabilityMarkup(classDetails: any): JSX.Element {
-    const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(classDetails);
-    if (ClassSearchUtils.getClassStatus(classDetails) === 'Closed') {
+  public getClassAvailabilityMarkup(): JSX.Element {
+    const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(this.classDetails);
+    if (ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
       return (<div />);
     }
-    if (!this.isCurrentTerm(classDetails)) {
+    if (!this.isCurrentTerm()) {
       return (<div />);
     }
     return (
       <div className="course-availability">Available Seats <span>{noOfSeatsAvailable}</span></div>
     );
   }
+
 }
