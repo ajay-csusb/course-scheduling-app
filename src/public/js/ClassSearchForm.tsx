@@ -93,14 +93,6 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                 <div className="col-6">
                   <div className="form-item">{courseNumber}</div>
                 </div>
-                <div className="col-md-12">
-                  <ControlGroupMeetingTime
-                    onChangeOfStartTime={this.props.onChangeOfStartTime}
-                    onChangeOfEndTime={this.props.onChangeOfEndTime}
-                    startTime={this.props.startTime}
-                    endTime={this.props.endTime}
-                  />
-                </div>
                 <div className="col-6">
                   <div className="form-item">{instructors}</div>
                 </div>
@@ -122,6 +114,12 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                   onKeyDown={this.props.onKeyDown}
                 />
               </div>
+              <ControlGroupMeetingTime
+                onChangeOfStartTime={this.props.onChangeOfStartTime}
+                onChangeOfEndTime={this.props.onChangeOfEndTime}
+                startTime={this.props.startTime}
+                endTime={this.props.endTime}
+              />
             </div>
           </div>
           <div className="row">
