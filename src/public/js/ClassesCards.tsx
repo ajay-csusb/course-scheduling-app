@@ -74,10 +74,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   public getTextBookMarkup(): JSX.Element {
     return (
       <React.Fragment>
-        <span className="fas fa-book" dangerouslySetInnerHTML={{ __html: this.classDetails.textbook }} />
-        <span className="sr-only">
-          for {`${this.classDetails.subject} ${this.classDetails.catalogNo}`}, Section {this.classDetails.classSection}
-        </span>
+        <div dangerouslySetInnerHTML={{ __html: this.classDetails.textbook }} />
       </React.Fragment>
     );
   }
@@ -87,7 +84,11 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const instructorProfileURL = this.searchURL + this.classDetails.profile;
     let instructor = <span>Instructor N/A</span>;
     if (instructorName !== 'N/A') {
-      instructor = <span>Instructor <a href={instructorProfileURL}> {instructorName}</a></span>;
+      instructor = (
+        <React.Fragment>
+          <span>Instructor</span><a href={instructorProfileURL}>{instructorName}</a>
+        </React.Fragment>
+      );
     }
     return instructor;
   }
