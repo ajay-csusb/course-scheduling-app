@@ -82,7 +82,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   public getInstructorMarkup(): JSX.Element {
     const instructorName = ClassSearchUtils.getInstructorName(this.classDetails);
     const instructorProfileURL = this.searchURL + this.classDetails.profile;
-    let instructor = <span>Instructor N/A</span>;
+    let instructor = <React.Fragment><span>Instructor</span> N/A</React.Fragment>;
     if (instructorName !== 'N/A') {
       instructor = (
         <React.Fragment>
@@ -93,21 +93,6 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     return instructor;
   }
 
-  public getCourseDetailsMarkup(): JSX.Element {
-    const classType = ClassSearchUtils.getClassType(this.classDetails);
-    const classDescription = this.getClassDescription();
-    return (
-      <div className="course-title">
-        <div className="course-details">
-          <span>{`${this.classDetails.subject} ${this.classDetails.catalogNo}`}</span>
-          <span>Section {this.classDetails.classSection}</span>
-          <span>{classType}</span>
-        </div>
-        {classDescription}
-      </div>
-    );
-  }
-
   public getClassDescription(): JSX.Element {
     return (
       <Popover
@@ -116,19 +101,25 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
         popoverClassName={Classes.POPOVER_CONTENT_SIZING}
       >
         <div className="course-name">
-          <span className={Classes.TOOLTIP_INDICATOR}>{this.classDetails.description}
-          </span>
+          <div className={Classes.TOOLTIP_INDICATOR}>
+            <strong>{`${this.classDetails.subject} ${this.classDetails.catalogNo}`}</strong> {`- ${this.classDetails.description}`}
+          </div>
         </div>
       </Popover>
     );
   }
 
   public getCourseHeaderMarkup(): JSX.Element {
-    const courseDetailsMarkup = this.getCourseDetailsMarkup();
+    const classType = ClassSearchUtils.getClassType(this.classDetails);
+    const classDescription = this.getClassDescription();
     return (
       <div className="course-header">
-          {courseDetailsMarkup}
-        <div className="course-id">Class No. {this.classDetails.classNumber}</div>
+          {classDescription}
+          <div className="course-details">
+              <span>Section {this.classDetails.classSection} • </span>
+              <span>{classType} • </span>
+              <span className="course-id">Class No. {this.classDetails.classNumber}</span>
+          </div>
       </div>
     );
   }
@@ -139,7 +130,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
 
   public getClassStatusMarkup(): JSX.Element {
     let classStatus = 'Closed';
-    let classStatusClassName = 'course-status course-status--close';
+    let classStatusClassName = 'course-status course-status--closed';
     if (this.isCurrentTerm()) {
       classStatus = ClassSearchUtils.getClassStatus(this.classDetails);
       if (classStatus === 'Open') {
