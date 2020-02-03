@@ -1,10 +1,11 @@
-const { url, selectSubject } = require('./Utils');
+const { url, selectSubject, enterCourseNumber } = require('./Utils');
 
 describe('Displayed markup of results', function () {
   context('when classes related to Biology are searched', () => {
     before(function () {
       cy.visit(url);
       selectSubject();
+      enterCourseNumber();
       cy.get('.btn-primary').click();
     });
 
@@ -54,11 +55,17 @@ describe('Displayed markup of results', function () {
       cy.visit(url);
       selectPreviousTerm();
       selectSubject();
+      enterCourseNumber();
       cy.get('.btn-primary').click();
     });
 
     it('should display classes as Closed', () => {
       cy.get('div').should('contain', 'Closed');
+    });
+
+    it('should not display markup for available seats', () => {
+      cy.wait(5000);
+      cy.get('div').should('not.have.class', 'course-availability');
     });
   });
 });

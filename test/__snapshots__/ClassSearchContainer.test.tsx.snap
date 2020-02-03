@@ -1469,7 +1469,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                       id="additional-filters"
                       onClick={[Function]}
                     >
-                       Additional Filters 
+                       Additional Search Criteria 
                       <i
                         className="fal fa-chevron-down"
                       />

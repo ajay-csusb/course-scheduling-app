@@ -11,7 +11,12 @@ function selectSubject(subject="Biology") {
   cy.get('div').contains(subject).click();
 }
 
+function enterCourseNumber(courseNumber = "100") {
+  cy.get('.course-number').type(courseNumber);
+}
+
 module.exports = {
   url: url,
   selectSubject: selectSubject,
+  enterCourseNumber: enterCourseNumber,
 }
