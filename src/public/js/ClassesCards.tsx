@@ -86,7 +86,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     if (instructorName !== 'N/A') {
       instructor = (
         <React.Fragment>
-          <span>Instructor</span><a href={instructorProfileURL}>{instructorName}</a>
+          <span>Instructor</span><a target="_blank" href={instructorProfileURL}>{instructorName}</a>
         </React.Fragment>
       );
     }
