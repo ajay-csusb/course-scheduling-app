@@ -38,7 +38,6 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
         classes.push(
           <li key={_class.classNumber}>
             <ClassesCards classes={_class} currentTerm={this.props.currentTerm}/>
-            <br />
           </li>
         );
       });
