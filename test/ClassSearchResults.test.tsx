@@ -33,6 +33,7 @@ describe('Given a class search results component', () => {
   describe('When a user searches for classes and two classes are displayed', () => {
     let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
+      classJson.profile = '/profile/bakemann';
       classJson.enrolledTotal = 27;
       classSearchResultsWrapper = mountClassSearchResultsComponent([classJson, baseClassJson]);
     });
@@ -54,6 +55,13 @@ describe('Given a class search results component', () => {
       expect(classSearchResultsWrapper.html()).toContain('course-status--open');
     });
 
+    it('should display the correct attribute to open the instructor link in a new tab', () => {
+      expect(classSearchResultsWrapper.html()).toContain('target="_blank"');
+    });
+
+    it('should display the correct path for instructor profile link', () => {
+      expect(classSearchResultsWrapper.html()).toContain('https://search.csusb.edu/profile/bakemann');
+    });
   });
 
   describe('When a user searches for classes which are are not open for enrollment', () => {
@@ -132,6 +140,7 @@ describe('Given a class search results component', () => {
     baseClassJson.enrolledCapacity = 30;
     baseClassJson.quarter = '2194';
     classPDC.quarter = '2192';
+    classJson.profile = '';
   });
 
 });
