@@ -1,14 +1,21 @@
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import * as React from 'react';
 import { classJson, classPDC, baseClassJson } from './ClassesJson';
 import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
 import { IClass } from '../src/public/js/Class';
 import { TestUtils } from './TestUtils';
 
-const classes: IClass[] = [];
-classes.push(classJson);
-classes.push(classPDC);
-classes.push(baseClassJson);
+function mountClassSearchResultsComponent(results: IClass[], term: string = '2194'): ReactWrapper {
+  const onChangeOfLoadingMessage = jest.fn();
+  const classSearchResultsComponent: JSX.Element = (
+    <ClassSearchResults
+      classes={results}
+      onChangeOfLoadingMessage={onChangeOfLoadingMessage}
+      currentTerm={term}
+    />
+  );
+  return mount(classSearchResultsComponent);
+}
 
 describe('Given a class search results component', () => {
 
@@ -18,32 +25,16 @@ describe('Given a class search results component', () => {
 
   describe('When no classes are displayed in the results', () => {
     it('should display the 0 classes in the message', () => {
-      const onChangeOfLoadingMessage = jest.fn();
-      const classSearchResultsComponent: JSX.Element = (
-        <ClassSearchResults
-          classes={[]}
-          onChangeOfLoadingMessage={onChangeOfLoadingMessage}
-          currentTerm={'2194'}
-        />
-      );
-      const classSearchResultsWrapper = mount(classSearchResultsComponent);
+      const classSearchResultsWrapper = mountClassSearchResultsComponent([]);
       expect(classSearchResultsWrapper.html()).toContain('0 classes found');
     });
   });
 
   describe('When a user searches for a class and two classes are displayed', () => {
-    let classSearchResultsWrapper;
-    classJson.enrolledTotal = 27;
+    let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
-      const onChangeOfLoadingMessage = jest.fn();
-      const classSearchResultsComponent: JSX.Element = (
-        <ClassSearchResults
-          classes={[classJson, baseClassJson]}
-          onChangeOfLoadingMessage={onChangeOfLoadingMessage}
-          currentTerm={'2194'}
-        />
-      );
-      classSearchResultsWrapper = mount(classSearchResultsComponent);
+      classJson.enrolledTotal = 27;
+      classSearchResultsWrapper = mountClassSearchResultsComponent([classJson, baseClassJson]);
     });
 
     it('should display the 2 classes in the message', () => {
@@ -66,18 +57,10 @@ describe('Given a class search results component', () => {
   });
 
   describe('When a user searches for classes which are are not open for enrollment', () => {
-    let classSearchResultsWrapper;
-    baseClassJson.enrolledTotal = 30;
+    let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
-      const onChangeOfLoadingMessage = jest.fn();
-      const classSearchResultsComponent: JSX.Element = (
-        <ClassSearchResults
-          classes={[baseClassJson]}
-          onChangeOfLoadingMessage={onChangeOfLoadingMessage}
-          currentTerm={'2194'}
-        />
-      );
-      classSearchResultsWrapper = mount(classSearchResultsComponent);
+      baseClassJson.enrolledTotal = 30;
+      classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson]);
     });
 
     it('should display the class status as Closed', () => {
@@ -96,18 +79,10 @@ describe('Given a class search results component', () => {
   });
 
   describe('When a user searches for classes from the pervious term', () => {
-    let classSearchResultsWrapper;
-    classPDC.quarter = '000';
+    let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
-      const onChangeOfLoadingMessage = jest.fn();
-      const classSearchResultsComponent: JSX.Element = (
-        <ClassSearchResults
-          classes={[classPDC]}
-          onChangeOfLoadingMessage={onChangeOfLoadingMessage}
-          currentTerm={'2194'}
-        />
-      );
-      classSearchResultsWrapper = mount(classSearchResultsComponent);
+      classPDC.quarter = '000';
+      classSearchResultsWrapper = mountClassSearchResultsComponent([classPDC]);
     });
 
     it('should display the class status as closed', () => {
@@ -123,4 +98,30 @@ describe('Given a class search results component', () => {
       expect(noOfAvailableSeatsMarkup).toHaveLength(0);
     });
   });
+
+  describe('when a user searches for a class which has a waitlist', () => {
+    it('should display the number of students in the waitlist', () => {
+      const results = mountClassSearchResultsComponent([baseClassJson]);
+      expect(results.text()).toContain('Waitlist: 1');
+    });
+
+    describe('if the class has no waitlist', () => {
+      it('should display the text No Waitlist', () => {
+        baseClassJson.enrolledTotal = 30;
+        baseClassJson.waitlistCapacity = 0;
+        const results = mountClassSearchResultsComponent([baseClassJson]);
+        expect(results.text()).toContain('No Waitlist');
+      });
+    });
+
+    describe('if the class is open', () => {
+      it('should not display the text Waitlist', () => {
+        baseClassJson.enrolledCapacity = 30;
+        baseClassJson.enrolledTotal = 20;
+        const results = mountClassSearchResultsComponent([baseClassJson]);
+        expect(results.text()).not.toContain('Waitlist');
+      });
+    });
+  });
+
 });
