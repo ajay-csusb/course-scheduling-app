@@ -1,4 +1,4 @@
-import { mount } from 'enzyme';
+import { mount, ReactWrapper } from 'enzyme';
 import * as React from 'react';
 import { classJson, classPDC, baseClassJson } from './ClassesJson';
 import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
@@ -9,6 +9,18 @@ const classes: IClass[] = [];
 classes.push(classJson);
 classes.push(classPDC);
 classes.push(baseClassJson);
+
+function mountClassSearchResultsComponent(results: IClass[], term: string = '2194'): ReactWrapper {
+  const onChangeOfLoadingMessage = jest.fn();
+  const classSearchResultsComponent: JSX.Element = (
+    <ClassSearchResults
+      classes={results}
+      onChangeOfLoadingMessage={onChangeOfLoadingMessage}
+      currentTerm={term}
+    />
+  );
+  return mount(classSearchResultsComponent);
+}
 
 describe('Given a class search results component', () => {
 
@@ -123,4 +135,30 @@ describe('Given a class search results component', () => {
       expect(noOfAvailableSeatsMarkup).toHaveLength(0);
     });
   });
+
+  describe('when a user searches for a class which has a waitlist', () => {
+    it('should display the number of students in the waitlist', () => {
+      const results = mountClassSearchResultsComponent([baseClassJson]);
+      expect(results.text()).toContain('Waitlist: 1');
+    });
+
+    describe('if the class has no waitlist', () => {
+      it('should display the text No Waitlist', () => {
+        baseClassJson.enrolledTotal = 30;
+        baseClassJson.waitlistCapacity = 0;
+        const results = mountClassSearchResultsComponent([baseClassJson]);
+        expect(results.text()).toContain('No Waitlist');
+      });
+    });
+
+    describe('if the class is open', () => {
+      it('should not display the text Waitlist', () => {
+        baseClassJson.enrolledCapacity = 30;
+        baseClassJson.enrolledTotal = 20;
+        const results = mountClassSearchResultsComponent([baseClassJson]);
+        expect(results.text()).not.toContain('Waitlist');
+      });
+    });
+  });
+
 });
