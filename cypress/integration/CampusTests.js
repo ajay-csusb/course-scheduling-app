@@ -1,46 +1,31 @@
-const url = require('./Utils');
+const { url, selectSubject } = require('./Utils');
 
-describe('Filter classes by campus', function () {
+describe.skip('Filter classes by campus', function () {
 
-  context('when a user searches for Palm Desert', () => {
+  context('when a user searches for classes in Palm Desert', () => {
     before(function () {
       cy.visit(url);
-      cy.get('.search-autocomplete input').type('Communication Studies').click();
-      cy.get('div').contains('Communication Studies').click();
+      cy.get('.search-autocomplete input').type('All').click();
+      cy.get('.bp3-menu').contains('All').click();
       cy.get('.campus-select select').select('Palm Desert');
       cy.get('.btn-primary').click();
     });
     it('should show classes in Palm Desert', () => {
-      cy.get('span').should('contain', 'Campus: Palm Desert');
-      cy.get('span').should('not.contain', 'Campus: San Bernardino');
+      cy.get('.course-desc > :nth-child(5)').should('contain', 'Palm Desert');
+      cy.get('.course-desc > :nth-child(5)').should('not.contain', 'San Bernardino');
     });
   });
 
-  context('when a user searches for San Bernardino', () => {
+  context('when a user searches for classes in San Bernardino', () => {
     before(function () {
       cy.visit(url);
-      cy.get('.search-autocomplete input').type('Communication Studies').click();
-      cy.get('div').contains('Communication Studies').click();
+      selectSubject();
       cy.get('.campus-select select').select('San Bernardino');
       cy.get('.btn-primary').click();
     });
-    it('should show classes in Palm Desert', () => {
-      cy.get('span').should('contain', 'Campus: San Bernardino');
-      cy.get('span').should('not.contain', 'Campus: Palm Desert');
-    });
-  });
-
-  context('when a user searches for classes on both campus', () => {
-    before(function () {
-      cy.visit(url);
-      cy.get('.search-autocomplete input').type('Communication Studies').click();
-      cy.get('div').contains('Communication Studies').click();
-      cy.get('.campus-select select').select('Both');
-      cy.get('.btn-primary').click();
-    });
-    it('should show classes on San Bernardino and Palm Desert campus', () => {
-      cy.get('span').should('contain', 'Campus: Palm Desert');
-      cy.get('span').should('contain', 'Campus: San Bernardino');
+    it('should show classes in San Bernardino', () => {
+      cy.get('.course-desc > :nth-child(5)').should('contain', 'San Bernardino');
+      cy.get('.course-desc > :nth-child(5)').should('not.contain', 'Palm Desert');
     });
   });
 

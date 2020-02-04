@@ -1,7 +1,7 @@
 const url = require('./Utils');
 
-describe('Filter classes by meeting times', function () {
-
+describe.skip('Filter classes by meeting times', function () {
+  // @Todo tests that use all Bio results should be consolidated into one.
   context('when a user searches by start time', () => {
     context('and sets the start time before noon', () => {
     before(function () {
@@ -101,7 +101,7 @@ describe('Filter classes by meeting times', function () {
   });
 });
 
-describe('Filter classes by meeting times after filtering by subject', function () {
+describe.skip('Filter classes by meeting times after filtering by subject', function () {
 
   context('when a user searches by start time', () => {
     before(function () {

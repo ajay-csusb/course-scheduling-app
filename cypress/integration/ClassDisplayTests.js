@@ -1,9 +1,8 @@
-const { url, selectSubject, enterCourseNumber } = require('./Utils');
+const { url, selectSubject, enterCourseNumber, submit } = require('./Utils');
 
-describe('Displayed fields in classes', function () {
+describe('Correct class information is displayed in results', function () {
   context('when Biology is searched', () => {
-
-    describe('Displayed markup of results', function () {
+    describe('displayed markup of results', function () {
       context('when classes related to Biology are searched', () => {
         before(function () {
           cy.visit(url);
@@ -14,7 +13,7 @@ describe('Displayed fields in classes', function () {
 
         it('should display information related to a class', () => {
           cy.get('span').should('contain', 'BIOL 100');
-          cy.get('span').should('contain', 'TOPICS IN BIOLOGY');
+          cy.get('span').should('contain', 'Topics in Biology');
           cy.get('span').should('contain', 'Units');
           cy.get('span').should('contain', 'Meeting Time');
           cy.get('span').should('contain', 'Meeting Days');
@@ -22,10 +21,9 @@ describe('Displayed fields in classes', function () {
           cy.get('span').should('contain', 'Campus');
           cy.get('span').should('contain', 'Instructor');
           cy.get('span').should('contain', 'Instruction Mode');
-          cy.get('div').should('contain', 'Available Seats');
+          cy.get('div').should('contain', 'seats available');
           cy.get('span').should('contain', 'Section');
           cy.get('span').should('contain', 'Course Attribute');
-          // @Todo test Instructor URL
         });
 
         it('should show description when info icon is clicked', () => {
@@ -53,17 +51,17 @@ describe('Displayed fields in classes', function () {
         });
       });
 
-      context('When Biology classes from past terms are searched', () => {
+      context('when Biology classes from past terms are searched', () => {
         before(function () {
           cy.visit(url);
           selectPreviousTerm();
           selectSubject();
           enterCourseNumber();
-          cy.get('.btn-primary').click();
+          submit();
         });
 
         it('should display classes as Closed', () => {
-          cy.get('div').should('contain', 'Closed');
+          cy.get('.course-status').should('contain', 'Closed');
         });
 
         it('should not display markup for available seats', () => {

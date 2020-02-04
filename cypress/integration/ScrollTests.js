@@ -1,6 +1,5 @@
 const url = require('./Utils');
 describe('Show scroll to top icon', function () {
-
   context('when a user searches by subject', () => {
     context('and scrolls through the results', () => {
       before(function () {

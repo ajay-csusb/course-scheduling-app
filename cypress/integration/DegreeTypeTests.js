@@ -1,7 +1,7 @@
 const url = require('./Utils');
 
-describe('Filter classes by degree type', function () {
-
+describe.skip('Filter classes by degree type', function () {
+  // @Todo rewrite this test after we add the check box for Career level classes
   context('Given class search form', () => {
     context('when a user searches by degree type', () => {
       context('and Graduate is selected', () => {

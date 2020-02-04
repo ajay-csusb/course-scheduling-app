@@ -15,8 +15,19 @@ function enterCourseNumber(courseNumber = "100") {
   cy.get('.course-number').type(courseNumber);
 }
 
+function submit() {
+  cy.get('.btn-primary').click();
+  cy.wait(3000);
+}
+
+function clickAdditionalFilters() {
+  cy.get('#additional-filters').click();
+}
+
 module.exports = {
   url: url,
   selectSubject: selectSubject,
   enterCourseNumber: enterCourseNumber,
+  submit: submit,
+  clickAdditionalFilters: clickAdditionalFilters,
 }

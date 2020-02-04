@@ -1,6 +1,6 @@
 const url = require('./Utils');
 
-describe('Reset button behavior', function () {
+describe.skip('Reset button behavior', function () {
   describe('Given a class search form', function () {
     describe('When reset button is clicked', function () {
       before(() => {
@@ -30,7 +30,7 @@ describe('Reset button behavior', function () {
   //  And Art 200 80 should be displayed
   //  And Campus: Palm Desert should be displayed
   //  And Campus: San Bernardino should be displayed
-describe.only('Given a class search form', function () {
+describe.skip('Given a class search form', function () {
   describe('When a user searches for classes on PDC campus and then clicks reset', function () {
     before(() => {
       cy.get('.search-autocomplete input').type('All').click();
