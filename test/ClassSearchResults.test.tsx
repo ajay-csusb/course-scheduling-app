@@ -30,32 +30,16 @@ describe('Given a class search results component', () => {
 
   describe('When no classes are displayed in the results', () => {
     it('should display the 0 classes in the message', () => {
-      const onChangeOfLoadingMessage = jest.fn();
-      const classSearchResultsComponent: JSX.Element = (
-        <ClassSearchResults
-          classes={[]}
-          onChangeOfLoadingMessage={onChangeOfLoadingMessage}
-          currentTerm={'2194'}
-        />
-      );
-      const classSearchResultsWrapper = mount(classSearchResultsComponent);
+      const classSearchResultsWrapper = mountClassSearchResultsComponent([]);
       expect(classSearchResultsWrapper.html()).toContain('0 classes found');
     });
   });
 
   describe('When a user searches for a class and two classes are displayed', () => {
-    let classSearchResultsWrapper;
-    classJson.enrolledTotal = 27;
+    let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
-      const onChangeOfLoadingMessage = jest.fn();
-      const classSearchResultsComponent: JSX.Element = (
-        <ClassSearchResults
-          classes={[classJson, baseClassJson]}
-          onChangeOfLoadingMessage={onChangeOfLoadingMessage}
-          currentTerm={'2194'}
-        />
-      );
-      classSearchResultsWrapper = mount(classSearchResultsComponent);
+      classJson.enrolledTotal = 27;
+      classSearchResultsWrapper = mountClassSearchResultsComponent([classJson, baseClassJson]);
     });
 
     it('should display the 2 classes in the message', () => {
@@ -78,18 +62,10 @@ describe('Given a class search results component', () => {
   });
 
   describe('When a user searches for classes which are are not open for enrollment', () => {
-    let classSearchResultsWrapper;
-    baseClassJson.enrolledTotal = 30;
+    let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
-      const onChangeOfLoadingMessage = jest.fn();
-      const classSearchResultsComponent: JSX.Element = (
-        <ClassSearchResults
-          classes={[baseClassJson]}
-          onChangeOfLoadingMessage={onChangeOfLoadingMessage}
-          currentTerm={'2194'}
-        />
-      );
-      classSearchResultsWrapper = mount(classSearchResultsComponent);
+      baseClassJson.enrolledTotal = 30;
+      classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson]);
     });
 
     it('should display the class status as Closed', () => {
@@ -108,18 +84,10 @@ describe('Given a class search results component', () => {
   });
 
   describe('When a user searches for classes from the pervious term', () => {
-    let classSearchResultsWrapper;
-    classPDC.quarter = '000';
+    let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
-      const onChangeOfLoadingMessage = jest.fn();
-      const classSearchResultsComponent: JSX.Element = (
-        <ClassSearchResults
-          classes={[classPDC]}
-          onChangeOfLoadingMessage={onChangeOfLoadingMessage}
-          currentTerm={'2194'}
-        />
-      );
-      classSearchResultsWrapper = mount(classSearchResultsComponent);
+      classPDC.quarter = '000';
+      classSearchResultsWrapper = mountClassSearchResultsComponent([classPDC]);
     });
 
     it('should display the class status as closed', () => {
