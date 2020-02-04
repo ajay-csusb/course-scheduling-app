@@ -131,38 +131,44 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   public getClassStatusMarkup(): JSX.Element {
     let classStatus = 'Closed';
     let classStatusClassName = 'course-status course-status--closed';
-    let waitlistMarkup = this.getWaitlistMarkup();
+    let waitlistMarkup = <div>{this.getWaitlistMarkup()}</div>;
     if (this.isCurrentTerm()) {
       classStatus = ClassSearchUtils.getClassStatus(this.classDetails);
       if (classStatus === 'Open') {
         classStatusClassName = 'course-status course-status--open';
-        waitlistMarkup = <div />;
+        waitlistMarkup = <React.Fragment/>;
       }
     }
     return (
-      <div className={classStatusClassName}><span />{classStatus} {waitlistMarkup}</div>
+      <React.Fragment>
+        <div className={classStatusClassName}><span />{classStatus}</div>
+        {waitlistMarkup}
+      </React.Fragment>
     );
   }
 
   public getClassAvailabilityMarkup(): JSX.Element {
     const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(this.classDetails);
     if (ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
-      return (<div />);
+      return (<React.Fragment/>);
     }
     if (!this.isCurrentTerm()) {
-      return (<div />);
+      return (<React.Fragment/>);
     }
     return (
-      <div className="course-availability">Available Seats <span>{noOfSeatsAvailable}</span></div>
+      <div className="course-availability">Available Seats: <span>{noOfSeatsAvailable}</span></div>
     );
   }
 
   public getWaitlistMarkup(): JSX.Element {
     const waitlistNo = this.classDetails.waitlistTotal;
-    if (this.classDetails.waitlistCapacity === 0) {
-      return (<React.Fragment><span>No Waitlist</span></React.Fragment>);
+    if (!this.isCurrentTerm()) {
+      return (<React.Fragment/>);
     }
-    return (<React.Fragment><span>Waitlist: </span>{waitlistNo}</React.Fragment>);
+    if (this.classDetails.waitlistCapacity === 0) {
+      return (<div className="course-availability">No Waitlist</div>);
+    }
+    return (<div className="course-availability">Waitlist: <span>{waitlistNo}</span></div>);
   }
 
 }
