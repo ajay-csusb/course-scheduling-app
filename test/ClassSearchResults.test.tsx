@@ -5,11 +5,6 @@ import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
 import { IClass } from '../src/public/js/Class';
 import { TestUtils } from './TestUtils';
 
-const classes: IClass[] = [];
-classes.push(classJson);
-classes.push(classPDC);
-classes.push(baseClassJson);
-
 function mountClassSearchResultsComponent(results: IClass[], term: string = '2194'): ReactWrapper {
   const onChangeOfLoadingMessage = jest.fn();
   const classSearchResultsComponent: JSX.Element = (
