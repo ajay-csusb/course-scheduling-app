@@ -31,6 +31,9 @@ const classJson: IClass = {
     fri: 'N',
     sat: 'N',
     sun: 'N',
+    buildingCode: '',
+    room: '',
+    degreeType: '',
   };
 
 describe('test meeting day', () => {

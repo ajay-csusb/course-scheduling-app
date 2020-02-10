@@ -311,24 +311,47 @@ export function getRoomNumber(classes: IClass): string {
   return `${classes.buildingCode} ${classes.room}`;
 }
 
+export function mergeAttributes(classes: IClass[]): IClass[] {
+  const results: IClass[] = [];
+  results.push(classes[0]);
+  for (let _class = 1; _class < classes.length; _class++) {
+    const size = results.length - 1;
+    const prevClass = results[size];
+    const currClass = classes[_class];
+    if (isDuplicateClass(prevClass, currClass)) {
+      results[size].courseAttr = combineAttr(prevClass, currClass);
+    } else {
+      results.push(classes[_class]);
+    }
+  }
+  return results;
+}
+
+function combineAttr(prevClass: IClass, currClass: IClass): string {
+  let mergedAttr = '';
+  const prevClassAttr = prevClass.courseAttr;
+  const currClassAttr = currClass.courseAttr;
+  if (prevClassAttr !== undefined && currClassAttr !== undefined) {
+    mergedAttr = prevClassAttr.concat(', ', currClassAttr);
+  }
+  return mergedAttr;
+}
+
+function isDuplicateClass(prevClass: IClass, currClass: IClass): boolean {
+  return (prevClass.classNumber === currClass.classNumber);
+}
 function sortBySubject(classes: IClass[]): IClass[] {
   return classes.sort((a, b) => {
     return a.subject.localeCompare(b.subject);
   });
 }
 
-function sortByClassSection(classes: IClass[]): IClass[] {
-  return classes.sort((a, b) => {
-    return parseInt(a.classSection, 10) - parseInt(b.classSection, 10);
-  });
-}
-
 export function sortByCatalogNo(classes: IClass[]): IClass[] {
   return classes.sort((a, b) => {
-    return parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10);
+    return ((parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10)) || parseInt(a.classSection, 10) - parseInt(b.classSection, 10));
   });
 }
 
 export function sortClasses(classes: IClass[]): IClass[] {
-  return sortBySubject(sortByClassSection(sortByCatalogNo(classes)));
+  return sortBySubject(sortByCatalogNo(classes));
 }

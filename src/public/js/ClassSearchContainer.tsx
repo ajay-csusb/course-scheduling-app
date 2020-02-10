@@ -232,8 +232,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         transformedClass.push(Class.transformToClass(_class));
       });
     }
-    const classesFilteredByTime = MeetingTime.filter(transformedClass, this.state.startTime, this.state.endTime);
-    this.allResults = ClassSearchUtils.sortClasses(classesFilteredByTime);
+    const filteredClasses = MeetingTime.filter(transformedClass, this.state.startTime, this.state.endTime);
+    const sortedClasses = ClassSearchUtils.sortClasses(filteredClasses);
+    this.allResults = ClassSearchUtils.mergeAttributes(sortedClasses);
     this.setState({
       noClasses: false,
       isLoading: false,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import fetchMock from 'fetch-mock';
 import * as ClassSearchUtils from '../src/public/js/ClassSearchUtils';
-import { classJson, rawClassesJson} from './ClassesJson';
+import { classJson, rawClassesJson, baseClassJson} from './ClassesJson';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { mount, shallow } from 'enzyme';
 import { TestUtils } from './TestUtils';
@@ -685,6 +685,28 @@ describe('Number of available seat', () => {
   });
 });
 
+describe('when a user performs a search', () => {
+  describe('and two classes with different class numbers are displayed ', () => {
+    it('should display two classes', () => {
+      const result = ClassSearchUtils.mergeAttributes([classJson, baseClassJson]);
+      expect(result).toHaveLength(2);
+    });
+  });
+
+  describe('and two classes with same class number is displayed', () => {
+    const copyOfClassJson = JSON.parse(JSON.stringify(classJson));
+    it('should display one class', () => {
+      const classes = ClassSearchUtils.mergeAttributes([classJson, copyOfClassJson]);
+      expect(classes).toHaveLength(1);
+    });
+    it('should merge the course attributes', () => {
+      classJson.courseAttr = 'foo';
+      copyOfClassJson.courseAttr = 'bar';
+      const classes = ClassSearchUtils.mergeAttributes([classJson, copyOfClassJson]);
+      expect(classes[0].courseAttr).toEqual('foo, bar');
+    });
+  });
+});
 describe('when multiple classes are displayed in results', () => {
   const classAdm100 = JSON.parse(JSON.stringify(classJson));
   const classAdm200 = JSON.parse(JSON.stringify(classJson));
