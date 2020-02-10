@@ -5,6 +5,7 @@ import { classJson, rawClassesJson} from './ClassesJson';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { mount, shallow } from 'enzyme';
 import { TestUtils } from './TestUtils';
+import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -681,5 +682,49 @@ describe('Number of available seat', () => {
       twoAvailableSeats.enrolledTotal = 28;
       expect(ClassSearchUtils.getNoOfAvailableSeats(twoAvailableSeats)).toEqual(2);
     });
+  });
+});
+
+describe('when multiple classes are displayed in results', () => {
+  const classAdm100 = JSON.parse(JSON.stringify(classJson));
+  const classAdm200 = JSON.parse(JSON.stringify(classJson));
+  const classBio100 = JSON.parse(JSON.stringify(classJson));
+  const classBio200 = JSON.parse(JSON.stringify(classJson));
+  let classes;
+  beforeAll(() => {
+    classAdm100.subject = 'ADM';
+    classAdm100.catalogNo = '100';
+    classAdm100.classSection = '01';
+    classAdm200.subject = 'ADM';
+    classAdm200.catalogNo = '200';
+    classAdm200.classSection = '02';
+    classBio100.subject = 'BIO';
+    classBio100.catalogNo = '100';
+    classBio100.classSection = '01';
+    classBio200.subject = 'BIO';
+    classBio200.catalogNo = '200';
+    classBio200.classSection = '02';
+    classes = ClassSearchUtils.sortClasses([classBio200, classAdm200, classAdm100, classBio100]);
+  });
+
+  it('should display the classes in ascending order of catalog number', () => {
+    expect(classes[0].catalogNo).toEqual('100');
+    expect(classes[1].catalogNo).toEqual('200');
+    expect(classes[2].catalogNo).toEqual('100');
+    expect(classes[3].catalogNo).toEqual('200');
+  });
+
+  it('should display the classes in ascending order of subject', () => {
+    expect(classes[0].subject).toEqual('ADM');
+    expect(classes[1].subject).toEqual('ADM');
+    expect(classes[2].subject).toEqual('BIO');
+    expect(classes[3].subject).toEqual('BIO');
+  });
+
+  it('should display the classes in ascending order of class section', () => {
+    expect(classes[0].classSection).toEqual('01');
+    expect(classes[1].classSection).toEqual('02');
+    expect(classes[2].classSection).toEqual('01');
+    expect(classes[3].classSection).toEqual('02');
   });
 });
