@@ -340,3 +340,18 @@ function combineAttr(prevClass: IClass, currClass: IClass): string {
 function isDuplicateClass(prevClass: IClass, currClass: IClass): boolean {
   return (prevClass.classNumber === currClass.classNumber);
 }
+function sortBySubject(classes: IClass[]): IClass[] {
+  return classes.sort((a, b) => {
+    return a.subject.localeCompare(b.subject);
+  });
+}
+
+export function sortByCatalogNo(classes: IClass[]): IClass[] {
+  return classes.sort((a, b) => {
+    return ((parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10)) || parseInt(a.classSection, 10) - parseInt(b.classSection, 10));
+  });
+}
+
+export function sortClasses(classes: IClass[]): IClass[] {
+  return sortBySubject(sortByCatalogNo(classes));
+}
