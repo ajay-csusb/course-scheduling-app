@@ -310,3 +310,25 @@ export function getRoomNumber(classes: IClass): string {
   }
   return `${classes.buildingCode} ${classes.room}`;
 }
+
+function sortBySubject(classes: IClass[]): IClass[] {
+  return classes.sort((a, b) => {
+    return a.subject.localeCompare(b.subject);
+  });
+}
+
+function sortByClassSection(classes: IClass[]): IClass[] {
+  return classes.sort((a, b) => {
+    return parseInt(a.classSection, 10) - parseInt(b.classSection, 10);
+  });
+}
+
+export function sortByCatalogNo(classes: IClass[]): IClass[] {
+  return classes.sort((a, b) => {
+    return parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10);
+  });
+}
+
+export function sortClasses(classes: IClass[]): IClass[] {
+  return sortBySubject(sortByClassSection(sortByCatalogNo(classes)));
+}
