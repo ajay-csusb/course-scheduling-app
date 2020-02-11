@@ -8,7 +8,7 @@ describe('Filter classes by course attribute', function () {
         cy.visit(url);
         selectSubject();
         cy.get('#additional-filters').click();
-        cy.get('.course-attribute select').select('General Education');
+        cy.get('#ge-classes-attributes').select('GE-B2 Life Sciences');
         cy.get('.btn-primary').click();
       });
       assertGeClasses();
