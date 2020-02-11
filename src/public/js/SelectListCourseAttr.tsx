@@ -7,20 +7,21 @@ export interface ISelectListCourseAttrProps {
 }
 
 export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrProps, {}> {
-
   private readonly courseAttr: IOptionProps[] = [
-      { label: 'All', value: 'all' },
-      { label: 'Early Start Program', value: 'ESP' },
-      { label: 'Fully Online', value: 'FONL' },
-      { label: 'General Education', value: 'GE' },
-      { label: 'Graduate classes', value: 'PBAC' },
-      { label: 'Open University Course', value: 'EXED'},
-      { label: 'Service Learning', value: 'CSLI' },
-      { label: 'Study Abroad', value: 'SA' },
-      { label: 'Zero Cost Course Materials', value: 'ZCCM' },
-      { label: 'eBook', value: 'EBK' },
-      { label: 'Undergraduate classes', value: 'UGRD' },
-    ];
+    { label: 'All', value: 'all' },
+    { label: 'Asian Studies', value: 'ASTD' },
+    { label: 'Chicano(a)/Latino(a) Studies', value: 'CLST' },
+    { label: 'Service Learning', value: 'CSLI' },
+    { label: 'GE Designation', value: 'DES' },
+    { label: 'eBook', value: 'EBK' },
+    { label: 'Ethnic Studies', value: 'ETHN' },
+    { label: 'Gender and Sexuality Studies', value: 'GSS' },
+    { label: 'Low Cost Course Materials', value: 'LCCM' },
+    { label: 'Latin American Studies', value: 'LTAM' },
+    { label: 'Study Abroad', value: 'SA' },
+    { label: 'Women\'s Studies', value: 'WSTD' },
+    { label: 'Zero Cost Course Materials', value: 'ZCCM' },
+  ];
 
   public render(): React.ReactNode {
     return(
