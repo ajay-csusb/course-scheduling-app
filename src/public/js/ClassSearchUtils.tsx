@@ -355,3 +355,43 @@ export function sortByCatalogNo(classes: IClass[]): IClass[] {
 export function sortClasses(classes: IClass[]): IClass[] {
   return sortBySubject(sortByCatalogNo(classes));
 }
+
+export function expandCourseAttribute(courseAttrAbbr: string): string {
+  const results = [];
+  const courseAttrArr = courseAttrAbbr.split(', ');
+  const courseAttrExpanded = {
+    ASTD: 'Asian Studies',
+    CLST: 'Chicano(a)/Latino(a) Studies',
+    CSLI: 'Service Learning',
+    DES: 'GE Designation',
+    EBK: 'eBook',
+    ETHN: 'Ethnic Studies',
+    GE: 'General Education',
+    GSS: 'Gender and Sexuality Studies',
+    LCCM: 'Low Cost Course Materials',
+    LTAM: 'Latin American Studies',
+    SA: 'Study Abroad',
+    WSTD: 'Women\'s Studies',
+    ZCCM: 'Zero Cost Course Materials',
+  };
+  // tslint:disable-next-line:forin
+  for (const courseAttr of  courseAttrArr) {
+    if (courseAttrExpanded[courseAttr] !== undefined) {
+      results.push(courseAttrExpanded[courseAttr]);
+    }
+  }
+  if (results.length === 0) {
+    return '';
+  }
+  return results.join(', ');
+}
+
+export function parseCourseAttributes(classes: IClass[]): IClass[] {
+  const mergedClasses = mergeAttributes(classes);
+  // tslint:disable-next-line:forin
+  for (const _class of mergedClasses) {
+    const expandedCourseAttr = expandCourseAttribute(_class.courseAttr);
+    _class.courseAttr = expandedCourseAttr;
+  }
+  return mergedClasses;
+}

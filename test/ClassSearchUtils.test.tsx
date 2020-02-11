@@ -750,3 +750,35 @@ describe('when multiple classes are displayed in results', () => {
     expect(classes[3].classSection).toEqual('02');
   });
 });
+
+describe('when class results are displayed', () => {
+  it('should display the full description of the course attribute', () => {
+    const classBio100 = JSON.parse(JSON.stringify(classJson));
+    classBio100.courseAttr = 'GE';
+    const classes = ClassSearchUtils.expandCourseAttribute(classBio100.courseAttr);
+    expect(classes).toEqual('General Education');
+  });
+
+  describe('if the class has multiple attributes', () => {
+    it('should display full description of all the course attributes', () => {
+      const classBio200 = JSON.parse(JSON.stringify(classJson));
+      classBio200.courseAttr = 'GE, CSLI';
+      const classes = ClassSearchUtils.expandCourseAttribute(classBio200.courseAttr);
+      expect(classes).toEqual('General Education, Service Learning');
+    });
+
+    it('should not display invalid attributes', () => {
+      const classBio300 = JSON.parse(JSON.stringify(classJson));
+      classBio300.courseAttr = 'WSTD, foo';
+      const classes = ClassSearchUtils.expandCourseAttribute(classBio300.courseAttr);
+      expect(classes).toEqual('Women\'s Studies');
+    });
+
+    it('should not display any information if all the attributes are invalid', () => {
+      const classBio400 = JSON.parse(JSON.stringify(classJson));
+      classBio400.courseAttr = 'foo, bar';
+      const classes = ClassSearchUtils.expandCourseAttribute(classBio400.courseAttr);
+      expect(classes).toEqual('');
+    });
+  });
+});

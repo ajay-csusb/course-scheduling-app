@@ -47,7 +47,7 @@ export interface IClass {
   instructorName: string;
   instructorEmployeeId?: string;
   instructorAltName?: string;
-  courseAttr?: string;
+  courseAttr: string;
   degreeType: string;
 }
 
