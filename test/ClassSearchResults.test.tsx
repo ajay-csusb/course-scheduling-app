@@ -30,9 +30,10 @@ describe('Given a class search results component', () => {
     });
   });
 
-  describe('When a user searches for a class and two classes are displayed', () => {
+  describe('When a user searches for classes and two classes are displayed', () => {
     let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
+      classJson.profile = '/profile/bakemann';
       classJson.enrolledTotal = 27;
       classSearchResultsWrapper = mountClassSearchResultsComponent([classJson, baseClassJson]);
     });
@@ -46,7 +47,7 @@ describe('Given a class search results component', () => {
     });
 
     it('should display the number of available seats as 3', () => {
-      const markup = '<div class="course-availability">Available Seats <span>3</span></div>';
+      const markup = '<div class="course-availability">Available Seats: <span>3</span></div>';
       expect(classSearchResultsWrapper.html()).toContain(markup);
     });
 
@@ -54,6 +55,13 @@ describe('Given a class search results component', () => {
       expect(classSearchResultsWrapper.html()).toContain('course-status--open');
     });
 
+    it('should display the correct attribute to open the instructor link in a new tab', () => {
+      expect(classSearchResultsWrapper.html()).toContain('target="_blank"');
+    });
+
+    it('should display the correct path for instructor profile link', () => {
+      expect(classSearchResultsWrapper.html()).toContain('https://search.csusb.edu/profile/bakemann');
+    });
   });
 
   describe('When a user searches for classes which are are not open for enrollment', () => {
@@ -72,8 +80,7 @@ describe('Given a class search results component', () => {
     });
 
     it('should not display available seats for classes which are closed', () => {
-      const noOfAvailableSeatsMarkup = classSearchResultsWrapper.find('.course-availability');
-      expect(noOfAvailableSeatsMarkup).toHaveLength(0);
+      expect(classSearchResultsWrapper.text()).not.toContain('Available Seats:');
     });
 
   });
@@ -93,14 +100,18 @@ describe('Given a class search results component', () => {
       expect(classSearchResultsWrapper.html()).toContain('course-status--close');
     });
 
-    it('should not display available seats markup', () => {
-      const noOfAvailableSeatsMarkup = classSearchResultsWrapper.find('.course-availability');
-      expect(noOfAvailableSeatsMarkup).toHaveLength(0);
+    it('should not display available seats text', () => {
+      expect(classSearchResultsWrapper.text()).not.toContain('Available Seats:');
+    });
+
+    it('should not display the text Waitlist', () => {
+      expect(classSearchResultsWrapper.text()).not.toContain('Waitlist');
     });
   });
 
   describe('when a user searches for a class which has a waitlist', () => {
     it('should display the number of students in the waitlist', () => {
+      baseClassJson.enrolledTotal = 30;
       const results = mountClassSearchResultsComponent([baseClassJson]);
       expect(results.text()).toContain('Waitlist: 1');
     });
@@ -122,6 +133,14 @@ describe('Given a class search results component', () => {
         expect(results.text()).not.toContain('Waitlist');
       });
     });
+  });
+
+  afterEach(() => {
+    baseClassJson.enrolledTotal = 10;
+    baseClassJson.enrolledCapacity = 30;
+    baseClassJson.quarter = '2194';
+    classPDC.quarter = '2192';
+    classJson.profile = '';
   });
 
 });
