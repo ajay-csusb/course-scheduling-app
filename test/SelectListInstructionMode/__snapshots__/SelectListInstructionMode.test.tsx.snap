@@ -12,40 +12,12 @@ Array [
           "value": "all",
         },
         Object {
-          "label": "Classroom",
-          "value": "p",
-        },
-        Object {
           "label": "Online",
           "value": "ol",
         },
         Object {
-          "label": "Online CourseMatch Instruction",
-          "value": "cm",
-        },
-        Object {
-          "label": "Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)",
-          "value": "fo",
-        },
-        Object {
-          "label": "Hybrid Online Asynchronous and Synchronous Instruction",
+          "label": "Hybrid",
           "value": "ho",
-        },
-        Object {
-          "label": "Hybrid Classroom and Online Instruction",
-          "value": "hc",
-        },
-        Object {
-          "label": "Off-Campus ",
-          "value": "oc",
-        },
-        Object {
-          "label": "Televised Instruction (origination site)",
-          "value": "to",
-        },
-        Object {
-          "label": "Televised Instruction (receiving site)",
-          "value": "tr",
         },
       ]
     }
@@ -67,13 +39,6 @@ Array [
           All
         </option>
         <option
-          key="p"
-          label="Classroom"
-          value="p"
-        >
-          Classroom
-        </option>
-        <option
           key="ol"
           label="Online"
           value="ol"
@@ -81,53 +46,11 @@ Array [
           Online
         </option>
         <option
-          key="cm"
-          label="Online CourseMatch Instruction"
-          value="cm"
-        >
-          Online CourseMatch Instruction
-        </option>
-        <option
-          key="fo"
-          label="Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)"
-          value="fo"
-        >
-          Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)
-        </option>
-        <option
           key="ho"
-          label="Hybrid Online Asynchronous and Synchronous Instruction"
+          label="Hybrid"
           value="ho"
         >
-          Hybrid Online Asynchronous and Synchronous Instruction
-        </option>
-        <option
-          key="hc"
-          label="Hybrid Classroom and Online Instruction"
-          value="hc"
-        >
-          Hybrid Classroom and Online Instruction
-        </option>
-        <option
-          key="oc"
-          label="Off-Campus "
-          value="oc"
-        >
-          Off-Campus 
-        </option>
-        <option
-          key="to"
-          label="Televised Instruction (origination site)"
-          value="to"
-        >
-          Televised Instruction (origination site)
-        </option>
-        <option
-          key="tr"
-          label="Televised Instruction (receiving site)"
-          value="tr"
-        >
-          Televised Instruction (receiving site)
+          Hybrid
         </option>
       </select>
       <Blueprint3.Icon
@@ -172,13 +95,6 @@ Array [
         All
       </option>
       <option
-        key="p"
-        label="Classroom"
-        value="p"
-      >
-        Classroom
-      </option>
-      <option
         key="ol"
         label="Online"
         value="ol"
@@ -186,53 +102,11 @@ Array [
         Online
       </option>
       <option
-        key="cm"
-        label="Online CourseMatch Instruction"
-        value="cm"
-      >
-        Online CourseMatch Instruction
-      </option>
-      <option
-        key="fo"
-        label="Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)"
-        value="fo"
-      >
-        Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)
-      </option>
-      <option
         key="ho"
-        label="Hybrid Online Asynchronous and Synchronous Instruction"
+        label="Hybrid"
         value="ho"
       >
-        Hybrid Online Asynchronous and Synchronous Instruction
-      </option>
-      <option
-        key="hc"
-        label="Hybrid Classroom and Online Instruction"
-        value="hc"
-      >
-        Hybrid Classroom and Online Instruction
-      </option>
-      <option
-        key="oc"
-        label="Off-Campus "
-        value="oc"
-      >
-        Off-Campus 
-      </option>
-      <option
-        key="to"
-        label="Televised Instruction (origination site)"
-        value="to"
-      >
-        Televised Instruction (origination site)
-      </option>
-      <option
-        key="tr"
-        label="Televised Instruction (receiving site)"
-        value="tr"
-      >
-        Televised Instruction (receiving site)
+        Hybrid
       </option>
     </select>
     <Blueprint3.Icon

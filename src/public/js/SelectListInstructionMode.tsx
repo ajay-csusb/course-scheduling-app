@@ -15,15 +15,8 @@ export class SelectListInstructionMode extends React.Component<ISelectListInstru
   public render(): React.ReactNode {
     const instructionMode: IOptionProps[] = [
       { label: 'All', value: 'all'},
-      { label: 'Classroom', value: 'p'},
       { label: 'Online', value: 'ol'},
-      { label: 'Online CourseMatch Instruction', value: 'cm'},
-      { label: 'Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)', value: 'fo'},
-      { label: 'Hybrid Online Asynchronous and Synchronous Instruction', value: 'ho'},
-      { label: 'Hybrid Classroom and Online Instruction', value: 'hc'},
-      { label: 'Off-Campus ', value: 'oc'},
-      { label: 'Televised Instruction (origination site)', value: 'to'},
-      { label: 'Televised Instruction (receiving site)', value: 'tr'},
+      { label: 'Hybrid', value: 'ho'},
     ];
     return (
       <React.Fragment>

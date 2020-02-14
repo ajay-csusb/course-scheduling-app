@@ -143,7 +143,7 @@ export class Class {
       fri: userInput.isFridayChecked() ? 'Y' : '',
       sat: userInput.isSaturdayChecked() ? 'Y' : '',
       sun: userInput.isSundayChecked() ? 'Y' : '',
-      instruction_mode: userInput.getInstructionMode().toUpperCase(),
+      instruction_mode: '',
       acad_career: userInput.getDegreeType(),
     };
     ClassSearchUtils.fetchWithArg(this.classesUrl, params, onSuccess, onFailure);

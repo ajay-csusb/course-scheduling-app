@@ -406,21 +406,12 @@ describe('fetch parameters', () => {
     });
   });
 
-  describe('when instructionMode is set to all', () => {
-    it('should pass empty string', () => {
-      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'all' } });
-      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      const instructionModeArgument = fetchMock.lastOptions();
-      expect(instructionModeArgument.body).toMatch(new RegExp('"instruction_mode":""'));
-    });
-  });
-
   describe('when instructionMode is set', () => {
-    it('should use pass the value in uppercase', () => {
+    it('should pass empty string', () => {
       classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'foo' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const instructionModeArgument = fetchMock.lastOptions();
-      expect(instructionModeArgument.body).toMatch(new RegExp('"instruction_mode":"FOO"'));
+      expect(instructionModeArgument.body).toMatch(new RegExp('"instruction_mode":""'));
     });
   });
 

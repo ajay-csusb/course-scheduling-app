@@ -1,26 +1,27 @@
-const url = require('./Utils');
+const { url, selectSubject, submit, clickAdditionalFilters } = require('./Utils');
 
 describe('Filter classes by instruction mode', function () {
 
-  context('Given class search form', () => {
-    context('when a user searches by subject and Hybrid classroom and Online Instruction is selected as instruction mode', () => {
+  context('given a class search form', () => {
+    context('when a user searches for online classes', () => {
       before(function () {
         cy.visit(url);
-        cy.get('.search-autocomplete input').type('all').click();
-        cy.wait(5000);
-        cy.get('span').contains('all', { timeout: 20000 }).click();
-        cy.get('#additional-filters').click();
-        cy.get('.select-instruction-mode select').select('Hybrid Classroom and Online Instruction');
-        cy.get('.btn-primary').click();
-        cy.wait(10000);
+        selectSubject("Administration");
+        clickAdditionalFilters();
+        cy.get('.select-instruction-mode select').select('Online');
+        submit();
       });
 
-      it('should show classes that Hybrid Classroom and Online Instruction ', () => {
-        cy.get('span').should('contain', 'Hybrid Classroom and Online Instruction');
+      it('should show classes that have Instruction mode as Online', () => {
+        cy.get('ul.course-desc li').should('contain', 'Online');
       });
 
-      it('should not show classes that are Off-Campus', () => {
-        cy.get('span').should('not.contain', 'Off-Campus');
+      it('should not show classes that have Instruction mode as Classroom', () => {
+        cy.get('ul.course-desc li').should('not.contain', 'Classroom');
+      });
+
+      it('should not show classes that have Instruction mode as Hybrid', () => {
+        cy.get('ul.course-desc li').should('not.contain', 'Hybrid');
       });
     });
   });
