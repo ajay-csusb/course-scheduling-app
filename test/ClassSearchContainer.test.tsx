@@ -16,10 +16,17 @@ describe('snapshots', () => {
     expect(classSearchContainerWrapper).toMatchSnapshot();
   });
 
-  test('compare search form snapshot', () => {
+  test('Class search form snapshot', () => {
     const classSearchContainerWrapper = mount(<ClassSearchContainer />);
     const classSearchFormWrapper = classSearchContainerWrapper.children().childAt(0);
     expect(classSearchFormWrapper).toMatchSnapshot();
+  });
+
+  test('Class search container with additional filters component snapshot', () => {
+    const classSearchContainerComponent = mount(<ClassSearchContainer />);
+    classSearchContainerComponent.find('#additional-filters').simulate('click');
+    const classSearchContainerWithAdditionalFiltersComponent = classSearchContainerComponent.children().childAt(0);
+    expect(classSearchContainerWithAdditionalFiltersComponent).toMatchSnapshot();
   });
 
 });
@@ -96,24 +103,33 @@ describe('states', () => {
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       expect(classSearchContainerWrapper.state('courseNo')).toEqual('111');
     });
-
-    describe('when an option is selected from term', () => {
-      it('should set the correct term state', () => {
-        const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-        classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '000' } });
-        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-        expect(classSearchContainerWrapper.state('term')).toEqual('000');
-      });
+  });
+  describe('when an option is selected from term', () => {
+    it('should set the correct term state', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '000' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('term')).toEqual('000');
     });
+  });
 
-    describe('when an option is selected from GE classes', () => {
-      it('should set the correct GE classes attribute state', () => {
-        const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-        classSearchContainerWrapper.find('#additional-filters').simulate('click');
-        classSearchContainerWrapper.find('.select-ge-classes-attr > select').simulate('change', { target: { value: 'GE-001' } });
-        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-        expect(classSearchContainerWrapper.state('geClassesAttribute')).toEqual('GE-001');
-      });
+  describe('when an option is selected from GE classes for Quarter', () => {
+    it('should set the correct GE classes attribute state', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.select-ge-classes-attr > select').simulate('change', { target: { value: 'GE-001' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('geClassesAttribute')).toEqual('GE-001');
+    });
+  });
+
+  describe('when an option is selected from GE classes for Semester', () => {
+    it('should set the correct state for GE classes attribute', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.select-ge-classes-sem-attr > select').simulate('change', { target: { value: 'GE-002' } });
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('geClassesAttribute')).toEqual('GE-002');
     });
   });
 
@@ -282,10 +298,16 @@ describe('props on reset', () => {
     expect(instructorWrapper.prop('value')).toHaveLength(0);
   });
 
-  it('sets the value of GE classes attributes to empty value', () => {
+  it('sets the value of GE classes(Quarter) attribute to empty value', () => {
     classSearchContainerWrapper.find('#additional-filters').simulate('click');
     const geClassesAttrWrapper = classSearchContainerWrapper.find('#ge-classes-attributes');
     expect(geClassesAttrWrapper.at(0).prop('value')).toHaveLength(0);
+  });
+
+  it('sets the value of GE classes(Semester) attribute to empty value', () => {
+    classSearchContainerWrapper.find('#additional-filters').simulate('click');
+    const geClassesSemAttrWrapper = classSearchContainerWrapper.find('#ge-classes-sem-attributes');
+    expect(geClassesSemAttrWrapper.at(0).prop('value')).toHaveLength(0);
   });
 });
 
