@@ -279,19 +279,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       isReset: true,
     }, () => {
-      this.userInput.setTerm(this.state.term);
-      this.userInput.setCampus(this.state.campus);
-      this.userInput.setSubject(this.state.subject.abbr);
-      this.userInput.setCourseNo(this.state.courseNo);
-      this.userInput.setStartTime(this.state.startTime);
-      this.userInput.setEndTime(this.state.endTime);
-      this.userInput.setMeetingDay(this.state.meetingDate);
-      this.userInput.setInstructionMode(this.state.instructionMode);
-      this.userInput.setInstructor(this.state.instructorName);
-      this.userInput.setDegreeType(this.state.degreeType);
-      this.userInput.setCourseAttr(this.state.courseAttr);
-      this.userInput.setSessionCode(this.state.sessionCode);
-      this.userInput.setClassNo(this.state.classNo);
+      this.userInput = new UserInput();
     });
   }
 
