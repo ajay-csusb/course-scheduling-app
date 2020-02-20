@@ -12,7 +12,7 @@ import { ISubject } from './Subject';
 import { SelectListInstructionMode } from './SelectListInstructionMode';
 import { AdvancedFilterFieldset } from './AdvancedFilterFieldset';
 
-interface IClassSearchFormProps {
+export interface IClassSearchFormProps {
   term: IOptionProps[];
   campus: string;
   subjects: ISubject[];
@@ -225,18 +225,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
 
   private getAdvancedFilterFieldset(): JSX.Element {
     return (
-      <AdvancedFilterFieldset
-        courseAttr={this.props.courseAttr}
-        geClassesAttribute={this.props.geClassesAttribute}
-        geClassesAttributes={this.props.geClassesAttributes}
-        classNo={this.props.classNo}
-        sessionCode={this.props.sessionCode}
-        onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
-        onChangeOfSessionCode={this.props.onChangeOfSessionCode}
-        onChangeOfClassNo={this.props.onChangeOfClassNo}
-        onChangeOfGeClassesAttributes={this.props.onChangeOfGeClassesAttribute}
-        onKeyDown={this.props.onKeyDown}
-      />
+      <AdvancedFilterFieldset {...this.props} />
     );
   }
 
