@@ -27,6 +27,7 @@ describe('Given a class search results component', () => {
     it('should display the 0 classes in the message', () => {
       const classSearchResultsWrapper = mountClassSearchResultsComponent([]);
       expect(classSearchResultsWrapper.html()).toContain('0 classes found');
+      expect(classSearchResultsWrapper.html()).toContain('Try refining the search above to get more results');
     });
   });
 
@@ -40,6 +41,7 @@ describe('Given a class search results component', () => {
 
     it('should display the 2 classes in the message', () => {
       expect(classSearchResultsWrapper.html()).toContain('2 classes found');
+      expect(classSearchResultsWrapper.html()).not.toContain('Try refining the search above to get more results');
     });
 
     it('should display the class status as Open', () => {
