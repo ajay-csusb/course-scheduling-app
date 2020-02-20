@@ -17,7 +17,7 @@ export class ControlGroupMeetingDay extends React.Component<IControlGroupMeeting
   public render(): React.ReactNode {
     return (
       <ControlGroup fill={true} vertical={false} className="meeting-day">
-        <div className="label">Course Meeting Day</div>
+        <div className="label">Class Day(s)</div>
         <div id="meeting-day">
           <div className="form-item">
             <Checkbox
