@@ -21,6 +21,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     return (
       <div id="class-search-results-component">
         <p>{this.noOfClasses} classes found</p>
+        {this.noOfClasses === 0 && <i>Try refining the search above to get more results</i>}
         <ul>
           {classes}
         </ul>

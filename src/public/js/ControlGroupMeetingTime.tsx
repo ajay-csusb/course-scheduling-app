@@ -20,7 +20,7 @@ export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetin
     return (
       <ControlGroup className="meeting-time row">
         <div className="col-6">
-          <Label htmlFor="start-time">Meeting Start Time</Label>
+          <Label htmlFor="start-time">Start Time</Label>
           <TimePicker
             className="start-time"
             precision={TimePrecision.MINUTE}
@@ -31,7 +31,7 @@ export class ControlGroupMeetingTime extends React.Component<IControlGroupMeetin
           />
         </div>
         <div className="col-6">
-          <Label>Meeting End Time</Label>
+          <Label>End Time</Label>
           <TimePicker
             className="end-time"
             precision={TimePrecision.MINUTE}

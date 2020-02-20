@@ -28,7 +28,7 @@ describe('Instruction mode values', () => {
     const cmClasses = JSON.parse(JSON.stringify(classes));
     cmClasses.instructionMode = 'CM';
     it('should return Online CourseMatch Instruction', () => {
-      expect(ClassSearchUtils.getInstructionMode(cmClasses)).toEqual('Online CourseMatch Instruction');
+      expect(ClassSearchUtils.getInstructionMode(cmClasses)).toEqual('Online, Coursematch');
     });
   });
 
@@ -36,7 +36,7 @@ describe('Instruction mode values', () => {
     const foClasses = JSON.parse(JSON.stringify(classes));
     foClasses.instructionMode = 'FO';
     it('should return Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)', () => {
-      expect(ClassSearchUtils.getInstructionMode(foClasses)).toEqual('Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)');
+      expect(ClassSearchUtils.getInstructionMode(foClasses)).toEqual('Fully Online');
     });
   });
 
@@ -44,7 +44,7 @@ describe('Instruction mode values', () => {
     const hoClasses = JSON.parse(JSON.stringify(classes));
     hoClasses.instructionMode = 'HO';
     it('should return Hybrid Online Asynchronous and Synchronous Instruction ', () => {
-      expect(ClassSearchUtils.getInstructionMode(hoClasses)).toEqual('Hybrid Online Asynchronous and Synchronous Instruction');
+      expect(ClassSearchUtils.getInstructionMode(hoClasses)).toEqual('Hybrid');
     });
   });
 
@@ -52,7 +52,7 @@ describe('Instruction mode values', () => {
     const hcClasses = JSON.parse(JSON.stringify(classes));
     hcClasses.instructionMode = 'HC';
     it('should return Hybrid Classroom and Online Instruction', () => {
-      expect(ClassSearchUtils.getInstructionMode(hcClasses)).toEqual('Hybrid Classroom and Online Instruction');
+      expect(ClassSearchUtils.getInstructionMode(hcClasses)).toEqual('Hybrid');
     });
   });
 
@@ -68,7 +68,7 @@ describe('Instruction mode values', () => {
     const toClasses = JSON.parse(JSON.stringify(classes));
     toClasses.instructionMode = 'TO';
     it('should return Televised Instruction (origination site)', () => {
-      expect(ClassSearchUtils.getInstructionMode(toClasses)).toEqual('Televised Instruction (origination site)');
+      expect(ClassSearchUtils.getInstructionMode(toClasses)).toEqual('Televised (origination site)');
     });
   });
 
@@ -76,7 +76,7 @@ describe('Instruction mode values', () => {
     const trClasses = JSON.parse(JSON.stringify(classes));
     trClasses.instructionMode = 'TR';
     it('should return Televised Instruction (receiving site)', () => {
-      expect(ClassSearchUtils.getInstructionMode(trClasses)).toEqual('Televised Instruction (receiving site)');
+      expect(ClassSearchUtils.getInstructionMode(trClasses)).toEqual('Televised (receiving site)');
     });
   });
 
@@ -103,7 +103,7 @@ describe('Instruction name value', () => {
     const noInstructorClass = JSON.parse(JSON.stringify(classes));
     noInstructorClass.instructorName = ' ';
     it('should return N/A', () => {
-      expect(ClassSearchUtils.getInstructorName(noInstructorClass)).toEqual('N/A');
+      expect(ClassSearchUtils.getInstructorName(noInstructorClass)).toEqual('TBD');
     });
   });
 });

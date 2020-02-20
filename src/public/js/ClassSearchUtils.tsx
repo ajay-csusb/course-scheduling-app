@@ -132,25 +132,25 @@ export function getInstructionMode(classes: IClass): string {
     return 'Online';
   }
   if (classes.instructionMode === 'CM') {
-    return 'Online CourseMatch Instruction';
+    return 'Online, Coursematch';
   }
   if (classes.instructionMode === 'FO') {
-    return 'Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)';
+    return 'Fully Online';
   }
   if (classes.instructionMode === 'HO') {
-    return 'Hybrid Online Asynchronous and Synchronous Instruction';
+    return 'Hybrid';
   }
   if (classes.instructionMode === 'HC') {
-    return 'Hybrid Classroom and Online Instruction';
+    return 'Hybrid';
   }
   if (classes.instructionMode === 'OC') {
     return 'Off-Campus';
   }
   if (classes.instructionMode === 'TO') {
-    return 'Televised Instruction (origination site)';
+    return 'Televised (origination site)';
   }
   if (classes.instructionMode === 'TR') {
-    return 'Televised Instruction (receiving site)';
+    return 'Televised (receiving site)';
   }
   if (classes.instructionMode === 'Z') {
     return 'Zero Unit Instruction';
@@ -160,7 +160,7 @@ export function getInstructionMode(classes: IClass): string {
 
 export function getInstructorName(classes: IClass): string {
   if (classes.instructorName === ' ') {
-    return 'N/A';
+    return 'TBD';
   }
   return classes.instructorName;
 }
@@ -348,7 +348,8 @@ function sortBySubject(classes: IClass[]): IClass[] {
 
 export function sortByCatalogNo(classes: IClass[]): IClass[] {
   return classes.sort((a, b) => {
-    return ((parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10)) || parseInt(a.classSection, 10) - parseInt(b.classSection, 10));
+    return ((parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10))
+      || parseInt(a.classSection, 10) - parseInt(b.classSection, 10));
   });
 }
 

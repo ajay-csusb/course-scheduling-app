@@ -778,7 +778,7 @@ exports[`snapshots Class search container with additional filters component snap
                         <div
                           className="label"
                         >
-                          Course Meeting Day
+                          Class Day(s)
                         </div>
                         <div
                           id="meeting-day"
@@ -1139,7 +1139,7 @@ exports[`snapshots Class search container with additional filters component snap
                             className="bp3-label"
                             htmlFor="start-time"
                           >
-                            Meeting Start Time
+                            Start Time
                           </label>
                         </Component>
                         <Blueprint3.TimePicker
@@ -1252,7 +1252,7 @@ exports[`snapshots Class search container with additional filters component snap
                           <label
                             className="bp3-label"
                           >
-                            Meeting End Time
+                            End Time
                           </label>
                         </Component>
                         <Blueprint3.TimePicker
@@ -3135,7 +3135,7 @@ exports[`snapshots Class search form snapshot 1`] = `
                         <div
                           className="label"
                         >
-                          Course Meeting Day
+                          Class Day(s)
                         </div>
                         <div
                           id="meeting-day"
@@ -3496,7 +3496,7 @@ exports[`snapshots Class search form snapshot 1`] = `
                             className="bp3-label"
                             htmlFor="start-time"
                           >
-                            Meeting Start Time
+                            Start Time
                           </label>
                         </Component>
                         <Blueprint3.TimePicker
@@ -3609,7 +3609,7 @@ exports[`snapshots Class search form snapshot 1`] = `
                           <label
                             className="bp3-label"
                           >
-                            Meeting End Time
+                            End Time
                           </label>
                         </Component>
                         <Blueprint3.TimePicker
