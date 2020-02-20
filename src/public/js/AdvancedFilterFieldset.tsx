@@ -1,30 +1,18 @@
 import React from 'react';
-import { Collapse, Label, IOptionProps } from '@blueprintjs/core';
+import { Collapse, Label } from '@blueprintjs/core';
 import { SelectListCourseAttr } from './SelectListCourseAttr';
 import { SelectListSessionCode } from './SelectListSessionCode';
 import { SelectListGeClassesAttributes } from './SelectListGeClassesAttributes';
 import { SelectListGeClassesSemesterAttributes } from './SelectListGeClassesSemesterAttributes';
-
-interface IAdvancedFilterFieldsetProps {
-  classNo: string;
-  courseAttr: string;
-  sessionCode: string;
-  geClassesAttribute: string;
-  geClassesAttributes: IOptionProps[];
-  onChangeOfCourseAttr: (event: any) => void;
-  onChangeOfSessionCode: (event: any) => void;
-  onChangeOfClassNo: (event: any) => void;
-  onChangeOfGeClassesAttributes: (event: any) => void;
-  onKeyDown: (event: React.KeyboardEvent) => void;
-}
+import { IClassSearchFormProps } from './ClassSearchForm';
 
 interface IAdvancedFilterFieldsetState {
   isOpen?: boolean;
 }
 
 export class AdvancedFilterFieldset extends React.Component<
-    IAdvancedFilterFieldsetProps, IAdvancedFilterFieldsetState> {
-  constructor(props: IAdvancedFilterFieldsetProps) {
+    IClassSearchFormProps, IAdvancedFilterFieldsetState> {
+  constructor(props: IClassSearchFormProps) {
     super(props);
     this.state = {
       isOpen: false,
@@ -47,19 +35,19 @@ export class AdvancedFilterFieldset extends React.Component<
         <Collapse isOpen={this.state.isOpen} >
           <div className="row">
             <div className="col-6 col-md-4">
-              <div className="form-item">{classNumber}</div>
+              <div className="form-item">{geClassesAttribute}</div>
+            </div>
+            <div className="col-6 col-md-4">
+              <div className="form-item">{geClassesSemAttribute}</div>
             </div>
             <div className="col-6 col-md-4">
               <div className="form-item">{courseAttr}</div>
             </div>
             <div className="col-6 col-md-4">
+              <div className="form-item">{classNumber}</div>
+            </div>
+            <div className="col-6 col-md-4">
               <div className="form-item">{sessionCode}</div>
-            </div>
-            <div className="col-6 col-md-4">
-              <div className="form-item">{geClassesAttribute}</div>
-            </div>
-            <div className="col-6 col-md-4">
-              <div className="form-item">{geClassesSemAttribute}</div>
             </div>
           </div>
         </Collapse>
@@ -112,7 +100,7 @@ export class AdvancedFilterFieldset extends React.Component<
       <SelectListGeClassesAttributes
         geClassesAttributes={this.props.geClassesAttributes}
         geClassesAttribute={this.props.geClassesAttribute}
-        onChangeOfGeClassesAttribute={this.props.onChangeOfGeClassesAttributes}
+        onChangeOfGeClassesAttribute={this.props.onChangeOfGeClassesAttribute}
       />
     );
   }
@@ -121,7 +109,7 @@ export class AdvancedFilterFieldset extends React.Component<
     return (
       <SelectListGeClassesSemesterAttributes
         geClassesAttribute={this.props.geClassesAttribute}
-        onChangeOfGeClassesAttribute={this.props.onChangeOfGeClassesAttributes}
+        onChangeOfGeClassesAttribute={this.props.onChangeOfGeClassesAttribute}
       />
     );
   }
