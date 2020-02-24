@@ -50,6 +50,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private userInput: UserInput;
 
+  private resultsSection: any;
+
   constructor(props: any) {
     super(props);
     this.state = this.defaultFormValues();
@@ -85,6 +87,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.geClassesAttributes = [];
     this.currentTermId = '';
     this.userInput = new UserInput();
+    this.resultsSection = React.createRef();
   }
 
   public render(): JSX.Element {
@@ -241,6 +244,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       noClasses: false,
       isLoading: false,
     });
+    this.resultsSection.current.scrollIntoView();
   }
 
   private classesNotFound(_error: any): void {
@@ -457,8 +461,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private displayErrorMessageWhenSubjectIsEmpty(): JSX.Element {
     return (
-      <Callout intent={Intent.WARNING}>
-        Please select a Subject
+      <Callout className="subject-validation" intent={Intent.WARNING}>
+        Please select a Course Subject
       </Callout >
     );
   }
@@ -473,11 +477,14 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private getClassSearchResultsComponent(): JSX.Element {
     return (
-      <ClassSearchResults
-        classes={this.allResults}
-        currentTerm={this.currentTermId}
-        onChangeOfLoadingMessage={this.updateLoadingMessage}
-      />
+      <React.Fragment>
+        <div ref={this.resultsSection} />
+        <ClassSearchResults
+          classes={this.allResults}
+          currentTerm={this.currentTermId}
+          onChangeOfLoadingMessage={this.updateLoadingMessage}
+        />
+      </React.Fragment>
     );
   }
 
