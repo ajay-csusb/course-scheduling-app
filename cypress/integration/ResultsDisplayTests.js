@@ -1,20 +1,15 @@
-const url = require('./Utils');
+const { url, selectSubject } = require('./Utils');
 
 describe('Class information displays accurate data', function () {
-  context('Given a user searches by a subject', () => {
-    context('When they try to click on class information ', () => {
-      before(function () {
-        cy.visit(url);
-        cy.get('.search-autocomplete input').type('Biology').click();
-        cy.get('div').contains('Biology', { timeout: 15000 }).click();
-        cy.get('.mon > .bp3-control-indicator').click();
-        cy.get('.btn-primary').click();
-        cy.wait(5000)
-      });
+  context('when a user searches by a subject', () => {
+    before(function () {
+      cy.visit(url);
+      selectSubject();
+      cy.get('.btn-primary').click();
+    });
 
-      it('then it should not be clickable', () => {
-        cy.get('div').should('not.contain.class', 'bp3-interactive');
-      });
+    it('class results should not be clickable', () => {
+      cy.get('div').should('not.contain.class', 'bp3-interactive');
     });
   });
 

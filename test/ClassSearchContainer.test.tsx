@@ -354,7 +354,7 @@ describe('When a search is performed without entering subject', () => {
   });
 
   it('should display error message', () => {
-    expect(classSearchContainerWrapper.html()).toContain('Please select a Subject');
+    expect(classSearchContainerWrapper.html()).toContain('Please select a Course Subject');
   });
 
 });
