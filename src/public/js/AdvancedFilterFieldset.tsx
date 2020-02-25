@@ -3,7 +3,6 @@ import { Collapse, Label } from '@blueprintjs/core';
 import { SelectListCourseAttr } from './SelectListCourseAttr';
 import { SelectListSessionCode } from './SelectListSessionCode';
 import { SelectListGeClassesAttributes } from './SelectListGeClassesAttributes';
-import { SelectListGeClassesSemesterAttributes } from './SelectListGeClassesSemesterAttributes';
 import { IClassSearchFormProps } from './ClassSearchForm';
 
 interface IAdvancedFilterFieldsetState {
@@ -25,7 +24,6 @@ export class AdvancedFilterFieldset extends React.Component<
     const classNumber = this.getClassNumberComponent();
     const sessionCode = this.getSelectListSessionCodeComponent();
     const geClassesAttribute = this.getSelectListGeClassesAttributesComponent();
-    const geClassesSemAttribute = this.getSelectListGeClassesSemAttributeComponent();
     const arrow = (this.state.isOpen) ? <i className="fal fa-chevron-up"/> : <i className="fal fa-chevron-down"/>;
     return (
       <React.Fragment>
@@ -36,9 +34,6 @@ export class AdvancedFilterFieldset extends React.Component<
           <div className="row">
             <div className="col-6 col-md-4">
               <div className="form-item">{geClassesAttribute}</div>
-            </div>
-            <div className="col-6 col-md-4">
-              <div className="form-item">{geClassesSemAttribute}</div>
             </div>
             <div className="col-6 col-md-4">
               <div className="form-item">{courseAttr}</div>
@@ -99,15 +94,6 @@ export class AdvancedFilterFieldset extends React.Component<
     return (
       <SelectListGeClassesAttributes
         geClassesAttributes={this.props.geClassesAttributes}
-        geClassesAttribute={this.props.geClassesAttribute}
-        onChangeOfGeClassesAttribute={this.props.onChangeOfGeClassesAttribute}
-      />
-    );
-  }
-
-  private getSelectListGeClassesSemAttributeComponent(): JSX.Element {
-    return (
-      <SelectListGeClassesSemesterAttributes
         geClassesAttribute={this.props.geClassesAttribute}
         onChangeOfGeClassesAttribute={this.props.onChangeOfGeClassesAttribute}
       />
