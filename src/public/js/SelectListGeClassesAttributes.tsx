@@ -17,7 +17,7 @@ export class SelectListGeClassesAttributes extends React.Component<ISelectListGe
   public render(): React.ReactNode {
     return (
       <React.Fragment>
-        <Label htmlFor="ge-classes-attributes">GE Classes(Quarter)</Label>
+        <Label htmlFor="ge-classes-attributes">GE Classes</Label>
         <HTMLSelect
           id="ge-classes-attributes"
           value={this.props.geClassesAttribute}
