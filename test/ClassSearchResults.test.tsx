@@ -36,6 +36,7 @@ describe('Given a class search results component', () => {
     beforeAll(() => {
       classJson.profile = '/profile/bakemann';
       classJson.enrolledTotal = 27;
+      classJson.waitlistTotal = 0;
       classSearchResultsWrapper = mountClassSearchResultsComponent([classJson, baseClassJson]);
     });
 
@@ -70,6 +71,8 @@ describe('Given a class search results component', () => {
     let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
       baseClassJson.enrolledTotal = 30;
+      baseClassJson.waitlistTotal = 30;
+      baseClassJson.waitlistCapacity = 30;
       classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson]);
     });
 
@@ -112,10 +115,20 @@ describe('Given a class search results component', () => {
   });
 
   describe('when a user searches for a class which has a waitlist', () => {
-    it('should display the number of students in the waitlist', () => {
+    beforeEach(() => {
       baseClassJson.enrolledTotal = 30;
+      baseClassJson.waitlistCapacity = 60;
+      baseClassJson.waitlistTotal = 1;
+    });
+
+    it('should display the text Waitlist', () => {
       const results = mountClassSearchResultsComponent([baseClassJson]);
-      expect(results.text()).toContain('Waitlist: 1');
+      expect(results.text()).toContain('Waitlist');
+    });
+
+    it('should display the number of students in the waitlist', () => {
+      const results = mountClassSearchResultsComponent([baseClassJson]);
+      expect(results.text()).toContain('1 student(s) in waitlist');
     });
 
     describe('if the class has no waitlist', () => {
@@ -129,7 +142,6 @@ describe('Given a class search results component', () => {
 
     describe('if the class is open', () => {
       it('should not display the text Waitlist', () => {
-        baseClassJson.enrolledCapacity = 30;
         baseClassJson.enrolledTotal = 20;
         const results = mountClassSearchResultsComponent([baseClassJson]);
         expect(results.text()).not.toContain('Waitlist');

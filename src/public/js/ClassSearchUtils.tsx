@@ -118,8 +118,11 @@ export function getClassType(classes: IClass): string | null {
 
 export function getClassStatus(classes: IClass): string {
   const availableSeats = classes.enrolledCapacity - classes.enrolledTotal;
-  if (availableSeats > 0) {
+  if (availableSeats > 1) {
     return 'Open';
+  }
+  if (isWaitlist(classes)) {
+    return 'Waitlist';
   }
   return 'Closed';
 }
@@ -395,4 +398,15 @@ export function parseCourseAttributes(classes: IClass[]): IClass[] {
     _class.courseAttr = expandedCourseAttr;
   }
   return mergedClasses;
+}
+
+export function isWaitlist(classes: IClass): boolean {
+  const inWaitlist = classes.waitlistTotal;
+  const waitlistCapacity = classes.waitlistCapacity;
+  return (
+    classes.enrolledCapacity - classes.enrolledTotal <= 1
+    && inWaitlist >= 0
+    && waitlistCapacity - inWaitlist !== 0
+    && waitlistCapacity !== 0
+  );
 }

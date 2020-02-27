@@ -773,3 +773,67 @@ describe('when class results are displayed', () => {
     });
   });
 });
+
+describe('class status information', () => {
+  describe('when the class has open seats', () => {
+    const classBio100 = JSON.parse(JSON.stringify(classJson));
+    classBio100.enrolledCapacity = 100;
+    classBio100.enrolledTotal = 90;
+    const classes = ClassSearchUtils.getClassStatus(classBio100);
+    it('should return Open', () => {
+      expect(classes).toEqual('Open');
+    });
+  });
+
+  describe('when the class has a waitlist', () => {
+    const classBio200 = JSON.parse(JSON.stringify(classJson));
+    classBio200.enrolledCapacity = 100;
+    classBio200.enrolledTotal = 100;
+    classBio200.waitlistCapacity = 60;
+    classBio200.waitlistTotal = 10;
+    const classes = ClassSearchUtils.getClassStatus(classBio200);
+    it('should return Waitlist', () => {
+      expect(classes).toEqual('Waitlist');
+    });
+  });
+
+  describe('when the class does not offer a waitlist', () => {
+    const classBio250 = JSON.parse(JSON.stringify(classJson));
+    classBio250.enrolledCapacity = 100;
+    classBio250.enrolledTotal = 100;
+    classBio250.waitlistCapacity = 0;
+    classBio250.waitlistTotal = 0;
+    const classes = ClassSearchUtils.getClassStatus(classBio250);
+    it('should return Closed', () => {
+      expect(classes).toEqual('Closed');
+    });
+  });
+
+  describe('when all the seats in waitlist are occupied', () => {
+    const classBio275 = JSON.parse(JSON.stringify(classJson));
+    classBio275.enrolledCapacity = 100;
+    classBio275.enrolledTotal = 100;
+    classBio275.waitlistCapacity = 60;
+    classBio275.waitlistTotal = 60;
+    const classes = ClassSearchUtils.getClassStatus(classBio275);
+    it('should return Closed', () => {
+      expect(classes).toEqual('Closed');
+    });
+  });
+
+  describe('when all the seats are occupied and there is no one on the waitlist', () => {
+    const classBio300 = JSON.parse(JSON.stringify(classJson));
+    classBio300.enrolledCapacity = 100;
+    // If a class has a capacity of 'n' seats and
+    // 'n-1' or 'n' seats are occupied then the class is considered 'closed'
+    // or 'waitlisted'.
+    classBio300.enrolledTotal = 99;
+    classBio300.waitlistTotal = 0;
+    classBio300.waitlistCapacity = 60;
+    const classes = ClassSearchUtils.getClassStatus(classBio300);
+    it('should return Closed', () => {
+      expect(classes).toEqual('Waitlist');
+    });
+  });
+
+});
