@@ -155,6 +155,9 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     if (!this.isCurrentTerm()) {
       return (<React.Fragment/>);
     }
+    if (ClassSearchUtils.isWaitlist(this.classDetails)) {
+      return (<React.Fragment />);
+    }
     return (
       <div className="course-availability">Available Seats: <span>{noOfSeatsAvailable}</span></div>
     );
@@ -168,7 +171,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     if (this.classDetails.waitlistCapacity === 0) {
       return (<div className="course-availability">No Waitlist</div>);
     }
-    return (<div className="course-availability">Waitlist: <span>{waitlistNo}</span></div>);
+    return (<div className="course-availability"><span>{waitlistNo}</span> student(s) in waitlist</div>);
   }
 
 }
