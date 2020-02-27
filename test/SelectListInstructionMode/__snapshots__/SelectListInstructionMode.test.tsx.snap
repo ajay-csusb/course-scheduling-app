@@ -12,12 +12,16 @@ Array [
           "value": "all",
         },
         Object {
+          "label": "Classroom",
+          "value": "p",
+        },
+        Object {
           "label": "Online",
           "value": "ol",
         },
         Object {
           "label": "Hybrid",
-          "value": "ho",
+          "value": "hc",
         },
       ]
     }
@@ -39,6 +43,13 @@ Array [
           All
         </option>
         <option
+          key="p"
+          label="Classroom"
+          value="p"
+        >
+          Classroom
+        </option>
+        <option
           key="ol"
           label="Online"
           value="ol"
@@ -46,9 +57,9 @@ Array [
           Online
         </option>
         <option
-          key="ho"
+          key="hc"
           label="Hybrid"
-          value="ho"
+          value="hc"
         >
           Hybrid
         </option>
@@ -95,6 +106,13 @@ Array [
         All
       </option>
       <option
+        key="p"
+        label="Classroom"
+        value="p"
+      >
+        Classroom
+      </option>
+      <option
         key="ol"
         label="Online"
         value="ol"
@@ -102,9 +120,9 @@ Array [
         Online
       </option>
       <option
-        key="ho"
+        key="hc"
         label="Hybrid"
-        value="ho"
+        value="hc"
       >
         Hybrid
       </option>

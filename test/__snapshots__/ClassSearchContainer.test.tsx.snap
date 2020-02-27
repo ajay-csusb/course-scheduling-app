@@ -674,12 +674,16 @@ exports[`snapshots compare search form snapshot 1`] = `
                                 "value": "all",
                               },
                               Object {
+                                "label": "Classroom",
+                                "value": "p",
+                              },
+                              Object {
                                 "label": "Online",
                                 "value": "ol",
                               },
                               Object {
                                 "label": "Hybrid",
-                                "value": "ho",
+                                "value": "hc",
                               },
                             ]
                           }
@@ -701,6 +705,13 @@ exports[`snapshots compare search form snapshot 1`] = `
                                 All
                               </option>
                               <option
+                                key="p"
+                                label="Classroom"
+                                value="p"
+                              >
+                                Classroom
+                              </option>
+                              <option
                                 key="ol"
                                 label="Online"
                                 value="ol"
@@ -708,9 +719,9 @@ exports[`snapshots compare search form snapshot 1`] = `
                                 Online
                               </option>
                               <option
-                                key="ho"
+                                key="hc"
                                 label="Hybrid"
-                                value="ho"
+                                value="hc"
                               >
                                 Hybrid
                               </option>
