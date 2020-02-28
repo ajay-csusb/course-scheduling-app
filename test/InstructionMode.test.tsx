@@ -32,20 +32,28 @@ describe('Filter by Instruction Mode', () => {
   describe('when a user searches for online classes', () => {
     it('should display classes that have Online instruction mode', () => {
       classes = InstructionMode.filter(classesBio, 'ol');
-      expect(classes).toHaveLength(3);
+      expect(classes).toHaveLength(4);
       expect(classes[0].instructionMode).toEqual('ol');
       expect(classes[1].instructionMode).toEqual('cm');
       expect(classes[2].instructionMode).toEqual('fo');
+      expect(classes[3].instructionMode).toEqual('ho');
     });
 
   });
 
   describe('when a user searches for hybrid classes', () => {
     it('should display classes that have Hybrid instruction mode', () => {
-      classes = InstructionMode.filter(classesBio, 'ho');
-      expect(classes).toHaveLength(2);
-      expect(classes[0].instructionMode).toEqual('ho');
-      expect(classes[1].instructionMode).toEqual('hc');
+      classes = InstructionMode.filter(classesBio, 'hc');
+      expect(classes).toHaveLength(1);
+      expect(classes[0].instructionMode).toEqual('hc');
+    });
+  });
+
+  describe('when a user searches for in-person classes', () => {
+    it('should display classes that have Classroom instruction mode', () => {
+      classes = InstructionMode.filter(classesBio, 'p');
+      expect(classes).toHaveLength(1);
+      expect(classes[0].instructionMode).toEqual('p');
     });
   });
 

@@ -9,8 +9,11 @@ export class InstructionMode {
     if (instructionMode.toLowerCase() === 'ol') {
       return InstructionMode.filterByOnlineClasses();
     }
-    if (instructionMode.toLowerCase() === 'ho') {
+    if (instructionMode.toLowerCase() === 'hc') {
       return InstructionMode.filterByHybridClasses();
+    }
+    if (instructionMode.toLowerCase() === 'p') {
+      return InstructionMode.filterByInPersonClasses();
     }
     return classes;
   }
@@ -27,6 +30,9 @@ export class InstructionMode {
       if (_class.instructionMode.toLowerCase() === 'fo') {
         results.push(_class);
       }
+      if (_class.instructionMode.toLowerCase() === 'ho') {
+        results.push(_class);
+      }
     });
     return results;
   }
@@ -34,10 +40,17 @@ export class InstructionMode {
   private static filterByHybridClasses(): IClass[] {
     const results: IClass[] = [];
     InstructionMode._classes.forEach((_class: IClass) => {
-      if (_class.instructionMode.toLowerCase() === 'ho') {
+      if (_class.instructionMode.toLowerCase() === 'hc') {
         results.push(_class);
       }
-      if (_class.instructionMode.toLowerCase() === 'hc') {
+    });
+    return results;
+  }
+
+  private static filterByInPersonClasses(): IClass[] {
+    const results: IClass[] = [];
+    InstructionMode._classes.forEach((_class: IClass) => {
+      if (_class.instructionMode.toLowerCase() === 'p') {
         results.push(_class);
       }
     });

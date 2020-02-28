@@ -14,9 +14,10 @@ export class SelectListInstructionMode extends React.Component<ISelectListInstru
 
   public render(): React.ReactNode {
     const instructionMode: IOptionProps[] = [
-      { label: 'All', value: 'all'},
-      { label: 'Online', value: 'ol'},
-      { label: 'Hybrid', value: 'ho'},
+      { label: 'All', value: 'all' },
+      { label: 'Classroom', value: 'p' },
+      { label: 'Online', value: 'ol' },
+      { label: 'Hybrid', value: 'hc' },
     ];
     return (
       <React.Fragment>
