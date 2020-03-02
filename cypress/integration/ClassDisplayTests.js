@@ -9,10 +9,6 @@ describe('Displayed fields in classes', function () {
           cy.visit(url);
           selectSubject();
           enterCourseNumber();
-          cy.get('.search-autocomplete input').type('Biology').click();
-          cy.get('div').contains('Biology').click();
-          cy.get('.course-number').type('100');
-          cy.get('.mon > .bp3-control-indicator').click();
           cy.get('.btn-primary').click();
         });
 
@@ -32,21 +28,18 @@ describe('Displayed fields in classes', function () {
           // @Todo test Instructor URL
         });
 
-        it.skip('should show description when class name is clicked', () => {
-          cy.get(':nth-child(1) > .course > .item-header > .course-header > .course-title > .course-name span').click();
-          cy.get('.bp3-popover-content').should('not.have.length', '0');
+        it('should show description when info icon is clicked', () => {
+          cy.get(':nth-child(1) > .course > .item-header > .course-header > .bp3-popover-wrapper > .bp3-popover-target > .course-name > .bp3-tooltip-indicator > .course-info-btn > .fas').click();
+          cy.get('.bp3-popover-content').should('have.length', '1');
         });
 
         it('should display correct markup', () => {
           const classes = [
             'course result-item',
             'course-header',
-            'course-title',
             'course-details',
             'course-name',
-            'course-id',
             'item-body',
-            'course-btns',
             'course-info',
             'course-availability',
             'course-status',
@@ -54,6 +47,9 @@ describe('Displayed fields in classes', function () {
           for (const _class of classes) {
             cy.get('div').should('have.class', _class);
           }
+          cy.get('button').should('have.class', 'course-info-btn');
+          cy.get('.course-name span').should('have.class', 'sr-only');
+          cy.get('span').should('have.class', 'course-id');
         });
       });
 
