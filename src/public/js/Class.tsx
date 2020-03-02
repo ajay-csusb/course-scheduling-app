@@ -49,6 +49,7 @@ export interface IClass {
   instructorAltName?: string;
   courseAttr: string;
   degreeType: string;
+  title: string;
 }
 
 export interface IMeetingDate {
@@ -119,6 +120,7 @@ export class Class {
       instructorAltName : object.name2,
       courseAttr: object.crse_ATTR,
       degreeType: object.acad_CAREER,
+      title: object.course_TITLE_LONG,
     };
     return result;
   }
