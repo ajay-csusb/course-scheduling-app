@@ -50,7 +50,7 @@ describe('Given a class search results component', () => {
     });
 
     it('should display the number of available seats as 3', () => {
-      const markup = '<div class="course-availability">Available Seats: <span>3</span></div>';
+      const markup = '<div class="course-availability"><span>3</span> seats available</div>';
       expect(classSearchResultsWrapper.html()).toContain(markup);
     });
 
@@ -85,7 +85,7 @@ describe('Given a class search results component', () => {
     });
 
     it('should not display available seats for classes which are closed', () => {
-      expect(classSearchResultsWrapper.text()).not.toContain('Available Seats:');
+      expect(classSearchResultsWrapper.text()).not.toContain('seats available');
     });
 
   });
@@ -106,7 +106,7 @@ describe('Given a class search results component', () => {
     });
 
     it('should not display available seats text', () => {
-      expect(classSearchResultsWrapper.text()).not.toContain('Available Seats:');
+      expect(classSearchResultsWrapper.text()).not.toContain('seats available');
     });
 
     it('should not display the text Waitlist', () => {
@@ -128,7 +128,7 @@ describe('Given a class search results component', () => {
 
     it('should display the number of students in the waitlist', () => {
       const results = mountClassSearchResultsComponent([baseClassJson]);
-      expect(results.text()).toContain('1 student(s) in waitlist');
+      expect(results.text()).toContain('1 students on waitlist');
     });
 
     describe('if the class has no waitlist', () => {
