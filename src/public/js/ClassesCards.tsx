@@ -101,8 +101,12 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
         popoverClassName={Classes.POPOVER_CONTENT_SIZING}
       >
         <div className="course-name">
+          <strong>{`${this.classDetails.subject} ${this.classDetails.catalogNo}`} {`- ${this.classDetails.description}`}</strong>
           <div className={Classes.TOOLTIP_INDICATOR}>
-            <strong>{`${this.classDetails.subject} ${this.classDetails.catalogNo}`}</strong> {`- ${this.classDetails.description}`}
+            <button className="course-info-btn">
+              <i className="fas fa-info-circle" arial-label="hidden" />
+              <span className="sr-only">{`${this.classDetails.subject} ${this.classDetails.catalogNo}`}</span>
+            </button>
           </div>
         </div>
       </Popover>
