@@ -239,7 +239,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const filteredClasses = MeetingTime.filter(transformedClass, this.state.startTime, this.state.endTime);
     const filterByInstructionMode = InstructionMode.filter(filteredClasses, this.state.instructionMode);
     const sortedClasses = ClassSearchUtils.sortClasses(filterByInstructionMode);
-    this.allResults = ClassSearchUtils.parseCourseAttributes(sortedClasses);
+    this.allResults = ClassSearchUtils.parseCourseAttributes(sortedClasses, this.geClassesAttributes);
     this.setState({
       noClasses: false,
       isLoading: false,

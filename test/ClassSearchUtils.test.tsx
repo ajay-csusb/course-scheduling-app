@@ -6,6 +6,7 @@ import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { mount, shallow } from 'enzyme';
 import { TestUtils } from './TestUtils';
 import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
+import { GeCourseAttribute } from '../src/public/js/GeCourseAttribute';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -696,6 +697,14 @@ describe('when a user performs a search', () => {
       const classes = ClassSearchUtils.mergeAttributes([classJson, copyOfClassJson]);
       expect(classes[0].courseAttr).toEqual('foo, bar');
     });
+    describe('if it is a General Education class', () => {
+      it('should merge the General Education course attributes', () => {
+        classJson.geCourseAttr = 'GE-BAZ';
+        copyOfClassJson.geCourseAttr = '1';
+        const classes = ClassSearchUtils.mergeAttributes([classJson, copyOfClassJson]);
+        expect(classes[0].geCourseAttr).toEqual('GE-BAZ, 1');
+      });
+    });
   });
 });
 describe('when multiple classes are displayed in results', () => {
@@ -836,4 +845,43 @@ describe('class status information', () => {
     });
   });
 
+});
+
+describe('GE class attribute', () => {
+  const geAttrs = [
+    { value: 'GE-FOO', label: 'General Education FOO' },
+    { value: 'GE-BAR', label: 'General Education BAR' },
+  ];
+
+  describe('when a class with does not have a course attribute of General Education', () => {
+    const classBio400 = JSON.parse(JSON.stringify(classJson));
+    classBio400.courseAttr = 'FOO, BAR, BAZ, BUZZ';
+    classBio400.geCourseAttr = '';
+    const courseAttr = GeCourseAttribute.addGeAttrs(classBio400, geAttrs);
+    it('should return classes with all the class attributes', () => {
+      expect(courseAttr).toEqual('FOO, BAR, BAZ, BUZZ');
+    });
+  });
+
+  describe('when a class is a General Education', () => {
+    const classBio450 = JSON.parse(JSON.stringify(classJson));
+    classBio450.courseAttr = 'General Education';
+    classBio450.geCourseAttr = 'GE-FOO, bar, 1';
+
+    const courseAttr = GeCourseAttribute.addGeAttrs(classBio450, geAttrs);
+    it('should return classes with the correct GE attribute', () => {
+      expect(courseAttr).toEqual('General Education FOO');
+    });
+  });
+
+  describe('when a class has multiple course attributes', () => {
+    const classBio500 = JSON.parse(JSON.stringify(classJson));
+    classBio500.courseAttr = 'loreum, General Education, ipsum';
+    classBio500.geCourseAttr = 'GE-BAR, 1, 2, 3';
+
+    const courseAttr = GeCourseAttribute.addGeAttrs(classBio500, geAttrs);
+    it('should return classes with all course attributes and dispaly GE course attribute', () => {
+      expect(courseAttr).toEqual('loreum, General Education BAR, ipsum');
+    });
+  });
 });
