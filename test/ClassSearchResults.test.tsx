@@ -149,6 +149,27 @@ describe('Given a class search results component', () => {
     });
   });
 
+  describe('Course Attribute label', () => {
+    const classCourseAttr = JSON.parse(JSON.stringify(classJson));
+    describe('when a class does not have a Course Attribute', () => {
+      baseClassJson.courseAttr = '';
+      const results = mountClassSearchResultsComponent([baseClassJson]);
+      it('should not contain the label Course Attribute', () => {
+        expect(results.text()).not.toContain('Course Attribute');
+      });
+    });
+
+    describe('when a class has a Course Attribute', () => {
+      baseClassJson.courseAttr = 'Foo, bar and baz';
+      const results = mountClassSearchResultsComponent([baseClassJson]);
+      it('should contain the label Course Attribute', () => {
+        expect(results.text()).toContain('Course Attribute');
+        expect(results.text()).toContain('Foo, bar and baz');
+      });
+    });
+
+  });
+
   afterEach(() => {
     baseClassJson.enrolledTotal = 10;
     baseClassJson.enrolledCapacity = 30;
