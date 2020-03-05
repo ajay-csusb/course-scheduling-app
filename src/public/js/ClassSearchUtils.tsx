@@ -1,5 +1,7 @@
 import Moment from 'moment';
 import { IClass } from './Class';
+import { IOptionProps } from '@blueprintjs/core';
+import { GeCourseAttribute } from './GeCourseAttribute';
 
 export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
                           callbackOnFailure: (error: string) => void): void {
@@ -323,6 +325,7 @@ export function mergeAttributes(classes: IClass[]): IClass[] {
     const currClass = classes[_class];
     if (isDuplicateClass(prevClass, currClass)) {
       results[size].courseAttr = combineAttr(prevClass, currClass);
+      results[size].geCourseAttr += ', ' + currClass.geCourseAttr;
     } else {
       results.push(classes[_class]);
     }
@@ -378,7 +381,6 @@ export function expandCourseAttribute(courseAttrAbbr: string): string {
     WSTD: 'Women\'s Studies',
     ZCCM: 'Zero Cost Course Materials',
   };
-  // tslint:disable-next-line:forin
   for (const courseAttr of  courseAttrArr) {
     if (courseAttrExpanded[courseAttr] !== undefined) {
       results.push(courseAttrExpanded[courseAttr]);
@@ -390,12 +392,12 @@ export function expandCourseAttribute(courseAttrAbbr: string): string {
   return results.join(', ');
 }
 
-export function parseCourseAttributes(classes: IClass[]): IClass[] {
+export function parseCourseAttributes(classes: IClass[], geCourseAttrs: IOptionProps[]): IClass[] {
   const mergedClasses = mergeAttributes(classes);
-  // tslint:disable-next-line:forin
   for (const _class of mergedClasses) {
     const expandedCourseAttr = expandCourseAttribute(_class.courseAttr);
     _class.courseAttr = expandedCourseAttr;
+    _class.courseAttr = GeCourseAttribute.addGeAttrs(_class, geCourseAttrs);
   }
   return mergedClasses;
 }

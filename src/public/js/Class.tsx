@@ -50,6 +50,7 @@ export interface IClass {
   courseAttr: string;
   degreeType: string;
   title: string;
+  geCourseAttr: string;
 }
 
 export interface IMeetingDate {
@@ -121,11 +122,14 @@ export class Class {
       courseAttr: object.crse_ATTR,
       degreeType: object.acad_CAREER,
       title: object.course_TITLE_LONG,
+      geCourseAttr: object.crse_ATTR_VALUE,
     };
     return result;
   }
 
-  static getAllClasses(onSuccess: (response: any) => void, onFailure: (error: string) => void, userInput: UserInput): void {
+  static getAllClasses(onSuccess: (response: any) => void,
+                       onFailure: (error: string) => void,
+                       userInput: UserInput): void {
     const params = {
       strm: userInput.getTerm(),
       class_nbr: userInput.getClassNo(),
