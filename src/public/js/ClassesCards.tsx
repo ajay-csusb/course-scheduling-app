@@ -43,6 +43,10 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const instructionMode = ClassSearchUtils.getInstructionMode(this.classDetails);
     const textBookMarkup = this.getTextBookMarkup();
     const instructorMarkup = this.getInstructorMarkup();
+    let courseAttrMarkup = null;
+    if (this.classDetails.courseAttr.length !== 0) {
+      courseAttrMarkup = <li><span>Course Attribute </span>{this.classDetails.courseAttr}</li>;
+    }
     return (
       <React.Fragment>
         <ul className="course-desc">
@@ -53,7 +57,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
           <li><span>Campus </span>{campus}</li>
           <li>{instructorMarkup}</li>
           <li><span>Instruction Mode </span>{instructionMode}</li>
-          <li><span>Course Attribute </span>{this.classDetails.courseAttr}</li>
+          {courseAttrMarkup}
         </ul>
         {textBookMarkup}
       </React.Fragment>
