@@ -34,6 +34,7 @@ const classJson: IClass = {
     buildingCode: '',
     room: '',
     degreeType: '',
+    courseAttr: '',
   };
 
 describe('test meeting day', () => {
