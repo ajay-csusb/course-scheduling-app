@@ -3,11 +3,18 @@ import React from 'react';
 import { MenuItem } from '@blueprintjs/core';
 import { ISubject } from './Subject';
 
-export function filterClasses(query: any, subject: any): boolean {
-  return `${subject.name}`.toLowerCase().indexOf(query.toLowerCase()) >= 0;
+export function filterSubjects(query: string, subject: ISubject): boolean {
+  const parsedQuery = query.toLowerCase().trim();
+  if (subject.name.toLowerCase().trim().indexOf(parsedQuery) >= 0) {
+    return true;
+  }
+  if (subject.abbr.toLowerCase().trim().indexOf(parsedQuery) >= 0) {
+    return true;
+  }
+  return false;
 }
 
-export function renderMenuItem(subject: ISubject, classRenderer: IItemRendererProps): JSX.Element {
+function renderSubjects(subject: ISubject, classRenderer: IItemRendererProps): JSX.Element {
   return (
     <MenuItem
       active={false}
@@ -21,15 +28,12 @@ export function renderMenuItem(subject: ISubject, classRenderer: IItemRendererPr
   );
 }
 
-export function renderInputValue(subject: ISubject): string {
-  if (subject.abbr.length === 0) {
-    return '';
-  }
-  return `${subject.name} (${subject.abbr})`;
+export function renderSubject(subject: ISubject): string {
+  return `${subject.name.trim()} (${subject.abbr.trim()})`;
 }
 
 export const autocompleteSubjectsProps = {
-  itemRenderer: renderMenuItem,
-  itemPredicate: filterClasses,
-  inputValueRenderer: renderInputValue,
+  itemRenderer: renderSubjects,
+  itemPredicate: filterSubjects,
+  inputValueRenderer: renderSubject,
 };
