@@ -84,14 +84,12 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public getInstructorMarkup(): JSX.Element {
-    const instructorName = ClassSearchUtils.getInstructorName(this.classDetails);
-    const instructorProfileURL = this.searchURL + this.classDetails.profile;
-    let instructor = <React.Fragment><span>Instructor</span> N/A</React.Fragment>;
-    if (instructorName !== 'N/A') {
+    let instructor = <><span>Instructor</span> TBD</>;
+    if (this.classDetails.instructorName.trim().length !== 0) {
+      const instructorName = this.classDetails.instructorName;
+      const instructorProfileURL = this.searchURL + this.classDetails.profile;
       instructor = (
-        <React.Fragment>
-          <span>Instructor</span><a target="_blank" href={instructorProfileURL}>{instructorName}</a>
-        </React.Fragment>
+        <><span>Instructor</span><a target="_blank" href={instructorProfileURL}>{instructorName}</a></>
       );
     }
     return instructor;
