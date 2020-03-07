@@ -173,9 +173,12 @@ describe('Given a class search results component', () => {
     });
 
     describe('when the instructor name is available', () => {
-      classJson.instructorName = 'Bakeman, Melissa';
-      classJson.profile = '/profile/bakemann';
-      const classSearchResultsWrapper = mountClassSearchResultsComponent([classJson]);
+      let classSearchResultsWrapper = mountClassSearchResultsComponent([classJson]);
+      beforeAll(() => {
+        classJson.instructorName = 'Bakeman, Melissa';
+        classJson.profile = '/profile/bakemann';
+        classSearchResultsWrapper = mountClassSearchResultsComponent([classJson]);
+      });
 
       it('should display the attribute to open the profile link in a new tab', () => {
         expect(classSearchResultsWrapper.html()).toContain('target="_blank"');
@@ -187,6 +190,16 @@ describe('Given a class search results component', () => {
 
       it('should display the instructors name', () => {
         expect(classSearchResultsWrapper.html()).toContain('Bakeman, Melissa');
+      });
+
+      describe('but the profile is not available', () => {
+        beforeAll(() => {
+          classJson.profile = '';
+          classSearchResultsWrapper = mountClassSearchResultsComponent([classJson]);
+        });
+        it('should not display the profile URL', () => {
+          expect(classSearchResultsWrapper.html()).not.toContain('https://search.csusb.edu/profile/bakemann');
+        });
       });
     });
 
