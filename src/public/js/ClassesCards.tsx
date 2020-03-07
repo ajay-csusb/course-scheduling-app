@@ -88,8 +88,12 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     if (this.classDetails.instructorName.trim().length !== 0) {
       const instructorName = this.classDetails.instructorName;
       const instructorProfileURL = this.searchURL + this.classDetails.profile;
+      let userProfile = <>{instructorName}</>;
+      if (this.classDetails.profile !== undefined && this.classDetails.profile.length !== 0) {
+        userProfile = <a target="_blank" href={instructorProfileURL}>{instructorName}</a>;
+      }
       instructor = (
-        <><span>Instructor</span><a target="_blank" href={instructorProfileURL}>{instructorName}</a></>
+        <><span>Instructor</span>{userProfile}</>
       );
     }
     return instructor;
