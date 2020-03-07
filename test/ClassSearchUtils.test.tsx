@@ -91,24 +91,6 @@ describe('Instruction mode values', () => {
 
 });
 
-describe('Instruction name value', () => {
-  const classes = classJson;
-
-  describe('when instruction name is not empty', () => {
-    it('should return instructor name', () => {
-      expect(ClassSearchUtils.getInstructorName(classes)).toEqual('Dyck, Harold');
-    });
-  });
-
-  describe('when instruction name is empty', () => {
-    const noInstructorClass = JSON.parse(JSON.stringify(classes));
-    noInstructorClass.instructorName = ' ';
-    it('should return N/A', () => {
-      expect(ClassSearchUtils.getInstructorName(noInstructorClass)).toEqual('TBD');
-    });
-  });
-});
-
 describe('Session code values', () => {
   describe('When Session code is 10W', () => {
     const classes10Weeks = JSON.parse(JSON.stringify(classJson));
