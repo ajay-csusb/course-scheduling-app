@@ -1,5 +1,5 @@
 const url = require('./Utils');
-describe('Filter classes by session code', function () {
+describe.skip('Filter classes by session code', function () {
 
   context('Given class search form', () => {
     context('when a user searches by a subject and Regular is selected as session code', () => {

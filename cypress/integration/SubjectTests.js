@@ -1,8 +1,7 @@
 const { url, selectSubject } = require('./Utils');
 
 describe('Filter classes by subject', function () {
-
-  context('when a user searches by subject', () => {
+  context('when a user searches for Biology classes', () => {
     before(function () {
       cy.visit(url);
       selectSubject();
