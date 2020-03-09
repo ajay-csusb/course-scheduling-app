@@ -36,6 +36,9 @@ export let baseClassJson: IClass = {
     buildingCode: 'JB',
     room: '100',
     degreeType: 'UGRD',
+    title: 'Information Technology Systems',
+    geCourseAttr: '',
+    topic: '',
 };
 
 export const classJson: IClass = {
@@ -74,6 +77,9 @@ export const classJson: IClass = {
     buildingCode: 'COE',
     room: '101',
     degreeType: 'PBAC',
+    title: 'Introduction to Accounting',
+    geCourseAttr: '',
+    topic: '',
 };
 export const classPDC: IClass = {
     quarter: '2192',
@@ -111,6 +117,9 @@ export const classPDC: IClass = {
     buildingCode: 'PF',
     room: '101',
     degreeType: 'EXED',
+    title: '',
+    geCourseAttr: '',
+    topic: '',
 };
 
 export let meetingDates: IMeetingDate = {
@@ -173,4 +182,7 @@ export const rawClassesJson = {
   acad_ORG: '',
   instruction_MODE: 'ol',
   sb_CRSE_ZCCM: '',
+  crse_TOPIC_DESCR: '',
+  course_TITLE_LONG: 'Introduction to Accounting',
+  crse_ATTR_VALUE: '',
 };
