@@ -99,7 +99,9 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     return instructor;
   }
 
-  public getClassDescription(): JSX.Element {
+  public getClassFullTitle(): JSX.Element {
+    const topic = (this.classDetails.topic.trim().length !== 0) ? `: ${this.classDetails.topic.toLowerCase()}` : '';
+    const tooltip = this.getTooltipMarkup();
     return (
       <Popover
         content={this.classDetails.longDescription}
@@ -109,14 +111,9 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
         <div className="course-name">
           <strong>
             {`${this.classDetails.subject} ${this.classDetails.catalogNo}`}
-            {` - ${this.classDetails.title}`}
+            {` - ${this.classDetails.title}${topic}`}
           </strong>
-          <div className={Classes.TOOLTIP_INDICATOR}>
-            <button className="course-info-btn">
-              <i className="fas fa-info-circle" arial-label="hidden" />
-              <span className="sr-only">{`${this.classDetails.subject} ${this.classDetails.catalogNo}`}</span>
-            </button>
-          </div>
+          {tooltip}
         </div>
       </Popover>
     );
@@ -124,10 +121,10 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
 
   public getCourseHeaderMarkup(): JSX.Element {
     const classType = ClassSearchUtils.getClassType(this.classDetails);
-    const classDescription = this.getClassDescription();
+    const title = this.getClassFullTitle();
     return (
       <div className="course-header">
-          {classDescription}
+          {title}
           <div className="course-details">
               <span>Section {this.classDetails.classSection} • </span>
               <span>{classType} • </span>
@@ -185,6 +182,17 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       return (<div className="course-availability">No Waitlist</div>);
     }
     return (<div className="course-availability"><span>{waitlistNo}</span> students on waitlist</div>);
+  }
+
+  public getTooltipMarkup(): JSX.Element {
+    return (
+      <div className={Classes.TOOLTIP_INDICATOR}>
+        <button className="course-info-btn">
+          <i className="fas fa-info-circle" arial-label="hidden" />
+          <span className="sr-only">{`${this.classDetails.subject} ${this.classDetails.catalogNo}`}</span>
+        </button>
+      </div>
+    );
   }
 
 }

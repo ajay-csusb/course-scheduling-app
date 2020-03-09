@@ -23,7 +23,7 @@ describe('Given a class search results component', () => {
     TestUtils.ajax();
   });
 
-  describe('When no classes are displayed in the results', () => {
+  describe('when no classes are displayed in the results', () => {
     it('should display the 0 classes in the message', () => {
       const classSearchResultsWrapper = mountClassSearchResultsComponent([]);
       expect(classSearchResultsWrapper.html()).toContain('0 classes found');
@@ -31,7 +31,7 @@ describe('Given a class search results component', () => {
     });
   });
 
-  describe('When a user searches for classes and two classes are displayed', () => {
+  describe('when two classes are displayed', () => {
     let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
       classJson.enrolledTotal = 27;
@@ -59,7 +59,7 @@ describe('Given a class search results component', () => {
 
   });
 
-  describe('When a user searches for classes which are are not open for enrollment', () => {
+  describe('when a user searches for classes which are are not open for enrollment', () => {
     let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
       baseClassJson.enrolledTotal = 30;
@@ -82,7 +82,7 @@ describe('Given a class search results component', () => {
 
   });
 
-  describe('When a user searches for classes from the pervious term', () => {
+  describe('when a user searches for classes from the pervious term', () => {
     let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
       classPDC.quarter = '000';
@@ -141,7 +141,7 @@ describe('Given a class search results component', () => {
     });
   });
 
-  describe('Course Attribute label', () => {
+  describe('course attribute label', () => {
     const classCourseAttr = JSON.parse(JSON.stringify(classJson));
     describe('when a class does not have a Course Attribute', () => {
       baseClassJson.courseAttr = '';
@@ -162,8 +162,7 @@ describe('Given a class search results component', () => {
 
   });
 
-  describe('Instructor name and profile URL', () => {
-
+  describe('instructor name and profile URL', () => {
     describe('when the instructor name is not available', () => {
       classJson.instructorName = '';
       const classSearchResultsWrapper = mountClassSearchResultsComponent([classJson]);
@@ -203,6 +202,35 @@ describe('Given a class search results component', () => {
       });
     });
 
+  });
+
+  describe('class title and topic', () => {
+    describe('when a class title has a topic', () => {
+      classJson.title = 'Foo-title';
+      classJson.topic = 'loreum ipsum';
+      const classSearchResultsComponent = mountClassSearchResultsComponent([classJson]);
+      it('should display the topic', () => {
+        expect(classSearchResultsComponent.html()).toContain('Foo-title: loreum ipsum');
+      });
+    });
+
+    describe('when a class title does not have a topic', () => {
+      classJson.title = 'Foo-title';
+      classJson.topic = '';
+      const classSearchResultsComponent = mountClassSearchResultsComponent([classJson]);
+      it('should not display the topic', () => {
+        expect(classSearchResultsComponent.html()).not.toContain('Foo-title: ');
+        expect(classSearchResultsComponent.html()).toContain('Foo-title');
+      });
+    });
+
+  });
+
+  describe('when a class information is displayed', () => {
+    const classSearchResultsComponent = mountClassSearchResultsComponent([classJson]);
+    it('should display tooltip', () => {
+      expect(classSearchResultsComponent.html()).toContain('<button class="course-info-btn">');
+    });
   });
 
   afterEach(() => {

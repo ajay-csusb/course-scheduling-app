@@ -51,6 +51,7 @@ export interface IClass {
   degreeType: string;
   title: string;
   geCourseAttr: string;
+  topic: string;
 }
 
 export interface IMeetingDate {
@@ -123,6 +124,7 @@ export class Class {
       degreeType: object.acad_CAREER,
       title: object.course_TITLE_LONG,
       geCourseAttr: object.crse_ATTR_VALUE,
+      topic: object.crse_TOPIC_DESCR,
     };
     return result;
   }
