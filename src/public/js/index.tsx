@@ -4,4 +4,6 @@ import { ClassSearchContainer } from './ClassSearchContainer';
 import { Utils } from './Utils';
 
 Utils.loadExternalTools();
-ReactDOM.render(<ClassSearchContainer />, document.querySelector('#class-search-form-wrapper'));
+const ErrorBoundary = Utils.loadBugsnagComponent();
+ReactDOM.render(<ErrorBoundary><ClassSearchContainer /></ErrorBoundary>,
+    document.querySelector('#class-search-form-wrapper'));
