@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { IClass, Class } from './Class';
-import { Popover, Position, Classes } from '@blueprintjs/core';
+import { Popover, Classes } from '@blueprintjs/core';
 
 interface IClassesCardsProps {
   classes: IClass;
@@ -103,19 +103,19 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const topic = (this.classDetails.topic.trim().length !== 0) ? `: ${this.classDetails.topic.toLowerCase()}` : '';
     const tooltip = this.getTooltipMarkup();
     return (
-      <Popover
-        content={this.classDetails.longDescription}
-        position={Position.RIGHT}
-        popoverClassName={Classes.POPOVER_CONTENT_SIZING}
-      >
-        <div className="course-name">
-          <strong>
-            {`${this.classDetails.subject} ${this.classDetails.catalogNo}`}
-            {` - ${this.classDetails.title}${topic}`}
-          </strong>
+      <div className="course-name">
+        <strong>
+          {`${this.classDetails.subject} ${this.classDetails.catalogNo}`}
+          {` - ${this.classDetails.title}${topic}`}
+        </strong>
+        <Popover
+          content={this.classDetails.longDescription}
+          position={'auto'}
+          popoverClassName={Classes.POPOVER_CONTENT_SIZING}
+        >
           {tooltip}
-        </div>
-      </Popover>
+        </Popover>
+      </div >
     );
   }
 
