@@ -32,6 +32,8 @@
     "@blueprintjs/core": "^3.16.0",
     "@blueprintjs/datetime": "^3.10.0",
     "@blueprintjs/select": "^3.8.1",
+    "@bugsnag/js": "^6.5.2",
+    "@bugsnag/plugin-react": "^6.5.0",
     "@types/logrocket-react": "^3.0.0",
     "@types/moment": "^2.13.0",
     "@types/node-fetch": "^2.3.7",
