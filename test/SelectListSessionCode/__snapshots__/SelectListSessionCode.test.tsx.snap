@@ -13,84 +13,24 @@ Array [
           "value": "all",
         },
         Object {
-          "label": "Early Start Program",
-          "value": "ES",
-        },
-        Object {
-          "label": "Eight weeks",
-          "value": "8W",
-        },
-        Object {
-          "label": "Four weeks",
-          "value": "4W",
-        },
-        Object {
-          "label": "Mini",
-          "value": "MIN",
-        },
-        Object {
-          "label": "OEE",
-          "value": "OEE",
-        },
-        Object {
-          "label": "OSHER",
-          "value": "OLL",
-        },
-        Object {
-          "label": "Palm Desert 1, 4 week",
-          "value": "A11",
-        },
-        Object {
-          "label": "Palm Desert 1, 8 week",
-          "value": "A12",
-        },
-        Object {
-          "label": "Palm Desert 1,12 week",
-          "value": "A13",
-        },
-        Object {
-          "label": "Palm Desert 2, 4 week",
-          "value": "A21",
-        },
-        Object {
-          "label": "Palm Desert 2, 8 week",
-          "value": "A22",
-        },
-        Object {
-          "label": "Palm Desert 2,12 week",
-          "value": "A23",
-        },
-        Object {
           "label": "Regular",
           "value": "1",
         },
         Object {
-          "label": "Regular Non Standard",
-          "value": "RNS",
+          "label": "Six weeks 1",
+          "value": "6W1",
         },
         Object {
-          "label": "Self Non Standard",
-          "value": "SNS",
-        },
-        Object {
-          "label": "Self Support",
-          "value": "SD",
-        },
-        Object {
-          "label": "Six weeks",
-          "value": "6W",
+          "label": "Six weeks 2",
+          "value": "6W2",
         },
         Object {
           "label": "Ten weeks",
           "value": "10W",
         },
         Object {
-          "label": "Three weeks",
-          "value": "3W",
-        },
-        Object {
-          "label": "Twelve weeks",
-          "value": "12W",
+          "label": "Three weeks 1",
+          "value": "3W1",
         },
       ]
     }
@@ -113,90 +53,6 @@ Array [
           All
         </option>
         <option
-          key="ES"
-          label="Early Start Program"
-          value="ES"
-        >
-          Early Start Program
-        </option>
-        <option
-          key="8W"
-          label="Eight weeks"
-          value="8W"
-        >
-          Eight weeks
-        </option>
-        <option
-          key="4W"
-          label="Four weeks"
-          value="4W"
-        >
-          Four weeks
-        </option>
-        <option
-          key="MIN"
-          label="Mini"
-          value="MIN"
-        >
-          Mini
-        </option>
-        <option
-          key="OEE"
-          label="OEE"
-          value="OEE"
-        >
-          OEE
-        </option>
-        <option
-          key="OLL"
-          label="OSHER"
-          value="OLL"
-        >
-          OSHER
-        </option>
-        <option
-          key="A11"
-          label="Palm Desert 1, 4 week"
-          value="A11"
-        >
-          Palm Desert 1, 4 week
-        </option>
-        <option
-          key="A12"
-          label="Palm Desert 1, 8 week"
-          value="A12"
-        >
-          Palm Desert 1, 8 week
-        </option>
-        <option
-          key="A13"
-          label="Palm Desert 1,12 week"
-          value="A13"
-        >
-          Palm Desert 1,12 week
-        </option>
-        <option
-          key="A21"
-          label="Palm Desert 2, 4 week"
-          value="A21"
-        >
-          Palm Desert 2, 4 week
-        </option>
-        <option
-          key="A22"
-          label="Palm Desert 2, 8 week"
-          value="A22"
-        >
-          Palm Desert 2, 8 week
-        </option>
-        <option
-          key="A23"
-          label="Palm Desert 2,12 week"
-          value="A23"
-        >
-          Palm Desert 2,12 week
-        </option>
-        <option
           key="1"
           label="Regular"
           value="1"
@@ -204,32 +60,18 @@ Array [
           Regular
         </option>
         <option
-          key="RNS"
-          label="Regular Non Standard"
-          value="RNS"
+          key="6W1"
+          label="Six weeks 1"
+          value="6W1"
         >
-          Regular Non Standard
+          Six weeks 1
         </option>
         <option
-          key="SNS"
-          label="Self Non Standard"
-          value="SNS"
+          key="6W2"
+          label="Six weeks 2"
+          value="6W2"
         >
-          Self Non Standard
-        </option>
-        <option
-          key="SD"
-          label="Self Support"
-          value="SD"
-        >
-          Self Support
-        </option>
-        <option
-          key="6W"
-          label="Six weeks"
-          value="6W"
-        >
-          Six weeks
+          Six weeks 2
         </option>
         <option
           key="10W"
@@ -239,18 +81,11 @@ Array [
           Ten weeks
         </option>
         <option
-          key="3W"
-          label="Three weeks"
-          value="3W"
+          key="3W1"
+          label="Three weeks 1"
+          value="3W1"
         >
-          Three weeks
-        </option>
-        <option
-          key="12W"
-          label="Twelve weeks"
-          value="12W"
-        >
-          Twelve weeks
+          Three weeks 1
         </option>
       </select>
       <Blueprint3.Icon
@@ -296,90 +131,6 @@ Array [
         All
       </option>
       <option
-        key="ES"
-        label="Early Start Program"
-        value="ES"
-      >
-        Early Start Program
-      </option>
-      <option
-        key="8W"
-        label="Eight weeks"
-        value="8W"
-      >
-        Eight weeks
-      </option>
-      <option
-        key="4W"
-        label="Four weeks"
-        value="4W"
-      >
-        Four weeks
-      </option>
-      <option
-        key="MIN"
-        label="Mini"
-        value="MIN"
-      >
-        Mini
-      </option>
-      <option
-        key="OEE"
-        label="OEE"
-        value="OEE"
-      >
-        OEE
-      </option>
-      <option
-        key="OLL"
-        label="OSHER"
-        value="OLL"
-      >
-        OSHER
-      </option>
-      <option
-        key="A11"
-        label="Palm Desert 1, 4 week"
-        value="A11"
-      >
-        Palm Desert 1, 4 week
-      </option>
-      <option
-        key="A12"
-        label="Palm Desert 1, 8 week"
-        value="A12"
-      >
-        Palm Desert 1, 8 week
-      </option>
-      <option
-        key="A13"
-        label="Palm Desert 1,12 week"
-        value="A13"
-      >
-        Palm Desert 1,12 week
-      </option>
-      <option
-        key="A21"
-        label="Palm Desert 2, 4 week"
-        value="A21"
-      >
-        Palm Desert 2, 4 week
-      </option>
-      <option
-        key="A22"
-        label="Palm Desert 2, 8 week"
-        value="A22"
-      >
-        Palm Desert 2, 8 week
-      </option>
-      <option
-        key="A23"
-        label="Palm Desert 2,12 week"
-        value="A23"
-      >
-        Palm Desert 2,12 week
-      </option>
-      <option
         key="1"
         label="Regular"
         value="1"
@@ -387,32 +138,18 @@ Array [
         Regular
       </option>
       <option
-        key="RNS"
-        label="Regular Non Standard"
-        value="RNS"
+        key="6W1"
+        label="Six weeks 1"
+        value="6W1"
       >
-        Regular Non Standard
+        Six weeks 1
       </option>
       <option
-        key="SNS"
-        label="Self Non Standard"
-        value="SNS"
+        key="6W2"
+        label="Six weeks 2"
+        value="6W2"
       >
-        Self Non Standard
-      </option>
-      <option
-        key="SD"
-        label="Self Support"
-        value="SD"
-      >
-        Self Support
-      </option>
-      <option
-        key="6W"
-        label="Six weeks"
-        value="6W"
-      >
-        Six weeks
+        Six weeks 2
       </option>
       <option
         key="10W"
@@ -422,18 +159,11 @@ Array [
         Ten weeks
       </option>
       <option
-        key="3W"
-        label="Three weeks"
-        value="3W"
+        key="3W1"
+        label="Three weeks 1"
+        value="3W1"
       >
-        Three weeks
-      </option>
-      <option
-        key="12W"
-        label="Twelve weeks"
-        value="12W"
-      >
-        Twelve weeks
+        Three weeks 1
       </option>
     </select>
     <Blueprint3.Icon

@@ -8,4 +8,8 @@ export class TestUtils {
     fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS', rawClassesJson);
     fetchMock.mock('*', {});
   }
+
+  public static copyObject(sourceObject: any): any {
+    return JSON.parse(JSON.stringify(sourceObject));
+  }
 }
