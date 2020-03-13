@@ -18,7 +18,6 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public render(): JSX.Element {
-    // @Todo add degree type and Session code
     const courseHeaderMarkup = this.getCourseHeaderMarkup();
     const courseBodyMarkup = this.getCourseBodyMarkup();
     const courseInfoMarkup = this.getCourseInfoMarkup();
@@ -43,6 +42,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const instructionMode = ClassSearchUtils.getInstructionMode(this.classDetails);
     const textBookMarkup = this.getTextBookMarkup();
     const instructorMarkup = this.getInstructorMarkup();
+    const sessionMarkup = this.getSessionMarkup();
     let courseAttrMarkup = null;
     if (this.classDetails.courseAttr.length !== 0) {
       courseAttrMarkup = <li><span>Course Attribute </span>{this.classDetails.courseAttr}</li>;
@@ -58,6 +58,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
           <li>{instructorMarkup}</li>
           <li><span>Instruction Mode </span>{instructionMode}</li>
           {courseAttrMarkup}
+          {sessionMarkup}
         </ul>
         {textBookMarkup}
       </React.Fragment>
@@ -193,6 +194,25 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
         </button>
       </div>
     );
+  }
+
+  public isNonRegularSession(): boolean {
+    const sessionCodes = [
+      '10W',
+      '6W1',
+      '6W2',
+      '3W1',
+    ];
+    return (sessionCodes.includes(this.classDetails.sessionCode.trim()));
+  }
+
+  public getSessionMarkup(): JSX.Element {
+    let sessionMarkup = <></>;
+    if (this.isNonRegularSession()) {
+      const session = ClassSearchUtils.getSessionCode(this.classDetails);
+      sessionMarkup = (<><li><span>Session </span>{session}</li></>);
+    }
+    return sessionMarkup;
   }
 
 }
