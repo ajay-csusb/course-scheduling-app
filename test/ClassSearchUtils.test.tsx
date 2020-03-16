@@ -37,7 +37,7 @@ describe('Instruction mode values', () => {
     const foClasses = JSON.parse(JSON.stringify(classes));
     foClasses.instructionMode = 'FO';
     it('should return Online Asynchronous and/or Synchronous Instruction (in compliance with AB386)', () => {
-      expect(ClassSearchUtils.getInstructionMode(foClasses)).toEqual('Fully Online');
+      expect(ClassSearchUtils.getInstructionMode(foClasses)).toEqual('Fully Online (AB 386)');
     });
   });
 
