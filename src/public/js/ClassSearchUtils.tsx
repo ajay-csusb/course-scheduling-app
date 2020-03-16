@@ -140,7 +140,7 @@ export function getInstructionMode(classes: IClass): string {
     return 'Online, Coursematch';
   }
   if (classes.instructionMode === 'FO') {
-    return 'Fully Online';
+    return 'Fully Online (AB 386)';
   }
   if (classes.instructionMode === 'HO') {
     return 'Hybrid';
