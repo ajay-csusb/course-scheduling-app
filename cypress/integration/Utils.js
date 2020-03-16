@@ -24,10 +24,19 @@ function clickAdditionalFilters() {
   cy.get('#additional-filters').click();
 }
 
+function waitForResults() {
+  const loadingSpinner = Cypress.$('.bp3-spinner-animation');
+  if (loadingSpinner.length === 1) {
+    setTimeout(() => {
+      waitForResults();
+    }, 500);
+  }
+}
 module.exports = {
   url: url,
   selectSubject: selectSubject,
   enterCourseNumber: enterCourseNumber,
   submit: submit,
   clickAdditionalFilters: clickAdditionalFilters,
+  waitForResults: waitForResults,
 }

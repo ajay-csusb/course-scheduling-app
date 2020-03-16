@@ -1,19 +1,20 @@
-const { url, selectSubject, enterCourseNumber, submit } = require('./Utils');
+import * as form from './Utils';
 
 describe('Correct class information is displayed in results', function () {
   context('when Biology is searched', () => {
     describe('displayed markup of results', function () {
       context('when classes related to Biology are searched', () => {
         before(function () {
-          cy.visit(url);
-          selectSubject();
-          enterCourseNumber();
-          cy.get('.btn-primary').click();
+          cy.visit(form.url);
+          form.selectSubject();
+          form.enterCourseNumber();
+          form.submit();
+          form.waitForResults();
         });
 
         it('should display information related to a class', () => {
           cy.get('span').should('contain', 'BIOL 100');
-          cy.get('span').should('contain', 'Topics in Biology');
+          cy.get('div').should('contain', 'Topics in Biology');
           cy.get('span').should('contain', 'Units');
           cy.get('span').should('contain', 'Meeting Time');
           cy.get('span').should('contain', 'Meeting Days');
@@ -27,7 +28,7 @@ describe('Correct class information is displayed in results', function () {
         });
 
         it('should show description when info icon is clicked', () => {
-          cy.get(':nth-child(1) > .course > .item-header > .course-header > .bp3-popover-wrapper > .bp3-popover-target > .course-name > .bp3-tooltip-indicator > .course-info-btn > .fas').click();
+          cy.get(':nth-child(1) > .course > .item-header > .course-header > .course-name > .bp3-popover-wrapper > .bp3-popover-target > .bp3-tooltip-indicator > .course-info-btn > .fas').click();
           cy.get('.bp3-popover-content').should('have.length', '1');
         });
 
@@ -53,11 +54,12 @@ describe('Correct class information is displayed in results', function () {
 
       context('when Biology classes from past terms are searched', () => {
         before(function () {
-          cy.visit(url);
+          cy.visit(form.url);
           selectPreviousTerm();
-          selectSubject();
-          enterCourseNumber();
-          submit();
+          form.selectSubject();
+          form.enterCourseNumber();
+          form.submit();
+          form.waitForResults();
         });
 
         it('should display classes as Closed', () => {
@@ -82,4 +84,5 @@ describe('Correct class information is displayed in results', function () {
       });
     }
   });
+  
 });
