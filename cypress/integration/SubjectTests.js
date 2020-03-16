@@ -1,11 +1,12 @@
-const { url, selectSubject } = require('./Utils');
+import * as form from './Utils';
 
 describe('Filter classes by subject', function () {
   context('when a user searches for Biology classes', () => {
     before(function () {
-      cy.visit(url);
-      selectSubject();
-      cy.get('.btn-primary').click();
+      cy.visit(form.url);
+      form.selectSubject();
+      form.submit(); 
+      form.waitForResults();
     });
 
     it('should show Biology classes', () => {

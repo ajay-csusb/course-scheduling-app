@@ -48,5 +48,19 @@ describe('Session codes label and markup', () => {
       expect(classResultsComponent).toMatchSnapshot();
     });
   });
-
+});
+describe('when a class is a fully online', () => {
+  it('should append (AB 386) to the text Fully Online', () => {
+    const fullyOnlineClassJson: IClass = TestUtils.copyObject(classJson);
+    fullyOnlineClassJson.instructionMode = 'FO';
+    const classesCardsComponent: JSX.Element = (
+      <ClassesCards
+        classes={fullyOnlineClassJson}
+        currentTerm={'0000'}
+      />
+    );
+    const classResultsComponent = mount(classesCardsComponent);
+    expect(classResultsComponent.html()).toContain('Fully Online (AB 386)');
+    expect(classResultsComponent).toMatchSnapshot();
+  });
 });
