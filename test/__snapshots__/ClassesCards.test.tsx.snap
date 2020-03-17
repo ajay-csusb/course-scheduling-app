@@ -474,7 +474,7 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
 </ClassesCards>
 `;
 
-exports[`when a class is a fully online should append (AB 386) to the text Fully Online 1`] = `
+exports[`when a class is a fully online should not display the room number in the markup 1`] = `
 <ClassesCards
   classes={
     Object {
@@ -670,12 +670,6 @@ exports[`when a class is a fully online should append (AB 386) to the text Fully
             Meeting Days 
           </span>
           M-W
-        </li>
-        <li>
-          <span>
-            Room 
-          </span>
-          COE 101
         </li>
         <li>
           <span>

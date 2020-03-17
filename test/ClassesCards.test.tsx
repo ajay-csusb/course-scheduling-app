@@ -50,7 +50,8 @@ describe('Session codes label and markup', () => {
   });
 });
 describe('when a class is a fully online', () => {
-  it('should append (AB 386) to the text Fully Online', () => {
+  let classResultsComponent = null;
+  beforeAll(() => {
     const fullyOnlineClassJson: IClass = TestUtils.copyObject(classJson);
     fullyOnlineClassJson.instructionMode = 'FO';
     const classesCardsComponent: JSX.Element = (
@@ -59,8 +60,17 @@ describe('when a class is a fully online', () => {
         currentTerm={'0000'}
       />
     );
-    const classResultsComponent = mount(classesCardsComponent);
+    classResultsComponent = mount(classesCardsComponent);
+  });
+
+  it('should append (AB 386) to the text Fully Online', () => {
     expect(classResultsComponent.html()).toContain('Fully Online (AB 386)');
+  });
+  it('should not display room number', () => {
+    expect(classResultsComponent.html()).not.toContain('<span>Room </span>');
+  });
+
+  it('should not display the room number in the markup', () => {
     expect(classResultsComponent).toMatchSnapshot();
   });
 });
