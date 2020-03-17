@@ -49,8 +49,10 @@ describe('Session codes label and markup', () => {
     });
   });
 });
+
 describe('when a class is a fully online', () => {
-  it('should append (AB 386) to the text Fully Online', () => {
+  let classResultsComponent = null;
+  beforeAll(() => {
     const fullyOnlineClassJson: IClass = TestUtils.copyObject(classJson);
     fullyOnlineClassJson.instructionMode = 'FO';
     const classesCardsComponent: JSX.Element = (
@@ -59,8 +61,64 @@ describe('when a class is a fully online', () => {
         currentTerm={'0000'}
       />
     );
-    const classResultsComponent = mount(classesCardsComponent);
+    classResultsComponent = mount(classesCardsComponent);
+  });
+
+  it('should append (AB 386) to the text Fully Online', () => {
     expect(classResultsComponent.html()).toContain('Fully Online (AB 386)');
+  });
+  it('should not display room number', () => {
+    expect(classResultsComponent.html()).not.toContain('<span>Room </span>');
+  });
+
+  it('should not display the room number in the markup', () => {
+    expect(classResultsComponent).toMatchSnapshot();
+  });
+});
+
+describe('when a class has zero cost course material', () => {
+  it('should display icon for zero cost course material', () => {
+    const zeroCostClassJson: IClass = TestUtils.copyObject(classJson);
+    zeroCostClassJson.courseAttr = 'Zero Cost Course Materials';
+    const classesCardsComponent: JSX.Element = (
+      <ClassesCards
+        classes={zeroCostClassJson}
+        currentTerm={'0000'}
+      />
+    );
+    const classResultsComponent = mount(classesCardsComponent);
+    expect(classResultsComponent.html())
+      .toContain('https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png');
+    expect(classResultsComponent).toMatchSnapshot();
+  });
+});
+describe('when a class has low cost course material', () => {
+  it('should display icon for low cost course material', () => {
+    const lowCostClassJson: IClass = TestUtils.copyObject(classJson);
+    lowCostClassJson.courseAttr = 'Low Cost Course Materials, GE1-FOO';
+    const classesCardsComponent: JSX.Element = (
+      <ClassesCards
+        classes={lowCostClassJson}
+        currentTerm={'0000'}
+      />
+    );
+    const classResultsComponent = mount(classesCardsComponent);
+    expect(classResultsComponent.html())
+      .toContain('https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png');
+    expect(classResultsComponent).toMatchSnapshot();
+  });
+});
+describe('when a class has zero cost course materials and low cost course materials', () => {
+  it('should display icons for ZCCM and LCCM', () => {
+    const courseIconsJson: IClass = TestUtils.copyObject(classJson);
+    courseIconsJson.courseAttr = 'Zero Cost Course Materials, Low Cost Course Materials';
+    const classesCardsComponent: JSX.Element = (
+      <ClassesCards
+        classes={courseIconsJson}
+        currentTerm={'0000'}
+      />
+    );
+    const classResultsComponent = mount(classesCardsComponent);
     expect(classResultsComponent).toMatchSnapshot();
   });
 });
