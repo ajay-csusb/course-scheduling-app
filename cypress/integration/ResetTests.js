@@ -1,54 +1,43 @@
-const url = require('./Utils');
+import * as form from './Utils';
 
-describe.skip('Reset button behavior', function () {
-  describe('Given a class search form', function () {
-    describe('When reset button is clicked', function () {
-      before(() => {
-        cy.visit(url);
-        cy.get('.search-autocomplete input').type('Communication Studies').click();
-        cy.get('div').contains('Communication Studies', { timeout: 15000 }).click();
-        cy.get('.campus-select select').select('Palm Desert');
-        cy.get('.btn-primary').click();
-        cy.wait(5000);
-        cy.get('.btn-secondary').click();
-        cy.wait(5000);
-      });
-
-      it('should display Summer 2019', () => {
-        cy.get('.select-term select option:first').should('be.selected');
-      });
-    });
-  });
-});
-
-  // Given a class search form
-  // When a user searches for classes in PDC
-  //  And clicks Reset
-  //  And searches for Art classes
-  //  And clicks Submit 
-  // Then Art 200 70 should be displayed
-  //  And Art 200 80 should be displayed
-  //  And Campus: Palm Desert should be displayed
-  //  And Campus: San Bernardino should be displayed
-describe.skip('Given a class search form', function () {
-  describe('When a user searches for classes on PDC campus and then clicks reset', function () {
+describe('Given a class search form', function () {
+  describe('When a user searches for classes and the clicks on reset', function () {
     before(() => {
-      cy.get('.search-autocomplete input').type('All').click();
-      cy.get('.bp3-menu').contains('All', { timeout: 25000 }).click();
-      cy.visit(url);
-      cy.get('.campus-select select').select('Palm Desert');
-      cy.get('.btn-primary').click();
-      cy.wait(5000);
+      cy.visit(form.url);
+      form.selectSubject();
+      form.selectCampus();
+      form.enterCourseNumber();
+      form.selectInstructionMode();
+      form.checkDays(['.mon', '.thu']);
+      form.enterTimes();
+      form.clickAdditionalFilters();
+      cy.get('#course-attribute').select('eBook');
+      cy.get('.select-ge-classes-attr select').select('GE-B2 Life Sciences');
+      cy.get('.class-number').type('0000');
+      cy.get('.session-code select').select('Regular');
+      form.submit();
       cy.get('.btn-secondary').click();
-      cy.get('.search-autocomplete input').type('Art').click();
-      cy.get('div').contains('Art', { timeout: 15000 }).click();
-      cy.get('.btn-primary').click();
-      cy.wait(15000);
     });
 
-    it('should display Art classes from San Bernardino campus and Palm Desert campus', () => {
-      cy.get('span').contains('Campus: Palm Desert');
-      cy.get('span').contains('Campus: San Bernardino');
+    it('should reset all the fields', () => {
+      cy.get('p').should('not.contain', '0 classes found');
+      cy.get('i').should('not.contain', 'Try refining the search above to get more results');
+      cy.get('#class-search-results-component').should('not.visible');
+      cy.get('.campus-select select').should('have.value', 'both');
+      cy.get('.search-autocomplete input').invoke('attr', 'value').should('not.contain', 'Biology');
+      cy.get('#course-number').invoke('attr', 'value').should('contain', '');
+      cy.get('.search-instructor-autocomplete input').invoke('attr', 'value').should('contain', '');
+      cy.get('.select-instruction-mode select').should('have.value', 'all');
+      cy.get('.start-time .bp3-timepicker-hour').invoke('attr', 'value').should('contain', '12');
+      cy.get('.start-time .bp3-timepicker-minute').invoke('attr', 'value').should('contain', '00');
+      cy.get('.start-time .bp3-timepicker-ampm-select select').should('have.value', 'am');
+      cy.get('.end-time .bp3-timepicker-hour').invoke('attr', 'value').should('contain', '11');
+      cy.get('.end-time .bp3-timepicker-minute').invoke('attr', 'value').should('contain', '00');
+      cy.get('.end-time .bp3-timepicker-ampm-select select').should('have.value', 'pm');
+      cy.get('.select-ge-classes-attr select').should('have.value', '');
+      cy.get('.course-attribute select').should('have.value', 'all');
+      cy.get('#class-number').invoke('attr', 'value').should('contain', '');
+      cy.get('.session-code select').should('have.value', 'all');
     });
   });
 });
