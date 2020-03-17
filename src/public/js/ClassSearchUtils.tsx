@@ -2,6 +2,7 @@ import Moment from 'moment';
 import { IClass } from './Class';
 import { IOptionProps } from '@blueprintjs/core';
 import { GeCourseAttribute } from './GeCourseAttribute';
+import { Utils } from './Utils';
 
 export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
                           callbackOnFailure: (error: string) => void): void {
@@ -210,6 +211,9 @@ export function getDegreeType(classes: IClass): string {
 export function getRoomNumber(classes: IClass): string {
   if (classes.buildingCode.length === 0 && classes.room.length === 0) {
     return 'TBD';
+  }
+  if (classes.buildingCode.trim().toLowerCase() === 'ol') {
+    return classes.room.length !== 0 ? Utils.toCapitalizeCase(classes.room.toLowerCase()) : '';
   }
   return `${classes.buildingCode} ${classes.room}`;
 }
