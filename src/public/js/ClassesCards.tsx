@@ -38,7 +38,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const campus = ClassSearchUtils.getCampusName(this.classDetails.campus);
     const days = classObj.getClassMeetingDates();
     const time = classObj.getClassMeetingTimes();
-    const roomNumber = ClassSearchUtils.getRoomNumber(this.classDetails);
+    const roomNumberMarkup = this.getRoomNumberMarkup();
     const instructionMode = ClassSearchUtils.getInstructionMode(this.classDetails);
     const textBookMarkup = this.getTextBookMarkup();
     const instructorMarkup = this.getInstructorMarkup();
@@ -53,7 +53,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
           <li><span>Units </span>{this.classDetails.csuUnits}</li>
           <li><span>Meeting Time </span>{time}</li>
           <li><span>Meeting Days </span>{days}</li>
-          <li><span>Room </span>{roomNumber}</li>
+          {roomNumberMarkup}
           <li><span>Campus </span>{campus}</li>
           <li>{instructorMarkup}</li>
           <li><span>Instruction Mode </span>{instructionMode}</li>
@@ -213,6 +213,14 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       sessionMarkup = (<><li><span>Session </span>{session}</li></>);
     }
     return sessionMarkup;
+  }
+
+  public getRoomNumberMarkup(): JSX.Element {
+    const roomNumber = ClassSearchUtils.getRoomNumber(this.classDetails);
+    if (this.classDetails.instructionMode !== 'FO') {
+      return (<li><span>Room </span>{roomNumber}</li>);
+    }
+    return <></>;
   }
 
 }
