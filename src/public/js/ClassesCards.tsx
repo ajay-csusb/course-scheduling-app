@@ -47,6 +47,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     if (this.classDetails.courseAttr.length !== 0) {
       courseAttrMarkup = <li><span>Course Attribute </span>{this.classDetails.courseAttr}</li>;
     }
+    const courseMaterialIconMarkup = this.getCourseMaterialIconMarkup();
     return (
       <React.Fragment>
         <ul className="course-desc">
@@ -60,7 +61,11 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
           {courseAttrMarkup}
           {sessionMarkup}
         </ul>
-        {textBookMarkup}
+        <div className="course-books">
+          {textBookMarkup}
+          {courseMaterialIconMarkup}
+        </div>
+
       </React.Fragment>
     );
   }
@@ -221,6 +226,32 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       return (<li><span>Room </span>{roomNumber}</li>);
     }
     return <></>;
+  }
+
+  public getCourseMaterialIconMarkup(): JSX.Element {
+    let zeroCostIcon = null;
+    let lowCostIcon = null;
+    const courseAttrArr = this.classDetails.courseAttr.split(', ').map(_ele => _ele.trim());
+    if (courseAttrArr.includes('Zero Cost Course Materials')) {
+      zeroCostIcon = (
+        <img
+          src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
+          alt="Zero Cost Course Materials"
+        />
+      );
+    }
+    if (courseAttrArr.includes('Low Cost Course Materials')) {
+      lowCostIcon = (
+        <img
+          src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
+          alt="Low Cost Course Materials"
+        />
+      );
+    }
+    if (!zeroCostIcon && !lowCostIcon) {
+      return <></>;
+    }
+    return (<div className="course--icons">{zeroCostIcon}{lowCostIcon}</div>);
   }
 
 }
