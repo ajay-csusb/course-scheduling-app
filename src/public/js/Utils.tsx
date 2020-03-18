@@ -18,6 +18,10 @@ export class Utils {
     return bugsnagClient.getPlugin('react');
   }
 
+  public static toCapitalizeCase(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   private static isProd(): boolean {
     return (window.location.hostname === 'www.csusb.edu');
   }
