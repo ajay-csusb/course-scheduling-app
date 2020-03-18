@@ -213,7 +213,7 @@ export function getRoomNumber(classes: IClass): string {
     return 'TBD';
   }
   if (classes.buildingCode.trim().toLowerCase() === 'ol') {
-    return classes.room.length !== 0 ? Utils.toCapitalizeCase(classes.room.toLowerCase()) : '';
+    return classes.room.length !== 0 ? Utils.toCapitalizeCase(classes.room.toLowerCase()) : 'TBD';
   }
   return `${classes.buildingCode} ${classes.room}`;
 }
