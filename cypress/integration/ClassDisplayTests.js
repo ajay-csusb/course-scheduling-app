@@ -9,7 +9,6 @@ describe('Correct class information is displayed in results', function () {
           form.selectSubject();
           form.enterCourseNumber();
           form.submit();
-          form.waitForResults();
         });
 
         it('should display information related to a class', () => {
@@ -59,7 +58,6 @@ describe('Correct class information is displayed in results', function () {
           form.selectSubject();
           form.enterCourseNumber();
           form.submit();
-          form.waitForResults();
         });
 
         it('should display classes as Closed', () => {
