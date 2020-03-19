@@ -16,7 +16,7 @@ describe('Given a class search form', function () {
       cy.get('.class-number').type('0000');
       cy.get('.session-code select').select('Regular');
       form.submit();
-      cy.get('.btn-secondary').click();
+      cy.contains('Reset').click();
     });
 
     it('should reset all the fields', () => {
