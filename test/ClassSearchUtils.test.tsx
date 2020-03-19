@@ -568,22 +568,29 @@ describe('when class results are displayed', () => {
     it('should display full description of all the course attributes', () => {
       const classBio200 = JSON.parse(JSON.stringify(classJson));
       classBio200.courseAttr = 'GE, CSLI';
-      const classes = ClassSearchUtils.expandCourseAttribute(classBio200.courseAttr);
-      expect(classes).toEqual('General Education, Service Learning');
+      const expandedCourseAttr = ClassSearchUtils.expandCourseAttribute(classBio200.courseAttr);
+      expect(expandedCourseAttr).toEqual('General Education, Service Learning');
     });
 
     it('should not display invalid attributes', () => {
       const classBio300 = JSON.parse(JSON.stringify(classJson));
       classBio300.courseAttr = 'WSTD, foo';
-      const classes = ClassSearchUtils.expandCourseAttribute(classBio300.courseAttr);
-      expect(classes).toEqual('Women\'s Studies');
+      const expandedCourseAttr = ClassSearchUtils.expandCourseAttribute(classBio300.courseAttr);
+      expect(expandedCourseAttr).toEqual('Women\'s Studies');
     });
 
     it('should not display any information if all the attributes are invalid', () => {
       const classBio400 = JSON.parse(JSON.stringify(classJson));
       classBio400.courseAttr = 'foo, bar';
-      const classes = ClassSearchUtils.expandCourseAttribute(classBio400.courseAttr);
-      expect(classes).toEqual('');
+      const expandedCourseAttr = ClassSearchUtils.expandCourseAttribute(classBio400.courseAttr);
+      expect(expandedCourseAttr).toEqual('');
+    });
+
+    it('should not display duplicate course attributes', () => {
+      const classBio500 = TestUtils.copyObject(classJson);
+      classBio500.courseAttr = 'GE, CSLI, GE';
+      const expandedCourseAttr = ClassSearchUtils.expandCourseAttribute(classBio500.courseAttr);
+      expect(expandedCourseAttr).toEqual('General Education, Service Learning');
     });
   });
 });
@@ -685,8 +692,41 @@ describe('GE class attribute', () => {
     classBio500.geCourseAttr = 'GE-BAR, 1, 2, 3';
 
     const courseAttr = GeCourseAttribute.addGeAttrs(classBio500, geAttrs);
-    it('should return classes with all course attributes and dispaly GE course attribute', () => {
-      expect(courseAttr).toEqual('loreum, General Education BAR, ipsum');
+    it('should return classes with all valid course attributes and dispaly GE course attribute', () => {
+      expect(courseAttr).toEqual('loreum, ipsum, General Education BAR');
+    });
+  });
+
+  describe('when a class has multiple GE course attributes', () => {
+    const classBio600 = TestUtils.copyObject(classJson);
+    classBio600.courseAttr = 'loreum, General Education, ipsum';
+    classBio600.geCourseAttr = 'GE-BAR, 1, 2, 3, GE-FOO';
+
+    const courseAttr = GeCourseAttribute.addGeAttrs(classBio600, geAttrs);
+    it('should return all course attributes and multiple GE course attributes', () => {
+      expect(courseAttr).toEqual('loreum, ipsum, General Education BAR, General Education FOO');
+    });
+  });
+
+  describe('when a class has duplicate GE course attributes', () => {
+    const classBio700 = TestUtils.copyObject(classJson);
+    classBio700.courseAttr = 'General Education';
+    classBio700.geCourseAttr = 'GE-FOO, GE-FOO';
+
+    const geCourseAttr = GeCourseAttribute.addGeAttrs(classBio700, geAttrs);
+    it('should not return duplicate GE course attributes', () => {
+      expect(geCourseAttr).toEqual('General Education FOO');
+    });
+  });
+
+  describe('when a class has duplicate GE course attributes and unique course attributes', () => {
+    const classBio800 = TestUtils.copyObject(classJson);
+    classBio800.courseAttr = 'General Education';
+    classBio800.geCourseAttr = 'GE-FOO, GE-BAR, GE-FOO';
+
+    const geCourseAttr = GeCourseAttribute.addGeAttrs(classBio800, geAttrs);
+    it('should return all unique GE course attributes', () => {
+      expect(geCourseAttr).toEqual('General Education FOO, General Education BAR');
     });
   });
 });
