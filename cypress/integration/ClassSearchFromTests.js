@@ -38,7 +38,7 @@ describe('Markup of search form', () => {
       });
       context('when reset is clicked', () => {
         it('should not highlight the subject textfield', () => {
-          cy.get('.btn-secondary').click();
+          cy.contains('Reset').click();
           cy.get('.search-autocomplete input').should('not.contain.class', 'bp3-intent-danger');
         });
 
