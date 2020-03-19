@@ -207,10 +207,10 @@ describe('Given a class search results component', () => {
   describe('class title and topic', () => {
     describe('when a class title has a topic', () => {
       classJson.title = 'Foo-title';
-      classJson.topic = 'loreum ipsum';
+      classJson.topic = 'loreum IPSUM';
       const classSearchResultsComponent = mountClassSearchResultsComponent([classJson]);
       it('should display the topic', () => {
-        expect(classSearchResultsComponent.html()).toContain('Foo-title: loreum ipsum');
+        expect(classSearchResultsComponent.html()).toContain('Foo-title: Loreum Ipsum');
       });
     });
 
