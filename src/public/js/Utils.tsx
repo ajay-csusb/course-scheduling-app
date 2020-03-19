@@ -19,7 +19,12 @@ export class Utils {
   }
 
   public static toCapitalizeCase(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    const wordArr = str.trim().split(' ');
+    const results = [];
+    for (const word of wordArr) {
+      results.push(word.charAt(0).toUpperCase() + word.slice(1));
+    }
+    return results.join(' ');
   }
 
   private static isProd(): boolean {
