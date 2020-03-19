@@ -262,7 +262,7 @@ export function sortClasses(classes: IClass[]): IClass[] {
 }
 
 export function expandCourseAttribute(courseAttrAbbr: string): string {
-  const results = [];
+  const results: string[] = [];
   const courseAttrArr = courseAttrAbbr.split(', ');
   const courseAttrExpanded = {
     ASTD: 'Asian Studies',
@@ -280,8 +280,11 @@ export function expandCourseAttribute(courseAttrAbbr: string): string {
     ZCCM: 'Zero Cost Course Materials',
   };
   for (const courseAttr of  courseAttrArr) {
-    if (courseAttrExpanded[courseAttr] !== undefined) {
-      results.push(courseAttrExpanded[courseAttr]);
+    const fullCourseAttr = courseAttrExpanded[courseAttr];
+    if (fullCourseAttr !== undefined) {
+      if (!results.includes(fullCourseAttr)) {
+        results.push(fullCourseAttr);
+      }
     }
   }
   if (results.length === 0) {
