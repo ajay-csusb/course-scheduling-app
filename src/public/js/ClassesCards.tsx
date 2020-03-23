@@ -214,12 +214,11 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public getSessionMarkup(): JSX.Element {
-    let sessionMarkup = <></>;
     if (this.isNonRegularSession()) {
       const session = ClassSearchUtils.getSessionCode(this.classDetails);
-      sessionMarkup = (<><li><span>Session </span>{session}</li></>);
+      return (<><li><span>Session </span>{session}</li></>);
     }
-    return sessionMarkup;
+    return <></>;
   }
 
   public getRoomNumberMarkup(): JSX.Element {
