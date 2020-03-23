@@ -209,13 +209,18 @@ export function getDegreeType(classes: IClass): string {
 }
 
 export function getRoomNumber(classes: IClass): string {
-  if (classes.buildingCode.length === 0 && classes.room.length === 0) {
+  const buildingCode = classes.buildingCode;
+  const roomNumber = classes.room;
+  if (buildingCode.length === 0 && roomNumber.length === 0) {
     return 'TBD';
   }
-  if (classes.buildingCode.trim().toLowerCase() === 'ol') {
-    return classes.room.length !== 0 ? Utils.toCapitalizeCase(classes.room.toLowerCase()) : 'TBD';
+  if (buildingCode === 'TBD') {
+    return 'TBD';
   }
-  return `${classes.buildingCode} ${classes.room}`;
+  if (buildingCode.trim().toLowerCase() === 'ol') {
+    return classes.room.length !== 0 ? Utils.toCapitalizeCase(roomNumber.toLowerCase()) : 'TBD';
+  }
+  return `${buildingCode} ${roomNumber}`;
 }
 
 export function mergeAttributes(classes: IClass[]): IClass[] {

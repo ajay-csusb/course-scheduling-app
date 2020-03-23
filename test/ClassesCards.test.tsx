@@ -123,53 +123,71 @@ describe('when a class has zero cost course materials and low cost course materi
   });
 });
 
-describe('when a class has building code as OL', () => {
-  it('should not display the building code', () => {
-    const buildingCodeOlClassJson: IClass = TestUtils.copyObject(classJson);
-    buildingCodeOlClassJson.buildingCode = 'OL';
-    buildingCodeOlClassJson.room = 'ONLINE';
-    const classesCardsComponent: JSX.Element = (
-      <ClassesCards
-        classes={buildingCodeOlClassJson}
-        currentTerm={'0000'}
-      />
-    );
-    const classResultsComponent = mount(classesCardsComponent);
-    expect(classResultsComponent).toMatchSnapshot();
-    expect(classResultsComponent.html()).toContain('<li><span>Room </span>Online</li>');
+describe('building code and room number', () => {
+  describe('when a class has building code as OL', () => {
+    it('should not display the building code', () => {
+      const buildingCodeOlClassJson: IClass = TestUtils.copyObject(classJson);
+      buildingCodeOlClassJson.buildingCode = 'OL';
+      buildingCodeOlClassJson.room = 'ONLINE';
+      const classesCardsComponent: JSX.Element = (
+        <ClassesCards
+          classes={buildingCodeOlClassJson}
+          currentTerm={'0000'}
+        />
+      );
+      const classResultsComponent = mount(classesCardsComponent);
+      expect(classResultsComponent).toMatchSnapshot();
+      expect(classResultsComponent.html()).toContain('<li><span>Room </span>Online</li>');
+    });
   });
-});
 
-describe('when a class does not have a building number and room number', () => {
-  it('should display TBD', () => {
-    const noRoomClassJson: IClass = TestUtils.copyObject(classJson);
-    noRoomClassJson.buildingCode = '';
-    noRoomClassJson.room = '';
-    const classesCardsComponent: JSX.Element = (
-      <ClassesCards
-        classes={noRoomClassJson}
-        currentTerm={'0000'}
-      />
-    );
-    const classResultsComponent = mount(classesCardsComponent);
-    expect(classResultsComponent).toMatchSnapshot();
-    expect(classResultsComponent.html()).toContain('<li><span>Room </span>TBD</li>');
+  describe('when a class does not have a building code and room number', () => {
+    it('should display TBD', () => {
+      const noRoomClassJson: IClass = TestUtils.copyObject(classJson);
+      noRoomClassJson.buildingCode = '';
+      noRoomClassJson.room = '';
+      const classesCardsComponent: JSX.Element = (
+        <ClassesCards
+          classes={noRoomClassJson}
+          currentTerm={'0000'}
+        />
+      );
+      const classResultsComponent = mount(classesCardsComponent);
+      expect(classResultsComponent).toMatchSnapshot();
+      expect(classResultsComponent.html()).toContain('<li><span>Room </span>TBD</li>');
+    });
   });
-});
 
-describe('when a class has a building number and room number', () => {
-  it('should display it in the correct format', () => {
-    const classWithRoom: IClass = TestUtils.copyObject(classJson);
-    classWithRoom.buildingCode = 'foo';
-    classWithRoom.room = '101';
-    const classesCardsComponent: JSX.Element = (
-      <ClassesCards
-        classes={classWithRoom}
-        currentTerm={'0000'}
-      />
-    );
-    const classResultsComponent = mount(classesCardsComponent);
-    expect(classResultsComponent).toMatchSnapshot();
-    expect(classResultsComponent.html()).toContain('<li><span>Room </span>foo 101</li>');
+  describe('when a class has a building code and room number', () => {
+    it('should display it in the correct format', () => {
+      const classWithRoom: IClass = TestUtils.copyObject(classJson);
+      classWithRoom.buildingCode = 'foo';
+      classWithRoom.room = '101';
+      const classesCardsComponent: JSX.Element = (
+        <ClassesCards
+          classes={classWithRoom}
+          currentTerm={'0000'}
+        />
+      );
+      const classResultsComponent = mount(classesCardsComponent);
+      expect(classResultsComponent).toMatchSnapshot();
+      expect(classResultsComponent.html()).toContain('<li><span>Room </span>foo 101</li>');
+    });
+  });
+
+  describe('when a class has a building code as TBD', () => {
+    it('should display building code and room number as TBD', () => {
+      const classWithBuildingCodeTbd: IClass = TestUtils.copyObject(classJson);
+      classWithBuildingCodeTbd.buildingCode = 'TBD';
+      const classesCardsComponent: JSX.Element = (
+        <ClassesCards
+          classes={classWithBuildingCodeTbd}
+          currentTerm={'0000'}
+        />
+      );
+      const classResultsComponent = mount(classesCardsComponent);
+      expect(classResultsComponent).toMatchSnapshot();
+      expect(classResultsComponent.html()).toContain('<li><span>Room </span>TBD</li>');
+    });
   });
 });
