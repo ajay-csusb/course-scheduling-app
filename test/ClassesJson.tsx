@@ -39,6 +39,7 @@ export let baseClassJson: IClass = {
     title: 'Information Technology Systems',
     geCourseAttr: '',
     topic: '',
+    classStatus:'Active',
 };
 
 export const classJson: IClass = {
@@ -80,6 +81,7 @@ export const classJson: IClass = {
     title: 'Introduction to Accounting',
     geCourseAttr: '',
     topic: '',
+    classStatus:'Active',
 };
 export const classPDC: IClass = {
     quarter: '2192',
@@ -120,6 +122,7 @@ export const classPDC: IClass = {
     title: '',
     geCourseAttr: '',
     topic: '',
+    classStatus:'Active',
 };
 
 export let meetingDates: IMeetingDate = {
@@ -184,5 +187,5 @@ export const rawClassesJson = {
   sb_CRSE_ZCCM: '',
   crse_TOPIC_DESCR: '',
   course_TITLE_LONG: 'Introduction to Accounting',
-  crse_ATTR_VALUE: '',
+  crse_ATTR_VALUE: 'Active',
 };
