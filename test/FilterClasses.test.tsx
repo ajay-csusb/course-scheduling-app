@@ -3,6 +3,8 @@ import { IClass, IMeetingDate } from '../src/public/js/Class';
 import { UserInput } from '../src/public/js/UserInput';
 import { ISubject } from '../src/public/js/Subject';
 import { MeetingTime } from '../src/public/js/MeetingTime';
+import { TestUtils } from '../test/TestUtils';
+import { FilterClasses } from '../src/public/js/FilterClasses';
 // tslint:disable:max-line-length
 
 let classes: IClass[] = [];
@@ -10,7 +12,7 @@ let subject: ISubject = {
   name: '',
   abbr: '',
 };
-let uInput: UserInput = new UserInput('both', meetingDates, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', '');
+let uInput: UserInput = new UserInput();
 classes.push(classJson);
 classes.push(classPDC);
 classes.push(baseClassJson);
@@ -44,7 +46,9 @@ describe('Filter by meeting time', () => {
     classStartingAt8pm.classStartTime = '8:00 PM';
     classStartingAt8pm.classEndTime = '10:00 PM';
     classes.push(classStartingAt8pm);
-    uInput = new UserInput('both', meetingDate, subject, '', 'current', startMeetingTime, endMeetingTime, 'all', '', '');
+    uInput = new UserInput();
+    uInput.setStartTime(startMeetingTime);
+    uInput.setEndTime(endMeetingTime);
   });
 
   describe('when start time and end time is not set', () => {
@@ -60,7 +64,9 @@ describe('Filter by meeting time', () => {
     beforeAll(() => {
       startAt12PM = new Date('1899-01-01T12:00:00');
       endAt11PM = new Date('1899-01-01T23:00:00');
-      uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt12PM, endAt11PM, 'all', '', '');
+      uInput = new UserInput();
+      uInput.setStartTime(startAt12PM);
+      uInput.setEndTime(endAt11PM);
     });
 
     it('should show 3 classes', () => {
@@ -75,7 +81,9 @@ describe('Filter by meeting time', () => {
     beforeAll(() => {
       startAt8AM = new Date('1899-01-01T08:00:00');
       endAt12PM = new Date('1899-01-01T12:00:00');
-      uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt8AM, endAt12PM, 'all', '', '');
+      uInput = new UserInput();
+      uInput.setStartTime(startAt8AM);
+      uInput.setEndTime(endAt12PM);
     });
 
     it('should show one class', () => {
@@ -90,7 +98,9 @@ describe('Filter by meeting time', () => {
     beforeAll(() => {
       startAt1130AM = new Date('1899-01-01T11:30:00');
       endAt945PM = new Date('1899-01-01T21:45:00');
-      uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt1130AM, endAt945PM, 'all', '', '');
+      uInput = new UserInput();
+      uInput.setStartTime(startAt1130AM);
+      uInput.setEndTime(endAt945PM);
     });
 
     it('should show two class', () => {
@@ -105,7 +115,9 @@ describe('Filter by meeting time', () => {
     beforeAll(() => {
       startAt10PM = new Date('1899-01-01T22:00:00');
       endAt12AM = new Date('1899-01-01T00:00:00');
-      uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt10PM, endAt12AM, 'all', '', '');
+      uInput = new UserInput();
+      uInput.setStartTime(startAt10PM);
+      uInput.setEndTime(endAt12AM);
     });
 
     it('should not show any classes', () => {
@@ -119,7 +131,9 @@ describe('Filter by meeting time', () => {
     beforeAll(() => {
       startAt12PM = new Date('1899-01-01T12:00:00');
       endAt8PM = new Date('1899-01-01T20:00:00');
-      uInput = new UserInput('both', meetingDate, subject, '', 'current', startAt12PM, endAt8PM, 'all', '', '');
+      uInput = new UserInput();
+      uInput.setStartTime(startAt12PM);
+      uInput.setEndTime(endAt8PM);
     });
 
     it('should show two classes', () => {
@@ -128,4 +142,15 @@ describe('Filter by meeting time', () => {
     });
   });
 
+  describe.only('when a user performs a search', () => {
+    it('should return only active classes', () => {
+      const activeClass = TestUtils.copyObject(classJson);
+      const cancelledClass = TestUtils.copyObject(classJson);
+      activeClass.classStatus = 'Active';
+      cancelledClass.classStatus = 'Cancelled';
+      expect(FilterClasses.filterByActiveClasses([activeClass, cancelledClass])).toHaveLength(1);
+      const filteredClasses = FilterClasses.filterByActiveClasses([activeClass, cancelledClass]);
+      expect(filteredClasses[0].classStatus).toEqual('Active');
+    });
+  });
 });

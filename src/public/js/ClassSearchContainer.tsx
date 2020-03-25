@@ -9,6 +9,7 @@ import * as ClassSearchUtils from './ClassSearchUtils';
 import { MeetingTime } from './MeetingTime';
 import { Watchdog } from './Watchdog';
 import { InstructionMode } from './InstructionMode';
+import { FilterClasses } from './FilterClasses';
 interface IClassSearchContainerState {
   term: string;
   campus: string;
@@ -236,15 +237,29 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         transformedClass.push(Class.transformToClass(_class));
       });
     }
-    const filteredClasses = MeetingTime.filter(transformedClass, this.state.startTime, this.state.endTime);
-    const filterByInstructionMode = InstructionMode.filter(filteredClasses, this.state.instructionMode);
-    const sortedClasses = ClassSearchUtils.sortClasses(filterByInstructionMode);
-    this.allResults = ClassSearchUtils.parseCourseAttributes(sortedClasses, this.geClassesAttributes);
+    
+    const validClasses = this.filterClasses(transformedClass);
+    const sortedClasses = this.sortClasses(validClasses);
+    this.allResults = this.processCourseAttributes(sortedClasses);
     this.setState({
       noClasses: false,
       isLoading: false,
     });
     this.resultsSection.current.scrollIntoView();
+  }
+
+  private filterClasses(classes: IClass[]): IClass[] {
+    const activeClasses = FilterClasses.filterByActiveClasses(classes)
+    const filteredClasses = MeetingTime.filter(activeClasses, this.state.startTime, this.state.endTime);
+    return InstructionMode.filter(filteredClasses, this.state.instructionMode);
+  }
+
+  private sortClasses(classes: IClass[]): IClass[] {
+    return ClassSearchUtils.sortClasses(classes);
+  }
+
+  private processCourseAttributes(classes: IClass[]): IClass[] {
+    return ClassSearchUtils.parseCourseAttributes(classes, this.geClassesAttributes);
   }
 
   private classesNotFound(_error: any): void {

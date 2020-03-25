@@ -1,13 +1,16 @@
-import { IClass } from './Class';
-import { UserInput } from './UserInput';
-import { MeetingTime } from './MeetingTime';
+import { Class, IClass } from './Class';
 
-export abstract class FilterClasses {
+export class FilterClasses {
 
-  public static filter(classes: IClass[], uInput: UserInput): IClass[] {
-    let result: IClass[] = [];
-    result = MeetingTime.filter(classes, uInput.getStartTime(), uInput.getEndTime());
-    return result;
+  public static filterByActiveClasses(classes: IClass[]): IClass[] {
+    const results: IClass[] = [];
+    for (let _class of classes) {
+      const currClass = new Class(_class);
+      if (currClass.isActive()) {
+        results.push(_class);
+      }
+    }
+    return results;
   }
 
 }
