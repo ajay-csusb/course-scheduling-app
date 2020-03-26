@@ -49,11 +49,12 @@ function clickAdditionalFilters() {
 
 function waitForResults() {
   const loadingSpinner = Cypress.$('.bp3-spinner-animation');
+  cy.wait(2000);
   if (loadingSpinner.length === 1) {
     setTimeout(() => {
       waitForResults();
     }, 500);
-  }
+  } 
 }
 module.exports = {
   url: url,

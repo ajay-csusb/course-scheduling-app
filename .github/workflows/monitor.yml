@@ -1,24 +1,26 @@
-name: Monitoring on www.csusb.edu/class-schedule
+name: Monitor class schedule on production
 on:
   schedule:
-    cron: '*/5 * * * *'
+    - cron: "*/5 * * * *"
 jobs:
   build:
     runs-on: ubuntu-16.04
     strategy:
       matrix:
         node-version: [13.x]
-        containers: [1, 2]
+        containers: [1]
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js $ {{ matrix.node-version }} 
-    - uses: actions/setup-node@v1
-    - with:
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - run: npm install cypress
     - run: npm run build --if-present
-    - name: Cypress run
-    - uses: cypress-io/github-action@v1
+    - name: Check for all Biology classes
+      uses: cypress-io/github-action@v1
       with:
         browser: chrome
         headless: true
+        spec: cypress/integration/SubjectTests.js
+        env: url=https://www.csusb.edu/class-schedule
