@@ -1,7 +1,7 @@
 import * as form from './Utils';
 
-const url = Cypress.env('url')
-if (url.length === 0) {
+let url = Cypress.env('url')
+if (url === undefined) {
   url = form.url
 }  
 describe('Filter classes by subject', function () {
@@ -10,7 +10,6 @@ describe('Filter classes by subject', function () {
       cy.visit(url);
       form.selectSubject();
       form.submit(); 
-      form.waitForResults();
     });
 
     it('should show Biology classes', () => {
