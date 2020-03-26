@@ -1,10 +1,10 @@
 const dotenv = require('dotenv');
 dotenv.config({ path: '.env' });
 
-let url = 'http://theme-csusb.pantheonsite.io/class-schedule';
-if (process.env.NODE_ENV === 'local') {
-  url = process.env.LOCAL_URL;
-}
+let url = Cypress.env('url')
+if (url === undefined) {
+  url = 'http://theme-csusb.pantheonsite.io/class-schedule';
+}  
 
 function selectSubject(subject="Biology") {
   cy.get('.search-autocomplete input').type(subject).click();
