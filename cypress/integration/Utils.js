@@ -48,9 +48,8 @@ function clickAdditionalFilters() {
 }
 
 function waitForResults() {
-  const loadingSpinner = Cypress.$('.bp3-spinner-animation');
-  cy.wait(2000);
-  if (loadingSpinner.length === 1) {
+  const results = Cypress.$('#class-search-results-component');
+  if (results.length === 0) {
     setTimeout(() => {
       waitForResults();
     }, 500);
