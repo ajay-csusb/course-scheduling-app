@@ -1,0 +1,10 @@
+name: Monitoring on www.csusb.edu/class-schedule
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v2
