@@ -95,8 +95,8 @@ describe('Session code values', () => {
   describe('When Session code is 10W', () => {
     const classes10Weeks = JSON.parse(JSON.stringify(classJson));
     classes10Weeks.sessionCode = '10W';
-    it('should return 10 weeks', () => {
-      expect(ClassSearchUtils.getSessionCode(classes10Weeks)).toEqual('10 weeks');
+    it('should return 10 Week', () => {
+      expect(ClassSearchUtils.getSessionCode(classes10Weeks)).toEqual('10 Week');
     });
   });
 
@@ -109,26 +109,26 @@ describe('Session code values', () => {
   });
 
   describe('When Session code is 3W1', () => {
-    it('should return 3 weeks', () => {
+    it('should return 3 Week 1', () => {
       const classes31Weeks = TestUtils.copyObject(classJson);
       classes31Weeks.sessionCode = '3W1';
-      expect(ClassSearchUtils.getSessionCode(classes31Weeks)).toEqual('3 weeks 1');
+      expect(ClassSearchUtils.getSessionCode(classes31Weeks)).toEqual('3 Week 1');
     });
   });
 
   describe('When Session code is 6W1', () => {
-    it('should return 6 weeks 1', () => {
+    it('should return 6 Week 1', () => {
       const classes61Weeks = TestUtils.copyObject(classJson);
       classes61Weeks.sessionCode = '6W1';
-      expect(ClassSearchUtils.getSessionCode(classes61Weeks)).toEqual('6 weeks 1');
+      expect(ClassSearchUtils.getSessionCode(classes61Weeks)).toEqual('6 Week 1');
     });
   });
 
   describe('When Session code is 6W2', () => {
-    it('should return 6 weeks 2', () => {
+    it('should return 6 wWeek 2', () => {
       const classes62Weeks = TestUtils.copyObject(classJson);
       classes62Weeks.sessionCode = '6W2';
-      expect(ClassSearchUtils.getSessionCode(classes62Weeks)).toEqual('6 weeks 2');
+      expect(ClassSearchUtils.getSessionCode(classes62Weeks)).toEqual('6 Week 2');
     });
   });
 
