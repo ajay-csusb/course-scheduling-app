@@ -178,19 +178,19 @@ function isLocalStorageEmpty(key: string): boolean {
 
 export function getSessionCode(classes: IClass): string {
   if (classes.sessionCode === '10W') {
-    return '10 weeks';
+    return '10 Week';
   }
   if (classes.sessionCode === '1') {
     return 'Regular';
   }
   if (classes.sessionCode === '6W1') {
-    return '6 weeks 1';
+    return '6 Week 1';
   }
   if (classes.sessionCode === '6W2') {
-    return '6 weeks 2';
+    return '6 Week 2';
   }
   if (classes.sessionCode === '3W1') {
-    return '3 weeks 1';
+    return '3 Week 1';
   }
   return classes.sessionCode;
 }

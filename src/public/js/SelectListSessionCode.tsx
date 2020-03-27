@@ -10,10 +10,10 @@ export class SelectListSessionCode extends React.Component<ISelectListSessionCod
   private readonly sessionCodes: IOptionProps[] = [
     { label: 'All', value: 'all' },
     { label: 'Regular', value: '1' },
-    { label: 'Six weeks 1', value: '6W1' },
-    { label: 'Six weeks 2', value: '6W2' },
-    { label: 'Ten weeks', value: '10W' },
-    { label: 'Three weeks 1', value: '3W1' },
+    { label: '6 Week 1', value: '6W1' },
+    { label: '6 Week 2', value: '6W2' },
+    { label: '10 Week', value: '10W' },
+    { label: '3 Week 1', value: '3W1' },
   ];
 
   public render(): React.ReactNode {
