@@ -40,6 +40,7 @@ function enterTimes(startHour='08', startMinute='00', startAmPm = 'am', endHour=
 
 function submit() {
   cy.get('.btn-primary').click();
+  cy.wait(1000); // wait for one second to eliminate DOM and network request inconsistencies
   waitForResults();
 }
 

@@ -33,15 +33,6 @@ describe('Correct class information is displayed in results', function () {
         });
 
         it('should display correct markup', () => {
-          const classes = [
-            'course-header',
-            'item-body',
-            'course-info',
-            'course-status',
-          ]
-          for (const _class of classes) {
-            cy.get('.course:first-child div').should('have.class', _class);
-          }
           cy.get('.course:first-child button').should('have.class', 'course-info-btn');
           cy.get('.course:first-child .course-name span').should('have.class', 'sr-only');
           cy.get('.course:first-child span').should('have.class', 'course-id');

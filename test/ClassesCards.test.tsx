@@ -44,7 +44,7 @@ describe('Session codes label and markup', () => {
         />
       );
       const classResultsComponent = mount(classesCardsComponent);
-      expect(classResultsComponent.html()).toContain('<span>Session </span>6 weeks 1');
+      expect(classResultsComponent.html()).toContain('<span>Session </span>6 Week 1');
       expect(classResultsComponent).toMatchSnapshot();
     });
   });
