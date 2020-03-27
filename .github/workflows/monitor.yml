@@ -1,24 +1,26 @@
-name: Unit and integration tests
+name: Monitor class schedule on production
 on:
-  push:
+  schedule:
+    - cron: "*/5 * * * *"
 jobs:
   build:
     runs-on: ubuntu-16.04
     strategy:
       matrix:
-        node-version: [10.x]
-        containers: [1, 2]
+        node-version: [13.x]
+        containers: [1]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - run: npm install cypress
     - run: npm run build --if-present
-    - run: npm test
-    - name: Cypress run
+    - name: Check for all Biology classes
       uses: cypress-io/github-action@v1
       with:
         browser: chrome
         headless: true
+        spec: cypress/integration/SubjectTests.js
+        env: url=https://www.csusb.edu/class-schedule
