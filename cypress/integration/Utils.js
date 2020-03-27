@@ -48,8 +48,8 @@ function clickAdditionalFilters() {
 }
 
 function waitForResults() {
-  const results = Cypress.$('#class-search-results-component');
-  if (results.length === 0) {
+  const results = Cypress.$('#class-search-results-component').length;
+  if (results === 0) {
     setTimeout(() => {
       waitForResults();
     }, 500);

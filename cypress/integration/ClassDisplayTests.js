@@ -12,18 +12,19 @@ describe('Correct class information is displayed in results', function () {
         });
 
         it('should display information related to a class', () => {
-          cy.get('span').should('contain', 'BIOL 100');
-          cy.get('div').should('contain', 'Topics in Biology');
-          cy.get('span').should('contain', 'Units');
-          cy.get('span').should('contain', 'Meeting Time');
-          cy.get('span').should('contain', 'Meeting Days');
-          cy.get('span').should('contain', 'Room');
-          cy.get('span').should('contain', 'Campus');
-          cy.get('span').should('contain', 'Instructor');
-          cy.get('span').should('contain', 'Instruction Mode');
-          cy.get('div').should('contain', 'seats available');
-          cy.get('span').should('contain', 'Section');
-          cy.get('span').should('contain', 'Course Attribute');
+          cy.get('.course-name')
+          .should('contain', 'BIOL')
+          .and('contain', 'Topics in Biology');
+          cy.get('.course-desc > li > span')
+          .should('contain', 'Units')
+          .and('contain.text', 'Meeting Time')
+          .and('contain', 'Meeting Days')
+          .and('contain', 'Room')
+          .and('contain', 'Campus')
+          .and('contain', 'Instructor')
+          .and('contain', 'Instruction Mode');
+          cy.get('.course-availability').invoke('text').should('match', /(No Waitlist)|(seats available)|(on waitlist)/);
+          cy.get('.course-details > span').should('contain', 'Section');
         });
 
         it('should show description when info icon is clicked', () => {
