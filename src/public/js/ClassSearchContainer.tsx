@@ -381,9 +381,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       if (this.hasCurrentQuarterFlag(_term)) {
         this.currentTermId = _term.strm;
       }
-      termArr.push({
-        label: _term.display_STR, value: _term.strm,
-      });
+      if (_term.strm !== '2208') {
+        termArr.push({
+          label: _term.display_STR, value: _term.strm,
+        });
+      }
     });
     this.term = termArr;
     this.setState({
