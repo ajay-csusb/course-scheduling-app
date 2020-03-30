@@ -143,7 +143,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public isCurrentTerm(): boolean {
-    return (this.props.currentTerm === this.classDetails.quarter);
+    return (this.props.currentTerm === this.classDetails.quarter) || parseInt(this.classDetails.quarter, 10) >= 2204;
   }
 
   public getClassStatusMarkup(): JSX.Element {
