@@ -379,7 +379,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const termArr: IOptionProps[] = [];
     terms.forEach((_term: any) => {
       if (this.hasCurrentQuarterFlag(_term)) {
-        this.currentTermId = _term.strm;
+        this.currentTermId = '2206';
       }
       if (_term.strm !== '2208') {
         termArr.push({
