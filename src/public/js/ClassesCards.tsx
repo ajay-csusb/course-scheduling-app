@@ -177,7 +177,9 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       return (<React.Fragment />);
     }
     return (
-      <div className="course-availability"><span>{noOfSeatsAvailable}</span> seats available</div>
+      <div className="course-availability">
+      <span>{noOfSeatsAvailable}</span> seats available out of {this.classDetails.enrolledCapacity}
+      </div>
     );
   }
 
