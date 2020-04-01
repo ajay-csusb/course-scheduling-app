@@ -49,7 +49,7 @@ describe('Given a class search results component', () => {
     });
 
     it('should display the number of available seats as 3', () => {
-      const markup = '<div class="course-availability"><span>3</span> seats available</div>';
+      const markup = '<div class="course-availability"><span>3</span> seats available out of 30</div>';
       expect(classSearchResultsWrapper.html()).toContain(markup);
     });
 
