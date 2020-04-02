@@ -10,6 +10,7 @@ import { MeetingTime } from './MeetingTime';
 import { Watchdog } from './Watchdog';
 import { InstructionMode } from './InstructionMode';
 import { FilterClasses } from './FilterClasses';
+import { Utils } from './Utils';
 interface IClassSearchContainerState {
   term: string;
   campus: string;
@@ -381,7 +382,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       if (this.hasCurrentQuarterFlag(_term)) {
         this.currentTermId = '2206';
       }
-      if (_term.strm !== '2208') {
+      if (_term.strm !== '2208' || !Utils.isProd()) {
         termArr.push({
           label: _term.display_STR, value: _term.strm,
         });
