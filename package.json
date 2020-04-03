@@ -96,6 +96,7 @@
     "@types/jsdom": "^12.2.3",
     "@types/lodash": "^4.14.134",
     "@types/lusca": "^1.6.0",
+    "@types/mocha": "^7.0.2",
     "@types/mongodb": "^3.1.28",
     "@types/mongoose": "^4.7.45",
     "@types/morgan": "^1.7.35",
@@ -115,7 +116,7 @@
     "cypress": "latest",
     "enzyme-to-json": "^3.3.5",
     "fetch-mock": "^7.3.3",
-    "jest": "^25.1.0",
+    "jest": "^22.0.6",
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
     "node-sass": "^4.13.1",
@@ -127,7 +128,7 @@
     "ts-node": "^5.0.1",
     "tslint": "^5.17.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.5.2",
+    "typescript": "latest",
     "webpack-cli": "^3.3.4"
   }
 }
