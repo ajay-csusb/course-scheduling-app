@@ -3,6 +3,8 @@ module.exports = {
   entry: "./src/public/js/index.tsx",
   output: {
     filename: "course-scheduling-app.js",
+    path: __dirname + '/dist/public/js',
+    filename: "course-scheduling-app-dev.js",
     path: __dirname + '/dist/public/js'
   },
 

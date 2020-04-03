@@ -1,0 +1,29 @@
+name: Push to Google Storage
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+    strategy:
+      matrix:
+        node-version: [10.x]
+        containers: [1]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: webpack
+    - run: npm run build
+    - run: cd dist/public/js; ls | grep scheduling-app-*
+    - uses: actions-hub/gcloud@master
+      env:
+        PROJECT_ID: csusb-class-schedule
+        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        CLI: gsutil
+      with:
+        // add cache control
+        // push the map file 
+        args: cp dist/public/js/course-scheduling-app-dev.js gs://csusb-class-schedule.appspot.com
