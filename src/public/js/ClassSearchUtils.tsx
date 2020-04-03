@@ -261,7 +261,7 @@ function sortBySubject(classes: IClass[]): IClass[] {
 
 export function sortByCatalogNo(classes: IClass[]): IClass[] {
   return classes.sort((a, b) => {
-    return ((parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10))
+    return (a.catalogNo.localeCompare(b.catalogNo)
       || parseInt(a.classSection, 10) - parseInt(b.classSection, 10));
   });
 }

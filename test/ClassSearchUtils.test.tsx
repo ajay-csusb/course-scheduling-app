@@ -518,7 +518,7 @@ describe('when multiple classes are displayed in results', () => {
   const classBio100 = JSON.parse(JSON.stringify(classJson));
   const classBio200 = JSON.parse(JSON.stringify(classJson));
   let classes;
-  beforeAll(() => {
+  beforeEach(() => {
     classAdm100.subject = 'ADM';
     classAdm100.catalogNo = '100';
     classAdm100.classSection = '01';
@@ -539,6 +539,27 @@ describe('when multiple classes are displayed in results', () => {
     expect(classes[1].catalogNo).toEqual('200');
     expect(classes[2].catalogNo).toEqual('100');
     expect(classes[3].catalogNo).toEqual('200');
+  });
+  describe('if a catalog number has numbers and characters', () => {
+    const classAdm300 = JSON.parse(JSON.stringify(classJson));
+    it('should display the classes in ascending order of number and characters', () => {
+      classAdm100.catalogNo = '100B';
+      classAdm100.classSection = '01';
+      classAdm200.catalogNo = '100B';
+      classAdm200.classSection = '02';
+      classAdm300.catalogNo = '100A';
+      classAdm300.classSection = '03';
+      classBio100.catalogNo = '200Z';
+      classBio100.classSection = '02';
+      classBio200.catalogNo = '200F';
+      classBio200.classSection = '01';
+      classes = ClassSearchUtils.sortClasses([classBio200, classAdm200, classAdm100, classBio100, classAdm300]);
+      expect(classes[0].catalogNo).toEqual('100A');
+      expect(classes[1].catalogNo).toEqual('100B');
+      expect(classes[2].classSection).toEqual('02');
+      expect(classes[3].catalogNo).toEqual('200F');
+      expect(classes[4].catalogNo).toEqual('200Z');
+    });
   });
 
   it('should display the classes in ascending order of subject', () => {
