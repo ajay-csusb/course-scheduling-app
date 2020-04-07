@@ -230,6 +230,7 @@ describe('seats text verbiage', () => {
     });
   });
   describe('when a class has no waitlist', () => {
+    // @Todo delete this
     it('should display the text to indicate no waitlist', () => {
       const classWithNoWaitlist: IClass = TestUtils.copyObject(classJson);
       classWithNoWaitlist.enrolledTotal = 29;
@@ -286,6 +287,7 @@ describe('seats text verbiage', () => {
       });
     });
   });
+  // @Todo fix this
   describe('when a class is closed', () => {
     describe('and has seats available', () => {
       const closedClass: IClass = TestUtils.copyObject(classJson);
@@ -301,9 +303,9 @@ describe('seats text verbiage', () => {
         />
       );
       const classResultsComponent = mount(classesCardsComponent);
-      it('should not display available seats', () => {
+      it('should display available seats', () => {
         expect(classResultsComponent).toMatchSnapshot();
-        expect(classResultsComponent.html()).not.toContain('Seats Available: <span>10</span>/30');
+        expect(classResultsComponent.html()).toContain('Seats Available: <span>10</span>/30');
       });
       it('should not display seats on waitlist', () => {
         expect(classResultsComponent).toMatchSnapshot();

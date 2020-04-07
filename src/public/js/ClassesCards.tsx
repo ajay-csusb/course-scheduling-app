@@ -165,6 +165,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       return (<React.Fragment/>);
     }
     if (ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
+      // @Todo add markup to shows seats available
       return (<>{waitlistMarkup}</>);
     }
     if (ClassSearchUtils.isWaitlist(this.classDetails)) {
@@ -182,6 +183,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     if (!this.isValidTerm(this.classDetails.quarter)) {
       return (<React.Fragment/>);
     }
+    // @Todo delete this
     if (this.classDetails.waitlistCapacity === 0) {
       return (<div className="course-availability">No Waitlist</div>);
     }
