@@ -322,3 +322,25 @@ export function isWaitlist(classes: IClass): boolean {
     && waitlistCapacity !== 0
   );
 }
+
+export function isValidTermRange(currentTerm: string, classTerm: string, currentMonth: number): boolean {
+  const currentTermId = parseInt(currentTerm.charAt(currentTerm.length - 1), 10);
+  const classTermId = parseInt(classTerm.charAt(classTerm.length - 1), 10);
+
+  if (parseInt(currentTerm, 10) - parseInt(classTerm, 10) >= 6) {
+    return false;
+  }
+  if (currentTermId === classTermId) {
+    return true;
+  }
+  if (currentTermId < currentMonth) {
+    return false;
+  }
+  if (currentTermId - currentMonth <= 5 && currentTermId - currentMonth > 0) {
+    return true;
+  }
+  if (currentTermId === 2 &&  10 >= currentMonth  && currentMonth <= 12) {
+    return true;
+  }
+  return false;
+}

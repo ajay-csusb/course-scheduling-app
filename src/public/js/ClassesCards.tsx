@@ -142,15 +142,11 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     );
   }
 
-  public isCurrentTerm(): boolean {
-    return (this.props.currentTerm === this.classDetails.quarter) || parseInt(this.classDetails.quarter, 10) >= 2204;
-  }
-
   public getClassStatusMarkup(): JSX.Element {
     let classStatus = 'Closed';
     let classStatusClassName = 'course-status course-status--closed';
     let waitlistMarkup = <div>{this.getWaitlistMarkup()}</div>;
-    if (this.isCurrentTerm()) {
+    if (this.isValidTerm(this.classDetails.quarter)) {
       classStatus = ClassSearchUtils.getClassStatus(this.classDetails);
       if (classStatus === 'Open') {
         classStatusClassName = 'course-status course-status--open';
@@ -170,7 +166,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     if (ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
       return (<React.Fragment/>);
     }
-    if (!this.isCurrentTerm()) {
+    if (!this.isValidTerm(this.classDetails.quarter)) {
       return (<React.Fragment/>);
     }
     if (ClassSearchUtils.isWaitlist(this.classDetails)) {
@@ -185,7 +181,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
 
   public getWaitlistMarkup(): JSX.Element {
     const waitlistNo = this.classDetails.waitlistTotal;
-    if (!this.isCurrentTerm()) {
+    if (!this.isValidTerm(this.classDetails.quarter)) {
       return (<React.Fragment/>);
     }
     if (this.classDetails.waitlistCapacity === 0) {
@@ -255,6 +251,11 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       return <></>;
     }
     return (<div className="course--icons">{zeroCostIcon}{lowCostIcon}</div>);
+  }
+
+  private isValidTerm(quarter: string): boolean {
+    const CurrMonth = new Date().getMonth() + 1;
+    return (ClassSearchUtils.isValidTermRange(this.props.currentTerm, quarter, CurrMonth) === true);
   }
 
 }
