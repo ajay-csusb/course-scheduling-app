@@ -171,7 +171,6 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div
@@ -410,7 +409,6 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div
@@ -466,253 +464,6 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
             Session 
           </span>
           6 Week 1
-        </li>
-      </ul>
-      <div
-        className="course-books"
-      >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-</ClassesCards>
-`;
-
-exports[`available seats when a class has seats available for enrollment should display the number of seats available and total number of seats 1`] = `
-<ClassesCards
-  classes={
-    Object {
-      "amount": 0,
-      "buildingCode": "COE",
-      "campus": "MAIN",
-      "catalogNo": "101",
-      "classEndTime": "1:50 PM",
-      "classMeetingNo": 1,
-      "classNumber": 101,
-      "classSection": "01",
-      "classStartTime": "12:00 PM",
-      "classStatus": "Active",
-      "courseAttr": "",
-      "courseId": "000001",
-      "csuUnits": 4,
-      "degreeType": "PBAC",
-      "description": "ACCT GOVT & NONPROFIT ORG",
-      "employeeId": "001343367",
-      "enrolledCapacity": 30,
-      "enrolledTotal": 10,
-      "facilityId": "JB0113",
-      "fri": "N",
-      "geCourseAttr": "",
-      "instructionMode": "P",
-      "instructorName": "Dyck, Harold",
-      "mon": "Y",
-      "quarter": "0008",
-      "room": "101",
-      "sat": "N",
-      "sessionCode": "1",
-      "ssrComponent": "SEM",
-      "subject": "ACCT",
-      "sun": "N",
-      "textbook": "",
-      "thurs": "N",
-      "title": "Introduction to Accounting",
-      "topic": "",
-      "tues": "N",
-      "waitlistCapacity": 100,
-      "waitlistTotal": 1,
-      "wed": "Y",
-    }
-  }
-  currentTerm="0008"
->
-  <div
-    className="course result-item"
-  >
-    <div
-      className="item-header"
-    >
-      <div
-        className="course-header"
-      >
-        <div
-          className="course-name"
-        >
-          <strong>
-            ACCT 101
-             - Introduction to Accounting
-          </strong>
-          <Blueprint3.Popover
-            boundary="scrollParent"
-            captureDismiss={false}
-            defaultIsOpen={false}
-            disabled={false}
-            hasBackdrop={false}
-            hoverCloseDelay={300}
-            hoverOpenDelay={150}
-            inheritDarkTheme={true}
-            interactionKind="click"
-            minimal={false}
-            modifiers={Object {}}
-            openOnTargetFocus={true}
-            popoverClassName="bp3-popover-content-sizing"
-            position="auto"
-            targetTagName="span"
-            transitionDuration={300}
-            usePortal={true}
-            wrapperTagName="span"
-          >
-            <Manager>
-              <span
-                className="bp3-popover-wrapper"
-              >
-                <Reference
-                  innerRef={[Function]}
-                >
-                  <InnerReference
-                    innerRef={[Function]}
-                    setReferenceNode={[Function]}
-                  >
-                    <Blueprint3.ResizeSensor
-                      onResize={[Function]}
-                    >
-                      <span
-                        className="bp3-popover-target"
-                        onClick={[Function]}
-                      >
-                        <div
-                          className="bp3-tooltip-indicator"
-                          key=".0"
-                        >
-                          <button
-                            className="course-info-btn"
-                          >
-                            <i
-                              arial-label="hidden"
-                              className="fas fa-info-circle"
-                            />
-                            <span
-                              className="sr-only"
-                            >
-                              ACCT 101
-                            </span>
-                          </button>
-                        </div>
-                      </span>
-                    </Blueprint3.ResizeSensor>
-                  </InnerReference>
-                </Reference>
-                <Blueprint3.Overlay
-                  autoFocus={true}
-                  backdropClassName="bp3-popover-backdrop"
-                  backdropProps={Object {}}
-                  canEscapeKeyClose={true}
-                  canOutsideClickClose={true}
-                  enforceFocus={true}
-                  hasBackdrop={false}
-                  isOpen={false}
-                  lazy={true}
-                  onClose={[Function]}
-                  transitionDuration={300}
-                  transitionName="bp3-popover"
-                  usePortal={true}
-                />
-              </span>
-            </Manager>
-          </Blueprint3.Popover>
-        </div>
-        <div
-          className="course-details"
-        >
-          <span>
-            Section 
-            01
-             • 
-          </span>
-          <span>
-            Seminar
-             • 
-          </span>
-          <span
-            className="course-id"
-          >
-            Class No. 
-            101
-          </span>
-        </div>
-      </div>
-      <div
-        className="course-info"
-      >
-        <div
-          className="course-status course-status--open"
-        >
-          <span />
-          Open
-        </div>
-        <div
-          className="course-availability"
-        >
-          <span>
-            20
-          </span>
-           seats available out of 
-          30
-        </div>
-      </div>
-    </div>
-    <div
-      className="item-body"
-    >
-      <ul
-        className="course-desc"
-      >
-        <li>
-          <span>
-            Units 
-          </span>
-          4
-        </li>
-        <li>
-          <span>
-            Meeting Time 
-          </span>
-          12:00 pm - 1:50 pm
-        </li>
-        <li>
-          <span>
-            Meeting Days 
-          </span>
-          M-W
-        </li>
-        <li>
-          <span>
-            Room 
-          </span>
-          COE 101
-        </li>
-        <li>
-          <span>
-            Campus 
-          </span>
-          San Bernardino
-        </li>
-        <li>
-          <span>
-            Instructor
-          </span>
-          Dyck, Harold
-        </li>
-        <li>
-          <span>
-            Instruction Mode 
-          </span>
-          Classroom
         </li>
       </ul>
       <div
@@ -902,7 +653,6 @@ exports[`building code and room number when a class does not have a building cod
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div
@@ -1141,7 +891,6 @@ exports[`building code and room number when a class has a building code and room
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div
@@ -1380,7 +1129,6 @@ exports[`building code and room number when a class has a building code as TBD s
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div
@@ -1619,7 +1367,6 @@ exports[`building code and room number when a class has building code as OL shou
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div
@@ -1651,6 +1398,1725 @@ exports[`building code and room number when a class has building code as OL shou
             Room 
           </span>
           Online
+        </li>
+        <li>
+          <span>
+            Campus 
+          </span>
+          San Bernardino
+        </li>
+        <li>
+          <span>
+            Instructor
+          </span>
+          Dyck, Harold
+        </li>
+        <li>
+          <span>
+            Instruction Mode 
+          </span>
+          Classroom
+        </li>
+      </ul>
+      <div
+        className="course-books"
+      >
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</ClassesCards>
+`;
+
+exports[`seats text verbiage when a class has no waitlist should display the text to indicate no waitlist 1`] = `
+<ClassesCards
+  classes={
+    Object {
+      "amount": 0,
+      "buildingCode": "COE",
+      "campus": "MAIN",
+      "catalogNo": "101",
+      "classEndTime": "1:50 PM",
+      "classMeetingNo": 1,
+      "classNumber": 101,
+      "classSection": "01",
+      "classStartTime": "12:00 PM",
+      "classStatus": "Active",
+      "courseAttr": "",
+      "courseId": "000001",
+      "csuUnits": 4,
+      "degreeType": "PBAC",
+      "description": "ACCT GOVT & NONPROFIT ORG",
+      "employeeId": "001343367",
+      "enrolledCapacity": 30,
+      "enrolledTotal": 29,
+      "facilityId": "JB0113",
+      "fri": "N",
+      "geCourseAttr": "",
+      "instructionMode": "P",
+      "instructorName": "Dyck, Harold",
+      "mon": "Y",
+      "quarter": "0008",
+      "room": "101",
+      "sat": "N",
+      "sessionCode": "1",
+      "ssrComponent": "SEM",
+      "subject": "ACCT",
+      "sun": "N",
+      "textbook": "",
+      "thurs": "N",
+      "title": "Introduction to Accounting",
+      "topic": "",
+      "tues": "N",
+      "waitlistCapacity": 0,
+      "waitlistTotal": 0,
+      "wed": "Y",
+    }
+  }
+  currentTerm="0008"
+>
+  <div
+    className="course result-item"
+  >
+    <div
+      className="item-header"
+    >
+      <div
+        className="course-header"
+      >
+        <div
+          className="course-name"
+        >
+          <strong>
+            ACCT 101
+             - Introduction to Accounting
+          </strong>
+          <Blueprint3.Popover
+            boundary="scrollParent"
+            captureDismiss={false}
+            defaultIsOpen={false}
+            disabled={false}
+            hasBackdrop={false}
+            hoverCloseDelay={300}
+            hoverOpenDelay={150}
+            inheritDarkTheme={true}
+            interactionKind="click"
+            minimal={false}
+            modifiers={Object {}}
+            openOnTargetFocus={true}
+            popoverClassName="bp3-popover-content-sizing"
+            position="auto"
+            targetTagName="span"
+            transitionDuration={300}
+            usePortal={true}
+            wrapperTagName="span"
+          >
+            <Manager>
+              <span
+                className="bp3-popover-wrapper"
+              >
+                <Reference
+                  innerRef={[Function]}
+                >
+                  <InnerReference
+                    innerRef={[Function]}
+                    setReferenceNode={[Function]}
+                  >
+                    <Blueprint3.ResizeSensor
+                      onResize={[Function]}
+                    >
+                      <span
+                        className="bp3-popover-target"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="bp3-tooltip-indicator"
+                          key=".0"
+                        >
+                          <button
+                            className="course-info-btn"
+                          >
+                            <i
+                              arial-label="hidden"
+                              className="fas fa-info-circle"
+                            />
+                            <span
+                              className="sr-only"
+                            >
+                              ACCT 101
+                            </span>
+                          </button>
+                        </div>
+                      </span>
+                    </Blueprint3.ResizeSensor>
+                  </InnerReference>
+                </Reference>
+                <Blueprint3.Overlay
+                  autoFocus={true}
+                  backdropClassName="bp3-popover-backdrop"
+                  backdropProps={Object {}}
+                  canEscapeKeyClose={true}
+                  canOutsideClickClose={true}
+                  enforceFocus={true}
+                  hasBackdrop={false}
+                  isOpen={false}
+                  lazy={true}
+                  onClose={[Function]}
+                  transitionDuration={300}
+                  transitionName="bp3-popover"
+                  usePortal={true}
+                />
+              </span>
+            </Manager>
+          </Blueprint3.Popover>
+        </div>
+        <div
+          className="course-details"
+        >
+          <span>
+            Section 
+            01
+             • 
+          </span>
+          <span>
+            Seminar
+             • 
+          </span>
+          <span
+            className="course-id"
+          >
+            Class No. 
+            101
+          </span>
+        </div>
+      </div>
+      <div
+        className="course-info"
+      >
+        <div
+          className="course-status course-status--closed"
+        >
+          <span />
+          Closed
+        </div>
+        <div>
+          <div
+            className="course-availability"
+          >
+            No Waitlist
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="item-body"
+    >
+      <ul
+        className="course-desc"
+      >
+        <li>
+          <span>
+            Units 
+          </span>
+          4
+        </li>
+        <li>
+          <span>
+            Meeting Time 
+          </span>
+          12:00 pm - 1:50 pm
+        </li>
+        <li>
+          <span>
+            Meeting Days 
+          </span>
+          M-W
+        </li>
+        <li>
+          <span>
+            Room 
+          </span>
+          COE 101
+        </li>
+        <li>
+          <span>
+            Campus 
+          </span>
+          San Bernardino
+        </li>
+        <li>
+          <span>
+            Instructor
+          </span>
+          Dyck, Harold
+        </li>
+        <li>
+          <span>
+            Instruction Mode 
+          </span>
+          Classroom
+        </li>
+      </ul>
+      <div
+        className="course-books"
+      >
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</ClassesCards>
+`;
+
+exports[`seats text verbiage when a class has seats available for enrollment should display the number of seats available and total number of seats 1`] = `
+<ClassesCards
+  classes={
+    Object {
+      "amount": 0,
+      "buildingCode": "COE",
+      "campus": "MAIN",
+      "catalogNo": "101",
+      "classEndTime": "1:50 PM",
+      "classMeetingNo": 1,
+      "classNumber": 101,
+      "classSection": "01",
+      "classStartTime": "12:00 PM",
+      "classStatus": "Active",
+      "courseAttr": "",
+      "courseId": "000001",
+      "csuUnits": 4,
+      "degreeType": "PBAC",
+      "description": "ACCT GOVT & NONPROFIT ORG",
+      "employeeId": "001343367",
+      "enrolledCapacity": 30,
+      "enrolledTotal": 10,
+      "facilityId": "JB0113",
+      "fri": "N",
+      "geCourseAttr": "",
+      "instructionMode": "P",
+      "instructorName": "Dyck, Harold",
+      "mon": "Y",
+      "quarter": "0008",
+      "room": "101",
+      "sat": "N",
+      "sessionCode": "1",
+      "ssrComponent": "SEM",
+      "subject": "ACCT",
+      "sun": "N",
+      "textbook": "",
+      "thurs": "N",
+      "title": "Introduction to Accounting",
+      "topic": "",
+      "tues": "N",
+      "waitlistCapacity": 100,
+      "waitlistTotal": 1,
+      "wed": "Y",
+    }
+  }
+  currentTerm="0008"
+>
+  <div
+    className="course result-item"
+  >
+    <div
+      className="item-header"
+    >
+      <div
+        className="course-header"
+      >
+        <div
+          className="course-name"
+        >
+          <strong>
+            ACCT 101
+             - Introduction to Accounting
+          </strong>
+          <Blueprint3.Popover
+            boundary="scrollParent"
+            captureDismiss={false}
+            defaultIsOpen={false}
+            disabled={false}
+            hasBackdrop={false}
+            hoverCloseDelay={300}
+            hoverOpenDelay={150}
+            inheritDarkTheme={true}
+            interactionKind="click"
+            minimal={false}
+            modifiers={Object {}}
+            openOnTargetFocus={true}
+            popoverClassName="bp3-popover-content-sizing"
+            position="auto"
+            targetTagName="span"
+            transitionDuration={300}
+            usePortal={true}
+            wrapperTagName="span"
+          >
+            <Manager>
+              <span
+                className="bp3-popover-wrapper"
+              >
+                <Reference
+                  innerRef={[Function]}
+                >
+                  <InnerReference
+                    innerRef={[Function]}
+                    setReferenceNode={[Function]}
+                  >
+                    <Blueprint3.ResizeSensor
+                      onResize={[Function]}
+                    >
+                      <span
+                        className="bp3-popover-target"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="bp3-tooltip-indicator"
+                          key=".0"
+                        >
+                          <button
+                            className="course-info-btn"
+                          >
+                            <i
+                              arial-label="hidden"
+                              className="fas fa-info-circle"
+                            />
+                            <span
+                              className="sr-only"
+                            >
+                              ACCT 101
+                            </span>
+                          </button>
+                        </div>
+                      </span>
+                    </Blueprint3.ResizeSensor>
+                  </InnerReference>
+                </Reference>
+                <Blueprint3.Overlay
+                  autoFocus={true}
+                  backdropClassName="bp3-popover-backdrop"
+                  backdropProps={Object {}}
+                  canEscapeKeyClose={true}
+                  canOutsideClickClose={true}
+                  enforceFocus={true}
+                  hasBackdrop={false}
+                  isOpen={false}
+                  lazy={true}
+                  onClose={[Function]}
+                  transitionDuration={300}
+                  transitionName="bp3-popover"
+                  usePortal={true}
+                />
+              </span>
+            </Manager>
+          </Blueprint3.Popover>
+        </div>
+        <div
+          className="course-details"
+        >
+          <span>
+            Section 
+            01
+             • 
+          </span>
+          <span>
+            Seminar
+             • 
+          </span>
+          <span
+            className="course-id"
+          >
+            Class No. 
+            101
+          </span>
+        </div>
+      </div>
+      <div
+        className="course-info"
+      >
+        <div
+          className="course-status course-status--open"
+        >
+          <span />
+          Open
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats Available: 
+          <span>
+            20
+            /
+            30
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="item-body"
+    >
+      <ul
+        className="course-desc"
+      >
+        <li>
+          <span>
+            Units 
+          </span>
+          4
+        </li>
+        <li>
+          <span>
+            Meeting Time 
+          </span>
+          12:00 pm - 1:50 pm
+        </li>
+        <li>
+          <span>
+            Meeting Days 
+          </span>
+          M-W
+        </li>
+        <li>
+          <span>
+            Room 
+          </span>
+          COE 101
+        </li>
+        <li>
+          <span>
+            Campus 
+          </span>
+          San Bernardino
+        </li>
+        <li>
+          <span>
+            Instructor
+          </span>
+          Dyck, Harold
+        </li>
+        <li>
+          <span>
+            Instruction Mode 
+          </span>
+          Classroom
+        </li>
+      </ul>
+      <div
+        className="course-books"
+      >
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</ClassesCards>
+`;
+
+exports[`seats text verbiage when a class has seats available on the waitlist should display the number of students on waitlist and the total seats on waitlist 1`] = `
+<ClassesCards
+  classes={
+    Object {
+      "amount": 0,
+      "buildingCode": "COE",
+      "campus": "MAIN",
+      "catalogNo": "101",
+      "classEndTime": "1:50 PM",
+      "classMeetingNo": 1,
+      "classNumber": 101,
+      "classSection": "01",
+      "classStartTime": "12:00 PM",
+      "classStatus": "Active",
+      "courseAttr": "",
+      "courseId": "000001",
+      "csuUnits": 4,
+      "degreeType": "PBAC",
+      "description": "ACCT GOVT & NONPROFIT ORG",
+      "employeeId": "001343367",
+      "enrolledCapacity": 30,
+      "enrolledTotal": 30,
+      "facilityId": "JB0113",
+      "fri": "N",
+      "geCourseAttr": "",
+      "instructionMode": "P",
+      "instructorName": "Dyck, Harold",
+      "mon": "Y",
+      "quarter": "0008",
+      "room": "101",
+      "sat": "N",
+      "sessionCode": "1",
+      "ssrComponent": "SEM",
+      "subject": "ACCT",
+      "sun": "N",
+      "textbook": "",
+      "thurs": "N",
+      "title": "Introduction to Accounting",
+      "topic": "",
+      "tues": "N",
+      "waitlistCapacity": 30,
+      "waitlistTotal": 25,
+      "wed": "Y",
+    }
+  }
+  currentTerm="0008"
+>
+  <div
+    className="course result-item"
+  >
+    <div
+      className="item-header"
+    >
+      <div
+        className="course-header"
+      >
+        <div
+          className="course-name"
+        >
+          <strong>
+            ACCT 101
+             - Introduction to Accounting
+          </strong>
+          <Blueprint3.Popover
+            boundary="scrollParent"
+            captureDismiss={false}
+            defaultIsOpen={false}
+            disabled={false}
+            hasBackdrop={false}
+            hoverCloseDelay={300}
+            hoverOpenDelay={150}
+            inheritDarkTheme={true}
+            interactionKind="click"
+            minimal={false}
+            modifiers={Object {}}
+            openOnTargetFocus={true}
+            popoverClassName="bp3-popover-content-sizing"
+            position="auto"
+            targetTagName="span"
+            transitionDuration={300}
+            usePortal={true}
+            wrapperTagName="span"
+          >
+            <Manager>
+              <span
+                className="bp3-popover-wrapper"
+              >
+                <Reference
+                  innerRef={[Function]}
+                >
+                  <InnerReference
+                    innerRef={[Function]}
+                    setReferenceNode={[Function]}
+                  >
+                    <Blueprint3.ResizeSensor
+                      onResize={[Function]}
+                    >
+                      <span
+                        className="bp3-popover-target"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="bp3-tooltip-indicator"
+                          key=".0"
+                        >
+                          <button
+                            className="course-info-btn"
+                          >
+                            <i
+                              arial-label="hidden"
+                              className="fas fa-info-circle"
+                            />
+                            <span
+                              className="sr-only"
+                            >
+                              ACCT 101
+                            </span>
+                          </button>
+                        </div>
+                      </span>
+                    </Blueprint3.ResizeSensor>
+                  </InnerReference>
+                </Reference>
+                <Blueprint3.Overlay
+                  autoFocus={true}
+                  backdropClassName="bp3-popover-backdrop"
+                  backdropProps={Object {}}
+                  canEscapeKeyClose={true}
+                  canOutsideClickClose={true}
+                  enforceFocus={true}
+                  hasBackdrop={false}
+                  isOpen={false}
+                  lazy={true}
+                  onClose={[Function]}
+                  transitionDuration={300}
+                  transitionName="bp3-popover"
+                  usePortal={true}
+                />
+              </span>
+            </Manager>
+          </Blueprint3.Popover>
+        </div>
+        <div
+          className="course-details"
+        >
+          <span>
+            Section 
+            01
+             • 
+          </span>
+          <span>
+            Seminar
+             • 
+          </span>
+          <span
+            className="course-id"
+          >
+            Class No. 
+            101
+          </span>
+        </div>
+      </div>
+      <div
+        className="course-info"
+      >
+        <div
+          className="course-status course-status--closed"
+        >
+          <span />
+          Waitlist
+        </div>
+        <div>
+          <div
+            className="course-availability"
+          >
+            Waitlist: 
+            <span>
+              25
+              /
+              30
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="item-body"
+    >
+      <ul
+        className="course-desc"
+      >
+        <li>
+          <span>
+            Units 
+          </span>
+          4
+        </li>
+        <li>
+          <span>
+            Meeting Time 
+          </span>
+          12:00 pm - 1:50 pm
+        </li>
+        <li>
+          <span>
+            Meeting Days 
+          </span>
+          M-W
+        </li>
+        <li>
+          <span>
+            Room 
+          </span>
+          COE 101
+        </li>
+        <li>
+          <span>
+            Campus 
+          </span>
+          San Bernardino
+        </li>
+        <li>
+          <span>
+            Instructor
+          </span>
+          Dyck, Harold
+        </li>
+        <li>
+          <span>
+            Instruction Mode 
+          </span>
+          Classroom
+        </li>
+      </ul>
+      <div
+        className="course-books"
+      >
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</ClassesCards>
+`;
+
+exports[`seats text verbiage when a class is closed and has seats available should not display available seats 1`] = `
+<ClassesCards
+  classes={
+    Object {
+      "amount": 0,
+      "buildingCode": "COE",
+      "campus": "MAIN",
+      "catalogNo": "101",
+      "classEndTime": "1:50 PM",
+      "classMeetingNo": 1,
+      "classNumber": 101,
+      "classSection": "01",
+      "classStartTime": "12:00 PM",
+      "classStatus": "Active",
+      "courseAttr": "",
+      "courseId": "000001",
+      "csuUnits": 4,
+      "degreeType": "PBAC",
+      "description": "ACCT GOVT & NONPROFIT ORG",
+      "employeeId": "001343367",
+      "enrolledCapacity": 30,
+      "enrolledTotal": 30,
+      "facilityId": "JB0113",
+      "fri": "N",
+      "geCourseAttr": "",
+      "instructionMode": "P",
+      "instructorName": "Dyck, Harold",
+      "mon": "Y",
+      "quarter": "0008",
+      "room": "101",
+      "sat": "N",
+      "sessionCode": "1",
+      "ssrComponent": "SEM",
+      "subject": "ACCT",
+      "sun": "N",
+      "textbook": "",
+      "thurs": "N",
+      "title": "Introduction to Accounting",
+      "topic": "",
+      "tues": "N",
+      "waitlistCapacity": 30,
+      "waitlistTotal": 30,
+      "wed": "Y",
+    }
+  }
+  currentTerm="0008"
+>
+  <div
+    className="course result-item"
+  >
+    <div
+      className="item-header"
+    >
+      <div
+        className="course-header"
+      >
+        <div
+          className="course-name"
+        >
+          <strong>
+            ACCT 101
+             - Introduction to Accounting
+          </strong>
+          <Blueprint3.Popover
+            boundary="scrollParent"
+            captureDismiss={false}
+            defaultIsOpen={false}
+            disabled={false}
+            hasBackdrop={false}
+            hoverCloseDelay={300}
+            hoverOpenDelay={150}
+            inheritDarkTheme={true}
+            interactionKind="click"
+            minimal={false}
+            modifiers={Object {}}
+            openOnTargetFocus={true}
+            popoverClassName="bp3-popover-content-sizing"
+            position="auto"
+            targetTagName="span"
+            transitionDuration={300}
+            usePortal={true}
+            wrapperTagName="span"
+          >
+            <Manager>
+              <span
+                className="bp3-popover-wrapper"
+              >
+                <Reference
+                  innerRef={[Function]}
+                >
+                  <InnerReference
+                    innerRef={[Function]}
+                    setReferenceNode={[Function]}
+                  >
+                    <Blueprint3.ResizeSensor
+                      onResize={[Function]}
+                    >
+                      <span
+                        className="bp3-popover-target"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="bp3-tooltip-indicator"
+                          key=".0"
+                        >
+                          <button
+                            className="course-info-btn"
+                          >
+                            <i
+                              arial-label="hidden"
+                              className="fas fa-info-circle"
+                            />
+                            <span
+                              className="sr-only"
+                            >
+                              ACCT 101
+                            </span>
+                          </button>
+                        </div>
+                      </span>
+                    </Blueprint3.ResizeSensor>
+                  </InnerReference>
+                </Reference>
+                <Blueprint3.Overlay
+                  autoFocus={true}
+                  backdropClassName="bp3-popover-backdrop"
+                  backdropProps={Object {}}
+                  canEscapeKeyClose={true}
+                  canOutsideClickClose={true}
+                  enforceFocus={true}
+                  hasBackdrop={false}
+                  isOpen={false}
+                  lazy={true}
+                  onClose={[Function]}
+                  transitionDuration={300}
+                  transitionName="bp3-popover"
+                  usePortal={true}
+                />
+              </span>
+            </Manager>
+          </Blueprint3.Popover>
+        </div>
+        <div
+          className="course-details"
+        >
+          <span>
+            Section 
+            01
+             • 
+          </span>
+          <span>
+            Seminar
+             • 
+          </span>
+          <span
+            className="course-id"
+          >
+            Class No. 
+            101
+          </span>
+        </div>
+      </div>
+      <div
+        className="course-info"
+      >
+        <div
+          className="course-status course-status--closed"
+        >
+          <span />
+          Closed
+        </div>
+        <div>
+          <div
+            className="course-availability"
+          >
+            Waitlist: 
+            <span>
+              30
+              /
+              30
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="item-body"
+    >
+      <ul
+        className="course-desc"
+      >
+        <li>
+          <span>
+            Units 
+          </span>
+          4
+        </li>
+        <li>
+          <span>
+            Meeting Time 
+          </span>
+          12:00 pm - 1:50 pm
+        </li>
+        <li>
+          <span>
+            Meeting Days 
+          </span>
+          M-W
+        </li>
+        <li>
+          <span>
+            Room 
+          </span>
+          COE 101
+        </li>
+        <li>
+          <span>
+            Campus 
+          </span>
+          San Bernardino
+        </li>
+        <li>
+          <span>
+            Instructor
+          </span>
+          Dyck, Harold
+        </li>
+        <li>
+          <span>
+            Instruction Mode 
+          </span>
+          Classroom
+        </li>
+      </ul>
+      <div
+        className="course-books"
+      >
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</ClassesCards>
+`;
+
+exports[`seats text verbiage when a class is closed and has seats available should not display seats on waitlist 1`] = `
+<ClassesCards
+  classes={
+    Object {
+      "amount": 0,
+      "buildingCode": "COE",
+      "campus": "MAIN",
+      "catalogNo": "101",
+      "classEndTime": "1:50 PM",
+      "classMeetingNo": 1,
+      "classNumber": 101,
+      "classSection": "01",
+      "classStartTime": "12:00 PM",
+      "classStatus": "Active",
+      "courseAttr": "",
+      "courseId": "000001",
+      "csuUnits": 4,
+      "degreeType": "PBAC",
+      "description": "ACCT GOVT & NONPROFIT ORG",
+      "employeeId": "001343367",
+      "enrolledCapacity": 30,
+      "enrolledTotal": 30,
+      "facilityId": "JB0113",
+      "fri": "N",
+      "geCourseAttr": "",
+      "instructionMode": "P",
+      "instructorName": "Dyck, Harold",
+      "mon": "Y",
+      "quarter": "0008",
+      "room": "101",
+      "sat": "N",
+      "sessionCode": "1",
+      "ssrComponent": "SEM",
+      "subject": "ACCT",
+      "sun": "N",
+      "textbook": "",
+      "thurs": "N",
+      "title": "Introduction to Accounting",
+      "topic": "",
+      "tues": "N",
+      "waitlistCapacity": 30,
+      "waitlistTotal": 30,
+      "wed": "Y",
+    }
+  }
+  currentTerm="0008"
+>
+  <div
+    className="course result-item"
+  >
+    <div
+      className="item-header"
+    >
+      <div
+        className="course-header"
+      >
+        <div
+          className="course-name"
+        >
+          <strong>
+            ACCT 101
+             - Introduction to Accounting
+          </strong>
+          <Blueprint3.Popover
+            boundary="scrollParent"
+            captureDismiss={false}
+            defaultIsOpen={false}
+            disabled={false}
+            hasBackdrop={false}
+            hoverCloseDelay={300}
+            hoverOpenDelay={150}
+            inheritDarkTheme={true}
+            interactionKind="click"
+            minimal={false}
+            modifiers={Object {}}
+            openOnTargetFocus={true}
+            popoverClassName="bp3-popover-content-sizing"
+            position="auto"
+            targetTagName="span"
+            transitionDuration={300}
+            usePortal={true}
+            wrapperTagName="span"
+          >
+            <Manager>
+              <span
+                className="bp3-popover-wrapper"
+              >
+                <Reference
+                  innerRef={[Function]}
+                >
+                  <InnerReference
+                    innerRef={[Function]}
+                    setReferenceNode={[Function]}
+                  >
+                    <Blueprint3.ResizeSensor
+                      onResize={[Function]}
+                    >
+                      <span
+                        className="bp3-popover-target"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="bp3-tooltip-indicator"
+                          key=".0"
+                        >
+                          <button
+                            className="course-info-btn"
+                          >
+                            <i
+                              arial-label="hidden"
+                              className="fas fa-info-circle"
+                            />
+                            <span
+                              className="sr-only"
+                            >
+                              ACCT 101
+                            </span>
+                          </button>
+                        </div>
+                      </span>
+                    </Blueprint3.ResizeSensor>
+                  </InnerReference>
+                </Reference>
+                <Blueprint3.Overlay
+                  autoFocus={true}
+                  backdropClassName="bp3-popover-backdrop"
+                  backdropProps={Object {}}
+                  canEscapeKeyClose={true}
+                  canOutsideClickClose={true}
+                  enforceFocus={true}
+                  hasBackdrop={false}
+                  isOpen={false}
+                  lazy={true}
+                  onClose={[Function]}
+                  transitionDuration={300}
+                  transitionName="bp3-popover"
+                  usePortal={true}
+                />
+              </span>
+            </Manager>
+          </Blueprint3.Popover>
+        </div>
+        <div
+          className="course-details"
+        >
+          <span>
+            Section 
+            01
+             • 
+          </span>
+          <span>
+            Seminar
+             • 
+          </span>
+          <span
+            className="course-id"
+          >
+            Class No. 
+            101
+          </span>
+        </div>
+      </div>
+      <div
+        className="course-info"
+      >
+        <div
+          className="course-status course-status--closed"
+        >
+          <span />
+          Closed
+        </div>
+        <div>
+          <div
+            className="course-availability"
+          >
+            Waitlist: 
+            <span>
+              30
+              /
+              30
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="item-body"
+    >
+      <ul
+        className="course-desc"
+      >
+        <li>
+          <span>
+            Units 
+          </span>
+          4
+        </li>
+        <li>
+          <span>
+            Meeting Time 
+          </span>
+          12:00 pm - 1:50 pm
+        </li>
+        <li>
+          <span>
+            Meeting Days 
+          </span>
+          M-W
+        </li>
+        <li>
+          <span>
+            Room 
+          </span>
+          COE 101
+        </li>
+        <li>
+          <span>
+            Campus 
+          </span>
+          San Bernardino
+        </li>
+        <li>
+          <span>
+            Instructor
+          </span>
+          Dyck, Harold
+        </li>
+        <li>
+          <span>
+            Instruction Mode 
+          </span>
+          Classroom
+        </li>
+      </ul>
+      <div
+        className="course-books"
+      >
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</ClassesCards>
+`;
+
+exports[`seats text verbiage when a class is from the previous term and has seats available on waitlist should not display waitlist information 1`] = `
+<ClassesCards
+  classes={
+    Object {
+      "amount": 0,
+      "buildingCode": "COE",
+      "campus": "MAIN",
+      "catalogNo": "101",
+      "classEndTime": "1:50 PM",
+      "classMeetingNo": 1,
+      "classNumber": 101,
+      "classSection": "01",
+      "classStartTime": "12:00 PM",
+      "classStatus": "Active",
+      "courseAttr": "",
+      "courseId": "000001",
+      "csuUnits": 4,
+      "degreeType": "PBAC",
+      "description": "ACCT GOVT & NONPROFIT ORG",
+      "employeeId": "001343367",
+      "enrolledCapacity": 30,
+      "enrolledTotal": 30,
+      "facilityId": "JB0113",
+      "fri": "N",
+      "geCourseAttr": "",
+      "instructionMode": "P",
+      "instructorName": "Dyck, Harold",
+      "mon": "Y",
+      "quarter": "0002",
+      "room": "101",
+      "sat": "N",
+      "sessionCode": "1",
+      "ssrComponent": "SEM",
+      "subject": "ACCT",
+      "sun": "N",
+      "textbook": "",
+      "thurs": "N",
+      "title": "Introduction to Accounting",
+      "topic": "",
+      "tues": "N",
+      "waitlistCapacity": 30,
+      "waitlistTotal": 10,
+      "wed": "Y",
+    }
+  }
+  currentTerm="0008"
+>
+  <div
+    className="course result-item"
+  >
+    <div
+      className="item-header"
+    >
+      <div
+        className="course-header"
+      >
+        <div
+          className="course-name"
+        >
+          <strong>
+            ACCT 101
+             - Introduction to Accounting
+          </strong>
+          <Blueprint3.Popover
+            boundary="scrollParent"
+            captureDismiss={false}
+            defaultIsOpen={false}
+            disabled={false}
+            hasBackdrop={false}
+            hoverCloseDelay={300}
+            hoverOpenDelay={150}
+            inheritDarkTheme={true}
+            interactionKind="click"
+            minimal={false}
+            modifiers={Object {}}
+            openOnTargetFocus={true}
+            popoverClassName="bp3-popover-content-sizing"
+            position="auto"
+            targetTagName="span"
+            transitionDuration={300}
+            usePortal={true}
+            wrapperTagName="span"
+          >
+            <Manager>
+              <span
+                className="bp3-popover-wrapper"
+              >
+                <Reference
+                  innerRef={[Function]}
+                >
+                  <InnerReference
+                    innerRef={[Function]}
+                    setReferenceNode={[Function]}
+                  >
+                    <Blueprint3.ResizeSensor
+                      onResize={[Function]}
+                    >
+                      <span
+                        className="bp3-popover-target"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="bp3-tooltip-indicator"
+                          key=".0"
+                        >
+                          <button
+                            className="course-info-btn"
+                          >
+                            <i
+                              arial-label="hidden"
+                              className="fas fa-info-circle"
+                            />
+                            <span
+                              className="sr-only"
+                            >
+                              ACCT 101
+                            </span>
+                          </button>
+                        </div>
+                      </span>
+                    </Blueprint3.ResizeSensor>
+                  </InnerReference>
+                </Reference>
+                <Blueprint3.Overlay
+                  autoFocus={true}
+                  backdropClassName="bp3-popover-backdrop"
+                  backdropProps={Object {}}
+                  canEscapeKeyClose={true}
+                  canOutsideClickClose={true}
+                  enforceFocus={true}
+                  hasBackdrop={false}
+                  isOpen={false}
+                  lazy={true}
+                  onClose={[Function]}
+                  transitionDuration={300}
+                  transitionName="bp3-popover"
+                  usePortal={true}
+                />
+              </span>
+            </Manager>
+          </Blueprint3.Popover>
+        </div>
+        <div
+          className="course-details"
+        >
+          <span>
+            Section 
+            01
+             • 
+          </span>
+          <span>
+            Seminar
+             • 
+          </span>
+          <span
+            className="course-id"
+          >
+            Class No. 
+            101
+          </span>
+        </div>
+      </div>
+      <div
+        className="course-info"
+      >
+        <div
+          className="course-status course-status--closed"
+        >
+          <span />
+          Closed
+        </div>
+      </div>
+    </div>
+    <div
+      className="item-body"
+    >
+      <ul
+        className="course-desc"
+      >
+        <li>
+          <span>
+            Units 
+          </span>
+          4
+        </li>
+        <li>
+          <span>
+            Meeting Time 
+          </span>
+          12:00 pm - 1:50 pm
+        </li>
+        <li>
+          <span>
+            Meeting Days 
+          </span>
+          M-W
+        </li>
+        <li>
+          <span>
+            Room 
+          </span>
+          COE 101
+        </li>
+        <li>
+          <span>
+            Campus 
+          </span>
+          San Bernardino
+        </li>
+        <li>
+          <span>
+            Instructor
+          </span>
+          Dyck, Harold
+        </li>
+        <li>
+          <span>
+            Instruction Mode 
+          </span>
+          Classroom
+        </li>
+      </ul>
+      <div
+        className="course-books"
+      >
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</ClassesCards>
+`;
+
+exports[`seats text verbiage when a class is from the previous term and has seats available should not display number of seats available 1`] = `
+<ClassesCards
+  classes={
+    Object {
+      "amount": 0,
+      "buildingCode": "COE",
+      "campus": "MAIN",
+      "catalogNo": "101",
+      "classEndTime": "1:50 PM",
+      "classMeetingNo": 1,
+      "classNumber": 101,
+      "classSection": "01",
+      "classStartTime": "12:00 PM",
+      "classStatus": "Active",
+      "courseAttr": "",
+      "courseId": "000001",
+      "csuUnits": 4,
+      "degreeType": "PBAC",
+      "description": "ACCT GOVT & NONPROFIT ORG",
+      "employeeId": "001343367",
+      "enrolledCapacity": 30,
+      "enrolledTotal": 20,
+      "facilityId": "JB0113",
+      "fri": "N",
+      "geCourseAttr": "",
+      "instructionMode": "P",
+      "instructorName": "Dyck, Harold",
+      "mon": "Y",
+      "quarter": "0002",
+      "room": "101",
+      "sat": "N",
+      "sessionCode": "1",
+      "ssrComponent": "SEM",
+      "subject": "ACCT",
+      "sun": "N",
+      "textbook": "",
+      "thurs": "N",
+      "title": "Introduction to Accounting",
+      "topic": "",
+      "tues": "N",
+      "waitlistCapacity": 100,
+      "waitlistTotal": 1,
+      "wed": "Y",
+    }
+  }
+  currentTerm="0008"
+>
+  <div
+    className="course result-item"
+  >
+    <div
+      className="item-header"
+    >
+      <div
+        className="course-header"
+      >
+        <div
+          className="course-name"
+        >
+          <strong>
+            ACCT 101
+             - Introduction to Accounting
+          </strong>
+          <Blueprint3.Popover
+            boundary="scrollParent"
+            captureDismiss={false}
+            defaultIsOpen={false}
+            disabled={false}
+            hasBackdrop={false}
+            hoverCloseDelay={300}
+            hoverOpenDelay={150}
+            inheritDarkTheme={true}
+            interactionKind="click"
+            minimal={false}
+            modifiers={Object {}}
+            openOnTargetFocus={true}
+            popoverClassName="bp3-popover-content-sizing"
+            position="auto"
+            targetTagName="span"
+            transitionDuration={300}
+            usePortal={true}
+            wrapperTagName="span"
+          >
+            <Manager>
+              <span
+                className="bp3-popover-wrapper"
+              >
+                <Reference
+                  innerRef={[Function]}
+                >
+                  <InnerReference
+                    innerRef={[Function]}
+                    setReferenceNode={[Function]}
+                  >
+                    <Blueprint3.ResizeSensor
+                      onResize={[Function]}
+                    >
+                      <span
+                        className="bp3-popover-target"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="bp3-tooltip-indicator"
+                          key=".0"
+                        >
+                          <button
+                            className="course-info-btn"
+                          >
+                            <i
+                              arial-label="hidden"
+                              className="fas fa-info-circle"
+                            />
+                            <span
+                              className="sr-only"
+                            >
+                              ACCT 101
+                            </span>
+                          </button>
+                        </div>
+                      </span>
+                    </Blueprint3.ResizeSensor>
+                  </InnerReference>
+                </Reference>
+                <Blueprint3.Overlay
+                  autoFocus={true}
+                  backdropClassName="bp3-popover-backdrop"
+                  backdropProps={Object {}}
+                  canEscapeKeyClose={true}
+                  canOutsideClickClose={true}
+                  enforceFocus={true}
+                  hasBackdrop={false}
+                  isOpen={false}
+                  lazy={true}
+                  onClose={[Function]}
+                  transitionDuration={300}
+                  transitionName="bp3-popover"
+                  usePortal={true}
+                />
+              </span>
+            </Manager>
+          </Blueprint3.Popover>
+        </div>
+        <div
+          className="course-details"
+        >
+          <span>
+            Section 
+            01
+             • 
+          </span>
+          <span>
+            Seminar
+             • 
+          </span>
+          <span
+            className="course-id"
+          >
+            Class No. 
+            101
+          </span>
+        </div>
+      </div>
+      <div
+        className="course-info"
+      >
+        <div
+          className="course-status course-status--closed"
+        >
+          <span />
+          Closed
+        </div>
+      </div>
+    </div>
+    <div
+      className="item-body"
+    >
+      <ul
+        className="course-desc"
+      >
+        <li>
+          <span>
+            Units 
+          </span>
+          4
+        </li>
+        <li>
+          <span>
+            Meeting Time 
+          </span>
+          12:00 pm - 1:50 pm
+        </li>
+        <li>
+          <span>
+            Meeting Days 
+          </span>
+          M-W
+        </li>
+        <li>
+          <span>
+            Room 
+          </span>
+          COE 101
         </li>
         <li>
           <span>
@@ -1858,7 +3324,6 @@ exports[`when a class has low cost course material should display icon for low c
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div
@@ -2111,7 +3576,6 @@ exports[`when a class has zero cost course material should display icon for zero
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div
@@ -2364,7 +3828,6 @@ exports[`when a class has zero cost course materials and low cost course materia
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div
@@ -2621,7 +4084,6 @@ exports[`when a class is a fully online should not display the room number in th
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div
@@ -2854,7 +4316,6 @@ exports[`when a class results component is displayed should display the correct 
           <span />
           Closed
         </div>
-        <div />
       </div>
     </div>
     <div

@@ -10,7 +10,6 @@ import { MeetingTime } from './MeetingTime';
 import { Watchdog } from './Watchdog';
 import { InstructionMode } from './InstructionMode';
 import { FilterClasses } from './FilterClasses';
-
 interface IClassSearchContainerState {
   term: string;
   campus: string;
