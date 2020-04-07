@@ -312,8 +312,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         abbr: '',
       },
       courseNo: '',
-      startTime: new Date('1899-01-01T00:00:00'),
-      endTime: new Date('1899-01-01T23:00:00'),
+      startTime: new Date('1899/01/01 00:00:00'),
+      endTime: new Date('1899/01/01 23:00:00'),
       meetingDate: {
         mon: false,
         tue: false,
