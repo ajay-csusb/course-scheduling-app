@@ -192,17 +192,17 @@ describe('building code and room number', () => {
   });
 });
 
-describe.only('available seats', () => {
+describe('available seats', () => {
   describe('when a class has seats available for enrollment', () => {
     it('should display the number of seats available and total number of seats', () => {
       const classWithAvailableSeats: IClass = TestUtils.copyObject(classJson);
       classWithAvailableSeats.enrolledTotal = 10;
       classWithAvailableSeats.enrolledCapacity = 30;
-      classWithAvailableSeats.quarter = '9999';
+      classWithAvailableSeats.quarter = '0008';
       const classesCardsComponent: JSX.Element = (
         <ClassesCards
           classes={classWithAvailableSeats}
-          currentTerm={'0000'}
+          currentTerm={'0008'}
         />
       );
       const classResultsComponent = mount(classesCardsComponent);

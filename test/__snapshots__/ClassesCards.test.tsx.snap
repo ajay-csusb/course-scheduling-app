@@ -512,7 +512,7 @@ exports[`available seats when a class has seats available for enrollment should 
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -529,7 +529,7 @@ exports[`available seats when a class has seats available for enrollment should 
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"

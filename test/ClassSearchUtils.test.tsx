@@ -730,3 +730,75 @@ describe('GE class attribute', () => {
     });
   });
 });
+
+describe('Class status', () => {
+  describe('Given the current term as 0008', () => {
+    describe('when the user search for a class from term 0002', () => {
+      it('should return false', () => {
+        expect(ClassSearchUtils.isValidTermRange('0008', '0002', 8)).toBeFalsy();
+      });
+    });
+
+    describe('when the user search for a class from term 0008', () => {
+      it('should return true', () => {
+        expect(ClassSearchUtils.isValidTermRange('0008', '0008', 8)).toBeTruthy();
+      });
+    });
+
+    describe('when the user search for a class from term 0006', () => {
+      describe('and the current month is April', () => {
+        it('should return true', () => {
+          expect(ClassSearchUtils.isValidTermRange('0008', '0006', 4)).toBeTruthy();
+        });
+      });
+      describe('and the current month is September', () => {
+        it('should return false', () => {
+          expect(ClassSearchUtils.isValidTermRange('0008', '0006', 9)).toBeFalsy();
+        });
+      });
+    });
+
+    describe('when a user searches for a class from term 004', () => {
+      describe('and the current month is March', () => {
+        it('should return true', () => {
+          expect(ClassSearchUtils.isValidTermRange('008', '004', 3)).toBeTruthy();
+        });
+      });
+      describe('and the current month is December', () => {
+        it('should return false', () => {
+          expect(ClassSearchUtils.isValidTermRange('008', '004', 12)).toBeFalsy();
+        });
+      });
+    });
+  });
+
+  describe('Given the current term as 002', () => {
+    describe('when a user searches for class from term 008', () => {
+      describe('and the current month is December', () => {
+        it('should return false', () => {
+          expect(ClassSearchUtils.isValidTermRange('002', '008', 12)).toBeFalsy();
+        });
+      });
+    });
+  });
+
+  describe('Given the current term as 004', () => {
+    describe('when the user searches for a class from term 002', () => {
+      describe('and the current month is March', () => {
+        it('should return false', () => {
+          expect(ClassSearchUtils.isValidTermRange('004', '002', 4)).toBeFalsy();
+        });
+      });
+    });
+
+    describe('when the user searches for a class from term 004', () => {
+      describe('and the current month is December', () => {
+        it('should return true', () => {
+          expect(ClassSearchUtils.isValidTermRange('004', '004', 12)).toBeTruthy();
+        });
+      });
+    });
+
+  });
+});
+
