@@ -143,41 +143,41 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public isCurrentTerm(): boolean {
-    return (this.props.currentTerm === this.classDetails.quarter);
+    return (this.props.currentTerm === this.classDetails.quarter) || parseInt(this.classDetails.quarter, 10) >= 2204;
   }
 
   public getClassStatusMarkup(): JSX.Element {
     let classStatus = 'Closed';
     let classStatusClassName = 'course-status course-status--closed';
-    let waitlistMarkup = <div>{this.getWaitlistMarkup()}</div>;
     if (this.isCurrentTerm()) {
       classStatus = ClassSearchUtils.getClassStatus(this.classDetails);
       if (classStatus === 'Open') {
         classStatusClassName = 'course-status course-status--open';
-        waitlistMarkup = <React.Fragment/>;
       }
     }
     return (
       <React.Fragment>
         <div className={classStatusClassName}><span />{classStatus}</div>
-        {waitlistMarkup}
       </React.Fragment>
     );
   }
 
   public getClassAvailabilityMarkup(): JSX.Element {
     const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(this.classDetails);
-    if (ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
-      return (<React.Fragment/>);
-    }
+    const waitlistMarkup = <div>{this.getWaitlistMarkup()}</div>;
     if (!this.isCurrentTerm()) {
       return (<React.Fragment/>);
     }
+    if (ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
+      return (<>{waitlistMarkup}</>);
+    }
     if (ClassSearchUtils.isWaitlist(this.classDetails)) {
-      return (<React.Fragment />);
+      return (<>{waitlistMarkup}</>);
     }
     return (
-      <div className="course-availability"><span>{noOfSeatsAvailable}</span> seats available</div>
+      <div className="course-availability">
+      Seats Available: <span>{noOfSeatsAvailable}/{this.classDetails.enrolledCapacity}</span>
+      </div>
     );
   }
 
@@ -189,7 +189,11 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     if (this.classDetails.waitlistCapacity === 0) {
       return (<div className="course-availability">No Waitlist</div>);
     }
-    return (<div className="course-availability"><span>{waitlistNo}</span> students on waitlist</div>);
+    return (
+      <div className="course-availability">
+      Waitlist: <span>{waitlistNo}/{this.classDetails.waitlistCapacity}</span>
+      </div>
+    );
   }
 
   public getTooltipMarkup(): JSX.Element {

@@ -2,15 +2,13 @@ import * as form from './Utils';
 
 describe('Filter classes by subject', function () {
   context('when a user searches for Biology classes', () => {
-    before(function () {
+    it('should show Biology classes', () => {
       cy.visit(form.url);
       form.selectSubject();
-      form.submit(); 
-      form.waitForResults();
-    });
-
-    it('should show Biology classes', () => {
-      cy.get('span').should('contain', 'BIOL 100');
+      cy.get('.btn-primary').click();
+      cy.wait(5000);
+      cy.get('#class-search-results-component').should('contain', 'classes found');
+      cy.get('#class-search-results-component').should('not.contain', '0 classes found');
     });
   });
 

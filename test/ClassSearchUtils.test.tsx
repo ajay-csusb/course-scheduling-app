@@ -95,8 +95,8 @@ describe('Session code values', () => {
   describe('When Session code is 10W', () => {
     const classes10Weeks = JSON.parse(JSON.stringify(classJson));
     classes10Weeks.sessionCode = '10W';
-    it('should return 10 weeks', () => {
-      expect(ClassSearchUtils.getSessionCode(classes10Weeks)).toEqual('10 weeks');
+    it('should return 10 Week', () => {
+      expect(ClassSearchUtils.getSessionCode(classes10Weeks)).toEqual('10 Week');
     });
   });
 
@@ -109,26 +109,26 @@ describe('Session code values', () => {
   });
 
   describe('When Session code is 3W1', () => {
-    it('should return 3 weeks', () => {
+    it('should return 3 Week 1', () => {
       const classes31Weeks = TestUtils.copyObject(classJson);
       classes31Weeks.sessionCode = '3W1';
-      expect(ClassSearchUtils.getSessionCode(classes31Weeks)).toEqual('3 weeks 1');
+      expect(ClassSearchUtils.getSessionCode(classes31Weeks)).toEqual('3 Week 1');
     });
   });
 
   describe('When Session code is 6W1', () => {
-    it('should return 6 weeks 1', () => {
+    it('should return 6 Week 1', () => {
       const classes61Weeks = TestUtils.copyObject(classJson);
       classes61Weeks.sessionCode = '6W1';
-      expect(ClassSearchUtils.getSessionCode(classes61Weeks)).toEqual('6 weeks 1');
+      expect(ClassSearchUtils.getSessionCode(classes61Weeks)).toEqual('6 Week 1');
     });
   });
 
   describe('When Session code is 6W2', () => {
-    it('should return 6 weeks 2', () => {
+    it('should return 6 wWeek 2', () => {
       const classes62Weeks = TestUtils.copyObject(classJson);
       classes62Weeks.sessionCode = '6W2';
-      expect(ClassSearchUtils.getSessionCode(classes62Weeks)).toEqual('6 weeks 2');
+      expect(ClassSearchUtils.getSessionCode(classes62Weeks)).toEqual('6 Week 2');
     });
   });
 
@@ -518,7 +518,7 @@ describe('when multiple classes are displayed in results', () => {
   const classBio100 = JSON.parse(JSON.stringify(classJson));
   const classBio200 = JSON.parse(JSON.stringify(classJson));
   let classes;
-  beforeAll(() => {
+  beforeEach(() => {
     classAdm100.subject = 'ADM';
     classAdm100.catalogNo = '100';
     classAdm100.classSection = '01';
@@ -539,6 +539,27 @@ describe('when multiple classes are displayed in results', () => {
     expect(classes[1].catalogNo).toEqual('200');
     expect(classes[2].catalogNo).toEqual('100');
     expect(classes[3].catalogNo).toEqual('200');
+  });
+  describe('if a catalog number has numbers and characters', () => {
+    const classAdm300 = JSON.parse(JSON.stringify(classJson));
+    it('should display the classes in ascending order of number and characters', () => {
+      classAdm100.catalogNo = '100B';
+      classAdm100.classSection = '01';
+      classAdm200.catalogNo = '100B';
+      classAdm200.classSection = '02';
+      classAdm300.catalogNo = '100A';
+      classAdm300.classSection = '03';
+      classBio100.catalogNo = '200Z';
+      classBio100.classSection = '02';
+      classBio200.catalogNo = '200F';
+      classBio200.classSection = '01';
+      classes = ClassSearchUtils.sortClasses([classBio200, classAdm200, classAdm100, classBio100, classAdm300]);
+      expect(classes[0].catalogNo).toEqual('100A');
+      expect(classes[1].catalogNo).toEqual('100B');
+      expect(classes[2].classSection).toEqual('02');
+      expect(classes[3].catalogNo).toEqual('200F');
+      expect(classes[4].catalogNo).toEqual('200Z');
+    });
   });
 
   it('should display the classes in ascending order of subject', () => {

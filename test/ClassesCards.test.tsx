@@ -44,7 +44,7 @@ describe('Session codes label and markup', () => {
         />
       );
       const classResultsComponent = mount(classesCardsComponent);
-      expect(classResultsComponent.html()).toContain('<span>Session </span>6 weeks 1');
+      expect(classResultsComponent.html()).toContain('<span>Session </span>6 Week 1');
       expect(classResultsComponent).toMatchSnapshot();
     });
   });
@@ -190,4 +190,126 @@ describe('building code and room number', () => {
       expect(classResultsComponent.html()).toContain('<li><span>Room </span>TBD</li>');
     });
   });
+});
+
+describe('seats text verbiage', () => {
+  describe('when a class has seats available for enrollment', () => {
+    it('should display the number of seats available and total number of seats', () => {
+      const classWithAvailableSeats: IClass = TestUtils.copyObject(classJson);
+      classWithAvailableSeats.enrolledTotal = 10;
+      classWithAvailableSeats.enrolledCapacity = 30;
+      classWithAvailableSeats.quarter = '9999';
+      const classesCardsComponent: JSX.Element = (
+        <ClassesCards
+          classes={classWithAvailableSeats}
+          currentTerm={'0000'}
+        />
+      );
+      const classResultsComponent = mount(classesCardsComponent);
+      expect(classResultsComponent).toMatchSnapshot();
+      expect(classResultsComponent.html()).toContain('Seats Available: <span>20/30</span>');
+    });
+  });
+  describe('when a class has seats available on the waitlist', () => {
+    it('should display the number of students on waitlist and the total seats on waitlist', () => {
+      const classWithStudentsOnWaitlist: IClass = TestUtils.copyObject(classJson);
+      classWithStudentsOnWaitlist.enrolledTotal = 30;
+      classWithStudentsOnWaitlist.enrolledCapacity = 30;
+      classWithStudentsOnWaitlist.waitlistTotal = 25;
+      classWithStudentsOnWaitlist.waitlistCapacity = 30;
+      classWithStudentsOnWaitlist.quarter = '9999';
+      const classesCardsComponent: JSX.Element = (
+        <ClassesCards
+          classes={classWithStudentsOnWaitlist}
+          currentTerm={'0000'}
+        />
+      );
+      const classResultsComponent = mount(classesCardsComponent);
+      expect(classResultsComponent).toMatchSnapshot();
+      expect(classResultsComponent.html()).toContain('Waitlist: <span>25/30</span>');
+    });
+  });
+  describe('when a class has no waitlist', () => {
+    it('should display the text to indicate no waitlist', () => {
+      const classWithNoWaitlist: IClass = TestUtils.copyObject(classJson);
+      classWithNoWaitlist.enrolledTotal = 29;
+      classWithNoWaitlist.enrolledCapacity = 30;
+      classWithNoWaitlist.waitlistTotal = 0;
+      classWithNoWaitlist.waitlistCapacity = 0;
+      classWithNoWaitlist.quarter = '9999';
+      const classesCardsComponent: JSX.Element = (
+        <ClassesCards
+          classes={classWithNoWaitlist}
+          currentTerm={'0000'}
+        />
+      );
+      const classResultsComponent = mount(classesCardsComponent);
+      expect(classResultsComponent).toMatchSnapshot();
+      expect(classResultsComponent.html()).toContain('No Waitlist');
+    });
+  });
+  describe('when a class is from the previous term', () => {
+    describe('and has seats available', () => {
+      it('should not display number of seats available', () => {
+        const classFromPreviousTerm: IClass = TestUtils.copyObject(classJson);
+        classFromPreviousTerm.quarter = '0000';
+        classFromPreviousTerm.enrolledTotal = 20;
+        classFromPreviousTerm.enrolledCapacity = 30;
+        const classesCardsComponent: JSX.Element = (
+          <ClassesCards
+            classes={classFromPreviousTerm}
+            currentTerm={'9999'}
+          />
+        );
+        const classResultsComponent = mount(classesCardsComponent);
+        expect(classResultsComponent).toMatchSnapshot();
+        expect(classResultsComponent.html()).not.toContain('Seats Available: <span>10</span>/30');
+      });
+    });
+    describe('and has seats available on waitlist', () => {
+      it('should not display waitlist information', () => {
+        const classFromPreviousTermWaitlist: IClass = TestUtils.copyObject(classJson);
+        classFromPreviousTermWaitlist.quarter = '0000';
+        classFromPreviousTermWaitlist.enrolledTotal = 30;
+        classFromPreviousTermWaitlist.enrolledCapacity = 30;
+        classFromPreviousTermWaitlist.waitlistTotal = 10;
+        classFromPreviousTermWaitlist.waitlistCapacity = 30;
+        const classesCardsComponent: JSX.Element = (
+          <ClassesCards
+            classes={classFromPreviousTermWaitlist}
+            currentTerm={'9999'}
+          />
+        );
+        const classResultsComponent = mount(classesCardsComponent);
+        expect(classResultsComponent).toMatchSnapshot();
+        expect(classResultsComponent.html()).not.toContain('Waitlist: <span>10</span>/30');
+      });
+    });
+  });
+  describe('when a class is closed', () => {
+    describe('and has seats available', () => {
+      const closedClass: IClass = TestUtils.copyObject(classJson);
+      closedClass.quarter = '9999';
+      closedClass.enrolledTotal = 30;
+      closedClass.enrolledCapacity = 30;
+      closedClass.waitlistTotal = 30;
+      closedClass.waitlistCapacity = 30;
+      const classesCardsComponent: JSX.Element = (
+        <ClassesCards
+          classes={closedClass}
+          currentTerm={'0000'}
+        />
+      );
+      const classResultsComponent = mount(classesCardsComponent);
+      it('should not display available seats', () => {
+        expect(classResultsComponent).toMatchSnapshot();
+        expect(classResultsComponent.html()).not.toContain('Seats Available: <span>10</span>/30');
+      });
+      it('should not display seats on waitlist', () => {
+        expect(classResultsComponent).toMatchSnapshot();
+        expect(classResultsComponent.html()).not.toContain('Waitlist: <span>10</span>/30');
+      });
+    });
+  });
+  
 });

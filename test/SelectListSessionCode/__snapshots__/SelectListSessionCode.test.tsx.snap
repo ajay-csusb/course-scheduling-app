@@ -17,19 +17,19 @@ Array [
           "value": "1",
         },
         Object {
-          "label": "Six weeks 1",
+          "label": "6 Week 1",
           "value": "6W1",
         },
         Object {
-          "label": "Six weeks 2",
+          "label": "6 Week 2",
           "value": "6W2",
         },
         Object {
-          "label": "Ten weeks",
+          "label": "10 Week",
           "value": "10W",
         },
         Object {
-          "label": "Three weeks 1",
+          "label": "3 Week 1",
           "value": "3W1",
         },
       ]
@@ -61,31 +61,31 @@ Array [
         </option>
         <option
           key="6W1"
-          label="Six weeks 1"
+          label="6 Week 1"
           value="6W1"
         >
-          Six weeks 1
+          6 Week 1
         </option>
         <option
           key="6W2"
-          label="Six weeks 2"
+          label="6 Week 2"
           value="6W2"
         >
-          Six weeks 2
+          6 Week 2
         </option>
         <option
           key="10W"
-          label="Ten weeks"
+          label="10 Week"
           value="10W"
         >
-          Ten weeks
+          10 Week
         </option>
         <option
           key="3W1"
-          label="Three weeks 1"
+          label="3 Week 1"
           value="3W1"
         >
-          Three weeks 1
+          3 Week 1
         </option>
       </select>
       <Blueprint3.Icon
@@ -139,31 +139,31 @@ Array [
       </option>
       <option
         key="6W1"
-        label="Six weeks 1"
+        label="6 Week 1"
         value="6W1"
       >
-        Six weeks 1
+        6 Week 1
       </option>
       <option
         key="6W2"
-        label="Six weeks 2"
+        label="6 Week 2"
         value="6W2"
       >
-        Six weeks 2
+        6 Week 2
       </option>
       <option
         key="10W"
-        label="Ten weeks"
+        label="10 Week"
         value="10W"
       >
-        Ten weeks
+        10 Week
       </option>
       <option
         key="3W1"
-        label="Three weeks 1"
+        label="3 Week 1"
         value="3W1"
       >
-        Three weeks 1
+        3 Week 1
       </option>
     </select>
     <Blueprint3.Icon

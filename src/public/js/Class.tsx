@@ -25,7 +25,7 @@ export interface IClass {
   description: string;
   ssrComponent: string;
   classType?: string;
-  classStat?: string;
+  classStatus: string;
   campus: string;
   longDescription?: string;
   schedulePrint?: string;
@@ -98,7 +98,7 @@ export class Class {
       description : object.descr,
       ssrComponent : object.ssr_COMPONENT,
       classType : object.class_TYPE,
-      classStat : object.class_STAT,
+      classStatus : object.class_STAT,
       campus : object.campus,
       longDescription : object.descrlong_VC,
       schedulePrint : object.schedule_PRINT,
@@ -199,5 +199,13 @@ export class Class {
 
   private areStartTimeEndTimeEmpty(): boolean {
     return (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0);
+  }
+
+  public isActive(): boolean {
+    return (this.classInfo.classStatus === 'Active');
+  }
+
+  public getClassStatus(): string {
+    return this.classInfo.classStatus;
   }
 }

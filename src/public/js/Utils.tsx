@@ -27,7 +27,7 @@ export class Utils {
     return results.join(' ');
   }
 
-  private static isProd(): boolean {
+  public static isProd(): boolean {
     return (window.location.hostname === 'www.csusb.edu');
   }
 
