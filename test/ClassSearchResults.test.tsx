@@ -67,6 +67,7 @@ describe('Given a class search results component', () => {
       classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson]);
     });
 
+    // @Todo rethink this
     it('should display the class status as Closed', () => {
       expect(classSearchResultsWrapper.html()).toContain('Closed');
     });
@@ -74,7 +75,7 @@ describe('Given a class search results component', () => {
     it('should display the CSS class name as course-status--close', () => {
       expect(classSearchResultsWrapper.html()).toContain('course-status--close');
     });
-
+    // @Todo rework this
     it('should not display available seats for classes which are closed', () => {
       expect(classSearchResultsWrapper.text()).not.toContain('seats available');
     });
@@ -88,6 +89,7 @@ describe('Given a class search results component', () => {
       classSearchResultsWrapper = mountClassSearchResultsComponent([classPDC]);
     });
 
+    // @Todo rethink this
     it('should display the class status as closed', () => {
       expect(classSearchResultsWrapper.html()).toContain('Closed');
     });
@@ -96,6 +98,7 @@ describe('Given a class search results component', () => {
       expect(classSearchResultsWrapper.html()).toContain('course-status--close');
     });
 
+    // @Todo rethink this
     it('should not display available seats text', () => {
       expect(classSearchResultsWrapper.text()).not.toContain('seats available');
     });
@@ -122,6 +125,7 @@ describe('Given a class search results component', () => {
     });
 
     describe('if the class has no waitlist', () => {
+      // @Todo delete this
       it('should display the text No Waitlist', () => {
         baseClassJson.enrolledTotal = 30;
         baseClassJson.waitlistCapacity = 0;
