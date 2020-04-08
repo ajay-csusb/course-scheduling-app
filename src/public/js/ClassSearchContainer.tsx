@@ -238,7 +238,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         transformedClass.push(Class.transformToClass(_class));
       });
     }
-    
+
     const validClasses = this.filterClasses(transformedClass);
     const sortedClasses = this.sortClasses(validClasses);
     this.allResults = this.processCourseAttributes(sortedClasses);
@@ -602,6 +602,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       geClassesAttribute: e.target.value,
     });
+    // @Todo evaluate if this needs to change
     this.userInput.setGeClassesAttr(e.target.value);
   }
 
@@ -640,7 +641,9 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private geClassesAttributesFound(data: any): void {
-    const geClasses = data.classAttributeList;
+    // @Todo merge both quarter and semester GE attributes into one
+    // contcat the two arrays into one
+    const geClasses = data.classAttributeQList;
     const noOption: IOptionProps = {
       value: '',
       label: 'All',
