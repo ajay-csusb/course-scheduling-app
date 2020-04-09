@@ -602,7 +602,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       geClassesAttribute: e.target.value,
     });
-    // @Todo evaluate if this needs to change
     this.userInput.setGeClassesAttr(e.target.value);
   }
 
@@ -641,8 +640,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private geClassesAttributesFound(data: any): void {
-    // @Todo merge both quarter and semester GE attributes into one
-    // contcat the two arrays into one
+    // @Todo concat both quarter and semester GE attributes into one
     const geClasses = data.classAttributeQList;
     const noOption: IOptionProps = {
       value: '',

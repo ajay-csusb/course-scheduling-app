@@ -11,7 +11,7 @@ describe('GE classes attributes component', () => {
     TestUtils.ajax();
   });
 
-  describe('Given a select option for GE course attributes', () => {
+  describe('Given a select list for GE course attributes', () => {
     test('snapshot', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
@@ -41,7 +41,7 @@ describe('GE classes attributes component', () => {
     });
   });
 
-  describe('and Fall 2018 is selected as a term', () => {
+  describe('and Summer 2020 is selected as a term', () => {
     it('should display options related to quarter term', () => {
       const geAttrsProps: ISelectListGeClassesAttributesProps = {
         currentTerm: '2207',
