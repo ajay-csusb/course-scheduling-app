@@ -640,18 +640,21 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private geClassesAttributesFound(data: any): void {
-    // @Todo concat both quarter and semester GE attributes into one
-    const geClasses = data.classAttributeQList;
-    const noOption: IOptionProps = {
-      value: '',
-      label: 'All',
-    };
-    this.geClassesAttributes.push(noOption);
-    geClasses.forEach((attribute: any) => {
+    const geClassesQuarter = data.classAttributeQList;
+    const geClassesSem = data.classAttributeSList;
+    geClassesQuarter.forEach((attribute: any) => {
       if (attribute.crse_ATTR === 'GE') {
         this.geClassesAttributes.push({
           label: attribute.descr,
           value: attribute.descr.split(' ')[0],
+        });
+      }
+    });
+    geClassesSem.forEach((attribute: any) => {
+      if (attribute.crse_ATTR === 'GE') {
+        this.geClassesAttributes.push({
+          label: attribute.descr,
+          value: attribute.descr.toLowerCase().replace(' ', '-'),
         });
       }
     });
