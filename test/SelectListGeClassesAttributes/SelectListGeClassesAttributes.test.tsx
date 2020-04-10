@@ -21,7 +21,6 @@ describe('GE classes attributes component', () => {
   });
 
   const geAttrs: IOptionProps[] = [
-    { value: '', label: 'All' },
     { value: 'ge-foo', label: 'GE-FOO' },
     { value: 'bar', label: 'BAR' },
   ];
@@ -35,7 +34,7 @@ describe('GE classes attributes component', () => {
         onChangeOfGeClassesAttribute: jest.fn(),
       };
       const selectListGeClassesAttributesWrapper = mount(<SelectListGeClassesAttributes {...geAttrsProps} />);
-      expect(selectListGeClassesAttributesWrapper.html()).toContain('GE-A1 Oral Communication');
+      expect(selectListGeClassesAttributesWrapper.html()).toContain('BAR');
       expect(selectListGeClassesAttributesWrapper.html()).not.toContain('GE-FOO');
       expect(selectListGeClassesAttributesWrapper.html()).toMatchSnapshot();
     });
@@ -51,7 +50,7 @@ describe('GE classes attributes component', () => {
       };
       const geAttrsComponent = mount(<SelectListGeClassesAttributes {...geAttrsProps} />);
       expect(geAttrsComponent.html()).toContain('GE-FOO');
-      expect(geAttrsComponent.html()).not.toContain('GE-A1 Oral Communication');
+      expect(geAttrsComponent.html()).not.toContain('BAR');
       expect(geAttrsComponent.html()).toMatchSnapshot();
     });
   });
