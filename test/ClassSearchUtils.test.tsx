@@ -512,6 +512,7 @@ describe('when a user performs a search', () => {
     });
   });
 });
+
 describe('when multiple classes are displayed in results', () => {
   const classAdm100 = JSON.parse(JSON.stringify(classJson));
   const classAdm200 = JSON.parse(JSON.stringify(classJson));
@@ -540,27 +541,6 @@ describe('when multiple classes are displayed in results', () => {
     expect(classes[2].catalogNo).toEqual('100');
     expect(classes[3].catalogNo).toEqual('200');
   });
-  describe('if a catalog number has numbers and characters', () => {
-    const classAdm300 = JSON.parse(JSON.stringify(classJson));
-    it('should display the classes in ascending order of number and characters', () => {
-      classAdm100.catalogNo = '100B';
-      classAdm100.classSection = '01';
-      classAdm200.catalogNo = '100B';
-      classAdm200.classSection = '02';
-      classAdm300.catalogNo = '100A';
-      classAdm300.classSection = '03';
-      classBio100.catalogNo = '200Z';
-      classBio100.classSection = '02';
-      classBio200.catalogNo = '200F';
-      classBio200.classSection = '01';
-      classes = ClassSearchUtils.sortClasses([classBio200, classAdm200, classAdm100, classBio100, classAdm300]);
-      expect(classes[0].catalogNo).toEqual('100A');
-      expect(classes[1].catalogNo).toEqual('100B');
-      expect(classes[2].classSection).toEqual('02');
-      expect(classes[3].catalogNo).toEqual('200F');
-      expect(classes[4].catalogNo).toEqual('200Z');
-    });
-  });
 
   it('should display the classes in ascending order of subject', () => {
     expect(classes[0].subject).toEqual('ADM');
@@ -574,6 +554,55 @@ describe('when multiple classes are displayed in results', () => {
     expect(classes[1].classSection).toEqual('02');
     expect(classes[2].classSection).toEqual('01');
     expect(classes[3].classSection).toEqual('02');
+  });
+});
+
+describe('when a class catalog number has numbers and characters', () => {
+  const classAdm100A = TestUtils.copyObject(classJson);
+  const classAdm100B = TestUtils.copyObject(classJson);
+  const classBio200F = TestUtils.copyObject(classJson);
+  const classBio200Z = TestUtils.copyObject(classJson);
+  classAdm100A.catalogNo = '100A';
+  classAdm100B.catalogNo = '100B';
+  classBio200F.catalogNo = '200F';
+  classBio200Z.catalogNo = '200Z';
+  let classes;
+  classes = ClassSearchUtils.sortClasses([classBio200Z, classAdm100B, classBio200F, classAdm100A]);
+  it('should display the classes in ascending order of number first and then by characters', () => {
+    expect(classes[0].catalogNo).toEqual('100A');
+    expect(classes[1].catalogNo).toEqual('100B');
+    expect(classes[2].catalogNo).toEqual('200F');
+    expect(classes[3].catalogNo).toEqual('200Z');
+  });
+
+  describe('when two classes have the same catalog number and they contain numbers and character', () => {
+    const classAdm100B1 = TestUtils.copyObject(classJson);
+    const classAdm100B2 = TestUtils.copyObject(classJson);
+    classAdm100B1.catalogNo = '100B';
+    classAdm100B1.classSection = '01';
+    classAdm100B2.catalogNo = '100B';
+    classAdm100B2.classSection = '02';
+    it('it should sort by class section', () => {
+      classes = ClassSearchUtils.sortClasses([classAdm100B2, classAdm100B1]);
+      expect(classes[0].classSection).toEqual('01');
+      expect(classes[1].classSection).toEqual('02');
+    });
+  });
+
+});
+
+describe('when comparing two classes by catalog number, one having only numbers and the other having numbers and characters', () => {
+  const classBio20B = TestUtils.copyObject(classJson);
+  classBio20B.subject = 'BIO';
+  classBio20B.catalogNo = '20B';
+  const classBio200 = TestUtils.copyObject(classJson);
+  classBio200.subject = 'BIO';
+  classBio200.catalogNo = '200';
+  let classes;
+  it('should sort by ascending order of numbers first and the by characters', () => {
+    classes = ClassSearchUtils.sortClasses([classBio200, classBio20B]);
+    expect(classes[0].catalogNo).toEqual('20B');
+    expect(classes[1].catalogNo).toEqual('200');
   });
 });
 
