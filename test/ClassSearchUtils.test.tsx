@@ -363,6 +363,27 @@ describe('fetch parameters', () => {
     });
   });
 
+  describe('when GE course attribute is set', () => {
+    describe('and the term is quarter', () => {
+      it('should pass the selected value', () => {
+        classSearchContainerWrapper.find('#additional-filters').simulate('click');
+        classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'GE-Foo' } });
+        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+        const termArgument = fetchMock.lastOptions();
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":"GE-Foo"'));
+      });
+    });
+    describe('and the term in semester', () => {
+      it('should pass GE as the value', () => {
+        classSearchContainerWrapper.find('#additional-filters').simulate('click');
+        classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'Semester-Foo' } });
+        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+        const termArgument = fetchMock.lastOptions();
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":"GE"'));
+      });
+    });
+  });
+
   describe('when a user clicks submit, followed by reset, and submit again', () => {
     it('should unset parameters which are not explicitly set', () => {
       classSearchContainerWrapper.setState({
