@@ -6,7 +6,6 @@ describe('Show scroll to top icon', function () {
         cy.visit(url);
         cy.get('.search-autocomplete input').type('Biology').click();
         cy.get('div').contains('Biology', { timeout: 15000 }).click();
-        cy.get('.mon > .bp3-control-indicator').click();
         cy.get('.btn-primary').click();
         cy.wait(5000)
       });
