@@ -7,6 +7,7 @@ import { mount, shallow } from 'enzyme';
 import { TestUtils } from './TestUtils';
 import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
 import { GeCourseAttribute } from '../src/public/js/GeCourseAttribute';
+import * as ClassSearch from '../src/public/js/ClassSearch.d';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -374,12 +375,26 @@ describe('fetch parameters', () => {
       });
     });
     describe('and the term in semester', () => {
-      it('should pass GE as the value', () => {
+      let termArgument;
+      beforeEach(() => {
         classSearchContainerWrapper.find('#additional-filters').simulate('click');
         classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'Semester-Foo' } });
         classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-        const termArgument = fetchMock.lastOptions();
-        expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":"GE"'));
+        termArgument = fetchMock.lastOptions();
+      });
+      it('should pass GE as the value', () => {
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":""'));
+      });
+      it('should pass GE as the course attribute', () => {
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr":"GE"'));
+      });
+      it('should pass empty string if All is selected as GE course attribute', () => {
+        classSearchContainerWrapper.find('#additional-filters').simulate('click');
+        classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: '' } });
+        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+        termArgument = fetchMock.lastOptions();
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":""'));
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr":""'));
       });
     });
   });
@@ -707,7 +722,7 @@ describe('GE class attribute', () => {
     { value: 'GE-BAR', label: 'General Education BAR' },
   ];
 
-  describe('when a class with does not have a course attribute of General Education', () => {
+  describe('when a class which does not have a course attribute of General Education', () => {
     const classBio400 = JSON.parse(JSON.stringify(classJson));
     classBio400.courseAttr = 'FOO, BAR, BAZ, BUZZ';
     classBio400.geCourseAttr = '';
@@ -769,6 +784,20 @@ describe('GE class attribute', () => {
     const geCourseAttr = GeCourseAttribute.addGeAttrs(classBio800, geAttrs);
     it('should return all unique GE course attributes', () => {
       expect(geCourseAttr).toEqual('General Education FOO, General Education BAR');
+    });
+  });
+
+  describe('when the term is Fall 2020 or after', () => {
+    describe('the class is a General Education class', () => {
+      const classBioFall = TestUtils.copyObject(classJson);
+      classBioFall.quarter = '3000';
+      classBioFall.courseAttr = 'General Education';
+      classBioFall.courseAttrDescription = 'Fall 2020 General Education Foo';
+      classBioFall.geCourseAttr = 'GE-FOO';
+      const geCourseAttr = GeCourseAttribute.addGeAttrs(classBioFall, geAttrs);
+      it('should return the GE course attributes as per the semester format', () => {
+        expect(geCourseAttr).toEqual('Fall 2020 General Education Foo');
+      });
     });
   });
 });
