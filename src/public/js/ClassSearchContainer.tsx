@@ -599,7 +599,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       this.userInput.setCourseAttr('');
     }
     if (!value.startsWith('GE-') && value.length !== 0) {
-      this.userInput.setCourseAttr('GE');
+      this.userInput.setCourseAttr('');
     }
     this.userInput.setGeClassesAttr(value);
   }
