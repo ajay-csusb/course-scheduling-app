@@ -142,7 +142,7 @@ describe('Filter by meeting time', () => {
     });
   });
 
-  describe.only('when a user performs a search', () => {
+  describe('when a user performs a search', () => {
     it('should return only active classes', () => {
       const activeClass = TestUtils.copyObject(classJson);
       const cancelledClass = TestUtils.copyObject(classJson);
