@@ -382,11 +382,11 @@ describe('fetch parameters', () => {
         classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
         termArgument = fetchMock.lastOptions();
       });
-      it('should pass GE as the value', () => {
+      it('should pass no value as GE course attribute', () => {
         expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":""'));
       });
-      it('should pass GE as the course attribute', () => {
-        expect(termArgument.body).toMatch(new RegExp('"crse_attr":"GE"'));
+      it('should pass no value as the course attribute', () => {
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr":""'));
       });
       it('should pass empty string if All is selected as GE course attribute', () => {
         classSearchContainerWrapper.find('#additional-filters').simulate('click');
