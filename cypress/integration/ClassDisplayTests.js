@@ -23,7 +23,7 @@ describe('Correct class information is displayed in results', function () {
           .and('contain', 'Campus')
           .and('contain', 'Instructor')
           .and('contain', 'Instruction Mode');
-          cy.get('.course:first-child .course-availability').invoke('text').should('match', /(No Waitlist)|(seats available)|(on waitlist)/);
+          cy.get('.course:first-child .course-availability').invoke('text').should('match', /(Waitlist)|(Seats Available)/);
           cy.get('.course:first-child .course-details > span').should('contain', 'Section');
         });
 

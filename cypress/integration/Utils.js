@@ -3,7 +3,7 @@ dotenv.config({ path: '.env' });
 
 let url = Cypress.env('url')
 if (url === undefined) {
-  url = 'http://theme-csusb.pantheonsite.io/class-schedule';
+  url = 'http://d8-csusb.pantheonsite.io/class-schedule';
 }  
 
 function selectSubject(subject="Biology") {
