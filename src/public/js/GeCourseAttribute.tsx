@@ -1,5 +1,6 @@
 import { IOptionProps } from '@blueprintjs/core';
 import { IClass } from './Class';
+import * as ClassSearch from './ClassSearch.d';
 
 export class GeCourseAttribute {
 
@@ -7,15 +8,59 @@ export class GeCourseAttribute {
 
   public static addGeAttrs(_class: IClass, geAttrs: IOptionProps[]): string {
     GeCourseAttribute.courseAttrArr = _class.courseAttr.split(', ');
-    const geCourseAttrArr = _class.geCourseAttr.split(', ');
+    let fullGeCourseAttr: any = [];
+    if (parseInt(_class.quarter, 10) >= ClassSearch.app.settings.firstSemester) {
+      if (GeCourseAttribute.courseAttrArr.includes('General Education')) {
+        return _class.courseAttrDescription;
+      }
+    }
     if (!GeCourseAttribute.courseAttrArr.includes('General Education')) {
       return _class.courseAttr;
     }
-    const fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr , geAttrs);
+    const geCourseAttrArr = _class.geCourseAttr.split(', ');
+    fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr , geAttrs);
     return fullGeCourseAttr.join(', ');
   }
 
+  public static filter(classes: IClass[], courseAttr: string, term: string): IClass[] {
+    if (parseInt(term, 10) < ClassSearch.app.settings.firstSemester) {
+      return classes;
+    }
+    const results: IClass[] = [];
+    const fullCourseAttribute = GeCourseAttribute.getSemesterGeCourseAttribute(courseAttr);
+    for (const _class of classes) {
+      const classCourseAttributeNormalized = GeCourseAttribute.normalizeCourseDescription(_class.courseAttrDescription);
+      if (classCourseAttributeNormalized.startsWith(courseAttr)) {
+        _class.courseAttrDescription = fullCourseAttribute;
+        results.push(_class);
+      }
+    }
+    return results;
+  }
+
+  public static normalizeCourseDescription(courseDescription: string): string {
+    return courseDescription.trim().toLowerCase().split(' ').join('-');
+  }
+
+  private static getSemesterGeCourseAttribute(courseAttr: string): string {
+    let geClassAttr = '';
+    const semCourseAttributes = GeCourseAttribute.getCourseAttributesSemester();
+    for (const semCourseAttribute of semCourseAttributes) {
+      const semCourseAttributeNormalized = GeCourseAttribute.normalizeGeCourseAttributesLabel(semCourseAttribute.label!);
+      if (courseAttr === semCourseAttributeNormalized) {
+        geClassAttr = semCourseAttribute.label!;
+        break;
+      }
+    }
+    return geClassAttr;
+  }
+
+  private static normalizeGeCourseAttributesLabel(label: string): string {
+    return label.trim().toLowerCase().slice(6).split(' ').join('-');
+  }
+
   private static addFullGeCourseAttribute(geCourseAttrArr: string[], geAttrs: IOptionProps[]): string[] {
+    geAttrs.concat(GeCourseAttribute.getCourseAttributesSemester());
     const courseAttrIndex = GeCourseAttribute.courseAttrArr.indexOf('General Education');
     GeCourseAttribute.courseAttrArr.splice(courseAttrIndex, 1);
     // tslint:disable-next-line:forin
@@ -35,4 +80,27 @@ export class GeCourseAttribute {
     return GeCourseAttribute.courseAttrArr;
   }
 
+  private static getCourseAttributesSemester(): IOptionProps[] {
+    return (
+      [
+      { label: 'GE-A1 Oral Communication', value: 'GE-A1' },
+      { label: 'GE-A2 Written Communication', value: 'GE-A2' },
+      { label: 'GE-A3 Critical Thinking', value: 'GE-A3' },
+      { label: 'GE-B1 Physical Science', value: 'GE-B1' },
+      { label: 'GE-B2 Life Science', value: 'GE-B2' },
+      { label: 'GE-B3 Laboratory Activity', value: 'GE-B3' },
+      { label: 'GE-B4 Mathematics/Quant. Reasoning', value: 'GE-B4' },
+      { label: 'GE-B5 UD Scientific Inquiry & Quant.', value: 'GE-B5' },
+      { label: 'GE-C1 Arts', value: 'GE-C1' },
+      { label: 'GE-C2 Humanities', value: 'GE-C2' },
+      { label: 'GE-C3 Additional C1 or C2 Course', value: 'GE-C3' },
+      { label: 'GE-C4 UD Arts and Humanities', value: 'GE-C4' },
+      { label: 'GE-D1 United States Government', value: 'GE-D1' },
+      { label: 'GE-D2 United States History', value: 'GE-D2' },
+      { label: 'GE-D3 Social Sciences Discipline', value: 'GE-D3' },
+      { label: 'GE-D4 UD Social Sciences', value: 'GE-D4' },
+      { label: 'GE-E  First-Year Seminar', value: 'GE-E' },
+      ]
+    );
+  }
 }
