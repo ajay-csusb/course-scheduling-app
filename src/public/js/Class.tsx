@@ -52,6 +52,7 @@ export interface IClass {
   title: string;
   geCourseAttr: string;
   topic: string;
+  courseAttrDescription: string;
 }
 
 export interface IMeetingDate {
@@ -125,6 +126,7 @@ export class Class {
       title: object.course_TITLE_LONG,
       geCourseAttr: object.crse_ATTR_VALUE,
       topic: object.crse_TOPIC_DESCR,
+      courseAttrDescription: object.crse_ATTR_VALUE_DESCR,
     };
     return result;
   }

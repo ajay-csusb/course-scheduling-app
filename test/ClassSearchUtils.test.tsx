@@ -379,7 +379,7 @@ describe('fetch parameters', () => {
         classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'Semester-Foo' } });
         classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
         const termArgument = fetchMock.lastOptions();
-        expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":"GE"'));
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":""'));
       });
     });
   });

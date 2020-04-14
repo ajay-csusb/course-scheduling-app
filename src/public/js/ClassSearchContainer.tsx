@@ -10,6 +10,7 @@ import { MeetingTime } from './MeetingTime';
 import { Watchdog } from './Watchdog';
 import { InstructionMode } from './InstructionMode';
 import { FilterClasses } from './FilterClasses';
+import { GeCourseAttribute } from './GeCourseAttribute';
 interface IClassSearchContainerState {
   term: string;
   campus: string;
@@ -249,9 +250,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private filterClasses(classes: IClass[]): IClass[] {
-    const activeClasses = FilterClasses.filterByActiveClasses(classes)
+    const activeClasses = FilterClasses.filterByActiveClasses(classes);
     const filteredClasses = MeetingTime.filter(activeClasses, this.state.startTime, this.state.endTime);
-    return InstructionMode.filter(filteredClasses, this.state.instructionMode);
+    const filterByGeAttribues = GeCourseAttribute.filter(filteredClasses, this.state.geClassesAttribute, this.state.term);
+    return InstructionMode.filter(filterByGeAttribues, this.state.instructionMode);
   }
 
   private sortClasses(classes: IClass[]): IClass[] {
@@ -448,10 +450,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     );
   }
 
-  private isGeClassesAttributeEmpty(): boolean {
-    return (this.state.geClassesAttribute === '');
-  }
-
   private areOtherFieldsEmpty(): boolean {
     if (!this.isInstructorEmpty()) {
       return false;
@@ -466,9 +464,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       return false;
     }
     if (this.isValidInstructionModeSelected()) {
-      return false;
-    }
-    if (!this.isGeClassesAttributeEmpty()) {
       return false;
     }
     return true;
@@ -596,10 +591,17 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateGeClassAttr(e: any) {
+    const value = e.target.value;
     this.setState({
-      geClassesAttribute: e.target.value,
+      geClassesAttribute: value,
     });
-    this.userInput.setGeClassesAttr(e.target.value);
+    if (value.length === 0) {
+      this.userInput.setCourseAttr('');
+    }
+    if (!value.startsWith('GE-') && value.length !== 0) {
+      this.userInput.setCourseAttr('GE');
+    }
+    this.userInput.setGeClassesAttr(value);
   }
 
   private processDropDownListData(data: any): void {
@@ -651,7 +653,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       if (attribute.crse_ATTR === 'GE') {
         this.geClassesAttributes.push({
           label: attribute.descr,
-          value: attribute.descr.toLowerCase().replace(' ', '-'),
+          value: GeCourseAttribute.normalizeCourseDescription(attribute.descr),
         });
       }
     });
