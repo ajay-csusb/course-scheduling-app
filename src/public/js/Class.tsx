@@ -199,15 +199,15 @@ export class Class {
     return meetingTimes;
   }
 
-  private areStartTimeEndTimeEmpty(): boolean {
-    return (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0);
-  }
-
   public isActive(): boolean {
     return (this.classInfo.classStatus === 'Active');
   }
 
   public getClassStatus(): string {
     return this.classInfo.classStatus;
+  }
+
+  private areStartTimeEndTimeEmpty(): boolean {
+    return (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0);
   }
 }
