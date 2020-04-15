@@ -43,16 +43,14 @@ export class GeCourseAttribute {
   }
 
   private static getSemesterGeCourseAttribute(courseAttr: string): string {
-    let geClassAttr = '';
     const semCourseAttributes = GeCourseAttribute.getCourseAttributesSemester();
     for (const semCourseAttribute of semCourseAttributes) {
       const semCourseAttributeNormalized = GeCourseAttribute.normalizeGeCourseAttributesLabel(semCourseAttribute.label!);
       if (courseAttr === semCourseAttributeNormalized) {
-        geClassAttr = semCourseAttribute.label!;
-        break;
+        return semCourseAttribute.label!;
       }
     }
-    return geClassAttr;
+    return '';
   }
 
   private static normalizeGeCourseAttributesLabel(label: string): string {

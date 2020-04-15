@@ -10,10 +10,10 @@ describe('Filter by GE course attribute', () => {
   let classes: IClass[];
 
   beforeEach(() => {
-    classBioGe.courseAttr = 'FOO';
+    classBioGe.courseAttr = 'General Education';
     classBioGe.courseAttrDescription = 'Life Science';
     classBioGe.geCourseAttr = 'GE-FOO';
-    classBioGe1.courseAttr = 'BAR';
+    classBioGe1.courseAttr = 'General Education';
     classBioGe1.courseAttrDescription = 'Laboratory Activity';
     classBioGe1.geCourseAttr = 'GE-BAR';
     classesBio = [classBioGe, classBioGe1];
