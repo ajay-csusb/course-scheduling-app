@@ -23,7 +23,7 @@ describe('Class search form', () => {
     });
   });
 
-  describe('when a user selects a GE course attribute', () => {
+  describe('When a user selects a GE course attribute', () => {
     let searchFormComponent = null;
     describe('and does not select a subject', () => {
       beforeEach(() => {

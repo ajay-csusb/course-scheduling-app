@@ -382,10 +382,10 @@ describe('fetch parameters', () => {
         classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
         termArgument = fetchMock.lastOptions();
       });
-      it('should pass no value as GE course attribute', () => {
+      it('should pass empty string as GE course attribute', () => {
         expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":""'));
       });
-      it('should pass no value as the course attribute', () => {
+      it('should pass empty string as the course attribute', () => {
         expect(termArgument.body).toMatch(new RegExp('"crse_attr":""'));
       });
       it('should pass empty string if All is selected as GE course attribute', () => {
@@ -722,7 +722,7 @@ describe('GE class attribute', () => {
     { value: 'GE-BAR', label: 'General Education BAR' },
   ];
 
-  describe('when a class which does not have a course attribute of General Education', () => {
+  describe('when a class which does not have a GE course attribute', () => {
     const classBio400 = JSON.parse(JSON.stringify(classJson));
     classBio400.courseAttr = 'FOO, BAR, BAZ, BUZZ';
     classBio400.geCourseAttr = '';
@@ -788,14 +788,14 @@ describe('GE class attribute', () => {
   });
 
   describe('when the term is Fall 2020 or after', () => {
-    describe('the class is a General Education class', () => {
+    describe('and the class is a General Education class', () => {
       const classBioFall = TestUtils.copyObject(classJson);
       classBioFall.quarter = '3000';
       classBioFall.courseAttr = 'General Education';
       classBioFall.courseAttrDescription = 'Fall 2020 General Education Foo';
       classBioFall.geCourseAttr = 'GE-FOO';
       const geCourseAttr = GeCourseAttribute.addGeAttrs(classBioFall, geAttrs);
-      it('should return the GE course attributes as per the semester format', () => {
+      it('should return the GE course attributes in the semester format', () => {
         expect(geCourseAttr).toEqual('Fall 2020 General Education Foo');
       });
     });
