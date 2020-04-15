@@ -128,14 +128,13 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public getCourseHeaderMarkup(): JSX.Element {
-    const classType = ClassSearchUtils.getClassType(this.classDetails);
     const title = this.getClassFullTitle();
     return (
       <div className="course-header">
           {title}
           <div className="course-details">
               <span>Section {this.classDetails.classSection} • </span>
-              <span>{classType} • </span>
+              {this.getClassTypeMarkup()}
               <span className="course-id">Class No. {this.classDetails.classNumber}</span>
           </div>
       </div>
@@ -255,6 +254,13 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       return <></>;
     }
     return (<div className="course--icons">{zeroCostIcon}{lowCostIcon}</div>);
+  }
+  public getClassTypeMarkup(): JSX.Element {
+    let classType: JSX.Element = <></>;
+    if (this.classDetails.fullSsrComponent) {
+      classType = (<span>{this.classDetails.fullSsrComponent} • </span>);
+    }
+    return classType;
   }
 
   private isValidTerm(quarter: string): boolean {
