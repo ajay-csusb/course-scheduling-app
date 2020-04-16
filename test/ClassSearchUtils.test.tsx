@@ -792,11 +792,11 @@ describe('GE class attribute', () => {
       const classBioFall = TestUtils.copyObject(classJson);
       classBioFall.quarter = '3000';
       classBioFall.courseAttr = 'General Education';
-      classBioFall.courseAttrDescription = 'Fall 2020 General Education Foo';
-      classBioFall.geCourseAttr = 'GE-FOO';
+      classBioFall.courseAttrDescription = 'UD Scientific Inquiry & Quant.';
+      classBioFall.geCourseAttr = 'GE-B5';
       const geCourseAttr = GeCourseAttribute.addGeAttrs(classBioFall, geAttrs);
       it('should return the GE course attributes in the semester format', () => {
-        expect(geCourseAttr).toEqual('Fall 2020 General Education Foo');
+        expect(geCourseAttr).toEqual('GE-B5 UD Scientific Inquiry & Quant.');
       });
     });
   });
