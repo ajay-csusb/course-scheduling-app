@@ -33,7 +33,6 @@ export interface IClass {
   academicOrg?: string;
   instructionMode: string;
   sbCourseZccm?: string;
-  consent?: string;
   facilityId: string;
   buildingCode: string;
   room: string;
@@ -76,6 +75,7 @@ export class Class {
 
   static transformToClass(object: any): IClass {
     const result: IClass = {
+      courseAttrDescription: object.crse_ATTR_VALUE_DESCR,
       quarter : object.strm,
       subject : object.subject,
       catalogNo : object.catalog_NBR,
@@ -107,7 +107,6 @@ export class Class {
       academicOrg : object.acad_ORG,
       instructionMode : object.instruction_MODE,
       sbCourseZccm : object.sb_CRSE_ZCCM,
-      consent : object.consent,
       facilityId : object.facility_ID,
       buildingCode : object.bldg_CD,
       room : object.room,
@@ -126,7 +125,6 @@ export class Class {
       title: object.course_TITLE_LONG,
       geCourseAttr: object.crse_ATTR_VALUE,
       topic: object.crse_TOPIC_DESCR,
-      courseAttrDescription: object.crse_ATTR_VALUE_DESCR,
     };
     return result;
   }

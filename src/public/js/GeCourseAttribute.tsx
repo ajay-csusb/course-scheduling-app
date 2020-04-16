@@ -26,6 +26,9 @@ export class GeCourseAttribute {
     if (parseInt(term, 10) < ClassSearch.app.settings.firstSemester) {
       return classes;
     }
+    if (courseAttr.length === 0) {
+      return classes;
+    }
     const results: IClass[] = [];
     const fullCourseAttribute = GeCourseAttribute.getSemesterGeCourseAttribute(courseAttr);
     for (const _class of classes) {
