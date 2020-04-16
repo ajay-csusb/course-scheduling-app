@@ -24,4 +24,4 @@ jobs:
         APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         CLI: gsutil
       with:
-      args: -h "Cache-Control:no-cache,max-age=0" cp -a public-read dist/public/js/course-scheduling-app-dev.js gs://csusb-class-schedule.appspot.com
+        args: -h "Cache-Control:no-cache,max-age=0" cp -a public-read dist/public/js/course-scheduling-app-dev.js gs://csusb-class-schedule.appspot.com
