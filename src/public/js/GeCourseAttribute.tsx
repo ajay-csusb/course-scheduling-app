@@ -9,16 +9,15 @@ export class GeCourseAttribute {
   public static addGeAttrs(_class: IClass, geAttrs: IOptionProps[]): string {
     GeCourseAttribute.courseAttrArr = _class.courseAttr.split(', ');
     let fullGeCourseAttr: any = [];
-    if (parseInt(_class.quarter, 10) >= ClassSearch.app.settings.firstSemester) {
-      if (GeCourseAttribute.courseAttrArr.includes('General Education')) {
-        return _class.courseAttrDescription;
-      }
-    }
     if (!GeCourseAttribute.courseAttrArr.includes('General Education')) {
       return _class.courseAttr;
     }
     const geCourseAttrArr = _class.geCourseAttr.split(', ');
     fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr , geAttrs);
+    if (parseInt(_class.quarter, 10) >= ClassSearch.app.settings.firstSemester) {
+      const semGeAttr = GeCourseAttribute.getCourseAttributesSemester();
+      fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr , semGeAttr);
+    }
     return fullGeCourseAttr.join(', ');
   }
 
@@ -61,7 +60,6 @@ export class GeCourseAttribute {
   }
 
   private static addFullGeCourseAttribute(geCourseAttrArr: string[], geAttrs: IOptionProps[]): string[] {
-    geAttrs.concat(GeCourseAttribute.getCourseAttributesSemester());
     const courseAttrIndex = GeCourseAttribute.courseAttrArr.indexOf('General Education');
     GeCourseAttribute.courseAttrArr.splice(courseAttrIndex, 1);
     // tslint:disable-next-line:forin
