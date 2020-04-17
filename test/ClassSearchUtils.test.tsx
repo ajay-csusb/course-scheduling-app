@@ -850,10 +850,10 @@ describe('GE designation attribute', () => {
     classBioInvalidAttr.quarter = '3000';
     classBioInvalidAttr.courseAttr = 'Foo, GE Designation, Bar';
     classBioInvalidAttr.geCourseAttr = 'DI';
-    classBioInvalidAttr.courseAttrDescription = 'Global Perspective';
+    classBioInvalidAttr.courseAttrDescription = 'Global Perspectives';
     const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classBioInvalidAttr);
     it('should not return invalid course attributes', () => {
-      expect(geDesgCourseAttr).toEqual('Global Perspective');
+      expect(geDesgCourseAttr).toEqual('Global Perspectives');
     });
   });
 
@@ -895,10 +895,10 @@ describe('GE designation attribute', () => {
     const classBioMultipleAttr = TestUtils.copyObject(classJson);
     classBioMultipleAttr.quarter = '3000';
     classBioMultipleAttr.courseAttr = 'Foo, GE Designation, GE-B5 UD Scientific Inquiry & Quant., Service Learning';
-    classBioMultipleAttr.courseAttrDescription = 'Invalid course description, Global Perspective, Service Learning';
+    classBioMultipleAttr.courseAttrDescription = 'Invalid course description, Global Perspectives, Service Learning';
     const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classBioMultipleAttr);
     it('should return GE designation attribute, GE attribute and the valid attribute', () => {
-      expect(geCourseDesc).toEqual('Global Perspective, Service Learning, GE-B5 UD Scientific Inquiry & Quant.');
+      expect(geCourseDesc).toEqual('Global Perspectives, Service Learning, GE-B5 UD Scientific Inquiry & Quant.');
     });
   });
 
@@ -906,10 +906,10 @@ describe('GE designation attribute', () => {
     const classMultipleAttr = TestUtils.copyObject(classJson);
     classMultipleAttr.quarter = '3000';
     classMultipleAttr.courseAttr = 'Service Learning, GE Designation';
-    classMultipleAttr.courseAttrDescription = 'Global Perspective, Writing Intensive';
+    classMultipleAttr.courseAttrDescription = 'Global Perspectives, Writing Intensive';
     const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classMultipleAttr);
     it('should return the valid attribute and multiple GE Designation attribute', () => {
-      expect(geCourseDesc).toEqual('Service Learning, Global Perspective, Writing Intensive');
+      expect(geCourseDesc).toEqual('Service Learning, Global Perspectives, Writing Intensive');
     });
   });
 
@@ -920,6 +920,7 @@ describe('GE designation attribute', () => {
     const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classQuarter);
     it('should return the course attributes unchanged', () => {
       expect(geCourseDesc).toEqual('Foo, Bar, Buzz');
+    });
   });
 
 });
