@@ -37,6 +37,7 @@ const classJson: IClass = {
     courseAttr: '',
     title: '',
     geCourseAttr: '',
+    fullSsrComponent: '',
   };
 
 describe('test meeting day', () => {

@@ -24,6 +24,7 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -150,10 +151,6 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -262,6 +259,7 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -388,10 +386,6 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -506,6 +500,7 @@ exports[`building code and room number when a class does not have a building cod
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -632,10 +627,6 @@ exports[`building code and room number when a class does not have a building cod
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -744,6 +735,7 @@ exports[`building code and room number when a class has a building code and room
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -868,10 +860,6 @@ exports[`building code and room number when a class has a building code and room
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -982,6 +970,7 @@ exports[`building code and room number when a class has a building code as TBD s
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -1108,10 +1097,6 @@ exports[`building code and room number when a class has a building code as TBD s
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -1220,6 +1205,7 @@ exports[`building code and room number when a class has building code as OL shou
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -1346,10 +1332,6 @@ exports[`building code and room number when a class has building code as OL shou
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -1458,6 +1440,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
       "enrolledTotal": 29,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -1584,10 +1567,6 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -1703,6 +1682,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       "enrolledTotal": 10,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -1829,10 +1809,6 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -1951,6 +1927,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       "enrolledTotal": 30,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -2077,10 +2054,6 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -2201,6 +2174,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "enrolledTotal": 30,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -2325,10 +2299,6 @@ exports[`seats text verbiage when a class is closed and has seats available shou
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -2451,6 +2421,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "enrolledTotal": 30,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -2577,10 +2548,6 @@ exports[`seats text verbiage when a class is closed and has seats available shou
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -2701,6 +2668,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "enrolledTotal": 30,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -2827,10 +2795,6 @@ exports[`seats text verbiage when a class is from the previous term and has seat
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -2939,6 +2903,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "enrolledTotal": 20,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -3065,10 +3030,6 @@ exports[`seats text verbiage when a class is from the previous term and has seat
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -3177,6 +3138,7 @@ exports[`when a class has low cost course material should display icon for low c
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -3301,10 +3263,6 @@ exports[`when a class has low cost course material should display icon for low c
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -3429,6 +3387,7 @@ exports[`when a class has zero cost course material should display icon for zero
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -3553,10 +3512,6 @@ exports[`when a class has zero cost course material should display icon for zero
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -3681,6 +3636,7 @@ exports[`when a class has zero cost course materials and low cost course materia
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -3805,10 +3761,6 @@ exports[`when a class has zero cost course materials and low cost course materia
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -3937,6 +3889,7 @@ exports[`when a class is a fully online should not display the room number in th
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "FO",
       "instructorName": "Dyck, Harold",
@@ -4063,10 +4016,6 @@ exports[`when a class is a fully online should not display the room number in th
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -4169,6 +4118,7 @@ exports[`when a class results component is displayed should display the correct 
       "enrolledTotal": 28,
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -4293,10 +4243,6 @@ exports[`when a class results component is displayed should display the correct 
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span

@@ -100,25 +100,6 @@ export function getNoOfAvailableSeats(classes: IClass): number {
   return 0;
 }
 
-export function getClassType(classes: IClass): string | null {
-  if (classes.ssrComponent === 'LEC') {
-    return 'Lecture';
-  }
-  if (classes.ssrComponent === 'LAB') {
-    return 'Lab';
-  }
-  if (classes.ssrComponent === 'SEM') {
-    return 'Seminar';
-  }
-  if (classes.ssrComponent === 'SUP') {
-    return 'Supplemental';
-  }
-  if (classes.ssrComponent === 'ACT') {
-    return 'Activity';
-  }
-  return null;
-}
-
 export function getClassStatus(classes: IClass): string {
   const availableSeats = classes.enrolledCapacity - classes.enrolledTotal;
   if (availableSeats > 1) {
