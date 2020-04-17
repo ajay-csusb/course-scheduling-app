@@ -538,6 +538,12 @@ describe('when a user performs a search', () => {
       const classes = ClassSearchUtils.mergeAttributes([classJson, copyOfClassJson]);
       expect(classes[0].courseAttr).toEqual('foo, bar');
     });
+    it('should merge the GE course attribute description', () => {
+      classJson.courseAttrDescription = 'buzz';
+      copyOfClassJson.courseAttrDescription = 'baz';
+      const classes = ClassSearchUtils.mergeAttributes([classJson, copyOfClassJson]);
+      expect(classes[0].courseAttrDescription).toEqual('buzz, baz');
+    });
     describe('if it is a General Education class', () => {
       it('should merge the General Education course attributes', () => {
         classJson.geCourseAttr = 'GE-BAZ';
@@ -722,7 +728,7 @@ describe('GE class attribute', () => {
     { value: 'GE-BAR', label: 'General Education BAR' },
   ];
 
-  describe('when a class which does not have a GE course attribute', () => {
+  describe('when a class does not have a course attribute of General Education', () => {
     const classBio400 = JSON.parse(JSON.stringify(classJson));
     classBio400.courseAttr = 'FOO, BAR, BAZ, BUZZ';
     classBio400.geCourseAttr = '';
@@ -800,4 +806,120 @@ describe('GE class attribute', () => {
       });
     });
   });
+});
+
+describe('GE designation attribute', () => {
+  describe('when a class is a GE Designation', () => {
+    const classBioGedesig = TestUtils.copyObject(classJson);
+    classBioGedesig.quarter = '3000';
+    classBioGedesig.courseAttr = 'GE Designation';
+    classBioGedesig.geCourseAttr = 'DI';
+    classBioGedesig.courseAttrDescription = 'Diversity & Inclusiveness Pers';
+    const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classBioGedesig);
+    it('should return the appropriate GE designation attribute', () => {
+      expect(geDesgCourseAttr).toEqual('Diversity & Inclusiveness Pers');
+    });
+  });
+
+  describe('when a class has multiple attributes along with GE designation', () => {
+    const classAdmGeDesig = TestUtils.copyObject(classJson);
+    classAdmGeDesig.quarter = '3000';
+    classAdmGeDesig.courseAttr = 'Service Learning, GE Designation, Gender and Sexuality Studies';
+    classAdmGeDesig.geCourseAttr = 'DI';
+    classAdmGeDesig.courseAttrDescription = 'Diversity & Inclusiveness Pers';
+    const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classAdmGeDesig);
+    it('should return multiplte attributes and GE designation as course attribute', () => {
+      expect(geDesgCourseAttr).toEqual('Service Learning, Diversity & Inclusiveness Pers, Gender and Sexuality Studies');
+    });
+  });
+
+  describe('when a class belongs to a quarter term', () => {
+    const classBioQuarter = TestUtils.copyObject(classJson);
+    classBioQuarter.quarter = '1000';
+    classBioQuarter.courseAttr = 'GE Designation';
+    classBioQuarter.geCourseAttr = 'DI';
+    classBioQuarter.courseAttrDescription = 'Foo';
+    const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classBioQuarter);
+    it('should return GE designation as course attribute', () => {
+      expect(geDesgCourseAttr).toEqual('GE Designation');
+    });
+  });
+
+  describe('when a class has a GE designation and an invalid course attribute', () => {
+    const classBioInvalidAttr = TestUtils.copyObject(classJson);
+    classBioInvalidAttr.quarter = '3000';
+    classBioInvalidAttr.courseAttr = 'Foo, GE Designation, Bar';
+    classBioInvalidAttr.geCourseAttr = 'DI';
+    classBioInvalidAttr.courseAttrDescription = 'Global Perspective';
+    const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classBioInvalidAttr);
+    it('should not return invalid course attributes', () => {
+      expect(geDesgCourseAttr).toEqual('Global Perspective');
+    });
+  });
+
+  describe('when a class has a valid course attribute, GE designation attribute, and an invalid course attribute', () => {
+    const classBioMultipleAttr = TestUtils.copyObject(classJson);
+    classBioMultipleAttr.quarter = '3000';
+    classBioMultipleAttr.courseAttr = 'Foo, Service Learning, GE Designation';
+    classBioMultipleAttr.geCourseAttr = 'DI';
+    classBioMultipleAttr.courseAttrDescription = 'Writing Intensive';
+    const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classBioMultipleAttr);
+    it('should return valid attributes and not return invalid attributes', () => {
+      expect(geDesgCourseAttr).toEqual('Service Learning, Writing Intensive');
+    });
+  });
+
+  describe('when a class has invalid course attribute descriptions', () => {
+    const classBioValidDescription = TestUtils.copyObject(classJson);
+    classBioValidDescription.quarter = '3000';
+    classBioValidDescription.courseAttr = 'Foo';
+    classBioValidDescription.courseAttrDescription = 'Invalid course description';
+    const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classBioValidDescription);
+    it('should not return invalid course attribute description', () => {
+      expect(geCourseDesc).toHaveLength(0);
+    });
+  });
+
+  describe('when a class has a valid and invalid course attribute descriptions', () => {
+    const classBioValidDescription = TestUtils.copyObject(classJson);
+    classBioValidDescription.quarter = '3000';
+    classBioValidDescription.courseAttr = 'Foo, GE Designation';
+    classBioValidDescription.courseAttrDescription = 'Invalid course description, Writing Intensive';
+    const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classBioValidDescription);
+    it('should not return invalid course attribute description', () => {
+      expect(geCourseDesc).toEqual('Writing Intensive');
+    });
+  });
+
+  describe('when a class has a GE attribute, GE designation attribute, a valid attribute, and invalid attribute', () => {
+    const classBioMultipleAttr = TestUtils.copyObject(classJson);
+    classBioMultipleAttr.quarter = '3000';
+    classBioMultipleAttr.courseAttr = 'Foo, GE Designation, GE-B5 UD Scientific Inquiry & Quant., Service Learning';
+    classBioMultipleAttr.courseAttrDescription = 'Invalid course description, Global Perspective, Service Learning';
+    const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classBioMultipleAttr);
+    it('should return GE designation attribute, GE attribute and the valid attribute', () => {
+      expect(geCourseDesc).toEqual('Global Perspective, Service Learning, GE-B5 UD Scientific Inquiry & Quant.');
+    });
+  });
+
+  describe('when a class has multiple GE designation attributes and a valid attribute', () => {
+    const classMultipleAttr = TestUtils.copyObject(classJson);
+    classMultipleAttr.quarter = '3000';
+    classMultipleAttr.courseAttr = 'Service Learning, GE Designation';
+    classMultipleAttr.courseAttrDescription = 'Global Perspective, Writing Intensive';
+    const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classMultipleAttr);
+    it('should return the valid attribute and multiple GE Designation attribute', () => {
+      expect(geCourseDesc).toEqual('Service Learning, Global Perspective, Writing Intensive');
+    });
+  });
+
+  describe('when a class belongs to quarter term', () => {
+    const classQuarter = TestUtils.copyObject(classJson);
+    classQuarter.quarter = '1000';
+    classQuarter.courseAttr = 'Foo, Bar, Buzz';
+    const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classQuarter);
+    it('should return the course attributes unchanged', () => {
+      expect(geCourseDesc).toEqual('Foo, Bar, Buzz');
+  });
+
 });
