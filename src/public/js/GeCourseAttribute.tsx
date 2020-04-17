@@ -60,7 +60,7 @@ export class GeCourseAttribute {
   private static getValidGeCourseAttributes(courseDescription: string): string {
     const validGeDesignationAttributes = [
       'Diversity & Inclusiveness Pers',
-      'Global Perspective',
+      'Global Perspectives',
       'Writing Intensive',
     ];
     const result: string[] = [];
