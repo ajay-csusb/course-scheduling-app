@@ -3,6 +3,7 @@ import { IClass } from './Class';
 import { IOptionProps } from '@blueprintjs/core';
 import { GeCourseAttribute } from './GeCourseAttribute';
 import { Utils } from './Utils';
+import * as CourseAttributes from './CourseAttributes';
 
 export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
                           callbackOnFailure: (error: string) => void): void {
@@ -233,6 +234,7 @@ export function mergeAttributes(classes: IClass[]): IClass[] {
     if (isDuplicateClass(prevClass, currClass)) {
       results[size].courseAttr = combineAttr(prevClass, currClass);
       results[size].geCourseAttr += ', ' + currClass.geCourseAttr;
+      results[size].courseAttrDescription += ', ' + currClass.courseAttrDescription;
     } else {
       results.push(classes[_class]);
     }
@@ -273,21 +275,7 @@ export function sortClasses(classes: IClass[]): IClass[] {
 export function expandCourseAttribute(courseAttrAbbr: string): string {
   const results: string[] = [];
   const courseAttrArr = courseAttrAbbr.split(', ');
-  const courseAttrExpanded = {
-    ASTD: 'Asian Studies',
-    CLST: 'Chicano(a)/Latino(a) Studies',
-    CSLI: 'Service Learning',
-    DES: 'GE Designation',
-    EBK: 'eBook',
-    ETHN: 'Ethnic Studies',
-    GE: 'General Education',
-    GSS: 'Gender and Sexuality Studies',
-    LCCM: 'Low Cost Course Materials',
-    LTAM: 'Latin American Studies',
-    SA: 'Study Abroad',
-    WSTD: 'Women\'s Studies',
-    ZCCM: 'Zero Cost Course Materials',
-  };
+  const courseAttrExpanded = CourseAttributes.getValidCourseAttributes();
   for (const courseAttr of  courseAttrArr) {
     const fullCourseAttr = courseAttrExpanded[courseAttr];
     if (fullCourseAttr !== undefined) {
@@ -305,11 +293,19 @@ export function expandCourseAttribute(courseAttrAbbr: string): string {
 export function parseCourseAttributes(classes: IClass[], geCourseAttrs: IOptionProps[]): IClass[] {
   const mergedClasses = mergeAttributes(classes);
   for (const _class of mergedClasses) {
-    const expandedCourseAttr = expandCourseAttribute(_class.courseAttr);
-    _class.courseAttr = expandedCourseAttr;
-    _class.courseAttr = GeCourseAttribute.addGeAttrs(_class, geCourseAttrs);
+    setCourseAttribute(_class, geCourseAttrs);
   }
   return mergedClasses;
+}
+
+function setCourseAttribute(_class: IClass, geCourseAttrs: IOptionProps[]): void {
+  _class.courseAttr =  expandCourseAttribute(_class.courseAttr);
+  if (_class.courseAttr.includes('General Education')) {
+    _class.courseAttr = GeCourseAttribute.addGeAttrs(_class, geCourseAttrs);
+  }
+  if (_class.courseAttr.includes('GE Designation')) {
+    _class.courseAttr = GeCourseAttribute.addGeDesignationAttrs(_class);
+  }
 }
 
 export function isWaitlist(classes: IClass): boolean {

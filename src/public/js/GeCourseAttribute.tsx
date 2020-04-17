@@ -1,6 +1,7 @@
 import { IOptionProps } from '@blueprintjs/core';
 import { IClass } from './Class';
 import * as ClassSearch from './ClassSearch.d';
+import * as CourseAttributes from './CourseAttributes';
 
 export class GeCourseAttribute {
 
@@ -42,6 +43,51 @@ export class GeCourseAttribute {
 
   public static normalizeCourseDescription(courseDescription: string): string {
     return courseDescription.trim().toLowerCase().split(' ').join('-');
+  }
+  public static addGeDesignationAttrs(_class: IClass): string {
+    if (parseInt(_class.quarter, 10) < ClassSearch.app.settings.firstSemester) {
+      return _class.courseAttr;
+    }
+    const geDesignationAttrs = _class.courseAttr.split(', ');
+    const validCourseAttributes = GeCourseAttribute.removeInvalidCourseAttributes(geDesignationAttrs);
+    if (validCourseAttributes.includes('GE Designation')) {
+      const index = validCourseAttributes.indexOf('GE Designation');
+      validCourseAttributes[index] = GeCourseAttribute.getValidGeCourseAttributes(_class.courseAttrDescription);
+    }
+    return validCourseAttributes.join(', ');
+  }
+
+  private static getValidGeCourseAttributes(courseDescription: string): string {
+    const validGeDesignationAttributes = [
+      'Diversity & Inclusiveness Pers',
+      'Global Perspective',
+      'Writing Intensive',
+    ];
+    const result: string[] = [];
+    const courseDescArr = courseDescription.split(', ');
+    for (const courseDesc of courseDescArr) {
+      if (validGeDesignationAttributes.includes(courseDesc)) {
+        result.push(courseDesc);
+      }
+    }
+    return result.join(', ');
+  }
+  private static removeInvalidCourseAttributes(courseAttrs: string[]): string[] {
+    const validGeCourseAttrs: string[] = [];
+    const validCourseAttrs = CourseAttributes.getValidCourseAttributes();
+    const validCourseAttrsArr = Object.values(validCourseAttrs);
+    for (const courseAttr of courseAttrs) {
+      if (validCourseAttrsArr.includes(courseAttr)) {
+        validGeCourseAttrs.push(courseAttr);
+      }
+    }
+    const validSemGeCourseAttrs = GeCourseAttribute.getCourseAttributesSemester();
+    for (const geCourseAttr of validSemGeCourseAttrs) {
+      if (courseAttrs.includes(geCourseAttr.label!)) {
+        validGeCourseAttrs.push(geCourseAttr.label!);
+      }
+    }
+    return validGeCourseAttrs;
   }
 
   private static getSemesterGeCourseAttribute(courseAttr: string): string {
