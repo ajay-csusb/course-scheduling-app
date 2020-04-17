@@ -234,17 +234,37 @@ function combineAttr(prevClass: IClass, currClass: IClass): string {
 function isDuplicateClass(prevClass: IClass, currClass: IClass): boolean {
   return (prevClass.classNumber === currClass.classNumber);
 }
+
 function sortBySubject(classes: IClass[]): IClass[] {
   return classes.sort((a, b) => {
     return a.subject.localeCompare(b.subject);
   });
 }
 
+function sortByClassSection(a: IClass, b: IClass): number {
+  return parseInt(a.classSection, 10) - parseInt(b.classSection, 10);
+}
+
+function normalizeCatalogNo(a: string, b: string): string[] {
+  if (a.length !== 10) {
+    a = a.padStart(10, '0');
+  }
+  if (b.length !== 10) {
+    b = b.padStart(10, '0');
+  }
+  return [a, b];
+}
+
 export function sortByCatalogNo(classes: IClass[]): IClass[] {
-  return classes.sort((a, b) => {
-    return (a.catalogNo.localeCompare(b.catalogNo)
-      || parseInt(a.classSection, 10) - parseInt(b.classSection, 10));
-  });
+  return classes.sort((a, b) => performSort(a, b));
+}
+
+function performSort(a: IClass, b: IClass): number {
+    const [catalogA, catalogB] = normalizeCatalogNo(a.catalogNo, b.catalogNo);
+    return (parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10)
+    || catalogA.localeCompare(catalogB)
+    || sortByClassSection(a, b)
+    );
 }
 
 export function sortClasses(classes: IClass[]): IClass[] {
