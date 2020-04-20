@@ -1593,7 +1593,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
             Seats Available: 
             <span>
               1
-              /
+               / 
               30
             </span>
           </div>
@@ -1846,7 +1846,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
           Seats Available: 
           <span>
             20
-            /
+             / 
             30
           </span>
         </div>
@@ -2094,7 +2094,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
             Seats Available: 
             <span>
               0
-              /
+               / 
               30
             </span>
           </div>
@@ -2105,7 +2105,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
               Waitlist spots available: 
               <span>
                 5
-                /
+                 / 
                 30
               </span>
             </div>
@@ -2355,7 +2355,7 @@ exports[`seats text verbiage when a class is closed should display available sea
             Seats Available: 
             <span>
               0
-              /
+               / 
               30
             </span>
           </div>
@@ -2366,7 +2366,7 @@ exports[`seats text verbiage when a class is closed should display available sea
               Waitlist spots available: 
               <span>
                 0
-                /
+                 / 
                 30
               </span>
             </div>
@@ -2616,7 +2616,7 @@ exports[`seats text verbiage when a class is closed should display seats availab
             Seats Available: 
             <span>
               0
-              /
+               / 
               30
             </span>
           </div>
@@ -2627,7 +2627,7 @@ exports[`seats text verbiage when a class is closed should display seats availab
               Waitlist spots available: 
               <span>
                 0
-                /
+                 / 
                 30
               </span>
             </div>
