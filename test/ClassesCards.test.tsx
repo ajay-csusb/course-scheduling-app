@@ -207,7 +207,7 @@ describe('seats text verbiage', () => {
       );
       const classResultsComponent = mount(classesCardsComponent);
       expect(classResultsComponent).toMatchSnapshot();
-      expect(classResultsComponent.html()).toContain('Seats Available: <span>20 / 30</span>');
+      expect(classResultsComponent.html()).toContain('Seats available: <span>20 / 30</span>');
     });
   });
   describe('when a class has seats available on the waitlist', () => {
@@ -229,7 +229,7 @@ describe('seats text verbiage', () => {
       expect(classResultsComponent.html()).toContain('Waitlist spots available: <span>5 / 30</span>');
     });
     it('should display the available seats and the total number of seats available', () => {
-      expect(classResultsComponent.html()).toContain('Seats Available: <span>0 / 30</span>');
+      expect(classResultsComponent.html()).toContain('Seats available: <span>0 / 30</span>');
     });
   });
   describe('when a class has no waitlist', () => {
@@ -305,7 +305,7 @@ describe('seats text verbiage', () => {
     const classResultsComponent = mount(classesCardsComponent);
     it('should display available seats', () => {
       expect(classResultsComponent).toMatchSnapshot();
-      expect(classResultsComponent.html()).toContain('Seats Available: <span>0 / 30</span>');
+      expect(classResultsComponent.html()).toContain('Seats available: <span>0 / 30</span>');
     });
     it('should display seats available on waitlist', () => {
       expect(classResultsComponent).toMatchSnapshot();
