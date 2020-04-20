@@ -171,7 +171,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       return (
         <div className="course-availability-wrap">
           <div className="course-availability">
-            Seats Available: <span>{noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}</span>
+            Seats available: <span>{noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}</span>
           </div>
         {waitlistMarkup}
         </div>
@@ -179,7 +179,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     }
     return (
       <div className="course-availability">
-      Seats Available: <span>{noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}</span>
+      Seats available: <span>{noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}</span>
       </div>
     );
   }
