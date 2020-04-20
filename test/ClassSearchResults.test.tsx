@@ -48,7 +48,7 @@ describe('Given a class search results component', () => {
       expect(classSearchResultsWrapper.html()).toContain('Open');
     });
     it('should display the number of available seats as 3', () => {
-      const markup = '<div class="course-availability">Seats Available: <span>3/30</span></div>';
+      const markup = '<div class="course-availability">Seats Available: <span>3 / 30</span></div>';
       expect(classSearchResultsWrapper.html()).toContain(markup);
     });
 
@@ -121,7 +121,7 @@ describe('Given a class search results component', () => {
     });
     it('should display the number of students in the waitlist', () => {
       const results = mountClassSearchResultsComponent([baseClassJson]);
-      expect(results.text()).toContain('59/60');
+      expect(results.text()).toContain('59 / 60');
     });
 
     describe('if the class has no waitlist', () => {
