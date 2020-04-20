@@ -167,8 +167,15 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       // @Todo add markup to shows seats available
       return (<>{waitlistMarkup}</>);
     }
-    if (ClassSearchUtils.isWaitlist(this.classDetails)) {
-      return (<>{waitlistMarkup}</>);
+    if (ClassSearchUtils.isWaitlist(this.classDetails) || ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
+      return (
+        <>
+          <div className="course-availability">
+            Seats Available: <span>{noOfSeatsAvailable}/{this.classDetails.enrolledCapacity}</span>
+          </div>
+          {waitlistMarkup}
+        </>
+      );
     }
     return (
       <div className="course-availability">
@@ -178,17 +185,17 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public getWaitlistMarkup(): JSX.Element {
-    const waitlistNo = this.classDetails.waitlistTotal;
+    const waitlistCapacity = this.classDetails.waitlistCapacity;
+    const numberOfSeatsInWaitlist = this.classDetails.waitlistCapacity -  this.classDetails.waitlistTotal;
     if (!this.isValidTerm(this.classDetails.quarter)) {
       return (<React.Fragment/>);
     }
-    // @Todo delete this
     if (this.classDetails.waitlistCapacity === 0) {
       return (<div className="course-availability">No Waitlist</div>);
     }
     return (
       <div className="course-availability">
-      Waitlist: <span>{waitlistNo}/{this.classDetails.waitlistCapacity}</span>
+      Waitlist: <span>{numberOfSeatsInWaitlist}/{waitlistCapacity}</span>
       </div>
     );
   }
