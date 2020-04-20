@@ -250,7 +250,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private filterClasses(classes: IClass[]): IClass[] {
-    const activeClasses = FilterClasses.filterByActiveClasses(classes)
+    const activeClasses = FilterClasses.filterByActiveClasses(classes);
     const filteredClasses = MeetingTime.filter(activeClasses, this.state.startTime, this.state.endTime);
     return InstructionMode.filter(filteredClasses, this.state.instructionMode);
   }
