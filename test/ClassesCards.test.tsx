@@ -226,7 +226,7 @@ describe('seats text verbiage', () => {
     const classResultsComponent = mount(classesCardsComponent);
     it('should display the available seats on waitlist and the total number of seats on waitlist', () => {
       expect(classResultsComponent).toMatchSnapshot();
-      expect(classResultsComponent.html()).toContain('Waitlist: <span>5/30</span>');
+      expect(classResultsComponent.html()).toContain('Waitlist spots available: <span>5/30</span>');
     });
     it('should display the available seats and the total number of seats available', () => {
       expect(classResultsComponent.html()).toContain('Seats Available: <span>0/30</span>');
@@ -309,7 +309,7 @@ describe('seats text verbiage', () => {
     });
     it('should display seats available on waitlist', () => {
       expect(classResultsComponent).toMatchSnapshot();
-      expect(classResultsComponent.html()).toContain('Waitlist: <span>0/30</span>');
+      expect(classResultsComponent.html()).toContain('Waitlist spots available: <span>0/30</span>');
     });
   });
 
