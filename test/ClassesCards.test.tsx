@@ -3,7 +3,7 @@ import { ClassesCards } from '../src/public/js/ClassesCards';
 import { classJson } from './ClassesJson';
 import { mount } from 'enzyme';
 import { TestUtils } from './TestUtils';
-import { IClass } from '../src/public/js/Class';
+import { IClass, Class } from '../src/public/js/Class';
 
 describe('when a class results component is displayed', () => {
   it('should display the correct markup', () => {
@@ -313,5 +313,37 @@ describe('seats text verbiage', () => {
       });
     });
   });
-  
+
+});
+
+describe('course components', () => {
+  describe('when a class has a course component', () => {
+    it('should display the course component', () => {
+      const classCourseComp = TestUtils.copyObject(classJson);
+      classCourseComp.fullSsrComponent = 'Foo';
+      const classCards: JSX.Element = (
+        <ClassesCards
+          classes={classCourseComp}
+          currentTerm={'0000'}
+        />
+      );
+      const classesCardsComponent = mount(classCards);
+      expect(classesCardsComponent.html()).toContain('<span>Foo • </span>');
+    });
+  });
+  describe('when a class does not have a course component', () => {
+    it('should not display markup related to course component', () => {
+      const classNoCourseComp = TestUtils.copyObject(classJson);
+      classNoCourseComp.fullSsrComponent = '';
+      const classCards: JSX.Element = (
+        <ClassesCards
+          classes={classNoCourseComp}
+          currentTerm={'0000'}
+        />
+      );
+      const classesCardsComponent = mount(classCards);
+      expect(classesCardsComponent.html()).not.toContain('<span> • </span>');
+    });
+  });
+
 });

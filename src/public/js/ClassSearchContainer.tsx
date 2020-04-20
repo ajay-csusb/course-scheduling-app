@@ -238,7 +238,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         transformedClass.push(Class.transformToClass(_class));
       });
     }
-    
+
     const validClasses = this.filterClasses(transformedClass);
     const sortedClasses = this.sortClasses(validClasses);
     this.allResults = this.processCourseAttributes(sortedClasses);
@@ -312,8 +312,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         abbr: '',
       },
       courseNo: '',
-      startTime: new Date('1899-01-01T00:00:00'),
-      endTime: new Date('1899-01-01T23:00:00'),
+      startTime: new Date('1899/01/01 00:00:00'),
+      endTime: new Date('1899/01/01 23:00:00'),
       meetingDate: {
         mon: false,
         tue: false,
@@ -640,17 +640,21 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private geClassesAttributesFound(data: any): void {
-    const geClasses = data.classAttributeList;
-    const noOption: IOptionProps = {
-      value: '',
-      label: 'All',
-    };
-    this.geClassesAttributes.push(noOption);
-    geClasses.forEach((attribute: any) => {
+    const geClassesQuarter = data.classAttributeQList;
+    const geClassesSem = data.classAttributeSList;
+    geClassesQuarter.forEach((attribute: any) => {
       if (attribute.crse_ATTR === 'GE') {
         this.geClassesAttributes.push({
           label: attribute.descr,
           value: attribute.descr.split(' ')[0],
+        });
+      }
+    });
+    geClassesSem.forEach((attribute: any) => {
+      if (attribute.crse_ATTR === 'GE') {
+        this.geClassesAttributes.push({
+          label: attribute.descr,
+          value: attribute.descr.toLowerCase().replace(' ', '-'),
         });
       }
     });
