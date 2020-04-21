@@ -36,6 +36,7 @@ describe('Given a class search results component', () => {
     beforeAll(() => {
       classJson.enrolledTotal = 27;
       classJson.waitlistTotal = 0;
+      classJson.enrollmentStatus = 'Open';
       classSearchResultsWrapper = mountClassSearchResultsComponent([classJson, baseClassJson]);
     });
 
@@ -65,6 +66,8 @@ describe('Given a class search results component', () => {
       baseClassJson.enrolledTotal = 30;
       baseClassJson.waitlistTotal = 30;
       baseClassJson.waitlistCapacity = 30;
+      // Close not Closed. This is not a typo.
+      baseClassJson.enrollmentStatus = 'Close';
       classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson]);
     });
 
@@ -136,6 +139,7 @@ describe('Given a class search results component', () => {
     describe('if the class is open', () => {
       it('should not display the text Waitlist', () => {
         baseClassJson.enrolledTotal = 20;
+        baseClassJson.enrollmentStatus = 'Open';
         const results = mountClassSearchResultsComponent([baseClassJson]);
         expect(results.text()).not.toContain('Waitlist');
       });

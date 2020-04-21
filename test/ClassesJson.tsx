@@ -42,6 +42,7 @@ export let baseClassJson: IClass = {
     classStatus: 'Active',
     courseAttrDescription: '',
     fullSsrComponent: '',
+    enrollmentStatus: '',
 };
 
 export const classJson: IClass = {
@@ -86,6 +87,7 @@ export const classJson: IClass = {
     classStatus: 'Active',
     courseAttrDescription: '',
     fullSsrComponent: '',
+    enrollmentStatus: '',
 };
 export const classPDC: IClass = {
     quarter: '2192',
@@ -129,6 +131,7 @@ export const classPDC: IClass = {
     classStatus: 'Active',
     courseAttrDescription: '',
     fullSsrComponent: '',
+    enrollmentStatus: '',
 };
 
 export let meetingDates: IMeetingDate = {
@@ -196,4 +199,5 @@ export const rawClassesJson = {
   crse_ATTR_VALUE: 'Active',
   crse_ATTR_VALUE_DESCR: '',
   crse_COMPONENT_DESCR: '',
+  enrl_STAT: '',
 };
