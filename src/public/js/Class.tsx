@@ -53,6 +53,7 @@ export interface IClass {
   topic: string;
   courseAttrDescription: string;
   fullSsrComponent: string;
+  enrollmentStatus: string;
 }
 
 export interface IMeetingDate {
@@ -127,6 +128,7 @@ export class Class {
       geCourseAttr: object.crse_ATTR_VALUE,
       topic: object.crse_TOPIC_DESCR,
       fullSsrComponent: object.ssr_COMPONENT_DESCR,
+      enrollmentStatus: object.enrl_STAT,
     };
     return result;
   }
