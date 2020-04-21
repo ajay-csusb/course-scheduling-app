@@ -1584,7 +1584,19 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
           <span />
           Closed
         </div>
-        <div>
+        <div
+          className="course-availability-wrap"
+        >
+          <div
+            className="course-availability"
+          >
+            Seats available: 
+            <span>
+              1
+               / 
+              30
+            </span>
+          </div>
           <div
             className="course-availability"
           >
@@ -1829,10 +1841,10 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
         <div
           className="course-availability"
         >
-          Seats Available: 
+          Seats available: 
           <span>
             20
-            /
+             / 
             30
           </span>
         </div>
@@ -1903,7 +1915,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
 </ClassesCards>
 `;
 
-exports[`seats text verbiage when a class has seats available on the waitlist should display the number of students on waitlist and the total seats on waitlist 1`] = `
+exports[`seats text verbiage when a class has seats available on the waitlist should display the available seats on waitlist and the total number of seats on waitlist 1`] = `
 <ClassesCards
   classes={
     Object {
@@ -2071,14 +2083,26 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
           <span />
           Waitlist
         </div>
-        <div>
+        <div
+          className="course-availability-wrap"
+        >
           <div
             className="course-availability"
           >
-            Waitlist: 
+            Seats available: 
             <span>
-              25
-              /
+              0
+               / 
+              30
+            </span>
+          </div>
+          <div
+            className="course-availability"
+          >
+            Waitlist spots available: 
+            <span>
+              5
+               / 
               30
             </span>
           </div>
@@ -2150,7 +2174,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
 </ClassesCards>
 `;
 
-exports[`seats text verbiage when a class is closed and has seats available should not display available seats 1`] = `
+exports[`seats text verbiage when a class is closed should display available seats 1`] = `
 <ClassesCards
   classes={
     Object {
@@ -2179,7 +2203,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -2196,7 +2220,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -2318,14 +2342,26 @@ exports[`seats text verbiage when a class is closed and has seats available shou
           <span />
           Closed
         </div>
-        <div>
+        <div
+          className="course-availability-wrap"
+        >
           <div
             className="course-availability"
           >
-            Waitlist: 
+            Seats available: 
             <span>
+              0
+               / 
               30
-              /
+            </span>
+          </div>
+          <div
+            className="course-availability"
+          >
+            Waitlist spots available: 
+            <span>
+              0
+               / 
               30
             </span>
           </div>
@@ -2397,7 +2433,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
 </ClassesCards>
 `;
 
-exports[`seats text verbiage when a class is closed and has seats available should not display seats on waitlist 1`] = `
+exports[`seats text verbiage when a class is closed should display seats available on waitlist 1`] = `
 <ClassesCards
   classes={
     Object {
@@ -2426,7 +2462,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -2443,7 +2479,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -2565,14 +2601,26 @@ exports[`seats text verbiage when a class is closed and has seats available shou
           <span />
           Closed
         </div>
-        <div>
+        <div
+          className="course-availability-wrap"
+        >
           <div
             className="course-availability"
           >
-            Waitlist: 
+            Seats available: 
             <span>
+              0
+               / 
               30
-              /
+            </span>
+          </div>
+          <div
+            className="course-availability"
+          >
+            Waitlist spots available: 
+            <span>
+              0
+               / 
               30
             </span>
           </div>

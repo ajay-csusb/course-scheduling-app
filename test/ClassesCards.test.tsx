@@ -207,26 +207,29 @@ describe('seats text verbiage', () => {
       );
       const classResultsComponent = mount(classesCardsComponent);
       expect(classResultsComponent).toMatchSnapshot();
-      expect(classResultsComponent.html()).toContain('Seats Available: <span>20/30</span>');
+      expect(classResultsComponent.html()).toContain('Seats available: <span>20 / 30</span>');
     });
   });
   describe('when a class has seats available on the waitlist', () => {
-    it('should display the number of students on waitlist and the total seats on waitlist', () => {
-      const classWithStudentsOnWaitlist: IClass = TestUtils.copyObject(classJson);
-      classWithStudentsOnWaitlist.enrolledTotal = 30;
-      classWithStudentsOnWaitlist.enrolledCapacity = 30;
-      classWithStudentsOnWaitlist.waitlistTotal = 25;
-      classWithStudentsOnWaitlist.waitlistCapacity = 30;
-      classWithStudentsOnWaitlist.quarter = '9999';
-      const classesCardsComponent: JSX.Element = (
-        <ClassesCards
-          classes={classWithStudentsOnWaitlist}
-          currentTerm={'0000'}
-        />
-      );
-      const classResultsComponent = mount(classesCardsComponent);
+    const classWithStudentsOnWaitlist: IClass = TestUtils.copyObject(classJson);
+    classWithStudentsOnWaitlist.enrolledTotal = 30;
+    classWithStudentsOnWaitlist.enrolledCapacity = 30;
+    classWithStudentsOnWaitlist.waitlistTotal = 25;
+    classWithStudentsOnWaitlist.waitlistCapacity = 30;
+    classWithStudentsOnWaitlist.quarter = '9999';
+    const classesCardsComponent: JSX.Element = (
+      <ClassesCards
+        classes={classWithStudentsOnWaitlist}
+        currentTerm={'0000'}
+      />
+    );
+    const classResultsComponent = mount(classesCardsComponent);
+    it('should display the available seats on waitlist and the total number of seats on waitlist', () => {
       expect(classResultsComponent).toMatchSnapshot();
-      expect(classResultsComponent.html()).toContain('Waitlist: <span>25/30</span>');
+      expect(classResultsComponent.html()).toContain('Waitlist spots available: <span>5 / 30</span>');
+    });
+    it('should display the available seats and the total number of seats available', () => {
+      expect(classResultsComponent.html()).toContain('Seats available: <span>0 / 30</span>');
     });
   });
   describe('when a class has no waitlist', () => {
@@ -287,28 +290,26 @@ describe('seats text verbiage', () => {
     });
   });
   describe('when a class is closed', () => {
-    describe('and has seats available', () => {
-      const closedClass: IClass = TestUtils.copyObject(classJson);
-      closedClass.quarter = '9999';
-      closedClass.enrolledTotal = 30;
-      closedClass.enrolledCapacity = 30;
-      closedClass.waitlistTotal = 30;
-      closedClass.waitlistCapacity = 30;
-      const classesCardsComponent: JSX.Element = (
-        <ClassesCards
-          classes={closedClass}
-          currentTerm={'0000'}
-        />
-      );
-      const classResultsComponent = mount(classesCardsComponent);
-      it('should not display available seats', () => {
-        expect(classResultsComponent).toMatchSnapshot();
-        expect(classResultsComponent.html()).not.toContain('Seats Available: <span>10</span>/30');
-      });
-      it('should not display seats on waitlist', () => {
-        expect(classResultsComponent).toMatchSnapshot();
-        expect(classResultsComponent.html()).not.toContain('Waitlist: <span>10</span>/30');
-      });
+    const closedClass: IClass = TestUtils.copyObject(classJson);
+    closedClass.quarter = '0008';
+    closedClass.enrolledTotal = 30;
+    closedClass.enrolledCapacity = 30;
+    closedClass.waitlistTotal = 30;
+    closedClass.waitlistCapacity = 30;
+    const classesCardsComponent: JSX.Element = (
+      <ClassesCards
+        classes={closedClass}
+        currentTerm={'0008'}
+      />
+    );
+    const classResultsComponent = mount(classesCardsComponent);
+    it('should display available seats', () => {
+      expect(classResultsComponent).toMatchSnapshot();
+      expect(classResultsComponent.html()).toContain('Seats available: <span>0 / 30</span>');
+    });
+    it('should display seats available on waitlist', () => {
+      expect(classResultsComponent).toMatchSnapshot();
+      expect(classResultsComponent.html()).toContain('Waitlist spots available: <span>0 / 30</span>');
     });
   });
 

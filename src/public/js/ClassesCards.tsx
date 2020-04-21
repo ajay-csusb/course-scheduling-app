@@ -163,25 +163,30 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
 
   public getClassAvailabilityMarkup(): JSX.Element {
     const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(this.classDetails);
-    const waitlistMarkup = <div>{this.getWaitlistMarkup()}</div>;
+    const waitlistMarkup = this.getWaitlistMarkup();
     if (!this.isCurrentTerm()) {
-      return (<React.Fragment/>);
+      return (<></>);
     }
-    if (ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
-      return (<>{waitlistMarkup}</>);
-    }
-    if (ClassSearchUtils.isWaitlist(this.classDetails)) {
-      return (<>{waitlistMarkup}</>);
+    if (ClassSearchUtils.isWaitlist(this.classDetails) || ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
+      return (
+        <div className="course-availability-wrap">
+          <div className="course-availability">
+            Seats available: <span>{noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}</span>
+          </div>
+        {waitlistMarkup}
+        </div>
+      );
     }
     return (
       <div className="course-availability">
-      Seats Available: <span>{noOfSeatsAvailable}/{this.classDetails.enrolledCapacity}</span>
+        Seats available: <span>{noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}</span>
       </div>
     );
   }
 
   public getWaitlistMarkup(): JSX.Element {
-    const waitlistNo = this.classDetails.waitlistTotal;
+    const waitlistCapacity = this.classDetails.waitlistCapacity;
+    const numberOfSeatsInWaitlist = this.classDetails.waitlistCapacity -  this.classDetails.waitlistTotal;
     if (!this.isCurrentTerm()) {
       return (<React.Fragment/>);
     }
@@ -190,7 +195,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     }
     return (
       <div className="course-availability">
-      Waitlist: <span>{waitlistNo}/{this.classDetails.waitlistCapacity}</span>
+        Waitlist spots available: <span>{numberOfSeatsInWaitlist} / {waitlistCapacity}</span>
       </div>
     );
   }
