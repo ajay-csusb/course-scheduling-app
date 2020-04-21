@@ -697,7 +697,7 @@ describe('class status information', () => {
     classBio300.enrolledTotal = 100;
     classBio300.waitlistTotal = 0;
     classBio300.waitlistCapacity = 60;
-    classBio300.enrollmentStatus = 'close';
+    classBio300.enrollmentStatus = 'Close';
     const classes = ClassSearchUtils.getClassStatus(classBio300);
     it('should return Waitlist', () => {
       expect(classes).toEqual('Waitlist');
