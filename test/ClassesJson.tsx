@@ -41,6 +41,7 @@ export let baseClassJson: IClass = {
     topic: '',
     classStatus: 'Active',
     fullSsrComponent: '',
+    enrollmentStatus: '',
 };
 
 export const classJson: IClass = {
@@ -84,6 +85,7 @@ export const classJson: IClass = {
     topic: '',
     classStatus: 'Active',
     fullSsrComponent: '',
+    enrollmentStatus: '',
 };
 export const classPDC: IClass = {
     quarter: '2192',
@@ -126,6 +128,7 @@ export const classPDC: IClass = {
     topic: '',
     classStatus: 'Active',
     fullSsrComponent: '',
+    enrollmentStatus: '',
 };
 
 export let meetingDates: IMeetingDate = {
@@ -192,4 +195,5 @@ export const rawClassesJson = {
   course_TITLE_LONG: 'Introduction to Accounting',
   crse_ATTR_VALUE: 'Active',
   crse_COMPONENT_DESCR: '',
+  enrl_STAT: '',
 };

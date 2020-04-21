@@ -199,6 +199,7 @@ describe('seats text verbiage', () => {
       classWithAvailableSeats.enrolledTotal = 10;
       classWithAvailableSeats.enrolledCapacity = 30;
       classWithAvailableSeats.quarter = '9999';
+      classWithAvailableSeats.enrollmentStatus = 'Open';
       const classesCardsComponent: JSX.Element = (
         <ClassesCards
           classes={classWithAvailableSeats}
@@ -235,11 +236,12 @@ describe('seats text verbiage', () => {
   describe('when a class has no waitlist', () => {
     it('should display the text to indicate no waitlist', () => {
       const classWithNoWaitlist: IClass = TestUtils.copyObject(classJson);
-      classWithNoWaitlist.enrolledTotal = 29;
+      classWithNoWaitlist.enrolledTotal = 30;
       classWithNoWaitlist.enrolledCapacity = 30;
       classWithNoWaitlist.waitlistTotal = 0;
       classWithNoWaitlist.waitlistCapacity = 0;
       classWithNoWaitlist.quarter = '9999';
+      classWithNoWaitlist.enrollmentStatus = 'Closed';
       const classesCardsComponent: JSX.Element = (
         <ClassesCards
           classes={classWithNoWaitlist}
@@ -296,6 +298,7 @@ describe('seats text verbiage', () => {
     closedClass.enrolledCapacity = 30;
     closedClass.waitlistTotal = 30;
     closedClass.waitlistCapacity = 30;
+    closedClass.enrollmentStatus = 'Closed';
     const classesCardsComponent: JSX.Element = (
       <ClassesCards
         classes={closedClass}

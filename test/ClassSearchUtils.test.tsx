@@ -642,6 +642,7 @@ describe('class status information', () => {
     const classBio100 = JSON.parse(JSON.stringify(classJson));
     classBio100.enrolledCapacity = 100;
     classBio100.enrolledTotal = 90;
+    classBio100.enrollmentStatus = 'Open';
     const classes = ClassSearchUtils.getClassStatus(classBio100);
     it('should return Open', () => {
       expect(classes).toEqual('Open');
@@ -654,6 +655,7 @@ describe('class status information', () => {
     classBio200.enrolledTotal = 100;
     classBio200.waitlistCapacity = 60;
     classBio200.waitlistTotal = 10;
+    classBio200.enrollmentStatus = 'Close';
     const classes = ClassSearchUtils.getClassStatus(classBio200);
     it('should return Waitlist', () => {
       expect(classes).toEqual('Waitlist');
@@ -666,6 +668,7 @@ describe('class status information', () => {
     classBio250.enrolledTotal = 100;
     classBio250.waitlistCapacity = 0;
     classBio250.waitlistTotal = 0;
+    classBio250.enrollmentStatus = 'Close';
     const classes = ClassSearchUtils.getClassStatus(classBio250);
     it('should return Closed', () => {
       expect(classes).toEqual('Closed');
@@ -678,6 +681,7 @@ describe('class status information', () => {
     classBio275.enrolledTotal = 100;
     classBio275.waitlistCapacity = 60;
     classBio275.waitlistTotal = 60;
+    classBio275.enrollmentStatus = 'Close';
     const classes = ClassSearchUtils.getClassStatus(classBio275);
     it('should return Closed', () => {
       expect(classes).toEqual('Closed');
@@ -690,11 +694,12 @@ describe('class status information', () => {
     // If a class has a capacity of 'n' seats and
     // 'n-1' or 'n' seats are occupied then the class is considered 'closed'
     // or 'waitlisted'.
-    classBio300.enrolledTotal = 99;
+    classBio300.enrolledTotal = 100;
     classBio300.waitlistTotal = 0;
     classBio300.waitlistCapacity = 60;
+    classBio300.enrollmentStatus = 'close';
     const classes = ClassSearchUtils.getClassStatus(classBio300);
-    it('should return Closed', () => {
+    it('should return Waitlist', () => {
       expect(classes).toEqual('Waitlist');
     });
   });
