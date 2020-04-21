@@ -307,7 +307,7 @@ describe('seats text verbiage', () => {
       expect(classResultsComponent).toMatchSnapshot();
       expect(classResultsComponent.html()).toContain('Seats available: <span>0 / 30</span>');
     });
-    it('should display seats available on waitlist', () => {
+    it('should display available spots on the waitlist', () => {
       expect(classResultsComponent).toMatchSnapshot();
       expect(classResultsComponent.html()).toContain('Waitlist spots available: <span>0 / 30</span>');
     });
