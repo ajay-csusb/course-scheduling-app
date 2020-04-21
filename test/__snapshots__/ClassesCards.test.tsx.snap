@@ -1597,12 +1597,10 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
               30
             </span>
           </div>
-          <div>
-            <div
-              className="course-availability"
-            >
-              No Waitlist
-            </div>
+          <div
+            className="course-availability"
+          >
+            No Waitlist
           </div>
         </div>
       </div>
@@ -2098,17 +2096,15 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
               30
             </span>
           </div>
-          <div>
-            <div
-              className="course-availability"
-            >
-              Waitlist spots available: 
-              <span>
-                5
-                 / 
-                30
-              </span>
-            </div>
+          <div
+            className="course-availability"
+          >
+            Waitlist spots available: 
+            <span>
+              5
+               / 
+              30
+            </span>
           </div>
         </div>
       </div>
@@ -2359,17 +2355,15 @@ exports[`seats text verbiage when a class is closed should display available sea
               30
             </span>
           </div>
-          <div>
-            <div
-              className="course-availability"
-            >
-              Waitlist spots available: 
-              <span>
-                0
-                 / 
-                30
-              </span>
-            </div>
+          <div
+            className="course-availability"
+          >
+            Waitlist spots available: 
+            <span>
+              0
+               / 
+              30
+            </span>
           </div>
         </div>
       </div>
@@ -2620,17 +2614,15 @@ exports[`seats text verbiage when a class is closed should display seats availab
               30
             </span>
           </div>
-          <div>
-            <div
-              className="course-availability"
-            >
-              Waitlist spots available: 
-              <span>
-                0
-                 / 
-                30
-              </span>
-            </div>
+          <div
+            className="course-availability"
+          >
+            Waitlist spots available: 
+            <span>
+              0
+               / 
+              30
+            </span>
           </div>
         </div>
       </div>
