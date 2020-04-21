@@ -2433,7 +2433,7 @@ exports[`seats text verbiage when a class is closed should display available sea
 </ClassesCards>
 `;
 
-exports[`seats text verbiage when a class is closed should display seats available on waitlist 1`] = `
+exports[`seats text verbiage when a class is closed should display available spots on the waitlist 1`] = `
 <ClassesCards
   classes={
     Object {

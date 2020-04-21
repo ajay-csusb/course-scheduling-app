@@ -119,7 +119,7 @@ describe('Given a class search results component', () => {
       const results = mountClassSearchResultsComponent([baseClassJson]);
       expect(results.text()).toContain('Waitlist');
     });
-    it('should display the number of students in the waitlist', () => {
+    it('should display the number of spots available in the waitlist', () => {
       const results = mountClassSearchResultsComponent([baseClassJson]);
       expect(results.text()).toContain('59 / 60');
     });
