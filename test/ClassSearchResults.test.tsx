@@ -62,7 +62,7 @@ describe('Given a class search results component', () => {
   describe('when a user searches for classes which are are not open for enrollment', () => {
     let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
-      baseClassJson.quarter = '3000';
+      baseClassJson.quarter = '2194';
       baseClassJson.enrolledTotal = 30;
       baseClassJson.waitlistTotal = 30;
       baseClassJson.waitlistCapacity = 30;

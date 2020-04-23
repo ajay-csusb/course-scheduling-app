@@ -198,7 +198,7 @@ describe('seats text verbiage', () => {
       const classWithAvailableSeats: IClass = TestUtils.copyObject(classJson);
       classWithAvailableSeats.enrolledTotal = 10;
       classWithAvailableSeats.enrolledCapacity = 30;
-      classWithAvailableSeats.quarter = '9999';
+      classWithAvailableSeats.quarter = '0008';
       classWithAvailableSeats.enrollmentStatus = 'Open';
       const classesCardsComponent: JSX.Element = (
         <ClassesCards
@@ -217,11 +217,11 @@ describe('seats text verbiage', () => {
     classWithStudentsOnWaitlist.enrolledCapacity = 30;
     classWithStudentsOnWaitlist.waitlistTotal = 25;
     classWithStudentsOnWaitlist.waitlistCapacity = 30;
-    classWithStudentsOnWaitlist.quarter = '9999';
+    classWithStudentsOnWaitlist.quarter = '0008';
     const classesCardsComponent: JSX.Element = (
       <ClassesCards
         classes={classWithStudentsOnWaitlist}
-        currentTerm={'0000'}
+        currentTerm={'0008'}
       />
     );
     const classResultsComponent = mount(classesCardsComponent);
@@ -240,7 +240,7 @@ describe('seats text verbiage', () => {
       classWithNoWaitlist.enrolledCapacity = 30;
       classWithNoWaitlist.waitlistTotal = 0;
       classWithNoWaitlist.waitlistCapacity = 0;
-      classWithNoWaitlist.quarter = '9999';
+      classWithNoWaitlist.quarter = '0008';
       classWithNoWaitlist.enrollmentStatus = 'Close';
       const classesCardsComponent: JSX.Element = (
         <ClassesCards

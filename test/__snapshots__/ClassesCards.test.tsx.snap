@@ -1604,17 +1604,19 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
           <div
             className="course-availability"
           >
-            Seats available:
+            Seats available: 
             <span>
               0
-               /
+               / 
               30
             </span>
           </div>
-          <div
-            className="course-availability"
-          >
-            No Waitlist
+          <div>
+            <div
+              className="course-availability"
+            >
+              No Waitlist
+            </div>
           </div>
         </div>
       </div>
@@ -1857,10 +1859,10 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
         <div
           className="course-availability"
         >
-          Seats available:
+          Seats available: 
           <span>
             20
-             /
+             / 
             30
           </span>
         </div>
@@ -2107,22 +2109,24 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
           <div
             className="course-availability"
           >
-            Seats available:
+            Seats available: 
             <span>
               0
-               /
+               / 
               30
             </span>
           </div>
-          <div
-            className="course-availability"
-          >
-            Waitlist spots available:
-            <span>
-              5
-               /
-              30
-            </span>
+          <div>
+            <div
+              className="course-availability"
+            >
+              Waitlist spots available: 
+              <span>
+                5
+                 / 
+                30
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -2341,14 +2345,14 @@ exports[`seats text verbiage when a class is closed should display available sea
           className="course-details"
         >
           <span>
-            Section
+            Section 
             01
-             •
+             • 
           </span>
           <span
             className="course-id"
           >
-            Class No.
+            Class No. 
             101
           </span>
         </div>
@@ -2368,22 +2372,24 @@ exports[`seats text verbiage when a class is closed should display available sea
           <div
             className="course-availability"
           >
-            Seats available:
+            Seats available: 
             <span>
               0
-               /
+               / 
               30
             </span>
           </div>
-          <div
-            className="course-availability"
-          >
-            Waitlist spots available:
-            <span>
-              0
-               /
-              30
-            </span>
+          <div>
+            <div
+              className="course-availability"
+            >
+              Waitlist spots available: 
+              <span>
+                0
+                 / 
+                30
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -2629,22 +2635,24 @@ exports[`seats text verbiage when a class is closed should display available spo
           <div
             className="course-availability"
           >
-            Seats available:
+            Seats available: 
             <span>
               0
-               /
+               / 
               30
             </span>
           </div>
-          <div
-            className="course-availability"
-          >
-            Waitlist spots available:
-            <span>
-              0
-               /
-              30
-            </span>
+          <div>
+            <div
+              className="course-availability"
+            >
+              Waitlist spots available: 
+              <span>
+                0
+                 / 
+                30
+              </span>
+            </div>
           </div>
         </div>
       </div>

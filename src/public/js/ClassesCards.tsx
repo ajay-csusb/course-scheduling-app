@@ -163,10 +163,6 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     if (!this.isValidTerm(this.classDetails.quarter)) {
       return (<React.Fragment/>);
     }
-    if (ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
-      // @Todo add markup to shows seats available
-      return (<>{waitlistMarkup}</>);
-    }
     if (ClassSearchUtils.isWaitlist(this.classDetails) || ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
       return (
         <div className="course-availability-wrap">
