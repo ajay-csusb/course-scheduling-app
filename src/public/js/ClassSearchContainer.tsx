@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ClassSearchForm } from './ClassSearchForm';
 import { ClassSearchResults } from './ClassSearchResults';
 import { IClass, Class, IMeetingDate } from './Class';
-import { ISubject } from './Subject';
+import { ISubject, Subject } from './Subject';
 import { UserInput } from './UserInput';
 import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
@@ -54,6 +54,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private resultsSection: any;
 
+  private allSubjects: any;
+
   constructor(props: any) {
     super(props);
     this.state = this.defaultFormValues();
@@ -82,6 +84,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.classesFound = this.classesFound.bind(this);
     this.classesNotFound = this.classesNotFound.bind(this);
     this.onEnterKeyPress = this.onEnterKeyPress.bind(this);
+    this.updateSubjectDropdown = this.updateSubjectDropdown.bind(this);
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
@@ -90,6 +93,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.currentTermId = '';
     this.userInput = new UserInput();
     this.resultsSection = React.createRef();
+    this.allSubjects = '';
   }
 
   public render(): JSX.Element {
@@ -127,6 +131,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateTerm(e: any): void {
+    this.updateSubjectDropdown(e.target.value);
     this.setState({
       term: e.target.value,
     });
@@ -354,25 +359,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private subjectsFound(data: any): void {
-    const subjects: ISubject[] = [];
-    const noOption: ISubject = {
-      abbr: 'all',
-      name: 'All',
-    };
-    subjects.push(noOption);
-    const subjectsArr = data.abbreviationList;
-    if (subjectsArr !== undefined) {
-      subjectsArr.forEach((_subject: any) => {
-        const subject: ISubject = {
-          abbr: '',
-          name: '',
-        };
-        subject.abbr = _subject.subject;
-        subject.name = _subject.subject_DESC;
-        subjects.push(subject);
-      });
-      this.subjects = subjects;
-    }
+    this.allSubjects = data.abbreviationTermList;
+    this.subjects = Subject.getDropdownOptions(data.abbreviationTermList, this.state.term);
     this.setState({ forceReload: true});
   }
 
@@ -662,4 +650,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     });
   }
 
+  private updateSubjectDropdown(term: string): void {
+    this.subjects = Subject.getDropdownOptions(this.allSubjects, term);
+  }
 }
