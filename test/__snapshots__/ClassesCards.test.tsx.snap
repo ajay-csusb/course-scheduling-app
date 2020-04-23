@@ -2345,10 +2345,6 @@ exports[`seats text verbiage when a class is closed should display available sea
             01
              •
           </span>
-          <span>
-            Seminar
-             •
-          </span>
           <span
             className="course-id"
           >
