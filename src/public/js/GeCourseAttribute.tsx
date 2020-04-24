@@ -15,9 +15,8 @@ export class GeCourseAttribute {
     }
     const geCourseAttrArr = _class.geCourseAttr.split(', ');
     fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr , geAttrs);
-    if (parseInt(_class.quarter, 10) >= ClassSearch.app.settings.firstSemester) {
-      const semGeAttr = GeCourseAttribute.getCourseAttributesSemester();
-      fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr , semGeAttr);
+    if (GeCourseAttribute.isSemesterTerm(_class)) {
+      fullGeCourseAttr = GeCourseAttribute.addSemesterGeAttrs(_class, fullGeCourseAttr, geCourseAttrArr)
     }
     return fullGeCourseAttr.join(', ');
   }
@@ -107,12 +106,18 @@ export class GeCourseAttribute {
 
   private static addFullGeCourseAttribute(geCourseAttrArr: string[], geAttrs: IOptionProps[]): string[] {
     const courseAttrIndex = GeCourseAttribute.courseAttrArr.indexOf('General Education');
+    // Delete the element that has the value General Education
     GeCourseAttribute.courseAttrArr.splice(courseAttrIndex, 1);
+    // loop through all the GE course attributes
     // tslint:disable-next-line:forin
     for (const index in geCourseAttrArr) {
       const val = geCourseAttrArr[index];
+      // If any GE course attribute starts with GE
       if (val.startsWith('GE')) {
+        // loop through the list of available GE course attributes
         for (const geIndex in geAttrs) {
+          // if the value in the list matches the GE course attribute
+          // of the class
           if (geAttrs[geIndex].value === val) {
             const geAttribute = geAttrs[geIndex].label!;
             if (!GeCourseAttribute.courseAttrArr.includes(geAttribute)) {
@@ -148,4 +153,26 @@ export class GeCourseAttribute {
       ]
     );
   }
+
+  private static isSemesterTerm(_class: IClass): boolean {
+    return (parseInt(_class.quarter, 10) >= ClassSearch.app.settings.firstSemester);
+  }
+
+  private static addSemesterGeAttrs(_class: IClass, fullGeCourseAttr: string[], geCourseAttrArr: string[]) {
+    let containsGeDesignation = false;
+    let geAttribute = fullGeCourseAttr;
+    // Semester classes do not have a course attribute as GE designation
+    if (geAttribute.includes('GE Designation')) {
+      containsGeDesignation = true;
+    }
+    const semGeAttr = GeCourseAttribute.getCourseAttributesSemester();
+    // The method below strips out GE designation
+    geAttribute = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr, semGeAttr);
+    // Add GE designation back
+    if (containsGeDesignation) {
+      geAttribute.unshift('GE Designation');
+    }
+    return geAttribute;
+  }
+  
 }
