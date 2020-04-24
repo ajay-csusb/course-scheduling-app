@@ -793,6 +793,19 @@ describe('GE class attribute', () => {
     });
   });
 
+  describe('when a class has both GE and GE-DES course attributes', () => {
+    const classBioGeDes = TestUtils.copyObject(classJson);
+    classBioGeDes.courseAttr = 'General Education, GE Designation';
+    classBioGeDes.geCourseAttr = 'GE-B5, GE-DES-FOO';
+    classBioGeDes.courseAttrDescription = 'UD Scientific Inquiry & Quant.';
+    classBioGeDes.quarter = '3000';
+
+    const geCourseAttr = GeCourseAttribute.addGeAttrs(classBioGeDes, geAttrs);
+    it('should return both GE and GE-DES attribute', () => {
+      expect(geCourseAttr).toEqual('GE Designation, GE-B5 UD Scientific Inquiry & Quant.');
+    });
+  });
+
   describe('when the term is Fall 2020 or after', () => {
     describe('and the class is a General Education class', () => {
       const classBioFall = TestUtils.copyObject(classJson);
@@ -923,4 +936,60 @@ describe('GE designation attribute', () => {
     });
   });
 
+  describe('test parseCourseAttributes', () => {
+    const geCourseAttr = [
+      { value: 'GE-FOO', label: 'General Education FOO' },
+      { value: 'GE-BAR', label: 'General Education BAR' },
+    ];
+    describe('when a class has course attributes', () => {
+      const classWithCourseAttributes = TestUtils.copyObject(classJson);
+      classWithCourseAttributes.courseAttr = 'ASTD, ZCCM';
+      const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
+      it('should display the expanded course attributes', () => {
+        expect(courseAttr[0].courseAttr).toEqual('Asian Studies, Zero Cost Course Materials');
+      });
+    });
+
+    describe('when a class has course attributes and GE attribute', () => {
+      const classWithCourseAttributes = TestUtils.copyObject(classJson);
+      classWithCourseAttributes.courseAttr = 'ASTD, GE';
+      classWithCourseAttributes.geCourseAttr = 'GE-FOO';
+      const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
+      it('should display the expanded course attributes and GE attributes', () => {
+        expect(courseAttr[0].courseAttr).toEqual('Asian Studies, General Education FOO');
+      });
+    });
+
+    describe('when a class has course attributes, GE attribute and GE Designation', () => {
+      describe('if term is semester', () => {
+        // GE designation is valid only for semester classes
+        const classWithCourseAttributes = TestUtils.copyObject(classJson);
+        classWithCourseAttributes.courseAttr = 'ASTD, GE, DES';
+        // GE-FOO won't work for Semester classes. It has to be one of the valid GE attributes for
+        // semester.
+        // G is an attribute for GE desgination
+        classWithCourseAttributes.geCourseAttr = 'GE-B5, G';
+        classWithCourseAttributes.courseAttrDescription = 'Global Perspectives';
+        classWithCourseAttributes.quarter = '3000';
+        const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
+        it('should display the expanded course attributes and GE attributes', () => {
+          // GE Designation course attrbiutes will always be displayed at the start
+          expect(courseAttr[0].courseAttr).toEqual('Global Perspectives, Asian Studies, GE-B5 UD Scientific Inquiry & Quant.');
+        });
+      });
+      describe('if term is quarter', () => {
+        const classWithCourseAttributes = TestUtils.copyObject(classJson);
+        classWithCourseAttributes.courseAttr = 'ASTD, GE, DES';
+        // GE-FOO won't work for Semester classes. It has to be one of the valid GE attributes for 
+        // semester.
+        // G is an attribute for GE desgination
+        classWithCourseAttributes.geCourseAttr = 'GE-FOO';
+        const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
+        it('should display the expanded course attributes and GE attributes', () => {
+          // GE course attrbiutes will always be displayed towards the end
+          expect(courseAttr[0].courseAttr).toEqual('Asian Studies, GE Designation, General Education FOO');
+        });
+      });
+    });
+  });
 });
