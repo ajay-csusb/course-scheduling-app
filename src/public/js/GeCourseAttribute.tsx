@@ -16,7 +16,7 @@ export class GeCourseAttribute {
     const geCourseAttrArr = _class.geCourseAttr.split(', ');
     fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr , geAttrs);
     if (GeCourseAttribute.isSemesterTerm(_class)) {
-      fullGeCourseAttr = GeCourseAttribute.addSemesterGeAttrs(_class, fullGeCourseAttr, geCourseAttrArr)
+      fullGeCourseAttr = GeCourseAttribute.addSemesterGeAttrs(_class, fullGeCourseAttr, geCourseAttrArr);
     }
     return fullGeCourseAttr.join(', ');
   }
@@ -176,5 +176,5 @@ export class GeCourseAttribute {
     }
     return geAttribute;
   }
-  
+
 }
