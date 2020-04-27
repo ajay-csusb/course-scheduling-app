@@ -29,11 +29,14 @@ export class GeCourseAttribute {
       return classes;
     }
     const results: IClass[] = [];
-    const fullCourseAttribute = GeCourseAttribute.getSemesterGeCourseAttribute(courseAttr);
+    const semGeCourseAttr = GeCourseAttribute.getFullDescriptionSemesterGeCourseAttribute(courseAttr);
+    if (semGeCourseAttr.length === 0) {
+      return results;
+    }
+    const geCourseAttributeParsed = GeCourseAttribute.normalizeGeCourseAttributesLabel(semGeCourseAttr);
     for (const _class of classes) {
-      const classCourseAttributeNormalized = GeCourseAttribute.normalizeCourseDescription(_class.courseAttrDescription);
-      if (classCourseAttributeNormalized.startsWith(courseAttr)) {
-        _class.courseAttrDescription = fullCourseAttribute;
+      if (_class.courseAttrDescription.toLowerCase().startsWith(geCourseAttributeParsed)) {
+        _class.courseAttrDescription = semGeCourseAttr;
         results.push(_class);
       }
     }
@@ -56,6 +59,30 @@ export class GeCourseAttribute {
     return validCourseAttributes.join(', ');
   }
 
+  public static getCourseAttributesSemester(): IOptionProps[] {
+    return (
+      [
+      { label: 'GE-A1 Oral Communication', value: 'GE-A1' },
+      { label: 'GE-A2 Written Communication', value: 'GE-A2' },
+      { label: 'GE-A3 Critical Thinking', value: 'GE-A3' },
+      { label: 'GE-B1 Physical Science', value: 'GE-B1' },
+      { label: 'GE-B2 Life Science', value: 'GE-B2' },
+      { label: 'GE-B3 Laboratory Activity', value: 'GE-B3' },
+      { label: 'GE-B4 Mathematics/Quant. Reasoning', value: 'GE-B4' },
+      { label: 'GE-B5 UD Scientific Inquiry & Quant.', value: 'GE-B5' },
+      { label: 'GE-C1 Arts', value: 'GE-C1' },
+      { label: 'GE-C2 Humanities', value: 'GE-C2' },
+      { label: 'GE-C3 Additional C1 or C2 Course', value: 'GE-C3' },
+      { label: 'GE-C4 UD Arts and Humanities', value: 'GE-C4' },
+      { label: 'GE-D1 United States Government', value: 'GE-D1' },
+      { label: 'GE-D2 United States History', value: 'GE-D2' },
+      { label: 'GE-D3 Social Sciences Discipline', value: 'GE-D3' },
+      { label: 'GE-D4 UD Social Sciences', value: 'GE-D4' },
+      { label: 'GE-E  First-Year Seminar', value: 'GE-E' },
+      ]
+    );
+  }
+
   private static getValidGeCourseAttributes(courseDescription: string): string {
     const validGeDesignationAttributes = [
       'Diversity & Inclusiveness Pers',
@@ -70,6 +97,10 @@ export class GeCourseAttribute {
       }
     }
     return result.join(', ');
+  }
+
+  private static normalizeGeCourseAttributesLabel(label: string): string {
+    return label.trim().toLowerCase().slice(6);
   }
   private static removeInvalidCourseAttributes(courseAttrs: string[]): string[] {
     const validGeCourseAttrs: string[] = [];
@@ -89,19 +120,14 @@ export class GeCourseAttribute {
     return validGeCourseAttrs;
   }
 
-  private static getSemesterGeCourseAttribute(courseAttr: string): string {
+  private static getFullDescriptionSemesterGeCourseAttribute(courseAttr: string): string {
     const semCourseAttributes = GeCourseAttribute.getCourseAttributesSemester();
     for (const semCourseAttribute of semCourseAttributes) {
-      const semCourseAttributeNormalized = GeCourseAttribute.normalizeGeCourseAttributesLabel(semCourseAttribute.label!);
-      if (courseAttr === semCourseAttributeNormalized) {
+      if (courseAttr === semCourseAttribute.value) {
         return semCourseAttribute.label!;
       }
     }
     return '';
-  }
-
-  private static normalizeGeCourseAttributesLabel(label: string): string {
-    return label.trim().toLowerCase().slice(6).split(' ').join('-');
   }
 
   private static addFullGeCourseAttribute(geCourseAttrArr: string[], geAttrs: IOptionProps[]): string[] {
@@ -128,30 +154,6 @@ export class GeCourseAttribute {
       }
     }
     return GeCourseAttribute.courseAttrArr;
-  }
-
-  private static getCourseAttributesSemester(): IOptionProps[] {
-    return (
-      [
-      { label: 'GE-A1 Oral Communication', value: 'GE-A1' },
-      { label: 'GE-A2 Written Communication', value: 'GE-A2' },
-      { label: 'GE-A3 Critical Thinking', value: 'GE-A3' },
-      { label: 'GE-B1 Physical Science', value: 'GE-B1' },
-      { label: 'GE-B2 Life Science', value: 'GE-B2' },
-      { label: 'GE-B3 Laboratory Activity', value: 'GE-B3' },
-      { label: 'GE-B4 Mathematics/Quant. Reasoning', value: 'GE-B4' },
-      { label: 'GE-B5 UD Scientific Inquiry & Quant.', value: 'GE-B5' },
-      { label: 'GE-C1 Arts', value: 'GE-C1' },
-      { label: 'GE-C2 Humanities', value: 'GE-C2' },
-      { label: 'GE-C3 Additional C1 or C2 Course', value: 'GE-C3' },
-      { label: 'GE-C4 UD Arts and Humanities', value: 'GE-C4' },
-      { label: 'GE-D1 United States Government', value: 'GE-D1' },
-      { label: 'GE-D2 United States History', value: 'GE-D2' },
-      { label: 'GE-D3 Social Sciences Discipline', value: 'GE-D3' },
-      { label: 'GE-D4 UD Social Sciences', value: 'GE-D4' },
-      { label: 'GE-E  First-Year Seminar', value: 'GE-E' },
-      ]
-    );
   }
 
   private static isSemesterTerm(_class: IClass): boolean {

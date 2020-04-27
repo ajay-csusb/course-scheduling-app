@@ -11,6 +11,8 @@ import { Watchdog } from './Watchdog';
 import { InstructionMode } from './InstructionMode';
 import { FilterClasses } from './FilterClasses';
 import { GeCourseAttribute } from './GeCourseAttribute';
+import * as ClassSearch from './ClassSearch.d';
+
 interface IClassSearchContainerState {
   term: string;
   campus: string;
@@ -586,10 +588,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     if (value.length === 0) {
       this.userInput.setCourseAttr('');
     }
-    if (!value.startsWith('GE-') && value.length !== 0) {
-      this.userInput.setCourseAttr('');
-    }
     this.userInput.setGeClassesAttr(value);
+    if (parseInt(this.state.term, 10) >= ClassSearch.app.settings.firstSemester) {
+      this.userInput.setCourseAttr('');
+      this.userInput.setGeClassesAttr('');
+    }
   }
 
   private processDropDownListData(data: any): void {
