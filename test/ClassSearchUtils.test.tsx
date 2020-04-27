@@ -367,6 +367,7 @@ describe('fetch parameters', () => {
   describe('when GE course attribute is set', () => {
     describe('and the term is quarter', () => {
       it('should pass the selected value', () => {
+        classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '1000' } });
         classSearchContainerWrapper.find('#additional-filters').simulate('click');
         classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'GE-Foo' } });
         classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
@@ -377,8 +378,9 @@ describe('fetch parameters', () => {
     describe('and the term in semester', () => {
       let termArgument;
       beforeEach(() => {
+        classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '3000' } });
         classSearchContainerWrapper.find('#additional-filters').simulate('click');
-        classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'Semester-Foo' } });
+        classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'GE-B4 Mathematics/Quant. Reasoning' } });
         classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
         termArgument = fetchMock.lastOptions();
       });

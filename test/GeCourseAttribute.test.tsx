@@ -14,8 +14,8 @@ describe('Filter by GE course attribute', () => {
     classBioGe.courseAttrDescription = 'Life Science';
     classBioGe.geCourseAttr = 'GE-FOO';
     classBioGe1.courseAttr = 'General Education';
-    classBioGe1.courseAttrDescription = 'Laboratory Activity';
-    classBioGe1.geCourseAttr = 'GE-BAR';
+    classBioGe1.courseAttrDescription = 'UD Scientific Inquiry & Quant.';
+    classBioGe1.geCourseAttr = 'GE-B5';
     classesBio = [classBioGe, classBioGe1];
   });
 
@@ -29,9 +29,9 @@ describe('Filter by GE course attribute', () => {
 
     describe('and they filter by GE course attribute', () => {
       it('should display classes matching the course attribute', () => {
-        classes = GeCourseAttribute.filter(classesBio, 'life-science', '2208');
+        classes = GeCourseAttribute.filter(classesBio, 'GE-B5', '2208');
         expect(classes).toHaveLength(1);
-        expect(classes[0].courseAttrDescription).toEqual('GE-B2 Life Science');
+        expect(classes[0].courseAttrDescription).toEqual('GE-B5 UD Scientific Inquiry & Quant.');
       });
     });
     describe('if they search for invalid GE course attribute', () => {
