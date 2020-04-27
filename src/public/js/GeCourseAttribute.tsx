@@ -171,7 +171,7 @@ export class GeCourseAttribute {
     // The method below strips out GE designation
     geAttribute = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr, semGeAttr);
     // Add GE designation back
-    if (containsGeDesignation) {
+    if (containsGeDesignation && !geAttribute.includes('GE Designation')) {
       geAttribute.unshift('GE Designation');
     }
     return geAttribute;
