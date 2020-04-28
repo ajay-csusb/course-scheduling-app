@@ -336,3 +336,6 @@ describe('When a search is performed without entering subject', () => {
   });
 
 });
+  // @Todo add a test to check if a class has both GE attributes and GE designation
+  // attributes then it should show both of them after they are filtered by
+  // course attribute and GE attribute
