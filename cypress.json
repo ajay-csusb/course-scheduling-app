@@ -1,7 +1,7 @@
 {
   "viewportWidth": 1200,
   "viewportHeight": 1000,
-  "defaultCommandTimeout": 5000,
+  "defaultCommandTimeout": 15000,
   "requestTimeout": 5000,
   "video": false,
   "projectId": "fu1vwa"

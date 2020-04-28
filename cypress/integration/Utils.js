@@ -15,7 +15,7 @@ function selectCampus(campus="San Bernardino") {
   cy.get('.campus-select select').select(campus);
 }
 
-function enterCourseNumber(courseNumber="100") {
+function enterCourseNumber(courseNumber="1000") {
   cy.get('.course-number').type(courseNumber);
 }
 
@@ -48,11 +48,14 @@ function clickAdditionalFilters() {
   cy.get('#additional-filters').click();
 }
 
-function waitForResults() {
+function waitForResults(timer = 0) {
+  if (timer > 100) {
+    throw 'Page took too long to load!';
+  }
   const results = Cypress.$('#class-search-results-component').length;
   if (results === 0) {
     setTimeout(() => {
-      waitForResults();
+      waitForResults(timer + 1);
     }, 500);
   } 
 }

@@ -12,9 +12,8 @@ describe('Correct class information is displayed in results', function () {
         });
 
         it('should display information related to a class', () => {
-          cy.get('.course:first-child .course-name')
+          cy.get(':nth-child(1) > .course > .item-header > .course-header > .course-name > strong')
           .should('contain', 'BIOL')
-          .and('contain', 'Topics in Biology');
           cy.get('.course:first-child .course-desc > li > span')
           .should('contain', 'Units')
           .and('contain.text', 'Meeting Time')
@@ -23,7 +22,7 @@ describe('Correct class information is displayed in results', function () {
           .and('contain', 'Campus')
           .and('contain', 'Instructor')
           .and('contain', 'Instruction Mode');
-          cy.get('.course:first-child .course-availability').invoke('text').should('match', /(Waitlist)|(Seats Available)/);
+          cy.get('.course:first-child .course-availability').invoke('text').should('match', /(Waitlist)|(Seats available)/);
           cy.get('.course:first-child .course-details > span').should('contain', 'Section');
         });
 
@@ -44,12 +43,12 @@ describe('Correct class information is displayed in results', function () {
           cy.visit(form.url);
           selectPreviousTerm();
           form.selectSubject();
-          form.enterCourseNumber();
+          form.enterCourseNumber('100');
           form.submit();
         });
 
         it('should display classes as Closed', () => {
-          cy.get('.course:first-child .course-status').should('contain', 'Closed');
+          cy.get(':nth-child(1) > .course > .item-header > .course-info > .course-status').should('contain', 'Closed');
         });
 
         it('should not display markup for available seats', () => {
