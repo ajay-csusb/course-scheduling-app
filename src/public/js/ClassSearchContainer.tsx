@@ -248,7 +248,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
     const validClasses = this.filterClasses(transformedClass);
     const sortedClasses = this.sortClasses(validClasses);
-    this.allResults = this.processCourseAttributes(sortedClasses);
+    const classesWithFullCourseAttributes = this.processCourseAttributes(sortedClasses);
+    this.allResults = GeCourseAttribute.filter(classesWithFullCourseAttributes, this.state.geClassesAttribute, this.state.term);
     this.setState({
       noClasses: false,
       isLoading: false,
@@ -259,8 +260,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private filterClasses(classes: IClass[]): IClass[] {
     const activeClasses = FilterClasses.filterByActiveClasses(classes);
     const filteredClasses = MeetingTime.filter(activeClasses, this.state.startTime, this.state.endTime);
-    const filterByGeAttribues = GeCourseAttribute.filter(filteredClasses, this.state.geClassesAttribute, this.state.term);
-    return InstructionMode.filter(filterByGeAttribues, this.state.instructionMode);
+    return InstructionMode.filter(filteredClasses, this.state.instructionMode);
   }
 
   private sortClasses(classes: IClass[]): IClass[] {

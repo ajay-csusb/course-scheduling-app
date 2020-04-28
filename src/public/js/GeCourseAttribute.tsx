@@ -35,7 +35,7 @@ export class GeCourseAttribute {
     }
     const geCourseAttributeParsed = GeCourseAttribute.normalizeGeCourseAttributesLabel(semGeCourseAttr);
     for (const _class of classes) {
-      if (_class.courseAttrDescription.toLowerCase().startsWith(geCourseAttributeParsed)) {
+      if (_class.courseAttrDescription.toLowerCase().includes(geCourseAttributeParsed)) {
         _class.courseAttrDescription = semGeCourseAttr;
         results.push(_class);
       }
