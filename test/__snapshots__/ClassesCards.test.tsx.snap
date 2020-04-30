@@ -15,6 +15,7 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -251,6 +252,7 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -493,6 +495,7 @@ exports[`building code and room number when a class does not have a building cod
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -729,6 +732,7 @@ exports[`building code and room number when a class has a building code and room
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -965,6 +969,7 @@ exports[`building code and room number when a class has a building code as TBD s
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -1201,6 +1206,7 @@ exports[`building code and room number when a class has building code as OL shou
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -1437,6 +1443,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -1452,7 +1459,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -1469,7 +1476,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -1604,10 +1611,12 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
               30
             </span>
           </div>
-          <div
-            className="course-availability"
-          >
-            No Waitlist
+          <div>
+            <div
+              className="course-availability"
+            >
+              No Waitlist
+            </div>
           </div>
         </div>
       </div>
@@ -1692,6 +1701,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -1707,7 +1717,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -1724,7 +1734,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -1938,6 +1948,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -1953,7 +1964,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -1970,7 +1981,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -2105,15 +2116,17 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
               30
             </span>
           </div>
-          <div
-            className="course-availability"
-          >
-            Waitlist spots available: 
-            <span>
-              5
-               / 
-              30
-            </span>
+          <div>
+            <div
+              className="course-availability"
+            >
+              Waitlist spots available: 
+              <span>
+                5
+                 / 
+                30
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -2198,6 +2211,7 @@ exports[`seats text verbiage when a class is closed should display available sea
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -2365,15 +2379,17 @@ exports[`seats text verbiage when a class is closed should display available sea
               30
             </span>
           </div>
-          <div
-            className="course-availability"
-          >
-            Waitlist spots available: 
-            <span>
-              0
-               / 
-              30
-            </span>
+          <div>
+            <div
+              className="course-availability"
+            >
+              Waitlist spots available: 
+              <span>
+                0
+                 / 
+                30
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -2458,6 +2474,7 @@ exports[`seats text verbiage when a class is closed should display available spo
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -2625,15 +2642,17 @@ exports[`seats text verbiage when a class is closed should display available spo
               30
             </span>
           </div>
-          <div
-            className="course-availability"
-          >
-            Waitlist spots available: 
-            <span>
-              0
-               / 
-              30
-            </span>
+          <div>
+            <div
+              className="course-availability"
+            >
+              Waitlist spots available: 
+              <span>
+                0
+                 / 
+                30
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -2718,6 +2737,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -2733,7 +2753,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "0000",
+      "quarter": "0002",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -2750,7 +2770,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "wed": "Y",
     }
   }
-  currentTerm="9999"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -2954,6 +2974,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -2969,7 +2990,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "0000",
+      "quarter": "0002",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -2986,7 +3007,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "wed": "Y",
     }
   }
-  currentTerm="9999"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -3190,6 +3211,7 @@ exports[`when a class has low cost course material should display icon for low c
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "Low Cost Course Materials, GE1-FOO",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -3440,6 +3462,7 @@ exports[`when a class has zero cost course material should display icon for zero
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "Zero Cost Course Materials",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -3690,6 +3713,7 @@ exports[`when a class has zero cost course materials and low cost course materia
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "Zero Cost Course Materials, Low Cost Course Materials",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -3944,6 +3968,7 @@ exports[`when a class is a fully online should not display the room number in th
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -4174,6 +4199,7 @@ exports[`when a class results component is displayed should display the correct 
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",

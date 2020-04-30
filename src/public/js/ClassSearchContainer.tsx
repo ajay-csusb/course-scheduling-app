@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ClassSearchForm } from './ClassSearchForm';
 import { ClassSearchResults } from './ClassSearchResults';
 import { IClass, Class, IMeetingDate } from './Class';
-import { ISubject } from './Subject';
+import { ISubject, Subject } from './Subject';
 import { UserInput } from './UserInput';
 import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
@@ -10,7 +10,9 @@ import { MeetingTime } from './MeetingTime';
 import { Watchdog } from './Watchdog';
 import { InstructionMode } from './InstructionMode';
 import { FilterClasses } from './FilterClasses';
-import { Utils } from './Utils';
+import { GeCourseAttribute } from './GeCourseAttribute';
+import * as ClassSearch from './ClassSearch.d';
+
 interface IClassSearchContainerState {
   term: string;
   campus: string;
@@ -54,6 +56,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private resultsSection: any;
 
+  private allSubjects: any;
+
   constructor(props: any) {
     super(props);
     this.state = this.defaultFormValues();
@@ -82,6 +86,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.classesFound = this.classesFound.bind(this);
     this.classesNotFound = this.classesNotFound.bind(this);
     this.onEnterKeyPress = this.onEnterKeyPress.bind(this);
+    this.updateSubjectDropdown = this.updateSubjectDropdown.bind(this);
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
@@ -90,6 +95,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.currentTermId = '';
     this.userInput = new UserInput();
     this.resultsSection = React.createRef();
+    this.allSubjects = '';
   }
 
   public render(): JSX.Element {
@@ -127,6 +133,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateTerm(e: any): void {
+    this.updateSubjectDropdown(e.target.value);
     this.setState({
       term: e.target.value,
     });
@@ -241,7 +248,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
     const validClasses = this.filterClasses(transformedClass);
     const sortedClasses = this.sortClasses(validClasses);
-    this.allResults = this.processCourseAttributes(sortedClasses);
+    const classesWithFullCourseAttributes = this.processCourseAttributes(sortedClasses);
+    this.allResults = GeCourseAttribute.filter(classesWithFullCourseAttributes, this.state.geClassesAttribute, this.state.term);
     this.setState({
       noClasses: false,
       isLoading: false,
@@ -353,25 +361,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private subjectsFound(data: any): void {
-    const subjects: ISubject[] = [];
-    const noOption: ISubject = {
-      abbr: 'all',
-      name: 'All',
-    };
-    subjects.push(noOption);
-    const subjectsArr = data.abbreviationList;
-    if (subjectsArr !== undefined) {
-      subjectsArr.forEach((_subject: any) => {
-        const subject: ISubject = {
-          abbr: '',
-          name: '',
-        };
-        subject.abbr = _subject.subject;
-        subject.name = _subject.subject_DESC;
-        subjects.push(subject);
-      });
-      this.subjects = subjects;
-    }
+    this.allSubjects = data.abbreviationTermList;
+    this.subjects = Subject.getDropdownOptions(data.abbreviationTermList, this.state.term);
     this.setState({ forceReload: true});
   }
 
@@ -380,13 +371,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const termArr: IOptionProps[] = [];
     terms.forEach((_term: any) => {
       if (this.hasCurrentQuarterFlag(_term)) {
-        this.currentTermId = '2206';
+        this.currentTermId = _term.strm;
       }
-      if (_term.strm !== '2208' || !Utils.isProd()) {
-        termArr.push({
-          label: _term.display_STR, value: _term.strm,
-        });
-      }
+      termArr.push({
+        label: _term.display_STR, value: _term.strm,
+      });
     });
     this.term = termArr;
     this.setState({
@@ -451,10 +440,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     );
   }
 
-  private isGeClassesAttributeEmpty(): boolean {
-    return (this.state.geClassesAttribute === '');
-  }
-
   private areOtherFieldsEmpty(): boolean {
     if (!this.isInstructorEmpty()) {
       return false;
@@ -469,9 +454,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       return false;
     }
     if (this.isValidInstructionModeSelected()) {
-      return false;
-    }
-    if (!this.isGeClassesAttributeEmpty()) {
       return false;
     }
     return true;
@@ -599,10 +581,18 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateGeClassAttr(e: any) {
+    const value = e.target.value;
     this.setState({
-      geClassesAttribute: e.target.value,
+      geClassesAttribute: value,
     });
-    this.userInput.setGeClassesAttr(e.target.value);
+    if (value.length === 0) {
+      this.userInput.setCourseAttr('');
+    }
+    this.userInput.setGeClassesAttr(value);
+    if (parseInt(this.state.term, 10) >= ClassSearch.app.settings.firstSemester) {
+      this.userInput.setCourseAttr('');
+      this.userInput.setGeClassesAttr('');
+    }
   }
 
   private processDropDownListData(data: any): void {
@@ -654,7 +644,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       if (attribute.crse_ATTR === 'GE') {
         this.geClassesAttributes.push({
           label: attribute.descr,
-          value: attribute.descr.toLowerCase().replace(' ', '-'),
+          value: GeCourseAttribute.normalizeCourseDescription(attribute.descr),
         });
       }
     });
@@ -663,4 +653,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     });
   }
 
+  private updateSubjectDropdown(term: string): void {
+    this.subjects = Subject.getDropdownOptions(this.allSubjects, term);
+  }
 }

@@ -7,6 +7,7 @@ import { mount, shallow } from 'enzyme';
 import { TestUtils } from './TestUtils';
 import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
 import { GeCourseAttribute } from '../src/public/js/GeCourseAttribute';
+import * as ClassSearch from '../src/public/js/ClassSearch.d';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -366,6 +367,7 @@ describe('fetch parameters', () => {
   describe('when GE course attribute is set', () => {
     describe('and the term is quarter', () => {
       it('should pass the selected value', () => {
+        classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '1000' } });
         classSearchContainerWrapper.find('#additional-filters').simulate('click');
         classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'GE-Foo' } });
         classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
@@ -374,12 +376,27 @@ describe('fetch parameters', () => {
       });
     });
     describe('and the term in semester', () => {
-      it('should pass GE as the value', () => {
+      let termArgument;
+      beforeEach(() => {
+        classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '3000' } });
         classSearchContainerWrapper.find('#additional-filters').simulate('click');
-        classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'Semester-Foo' } });
+        classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'GE-B4 Mathematics/Quant. Reasoning' } });
         classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-        const termArgument = fetchMock.lastOptions();
-        expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":"GE"'));
+        termArgument = fetchMock.lastOptions();
+      });
+      it('should pass empty string as GE course attribute', () => {
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":""'));
+      });
+      it('should pass empty string as the course attribute', () => {
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr":""'));
+      });
+      it('should pass empty string if All is selected as GE course attribute', () => {
+        classSearchContainerWrapper.find('#additional-filters').simulate('click');
+        classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: '' } });
+        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+        termArgument = fetchMock.lastOptions();
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":""'));
+        expect(termArgument.body).toMatch(new RegExp('"crse_attr":""'));
       });
     });
   });
@@ -522,6 +539,12 @@ describe('when a user performs a search', () => {
       copyOfClassJson.courseAttr = 'bar';
       const classes = ClassSearchUtils.mergeAttributes([classJson, copyOfClassJson]);
       expect(classes[0].courseAttr).toEqual('foo, bar');
+    });
+    it('should merge the GE course attribute description', () => {
+      classJson.courseAttrDescription = 'buzz';
+      copyOfClassJson.courseAttrDescription = 'baz';
+      const classes = ClassSearchUtils.mergeAttributes([classJson, copyOfClassJson]);
+      expect(classes[0].courseAttrDescription).toEqual('buzz, baz');
     });
     describe('if it is a General Education class', () => {
       it('should merge the General Education course attributes', () => {
@@ -741,7 +764,7 @@ describe('GE class attribute', () => {
     { value: 'GE-BAR', label: 'General Education BAR' },
   ];
 
-  describe('when a class with does not have a course attribute of General Education', () => {
+  describe('when a class does not have a course attribute of General Education', () => {
     const classBio400 = JSON.parse(JSON.stringify(classJson));
     classBio400.courseAttr = 'FOO, BAR, BAZ, BUZZ';
     classBio400.geCourseAttr = '';
@@ -803,6 +826,277 @@ describe('GE class attribute', () => {
     const geCourseAttr = GeCourseAttribute.addGeAttrs(classBio800, geAttrs);
     it('should return all unique GE course attributes', () => {
       expect(geCourseAttr).toEqual('General Education FOO, General Education BAR');
+    });
+  });
+
+  describe('when a class has both GE and GE-DES course attributes', () => {
+    const classBioGeDes = TestUtils.copyObject(classJson);
+    classBioGeDes.courseAttr = 'General Education, GE Designation';
+    classBioGeDes.geCourseAttr = 'GE-B5, GE-DES-FOO';
+    classBioGeDes.courseAttrDescription = 'UD Scientific Inquiry & Quant.';
+    classBioGeDes.quarter = '3000';
+
+    const geCourseAttr = GeCourseAttribute.addGeAttrs(classBioGeDes, geAttrs);
+    it('should return both GE and GE-DES attribute', () => {
+      expect(geCourseAttr).toEqual('GE Designation, GE-B5 UD Scientific Inquiry & Quant.');
+    });
+  });
+
+  describe('when the term is Fall 2020 or after', () => {
+    describe('and the class is a General Education class', () => {
+      const classBioFall = TestUtils.copyObject(classJson);
+      classBioFall.quarter = '3000';
+      classBioFall.courseAttr = 'General Education';
+      classBioFall.courseAttrDescription = 'UD Scientific Inquiry & Quant.';
+      classBioFall.geCourseAttr = 'GE-B5';
+      const geCourseAttr = GeCourseAttribute.addGeAttrs(classBioFall, geAttrs);
+      it('should return the GE course attributes in the semester format', () => {
+        expect(geCourseAttr).toEqual('GE-B5 UD Scientific Inquiry & Quant.');
+      });
+    });
+  });
+});
+
+describe('Class status', () => {
+  describe('Given the current term as 0008', () => {
+    describe('when the user search for a class from term 0002', () => {
+      it('should return false', () => {
+        expect(ClassSearchUtils.isValidTermRange('0008', '0002', 8)).toBeFalsy();
+      });
+    });
+
+    describe('when the user search for a class from term 0008', () => {
+      it('should return true', () => {
+        expect(ClassSearchUtils.isValidTermRange('0008', '0008', 8)).toBeTruthy();
+      });
+    });
+
+    describe('when the user search for a class from term 0006', () => {
+      describe('and the current month is April', () => {
+        it('should return true', () => {
+          expect(ClassSearchUtils.isValidTermRange('0008', '0006', 4)).toBeTruthy();
+        });
+      });
+      describe('and the current month is September', () => {
+        it('should return false', () => {
+          expect(ClassSearchUtils.isValidTermRange('0008', '0006', 9)).toBeFalsy();
+        });
+      });
+    });
+
+    describe('when a user searches for a class from term 004', () => {
+      describe('and the current month is March', () => {
+        it('should return true', () => {
+          expect(ClassSearchUtils.isValidTermRange('008', '004', 3)).toBeTruthy();
+        });
+      });
+      describe('and the current month is December', () => {
+        it('should return false', () => {
+          expect(ClassSearchUtils.isValidTermRange('008', '004', 12)).toBeFalsy();
+        });
+      });
+    });
+  });
+
+  describe('Given the current term as 002', () => {
+    describe('when a user searches for class from term 008', () => {
+      describe('and the current month is December', () => {
+        it('should return false', () => {
+          expect(ClassSearchUtils.isValidTermRange('002', '008', 12)).toBeFalsy();
+        });
+      });
+    });
+  });
+
+  describe('Given the current term as 004', () => {
+    describe('when the user searches for a class from term 002', () => {
+      describe('and the current month is March', () => {
+        it('should return false', () => {
+          expect(ClassSearchUtils.isValidTermRange('004', '002', 4)).toBeFalsy();
+        });
+      });
+    });
+
+    describe('when the user searches for a class from term 004', () => {
+      describe('and the current month is December', () => {
+        it('should return true', () => {
+          expect(ClassSearchUtils.isValidTermRange('004', '004', 12)).toBeTruthy();
+        });
+      });
+    });
+
+  });
+});
+
+describe('GE designation attribute', () => {
+  describe('when a class is a GE Designation', () => {
+    const classBioGedesig = TestUtils.copyObject(classJson);
+    classBioGedesig.quarter = '3000';
+    classBioGedesig.courseAttr = 'GE Designation';
+    classBioGedesig.geCourseAttr = 'DI';
+    classBioGedesig.courseAttrDescription = 'Diversity & Inclusiveness Pers';
+    const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classBioGedesig);
+    it('should return the appropriate GE designation attribute', () => {
+      expect(geDesgCourseAttr).toEqual('Diversity & Inclusiveness Pers');
+    });
+  });
+
+  describe('when a class has multiple attributes along with GE designation', () => {
+    const classAdmGeDesig = TestUtils.copyObject(classJson);
+    classAdmGeDesig.quarter = '3000';
+    classAdmGeDesig.courseAttr = 'Service Learning, GE Designation, Gender and Sexuality Studies';
+    classAdmGeDesig.geCourseAttr = 'DI';
+    classAdmGeDesig.courseAttrDescription = 'Diversity & Inclusiveness Pers';
+    const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classAdmGeDesig);
+    it('should return multiplte attributes and GE designation as course attribute', () => {
+      expect(geDesgCourseAttr).toEqual('Service Learning, Diversity & Inclusiveness Pers, Gender and Sexuality Studies');
+    });
+  });
+
+  describe('when a class belongs to a quarter term', () => {
+    const classBioQuarter = TestUtils.copyObject(classJson);
+    classBioQuarter.quarter = '1000';
+    classBioQuarter.courseAttr = 'GE Designation';
+    classBioQuarter.geCourseAttr = 'DI';
+    classBioQuarter.courseAttrDescription = 'Foo';
+    const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classBioQuarter);
+    it('should return GE designation as course attribute', () => {
+      expect(geDesgCourseAttr).toEqual('GE Designation');
+    });
+  });
+
+  describe('when a class has a GE designation and an invalid course attribute', () => {
+    const classBioInvalidAttr = TestUtils.copyObject(classJson);
+    classBioInvalidAttr.quarter = '3000';
+    classBioInvalidAttr.courseAttr = 'Foo, GE Designation, Bar';
+    classBioInvalidAttr.geCourseAttr = 'DI';
+    classBioInvalidAttr.courseAttrDescription = 'Global Perspectives';
+    const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classBioInvalidAttr);
+    it('should not return invalid course attributes', () => {
+      expect(geDesgCourseAttr).toEqual('Global Perspectives');
+    });
+  });
+
+  describe('when a class has a valid course attribute, GE designation attribute, and an invalid course attribute', () => {
+    const classBioMultipleAttr = TestUtils.copyObject(classJson);
+    classBioMultipleAttr.quarter = '3000';
+    classBioMultipleAttr.courseAttr = 'Foo, Service Learning, GE Designation';
+    classBioMultipleAttr.geCourseAttr = 'DI';
+    classBioMultipleAttr.courseAttrDescription = 'Writing Intensive';
+    const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classBioMultipleAttr);
+    it('should return valid attributes and not return invalid attributes', () => {
+      expect(geDesgCourseAttr).toEqual('Service Learning, Writing Intensive');
+    });
+  });
+
+  describe('when a class has invalid course attribute descriptions', () => {
+    const classBioValidDescription = TestUtils.copyObject(classJson);
+    classBioValidDescription.quarter = '3000';
+    classBioValidDescription.courseAttr = 'Foo';
+    classBioValidDescription.courseAttrDescription = 'Invalid course description';
+    const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classBioValidDescription);
+    it('should not return invalid course attribute description', () => {
+      expect(geCourseDesc).toHaveLength(0);
+    });
+  });
+
+  describe('when a class has a valid and invalid course attribute descriptions', () => {
+    const classBioValidDescription = TestUtils.copyObject(classJson);
+    classBioValidDescription.quarter = '3000';
+    classBioValidDescription.courseAttr = 'Foo, GE Designation';
+    classBioValidDescription.courseAttrDescription = 'Invalid course description, Writing Intensive';
+    const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classBioValidDescription);
+    it('should not return invalid course attribute description', () => {
+      expect(geCourseDesc).toEqual('Writing Intensive');
+    });
+  });
+
+  describe('when a class has a GE attribute, GE designation attribute, a valid attribute, and invalid attribute', () => {
+    const classBioMultipleAttr = TestUtils.copyObject(classJson);
+    classBioMultipleAttr.quarter = '3000';
+    classBioMultipleAttr.courseAttr = 'Foo, GE Designation, GE-B5 UD Scientific Inquiry & Quant., Service Learning';
+    classBioMultipleAttr.courseAttrDescription = 'Invalid course description, Global Perspectives, Service Learning';
+    const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classBioMultipleAttr);
+    it('should return GE designation attribute, GE attribute and the valid attribute', () => {
+      expect(geCourseDesc).toEqual('Global Perspectives, Service Learning, GE-B5 UD Scientific Inquiry & Quant.');
+    });
+  });
+
+  describe('when a class has multiple GE designation attributes and a valid attribute', () => {
+    const classMultipleAttr = TestUtils.copyObject(classJson);
+    classMultipleAttr.quarter = '3000';
+    classMultipleAttr.courseAttr = 'Service Learning, GE Designation';
+    classMultipleAttr.courseAttrDescription = 'Global Perspectives, Writing Intensive';
+    const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classMultipleAttr);
+    it('should return the valid attribute and multiple GE Designation attribute', () => {
+      expect(geCourseDesc).toEqual('Service Learning, Global Perspectives, Writing Intensive');
+    });
+  });
+
+  describe('when a class belongs to quarter term', () => {
+    const classQuarter = TestUtils.copyObject(classJson);
+    classQuarter.quarter = '1000';
+    classQuarter.courseAttr = 'Foo, Bar, Buzz';
+    const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classQuarter);
+    it('should return the course attributes unchanged', () => {
+      expect(geCourseDesc).toEqual('Foo, Bar, Buzz');
+    });
+  });
+
+  describe('test parseCourseAttributes', () => {
+    const geCourseAttr = [
+      { value: 'GE-FOO', label: 'General Education FOO' },
+      { value: 'GE-BAR', label: 'General Education BAR' },
+    ];
+    describe('when a class has course attributes', () => {
+      const classWithCourseAttributes = TestUtils.copyObject(classJson);
+      classWithCourseAttributes.courseAttr = 'ASTD, ZCCM';
+      const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
+      it('should display the expanded course attributes', () => {
+        expect(courseAttr[0].courseAttr).toEqual('Asian Studies, Zero Cost Course Materials');
+      });
+    });
+
+    describe('when a class has course attributes and GE attribute', () => {
+      const classWithCourseAttributes = TestUtils.copyObject(classJson);
+      classWithCourseAttributes.courseAttr = 'ASTD, GE';
+      classWithCourseAttributes.geCourseAttr = 'GE-FOO';
+      const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
+      it('should display the expanded course attributes and GE attributes', () => {
+        expect(courseAttr[0].courseAttr).toEqual('Asian Studies, General Education FOO');
+      });
+    });
+
+    describe('when a class has course attributes, GE attribute and GE Designation', () => {
+      describe('if term is semester', () => {
+        // GE designation is valid only for semester classes
+        const classWithCourseAttributes = TestUtils.copyObject(classJson);
+        classWithCourseAttributes.courseAttr = 'ASTD, GE, DES';
+        // GE-FOO won't work for Semester classes. It has to be one of the valid GE attributes for
+        // semester.
+        // G is an attribute for GE desgination
+        classWithCourseAttributes.geCourseAttr = 'GE-B5, G';
+        classWithCourseAttributes.courseAttrDescription = 'Global Perspectives';
+        classWithCourseAttributes.quarter = '3000';
+        const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
+        it('should display the expanded course attributes and GE attributes', () => {
+          // GE Designation course attrbiutes will always be displayed at the start
+          expect(courseAttr[0].courseAttr).toEqual('Global Perspectives, Asian Studies, GE-B5 UD Scientific Inquiry & Quant.');
+        });
+      });
+      describe('if term is quarter', () => {
+        const classWithCourseAttributes = TestUtils.copyObject(classJson);
+        classWithCourseAttributes.courseAttr = 'ASTD, GE, DES';
+        // GE-FOO won't work for Semester classes. It has to be one of the valid GE attributes for 
+        // semester.
+        // G is an attribute for GE desgination
+        classWithCourseAttributes.geCourseAttr = 'GE-FOO';
+        const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
+        it('should display the expanded course attributes and GE attributes', () => {
+          // GE course attrbiutes will always be displayed towards the end
+          expect(courseAttr[0].courseAttr).toEqual('Asian Studies, GE Designation, General Education FOO');
+        });
+      });
     });
   });
 });

@@ -33,7 +33,6 @@ export interface IClass {
   academicOrg?: string;
   instructionMode: string;
   sbCourseZccm?: string;
-  consent?: string;
   facilityId: string;
   buildingCode: string;
   room: string;
@@ -52,6 +51,7 @@ export interface IClass {
   title: string;
   geCourseAttr: string;
   topic: string;
+  courseAttrDescription: string;
   fullSsrComponent: string;
   enrollmentStatus: string;
 }
@@ -77,6 +77,7 @@ export class Class {
 
   static transformToClass(object: any): IClass {
     const result: IClass = {
+      courseAttrDescription: object.crse_ATTR_VALUE_DESCR,
       quarter : object.strm,
       subject : object.subject,
       catalogNo : object.catalog_NBR,
@@ -108,7 +109,6 @@ export class Class {
       academicOrg : object.acad_ORG,
       instructionMode : object.instruction_MODE,
       sbCourseZccm : object.sb_CRSE_ZCCM,
-      consent : object.consent,
       facilityId : object.facility_ID,
       buildingCode : object.bldg_CD,
       room : object.room,
@@ -201,15 +201,15 @@ export class Class {
     return meetingTimes;
   }
 
-  private areStartTimeEndTimeEmpty(): boolean {
-    return (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0);
-  }
-
   public isActive(): boolean {
     return (this.classInfo.classStatus === 'Active');
   }
 
   public getClassStatus(): string {
     return this.classInfo.classStatus;
+  }
+
+  private areStartTimeEndTimeEmpty(): boolean {
+    return (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0);
   }
 }

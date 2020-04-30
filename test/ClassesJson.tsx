@@ -40,6 +40,7 @@ export let baseClassJson: IClass = {
     geCourseAttr: '',
     topic: '',
     classStatus: 'Active',
+    courseAttrDescription: '',
     fullSsrComponent: '',
     enrollmentStatus: '',
 };
@@ -84,6 +85,7 @@ export const classJson: IClass = {
     geCourseAttr: '',
     topic: '',
     classStatus: 'Active',
+    courseAttrDescription: '',
     fullSsrComponent: '',
     enrollmentStatus: '',
 };
@@ -127,6 +129,7 @@ export const classPDC: IClass = {
     geCourseAttr: '',
     topic: '',
     classStatus: 'Active',
+    courseAttrDescription: '',
     fullSsrComponent: '',
     enrollmentStatus: '',
 };
@@ -194,6 +197,7 @@ export const rawClassesJson = {
   crse_TOPIC_DESCR: '',
   course_TITLE_LONG: 'Introduction to Accounting',
   crse_ATTR_VALUE: 'Active',
+  crse_ATTR_VALUE_DESCR: '',
   crse_COMPONENT_DESCR: '',
   enrl_STAT: '',
 };

@@ -200,9 +200,6 @@ export class UserInput {
 
   public setGeClassesAttr(geClassesAttr: string): void {
     this.geClassesAttr = geClassesAttr;
-    if (!geClassesAttr.startsWith('GE-')) {
-      this.geClassesAttr = 'GE';
-    }
   }
 
 }

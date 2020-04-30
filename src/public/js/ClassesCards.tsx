@@ -141,14 +141,10 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     );
   }
 
-  public isCurrentTerm(): boolean {
-    return (this.props.currentTerm === this.classDetails.quarter) || parseInt(this.classDetails.quarter, 10) >= 2204;
-  }
-
   public getClassStatusMarkup(): JSX.Element {
     let classStatus = 'Closed';
     let classStatusClassName = 'course-status course-status--closed';
-    if (this.isCurrentTerm()) {
+    if (this.isValidTerm(this.classDetails.quarter)) {
       classStatus = ClassSearchUtils.getClassStatus(this.classDetails);
       if (classStatus === 'Open') {
         classStatusClassName = 'course-status course-status--open';
@@ -163,9 +159,9 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
 
   public getClassAvailabilityMarkup(): JSX.Element {
     const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(this.classDetails);
-    const waitlistMarkup = this.getWaitlistMarkup();
-    if (!this.isCurrentTerm()) {
-      return (<></>);
+    const waitlistMarkup = <div>{this.getWaitlistMarkup()}</div>;
+    if (!this.isValidTerm(this.classDetails.quarter)) {
+      return (<React.Fragment/>);
     }
     if (ClassSearchUtils.isWaitlist(this.classDetails) || ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
       return (
@@ -187,7 +183,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   public getWaitlistMarkup(): JSX.Element {
     const waitlistCapacity = this.classDetails.waitlistCapacity;
     const numberOfSeatsInWaitlist = this.classDetails.waitlistCapacity -  this.classDetails.waitlistTotal;
-    if (!this.isCurrentTerm()) {
+    if (!this.isValidTerm(this.classDetails.quarter)) {
       return (<React.Fragment/>);
     }
     if (this.classDetails.waitlistCapacity === 0) {
@@ -262,13 +258,17 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     }
     return (<div className="course--icons">{zeroCostIcon}{lowCostIcon}</div>);
   }
-
   public getClassTypeMarkup(): JSX.Element {
     let classType: JSX.Element = <></>;
     if (this.classDetails.fullSsrComponent) {
       classType = (<span>{this.classDetails.fullSsrComponent} • </span>);
     }
     return classType;
+  }
+
+  private isValidTerm(quarter: string): boolean {
+    const CurrMonth = new Date().getMonth() + 1;
+    return (ClassSearchUtils.isValidTermRange(this.props.currentTerm, quarter, CurrMonth) === true);
   }
 
 }

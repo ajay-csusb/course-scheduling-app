@@ -1,6 +1,7 @@
 import React from 'react';
 import { Label, HTMLSelect, IOptionProps } from '@blueprintjs/core';
 import * as ClassSearch from './ClassSearch.d';
+import { GeCourseAttribute } from './GeCourseAttribute';
 
 export interface ISelectListGeClassesAttributesProps {
   currentTerm: string;
@@ -51,16 +52,15 @@ export class SelectListGeClassesAttributes extends React.Component<ISelectListGe
       value: '',
       label: 'All',
     };
-    const semOptions: IOptionProps[] = [noOption];
+    let semOptions: IOptionProps[] = [];
     const quarterOptions: IOptionProps[] = [noOption];
     for (const option of options) {
-      if (!option.label!.startsWith('GE-')) {
-        semOptions.push(option);
-      } else {
+      if (option.label!.startsWith('GE-')) {
         quarterOptions.push(option);
       }
     }
     if (termId >= ClassSearch.app.settings.firstSemester) {
+      semOptions = [noOption].concat(GeCourseAttribute.getCourseAttributesSemester());
       return semOptions;
     }
     return quarterOptions;

@@ -12,7 +12,7 @@ describe('Given a class search form', function () {
       form.enterTimes();
       form.clickAdditionalFilters();
       cy.get('#course-attribute').select('eBook');
-      cy.get('.select-ge-classes-attr select').select('GE-B2 Life Sciences');
+      cy.get('#ge-classes-attributes').select('GE-B2 Life Science');
       cy.get('.class-number').type('0000');
       cy.get('.session-code select').select('Regular');
       form.submit();
