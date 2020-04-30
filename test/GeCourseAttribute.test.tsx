@@ -10,20 +10,22 @@ describe('Filter by GE course attribute', () => {
   let classes: IClass[];
 
   beforeEach(() => {
-    classBioGe.courseAttr = 'General Education';
+    classBioGe.courseAttr = 'GE-F0 Life Sciences';
     classBioGe.courseAttrDescription = 'Life Science';
-    classBioGe.geCourseAttr = 'GE-FOO';
+    classBioGe.geCourseAttr = 'GE-F0, DES';
     classBioGe1.courseAttr = 'General Education';
     classBioGe1.courseAttrDescription = 'UD Scientific Inquiry & Quant.';
-    classBioGe1.geCourseAttr = 'GE-B5';
+    classBioGe1.geCourseAttr = 'GE-B5, DES';
     classesBio = [classBioGe, classBioGe1];
   });
 
   describe('when a user searches for a GE classes', () => {
     describe('if the term is before Fall 2020', () => {
       it('should return all the classes', () => {
-        classes = GeCourseAttribute.filter(classesBio, 'life-science', '2206');
-        expect(classes).toHaveLength(2);
+        // Course attribute search term should have a length of 5
+        classes = GeCourseAttribute.filter(classesBio, 'GE-F0', '2206');
+        expect(classes).toHaveLength(1);
+        expect(classes[0].courseAttr).toEqual('GE-F0 Life Sciences');
       });
     });
 
