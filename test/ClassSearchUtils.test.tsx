@@ -762,6 +762,8 @@ describe('GE class attribute', () => {
   const geAttrs = [
     { value: 'GE-FOO', label: 'General Education FOO' },
     { value: 'GE-BAR', label: 'General Education BAR' },
+    { value: 'GE-C2', label: 'General Education BUZZ' },
+    { value: 'GE-C3', label: 'General Education BAZ' },
   ];
 
   describe('when a class does not have a course attribute of General Education', () => {
@@ -843,7 +845,7 @@ describe('GE class attribute', () => {
   });
 
   describe('when the term is Fall 2020 or after', () => {
-    describe('and the class is a General Education class', () => {
+    describe('the class is a General Education class', () => {
       const classBioFall = TestUtils.copyObject(classJson);
       classBioFall.quarter = '3000';
       classBioFall.courseAttr = 'General Education';
@@ -852,6 +854,16 @@ describe('GE class attribute', () => {
       const geCourseAttr = GeCourseAttribute.addGeAttrs(classBioFall, geAttrs);
       it('should return the GE course attributes in the semester format', () => {
         expect(geCourseAttr).toEqual('GE-B5 UD Scientific Inquiry & Quant.');
+      });
+    });
+    describe('the class has same GE attribute prefix in both quarter and semester term', () => {
+      const semClassGeAttr = TestUtils.copyObject(classJson);
+      semClassGeAttr.quarter = '3000';
+      semClassGeAttr.courseAttr = 'General Education';
+      semClassGeAttr.geCourseAttr = '1, GE-C2, GE-C3, Y';
+      it('should show the GE attribute related to semester', () => {
+        const geCourseAttr = GeCourseAttribute.addGeAttrs(semClassGeAttr, geAttrs);
+        expect(geCourseAttr).toEqual('GE-C2 Humanities, GE-C3 Additional C1 or C2 Course');
       });
     });
   });
@@ -1080,8 +1092,7 @@ describe('GE designation attribute', () => {
         classWithCourseAttributes.quarter = '3000';
         const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
         it('should display the expanded course attributes and GE attributes', () => {
-          // GE Designation course attrbiutes will always be displayed at the start
-          expect(courseAttr[0].courseAttr).toEqual('Global Perspectives, Asian Studies, GE-B5 UD Scientific Inquiry & Quant.');
+          expect(courseAttr[0].courseAttr).toEqual('Asian Studies, Global Perspectives, GE-B5 UD Scientific Inquiry & Quant.');
         });
       });
       describe('if term is quarter', () => {
