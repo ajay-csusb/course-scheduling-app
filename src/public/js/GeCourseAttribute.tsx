@@ -14,9 +14,12 @@ export class GeCourseAttribute {
       return _class.courseAttr;
     }
     const geCourseAttrArr = _class.geCourseAttr.split(', ');
-    fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr , geAttrs);
+    // @Todo test this
+    // The issue occurs when the GE attributes from semester and quarter term have the same prefix
     if (GeCourseAttribute.isSemesterTerm(_class)) {
       fullGeCourseAttr = GeCourseAttribute.addSemesterGeAttrs(_class, fullGeCourseAttr, geCourseAttrArr);
+    } else {
+      fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr, geAttrs);
     }
     return fullGeCourseAttr.join(', ');
   }
