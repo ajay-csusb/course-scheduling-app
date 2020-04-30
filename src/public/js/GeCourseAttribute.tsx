@@ -14,8 +14,6 @@ export class GeCourseAttribute {
       return _class.courseAttr;
     }
     const geCourseAttrArr = _class.geCourseAttr.split(', ');
-    // @Todo test this
-    // The issue occurs when the GE attributes from semester and quarter term have the same prefix
     if (GeCourseAttribute.isSemesterTerm(_class)) {
       fullGeCourseAttr = GeCourseAttribute.addSemesterGeAttrs(_class, fullGeCourseAttr, geCourseAttrArr);
     } else {
@@ -166,7 +164,9 @@ export class GeCourseAttribute {
   private static addFullGeCourseAttribute(geCourseAttrArr: string[], geAttrs: IOptionProps[]): string[] {
     const courseAttrIndex = GeCourseAttribute.courseAttrArr.indexOf('General Education');
     // Delete the element that has the value General Education
-    GeCourseAttribute.courseAttrArr.splice(courseAttrIndex, 1);
+    if (courseAttrIndex !== -1) {
+      GeCourseAttribute.courseAttrArr.splice(courseAttrIndex, 1);
+    }
     // loop through all the GE course attributes
     // tslint:disable-next-line:forin
     for (const index in geCourseAttrArr) {
