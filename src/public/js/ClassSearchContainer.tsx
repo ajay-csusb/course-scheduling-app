@@ -11,6 +11,7 @@ import { Watchdog } from './Watchdog';
 import { InstructionMode } from './InstructionMode';
 import { FilterClasses } from './FilterClasses';
 import { GeCourseAttribute } from './GeCourseAttribute';
+import * as CourseAttributes from './CourseAttributes';
 import * as ClassSearch from './ClassSearch.d';
 
 interface IClassSearchContainerState {
@@ -249,7 +250,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const validClasses = this.filterClasses(transformedClass);
     const sortedClasses = this.sortClasses(validClasses);
     const classesWithFullCourseAttributes = this.processCourseAttributes(sortedClasses);
-    this.allResults = GeCourseAttribute.filter(classesWithFullCourseAttributes, this.state.geClassesAttribute, this.state.term);
+    const filteredByGeAttributes = GeCourseAttribute.filter(classesWithFullCourseAttributes, this.state.geClassesAttribute, this.state.term);
+    this.allResults = CourseAttributes.filter(filteredByGeAttributes, this.state.courseAttr);
     this.setState({
       noClasses: false,
       isLoading: false,
