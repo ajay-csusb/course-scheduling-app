@@ -287,7 +287,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private onSubmit(): any {
-    if (this.isSubjectEmpty() && this.areOtherFieldsEmpty()) {
+    if (this.isSubjectEmpty() && this.otherFieldsHaveValidValue()) {
       this.setState({
         showErrorMessage: true,
       });
@@ -436,13 +436,22 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private isValidInstructionModeSelected(): boolean {
-    return (this.state.instructionMode !== 'all'
-      && this.state.instructionMode !== 'p'
-      && this.state.instructionMode !== 'ol'
-    );
+    return this.state.instructionMode === 'all';
   }
 
-  private areOtherFieldsEmpty(): boolean {
+  private bothCampusSelected(): boolean {
+    return this.state.campus === 'both';
+  }
+
+  private allGeAttributesSelected(): boolean {
+    return this.state.geClassesAttribute.length === 0;
+  }
+
+  private allCourseAttributesSelected(): boolean {
+    return this.state.courseAttr === 'all';
+  }
+
+  private otherFieldsHaveValidValue(): boolean {
     if (!this.isInstructorEmpty()) {
       return false;
     }
@@ -455,7 +464,16 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     if (!this.isClassNoEmpty()) {
       return false;
     }
-    if (this.isValidInstructionModeSelected()) {
+    if (!this.isValidInstructionModeSelected()) {
+      return false;
+    }
+    if (!this.bothCampusSelected()) {
+      return false;
+    }
+    if (!this.allGeAttributesSelected()) {
+      return false;
+    }
+    if (!this.allCourseAttributesSelected()) {
       return false;
     }
     return true;
