@@ -8,6 +8,8 @@ export class GeCourseAttribute {
   private static courseAttrArr: string[] = [];
 
   public static addGeAttrs(_class: IClass, geAttrs: IOptionProps[]): string {
+    // To expand GE attributes use the values from Course Attribute field whereas
+    // to expand GE Designation attributes use the values from the Couse Description field.
     GeCourseAttribute.courseAttrArr = _class.courseAttr.split(', ');
     let fullGeCourseAttr: any = [];
     if (!GeCourseAttribute.courseAttrArr.includes('General Education')) {
@@ -121,6 +123,8 @@ export class GeCourseAttribute {
       'Writing Intensive',
     ];
     const result: string[] = [];
+    // To expand GE attributes use the values from Course Attribute field whereas
+    // to expand GE Designation attributes use the values from the Couse Description field.
     const courseDescArr = courseDescription.split(', ');
     for (const courseDesc of courseDescArr) {
       if (validGeDesignationAttributes.includes(courseDesc)) {
