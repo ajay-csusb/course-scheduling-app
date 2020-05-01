@@ -558,7 +558,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       courseAttr: selectedValue,
     });
-    this.userInput.setCourseAttr(selectedValue);
+    this.userInput.setCourseAttr('');
   }
 
   private updateSessionCode(e: any) {
