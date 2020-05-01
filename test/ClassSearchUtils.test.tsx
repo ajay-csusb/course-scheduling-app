@@ -233,12 +233,12 @@ describe('fetch parameters', () => {
   });
 
   describe('when courseAttribute is set', () => {
-    it('should pass the value without any changes', () => {
+    it('should pass the an empty value', () => {
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
       classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'FOO' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const courseAttrArgument = fetchMock.lastOptions();
-      expect(courseAttrArgument.body).toMatch(new RegExp('"crse_attr":"FOO"'));
+      expect(courseAttrArgument.body).toMatch(new RegExp('"crse_attr":""'));
     });
   });
 
@@ -467,7 +467,7 @@ describe('fetch parameters', () => {
       classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'foo' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       fetchArgument = fetchMock.lastOptions();
-      expect(fetchArgument.body).toMatch(new RegExp('"crse_attr":"FOO"'));
+      expect(fetchArgument.body).toMatch(new RegExp('"crse_attr":""'));
       expect(fetchArgument.body).toMatch(new RegExp('"acad_career":""'));
     });
   });

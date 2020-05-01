@@ -348,4 +348,22 @@ describe('course components', () => {
     });
   });
 
+  describe('course attributes', () => {
+    describe('when a class has missing course attributes', () => {
+      it('should not show empty class attributes', () => {
+        const classWithMissingCourseAttributes = TestUtils.copyObject(classJson);
+        classWithMissingCourseAttributes.courseAttr = ', GE-A4 Critical Thinking, , GE-B2 Life Sciences';
+        const classCards: JSX.Element = (
+          <ClassesCards
+            classes={classWithMissingCourseAttributes}
+            currentTerm={'0000'}
+          />
+        );
+        const classesCardsComponent = mount(classCards);
+        expect(classesCardsComponent.html()).toContain('GE-A4 Critical Thinking, GE-B2 Life Sciences');
+      });
+    });
+  });
+  
+
 });
