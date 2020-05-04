@@ -3,6 +3,7 @@ import { IClass } from './Class';
 import { IOptionProps } from '@blueprintjs/core';
 import { GeCourseAttribute } from './GeCourseAttribute';
 import { Utils } from './Utils';
+import * as CourseAttributes from './CourseAttributes';
 
 export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
                           callbackOnFailure: (error: string) => void): void {
@@ -100,34 +101,15 @@ export function getNoOfAvailableSeats(classes: IClass): number {
   return 0;
 }
 
-export function getClassType(classes: IClass): string | null {
-  if (classes.ssrComponent === 'LEC') {
-    return 'Lecture';
-  }
-  if (classes.ssrComponent === 'LAB') {
-    return 'Lab';
-  }
-  if (classes.ssrComponent === 'SEM') {
-    return 'Seminar';
-  }
-  if (classes.ssrComponent === 'SUP') {
-    return 'Supplemental';
-  }
-  if (classes.ssrComponent === 'ACT') {
-    return 'Activity';
-  }
-  return null;
-}
-
 export function getClassStatus(classes: IClass): string {
-  const availableSeats = classes.enrolledCapacity - classes.enrolledTotal;
-  if (availableSeats > 1) {
-    return 'Open';
-  }
+  const classStatus: string = classes.enrollmentStatus;
   if (isWaitlist(classes)) {
     return 'Waitlist';
   }
-  return 'Closed';
+  if (classStatus === 'Close') {
+    return 'Closed';
+  }
+  return classStatus;
 }
 
 export function getInstructionMode(classes: IClass): string {
@@ -233,6 +215,9 @@ export function mergeAttributes(classes: IClass[]): IClass[] {
     if (isDuplicateClass(prevClass, currClass)) {
       results[size].courseAttr = combineAttr(prevClass, currClass);
       results[size].geCourseAttr += ', ' + currClass.geCourseAttr;
+      if (currClass.courseAttrDescription.length !== 0) {
+        results[size].courseAttrDescription += ', ' + currClass.courseAttrDescription;
+      }
     } else {
       results.push(classes[_class]);
     }
@@ -253,17 +238,37 @@ function combineAttr(prevClass: IClass, currClass: IClass): string {
 function isDuplicateClass(prevClass: IClass, currClass: IClass): boolean {
   return (prevClass.classNumber === currClass.classNumber);
 }
+
 function sortBySubject(classes: IClass[]): IClass[] {
   return classes.sort((a, b) => {
     return a.subject.localeCompare(b.subject);
   });
 }
 
+function sortByClassSection(a: IClass, b: IClass): number {
+  return parseInt(a.classSection, 10) - parseInt(b.classSection, 10);
+}
+
+function normalizeCatalogNo(a: string, b: string): string[] {
+  if (a.length !== 10) {
+    a = a.padStart(10, '0');
+  }
+  if (b.length !== 10) {
+    b = b.padStart(10, '0');
+  }
+  return [a, b];
+}
+
 export function sortByCatalogNo(classes: IClass[]): IClass[] {
-  return classes.sort((a, b) => {
-    return ((parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10))
-      || parseInt(a.classSection, 10) - parseInt(b.classSection, 10));
-  });
+  return classes.sort((a, b) => performSort(a, b));
+}
+
+function performSort(a: IClass, b: IClass): number {
+    const [catalogA, catalogB] = normalizeCatalogNo(a.catalogNo, b.catalogNo);
+    return (parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10)
+    || catalogA.localeCompare(catalogB)
+    || sortByClassSection(a, b)
+    );
 }
 
 export function sortClasses(classes: IClass[]): IClass[] {
@@ -273,21 +278,7 @@ export function sortClasses(classes: IClass[]): IClass[] {
 export function expandCourseAttribute(courseAttrAbbr: string): string {
   const results: string[] = [];
   const courseAttrArr = courseAttrAbbr.split(', ');
-  const courseAttrExpanded = {
-    ASTD: 'Asian Studies',
-    CLST: 'Chicano(a)/Latino(a) Studies',
-    CSLI: 'Service Learning',
-    DES: 'GE Designation',
-    EBK: 'eBook',
-    ETHN: 'Ethnic Studies',
-    GE: 'General Education',
-    GSS: 'Gender and Sexuality Studies',
-    LCCM: 'Low Cost Course Materials',
-    LTAM: 'Latin American Studies',
-    SA: 'Study Abroad',
-    WSTD: 'Women\'s Studies',
-    ZCCM: 'Zero Cost Course Materials',
-  };
+  const courseAttrExpanded = CourseAttributes.getValidCourseAttributes();
   for (const courseAttr of  courseAttrArr) {
     const fullCourseAttr = courseAttrExpanded[courseAttr];
     if (fullCourseAttr !== undefined) {
@@ -305,20 +296,50 @@ export function expandCourseAttribute(courseAttrAbbr: string): string {
 export function parseCourseAttributes(classes: IClass[], geCourseAttrs: IOptionProps[]): IClass[] {
   const mergedClasses = mergeAttributes(classes);
   for (const _class of mergedClasses) {
-    const expandedCourseAttr = expandCourseAttribute(_class.courseAttr);
-    _class.courseAttr = expandedCourseAttr;
-    _class.courseAttr = GeCourseAttribute.addGeAttrs(_class, geCourseAttrs);
+    setCourseAttribute(_class, geCourseAttrs);
   }
   return mergedClasses;
+}
+
+function setCourseAttribute(_class: IClass, geCourseAttrs: IOptionProps[]): void {
+  _class.courseAttr =  expandCourseAttribute(_class.courseAttr);
+  if (_class.courseAttr.includes('General Education')) {
+    _class.courseAttr = GeCourseAttribute.addGeAttrs(_class, geCourseAttrs);
+  }
+  if (_class.courseAttr.includes('GE Designation')) {
+    _class.courseAttr = GeCourseAttribute.addGeDesignationAttrs(_class);
+  }
 }
 
 export function isWaitlist(classes: IClass): boolean {
   const inWaitlist = classes.waitlistTotal;
   const waitlistCapacity = classes.waitlistCapacity;
   return (
-    classes.enrolledCapacity - classes.enrolledTotal <= 1
+    classes.enrolledCapacity - classes.enrolledTotal < 1
     && inWaitlist >= 0
-    && waitlistCapacity - inWaitlist !== 0
-    && waitlistCapacity !== 0
+    && waitlistCapacity - inWaitlist > 0
+    && waitlistCapacity > 0
   );
+}
+
+export function isValidTermRange(currentTerm: string, classTerm: string, currentMonth: number): boolean {
+  const currentTermId = parseInt(currentTerm.charAt(currentTerm.length - 1), 10);
+  const classTermId = parseInt(classTerm.charAt(classTerm.length - 1), 10);
+
+  if (parseInt(currentTerm, 10) - parseInt(classTerm, 10) >= 6) {
+    return false;
+  }
+  if (currentTermId === classTermId) {
+    return true;
+  }
+  if (currentTermId < currentMonth) {
+    return false;
+  }
+  if (currentTermId - currentMonth <= 5 && currentTermId - currentMonth > 0) {
+    return true;
+  }
+  if (currentTermId === 2 &&  10 >= currentMonth  && currentMonth <= 12) {
+    return true;
+  }
+  return false;
 }

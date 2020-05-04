@@ -15,6 +15,7 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -22,8 +23,10 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -150,10 +153,6 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -253,6 +252,7 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -260,8 +260,10 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -388,10 +390,6 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -497,6 +495,7 @@ exports[`building code and room number when a class does not have a building cod
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -504,8 +503,10 @@ exports[`building code and room number when a class does not have a building cod
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -632,10 +633,6 @@ exports[`building code and room number when a class does not have a building cod
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -735,6 +732,7 @@ exports[`building code and room number when a class has a building code and room
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -742,8 +740,10 @@ exports[`building code and room number when a class has a building code and room
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -868,10 +868,6 @@ exports[`building code and room number when a class has a building code and room
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -973,6 +969,7 @@ exports[`building code and room number when a class has a building code as TBD s
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -980,8 +977,10 @@ exports[`building code and room number when a class has a building code as TBD s
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -1108,10 +1107,6 @@ exports[`building code and room number when a class has a building code as TBD s
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -1211,6 +1206,7 @@ exports[`building code and room number when a class has building code as OL shou
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -1218,8 +1214,10 @@ exports[`building code and room number when a class has building code as OL shou
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -1346,10 +1344,6 @@ exports[`building code and room number when a class has building code as OL shou
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -1449,20 +1443,23 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
       "description": "ACCT GOVT & NONPROFIT ORG",
       "employeeId": "001343367",
       "enrolledCapacity": 30,
-      "enrolledTotal": 29,
+      "enrolledTotal": 30,
+      "enrollmentStatus": "Close",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -1479,7 +1476,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -1584,10 +1581,6 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -1605,11 +1598,25 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
           <span />
           Closed
         </div>
-        <div>
+        <div
+          className="course-availability-wrap"
+        >
           <div
             className="course-availability"
           >
-            No Waitlist
+            Seats available: 
+            <span>
+              0
+               / 
+              30
+            </span>
+          </div>
+          <div>
+            <div
+              className="course-availability"
+            >
+              No Waitlist
+            </div>
           </div>
         </div>
       </div>
@@ -1694,6 +1701,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -1701,13 +1709,15 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 10,
+      "enrollmentStatus": "Open",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -1724,7 +1734,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -1829,10 +1839,6 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -1853,10 +1859,10 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
         <div
           className="course-availability"
         >
-          Seats Available: 
+          Seats available: 
           <span>
             20
-            /
+             / 
             30
           </span>
         </div>
@@ -1927,7 +1933,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
 </ClassesCards>
 `;
 
-exports[`seats text verbiage when a class has seats available on the waitlist should display the number of students on waitlist and the total seats on waitlist 1`] = `
+exports[`seats text verbiage when a class has seats available on the waitlist should display the available seats on waitlist and the total number of seats on waitlist 1`] = `
 <ClassesCards
   classes={
     Object {
@@ -1942,6 +1948,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -1949,13 +1956,15 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 30,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -1972,7 +1981,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -2075,10 +2084,6 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -2098,16 +2103,30 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
           <span />
           Waitlist
         </div>
-        <div>
+        <div
+          className="course-availability-wrap"
+        >
           <div
             className="course-availability"
           >
-            Waitlist: 
+            Seats available: 
             <span>
-              25
-              /
+              0
+               / 
               30
             </span>
+          </div>
+          <div>
+            <div
+              className="course-availability"
+            >
+              Waitlist spots available: 
+              <span>
+                5
+                 / 
+                30
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -2177,7 +2196,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
 </ClassesCards>
 `;
 
-exports[`seats text verbiage when a class is closed and has seats available should not display available seats 1`] = `
+exports[`seats text verbiage when a class is closed should display available seats 1`] = `
 <ClassesCards
   classes={
     Object {
@@ -2192,6 +2211,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -2199,13 +2219,15 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 30,
+      "enrollmentStatus": "Close",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -2222,7 +2244,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -2327,10 +2349,6 @@ exports[`seats text verbiage when a class is closed and has seats available shou
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -2348,16 +2366,30 @@ exports[`seats text verbiage when a class is closed and has seats available shou
           <span />
           Closed
         </div>
-        <div>
+        <div
+          className="course-availability-wrap"
+        >
           <div
             className="course-availability"
           >
-            Waitlist: 
+            Seats available: 
             <span>
-              30
-              /
+              0
+               / 
               30
             </span>
+          </div>
+          <div>
+            <div
+              className="course-availability"
+            >
+              Waitlist spots available: 
+              <span>
+                0
+                 / 
+                30
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -2427,7 +2459,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
 </ClassesCards>
 `;
 
-exports[`seats text verbiage when a class is closed and has seats available should not display seats on waitlist 1`] = `
+exports[`seats text verbiage when a class is closed should display available spots on the waitlist 1`] = `
 <ClassesCards
   classes={
     Object {
@@ -2442,6 +2474,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -2449,13 +2482,15 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 30,
+      "enrollmentStatus": "Close",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "9999",
+      "quarter": "0008",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -2472,7 +2507,7 @@ exports[`seats text verbiage when a class is closed and has seats available shou
       "wed": "Y",
     }
   }
-  currentTerm="0000"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -2577,10 +2612,6 @@ exports[`seats text verbiage when a class is closed and has seats available shou
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -2598,16 +2629,30 @@ exports[`seats text verbiage when a class is closed and has seats available shou
           <span />
           Closed
         </div>
-        <div>
+        <div
+          className="course-availability-wrap"
+        >
           <div
             className="course-availability"
           >
-            Waitlist: 
+            Seats available: 
             <span>
-              30
-              /
+              0
+               / 
               30
             </span>
+          </div>
+          <div>
+            <div
+              className="course-availability"
+            >
+              Waitlist spots available: 
+              <span>
+                0
+                 / 
+                30
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -2692,6 +2737,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -2699,13 +2745,15 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 30,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "0000",
+      "quarter": "0002",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -2722,7 +2770,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "wed": "Y",
     }
   }
-  currentTerm="9999"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -2825,10 +2873,6 @@ exports[`seats text verbiage when a class is from the previous term and has seat
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -2930,6 +2974,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -2937,13 +2982,15 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 20,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
       "mon": "Y",
-      "quarter": "0000",
+      "quarter": "0002",
       "room": "101",
       "sat": "N",
       "sessionCode": "1",
@@ -2960,7 +3007,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "wed": "Y",
     }
   }
-  currentTerm="9999"
+  currentTerm="0008"
 >
   <div
     className="course result-item"
@@ -3065,10 +3112,6 @@ exports[`seats text verbiage when a class is from the previous term and has seat
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -3168,6 +3211,7 @@ exports[`when a class has low cost course material should display icon for low c
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "Low Cost Course Materials, GE1-FOO",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -3175,8 +3219,10 @@ exports[`when a class has low cost course material should display icon for low c
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -3301,10 +3347,6 @@ exports[`when a class has low cost course material should display icon for low c
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -3420,6 +3462,7 @@ exports[`when a class has zero cost course material should display icon for zero
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "Zero Cost Course Materials",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -3427,8 +3470,10 @@ exports[`when a class has zero cost course material should display icon for zero
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -3553,10 +3598,6 @@ exports[`when a class has zero cost course material should display icon for zero
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -3672,6 +3713,7 @@ exports[`when a class has zero cost course materials and low cost course materia
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "Zero Cost Course Materials, Low Cost Course Materials",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -3679,8 +3721,10 @@ exports[`when a class has zero cost course materials and low cost course materia
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -3805,10 +3849,6 @@ exports[`when a class has zero cost course materials and low cost course materia
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span
@@ -3928,6 +3968,7 @@ exports[`when a class is a fully online should not display the room number in th
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -3935,8 +3976,10 @@ exports[`when a class is a fully online should not display the room number in th
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "FO",
       "instructorName": "Dyck, Harold",
@@ -4063,10 +4106,6 @@ exports[`when a class is a fully online should not display the room number in th
             01
              • 
           </span>
-          <span>
-            Seminar
-             • 
-          </span>
           <span
             className="course-id"
           >
@@ -4160,6 +4199,7 @@ exports[`when a class results component is displayed should display the correct 
       "classStartTime": "12:00 PM",
       "classStatus": "Active",
       "courseAttr": "",
+      "courseAttrDescription": "",
       "courseId": "000001",
       "csuUnits": 4,
       "degreeType": "PBAC",
@@ -4167,8 +4207,10 @@ exports[`when a class results component is displayed should display the correct 
       "employeeId": "001343367",
       "enrolledCapacity": 30,
       "enrolledTotal": 28,
+      "enrollmentStatus": "",
       "facilityId": "JB0113",
       "fri": "N",
+      "fullSsrComponent": "",
       "geCourseAttr": "",
       "instructionMode": "P",
       "instructorName": "Dyck, Harold",
@@ -4293,10 +4335,6 @@ exports[`when a class results component is displayed should display the correct 
           <span>
             Section 
             01
-             • 
-          </span>
-          <span>
-            Seminar
              • 
           </span>
           <span

@@ -1,4 +1,4 @@
-name: Unit and integration tests
+name: Class search CI/CD pipeline
 on:
   push:
 jobs:
@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-16.04
     strategy:
       matrix:
-        node-version: [10.x]
-        containers: [1, 2]
+        node-version: [12.x]
+        containers: [1, 2, 3, 4]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -17,7 +17,8 @@ jobs:
     - run: npm install
     - run: webpack
     - run: npm run build
-    - run: npm run test
+    - run: npm run test 
+    - run: cypress run --browser chrome --headless 
     - uses: actions-hub/gcloud@master
       env:
         PROJECT_ID: csusb-class-schedule

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ClassSearchForm } from './ClassSearchForm';
 import { ClassSearchResults } from './ClassSearchResults';
 import { IClass, Class, IMeetingDate } from './Class';
-import { ISubject } from './Subject';
+import { ISubject, Subject } from './Subject';
 import { UserInput } from './UserInput';
 import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
@@ -10,7 +10,10 @@ import { MeetingTime } from './MeetingTime';
 import { Watchdog } from './Watchdog';
 import { InstructionMode } from './InstructionMode';
 import { FilterClasses } from './FilterClasses';
-import { Utils } from './Utils';
+import { GeCourseAttribute } from './GeCourseAttribute';
+import * as CourseAttributes from './CourseAttributes';
+import * as ClassSearch from './ClassSearch.d';
+
 interface IClassSearchContainerState {
   term: string;
   campus: string;
@@ -54,6 +57,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private resultsSection: any;
 
+  private allSubjects: any;
+
   constructor(props: any) {
     super(props);
     this.state = this.defaultFormValues();
@@ -82,6 +87,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.classesFound = this.classesFound.bind(this);
     this.classesNotFound = this.classesNotFound.bind(this);
     this.onEnterKeyPress = this.onEnterKeyPress.bind(this);
+    this.updateSubjectDropdown = this.updateSubjectDropdown.bind(this);
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
@@ -90,6 +96,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.currentTermId = '';
     this.userInput = new UserInput();
     this.resultsSection = React.createRef();
+    this.allSubjects = '';
   }
 
   public render(): JSX.Element {
@@ -127,6 +134,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateTerm(e: any): void {
+    this.updateSubjectDropdown(e.target.value);
     this.setState({
       term: e.target.value,
     });
@@ -238,10 +246,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         transformedClass.push(Class.transformToClass(_class));
       });
     }
-    
+
     const validClasses = this.filterClasses(transformedClass);
     const sortedClasses = this.sortClasses(validClasses);
-    this.allResults = this.processCourseAttributes(sortedClasses);
+    const classesWithFullCourseAttributes = this.processCourseAttributes(sortedClasses);
+    const filteredByGeAttributes = GeCourseAttribute.filter(classesWithFullCourseAttributes, this.state.geClassesAttribute, this.state.term);
+    this.allResults = CourseAttributes.filter(filteredByGeAttributes, this.state.courseAttr);
     this.setState({
       noClasses: false,
       isLoading: false,
@@ -250,7 +260,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private filterClasses(classes: IClass[]): IClass[] {
-    const activeClasses = FilterClasses.filterByActiveClasses(classes)
+    const activeClasses = FilterClasses.filterByActiveClasses(classes);
     const filteredClasses = MeetingTime.filter(activeClasses, this.state.startTime, this.state.endTime);
     return InstructionMode.filter(filteredClasses, this.state.instructionMode);
   }
@@ -277,7 +287,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private onSubmit(): any {
-    if (this.isSubjectEmpty() && this.areOtherFieldsEmpty()) {
+    if (this.isSubjectEmpty() && this.otherFieldsDoNotHaveValidValues()) {
       this.setState({
         showErrorMessage: true,
       });
@@ -312,8 +322,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         abbr: '',
       },
       courseNo: '',
-      startTime: new Date('1899-01-01T00:00:00'),
-      endTime: new Date('1899-01-01T23:00:00'),
+      startTime: new Date('1899/01/01 00:00:00'),
+      endTime: new Date('1899/01/01 23:00:00'),
       meetingDate: {
         mon: false,
         tue: false,
@@ -353,25 +363,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private subjectsFound(data: any): void {
-    const subjects: ISubject[] = [];
-    const noOption: ISubject = {
-      abbr: 'all',
-      name: 'All',
-    };
-    subjects.push(noOption);
-    const subjectsArr = data.abbreviationList;
-    if (subjectsArr !== undefined) {
-      subjectsArr.forEach((_subject: any) => {
-        const subject: ISubject = {
-          abbr: '',
-          name: '',
-        };
-        subject.abbr = _subject.subject;
-        subject.name = _subject.subject_DESC;
-        subjects.push(subject);
-      });
-      this.subjects = subjects;
-    }
+    this.allSubjects = data.abbreviationTermList;
+    this.subjects = Subject.getDropdownOptions(data.abbreviationTermList, this.state.term);
     this.setState({ forceReload: true});
   }
 
@@ -380,13 +373,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const termArr: IOptionProps[] = [];
     terms.forEach((_term: any) => {
       if (this.hasCurrentQuarterFlag(_term)) {
-        this.currentTermId = '2206';
+        this.currentTermId = _term.strm;
       }
-      if (_term.strm !== '2208' || !Utils.isProd()) {
-        termArr.push({
-          label: _term.display_STR, value: _term.strm,
-        });
-      }
+      termArr.push({
+        label: _term.display_STR, value: _term.strm,
+      });
     });
     this.term = termArr;
     this.setState({
@@ -445,17 +436,22 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private isValidInstructionModeSelected(): boolean {
-    return (this.state.instructionMode !== 'all'
-      && this.state.instructionMode !== 'p'
-      && this.state.instructionMode !== 'ol'
-    );
+    return this.state.instructionMode === 'all';
   }
 
-  private isGeClassesAttributeEmpty(): boolean {
-    return (this.state.geClassesAttribute === '');
+  private bothCampusSelected(): boolean {
+    return this.state.campus === 'both';
   }
 
-  private areOtherFieldsEmpty(): boolean {
+  private allGeAttributesSelected(): boolean {
+    return this.state.geClassesAttribute.length === 0;
+  }
+
+  private allCourseAttributesSelected(): boolean {
+    return this.state.courseAttr === 'all';
+  }
+
+  private otherFieldsDoNotHaveValidValues(): boolean {
     if (!this.isInstructorEmpty()) {
       return false;
     }
@@ -468,10 +464,16 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     if (!this.isClassNoEmpty()) {
       return false;
     }
-    if (this.isValidInstructionModeSelected()) {
+    if (!this.isValidInstructionModeSelected()) {
       return false;
     }
-    if (!this.isGeClassesAttributeEmpty()) {
+    if (!this.bothCampusSelected()) {
+      return false;
+    }
+    if (!this.allGeAttributesSelected()) {
+      return false;
+    }
+    if (!this.allCourseAttributesSelected()) {
       return false;
     }
     return true;
@@ -574,7 +576,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       courseAttr: selectedValue,
     });
-    this.userInput.setCourseAttr(selectedValue);
+    this.userInput.setCourseAttr('');
   }
 
   private updateSessionCode(e: any) {
@@ -599,10 +601,18 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateGeClassAttr(e: any) {
+    const value = e.target.value;
     this.setState({
-      geClassesAttribute: e.target.value,
+      geClassesAttribute: value,
     });
-    this.userInput.setGeClassesAttr(e.target.value);
+    if (value.length === 0) {
+      this.userInput.setCourseAttr('');
+    }
+    this.userInput.setGeClassesAttr(value);
+    if (parseInt(this.state.term, 10) >= ClassSearch.app.settings.firstSemester) {
+      this.userInput.setCourseAttr('');
+      this.userInput.setGeClassesAttr('');
+    }
   }
 
   private processDropDownListData(data: any): void {
@@ -640,17 +650,21 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private geClassesAttributesFound(data: any): void {
-    const geClasses = data.classAttributeList;
-    const noOption: IOptionProps = {
-      value: '',
-      label: 'All',
-    };
-    this.geClassesAttributes.push(noOption);
-    geClasses.forEach((attribute: any) => {
+    const geClassesQuarter = data.classAttributeQList;
+    const geClassesSem = data.classAttributeSList;
+    geClassesQuarter.forEach((attribute: any) => {
       if (attribute.crse_ATTR === 'GE') {
         this.geClassesAttributes.push({
           label: attribute.descr,
           value: attribute.descr.split(' ')[0],
+        });
+      }
+    });
+    geClassesSem.forEach((attribute: any) => {
+      if (attribute.crse_ATTR === 'GE') {
+        this.geClassesAttributes.push({
+          label: attribute.descr,
+          value: GeCourseAttribute.normalizeCourseDescription(attribute.descr),
         });
       }
     });
@@ -659,4 +673,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     });
   }
 
+  private updateSubjectDropdown(term: string): void {
+    this.subjects = Subject.getDropdownOptions(this.allSubjects, term);
+  }
 }

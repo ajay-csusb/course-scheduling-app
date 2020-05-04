@@ -46,7 +46,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const sessionMarkup = this.getSessionMarkup();
     let courseAttrMarkup = null;
     if (this.classDetails.courseAttr.length !== 0) {
-      courseAttrMarkup = <li><span>Course Attribute </span>{this.classDetails.courseAttr}</li>;
+      courseAttrMarkup = <li><span>Course Attribute </span>{this.sanitizeCourseAttributes(this.classDetails.courseAttr)}</li>;
     }
     const courseMaterialIconMarkup = this.getCourseMaterialIconMarkup();
     return (
@@ -128,28 +128,23 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public getCourseHeaderMarkup(): JSX.Element {
-    const classType = ClassSearchUtils.getClassType(this.classDetails);
     const title = this.getClassFullTitle();
     return (
       <div className="course-header">
           {title}
           <div className="course-details">
               <span>Section {this.classDetails.classSection} • </span>
-              <span>{classType} • </span>
+              {this.getClassTypeMarkup()}
               <span className="course-id">Class No. {this.classDetails.classNumber}</span>
           </div>
       </div>
     );
   }
 
-  public isCurrentTerm(): boolean {
-    return (this.props.currentTerm === this.classDetails.quarter) || parseInt(this.classDetails.quarter, 10) >= 2204;
-  }
-
   public getClassStatusMarkup(): JSX.Element {
     let classStatus = 'Closed';
     let classStatusClassName = 'course-status course-status--closed';
-    if (this.isCurrentTerm()) {
+    if (this.isValidTerm(this.classDetails.quarter)) {
       classStatus = ClassSearchUtils.getClassStatus(this.classDetails);
       if (classStatus === 'Open') {
         classStatusClassName = 'course-status course-status--open';
@@ -165,25 +160,30 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   public getClassAvailabilityMarkup(): JSX.Element {
     const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(this.classDetails);
     const waitlistMarkup = <div>{this.getWaitlistMarkup()}</div>;
-    if (!this.isCurrentTerm()) {
+    if (!this.isValidTerm(this.classDetails.quarter)) {
       return (<React.Fragment/>);
     }
-    if (ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
-      return (<>{waitlistMarkup}</>);
-    }
-    if (ClassSearchUtils.isWaitlist(this.classDetails)) {
-      return (<>{waitlistMarkup}</>);
+    if (ClassSearchUtils.isWaitlist(this.classDetails) || ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
+      return (
+        <div className="course-availability-wrap">
+          <div className="course-availability">
+            Seats available: <span>{noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}</span>
+          </div>
+        {waitlistMarkup}
+        </div>
+      );
     }
     return (
       <div className="course-availability">
-      Seats Available: <span>{noOfSeatsAvailable}/{this.classDetails.enrolledCapacity}</span>
+        Seats available: <span>{noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}</span>
       </div>
     );
   }
 
   public getWaitlistMarkup(): JSX.Element {
-    const waitlistNo = this.classDetails.waitlistTotal;
-    if (!this.isCurrentTerm()) {
+    const waitlistCapacity = this.classDetails.waitlistCapacity;
+    const numberOfSeatsInWaitlist = this.classDetails.waitlistCapacity -  this.classDetails.waitlistTotal;
+    if (!this.isValidTerm(this.classDetails.quarter)) {
       return (<React.Fragment/>);
     }
     if (this.classDetails.waitlistCapacity === 0) {
@@ -191,7 +191,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     }
     return (
       <div className="course-availability">
-      Waitlist: <span>{waitlistNo}/{this.classDetails.waitlistCapacity}</span>
+        Waitlist spots available: <span>{numberOfSeatsInWaitlist} / {waitlistCapacity}</span>
       </div>
     );
   }
@@ -257,6 +257,27 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       return <></>;
     }
     return (<div className="course--icons">{zeroCostIcon}{lowCostIcon}</div>);
+  }
+  public getClassTypeMarkup(): JSX.Element {
+    let classType: JSX.Element = <></>;
+    if (this.classDetails.fullSsrComponent) {
+      classType = (<span>{this.classDetails.fullSsrComponent} • </span>);
+    }
+    return classType;
+  }
+
+  private isValidTerm(quarter: string): boolean {
+    const CurrMonth = new Date().getMonth() + 1;
+    return (ClassSearchUtils.isValidTermRange(this.props.currentTerm, quarter, CurrMonth) === true);
+  }
+
+  private sanitizeCourseAttributes(courseAttributes: string) {
+    let result = courseAttributes;
+    while (result.trim().startsWith(', ')) {
+      // remove all ocuurances of ', ' from the start of the string
+      result = result.slice(2);
+    }
+    return result.replace(' , ', ' ');
   }
 
 }

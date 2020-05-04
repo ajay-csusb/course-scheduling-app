@@ -93,6 +93,7 @@ export class AdvancedFilterFieldset extends React.Component<
   private getSelectListGeClassesAttributesComponent(): JSX.Element {
     return (
       <SelectListGeClassesAttributes
+        currentTerm={this.props.currentTermId}
         geClassesAttributes={this.props.geClassesAttributes}
         geClassesAttribute={this.props.geClassesAttribute}
         onChangeOfGeClassesAttribute={this.props.onChangeOfGeClassesAttribute}

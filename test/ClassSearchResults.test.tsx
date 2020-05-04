@@ -36,6 +36,7 @@ describe('Given a class search results component', () => {
     beforeAll(() => {
       classJson.enrolledTotal = 27;
       classJson.waitlistTotal = 0;
+      classJson.enrollmentStatus = 'Open';
       classSearchResultsWrapper = mountClassSearchResultsComponent([classJson, baseClassJson]);
     });
 
@@ -48,7 +49,7 @@ describe('Given a class search results component', () => {
       expect(classSearchResultsWrapper.html()).toContain('Open');
     });
     it('should display the number of available seats as 3', () => {
-      const markup = '<div class="course-availability">Seats Available: <span>3/30</span></div>';
+      const markup = '<div class="course-availability">Seats available: <span>3 / 30</span></div>';
       expect(classSearchResultsWrapper.html()).toContain(markup);
     });
 
@@ -61,9 +62,12 @@ describe('Given a class search results component', () => {
   describe('when a user searches for classes which are are not open for enrollment', () => {
     let classSearchResultsWrapper: ReactWrapper;
     beforeAll(() => {
+      baseClassJson.quarter = '2194';
       baseClassJson.enrolledTotal = 30;
       baseClassJson.waitlistTotal = 30;
       baseClassJson.waitlistCapacity = 30;
+      // Close not Closed. This is not a typo.
+      baseClassJson.enrollmentStatus = 'Close';
       classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson]);
     });
 
@@ -74,9 +78,11 @@ describe('Given a class search results component', () => {
     it('should display the CSS class name as course-status--close', () => {
       expect(classSearchResultsWrapper.html()).toContain('course-status--close');
     });
-
-    it('should not display available seats for classes which are closed', () => {
-      expect(classSearchResultsWrapper.text()).not.toContain('seats available');
+    it('should display available seats for classes which are closed', () => {
+      expect(classSearchResultsWrapper.text()).toContain('Seats available');
+    });
+    it('should display number of seats in waitlist', () => {
+      expect(classSearchResultsWrapper.text()).toContain('Waitlist');
     });
 
   });
@@ -97,7 +103,7 @@ describe('Given a class search results component', () => {
     });
 
     it('should not display available seats text', () => {
-      expect(classSearchResultsWrapper.text()).not.toContain('seats available');
+      expect(classSearchResultsWrapper.text()).not.toContain('Seats available');
     });
 
     it('should not display the text Waitlist', () => {
@@ -116,9 +122,9 @@ describe('Given a class search results component', () => {
       const results = mountClassSearchResultsComponent([baseClassJson]);
       expect(results.text()).toContain('Waitlist');
     });
-    it('should display the number of students in the waitlist', () => {
+    it('should display the number of spots available in the waitlist', () => {
       const results = mountClassSearchResultsComponent([baseClassJson]);
-      expect(results.text()).toContain('1/60');
+      expect(results.text()).toContain('59 / 60');
     });
 
     describe('if the class has no waitlist', () => {
@@ -133,6 +139,7 @@ describe('Given a class search results component', () => {
     describe('if the class is open', () => {
       it('should not display the text Waitlist', () => {
         baseClassJson.enrolledTotal = 20;
+        baseClassJson.enrollmentStatus = 'Open';
         const results = mountClassSearchResultsComponent([baseClassJson]);
         expect(results.text()).not.toContain('Waitlist');
       });
