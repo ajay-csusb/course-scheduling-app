@@ -4,8 +4,6 @@ module.exports = {
   output: {
     filename: "course-scheduling-app.js",
     path: __dirname + '/dist/public/js',
-    filename: "course-scheduling-app-dev.js",
-    path: __dirname + '/dist/public/js'
   },
 
   // Enable sourcemaps for debugging webpack's output.

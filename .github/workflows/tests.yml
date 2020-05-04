@@ -1,13 +1,12 @@
-name: Monitor class schedule on production
+name: Browser tests 
 on:
-  schedule:
-    - cron: "*/15 * * * *"
+  push:
 jobs:
   build:
     runs-on: ubuntu-16.04
     strategy:
       matrix:
-        node-version: [13.x]
+        node-version: [12.x]
         containers: [1]
     steps:
     - uses: actions/checkout@v2
@@ -15,10 +14,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Check for all Biology classes
-      uses: cypress-io/github-action@v1
+    - uses: cypress-io/github-action@v1
       with:
         browser: chrome
-        headless: true
-        spec: cypress/integration/SubjectTests.js
-        env: url=https://www.csusb.edu/class-schedule

@@ -1,4 +1,4 @@
-name: Push to Google Storage
+name: Deploy to development environment 
 on:
   push:
 jobs:
@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-16.04
     strategy:
       matrix:
-        node-version: [10.x]
-        containers: [1]
+        node-version: [12.x]
+        containers: [1, 2, 3, 4]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -24,4 +24,4 @@ jobs:
         APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         CLI: gsutil
       with:
-        args: -h "Cache-Control:no-cache,max-age=0" cp -a public-read dist/public/js/course-scheduling-app-dev.* gs://csusb-class-schedule.appspot.com
+        args: -h "Cache-Control:no-cache,max-age=0" cp -a public-read dist/public/js/course-scheduling-app.* gs://csusb-class-schedule.appspot.com
