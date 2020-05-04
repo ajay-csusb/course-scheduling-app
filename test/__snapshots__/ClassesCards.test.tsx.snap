@@ -71,6 +71,7 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -308,6 +309,7 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -551,6 +553,7 @@ exports[`building code and room number when a class does not have a building cod
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -788,6 +791,7 @@ exports[`building code and room number when a class has a building code and room
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -1025,6 +1029,7 @@ exports[`building code and room number when a class has a building code as TBD s
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -1262,6 +1267,7 @@ exports[`building code and room number when a class has building code as OL shou
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -1499,6 +1505,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -1757,6 +1764,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -2004,6 +2012,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -2267,6 +2276,7 @@ exports[`seats text verbiage when a class is closed should display available sea
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -2530,6 +2540,7 @@ exports[`seats text verbiage when a class is closed should display available spo
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -2793,6 +2804,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -3030,6 +3042,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -3267,6 +3280,7 @@ exports[`when a class has low cost course material should display icon for low c
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -3518,6 +3532,7 @@ exports[`when a class has zero cost course material should display icon for zero
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -3769,6 +3784,7 @@ exports[`when a class has zero cost course materials and low cost course materia
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -4024,6 +4040,7 @@ exports[`when a class is a fully online should not display the room number in th
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
@@ -4255,6 +4272,7 @@ exports[`when a class results component is displayed should display the correct 
             captureDismiss={false}
             defaultIsOpen={false}
             disabled={false}
+            fill={false}
             hasBackdrop={false}
             hoverCloseDelay={300}
             hoverOpenDelay={150}
