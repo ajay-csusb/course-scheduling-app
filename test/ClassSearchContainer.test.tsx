@@ -323,19 +323,3 @@ describe('Loading message', () => {
     expect(classSearchContainerWrapper.html()).toContain('<p>0 classes found');
   });
 });
-
-describe('When a search is performed without entering subject', () => {
-  let classSearchContainerWrapper = null;
-  beforeEach(() => {
-    classSearchContainerWrapper = mount(<ClassSearchContainer />);
-    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-  });
-
-  it('should display error message', () => {
-    expect(classSearchContainerWrapper.html()).toContain('Please select a Course Subject');
-  });
-
-});
-  // @Todo add a test to check if a class has both GE attributes and GE designation
-  // attributes then it should show both of them after they are filtered by
-  // course attribute and GE attribute

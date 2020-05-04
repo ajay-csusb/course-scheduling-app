@@ -1,8 +1,7 @@
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { TestUtils } from './TestUtils';
-import { Class } from '../src/public/js/Class';
 // tslint:disable:max-line-length
 
 describe('Class search form', () => {
@@ -34,7 +33,7 @@ describe('Class search form', () => {
       });
 
       it('should display error message', () => {
-        expect(searchFormComponent.html()).toContain('Please select a Course Subject');
+        expect(searchFormComponent.html()).not.toContain('Please select a Course Subject');
       });
     });
   });
