@@ -287,7 +287,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private onSubmit(): any {
-    if (this.isSubjectEmpty() && this.otherFieldsHaveValidValue()) {
+    if (this.isSubjectEmpty() && this.otherFieldsDoNotHaveValidValues()) {
       this.setState({
         showErrorMessage: true,
       });
@@ -451,7 +451,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return this.state.courseAttr === 'all';
   }
 
-  private otherFieldsHaveValidValue(): boolean {
+  private otherFieldsDoNotHaveValidValues(): boolean {
     if (!this.isInstructorEmpty()) {
       return false;
     }
