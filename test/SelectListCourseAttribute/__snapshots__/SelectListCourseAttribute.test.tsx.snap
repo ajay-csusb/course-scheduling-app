@@ -21,14 +21,6 @@ Array [
           "value": "CLST",
         },
         Object {
-          "label": "Service Learning",
-          "value": "CSLI",
-        },
-        Object {
-          "label": "GE Designation",
-          "value": "DES",
-        },
-        Object {
           "label": "eBook",
           "value": "EBK",
         },
@@ -37,16 +29,24 @@ Array [
           "value": "ETHN",
         },
         Object {
+          "label": "GE Designation",
+          "value": "DES",
+        },
+        Object {
           "label": "Gender and Sexuality Studies",
           "value": "GSS",
+        },
+        Object {
+          "label": "Latin American Studies",
+          "value": "LTAM",
         },
         Object {
           "label": "Low Cost Course Materials",
           "value": "LCCM",
         },
         Object {
-          "label": "Latin American Studies",
-          "value": "LTAM",
+          "label": "Service Learning",
+          "value": "CSLI",
         },
         Object {
           "label": "Study Abroad",
@@ -95,20 +95,6 @@ Array [
           Chicano(a)/Latino(a) Studies
         </option>
         <option
-          key="CSLI"
-          label="Service Learning"
-          value="CSLI"
-        >
-          Service Learning
-        </option>
-        <option
-          key="DES"
-          label="GE Designation"
-          value="DES"
-        >
-          GE Designation
-        </option>
-        <option
           key="EBK"
           label="eBook"
           value="EBK"
@@ -123,11 +109,25 @@ Array [
           Ethnic Studies
         </option>
         <option
+          key="DES"
+          label="GE Designation"
+          value="DES"
+        >
+          GE Designation
+        </option>
+        <option
           key="GSS"
           label="Gender and Sexuality Studies"
           value="GSS"
         >
           Gender and Sexuality Studies
+        </option>
+        <option
+          key="LTAM"
+          label="Latin American Studies"
+          value="LTAM"
+        >
+          Latin American Studies
         </option>
         <option
           key="LCCM"
@@ -137,11 +137,11 @@ Array [
           Low Cost Course Materials
         </option>
         <option
-          key="LTAM"
-          label="Latin American Studies"
-          value="LTAM"
+          key="CSLI"
+          label="Service Learning"
+          value="CSLI"
         >
-          Latin American Studies
+          Service Learning
         </option>
         <option
           key="SA"
@@ -222,20 +222,6 @@ Array [
         Chicano(a)/Latino(a) Studies
       </option>
       <option
-        key="CSLI"
-        label="Service Learning"
-        value="CSLI"
-      >
-        Service Learning
-      </option>
-      <option
-        key="DES"
-        label="GE Designation"
-        value="DES"
-      >
-        GE Designation
-      </option>
-      <option
         key="EBK"
         label="eBook"
         value="EBK"
@@ -250,11 +236,25 @@ Array [
         Ethnic Studies
       </option>
       <option
+        key="DES"
+        label="GE Designation"
+        value="DES"
+      >
+        GE Designation
+      </option>
+      <option
         key="GSS"
         label="Gender and Sexuality Studies"
         value="GSS"
       >
         Gender and Sexuality Studies
+      </option>
+      <option
+        key="LTAM"
+        label="Latin American Studies"
+        value="LTAM"
+      >
+        Latin American Studies
       </option>
       <option
         key="LCCM"
@@ -264,11 +264,11 @@ Array [
         Low Cost Course Materials
       </option>
       <option
-        key="LTAM"
-        label="Latin American Studies"
-        value="LTAM"
+        key="CSLI"
+        label="Service Learning"
+        value="CSLI"
       >
-        Latin American Studies
+        Service Learning
       </option>
       <option
         key="SA"

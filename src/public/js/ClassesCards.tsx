@@ -46,7 +46,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const sessionMarkup = this.getSessionMarkup();
     let courseAttrMarkup = null;
     if (this.classDetails.courseAttr.length !== 0) {
-      courseAttrMarkup = <li><span>Course Attribute </span>{this.classDetails.courseAttr}</li>;
+      courseAttrMarkup = <li><span>Course Attribute </span>{this.sanitizeCourseAttributes(this.classDetails.courseAttr)}</li>;
     }
     const courseMaterialIconMarkup = this.getCourseMaterialIconMarkup();
     return (
@@ -269,6 +269,15 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   private isValidTerm(quarter: string): boolean {
     const CurrMonth = new Date().getMonth() + 1;
     return (ClassSearchUtils.isValidTermRange(this.props.currentTerm, quarter, CurrMonth) === true);
+  }
+
+  private sanitizeCourseAttributes(courseAttributes: string) {
+    let result = courseAttributes;
+    while (result.trim().startsWith(', ')) {
+      // remove all ocuurances of ', ' from the start of the string
+      result = result.slice(2);
+    }
+    return result.replace(' , ', ' ');
   }
 
 }

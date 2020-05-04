@@ -8,15 +8,18 @@ export class GeCourseAttribute {
   private static courseAttrArr: string[] = [];
 
   public static addGeAttrs(_class: IClass, geAttrs: IOptionProps[]): string {
+    // To expand GE attributes use the values from Course Attribute field whereas
+    // to expand GE Designation attributes use the values from the Couse Description field.
     GeCourseAttribute.courseAttrArr = _class.courseAttr.split(', ');
     let fullGeCourseAttr: any = [];
     if (!GeCourseAttribute.courseAttrArr.includes('General Education')) {
       return _class.courseAttr;
     }
     const geCourseAttrArr = _class.geCourseAttr.split(', ');
-    fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr , geAttrs);
     if (GeCourseAttribute.isSemesterTerm(_class)) {
       fullGeCourseAttr = GeCourseAttribute.addSemesterGeAttrs(_class, fullGeCourseAttr, geCourseAttrArr);
+    } else {
+      fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr, geAttrs);
     }
     return fullGeCourseAttr.join(', ');
   }
@@ -120,6 +123,8 @@ export class GeCourseAttribute {
       'Writing Intensive',
     ];
     const result: string[] = [];
+    // To expand GE attributes use the values from Course Attribute field whereas
+    // to expand GE Designation attributes use the values from the Couse Description field.
     const courseDescArr = courseDescription.split(', ');
     for (const courseDesc of courseDescArr) {
       if (validGeDesignationAttributes.includes(courseDesc)) {
@@ -163,7 +168,9 @@ export class GeCourseAttribute {
   private static addFullGeCourseAttribute(geCourseAttrArr: string[], geAttrs: IOptionProps[]): string[] {
     const courseAttrIndex = GeCourseAttribute.courseAttrArr.indexOf('General Education');
     // Delete the element that has the value General Education
-    GeCourseAttribute.courseAttrArr.splice(courseAttrIndex, 1);
+    if (courseAttrIndex !== -1) {
+      GeCourseAttribute.courseAttrArr.splice(courseAttrIndex, 1);
+    }
     // loop through all the GE course attributes
     // tslint:disable-next-line:forin
     for (const index in geCourseAttrArr) {

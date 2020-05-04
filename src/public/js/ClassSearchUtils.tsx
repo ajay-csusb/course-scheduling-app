@@ -215,7 +215,9 @@ export function mergeAttributes(classes: IClass[]): IClass[] {
     if (isDuplicateClass(prevClass, currClass)) {
       results[size].courseAttr = combineAttr(prevClass, currClass);
       results[size].geCourseAttr += ', ' + currClass.geCourseAttr;
-      results[size].courseAttrDescription += ', ' + currClass.courseAttrDescription;
+      if (currClass.courseAttrDescription.length !== 0) {
+        results[size].courseAttrDescription += ', ' + currClass.courseAttrDescription;
+      }
     } else {
       results.push(classes[_class]);
     }
