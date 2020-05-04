@@ -15,7 +15,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install cypress
     - name: Check for all Biology classes
       uses: cypress-io/github-action@v1
       with:
