@@ -4,7 +4,9 @@ import { IOptionProps } from '@blueprintjs/core';
 import { GeCourseAttribute } from './GeCourseAttribute';
 import { Utils } from './Utils';
 import * as CourseAttributes from './CourseAttributes';
+import * as React from 'react';
 
+const searchURL = 'https://search.csusb.edu';
 export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
                           callbackOnFailure: (error: string) => void): void {
   fetch(url, {
@@ -342,4 +344,17 @@ export function isValidTermRange(currentTerm: string, classTerm: string, current
     return true;
   }
   return false;
+}
+
+export function getInstructorMarkup(_class: IClass): JSX.Element | null {
+  let profile = null;
+  if (_class.instructorName.trim().length !== 0) {
+    const instructorName = _class.instructorName;
+    const instructorProfileURL = searchURL + _class.profile;
+    profile = <>{instructorName}</>;
+    if (_class.profile !== undefined && _class.profile.length !== 0) {
+      profile = <a target="_blank" href={instructorProfileURL}>{instructorName}</a>;
+    }
+  }
+  return profile;
 }
