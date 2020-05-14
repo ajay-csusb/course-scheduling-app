@@ -1,8 +1,8 @@
-import { mount, ReactWrapper } from 'enzyme';
+import { mount, ReactWrapper, shallow } from 'enzyme';
 import * as React from 'react';
 import { classJson, classPDC, baseClassJson } from './ClassesJson';
 import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
-import { IClass } from '../src/public/js/Class';
+import { IClass, Class } from '../src/public/js/Class';
 import { TestUtils } from './TestUtils';
 
 function mountClassSearchResultsComponent(results: IClass[], term: string = '2194'): ReactWrapper {
@@ -244,6 +244,68 @@ describe('Given a class search results component', () => {
     baseClassJson.quarter = '2194';
     classPDC.quarter = '2192';
     classJson.profile = '';
+  });
+
+});
+
+describe('tabs', () => {
+  describe('When a class search container mounted', () => {
+    let classSearchContainerWrapper = null;
+    beforeEach(() => {
+      classSearchContainerWrapper = mountClassSearchResultsComponent([classJson]);
+    });
+    it('should display the tabs', () => {
+      expect(classSearchContainerWrapper.text()).toContain('List View');
+      expect(classSearchContainerWrapper.text()).toContain('Table View');
+    });
+  });
+});
+
+describe('when the table display format is selected', () => {
+  let classSearchResultsComponent;
+  beforeEach(() => {
+    classSearchResultsComponent  = mountClassSearchResultsComponent([classJson]);
+  });
+  it('should set the display format to table', () => {
+    expect(classSearchResultsComponent.state('format')).toEqual('lists');
+    classSearchResultsComponent.find('#table').simulate('click');
+    expect(classSearchResultsComponent.state('format')).toEqual('table');
+  });
+
+  it('should pass the correct props to DisplayFormatTabs component', () => {
+    classSearchResultsComponent.find('#table').simulate('click');
+    const displayFormatTabsWrapper = classSearchResultsComponent.find('DisplayFormatTabs');
+    expect(displayFormatTabsWrapper.prop('format')).toEqual('table');
+  });
+});
+
+describe.only('table format', () => {
+  describe('when a user selects a table format', () => {
+    let classSearchContainerWrapper;
+    beforeEach(() => {
+    const acctClass: IClass = TestUtils.copyObject(classJson);
+    const bioClass: IClass = TestUtils.copyObject(classJson);
+    acctClass.subject = 'ACCT';
+    acctClass.title = 'Introduction to Accounting';
+    acctClass.topic = 'Special topics in Accounting';
+    acctClass.classNumber = 100;
+    bioClass.subject = 'BIOL';
+    bioClass.title = 'Introduction to Biology';
+    bioClass.classNumber = 200;
+    classSearchContainerWrapper = mountClassSearchResultsComponent([acctClass, bioClass]);
+    classSearchContainerWrapper.setState({ format: 'table' });
+    });
+    it('should display table headers', () => {
+      expect(classSearchContainerWrapper.html()).toContain('Subject');
+      expect(classSearchContainerWrapper.html()).toContain('Unit');
+    });
+    it('should display the class details', () => {
+      expect(classSearchContainerWrapper.html()).toContain('ACCT');
+      expect(classSearchContainerWrapper.html()).toContain('Introduction to Accounting');
+      expect(classSearchContainerWrapper.html()).toContain(': Special Topics In Accounting');
+      expect(classSearchContainerWrapper.html()).toContain('BIOL');
+      expect(classSearchContainerWrapper.html()).toContain('Introduction to Biology');
+    });
   });
 
 });
