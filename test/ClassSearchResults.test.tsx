@@ -279,7 +279,7 @@ describe('when the table display format is selected', () => {
   });
 });
 
-describe.only('table format', () => {
+describe('table format', () => {
   describe('when a user selects a table format', () => {
     let classSearchContainerWrapper;
     beforeEach(() => {
