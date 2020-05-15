@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { IClass, Class } from './Class';
-import { Cell, Table, Column, ColumnHeaderCell, IMenuContext, CopyCellsMenuItem, TruncatedFormat, TruncatedPopoverMode } from '@blueprintjs/table';
+import { Cell, Table, Column, ColumnHeaderCell, IMenuContext, CopyCellsMenuItem, TruncatedFormat } from '@blueprintjs/table';
 import { Utils } from './Utils';
 import { Menu, MenuItem } from '@blueprintjs/core';
 import * as Sort from './Sort';
@@ -68,6 +68,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
     this.columnMenu = this.columnMenu.bind(this);
     this.getCopiedData = this.getCopiedData.bind(this);
     this.renderBodyMenu = this.renderBodyMenu.bind(this);
+    this.sortSubject = this.sortSubject.bind(this);
   }
   public render(): JSX.Element {
     const innerColumns = [
@@ -187,21 +188,23 @@ export class Grid extends React.Component<ITableDisplayProps> {
     this.forceUpdate();
   }
 
+  private sortSubject(key: string) {
+    if (key === 'des') {
+      this.classes = Sort.sortByInt(this.classes, 'asc', 'catalogNo');
+      this.classes = Sort.sortByString(this.classes, 'des', 'subject');
+    } else {
+      this.classes = Sort.sortByInt(this.classes, 'asc', 'catalogNo');
+      this.classes = Sort.sortByString(this.classes, 'asc', 'subject');
+    }
+    this.forceUpdate();
+  }
   private columnMenu(id: string = 'subject'): JSX.Element {
     let menuItems = <></>;
     if (id === 'subject') {
       menuItems = (
         <>
-          <MenuItem
-            icon="sort-asc"
-            onClick={() => { this.sortByNumber('asc', id); }}
-            text="Sort Asc"
-          />
-          <MenuItem
-            icon="sort-desc"
-            onClick={() => { this.sortByNumber('des', id); }}
-            text="Sort Desc"
-          />
+          <MenuItem icon="sort-asc" onClick={() => { this.sortSubject('asc'); }} text="Sort Asc" />
+          <MenuItem icon="sort-desc" onClick={() => { this.sortSubject('des'); }} text="Sort Desc"/>
         </>
       );
     }
