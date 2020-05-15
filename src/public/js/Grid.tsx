@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { IClass, Class } from './Class';
-import { Cell, Table, Column, ColumnHeaderCell, IMenuContext, CopyCellsMenuItem } from '@blueprintjs/table';
+import { Cell, Table, Column, ColumnHeaderCell, IMenuContext, CopyCellsMenuItem, TruncatedFormat, TruncatedPopoverMode } from '@blueprintjs/table';
 import { Utils } from './Utils';
 import { Menu, MenuItem } from '@blueprintjs/core';
 import * as Sort from './Sort';
@@ -231,7 +231,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
   private getSubject(rowIndex: number): JSX.Element {
     const _class = this.classes[rowIndex];
     const subject = `${_class.subject} ${_class.catalogNo}`;
-    return (<Cell wrapText={true}>{subject}</Cell>);
+    return (<Cell>{subject}</Cell>);
   }
 
   private getTitle(rowIndex: number): JSX.Element {
@@ -239,7 +239,10 @@ export class Grid extends React.Component<ITableDisplayProps> {
     const title = _class.title;
     const topicLowercase = _class.topic.toLowerCase();
     const topic = (topicLowercase.trim().length !== 0) ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
-    return (<Cell>{`${title}${topic}`}</Cell>);
+    return (
+      <Cell tooltip={`${title}${topic}`}>
+        <TruncatedFormat truncateLength={50} >{`${title}${topic}`}</TruncatedFormat>
+      </Cell>);
   }
 
   private getSection(rowIndex: number): JSX.Element {
@@ -280,7 +283,12 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private getAttribute(rowIndex: number): JSX.Element {
-    return (<Cell>{this.classes[rowIndex].courseAttr}</Cell>);
+    const courseAttribute = this.classes[rowIndex].courseAttr;
+    return (
+      <Cell tooltip={courseAttribute}>
+        <TruncatedFormat truncateLength={50}>{courseAttribute}</TruncatedFormat>
+      </Cell>
+    );
   }
 
   private getCampus(rowIndex: number): JSX.Element {
