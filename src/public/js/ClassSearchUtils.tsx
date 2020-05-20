@@ -358,3 +358,8 @@ export function getInstructorMarkup(_class: IClass): JSX.Element | null {
   }
   return profile;
 }
+
+export function getNoOfAvailableSeatsInWaitlist(_class: IClass): number {
+  return (_class.waitlistCapacity - _class.waitlistTotal) < 0 ? 0 :
+  _class.waitlistCapacity - _class.waitlistTotal;
+}

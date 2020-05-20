@@ -69,6 +69,14 @@ export class Grid extends React.Component<ITableDisplayProps> {
     this.getCopiedData = this.getCopiedData.bind(this);
     this.renderBodyMenu = this.renderBodyMenu.bind(this);
     this.sortSubject = this.sortSubject.bind(this);
+    this.sortCampus = this.sortCampus.bind(this);
+    this.sortInstructionMode = this.sortInstructionMode.bind(this);
+    this.sortSessionCode = this.sortSessionCode.bind(this);
+    this.sortMeetingTime = this.sortMeetingTime.bind(this);
+    this.sortMeetingDays = this.sortMeetingDays.bind(this);
+    this.sortSeatsAvailable = this.sortSeatsAvailable.bind(this);
+    this.sortByString = this.sortByString.bind(this);
+    this.sortByNumber = this.sortByNumber.bind(this);
   }
   public render(): JSX.Element {
     const innerColumns = [
@@ -143,27 +151,27 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private dayColumnHeader() {
-    return (<ColumnHeaderCell name={'Day(s)'} />);
+    return (<ColumnHeaderCell name={'Day(s)'} menuRenderer={() => this.columnMenu('meetingDays')} />);
   }
 
   private timeColumnHeader() {
-    return (<ColumnHeaderCell name={'Time'} />);
+    return (<ColumnHeaderCell name={'Time'} menuRenderer={() => this.columnMenu('classStartTime')} />);
   }
 
   private instructionModeColumnHeader() {
-    return (<ColumnHeaderCell name={'Mode'} />);
+    return (<ColumnHeaderCell name={'Mode'} menuRenderer={() => this.columnMenu('instructionMode')} />);
   }
 
   private sessionCodeColumnHeader() {
-    return (<ColumnHeaderCell name={'Session'} />);
+    return (<ColumnHeaderCell name={'Session'} menuRenderer={() => this.columnMenu('sessionCode')} />);
   }
 
   private seatsAvailableColumnHeader() {
-    return (<ColumnHeaderCell name={'Seats Available'} />);
+    return (<ColumnHeaderCell name={'Seats Available'} menuRenderer={() => this.columnMenu('enrolledTotal')} />);
   }
 
   private waitlistColumnHeader() {
-    return (<ColumnHeaderCell name={'Waitlist'} />);
+    return (<ColumnHeaderCell name={'Waitlist Seats Available'} menuRenderer={() => this.columnMenu('waitlistTotal')} />);
   }
 
   private courseAttrColumnHeader() {
@@ -171,7 +179,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private campusColumnHeader() {
-    return (<ColumnHeaderCell name={'Campus'} />);
+    return (<ColumnHeaderCell name={'Campus'}  menuRenderer={() => this.columnMenu('campus')}/>);
   }
 
   private textbookColumnHeader() {
@@ -190,7 +198,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
 
   private sortSubject(key: string) {
     if (key === 'des') {
-      this.classes = Sort.sortByInt(this.classes, 'asc', 'catalogNo');
+      this.classes = Sort.sortByInt(this.classes, 'des', 'catalogNo');
       this.classes = Sort.sortByString(this.classes, 'des', 'subject');
     } else {
       this.classes = Sort.sortByInt(this.classes, 'asc', 'catalogNo');
@@ -198,36 +206,122 @@ export class Grid extends React.Component<ITableDisplayProps> {
     }
     this.forceUpdate();
   }
+
+  private sortCampus(key: string) {
+    this.classes = (key === 'asc') ? Sort.sortByCampus(this.classes, 'asc') : Sort.sortByCampus(this.classes, 'des');
+    this.forceUpdate();
+  }
+
+  private sortInstructionMode(key: string) {
+    this.classes = (key === 'asc') ? Sort.sortByInstructionMode(this.classes, 'asc')
+    : Sort.sortByInstructionMode(this.classes, 'des');
+    this.forceUpdate();
+  }
+
+  private sortSessionCode(key: string) {
+    this.classes = Sort.sortByString(this.classes, key, 'sessionCode');
+    this.classes = Sort.sortByInt(this.classes, key, 'sessionCode');
+    this.forceUpdate();
+  }
+
+  private sortMeetingTime(key: string) {
+    this.classes = Sort.sortByMeetingTime(this.classes, key);
+    this.forceUpdate();
+  }
+
+  private sortMeetingDays(key: string) {
+    this.classes = Sort.sortByMeetingDays(this.classes, key);
+    this.forceUpdate();
+  }
+
+  private sortSeatsAvailable(key: string, id: string) {
+    this.classes = (id === 'enrolledTotal') ? Sort.sortBySeatsAvailable(this.classes, key)
+    : Sort.sortBySeatsAvailableInWaitlist(this.classes, key);
+    this.forceUpdate();
+  }
   private columnMenu(id: string = 'subject'): JSX.Element {
     let menuItems = <></>;
-    if (id === 'subject') {
+    const callbacks = {
+      subject: {
+        use_id: false,
+        id: 'subject',
+        cb: this.sortSubject,
+      },
+      title: {
+        use_id: true,
+        id: 'title',
+        cb: this.sortByString,
+      },
+      fullSsrComponent: {
+        use_id: true,
+        cb: this.sortByString,
+      },
+      instructorName: {
+        use_id: true,
+        cb: this.sortByString,
+      },
+      courseAttr: {
+        use_id: true,
+        cb: Sort.sortByString,
+      },
+      classNumber: {
+        use_id: true,
+        cb: this.sortByNumber,
+      },
+      csuUnits: {
+        use_id: true,
+        cb: this.sortByNumber,
+      },
+      classSection: {
+        use_id: true,
+        cb: this.sortByNumber,
+      },
+      campus: {
+        use_id: false,
+        cb: this.sortCampus,
+      },
+      instructionMode: {
+        use_id: false,
+        cb: this.sortInstructionMode,
+      },
+      sessionCode: {
+        use_id: false,
+        cb: this.sortSessionCode,
+      },
+      classStartTime: {
+        use_id: false,
+        cb: this.sortMeetingTime,
+      },
+      meetingDays: {
+        use_id: false,
+        cb: this.sortMeetingDays,
+      },
+      enrolledTotal: {
+        use_id: true,
+        cb: this.sortSeatsAvailable,
+      },
+      waitlistTotal: {
+        use_id: true,
+        cb: this.sortSeatsAvailable,
+      },
+    };
+
+    if (!callbacks[id].use_id) {
       menuItems = (
         <>
-          <MenuItem icon="sort-asc" onClick={() => { this.sortSubject('asc'); }} text="Sort Asc" />
-          <MenuItem icon="sort-desc" onClick={() => { this.sortSubject('des'); }} text="Sort Desc"/>
+          <MenuItem icon="sort-asc" onClick={() => { callbacks[id].cb('asc'); }} text="Sort Asc" />
+          <MenuItem icon="sort-desc" onClick={() => { callbacks[id].cb('des'); }} text="Sort Desc" />
+        </>
+      );
+    } else {
+      menuItems = (
+        <>
+          <MenuItem icon="sort-asc" onClick={() => { callbacks[id].cb('asc', id); }} text="Sort Asc" />
+          <MenuItem icon="sort-desc" onClick={() => { callbacks[id].cb('des', id); }} text="Sort Desc" />
         </>
       );
     }
-    if (id === 'title'
-    || id === 'fullSsrComponent'
-    || id === 'instructorName'
-    || id === 'courseAttr'
-    ) {
-      menuItems = (
-        <>
-          <MenuItem icon="sort-asc" onClick={() => {this.sortByString('asc', id); }} text="Sort Asc" />
-          <MenuItem icon="sort-desc" onClick={() => {this.sortByString('des', id); }} text="Sort Desc" />
-        </>
-      );
-    }
-    if (id === 'classNumber' || id === 'csuUnits' || id === 'classSection') {
-      menuItems = (
-        <>
-          <MenuItem icon="sort-asc" onClick={() => { this.sortByNumber('asc', id); }} text="Sort Asc" />
-          <MenuItem icon="sort-desc" onClick={() => { this.sortByNumber('des', id); }} text="Sort Desc" />
-        </>
-      );
-    }
+
     return <Menu>{menuItems}</Menu>;
   }
 
@@ -340,9 +434,9 @@ export class Grid extends React.Component<ITableDisplayProps> {
 
   private getWaitlistUnformatted(rowIndex: number) {
     const _class: IClass = this.classes[rowIndex];
-    const noOfSeatsInWailist = _class.waitlistTotal;
     const waitlistCapacity = _class.waitlistCapacity;
-    return `${noOfSeatsInWailist}/${waitlistCapacity}`;
+    const waitlistSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeatsInWaitlist(_class);
+    return `${waitlistSeatsAvailable}/${waitlistCapacity}`;
   }
 
   private getCampusUnformatted(rowIndex: number) {
