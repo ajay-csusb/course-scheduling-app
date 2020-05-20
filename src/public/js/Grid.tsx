@@ -262,7 +262,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
       },
       courseAttr: {
         use_id: true,
-        cb: Sort.sortByString,
+        cb: this.sortByString,
       },
       classNumber: {
         use_id: true,
