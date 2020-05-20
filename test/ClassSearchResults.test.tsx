@@ -259,23 +259,25 @@ describe('tabs', () => {
       expect(classSearchContainerWrapper.text()).toContain('Table View');
     });
   });
-});
 
-describe('when the table display format is selected', () => {
-  let classSearchResultsComponent;
-  beforeEach(() => {
-    classSearchResultsComponent  = mountClassSearchResultsComponent([classJson]);
-  });
-  it('should set the display format to table', () => {
-    expect(classSearchResultsComponent.state('format')).toEqual('lists');
-    classSearchResultsComponent.find('#table').simulate('click');
-    expect(classSearchResultsComponent.state('format')).toEqual('table');
-  });
+  describe('when the table display format is selected', () => {
+    let classSearchResultsComponent;
+    beforeEach(() => {
+      classSearchResultsComponent = mountClassSearchResultsComponent([classJson]);
+    });
+    it('should set the display format to table', () => {
+      expect(classSearchResultsComponent.state('format')).toEqual('lists');
+      classSearchResultsComponent.find('#table').simulate('click');
+      expect(classSearchResultsComponent.state('format')).toEqual('table');
+      expect(sessionStorage.setItem).toBeCalledWith('format', 'table');
+    });
 
-  it('should pass the correct props to DisplayFormatTabs component', () => {
-    classSearchResultsComponent.find('#table').simulate('click');
-    const displayFormatTabsWrapper = classSearchResultsComponent.find('DisplayFormatTabs');
-    expect(displayFormatTabsWrapper.prop('format')).toEqual('table');
+    it('should pass the correct props to DisplayFormatTabs component', () => {
+      classSearchResultsComponent.find('#table').simulate('click');
+      const displayFormatTabsWrapper = classSearchResultsComponent.find('DisplayFormatTabs');
+      expect(displayFormatTabsWrapper.prop('format')).toEqual('table');
+    });
+
   });
 });
 
