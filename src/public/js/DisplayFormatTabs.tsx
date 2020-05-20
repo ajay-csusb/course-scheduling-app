@@ -16,12 +16,14 @@ export class DisplayFormatTabs extends React.Component<IDisplayFormatTabsProps, 
   }
 
   public render(): JSX.Element {
+    const storedValue = sessionStorage.getItem('format');
+    const userFormat =  (storedValue !== null && storedValue !== undefined && storedValue.length !== 0) ? storedValue : this.props.format;
     return(
       <Tabs
         animate={true}
         id="display-format-tabs"
         onChange={(event: any) => this.handleChangeOfFormat(event)}
-        selectedTabId={this.props.format}
+        selectedTabId={userFormat}
       >
         <Tab
           id="lists"

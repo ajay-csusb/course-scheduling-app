@@ -74,6 +74,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     this.setState({
       format: selectedFormat,
     });
+    sessionStorage.setItem('format', selectedFormat);
   }
 
 }
