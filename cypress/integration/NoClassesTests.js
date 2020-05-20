@@ -1,4 +1,4 @@
-const { url, selectSubject } = require('./Utils');
+const { url, submit ,selectSubject } = require('./Utils');
 
 describe('No classes behavior', function () {
 
@@ -7,7 +7,7 @@ describe('No classes behavior', function () {
       cy.visit(url);
       selectSubject();
       cy.get('.sun > .bp3-control-indicator').click();
-      cy.get('.btn-primary').click();
+      submit();
       cy.get('p').should('contain', '0 classes found');
       cy.get('i').should('contain', 'Try refining the search above to get more results');
     });

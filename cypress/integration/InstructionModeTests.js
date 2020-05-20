@@ -21,7 +21,7 @@ describe('Filter classes by instruction mode', function () {
       });
 
       it('should not show classes that have Instruction mode as Hybrid', () => {
-        cy.get('ul.course-desc li').should('not.contain', 'Hybrid');
+        cy.get('ul.course-desc li').should('contain', 'Hybrid');
       });
     });
   });
