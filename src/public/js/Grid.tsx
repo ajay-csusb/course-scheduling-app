@@ -106,7 +106,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
     return (
       <div style={{height: heightVal}}>
         <Table
-          key={this.classes.length}
+          key={new Date().getTime()} // Hack! https://github.com/palantir/blueprint/issues/3757
           numRows={this.classes.length}
           enableColumnResizing={false}
           getCellClipboardData={this.getCopiedData}
