@@ -85,7 +85,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const textbookUrl = ClassSearchUtils.getTextbookUrl(this.classDetails);
     const {subject, catalogNo} = this.classDetails;
     return (
-      <a className="btn btn-primary btn-solid" href={textbookUrl} target="_blank">
+      <a className="btn btn-white btn-solid" href={textbookUrl} target="_blank">
         <span className="sr-only">{subject} {catalogNo}</span>
         Textbook
       </a>
