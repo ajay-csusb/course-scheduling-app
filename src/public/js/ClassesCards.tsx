@@ -82,10 +82,13 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public getTextBookMarkup(): JSX.Element {
+    const textbookUrl = ClassSearchUtils.getTextbookUrl(this.classDetails);
+    const {subject, catalogNo} = this.classDetails;
     return (
-      <React.Fragment>
-        <div dangerouslySetInnerHTML={{ __html: this.classDetails.textbook }} />
-      </React.Fragment>
+      <a className="btn btn-primary btn-solid" href={textbookUrl} target="_blank">
+        <span className="sr-only">{subject} {catalogNo}</span>
+        Textbook
+      </a>
     );
   }
 

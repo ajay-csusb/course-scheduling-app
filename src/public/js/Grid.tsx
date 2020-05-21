@@ -5,7 +5,6 @@ import { Cell, Table, Column, ColumnHeaderCell, IMenuContext, CopyCellsMenuItem,
 import { Utils } from './Utils';
 import { Menu, MenuItem } from '@blueprintjs/core';
 import * as Sort from './Sort';
-import { Textbook } from './Textbook';
 interface ITableDisplayProps {
   classes: IClass[];
 }
@@ -66,7 +65,6 @@ export class Grid extends React.Component<ITableDisplayProps> {
     this.courseAttrColumnHeader = this.courseAttrColumnHeader.bind(this);
     this.campusColumnHeader = this.campusColumnHeader.bind(this);
     this.textbookColumnHeader = this.textbookColumnHeader.bind(this);
-    this.columnMenu = this.columnMenu.bind(this);
     this.getCopiedData = this.getCopiedData.bind(this);
     this.renderBodyMenu = this.renderBodyMenu.bind(this);
     this.sortSubject = this.sortSubject.bind(this);
@@ -99,20 +97,25 @@ export class Grid extends React.Component<ITableDisplayProps> {
       [this.textbookColumnHeader, this.textbookCellRenderer],
     ];
     const columns = [];
+    const heightVal = (this.classes.length > 200) ? '4000px' : '100%';
+
     for (const innerColumn of innerColumns) {
-      columns.push(<Column key={Date()} columnHeaderCellRenderer={innerColumn[0]} cellRenderer={innerColumn[1]} />);
+      columns.push(<Column key={innerColumn[0].name} columnHeaderCellRenderer={innerColumn[0]} cellRenderer={innerColumn[1]} />);
     }
+
     return (
-      <Table
-        key={Date()} // Hack! Without this, the table would only display 4 columns
-        numRows={this.classes.length}
-        enableColumnResizing={false}
-        getCellClipboardData={this.getCopiedData}
-        bodyContextMenuRenderer={this.renderBodyMenu}
-        columnWidths={[100, 300, 100, 100, 100, 50, 150, 100, 120, 150, 100, 150, 100, 300, 120, 150]}
-      >
-        {columns}
-      </Table>
+      <div style={{height: heightVal}}>
+        <Table
+          key={this.classes.length}
+          numRows={this.classes.length}
+          enableColumnResizing={false}
+          getCellClipboardData={this.getCopiedData}
+          bodyContextMenuRenderer={this.renderBodyMenu}
+          columnWidths={[100, 300, 100, 100, 100, 50, 150, 100, 120, 150, 100, 150, 100, 300, 120, 150]}
+        >
+          {columns}
+        </Table>
+      </div>
     );
   }
 
@@ -245,12 +248,10 @@ export class Grid extends React.Component<ITableDisplayProps> {
     const callbacks = {
       subject: {
         use_id: false,
-        id: 'subject',
         cb: this.sortSubject,
       },
       title: {
         use_id: true,
-        id: 'title',
         cb: this.sortByString,
       },
       fullSsrComponent: {
@@ -395,11 +396,16 @@ export class Grid extends React.Component<ITableDisplayProps> {
 
   private getTextbook(rowIndex: number): JSX.Element {
     const _class: IClass = this.classes[rowIndex];
-    const term: number = parseInt(_class.quarter, 10);
-    const catalogNo: number = parseInt(_class.catalogNo, 10);
-    const section: string = _class.classSection;
-    const textbook = new Textbook(term, _class.subject, catalogNo, section);
-    return (<Cell><a href={textbook.link()} target="_blank">Textbook</a></Cell>);
+    const textbookUrl = ClassSearchUtils.getTextbookUrl(_class);
+    const {subject, catalogNo} = _class;
+    return (
+      <Cell>
+        <a href={textbookUrl} target="_blank">
+          <span className="sr-only">{subject} {catalogNo}</span>
+          Textbook
+      </a>
+      </Cell>
+    );
   }
 
   private getDay(rowIndex: number): JSX.Element {

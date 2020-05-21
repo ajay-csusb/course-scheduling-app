@@ -5,6 +5,7 @@ import { GeCourseAttribute } from './GeCourseAttribute';
 import { Utils } from './Utils';
 import * as CourseAttributes from './CourseAttributes';
 import * as React from 'react';
+import { Textbook } from './Textbook';
 
 const searchURL = 'https://search.csusb.edu';
 export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
@@ -362,4 +363,12 @@ export function getInstructorMarkup(_class: IClass): JSX.Element | null {
 export function getNoOfAvailableSeatsInWaitlist(_class: IClass): number {
   return (_class.waitlistCapacity - _class.waitlistTotal) < 0 ? 0 :
   _class.waitlistCapacity - _class.waitlistTotal;
+}
+
+export function getTextbookUrl(_class: IClass): string {
+    const term: number = parseInt(_class.quarter, 10);
+    const catalogNo: number = parseInt(_class.catalogNo, 10);
+    const section: string = _class.classSection;
+    const textbook = new Textbook(term, _class.subject, catalogNo, section);
+    return textbook.link();
 }
