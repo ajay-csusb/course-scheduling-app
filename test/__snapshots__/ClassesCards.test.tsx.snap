@@ -226,7 +226,7 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -477,7 +477,7 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -722,7 +722,7 @@ exports[`building code and room number when a class does not have a building cod
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -967,7 +967,7 @@ exports[`building code and room number when a class has a building code and room
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -1212,7 +1212,7 @@ exports[`building code and room number when a class has a building code as TBD s
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -1457,7 +1457,7 @@ exports[`building code and room number when a class has building code as OL shou
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -1723,7 +1723,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -1978,7 +1978,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -2249,7 +2249,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -2520,7 +2520,7 @@ exports[`seats text verbiage when a class is closed should display available sea
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -2791,7 +2791,7 @@ exports[`seats text verbiage when a class is closed should display available spo
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -3036,7 +3036,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -3281,7 +3281,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -3532,7 +3532,7 @@ exports[`when a class has low cost course material should display icon for low c
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -3791,7 +3791,7 @@ exports[`when a class has zero cost course material should display icon for zero
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -4050,7 +4050,7 @@ exports[`when a class has zero cost course materials and low cost course materia
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -4301,7 +4301,7 @@ exports[`when a class is a fully online should not display the room number in th
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
@@ -4546,7 +4546,7 @@ exports[`when a class results component is displayed should display the correct 
         className="course-books"
       >
         <a
-          className="btn btn-primary btn-solid"
+          className="btn btn-white btn-solid"
           href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
           target="_blank"
         >
