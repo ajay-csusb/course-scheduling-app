@@ -5,6 +5,7 @@ import { Cell, Table, Column, ColumnHeaderCell, IMenuContext, CopyCellsMenuItem,
 import { Utils } from './Utils';
 import { Menu, MenuItem } from '@blueprintjs/core';
 import * as Sort from './Sort';
+import { Textbook } from './Textbook';
 interface ITableDisplayProps {
   classes: IClass[];
 }
@@ -394,8 +395,11 @@ export class Grid extends React.Component<ITableDisplayProps> {
 
   private getTextbook(rowIndex: number): JSX.Element {
     const _class: IClass = this.classes[rowIndex];
-    const textbook = (<><div dangerouslySetInnerHTML={{ __html: _class.textbook }} /></>);
-    return (<Cell>{textbook}</Cell>);
+    const term: number = parseInt(_class.quarter, 10);
+    const catalogNo: number = parseInt(_class.catalogNo, 10);
+    const section: string = _class.classSection;
+    const textbook = new Textbook(term, _class.subject, catalogNo, section);
+    return (<Cell><a href={textbook.link()} target="_blank">Textbook</a></Cell>);
   }
 
   private getDay(rowIndex: number): JSX.Element {
