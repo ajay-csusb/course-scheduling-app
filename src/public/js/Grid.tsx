@@ -100,7 +100,13 @@ export class Grid extends React.Component<ITableDisplayProps> {
     const heightVal = (this.classes.length > 200) ? '500px' : '100%';
 
     for (const innerColumn of innerColumns) {
-      columns.push(<Column key={innerColumn[0].name} columnHeaderCellRenderer={innerColumn[0]} cellRenderer={innerColumn[1]} />);
+      columns.push(
+        <Column
+          key={innerColumn[0].name}
+          columnHeaderCellRenderer={innerColumn[0]}
+          cellRenderer={innerColumn[1]}
+        />
+      );
     }
 
     return (
@@ -126,6 +132,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
       </Menu>
     );
   }
+
   private titleColumnHeader() {
     return (<ColumnHeaderCell name={'Title'} menuRenderer={() => this.columnMenu('title')} />);
   }
@@ -175,7 +182,12 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private waitlistColumnHeader() {
-    return (<ColumnHeaderCell name={'Waitlist Seats Available'} menuRenderer={() => this.columnMenu('waitlistTotal')} />);
+    return (
+      <ColumnHeaderCell
+        name={'Waitlist Seats Available'}
+        menuRenderer={() => this.columnMenu('waitlistTotal')}
+      />
+    );
   }
 
   private courseAttrColumnHeader() {
