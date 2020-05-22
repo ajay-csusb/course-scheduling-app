@@ -97,7 +97,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
       [this.textbookColumnHeader, this.textbookCellRenderer],
     ];
     const columns = [];
-    const heightVal = (this.classes.length > 200) ? '4000px' : '100%';
+    const heightVal = (this.classes.length > 200) ? '500px' : '100%';
 
     for (const innerColumn of innerColumns) {
       columns.push(<Column key={innerColumn[0].name} columnHeaderCellRenderer={innerColumn[0]} cellRenderer={innerColumn[1]} />);
