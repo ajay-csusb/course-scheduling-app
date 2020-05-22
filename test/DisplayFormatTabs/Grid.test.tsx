@@ -12,7 +12,7 @@ describe('Grid', () => {
   test('height of grid is the number of classes are more than 200', () => {
     const moreThan200Classes = Array(250).fill(classJson);
     const gridComponent = mount(<Grid classes={moreThan200Classes} />);
-    expect(gridComponent.html()).toContain('height: 4000px');
+    expect(gridComponent.html()).toContain('height: 500px');
   });
 
 });
