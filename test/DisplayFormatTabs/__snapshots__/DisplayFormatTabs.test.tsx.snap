@@ -40,7 +40,6 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
           />
         </div>
         <Blueprint3.TabTitle
-          className="active"
           disabled={false}
           id="lists"
           key=".$lists"
@@ -66,7 +65,7 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
             aria-disabled={false}
             aria-expanded={true}
             aria-selected={true}
-            className="bp3-tab active"
+            className="bp3-tab"
             data-tab-id="lists"
             id="bp3-tab-title_display-format-tabs_lists"
             onClick={[Function]}
@@ -84,7 +83,6 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
           </div>
         </Blueprint3.TabTitle>
         <Blueprint3.TabTitle
-          className="inactive"
           disabled={false}
           id="table"
           key=".$table"
@@ -114,7 +112,7 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
             aria-disabled={false}
             aria-expanded={false}
             aria-selected={false}
-            className="bp3-tab inactive"
+            className="bp3-tab"
             data-tab-id="table"
             id="bp3-tab-title_display-format-tabs_table"
             onClick={[Function]}
@@ -135,7 +133,7 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
       <div
         aria-hidden={false}
         aria-labelledby="bp3-tab-title_display-format-tabs_lists"
-        className="bp3-tab-panel active"
+        className="bp3-tab-panel"
         id="bp3-tab-panel_display-format-tabs_lists"
         key="lists"
         role="tabpanel"
@@ -145,7 +143,7 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
       <div
         aria-hidden={true}
         aria-labelledby="bp3-tab-title_display-format-tabs_table"
-        className="bp3-tab-panel inactive"
+        className="bp3-tab-panel"
         id="bp3-tab-panel_display-format-tabs_table"
         key="table"
         role="tabpanel"

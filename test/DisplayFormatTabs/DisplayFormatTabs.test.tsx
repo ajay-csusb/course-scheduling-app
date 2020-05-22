@@ -35,15 +35,4 @@ describe('Display format tabs', () => {
     });
   });
 
-  describe('when a tab is clicked', () => {
-    let displayFormatTabsComponent = null;
-    beforeEach(() => {
-      displayFormatTabsComponent = mountDisplayFormatTabsComponent();
-    });
-    it('should show the active class', () => {
-      displayFormatTabsComponent.find('#table').simulate('click');
-      expect(displayFormatTabsComponent.html()).toContain('active');
-    });
-  });
-
 });
