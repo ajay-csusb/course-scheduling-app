@@ -1,13 +1,12 @@
 {
-  "name": "express-typescript-starter",
-  "version": "0.1.0",
-  "description": "A starting point for Node.js express apps with TypeScript",
+  "name": "csusb-class-search",
+  "version": "1.0.0",
+  "description": "Search classes in CSUSB",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/TypeScript-Node-Starter"
+    "url": "https://github.com/ajay-csusb/course-scheduling-app"
   },
-  "author": "Bowden Kelly",
-  "license": "MIT",
+  "author": "Ajay J Kotian",
   "scripts": {
     "start": "npm run serve",
     "build": "npm run build-sass && npm run build-ts && npm run copy-static-assets",
@@ -26,7 +25,10 @@
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-webpack": "webpack -D --watch",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\"",
-    "cypress": "cypress run --browser chrome --headless"
+    "cypress": "cypress run --browser chrome --headless",
+    "gcp-build": "npm run build",
+    "deploy-dev": "gcloud app deploy app-dev.yaml",
+    "deploy-prod": "gcloud app deploy app.yaml"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.26.1",
@@ -80,7 +82,8 @@
     "tsutils": "^3.14.0",
     "uuid": "^3.3.2",
     "webpack": "^4.34.0",
-    "winston": "^2.4.4"
+    "winston": "^2.4.4",
+    "nocache": "^2.1.0"
   },
   "devDependencies": {
     "@types/async": "^2.4.2",
@@ -124,7 +127,6 @@
     "jest": "^25.5.4",
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
-    "nocache": "^2.1.0",
     "node-sass": "^4.13.1",
     "nodemon": "^1.19.1",
     "shelljs": "^0.8.3",

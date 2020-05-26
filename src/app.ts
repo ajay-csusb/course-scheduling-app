@@ -4,10 +4,8 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import path from 'path';
 import expressValidator from 'express-validator';
-import nocache from 'nocache';
 
-// Load environment variables from .env file, where API keys and passwords are configured
-dotenv.config({ path: '.env.example' });
+dotenv.config({ path: '.env' });
 
 // Controllers (route handlers)
 import * as homeController from './controllers/home';
@@ -29,7 +27,10 @@ app.use(
   express.static(path.join(__dirname, 'public'), { maxAge: 0 })
 );
 
-app.use(nocache());
+if (process.env && process.env.NODE_ENV === 'local') {
+  const nocache = require('nocache');
+  app.use(nocache());
+}
 /**
  * Primary app routes.
  */
