@@ -11,7 +11,7 @@ describe('Filter classes by GE attributes', function () {
       form.submit();
     });
     it('should show BIO 100', () => {
-      cy.get('#class-search-results-component > ul > li > div > div.item-header > div.course-header > div.course-name > strong')
+      cy.get('#class-search-results-component')
         .should('contain', 'BIOL 1000')
     });
   });

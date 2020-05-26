@@ -10,7 +10,6 @@ interface IClassesCardsProps {
 }
 
 export class ClassesCards extends React.Component<IClassesCardsProps> {
-  readonly searchURL = 'https://search.csusb.edu';
   private classDetails: IClass;
 
   public constructor(props: IClassesCardsProps) {
@@ -83,25 +82,21 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public getTextBookMarkup(): JSX.Element {
+    const textbookUrl = ClassSearchUtils.getTextbookUrl(this.classDetails);
+    const {subject, catalogNo} = this.classDetails;
     return (
-      <React.Fragment>
-        <div dangerouslySetInnerHTML={{ __html: this.classDetails.textbook }} />
-      </React.Fragment>
+      <a className="btn btn-white btn-solid" href={textbookUrl} target="_blank">
+        <span className="sr-only">{subject} {catalogNo}</span>
+        Textbook
+      </a>
     );
   }
 
   public getInstructorMarkup(): JSX.Element {
     let instructor = <><span>Instructor</span> TBD</>;
-    if (this.classDetails.instructorName.trim().length !== 0) {
-      const instructorName = this.classDetails.instructorName;
-      const instructorProfileURL = this.searchURL + this.classDetails.profile;
-      let userProfile = <>{instructorName}</>;
-      if (this.classDetails.profile !== undefined && this.classDetails.profile.length !== 0) {
-        userProfile = <a target="_blank" href={instructorProfileURL}>{instructorName}</a>;
-      }
-      instructor = (
-        <><span>Instructor</span>{userProfile}</>
-      );
+    if (ClassSearchUtils.getInstructorMarkup(this.classDetails)) {
+      const instructorProfile = ClassSearchUtils.getInstructorMarkup(this.classDetails);
+      instructor = (<><span>Instructor</span>{instructorProfile}</>);
     }
     return instructor;
   }

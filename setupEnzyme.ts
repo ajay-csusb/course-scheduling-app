@@ -15,5 +15,13 @@ const localStorageMock = {
   setItem: jest.fn(),
   clear: jest.fn(),
 };
+
+const sessionStorageMock = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  clear: jest.fn(),
+};
+
 global.localStorage = localStorageMock;
 global.currentQuarterId = '2194';
+global.sessionStorage = sessionStorageMock;

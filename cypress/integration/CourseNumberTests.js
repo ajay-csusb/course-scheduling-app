@@ -11,7 +11,7 @@ describe( 'Filter classes by course number', function () {
       } );
 
       it( 'should show atleast one class in the results', () => {
-          cy.get('#class-search-results-component > ul > li:nth-child(2) > div > div.item-header > div.course-header > div.course-name > strong')
+          cy.get('#class-search-results-component')
           .should('contain', 'BIOL 1000')
       } );
     } );

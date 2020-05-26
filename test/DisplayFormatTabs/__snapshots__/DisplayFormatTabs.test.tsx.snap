@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Display format tabs Given a display format tabs component snapshot 1`] = `
+<DisplayFormatTabs
+  format="lists"
+  listClasses={Array []}
+  onChangeOfFormat={[MockFunction]}
+  tableClasses={<React.Fragment />}
+>
+  <Blueprint3.Tabs
+    animate={true}
+    id="display-format-tabs"
+    large={false}
+    onChange={[Function]}
+    renderActiveTabPanelOnly={false}
+    selectedTabId="lists"
+    vertical={false}
+  >
+    <div
+      className="bp3-tabs"
+    >
+      <div
+        className="bp3-tab-list"
+        onKeyDown={[Function]}
+        onKeyPress={[Function]}
+        role="tablist"
+      >
+        <div
+          className="bp3-tab-indicator-wrapper"
+          style={
+            Object {
+              "height": 0,
+              "transform": "translateX(0px) translateY(0px)",
+              "width": 0,
+            }
+          }
+        >
+          <div
+            className="bp3-tab-indicator"
+          />
+        </div>
+        <Blueprint3.TabTitle
+          disabled={false}
+          id="lists"
+          key=".$lists"
+          onClick={[Function]}
+          panel={<ul />}
+          parentId="display-format-tabs"
+          selected={true}
+          title={
+            <React.Fragment>
+              <span
+                className="sr-only"
+              >
+                List View 
+              </span>
+              <i
+                className="fas fa-bars"
+              />
+            </React.Fragment>
+          }
+        >
+          <div
+            aria-controls="bp3-tab-panel_display-format-tabs_lists"
+            aria-disabled={false}
+            aria-expanded={true}
+            aria-selected={true}
+            className="bp3-tab"
+            data-tab-id="lists"
+            id="bp3-tab-title_display-format-tabs_lists"
+            onClick={[Function]}
+            role="tab"
+            tabIndex={0}
+          >
+            <span
+              className="sr-only"
+            >
+              List View 
+            </span>
+            <i
+              className="fas fa-bars"
+            />
+          </div>
+        </Blueprint3.TabTitle>
+        <Blueprint3.TabTitle
+          disabled={false}
+          id="table"
+          key=".$table"
+          onClick={[Function]}
+          panel={
+            <React.Fragment>
+              <React.Fragment />
+            </React.Fragment>
+          }
+          parentId="display-format-tabs"
+          selected={false}
+          title={
+            <React.Fragment>
+              <span
+                className="sr-only"
+              >
+                Table View 
+              </span>
+              <i
+                className="fal fa-table"
+              />
+            </React.Fragment>
+          }
+        >
+          <div
+            aria-controls="bp3-tab-panel_display-format-tabs_table"
+            aria-disabled={false}
+            aria-expanded={false}
+            aria-selected={false}
+            className="bp3-tab"
+            data-tab-id="table"
+            id="bp3-tab-title_display-format-tabs_table"
+            onClick={[Function]}
+            role="tab"
+            tabIndex={0}
+          >
+            <span
+              className="sr-only"
+            >
+              Table View 
+            </span>
+            <i
+              className="fal fa-table"
+            />
+          </div>
+        </Blueprint3.TabTitle>
+      </div>
+      <div
+        aria-hidden={false}
+        aria-labelledby="bp3-tab-title_display-format-tabs_lists"
+        className="bp3-tab-panel"
+        id="bp3-tab-panel_display-format-tabs_lists"
+        key="lists"
+        role="tabpanel"
+      >
+        <ul />
+      </div>
+      <div
+        aria-hidden={true}
+        aria-labelledby="bp3-tab-title_display-format-tabs_table"
+        className="bp3-tab-panel"
+        id="bp3-tab-panel_display-format-tabs_table"
+        key="table"
+        role="tabpanel"
+      />
+    </div>
+  </Blueprint3.Tabs>
+</DisplayFormatTabs>
+`;

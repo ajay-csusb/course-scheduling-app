@@ -26,12 +26,13 @@
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-webpack": "webpack -D --watch",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\"",
-    "cy:run": "cypress run"
+    "cypress": "cypress run --browser chrome --headless"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.26.1",
     "@blueprintjs/datetime": "^3.17.0",
     "@blueprintjs/select": "^3.8.1",
+    "@blueprintjs/table": "^3.8.5",
     "@bugsnag/js": "^6.5.2",
     "@bugsnag/plugin-react": "^6.5.0",
     "@types/logrocket-react": "^3.0.0",
@@ -40,6 +41,7 @@
     "@types/node-persist": "0.0.33",
     "@types/react": "^16.8.20",
     "@types/react-dom": "^16.8.4",
+    "ajv": "^6.12.2",
     "async": "^2.6.2",
     "babel-core": "^6.26.3",
     "bcrypt-nodejs": "^0.0.3",
@@ -73,6 +75,7 @@
     "react-dom": "^16.8.6",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
+    "rsvp": "^4.8.5",
     "tslint-config-airbnb": "^5.11.1",
     "tsutils": "^3.14.0",
     "uuid": "^3.3.2",
@@ -92,6 +95,7 @@
     "@types/express": "^4.17.0",
     "@types/express-session": "^1.15.12",
     "@types/fetch-mock": "^6.0.5",
+    "@types/jest": "^24.0.0",
     "@types/jquery": "^3.3.29",
     "@types/jsdom": "^12.2.3",
     "@types/lodash": "^4.14.134",
@@ -110,6 +114,8 @@
     "@types/uuid": "^3.4.4",
     "@types/winston": "^2.4.4",
     "awesome-typescript-loader": "^5.2.1",
+    "browser-sync": "^2.26.7",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "chai": "^4.2.0",
     "concurrently": "^3.6.1",
     "cypress": "^4.4.0",
@@ -118,6 +124,7 @@
     "jest": "^25.5.4",
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
+    "nocache": "^2.1.0",
     "node-sass": "^4.13.1",
     "nodemon": "^1.19.1",
     "shelljs": "^0.8.3",
@@ -127,7 +134,7 @@
     "ts-node": "^5.0.1",
     "tslint": "^5.17.0",
     "tslint-react": "^3.6.0",
-    "typescript": "latest",
+    "typescript": "^3.8.3",
     "webpack-cli": "^3.3.4"
   }
 }

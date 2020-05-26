@@ -225,13 +225,20 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -469,13 +476,20 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -707,13 +721,20 @@ exports[`building code and room number when a class does not have a building cod
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -945,13 +966,20 @@ exports[`building code and room number when a class has a building code and room
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -1183,13 +1211,20 @@ exports[`building code and room number when a class has a building code as TBD s
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -1421,13 +1456,20 @@ exports[`building code and room number when a class has building code as OL shou
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -1680,13 +1722,20 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -1928,13 +1977,20 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -2192,13 +2248,20 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -2456,13 +2519,20 @@ exports[`seats text verbiage when a class is closed should display available sea
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -2720,13 +2790,20 @@ exports[`seats text verbiage when a class is closed should display available spo
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -2958,13 +3035,20 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -3196,13 +3280,20 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -3440,13 +3531,20 @@ exports[`when a class has low cost course material should display icon for low c
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
         <div
           className="course--icons"
         >
@@ -3692,13 +3790,20 @@ exports[`when a class has zero cost course material should display icon for zero
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
         <div
           className="course--icons"
         >
@@ -3944,13 +4049,20 @@ exports[`when a class has zero cost course materials and low cost course materia
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
         <div
           className="course--icons"
         >
@@ -4188,13 +4300,20 @@ exports[`when a class is a fully online should not display the room number in th
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
@@ -4426,13 +4545,20 @@ exports[`when a class results component is displayed should display the correct 
       <div
         className="course-books"
       >
-        <div
-          dangerouslySetInnerHTML={
-            Object {
-              "__html": "",
-            }
-          }
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            ACCT
+             
+            101
+          </span>
+          Textbook
+        </a>
       </div>
     </div>
   </div>
