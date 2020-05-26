@@ -38,26 +38,28 @@ function enterTimes(startHour='08', startMinute='00', startAmPm = 'am', endHour=
   cy.get('.end-time select').select(endAmPm)
 }
 
-function submit() {
+async function submit() {
   cy.get('.btn-primary').click();
   cy.wait(1000); // wait for one second to eliminate DOM and network request inconsistencies
-  waitForResults();
+  await waitForResults();
 }
 
 function clickAdditionalFilters() {
   cy.get('#additional-filters').click();
 }
 
-function waitForResults(timer = 0) {
-  if (timer > 100) {
+function waitForResults ( timer = 0 ) {
+  if ( timer > 100 ) {
     throw 'Page took too long to load!';
   }
-  const results = Cypress.$('#class-search-results-component').length;
-  if (results === 0) {
-    setTimeout(() => {
-      waitForResults(timer + 1);
-    }, 500);
-  } 
+  const results = Cypress.$( '#class-search-results-component' ).length;
+  if ( results === 0 ) {
+    return new Promise( ( resolve ) => {
+      setTimeout( () => {
+        waitForResults( timer + 1 );
+      }, 500 );
+    } );
+  }
 }
 module.exports = {
   url: url,

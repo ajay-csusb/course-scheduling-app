@@ -1,3 +1,5 @@
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
 module.exports = {
   mode: "development",
   entry: "./src/public/js/index.tsx",
@@ -30,5 +32,13 @@ module.exports = {
   externals: {
     "react": "React",
     "react-dom": "ReactDOM"
-  }
+  },
+  plugins: [
+    new BrowserSyncPlugin({
+      // browse to http://localhost:3000/ during development,
+      // ./public directory is being served
+      port: 8000,
+      proxy: "localhost:3000",
+    })
+  ]
 };
