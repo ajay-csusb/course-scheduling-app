@@ -4,6 +4,8 @@ import { classJson, classPDC, baseClassJson } from './ClassesJson';
 import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
 import { IClass, Class } from '../src/public/js/Class';
 import { TestUtils } from './TestUtils';
+import { DisplayFormatTabs } from '../src/public/js/DisplayFormatTabs';
+import ExportToExcel from '../src/public/js/ExportToExcel';
 
 function mountClassSearchResultsComponent(results: IClass[], term: string = '2194'): ReactWrapper {
   const onChangeOfLoadingMessage = jest.fn();
@@ -265,7 +267,7 @@ describe('tabs', () => {
     beforeEach(() => {
       classSearchResultsComponent = mountClassSearchResultsComponent([classJson]);
     });
-    it('should set the display format to table', () => {
+    it('should set the format state to table', () => {
       expect(classSearchResultsComponent.state('format')).toEqual('lists');
       classSearchResultsComponent.find('#table').simulate('click');
       expect(classSearchResultsComponent.state('format')).toEqual('table');
@@ -277,7 +279,17 @@ describe('tabs', () => {
       const displayFormatTabsWrapper = classSearchResultsComponent.find('DisplayFormatTabs');
       expect(displayFormatTabsWrapper.prop('format')).toEqual('table');
     });
+  });
 
+  describe('when no classes are present', () => {
+    const classSearchContainerWrapper = shallow(<ClassSearchResults classes={[]} onChangeOfLoadingMessage={() => jest.fn()} currentTerm={'000'}/>);
+    it('should not display tabs', () => {
+      expect(classSearchContainerWrapper.find(DisplayFormatTabs)).toHaveLength(0);
+    });
+
+    it('should not display export to excel component', () => {
+      expect(classSearchContainerWrapper.find(ExportToExcel)).toHaveLength(0);
+    });
   });
 });
 
