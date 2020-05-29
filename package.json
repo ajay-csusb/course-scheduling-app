@@ -61,11 +61,14 @@
     "express-session": "^1.16.2",
     "express-validator": "^4.3.0",
     "fbgraph": "^1.4.4",
+    "file-saver": "^2.0.2",
     "lodash": "^4.17.5",
     "logrocket": "^1.0.6",
     "logrocket-react": "^3.0.1",
     "lusca": "^1.6.1",
     "mongoose": "^5.7.5",
+    "nocache": "^2.1.0",
+    "node-excel-export": "^1.4.4",
     "node-fetch": "^2.6.0",
     "node-persist": "^3.0.4",
     "nodemailer": "^4.7.0",
@@ -82,8 +85,7 @@
     "tsutils": "^3.14.0",
     "uuid": "^3.3.2",
     "webpack": "^4.34.0",
-    "winston": "^2.4.4",
-    "nocache": "^2.1.0"
+    "winston": "^2.4.4"
   },
   "devDependencies": {
     "@types/async": "^2.4.2",
@@ -98,6 +100,7 @@
     "@types/express": "^4.17.0",
     "@types/express-session": "^1.15.12",
     "@types/fetch-mock": "^6.0.5",
+    "@types/file-saver": "^2.0.1",
     "@types/jest": "^24.0.0",
     "@types/jquery": "^3.3.29",
     "@types/jsdom": "^12.2.3",
