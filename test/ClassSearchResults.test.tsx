@@ -251,7 +251,7 @@ describe('Given a class search results component', () => {
 });
 
 describe('tabs', () => {
-  describe('When a class search container mounted', () => {
+  describe('When a class search contains atleast one class', () => {
     let classSearchContainerWrapper = null;
     beforeEach(() => {
       classSearchContainerWrapper = mountClassSearchResultsComponent([classJson]);
@@ -259,6 +259,10 @@ describe('tabs', () => {
     it('should display the tabs', () => {
       expect(classSearchContainerWrapper.text()).toContain('List View');
       expect(classSearchContainerWrapper.text()).toContain('Table View');
+    });
+
+    it('should display the export to excel link', () => {
+      expect(classSearchContainerWrapper.text()).toContain('Export to Excel');
     });
   });
 
