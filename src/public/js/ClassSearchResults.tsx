@@ -3,6 +3,7 @@ import { IClass } from './Class';
 import { ClassesCards } from './ClassesCards';
 import { DisplayFormatTabs } from './DisplayFormatTabs';
 import { Grid } from './Grid';
+import ExportToExcel from './ExportToExcel';
 
 export interface IClassSearchResultsState {
   format: string;
@@ -44,6 +45,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     return (
       <div id="class-search-results-component">
         <p>{this.noOfClasses} classes found</p>
+        <ExportToExcel classes={this.props.classes}/>
         {renderMarkup}
       </div>
     );
