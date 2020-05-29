@@ -32,14 +32,16 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     const classesTable: JSX.Element =  this.getClassesInTableFormat();
     let renderMarkup = <i>Try refining the search above to get more results</i>;
     if (this.noOfClasses !== 0) {
-      <ExportToExcel classes={this.props.classes} />
       renderMarkup = (
-        <DisplayFormatTabs
-          format={this.state.format}
-          onChangeOfFormat={this.updateFormat}
-          listClasses={classesList}
-          tableClasses={classesTable}
-        />
+        <>
+          <ExportToExcel classes={this.props.classes} />
+          <DisplayFormatTabs
+            format={this.state.format}
+            onChangeOfFormat={this.updateFormat}
+            listClasses={classesList}
+            tableClasses={classesTable}
+          />
+        </>
       );
     }
     this.props.onChangeOfLoadingMessage();
