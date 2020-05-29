@@ -6,6 +6,7 @@ import path from 'path';
 import expressValidator from 'express-validator';
 import * as homeController from './controllers/home';
 import * as exportToExcelController from './controllers/exportToExcel';
+import cors from 'cors';
 
 dotenv.config({ path: '.env' });
 const app = express();
@@ -24,6 +25,7 @@ if (process.env && process.env.NODE_ENV === 'local') {
   const nocache = require('nocache');
   app.use(nocache());
 }
+app.use(cors());
 app.get('/', homeController.index);
 app.post('/export-to-excel', exportToExcelController.index);
 
