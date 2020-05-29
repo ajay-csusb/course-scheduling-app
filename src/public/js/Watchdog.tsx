@@ -13,6 +13,6 @@ export class Watchdog {
   private static getUrl(): string {
     const baseUrl = window.location.origin;
     const path = '/api/create/log';
-    return baseUrl + path;
+    return (baseUrl === null) ? '/api/create/log' : baseUrl + path;
   }
 }

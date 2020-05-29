@@ -1,6 +1,7 @@
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
 import { Watchdog } from './Watchdog';
+
 export interface IClass {
   quarter: string;
   subject: string;
@@ -12,7 +13,7 @@ export interface IClass {
   classStartTime: string;
   classEndTime: string;
   courseOfferNo?: number;
-  classNumber?: number;
+  classNumber: number;
   enrolledCapacity: number;
   enrolledTotal: number;
   waitlistCapacity: number;
