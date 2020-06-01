@@ -6,6 +6,8 @@ import { Utils } from './Utils';
 import * as CourseAttributes from './CourseAttributes';
 import * as React from 'react';
 import { Textbook } from './Textbook';
+import { Watchdog } from './Watchdog';
+import { app } from './ClassSearch.d';
 
 const searchURL = 'https://search.csusb.edu';
 export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
@@ -371,4 +373,21 @@ export function getTextbookUrl(_class: IClass): string {
   const section: string = _class.classSection;
   const textbook = new Textbook(term, _class.subject, catalogNo, section);
   return textbook.link();
+}
+
+export function exportToExcelPost(classes: IClass[]): Promise<Blob> {
+  const url = Utils.isProd() ? app.settings.excelUrl : app.settings.excelUrlDev;
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(classes),
+  })
+  .then((res: any) => {
+    if (res.ok) {
+      return res.blob();
+    }
+    Watchdog.log(res);
+  });
 }
