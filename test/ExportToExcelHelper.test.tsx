@@ -5,12 +5,14 @@ import { TestUtils } from './TestUtils';
 test('dataset', () => {
   const acctClass = TestUtils.copyObject(classJson);
   acctClass.courseAttr = 'Foo';
+  acctClass.topic = 'Special topics in Accounting';
   acctClass.fullSsrComponent = 'Activity';
   const classes = [acctClass, classPDC];
   const dataset: ExcelData[] = getDataForExcel(classes);
   expect(dataset).toHaveLength(2);
+  expect(dataset[0].term).toEqual('2194');
   expect(dataset[0].subject).toEqual('ACCT 101');
-  expect(dataset[0].title).toEqual('Introduction to Accounting');
+  expect(dataset[0].title).toEqual('Introduction to Accounting: Special Topics In Accounting');
   expect(dataset[0].classSection).toEqual('01');
   expect(dataset[0].classNumber).toEqual(101);
   expect(dataset[0].fullSsrComponent).toEqual('Activity');

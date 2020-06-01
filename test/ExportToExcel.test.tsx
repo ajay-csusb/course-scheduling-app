@@ -18,11 +18,12 @@ describe('Export to Excel component', () => {
     expect(exportToExcelComponent).toMatchSnapshot();
   });
 
-  test('fetch parameters', () => {
+  test('fetch parameters', (done) => {
     const exportToExcelComponent = mount(<ExportToExcel classes={classes} />);
     exportToExcelComponent.find('#export-to-excel').simulate('click');
     const fetchOptions = fetchMock.lastOptions();
     expect(fetchOptions.body).toMatch(JSON.stringify(classes));
+    done();
   });
 
 });
