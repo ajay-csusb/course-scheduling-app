@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { IClass, Class } from './Class';
 import { Cell, Table, Column, ColumnHeaderCell, IMenuContext, CopyCellsMenuItem, TruncatedFormat } from '@blueprintjs/table';
-import { Utils } from './Utils';
 import { Menu, MenuItem } from '@blueprintjs/core';
 import * as Sort from './Sort';
 interface ITableDisplayProps {
@@ -348,8 +347,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
   private getTitle(rowIndex: number): JSX.Element {
     const _class = this.classes[rowIndex];
     const title = _class.title;
-    const topicLowercase = _class.topic.toLowerCase();
-    const topic = (topicLowercase.trim().length !== 0) ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
+    const topic = ClassSearchUtils.formatSubjectTopic(_class.topic);
     return (
       <Cell tooltip={`${title}${topic}`}>
         <TruncatedFormat truncateLength={50} >{`${title}${topic}`}</TruncatedFormat>

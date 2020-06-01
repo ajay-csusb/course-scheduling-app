@@ -366,9 +366,18 @@ export function getNoOfAvailableSeatsInWaitlist(_class: IClass): number {
 }
 
 export function getTextbookUrl(_class: IClass): string {
-    const term: number = parseInt(_class.quarter, 10);
-    const catalogNo: number = parseInt(_class.catalogNo, 10);
-    const section: string = _class.classSection;
-    const textbook = new Textbook(term, _class.subject, catalogNo, section);
-    return textbook.link();
+  const term: number = parseInt(_class.quarter, 10);
+  const catalogNo: number = parseInt(_class.catalogNo, 10);
+  const section: string = _class.classSection;
+  const textbook = new Textbook(term, _class.subject, catalogNo, section);
+  return textbook.link();
+}
+
+export function formatSubjectTopic(topic: string): string {
+  const topicLowercase = topic.toLowerCase();
+  // Special case for PHIL 3001
+  if (topicLowercase === 'truth, lies and bs') {
+    return ': Truth, Lies and Bullshit';
+  }
+  return (topicLowercase.trim().length !== 0) ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
 }
