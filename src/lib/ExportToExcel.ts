@@ -17,6 +17,7 @@ export interface ExcelData {
   seatsAvailable: string;
   sessionCode: string;
   subject: string;
+  term: string;
   title: string;
   waitlistSeatsAvailable: string;
 }
@@ -42,10 +43,11 @@ export function getDataForExcel(classes: IClass[]): ExcelData[] {
 
 function extractExcelData(_class: IClass): ExcelData {
   const currClass: Class = new Class(_class);
-  const { campus, catalogNo, classNumber, courseAttr, classSection, subject, title, fullSsrComponent, csuUnits, instructorName, enrolledCapacity, waitlistCapacity } = _class;
+  const { campus, catalogNo, classNumber, classSection, courseAttr, csuUnits, enrolledCapacity, fullSsrComponent, instructorName, quarter, subject, title, topic, waitlistCapacity} = _class;
   const result: ExcelData = {
+    term: quarter,
     subject: `${subject} ${catalogNo}`,
-    title: title,
+    title: `${title}${ClassSearchUtils.formatSubjectTopic(topic)}`,
     campus: ClassSearchUtils.getCampusName(campus),
     classNumber: classNumber,
     classSection: classSection,
@@ -66,6 +68,7 @@ function extractExcelData(_class: IClass): ExcelData {
 function getColumnSpecification() {
   const col: any = {};
   const colName = [
+    'term',
     'subject',
     'title',
     'classSection',
@@ -93,6 +96,7 @@ function getColumnSpecification() {
 function getColumnTitle() {
   return [
     [
+      'Term',
       'Subject',
       'Title',
       'Section',
