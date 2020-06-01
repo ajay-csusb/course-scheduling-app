@@ -391,3 +391,8 @@ export function exportToExcelPost(classes: IClass[]): Promise<Blob> {
     Watchdog.log(res);
   });
 }
+
+export function formatSubjectTopic(topic: string): string {
+  const topicLowercase = topic.toLowerCase();
+  return (topicLowercase.trim().length !== 0) ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
+}
