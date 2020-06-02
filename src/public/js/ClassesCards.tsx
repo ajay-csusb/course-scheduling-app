@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { IClass, Class } from './Class';
 import { Popover, Classes } from '@blueprintjs/core';
-import { Utils } from './Utils';
 
 interface IClassesCardsProps {
   classes: IClass;
@@ -102,8 +101,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public getClassFullTitle(): JSX.Element {
-    const topicLowercase = this.classDetails.topic.toLowerCase();
-    const topic = (topicLowercase.trim().length !== 0) ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
+    const topic = ClassSearchUtils.formatSubjectTopic(this.classDetails.topic);
     const tooltip = this.getTooltipMarkup();
     return (
       <div className="course-name">
