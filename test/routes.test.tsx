@@ -16,4 +16,16 @@ describe('Export to Excel endpoint', () => {
         done();
       });
   });
+
+  it('should send a status of 400 if the request is not valid', (done) => {
+    const res = request(app)
+      .post('/export-to-excel')
+      .expect(400)
+      .end((err, res) => {
+        if (err) {
+          done(err);
+        }
+        done();
+      });
+  });
 });
