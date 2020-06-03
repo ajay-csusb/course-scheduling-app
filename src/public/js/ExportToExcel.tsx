@@ -13,6 +13,7 @@ export default class ExportToExcel extends React.Component<IExportToExcelProps> 
     super(props);
     this.exportToExcelOnClickHandler = this.exportToExcelOnClickHandler.bind(this);
   }
+
   render() {
     return (
       <>
@@ -20,7 +21,8 @@ export default class ExportToExcel extends React.Component<IExportToExcelProps> 
       </>
     );
   }
-  private exportToExcelOnClickHandler(): any {
+
+  private exportToExcelOnClickHandler(): void {
     ClassSearchUtils.exportToExcelPost(this.props.classes)
     .then((blob: Blob) => {
       FileSaver.saveAs(blob, 'class-search.xlsx');

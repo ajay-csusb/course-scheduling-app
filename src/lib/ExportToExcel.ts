@@ -22,7 +22,7 @@ export interface ExcelData {
   waitlistSeatsAvailable: string;
 }
 
-export function getExcelDocument(data: any) {
+export function getExcelDocument(data: any): Buffer {
   return excel.buildExport([{
     name: 'Class Search Report',
     heading: getColumnTitle(),
@@ -33,21 +33,20 @@ export function getExcelDocument(data: any) {
 }
 
 export function getDataForExcel(classes: IClass[]): ExcelData[] {
-  const results: ExcelData[] = [];
+  const rows: ExcelData[] = [];
+
   for (const _class of classes) {
-    const result: ExcelData = extractExcelData(_class);
-    results.push(result);
+    const row: ExcelData = extractExcelData(_class);
+    rows.push(row);
   }
-  return results;
+
+  return rows;
 }
 
 function extractExcelData(_class: IClass): ExcelData {
   const currClass: Class = new Class(_class);
   const { campus, catalogNo, classNumber, classSection, courseAttr, csuUnits, enrolledCapacity, fullSsrComponent, instructorName, quarter, subject, title, topic, waitlistCapacity} = _class;
-  const result: ExcelData = {
-    term: quarter,
-    subject: `${subject} ${catalogNo}`,
-    title: `${title}${ClassSearchUtils.formatSubjectTopic(topic)}`,
+  const rows: ExcelData = {
     campus: ClassSearchUtils.getCampusName(campus),
     classNumber: classNumber,
     classSection: classSection,
@@ -60,12 +59,16 @@ function extractExcelData(_class: IClass): ExcelData {
     meetingTime: currClass.getClassMeetingTimes(),
     seatsAvailable: `${ClassSearchUtils.getNoOfAvailableSeats(_class)}/${enrolledCapacity}`,
     sessionCode: ClassSearchUtils.getSessionCode(_class),
+    subject: `${subject} ${catalogNo}`,
+    term: quarter,
+    title: `${title}${ClassSearchUtils.formatSubjectTopic(topic)}`,
     waitlistSeatsAvailable: `${ClassSearchUtils.getNoOfAvailableSeatsInWaitlist(_class)}/${waitlistCapacity}`,
   };
-  return result;
+
+  return rows;
 }
 
-function getColumnSpecification() {
+function getColumnSpecification(): any {
   const col: any = {};
   const colName = [
     'term',
@@ -85,15 +88,17 @@ function getColumnSpecification() {
     'courseAttr',
     'campus',
   ];
+
   for (const i of colName) {
     col[i] = {
       width: 120,
     };
   }
+
   return col;
 }
 
-function getColumnTitle() {
+function getColumnTitle(): any[] {
   return [
     [
       'Term',
@@ -116,7 +121,7 @@ function getColumnTitle() {
   ];
 }
 
-function getColumnMergeInfo() {
+function getColumnMergeInfo(): any[] {
   const results = [];
 
   for (let index = 1; index <= getColumnTitle()[0].length; index++) {

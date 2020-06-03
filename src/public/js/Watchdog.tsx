@@ -1,4 +1,5 @@
 export class Watchdog {
+
   public static log(data: any): void {
     fetch(Watchdog.getUrl(), {
       method: 'POST',
@@ -13,6 +14,7 @@ export class Watchdog {
   private static getUrl(): string {
     const baseUrl = window.location.origin;
     const path = '/api/create/log';
+
     return (baseUrl === null) ? '/api/create/log' : baseUrl + path;
   }
 }
