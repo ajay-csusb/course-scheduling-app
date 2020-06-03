@@ -3,6 +3,7 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { Spinner } from '@blueprintjs/core';
 import { TestUtils } from './TestUtils';
+import { Class } from '../src/public/js/Class';
 // tslint:disable:max-line-length
 
 describe('snapshots', () => {
@@ -114,6 +115,34 @@ describe('states', () => {
       classSearchContainerWrapper.find('.select-ge-classes-attr > select').simulate('change', { target: { value: 'GE-001' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       expect(classSearchContainerWrapper.state('geClassesAttribute')).toEqual('GE-001');
+    });
+  });
+
+  describe('on component update', () => {
+    it('should unset forceReload if it is set', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({forceReload: true});
+      expect(classSearchContainerWrapper.state('forceReload')).toBeFalsy();
+    });
+  });
+
+  describe('when a user selects a meeting day', () => {
+    it('should set the state for the day', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('input[value="mon"]').simulate('change');
+      classSearchContainerWrapper.find('input[value="tue"]').simulate('change');
+      classSearchContainerWrapper.find('input[value="wed"]').simulate('change');
+      classSearchContainerWrapper.find('input[value="thu"]').simulate('change');
+      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      expect(classSearchContainerWrapper.state('meetingDate')).toEqual({
+        mon: true,
+        tue: true,
+        wed: true,
+        thu: true,
+        fri: false,
+        sat: false,
+        sun: false,
+      });
     });
   });
 
