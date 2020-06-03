@@ -1,6 +1,6 @@
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
-import { Watchdog } from './Watchdog';
+import * as Watchdog from './Watchdog';
 
 export interface IClass {
   amount: number;

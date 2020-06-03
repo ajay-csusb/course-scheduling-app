@@ -6,7 +6,7 @@ import { Utils } from './Utils';
 import * as CourseAttributes from './CourseAttributes';
 import * as React from 'react';
 import { Textbook } from './Textbook';
-import { Watchdog } from './Watchdog';
+import * as Watchdog from './Watchdog';
 import { app } from './ClassSearch.d';
 
 const searchURL = 'https://search.csusb.edu';
@@ -389,6 +389,10 @@ export function exportToExcelPost(classes: IClass[]): Promise<Blob> {
       return res.blob();
     }
     Watchdog.log(res);
+  })
+  .catch((err: any) => {
+    Watchdog.log(err);
+    return err;
   });
 }
 

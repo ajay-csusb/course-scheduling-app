@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IClass } from './Class';
 import * as FileSaver from 'file-saver';
-import { Watchdog } from './Watchdog';
+import * as Watchdog from './Watchdog';
 import * as ClassSearchUtils from './ClassSearchUtils';
 
 interface IExportToExcelProps {

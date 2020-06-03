@@ -1,20 +1,17 @@
-export class Watchdog {
+export function log(data: any): void {
+  fetch(getUrl(), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+}
 
-  public static log(data: any): void {
-    fetch(Watchdog.getUrl(), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-  }
+function getUrl(): string {
+  const baseUrl = window.location.origin;
+  const path = '/api/create/log';
 
-  private static getUrl(): string {
-    const baseUrl = window.location.origin;
-    const path = '/api/create/log';
-
-    return (baseUrl === null) ? '/api/create/log' : baseUrl + path;
-  }
+  return (baseUrl === null) ? '/api/create/log' : baseUrl + path;
 }
