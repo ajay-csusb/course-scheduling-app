@@ -18,6 +18,7 @@ test('dataset', () => {
   expect(dataset[0].fullSsrComponent).toEqual('Activity');
   expect(dataset[0].csuUnits).toEqual(4);
   expect(dataset[0].instructorName).toEqual('Dyck, Harold');
+  expect(dataset[0].buildingCode).toEqual('COE 101');
   expect(dataset[0].meetingDay).toEqual('M-W');
   expect(dataset[0].meetingTime).toEqual('12:00 pm - 1:50 pm');
   expect(dataset[0].instructionMode).toEqual('Classroom');
