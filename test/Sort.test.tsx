@@ -257,4 +257,31 @@ describe('sorting classes', () => {
     });
   });
 
+  describe('sort by building and room number', () => {
+    const acctClassOnline = TestUtils.copyObject(classJson);
+    const bioClassNoBuildingInfo = TestUtils.copyObject(classJson);
+    const philClassWithBuilding = TestUtils.copyObject(classJson);
+    beforeEach(() => {
+      acctClassOnline.buildingCode = 'TBD';
+      bioClassNoBuildingInfo.buildingCode = 'TBD';
+      philClassWithBuilding.buildingCode = 'UH';
+      philClassWithBuilding.roomNumber = '101';
+    });
+
+    test('default sorting behavior', () => {
+      const sortClassesByBuildingNumber = Sort.sortByBuildingNumber([philClassWithBuilding, acctClassOnline, bioClassNoBuildingInfo]);
+      expect(sortClassesByBuildingNumber[0].buildingCode).toEqual('TBD');
+      expect(sortClassesByBuildingNumber[1].buildingCode).toEqual('TBD');
+      expect(sortClassesByBuildingNumber[2].buildingCode).toEqual('UH');
+    });
+
+    test('desceding sort', () => {
+      const sortClassesByBuildingNumber = Sort.sortByBuildingNumber([philClassWithBuilding, acctClassOnline, bioClassNoBuildingInfo],'des');
+      expect(sortClassesByBuildingNumber[0].buildingCode).toEqual('UH');
+      expect(sortClassesByBuildingNumber[1].buildingCode).toEqual('TBD');
+      expect(sortClassesByBuildingNumber[2].buildingCode).toEqual('TBD');
+    });
+    
+  })
+  
 });

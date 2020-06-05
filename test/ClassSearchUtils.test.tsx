@@ -1,14 +1,11 @@
 import * as React from 'react';
 import fetchMock from 'fetch-mock';
 import * as ClassSearchUtils from '../src/public/js/ClassSearchUtils';
-import { classJson, rawClassesJson, baseClassJson, classPDC} from './ClassesJson';
+import { classJson, baseClassJson, classPDC} from './ClassesJson';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { mount, shallow } from 'enzyme';
 import { TestUtils } from './TestUtils';
-import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
 import { GeCourseAttribute } from '../src/public/js/GeCourseAttribute';
-import * as ClassSearch from '../src/public/js/ClassSearch.d';
-import { Watchdog } from '../src/public/js/Watchdog';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
