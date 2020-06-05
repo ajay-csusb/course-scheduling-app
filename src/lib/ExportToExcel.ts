@@ -4,7 +4,7 @@ import * as ClassSearchUtils from '../public/js/ClassSearchUtils';
 const excel = require('node-excel-export');
 
 export interface ExcelData {
-  buildingCode: string,
+  buildingCode: string;
   campus: string;
   classNumber: number;
   classSection: string;
@@ -48,7 +48,7 @@ function extractExcelData(_class: IClass): ExcelData {
   const currClass: Class = new Class(_class);
   const { campus, catalogNo, classNumber, classSection, courseAttr, csuUnits, enrolledCapacity, fullSsrComponent, instructorName, quarter, subject, title, topic, waitlistCapacity} = _class;
   const rows: ExcelData = {
-    buildingCode: ClassSearchUtils.getRoomNumber(_class);
+    buildingCode: ClassSearchUtils.getRoomNumber(_class),
     campus: ClassSearchUtils.getCampusName(campus),
     classNumber: classNumber,
     classSection: classSection,
