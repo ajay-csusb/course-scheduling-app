@@ -23,7 +23,7 @@ export interface ExcelData {
   waitlistSeatsAvailable: string;
 }
 
-export function getExcelDocument(data: any): Buffer {
+export function getExcelDocument(data: IClass[]): Buffer {
   return excel.buildExport([{
     name: 'Class Search Report',
     heading: getColumnTitle(),
@@ -101,7 +101,7 @@ function getColumnSpecification(): any {
   return col;
 }
 
-function getColumnTitle(): any[] {
+function getColumnTitle(): string[][] {
   return [
     [
       'Term',
