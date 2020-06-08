@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { IClass, Class } from './Class';
-import { Cell, Table, Column, ColumnHeaderCell, IMenuContext, CopyCellsMenuItem, TruncatedFormat } from '@blueprintjs/table';
+import { Cell, Table, Column, ColumnHeaderCell, IMenuContext,
+  CopyCellsMenuItem, TruncatedFormat } from '@blueprintjs/table';
 import { Menu, MenuItem } from '@blueprintjs/core';
 import * as Sort from './Sort';
 export interface ITableDisplayProps {
@@ -15,6 +16,8 @@ export class Grid extends React.Component<ITableDisplayProps> {
   constructor(props: ITableDisplayProps) {
     super(props);
     this.classes = this.props.classes;
+    this.getCopiedData = this.getCopiedData.bind(this);
+    this.renderBodyMenu = this.renderBodyMenu.bind(this);
   }
   public render(): JSX.Element {
     const innerColumns = [
@@ -55,9 +58,9 @@ export class Grid extends React.Component<ITableDisplayProps> {
           key={new Date().getTime()} // Hack! https://github.com/palantir/blueprint/issues/3757
           numRows={this.classes.length}
           enableColumnResizing={false}
-          getCellClipboardData={this.getCopiedData.bind(this)}
-          bodyContextMenuRenderer={this.renderBodyMenu.bind(this)}
-          columnWidths={[100, 300, 100, 100, 100, 50, 150, 100, 100 ,120, 150, 100, 150, 100, 300, 120, 150]}
+          getCellClipboardData={this.getCopiedData}
+          bodyContextMenuRenderer={this.renderBodyMenu}
+          columnWidths={[100, 300, 100, 100, 100, 50, 150, 100, 100, 120, 150, 100, 150, 100, 300, 120, 150]}
         >
           {columns}
         </Table>
@@ -68,7 +71,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
   private renderBodyMenu(context: IMenuContext): any {
     return (
       <Menu>
-        <CopyCellsMenuItem context={context} getCellData={this.getCopiedData.bind(this)} text="Copy" />
+        <CopyCellsMenuItem context={context} getCellData={this.getCopiedData} text="Copy" />
       </Menu>
     );
   }
