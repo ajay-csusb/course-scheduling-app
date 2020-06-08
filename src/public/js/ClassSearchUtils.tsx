@@ -398,5 +398,9 @@ export function exportToExcelPost(classes: IClass[]): Promise<Blob> {
 
 export function formatSubjectTopic(topic: string): string {
   const topicLowercase = topic.toLowerCase();
+  // Special case for PHIL 3001
+  if (topicLowercase === 'truth, lies and bs') {
+    return ': Truth, Lies and Bullshit';
+  }
   return (topicLowercase.trim().length !== 0) ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
 }
