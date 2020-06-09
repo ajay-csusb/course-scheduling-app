@@ -10,7 +10,7 @@ describe('Filter classes by GE attributes', function () {
       cy.get('.select-ge-classes-attr select').select('GE-B2 Life Science');
       form.submit();
     });
-    it('should show BIO 100', () => {
+    it('should show BIO 1000', () => {
       cy.get('#class-search-results-component')
         .should('contain', 'BIOL 1000')
     });

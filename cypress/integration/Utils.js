@@ -38,10 +38,14 @@ function enterTimes(startHour='08', startMinute='00', startAmPm = 'am', endHour=
   cy.get('.end-time select').select(endAmPm)
 }
 
-async function submit() {
+function submit() {
   cy.get('.btn-primary').click();
-  cy.wait(1000); // wait for one second to eliminate DOM and network request inconsistencies
-  await waitForResults();
+  submitHelper()
+  .then((res) => console.log(res));
+}
+
+async function submitHelper() {
+  return await waitForResults();
 }
 
 function clickAdditionalFilters() {
@@ -49,18 +53,21 @@ function clickAdditionalFilters() {
 }
 
 function waitForResults ( timer = 0 ) {
-  if ( timer > 100 ) {
+  if ( timer > 1000 ) {
     throw 'Page took too long to load!';
   }
-  const results = Cypress.$( '#class-search-results-component' ).length;
-  if ( results === 0 ) {
-    return new Promise( ( resolve ) => {
-      setTimeout( () => {
-        waitForResults( timer + 1 );
-      }, 500 );
-    } );
+
+  const results = Cypress.$('.course').length;
+
+  if (results === 0) {
+    setTimeout( () => {
+      waitForResults( timer + 1 );
+    }, 50);
+  } else {
+    return Promise.resolve(timer);
   }
 }
+
 module.exports = {
   url: url,
   selectSubject: selectSubject,

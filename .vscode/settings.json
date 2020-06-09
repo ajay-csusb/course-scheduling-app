@@ -4,7 +4,8 @@
         "**/node_modules": true,
         "**/bower_components": true,
         "**/dist": true,
-        "**/coverge": true
+        "**/coverge": true,
+        ".cache/**": true
     },
     "typescript.referencesCodeLens.enabled": true,
     "tslint.ignoreDefinitionFiles": false,
@@ -25,7 +26,14 @@
         "**/coverage": true,
         "**/dist": true,
         "docs": true
-    }, 
+    },
     "editor.insertSpaces": true,
-    "editor.tabSize": 4,
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.rulers": [
+        80
+    ],
+    "[json]": {
+        "editor.formatOnSave": false
+    },
 }

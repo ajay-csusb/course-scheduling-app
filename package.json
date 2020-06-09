@@ -1,13 +1,12 @@
 {
-  "name": "express-typescript-starter",
-  "version": "0.1.0",
-  "description": "A starting point for Node.js express apps with TypeScript",
+  "name": "csusb-class-search",
+  "version": "1.0.0",
+  "description": "Search classes in CSUSB",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/TypeScript-Node-Starter"
+    "url": "https://github.com/ajay-csusb/course-scheduling-app"
   },
-  "author": "Bowden Kelly",
-  "license": "MIT",
+  "author": "Ajay J Kotian",
   "scripts": {
     "start": "npm run serve",
     "build": "npm run build-sass && npm run build-ts && npm run copy-static-assets",
@@ -26,7 +25,10 @@
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-webpack": "webpack -D --watch",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\"",
-    "cypress": "cypress run --browser chrome --headless"
+    "cypress": "cypress run --browser chrome --headless",
+    "gcp-build": "npm run build",
+    "deploy-dev": "gcloud app deploy app-dev.yaml",
+    "deploy-prod": "gcloud app deploy app.yaml"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.26.1",
@@ -35,6 +37,7 @@
     "@blueprintjs/table": "^3.8.5",
     "@bugsnag/js": "^6.5.2",
     "@bugsnag/plugin-react": "^6.5.0",
+    "@types/cors": "^2.8.6",
     "@types/logrocket-react": "^3.0.0",
     "@types/moment": "^2.13.0",
     "@types/node-fetch": "^2.3.7",
@@ -49,6 +52,7 @@
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "connect-mongo": "^2.0.3",
+    "cors": "^2.8.5",
     "dotenv": "^4.0.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -59,11 +63,14 @@
     "express-session": "^1.16.2",
     "express-validator": "^4.3.0",
     "fbgraph": "^1.4.4",
+    "file-saver": "^2.0.2",
     "lodash": "^4.17.5",
     "logrocket": "^1.0.6",
     "logrocket-react": "^3.0.1",
     "lusca": "^1.6.1",
     "mongoose": "^5.7.5",
+    "nocache": "^2.1.0",
+    "node-excel-export": "^1.4.4",
     "node-fetch": "^2.6.0",
     "node-persist": "^3.0.4",
     "nodemailer": "^4.7.0",
@@ -95,6 +102,7 @@
     "@types/express": "^4.17.0",
     "@types/express-session": "^1.15.12",
     "@types/fetch-mock": "^6.0.5",
+    "@types/file-saver": "^2.0.1",
     "@types/jest": "^24.0.0",
     "@types/jquery": "^3.3.29",
     "@types/jsdom": "^12.2.3",
@@ -124,7 +132,6 @@
     "jest": "^25.5.4",
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
-    "nocache": "^2.1.0",
     "node-sass": "^4.13.1",
     "nodemon": "^1.19.1",
     "shelljs": "^0.8.3",

@@ -11,6 +11,17 @@ describe('Class information displays accurate data', function () {
     it('class results should not be clickable', () => {
       cy.get('div').should('not.contain.class', 'bp3-interactive');
     });
+
+    it('should display the tabs', () => {
+      cy.get('.bp3-tabs')
+        .should('contain', 'List View ')
+        .should('contain', 'Table View ');
+    });
+
+    it('should show Export to Excel link', () => {
+      cy.get('#export-to-excel')
+        .should('contain', 'Export to Excel')
+    });
   });
 
 });

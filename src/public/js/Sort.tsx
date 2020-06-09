@@ -129,3 +129,17 @@ export function sortBySeatsAvailableInWaitlist(classes: IClass[], key: string = 
   }
   return classes;
 }
+
+export function sortByBuildingNumber(classes: IClass[], key: string = 'asc'): IClass[] {
+  if (key === 'asc') {
+    classes.sort((a, b) => {
+      return ClassSearchUtils.getRoomNumber(a).localeCompare(ClassSearchUtils.getRoomNumber(b));
+    });
+  } else {
+    classes.sort((a, b) => {
+      return ClassSearchUtils.getRoomNumber(b).localeCompare(ClassSearchUtils.getRoomNumber(a));
+    });
+  }
+
+  return classes;
+}

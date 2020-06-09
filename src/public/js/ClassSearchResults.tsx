@@ -3,6 +3,7 @@ import { IClass } from './Class';
 import { ClassesCards } from './ClassesCards';
 import { DisplayFormatTabs } from './DisplayFormatTabs';
 import { Grid } from './Grid';
+import ExportToExcel from './ExportToExcel';
 
 export interface IClassSearchResultsState {
   format: string;
@@ -32,12 +33,15 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     let renderMarkup = <i>Try refining the search above to get more results</i>;
     if (this.noOfClasses !== 0) {
       renderMarkup = (
-        <DisplayFormatTabs
-          format={this.state.format}
-          onChangeOfFormat={this.updateFormat}
-          listClasses={classesList}
-          tableClasses={classesTable}
-        />
+        <>
+          <ExportToExcel classes={this.props.classes} />
+          <DisplayFormatTabs
+            format={this.state.format}
+            onChangeOfFormat={this.updateFormat}
+            listClasses={classesList}
+            tableClasses={classesTable}
+          />
+        </>
       );
     }
     this.props.onChangeOfLoadingMessage();

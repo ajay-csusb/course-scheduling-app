@@ -4,35 +4,29 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import path from 'path';
 import expressValidator from 'express-validator';
-import nocache from 'nocache';
-
-// Load environment variables from .env file, where API keys and passwords are configured
-dotenv.config({ path: '.env.example' });
-
-// Controllers (route handlers)
 import * as homeController from './controllers/home';
+import * as exportToExcelController from './controllers/exportToExcel';
+import cors from 'cors';
 
-// Create Express server
+dotenv.config({ path: '.env' });
 const app = express();
-
-// Express configuration
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 app.set('etag', false);
 app.use(compression());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 app.use(expressValidator());
-
 app.use(
   express.static(path.join(__dirname, 'public'), { maxAge: 0 })
 );
-
-app.use(nocache());
-/**
- * Primary app routes.
- */
+if (process.env && process.env.NODE_ENV === 'local') {
+  const nocache = require('nocache');
+  app.use(nocache());
+}
+app.use(cors());
 app.get('/', homeController.index);
+app.post('/export-to-excel', exportToExcelController.index);
 
 export default app;

@@ -1,59 +1,60 @@
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
-import { Watchdog } from './Watchdog';
+import * as Watchdog from './Watchdog';
+
 export interface IClass {
-  quarter: string;
-  subject: string;
-  catalogNo: string;
-  classSection: string;
-  textbook: string;
-  employeeId: string;
-  profile?: string;
-  classStartTime: string;
-  classEndTime: string;
-  courseOfferNo?: number;
-  classNumber?: number;
-  enrolledCapacity: number;
-  enrolledTotal: number;
-  waitlistCapacity: number;
-  waitlistTotal: number;
-  classMeetingNo: number;
-  csuUnits: number;
   amount: number;
-  courseId: string;
-  sessionCode: string;
-  description: string;
-  ssrComponent: string;
-  classType?: string;
-  classStatus: string;
-  campus: string;
-  longDescription?: string;
-  schedulePrint?: string;
   academicGroup?: string;
   academicOrg?: string;
-  instructionMode: string;
-  sbCourseZccm?: string;
-  facilityId: string;
   buildingCode: string;
-  room: string;
-  mon: string;
-  tues: string;
-  wed: string;
-  thurs: string;
-  fri: string;
-  sat: string;
-  sun: string;
-  instructorName: string;
-  instructorEmployeeId?: string;
-  instructorAltName?: string;
+  campus: string;
+  catalogNo: string;
+  classEndTime: string;
+  classSection: string;
+  classStartTime: string;
+  classMeetingNo: number;
+  classNumber: number;
+  classStatus: string;
+  classType?: string;
   courseAttr: string;
-  degreeType: string;
-  title: string;
-  geCourseAttr: string;
-  topic: string;
   courseAttrDescription: string;
-  fullSsrComponent: string;
+  courseId: string;
+  courseOfferNo?: number;
+  csuUnits: number;
+  degreeType: string;
+  description: string;
+  employeeId: string;
+  enrolledCapacity: number;
   enrollmentStatus: string;
+  enrolledTotal: number;
+  facilityId: string;
+  fri: string;
+  fullSsrComponent: string;
+  geCourseAttr: string;
+  instructorAltName?: string;
+  instructorEmployeeId?: string;
+  instructionMode: string;
+  instructorName: string;
+  longDescription?: string;
+  mon: string;
+  profile?: string;
+  quarter: string;
+  room: string;
+  sat: string;
+  sbCourseZccm?: string;
+  schedulePrint?: string;
+  sessionCode: string;
+  ssrComponent: string;
+  subject: string;
+  sun: string;
+  textbook: string;
+  thurs: string;
+  title: string;
+  topic: string;
+  tues: string;
+  waitlistCapacity: number;
+  waitlistTotal: number;
+  wed: string;
 }
 
 export interface IMeetingDate {
@@ -77,58 +78,58 @@ export class Class {
 
   static transformToClass(object: any): IClass {
     const result: IClass = {
-      courseAttrDescription: object.crse_ATTR_VALUE_DESCR,
-      quarter : object.strm,
-      subject : object.subject,
-      catalogNo : object.catalog_NBR,
-      classSection : object.class_SECTION,
-      textbook : object.book,
-      employeeId : object.emplid,
-      profile : object.profile_PATH,
-      classStartTime : object.class_START_TIME,
-      classEndTime : object.class_END_TIME,
-      courseOfferNo : object.crse_OFFER_NBR,
-      classNumber : object.class_NBR,
-      enrolledCapacity : object.enrl_CAP,
-      enrolledTotal : object.enrl_TOT,
-      waitlistCapacity : object.wait_CAP,
-      waitlistTotal : object.wait_TOT,
-      classMeetingNo : object.class_MTG_NBR,
-      csuUnits : object.csu_APDB_CMP_UNITS,
       amount : object.flat_AMT,
-      courseId : object.crse_ID,
-      sessionCode : object.session_CODE,
-      description : object.descr,
-      ssrComponent : object.ssr_COMPONENT,
-      classType : object.class_TYPE,
-      classStatus : object.class_STAT,
-      campus : object.campus,
-      longDescription : object.descrlong_VC,
-      schedulePrint : object.schedule_PRINT,
       academicGroup : object.acad_GROUP,
       academicOrg : object.acad_ORG,
-      instructionMode : object.instruction_MODE,
-      sbCourseZccm : object.sb_CRSE_ZCCM,
-      facilityId : object.facility_ID,
       buildingCode : object.bldg_CD,
-      room : object.room,
-      mon : object.mon,
-      tues : object.tues,
-      wed : object.wed,
-      thurs : object.thurs,
-      fri : object.fri,
-      sat : object.sat,
-      sun : object.sun,
-      instructorName : object.name,
-      instructorEmployeeId : object.emplid2,
-      instructorAltName : object.name2,
+      campus : object.campus,
+      catalogNo : object.catalog_NBR,
+      classEndTime : object.class_END_TIME,
+      classSection : object.class_SECTION,
+      classStartTime : object.class_START_TIME,
+      classMeetingNo : object.class_MTG_NBR,
+      classNumber : object.class_NBR,
+      classStatus : object.class_STAT,
+      classType : object.class_TYPE,
       courseAttr: object.crse_ATTR,
+      courseAttrDescription: object.crse_ATTR_VALUE_DESCR,
+      courseId : object.crse_ID,
+      courseOfferNo : object.crse_OFFER_NBR,
+      csuUnits : object.csu_APDB_CMP_UNITS,
       degreeType: object.acad_CAREER,
-      title: object.course_TITLE_LONG,
-      geCourseAttr: object.crse_ATTR_VALUE,
-      topic: object.crse_TOPIC_DESCR,
-      fullSsrComponent: object.ssr_COMPONENT_DESCR,
+      description : object.descr,
+      employeeId : object.emplid,
+      enrolledCapacity : object.enrl_CAP,
       enrollmentStatus: object.enrl_STAT,
+      enrolledTotal : object.enrl_TOT,
+      facilityId : object.facility_ID,
+      fri : object.fri,
+      fullSsrComponent: object.ssr_COMPONENT_DESCR,
+      geCourseAttr: object.crse_ATTR_VALUE,
+      instructorAltName : object.name2,
+      instructorEmployeeId : object.emplid2,
+      instructionMode : object.instruction_MODE,
+      instructorName : object.name,
+      longDescription : object.descrlong_VC,
+      mon : object.mon,
+      profile : object.profile_PATH,
+      quarter : object.strm,
+      room : object.room,
+      sat : object.sat,
+      sbCourseZccm : object.sb_CRSE_ZCCM,
+      schedulePrint : object.schedule_PRINT,
+      sessionCode : object.session_CODE,
+      ssrComponent : object.ssr_COMPONENT,
+      subject : object.subject,
+      sun : object.sun,
+      textbook : object.book,
+      thurs : object.thurs,
+      title: object.course_TITLE_LONG,
+      topic: object.crse_TOPIC_DESCR,
+      tues : object.tues,
+      waitlistCapacity : object.wait_CAP,
+      waitlistTotal : object.wait_TOT,
+      wed : object.wed,
     };
     return result;
   }

@@ -3,18 +3,8 @@ import Adapter from 'enzyme-adapter-react-16';
 import 'jsdom-global/register';
 
 Enzyme.configure({
-    adapter: new Adapter(),
+  adapter: new Adapter(),
 });
-
-global.requestAnimationFrame = (callback) => {
-    setTimeout(callback, 0);
-};
-
-const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  clear: jest.fn(),
-};
 
 const sessionStorageMock = {
   getItem: jest.fn(),
@@ -22,6 +12,7 @@ const sessionStorageMock = {
   clear: jest.fn(),
 };
 
-global.localStorage = localStorageMock;
-global.currentQuarterId = '2194';
 global.sessionStorage = sessionStorageMock;
+global.requestAnimationFrame = (callback) => {
+  setTimeout(callback, 0);
+};

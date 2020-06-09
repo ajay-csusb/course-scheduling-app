@@ -7,7 +7,7 @@ import { UserInput } from './UserInput';
 import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { MeetingTime } from './MeetingTime';
-import { Watchdog } from './Watchdog';
+import * as Watchdog from './Watchdog';
 import { InstructionMode } from './InstructionMode';
 import { FilterClasses } from './FilterClasses';
 import { GeCourseAttribute } from './GeCourseAttribute';

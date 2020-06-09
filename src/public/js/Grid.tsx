@@ -1,99 +1,43 @@
 import * as React from 'react';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { IClass, Class } from './Class';
-import { Cell, Table, Column, ColumnHeaderCell, IMenuContext, CopyCellsMenuItem, TruncatedFormat } from '@blueprintjs/table';
+import { Cell, Table, Column, ColumnHeaderCell, IMenuContext,
+  CopyCellsMenuItem, TruncatedFormat } from '@blueprintjs/table';
 import { Menu, MenuItem } from '@blueprintjs/core';
 import * as Sort from './Sort';
-interface ITableDisplayProps {
+export interface ITableDisplayProps {
   classes: IClass[];
 }
 
 export class Grid extends React.Component<ITableDisplayProps> {
 
   private classes: IClass[];
-  private subjectCellRenderer: (row: number) => JSX.Element;
-  private titleCellRenderer: (row: number) => JSX.Element;
-  private sectionCellRenderer: (row: number) => JSX.Element;
-  private classNumberCellRenderer: (row: number) => JSX.Element;
-  private typeCellRenderer: (row: number) => JSX.Element;
-  private unitCellRenderer: (row: number) => JSX.Element;
-  private instructorCellRenderer: (row: number) => JSX.Element;
-  private modeCellRenderer: (row: number) => JSX.Element;
-  private sessionCellRenderer: (row: number) => JSX.Element;
-  private seatsAvailableCellRenderer: (row: number) => JSX.Element;
-  private waitlistCellRenderer: (row: number) => JSX.Element;
-  private attributeCellRenderer: (row: number) => JSX.Element;
-  private campusCellRenderer: (row: number) => JSX.Element;
-  private textbookCellRenderer: (row: number) => JSX.Element;
-  private dayCellRenderer: (row: number) => JSX.Element;
-  private timeCellRenderer: (row: number) => JSX.Element;
 
   constructor(props: ITableDisplayProps) {
     super(props);
     this.classes = this.props.classes;
-    this.subjectCellRenderer = this.getSubject.bind(this);
-    this.titleCellRenderer = this.getTitle.bind(this);
-    this.sectionCellRenderer = this.getSection.bind(this);
-    this.classNumberCellRenderer = this.getClassNumber.bind(this);
-    this.typeCellRenderer = this.getType.bind(this);
-    this.unitCellRenderer = this.getUnit.bind(this);
-    this.instructorCellRenderer = this.getInstructor.bind(this);
-    this.modeCellRenderer = this.getMode.bind(this);
-    this.sessionCellRenderer = this.getSession.bind(this);
-    this.seatsAvailableCellRenderer = this.getSeatsAvailable.bind(this);
-    this.waitlistCellRenderer = this.getWaitlist.bind(this);
-    this.attributeCellRenderer = this.getAttribute.bind(this);
-    this.campusCellRenderer = this.getCampus.bind(this);
-    this.textbookCellRenderer = this.getTextbook.bind(this);
-    this.dayCellRenderer = this.getDay.bind(this);
-    this.timeCellRenderer = this.getTime.bind(this);
-    this.sortByString = this.sortByString.bind(this);
-    this.subjectColumnHeader = this.subjectColumnHeader.bind(this);
-    this.titleColumnHeader = this.titleColumnHeader.bind(this);
-    this.sectionColumnHeader = this.sectionColumnHeader.bind(this);
-    this.classNumberColumnHeader = this.classNumberColumnHeader.bind(this);
-    this.typeColumnHeader = this.typeColumnHeader.bind(this);
-    this.unitColumnHeader = this.unitColumnHeader.bind(this);
-    this.instructorColumnHeader = this.instructorColumnHeader.bind(this);
-    this.dayColumnHeader = this.dayColumnHeader.bind(this);
-    this.timeColumnHeader = this.timeColumnHeader.bind(this);
-    this.instructionModeColumnHeader = this.instructionModeColumnHeader.bind(this);
-    this.sessionCodeColumnHeader = this.sessionCodeColumnHeader.bind(this);
-    this.seatsAvailableColumnHeader = this.seatsAvailableColumnHeader.bind(this);
-    this.waitlistColumnHeader = this.waitlistColumnHeader.bind(this);
-    this.courseAttrColumnHeader = this.courseAttrColumnHeader.bind(this);
-    this.campusColumnHeader = this.campusColumnHeader.bind(this);
-    this.textbookColumnHeader = this.textbookColumnHeader.bind(this);
     this.getCopiedData = this.getCopiedData.bind(this);
     this.renderBodyMenu = this.renderBodyMenu.bind(this);
-    this.sortSubject = this.sortSubject.bind(this);
-    this.sortCampus = this.sortCampus.bind(this);
-    this.sortInstructionMode = this.sortInstructionMode.bind(this);
-    this.sortSessionCode = this.sortSessionCode.bind(this);
-    this.sortMeetingTime = this.sortMeetingTime.bind(this);
-    this.sortMeetingDays = this.sortMeetingDays.bind(this);
-    this.sortSeatsAvailable = this.sortSeatsAvailable.bind(this);
-    this.sortByString = this.sortByString.bind(this);
-    this.sortByNumber = this.sortByNumber.bind(this);
   }
   public render(): JSX.Element {
     const innerColumns = [
-      [this.subjectColumnHeader, this.subjectCellRenderer],
-      [this.titleColumnHeader, this.titleCellRenderer],
-      [this.sectionColumnHeader, this.sectionCellRenderer],
-      [this.classNumberColumnHeader, this.classNumberCellRenderer],
-      [this.typeColumnHeader, this.typeCellRenderer],
-      [this.unitColumnHeader, this.unitCellRenderer],
-      [this.instructorColumnHeader, this.instructorCellRenderer],
-      [this.dayColumnHeader, this.dayCellRenderer],
-      [this.timeColumnHeader, this.timeCellRenderer],
-      [this.instructionModeColumnHeader, this.modeCellRenderer],
-      [this.sessionCodeColumnHeader, this.sessionCellRenderer],
-      [this.seatsAvailableColumnHeader, this.seatsAvailableCellRenderer],
-      [this.waitlistColumnHeader, this.waitlistCellRenderer],
-      [this.courseAttrColumnHeader, this.attributeCellRenderer],
-      [this.campusColumnHeader, this.campusCellRenderer],
-      [this.textbookColumnHeader, this.textbookCellRenderer],
+      [this.subjectColumnHeader.bind(this), this.getSubject.bind(this)],
+      [this.titleColumnHeader.bind(this), this.getTitle.bind(this)],
+      [this.sectionColumnHeader.bind(this), this.getSection.bind(this)],
+      [this.classNumberColumnHeader.bind(this), this.getClassNumber.bind(this)],
+      [this.typeColumnHeader.bind(this), this.getType.bind(this)],
+      [this.unitColumnHeader.bind(this), this.getUnit.bind(this)],
+      [this.instructorColumnHeader.bind(this), this.getInstructor.bind(this)],
+      [this.roomColumnHeader.bind(this), this.getRoom.bind(this)],
+      [this.dayColumnHeader.bind(this), this.getDay.bind(this)],
+      [this.timeColumnHeader.bind(this), this.getTime.bind(this)],
+      [this.instructionModeColumnHeader.bind(this), this.getMode.bind(this)],
+      [this.sessionCodeColumnHeader.bind(this), this.getSession.bind(this)],
+      [this.seatsAvailableColumnHeader.bind(this), this.getSeatsAvailable.bind(this)],
+      [this.waitlistColumnHeader.bind(this), this.getWaitlist.bind(this)],
+      [this.courseAttrColumnHeader.bind(this), this.getAttribute.bind(this)],
+      [this.campusColumnHeader.bind(this), this.getCampus.bind(this)],
+      [this.textbookColumnHeader.bind(this), this.getTextbook.bind(this)],
     ];
     const columns = [];
     const heightVal = (this.classes.length > 200) ? '500px' : '100%';
@@ -116,7 +60,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
           enableColumnResizing={false}
           getCellClipboardData={this.getCopiedData}
           bodyContextMenuRenderer={this.renderBodyMenu}
-          columnWidths={[100, 300, 100, 100, 100, 50, 150, 100, 120, 150, 100, 150, 100, 300, 120, 150]}
+          columnWidths={[100, 300, 100, 100, 100, 50, 150, 100, 100, 120, 150, 100, 150, 100, 300, 120, 150]}
         >
           {columns}
         </Table>
@@ -201,6 +145,10 @@ export class Grid extends React.Component<ITableDisplayProps> {
     return (<ColumnHeaderCell name={'Textbook'} />);
   }
 
+  private roomColumnHeader() {
+    return (<ColumnHeaderCell name={'Building'} menuRenderer={() => this.columnMenu('buildingCode')}/>);
+  }
+
   private sortByString(key: string, column: string = 'subject') {
     this.classes = Sort.sortByString(this.classes, key, column);
     this.forceUpdate();
@@ -254,68 +202,78 @@ export class Grid extends React.Component<ITableDisplayProps> {
     : Sort.sortBySeatsAvailableInWaitlist(this.classes, key);
     this.forceUpdate();
   }
+
+  private sortBuildingNumber(key: string) {
+    this.classes = (key === 'asc') ? Sort.sortByBuildingNumber(this.classes, key)
+    : Sort.sortByBuildingNumber(this.classes, key);
+    this.forceUpdate();
+  }
   private columnMenu(id: string = 'subject'): JSX.Element {
     let menuItems = <></>;
     const callbacks = {
       subject: {
         use_id: false,
-        cb: this.sortSubject,
+        cb: this.sortSubject.bind(this),
       },
       title: {
         use_id: true,
-        cb: this.sortByString,
+        cb: this.sortByString.bind(this),
       },
       fullSsrComponent: {
         use_id: true,
-        cb: this.sortByString,
+        cb: this.sortByString.bind(this),
       },
       instructorName: {
         use_id: true,
-        cb: this.sortByString,
+        cb: this.sortByString.bind(this),
+      },
+      buildingCode: {
+        use_id: false,
+        cb: this.sortBuildingNumber.bind(this),
       },
       courseAttr: {
         use_id: true,
-        cb: this.sortByString,
+        cb: this.sortByString.bind(this),
       },
       classNumber: {
         use_id: true,
-        cb: this.sortByNumber,
+        cb: this.sortByNumber.bind(this),
       },
       csuUnits: {
         use_id: true,
-        cb: this.sortByNumber,
+        cb: this.sortByNumber.bind(this),
       },
       classSection: {
         use_id: true,
-        cb: this.sortByNumber,
+        cb: this.sortByNumber.bind(this),
       },
       campus: {
         use_id: false,
-        cb: this.sortCampus,
+        cb: this.sortCampus.bind(this),
       },
       instructionMode: {
         use_id: false,
-        cb: this.sortInstructionMode,
+        cb: this.sortInstructionMode.bind(this),
       },
       sessionCode: {
         use_id: false,
-        cb: this.sortSessionCode,
+        cb: this.sortSessionCode.bind(this),
       },
       classStartTime: {
         use_id: false,
-        cb: this.sortMeetingTime,
+        cb: this.sortMeetingTime.bind(this),
       },
       meetingDays: {
         use_id: false,
-        cb: this.sortMeetingDays,
+        cb: this.sortMeetingDays.bind(this),
       },
       enrolledTotal: {
         use_id: true,
-        cb: this.sortSeatsAvailable,
+        cb: this.sortSeatsAvailable.bind(this),
       },
       waitlistTotal: {
         use_id: true,
-        cb: this.sortSeatsAvailable,
+        cb: this.sortSeatsAvailable.bind(this),
       },
     };
 
@@ -426,6 +384,10 @@ export class Grid extends React.Component<ITableDisplayProps> {
     return (<Cell>{this.getTimeUnformatted(rowIndex)}</Cell>);
   }
 
+  private getRoom(rowIndex: number): JSX.Element {
+    return (<Cell>{this.getRoomUnformatted(rowIndex)}</Cell>);
+  }
+
   private getDayUnformatted(rowIndex: number): string {
     const _class: Class = new Class(this.classes[rowIndex]);
     return _class.getClassMeetingDates();
@@ -464,6 +426,11 @@ export class Grid extends React.Component<ITableDisplayProps> {
     return ClassSearchUtils.getCampusName(_class.campus);
   }
 
+  private getRoomUnformatted(rowIndex: number) {
+    const _class: IClass = this.classes[rowIndex];
+    return ClassSearchUtils.getRoomNumber(_class);
+  }
+
   private getObjectKeyNameFromColumnIndex(colIndex: number) {
     const properties = {
       0: 'subject',
@@ -473,14 +440,15 @@ export class Grid extends React.Component<ITableDisplayProps> {
       4: 'fullSsrComponent',
       5: 'csuUnits',
       6: 'instructorName',
-      7: 'meetingDays',
-      8: 'meetingTime',
-      9: 'instructionMode',
-      10: 'sessionCode',
-      11: 'seats-available',
-      12: 'waitlist',
-      13: 'courseAttr',
-      14: 'campus',
+      7: 'buildingCode',
+      8: 'meetingDays',
+      9: 'meetingTime',
+      10: 'instructionMode',
+      11: 'sessionCode',
+      12: 'seats-available',
+      13: 'waitlist',
+      14: 'courseAttr',
+      15: 'campus',
     };
     return properties[colIndex];
   }
@@ -490,24 +458,27 @@ export class Grid extends React.Component<ITableDisplayProps> {
       return `${this.classes[rowIndex].subject} ${this.classes[rowIndex].catalogNo}`;
     }
     if (columnIndex === 7) {
-      return this.getDayUnformatted(rowIndex);
+      return this.getRoomUnformatted(rowIndex);
     }
     if (columnIndex === 8) {
-      return this.getTimeUnformatted(rowIndex);
+      return this.getDayUnformatted(rowIndex);
     }
     if (columnIndex === 9) {
-      return this.getModeUnformatted(rowIndex);
+      return this.getTimeUnformatted(rowIndex);
     }
     if (columnIndex === 10) {
-      return this.getSessionUnformatted(rowIndex);
+      return this.getModeUnformatted(rowIndex);
     }
     if (columnIndex === 11) {
-      return this.getSeatsAvailableUnformatted(rowIndex);
+      return this.getSessionUnformatted(rowIndex);
     }
     if (columnIndex === 12) {
+      return this.getSeatsAvailableUnformatted(rowIndex);
+    }
+    if (columnIndex === 13) {
       return this.getWaitlistUnformatted(rowIndex);
     }
-    if (columnIndex === 14) {
+    if (columnIndex === 15) {
       return this.getCampusUnformatted(rowIndex);
     }
     const key = this.getObjectKeyNameFromColumnIndex(columnIndex);
