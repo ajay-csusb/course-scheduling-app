@@ -26,12 +26,12 @@ export default class ExportToExcel extends React.Component<IExportToExcelProps> 
 
   private exportToExcelOnClickHandler(): void {
     ClassSearchUtils.exportToExcelPost(this.props.classes)
-      .then((blob: Blob) => {
-        FileSaver.saveAs(blob, 'class-search.csv');
-      })
-      .catch((err: Error) => {
-        Watchdog.log(err);
-      });
+    .then((blob: Blob) => {
+      FileSaver.saveAs(blob, 'class-search.xlsx');
+    })
+    .catch((err: Error) => {
+      Watchdog.log(err);
+    });
   }
 
 }
