@@ -300,7 +300,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       isLoading: true,
     }, () => {
       this.updateAllClasses();
-      }
+    }
     );
   }
 
@@ -358,14 +358,14 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         instructorsArr.push(_instructor.name);
       });
       this.instructors = instructorsArr;
-      this.setState({ forceReload: true});
+      this.setState({ forceReload: true });
     }
   }
 
   private subjectsFound(data: any): void {
     this.allSubjects = data.abbreviationTermList;
     this.subjects = Subject.getDropdownOptions(data.abbreviationTermList, this.state.term);
-    this.setState({ forceReload: true});
+    this.setState({ forceReload: true });
   }
 
   private termFound(data: any): void {
@@ -423,12 +423,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private isMeetingDayEmpty(): boolean {
     return (!this.state.meetingDate.mon
-    && !this.state.meetingDate.tue
-    && !this.state.meetingDate.wed
-    && !this.state.meetingDate.thu
-    && !this.state.meetingDate.fri
-    && !this.state.meetingDate.sat
-    && !this.state.meetingDate.sun);
+      && !this.state.meetingDate.tue
+      && !this.state.meetingDate.wed
+      && !this.state.meetingDate.thu
+      && !this.state.meetingDate.fri
+      && !this.state.meetingDate.sat
+      && !this.state.meetingDate.sun);
   }
 
   private isClassNoEmpty(): boolean {
