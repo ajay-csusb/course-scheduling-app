@@ -4,7 +4,7 @@ import { UserInput } from '../src/public/js/UserInput';
 import { ISubject } from '../src/public/js/Subject';
 import { MeetingTime } from '../src/public/js/MeetingTime';
 import { TestUtils } from '../test/TestUtils';
-import { FilterClasses } from '../src/public/js/FilterClasses';
+import * as FilterClasses from '../src/public/js/FilterClasses';
 // tslint:disable:max-line-length
 
 let classes: IClass[] = [];
