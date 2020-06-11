@@ -6,15 +6,12 @@ import { ISubject, Subject } from './Subject';
 import { UserInput } from './UserInput';
 import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
-import { MeetingTime } from './MeetingTime';
 import * as Watchdog from './Watchdog';
-import { InstructionMode } from './InstructionMode';
-import { FilterClasses } from './FilterClasses';
+import * as FilterClasses from './FilterClasses';
 import { GeCourseAttribute } from './GeCourseAttribute';
-import * as CourseAttributes from './CourseAttributes';
 import * as ClassSearch from './ClassSearch.d';
 
-interface IClassSearchContainerState {
+export interface IClassSearchContainerState {
   term: string;
   campus: string;
   subject: ISubject;
@@ -232,7 +229,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private classesFound(classes: any): void {
-    const transformedClass: IClass[] = [];
     this.allResults = [];
     if (classes === null || classes.length === 0) {
       this.setState({
@@ -241,28 +237,24 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       });
       return;
     }
+    this.updateResults(classes);
+  }
+
+  private updateResults(classes: any): void {
     if (classes !== null && classes.length !== 0) {
       classes.forEach((_class: any) => {
-        transformedClass.push(Class.transformToClass(_class));
+        this.allResults.push(Class.transformToClass(_class));
       });
     }
 
-    const validClasses = this.filterClasses(transformedClass);
-    const sortedClasses = this.sortClasses(validClasses);
-    const classesWithFullCourseAttributes = this.processCourseAttributes(sortedClasses);
-    const filteredByGeAttributes = GeCourseAttribute.filter(classesWithFullCourseAttributes, this.state.geClassesAttribute, this.state.term);
-    this.allResults = CourseAttributes.filter(filteredByGeAttributes, this.state.courseAttr);
+    this.allResults = this.sortClasses(this.allResults);
+    this.allResults = this.processCourseAttributes(this.allResults);
+    this.allResults = FilterClasses.filter(this.allResults, this.state);
     this.setState({
       noClasses: false,
       isLoading: false,
     });
     this.resultsSection.current.scrollIntoView();
-  }
-
-  private filterClasses(classes: IClass[]): IClass[] {
-    const activeClasses = FilterClasses.filterByActiveClasses(classes);
-    const filteredClasses = MeetingTime.filter(activeClasses, this.state.startTime, this.state.endTime);
-    return InstructionMode.filter(filteredClasses, this.state.instructionMode);
   }
 
   private sortClasses(classes: IClass[]): IClass[] {
