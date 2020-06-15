@@ -242,6 +242,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private updateResults(classes: any): void {
     if (classes !== null && classes.length !== 0) {
+      classes = Class.splitClassesWithMultipleMeetingTimes(classes);
       classes.forEach((_class: any) => {
         this.allResults.push(Class.transformToClass(_class));
       });

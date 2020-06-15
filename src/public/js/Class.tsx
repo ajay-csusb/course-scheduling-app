@@ -84,9 +84,9 @@ export class Class {
       buildingCode: object.bldg_CD,
       campus: object.campus,
       catalogNo: object.catalog_NBR,
-      classEndTime: object.class_END_TIME,
+      classEndTime: object.meeting_TIME[0].class_END_TIME,
       classSection: object.class_SECTION,
-      classStartTime: object.class_START_TIME,
+      classStartTime: object.meeting_TIME[0].class_START_TIME,
       classMeetingNo: object.class_MTG_NBR,
       classNumber: object.class_NBR,
       classStatus: object.class_STAT,
@@ -103,7 +103,7 @@ export class Class {
       enrollmentStatus: object.enrl_STAT,
       enrolledTotal: object.enrl_TOT,
       facilityId: object.facility_ID,
-      fri: object.fri,
+      fri: object.meeting_TIME[0].fri,
       fullSsrComponent: object.ssr_COMPONENT_DESCR,
       geCourseAttr: object.crse_ATTR_VALUE,
       instructorAltName: object.name2,
@@ -111,25 +111,25 @@ export class Class {
       instructionMode: object.instruction_MODE,
       instructorName: object.name,
       longDescription: object.descrlong_VC,
-      mon: object.mon,
+      mon: object.meeting_TIME[0].mon,
       profile: object.profile_PATH,
       quarter: object.strm,
       room: object.room,
-      sat: object.sat,
+      sat: object.meeting_TIME[0].sat,
       sbCourseZccm: object.sb_CRSE_ZCCM,
       schedulePrint: object.schedule_PRINT,
       sessionCode: object.session_CODE,
       ssrComponent: object.ssr_COMPONENT,
       subject: object.subject,
-      sun: object.sun,
+      sun: object.meeting_TIME[0].sun,
       textbook: object.book,
-      thurs: object.thurs,
+      thurs: object.meeting_TIME[0].thurs,
       title: object.course_TITLE_LONG,
       topic: object.crse_TOPIC_DESCR,
-      tues: object.tues,
+      tues: object.meeting_TIME[0].tues,
       waitlistCapacity: object.wait_CAP,
       waitlistTotal: object.wait_TOT,
-      wed: object.wed,
+      wed: object.meeting_TIME[0].wed,
     };
     return result;
   }
@@ -161,6 +161,33 @@ export class Class {
     };
     ClassSearchUtils.fetchWithArg(this.classesUrl, params, onSuccess, onFailure);
     Watchdog.log(params);
+  }
+
+  static splitClassesWithMultipleMeetingTimes(classes: any[]): any[] {
+    let splitClasses: any = [];
+    const copyClasses = [];
+
+    for (const _class of classes) {
+      if (_class['meeting_TIME'].length <= 1) {
+        splitClasses.push(_class);
+      }
+      else {
+        const totalNumberOfMeetingTimes = _class['meeting_TIME'].length;
+        const meetingTimes = _class['meeting_TIME'];
+
+        for (let index = 0; index < totalNumberOfMeetingTimes; index++) {
+          const _classCopy = JSON.parse(JSON.stringify(_class));
+          copyClasses.push(_classCopy);
+        }
+
+        for (let j = 0; j < meetingTimes.length; j++) {
+          copyClasses[j]['meeting_TIME'] = [meetingTimes[j]];
+        }
+      }
+    }
+
+    splitClasses = splitClasses.concat(copyClasses);
+    return splitClasses;
   }
 
   public getClassMeetingDates(): string {

@@ -241,7 +241,7 @@ function combineAttr(prevClass: IClass, currClass: IClass): string {
 }
 
 function isDuplicateClass(prevClass: IClass, currClass: IClass): boolean {
-  return (prevClass.classNumber === currClass.classNumber);
+  return (prevClass.classNumber === currClass.classNumber) && classHasSameStartAndEndTimes(prevClass, currClass);
 }
 
 function sortBySubject(classes: IClass[]): IClass[] {
@@ -403,4 +403,8 @@ export function formatSubjectTopic(topic: string): string {
     return ': Truth, Lies and Bullshit';
   }
   return (topicLowercase.trim().length !== 0) ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
+}
+
+function classHasSameStartAndEndTimes(class1: IClass, class2: IClass): boolean {
+  return (class1.classStartTime === class2.classStartTime) && (class1.classEndTime === class2.classEndTime);
 }
