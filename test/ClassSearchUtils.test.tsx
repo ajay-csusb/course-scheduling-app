@@ -1,7 +1,7 @@
 import * as React from 'react';
 import fetchMock from 'fetch-mock';
 import * as ClassSearchUtils from '../src/public/js/ClassSearchUtils';
-import { classJson, baseClassJson, classPDC} from './ClassesJson';
+import { classJson, baseClassJson, classPDC } from './ClassesJson';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { mount, shallow } from 'enzyme';
 import { TestUtils } from './TestUtils';
@@ -553,6 +553,19 @@ describe('when a user performs a search', () => {
       });
     });
   });
+
+  describe('and two classes having the same class number but different start times', () => {
+    const copyOfClassJson1 = JSON.parse(JSON.stringify(classJson));
+    copyOfClassJson1.classStartTime = '6:00 PM';
+    const copyOfClassJson2 = JSON.parse(JSON.stringify(classJson));
+    copyOfClassJson2.classStartTime = '7:00 PM';
+
+    it('should display two classes', () => {
+      const classes = ClassSearchUtils.mergeAttributes([copyOfClassJson1, copyOfClassJson2]);
+      expect(classes).toHaveLength(2);
+    });
+  });
+  
 });
 
 describe('when multiple classes are displayed in results', () => {

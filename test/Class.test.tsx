@@ -1,4 +1,5 @@
 import { Class, IClass } from '../src/public/js/Class';
+import { rawClassesJson } from './ClassesJson';
 
 const classJson: IClass = {
     quarter: '2194',
@@ -80,4 +81,65 @@ describe('test meeting times', () => {
     expect(classInstance.getClassMeetingTimes()).toEqual('N/A');
   });
 
+});
+
+test('split classes with multiple meeting times', () => {
+  const rawClassesWithMultipleMeetingTimes = rawClassesJson;
+  rawClassesWithMultipleMeetingTimes.meeting_TIME = [
+    {
+    class_START_TIME: '11:30 AM',
+    class_END_TIME: '2:00 PM',
+    days: 'MON, TUE, WED, THUR',
+    mon: 'Y',
+    tues: 'Y',
+    wed: 'Y',
+    thurs: 'Y',
+    fri: 'N',
+    sat: 'N',
+    sun: 'N',
+  },
+  {
+    class_START_TIME: '7:30 PM',
+    class_END_TIME: '9:00 PM',
+    days: 'FRI, SAT, SUN',
+    mon: 'N',
+    tues: 'N',
+    wed: 'N',
+    thurs: 'N',
+    fri: 'Y',
+    sat: 'Y',
+    sun: 'Y',
+  }];
+
+  const parsedClasses = Class.splitClassesWithMultipleMeetingTimes([rawClassesWithMultipleMeetingTimes]);
+  expect(parsedClasses).toHaveLength(2);
+  expect(parsedClasses[0].meeting_TIME[0].class_START_TIME).toEqual('11:30 AM');
+  expect(parsedClasses[0].meeting_TIME[0].class_END_TIME).toEqual('2:00 PM');
+  expect(parsedClasses[0].meeting_TIME[0].mon).toEqual('Y');
+  expect(parsedClasses[0].meeting_TIME[0].tues).toEqual('Y');
+  expect(parsedClasses[0].meeting_TIME[0].wed).toEqual('Y');
+  expect(parsedClasses[0].meeting_TIME[0].thurs).toEqual('Y');
+  expect(parsedClasses[1].meeting_TIME[0].class_START_TIME).toEqual('7:30 PM');
+  expect(parsedClasses[1].meeting_TIME[0].class_END_TIME).toEqual('9:00 PM');
+  expect(parsedClasses[1].meeting_TIME[0].fri).toEqual('Y');
+  expect(parsedClasses[1].meeting_TIME[0].sat).toEqual('Y');
+  expect(parsedClasses[1].meeting_TIME[0].sun).toEqual('Y');
+});
+
+test('splitClassesWithMultipleMeetingTimes having a single meeting time', () => {
+  const singleClass = rawClassesJson;
+  singleClass.meeting_TIME = [{
+    class_START_TIME: '3:00 PM',
+    class_END_TIME: '5:00 PM',
+    days: 'MON',
+    mon: 'Y',
+    tues: 'N',
+    wed: 'N',
+    thurs: 'N',
+    fri: 'N',
+    sat: 'N',
+    sun: 'N',
+  }];
+  const parsedClasses = Class.splitClassesWithMultipleMeetingTimes([singleClass]);
+  expect(parsedClasses).toHaveLength(1);
 });
