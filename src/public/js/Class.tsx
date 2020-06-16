@@ -165,15 +165,15 @@ export class Class {
 
   static splitClassesWithMultipleMeetingTimes(classes: any[]): any[] {
     let splitClasses: any = [];
-    const copyClasses = [];
 
     for (const _class of classes) {
-      if (_class['meeting_TIME'].length <= 1) {
+      const meetingTimes = _class.meeting_TIME;
+      const totalNumberOfMeetingTimes = meetingTimes.length;
+
+      if (meetingTimes.length <= 1) {
         splitClasses.push(_class);
-      }
-      else {
-        const totalNumberOfMeetingTimes = _class['meeting_TIME'].length;
-        const meetingTimes = _class['meeting_TIME'];
+      } else {
+        const copyClasses = [];
 
         for (let index = 0; index < totalNumberOfMeetingTimes; index++) {
           const _classCopy = JSON.parse(JSON.stringify(_class));
@@ -181,12 +181,13 @@ export class Class {
         }
 
         for (let j = 0; j < meetingTimes.length; j++) {
-          copyClasses[j]['meeting_TIME'] = [meetingTimes[j]];
+          copyClasses[j].meeting_TIME = [meetingTimes[j]];
         }
+
+        splitClasses = splitClasses.concat(copyClasses);
       }
     }
 
-    splitClasses = splitClasses.concat(copyClasses);
     return splitClasses;
   }
 
