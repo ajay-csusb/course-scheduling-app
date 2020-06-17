@@ -3,6 +3,10 @@ import { IClass, IMeetingDate } from './Class';
 export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
   const result: IClass[] = [];
 
+  if (!atLeastOneDaySelected(meetingDays)) {
+    return classes;
+  }
+
   classes.forEach((_class) => {
     if (meetingDays.mon && _class.mon === 'Y') {
       result.push(_class);
@@ -21,5 +25,10 @@ export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
     }
   });
 
-  return (result.length !== 0  ? result : classes);
+  return result;
+}
+
+function atLeastOneDaySelected(meetingDays: IMeetingDate): boolean {
+  return (meetingDays.mon || meetingDays.tue || meetingDays.wed ||
+    meetingDays.thu || meetingDays.fri || meetingDays.sat || meetingDays.sun);
 }
