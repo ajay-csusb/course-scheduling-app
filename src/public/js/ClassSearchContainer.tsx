@@ -9,7 +9,7 @@ import * as ClassSearchUtils from './ClassSearchUtils';
 import * as Watchdog from './Watchdog';
 import * as FilterClasses from './FilterClasses';
 import { GeCourseAttribute } from './GeCourseAttribute';
-import * as ClassSearch from './ClassSearch.d';
+import { app } from './ClassSearch.d';
 
 export interface IClassSearchContainerState {
   term: string;
@@ -47,8 +47,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private geClassesAttributes: IOptionProps[];
 
   private currentTermId: string;
-
-  private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList';
 
   private userInput: UserInput;
 
@@ -114,7 +112,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     );
   }
   componentDidMount() {
-    ClassSearchUtils.fetchData(this.dropDownUrl, this.processDropDownListData, this.errorProcessingData);
+    ClassSearchUtils.fetchData(app.settings.dropdownUrl, this.processDropDownListData, this.errorProcessingData);
   }
 
   componentDidUpdate() {
@@ -230,11 +228,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private classesFound(classes: any): void {
     this.allResults = [];
-    if (classes === null || classes.length === 0) {
-      this.setState({
-        noClasses: true,
-        isLoading: false,
-      });
+    if (this.emptyClasses(classes)) {
+      this.updateStatesAfterProcessingClasses(true, false);
       return;
     }
     this.updateResults(classes);
@@ -248,22 +243,19 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       });
     }
 
-    this.allResults = this.sortClasses(this.allResults);
-    this.allResults = this.processCourseAttributes(this.allResults);
+    this.sortClasses();
+    this.processCourseAttributes();
     this.allResults = FilterClasses.filter(this.allResults, this.state);
-    this.setState({
-      noClasses: false,
-      isLoading: false,
-    });
+    this.updateStatesAfterProcessingClasses(false, false);
     this.resultsSection.current.scrollIntoView();
   }
 
-  private sortClasses(classes: IClass[]): IClass[] {
-    return ClassSearchUtils.sortClasses(classes);
+  private sortClasses(): void {
+    this.allResults = ClassSearchUtils.sortClasses(this.allResults);
   }
 
-  private processCourseAttributes(classes: IClass[]): IClass[] {
-    return ClassSearchUtils.parseCourseAttributes(classes, this.geClassesAttributes);
+  private processCourseAttributes(): void {
+    this.allResults = ClassSearchUtils.parseCourseAttributes(this.allResults, this.geClassesAttributes);
   }
 
   private classesNotFound(_error: any): void {
@@ -602,7 +594,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       this.userInput.setCourseAttr('');
     }
     this.userInput.setGeClassesAttr(value);
-    if (parseInt(this.state.term, 10) >= ClassSearch.app.settings.firstSemester) {
+    if (parseInt(this.state.term, 10) >= app.settings.firstSemester) {
       this.userInput.setCourseAttr('');
       this.userInput.setGeClassesAttr('');
     }
@@ -668,5 +660,16 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private updateSubjectDropdown(term: string): void {
     this.subjects = Subject.getDropdownOptions(this.allSubjects, term);
+  }
+
+  private updateStatesAfterProcessingClasses(noClassesStatus: boolean, isLoadingStatus: boolean): void {
+    this.setState({
+      noClasses: noClassesStatus,
+      isLoading: isLoadingStatus,
+    });
+  }
+
+  private emptyClasses(classes: any): boolean {
+    return (classes === null || classes.length === 0);
   }
 }
