@@ -14,8 +14,8 @@ describe('Class information displays accurate data', function () {
 
     it('should display the tabs', () => {
       cy.get('.bp3-tabs')
-        .should('contain', 'List View ')
-        .should('contain', 'Table View ');
+        .should('contain', 'List')
+        .should('contain', 'Table');
     });
 
     it('should show Export to Excel link', () => {
