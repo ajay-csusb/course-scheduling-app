@@ -45,6 +45,12 @@ describe('Filter by meeting date', () => {
     expect(filteredClasses).toHaveLength(3);
   });
 
+  test('when no classes match the selected meeting day', () => {
+    meetingDay.sun = true;
+    const filteredClasses = MeetingDay.filter(classes, meetingDay);
+    expect(filteredClasses).toHaveLength(0);
+  });
+
   test('when all days are selected', () => {
     meetingDay.mon = true;
     meetingDay.tue = true;
