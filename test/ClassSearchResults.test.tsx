@@ -257,8 +257,8 @@ describe('tabs', () => {
       classSearchContainerWrapper = mountClassSearchResultsComponent([classJson]);
     });
     it('should display the tabs', () => {
-      expect(classSearchContainerWrapper.text()).toContain('List View');
-      expect(classSearchContainerWrapper.text()).toContain('Table View');
+      expect(classSearchContainerWrapper.text()).toContain('List');
+      expect(classSearchContainerWrapper.text()).toContain('Table');
     });
 
     it('should display the export to excel link', () => {
