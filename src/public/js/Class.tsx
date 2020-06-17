@@ -1,6 +1,7 @@
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
 import * as Watchdog from './Watchdog';
+import { app } from './ClassSearch.d';
 
 export interface IClass {
   amount: number;
@@ -68,8 +69,6 @@ export interface IMeetingDate {
 }
 
 export class Class {
-  static classesUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/cs/list/search';
-
   private classInfo: IClass;
 
   constructor(classData: IClass) {
@@ -149,17 +148,17 @@ export class Class {
       crse_attr_value: userInput.getGeClassesAttr(),
       meeting_time_start: '',
       ssr_component: '',
-      mon: userInput.isMondayChecked() ? 'Y' : '',
-      tues: userInput.isTuesdayChecked() ? 'Y' : '',
-      wed: userInput.isWednesdayChecked() ? 'Y' : '',
-      thurs: userInput.isThursdayChecked() ? 'Y' : '',
-      fri: userInput.isFridayChecked() ? 'Y' : '',
-      sat: userInput.isSaturdayChecked() ? 'Y' : '',
-      sun: userInput.isSundayChecked() ? 'Y' : '',
+      mon: '',
+      tues: '',
+      wed: '',
+      thurs: '',
+      fri: '',
+      sat: '',
+      sun: '',
       instruction_mode: '',
       acad_career: userInput.getDegreeType(),
     };
-    ClassSearchUtils.fetchWithArg(this.classesUrl, params, onSuccess, onFailure);
+    ClassSearchUtils.fetchWithArg(app.settings.getClassesUrl, params, onSuccess, onFailure);
     Watchdog.log(params);
   }
 
