@@ -80,7 +80,7 @@ export class Class {
       amount: object.flat_AMT,
       academicGroup: object.acad_GROUP,
       academicOrg: object.acad_ORG,
-      buildingCode: object.bldg_CD,
+      buildingCode: object.meeting_TIME[0].bldg_CD,
       campus: object.campus,
       catalogNo: object.catalog_NBR,
       classEndTime: object.meeting_TIME[0].class_END_TIME,
@@ -113,7 +113,7 @@ export class Class {
       mon: object.meeting_TIME[0].mon,
       profile: object.profile_PATH,
       quarter: object.strm,
-      room: object.room,
+      room: object.meeting_TIME[0].room,
       sat: object.meeting_TIME[0].sat,
       sbCourseZccm: object.sb_CRSE_ZCCM,
       schedulePrint: object.schedule_PRINT,
@@ -169,18 +169,15 @@ export class Class {
       const meetingTimes = _class.meeting_TIME;
       const totalNumberOfMeetingTimes = meetingTimes.length;
 
-      if (meetingTimes.length <= 1) {
+      if (totalNumberOfMeetingTimes <= 1) {
         splitClasses.push(_class);
       } else {
         const copyClasses = [];
 
-        for (let index = 0; index < totalNumberOfMeetingTimes; index++) {
+        for (let i = 0; i < totalNumberOfMeetingTimes; i++) {
           const _classCopy = JSON.parse(JSON.stringify(_class));
+          _classCopy.meeting_TIME = [meetingTimes[i]];
           copyClasses.push(_classCopy);
-        }
-
-        for (let j = 0; j < meetingTimes.length; j++) {
-          copyClasses[j].meeting_TIME = [meetingTimes[j]];
         }
 
         splitClasses = splitClasses.concat(copyClasses);
