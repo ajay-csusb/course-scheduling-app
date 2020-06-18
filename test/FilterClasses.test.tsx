@@ -5,6 +5,7 @@ import { ISubject } from '../src/public/js/Subject';
 import { MeetingTime } from '../src/public/js/MeetingTime';
 import { TestUtils } from '../test/TestUtils';
 import * as FilterClasses from '../src/public/js/FilterClasses';
+import { IClassSearchContainerState } from '../src/public/js/ClassSearchContainer';
 // tslint:disable:max-line-length
 
 let classes: IClass[] = [];
@@ -153,4 +154,63 @@ describe('Filter by meeting time', () => {
       expect(filteredClasses[0].classStatus).toEqual('Active');
     });
   });
+});
+
+describe('FilterClasses filter method', () => {
+  let class1: IClass;
+  let class2: IClass;
+  const params: IClassSearchContainerState = {
+    campus: 'Main',
+    classNo: '1000',
+    courseAttr: '',
+    courseNo: '100',
+    degreeType: 'PBAC',
+    subject: { name: 'Biology', abbr: 'BIOL' },
+    startTime: new Date('1899-01-01T00:00:00'),
+    endTime: new Date('1899-01-01T23:00:00'),
+    meetingDate: { mon: false, tue: false, wed: false, thu: false, fri: false, sat: false, sun: false },
+    instructionMode: 'P',
+    instructorName: 'John Doe',
+    geClasses: false,
+    geClassesAttribute: '',
+    isReset: false,
+    isLoading: false,
+    beforeSubmit: false,
+    noClasses: false,
+    sessionCode: 'Regular',
+    showErrorMessage: false,
+    forceReload: false,
+    term: '2194',
+  };
+  let updatedParams: IClassSearchContainerState;
+
+  beforeEach(() => {
+    class1 = TestUtils.copyObject(classJson);
+    class2 = TestUtils.copyObject(classJson);
+    updatedParams = TestUtils.copyObject(params);
+  });
+
+  test('filter active classes', () => {
+    class1.classStatus = 'Active';
+    class2.classStatus = 'Cancelled';
+    updatedParams.meetingDate.mon = true;
+    updatedParams.startTime = new Date('1899-01-01T00:00:00');
+    expect(FilterClasses.filter([class1, class2], params)).toHaveLength(1);
+  });
+
+  test('filter by meeting time and meeting day', () => {
+    class1.classStartTime = '11:00 AM';
+    class1.classEndTime = '12:00 PM';
+    class1.mon = 'Y';
+    class2.classStartTime = '12:00 PM';
+    class2.classEndTime = '2:00 PM';
+    class2.mon = 'N';
+    params.meetingDate.mon = true;
+    params.startTime = new Date('1899-01-01T11:00:00');
+    params.endTime = new Date('1899-01-01T12:30:00');
+    const result = FilterClasses.filter([class1, class2], params);
+    expect(result).toHaveLength(1);
+    expect(result[0].title).toEqual('Introduction to Accounting');
+  });
+
 });
