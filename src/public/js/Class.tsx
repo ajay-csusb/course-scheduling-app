@@ -1,6 +1,7 @@
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
 import * as Watchdog from './Watchdog';
+import { app } from './ClassSearch.d';
 
 export interface IClass {
   amount: number;
@@ -68,8 +69,6 @@ export interface IMeetingDate {
 }
 
 export class Class {
-  static classesUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getCurrentCS';
-
   private classInfo: IClass;
 
   constructor(classData: IClass) {
@@ -78,65 +77,65 @@ export class Class {
 
   static transformToClass(object: any): IClass {
     const result: IClass = {
-      amount : object.flat_AMT,
-      academicGroup : object.acad_GROUP,
-      academicOrg : object.acad_ORG,
-      buildingCode : object.bldg_CD,
-      campus : object.campus,
-      catalogNo : object.catalog_NBR,
-      classEndTime : object.class_END_TIME,
-      classSection : object.class_SECTION,
-      classStartTime : object.class_START_TIME,
-      classMeetingNo : object.class_MTG_NBR,
-      classNumber : object.class_NBR,
-      classStatus : object.class_STAT,
-      classType : object.class_TYPE,
+      amount: object.flat_AMT,
+      academicGroup: object.acad_GROUP,
+      academicOrg: object.acad_ORG,
+      buildingCode: object.meeting_TIME[0].bldg_CD,
+      campus: object.campus,
+      catalogNo: object.catalog_NBR,
+      classEndTime: object.meeting_TIME[0].class_END_TIME,
+      classSection: object.class_SECTION,
+      classStartTime: object.meeting_TIME[0].class_START_TIME,
+      classMeetingNo: object.class_MTG_NBR,
+      classNumber: object.class_NBR,
+      classStatus: object.class_STAT,
+      classType: object.class_TYPE,
       courseAttr: object.crse_ATTR,
       courseAttrDescription: object.crse_ATTR_VALUE_DESCR,
-      courseId : object.crse_ID,
-      courseOfferNo : object.crse_OFFER_NBR,
-      csuUnits : object.csu_APDB_CMP_UNITS,
+      courseId: object.crse_ID,
+      courseOfferNo: object.crse_OFFER_NBR,
+      csuUnits: object.csu_APDB_CMP_UNITS,
       degreeType: object.acad_CAREER,
-      description : object.descr,
-      employeeId : object.emplid,
-      enrolledCapacity : object.enrl_CAP,
+      description: object.descr,
+      employeeId: object.emplid,
+      enrolledCapacity: object.enrl_CAP,
       enrollmentStatus: object.enrl_STAT,
-      enrolledTotal : object.enrl_TOT,
-      facilityId : object.facility_ID,
-      fri : object.fri,
+      enrolledTotal: object.enrl_TOT,
+      facilityId: object.facility_ID,
+      fri: object.meeting_TIME[0].fri,
       fullSsrComponent: object.ssr_COMPONENT_DESCR,
       geCourseAttr: object.crse_ATTR_VALUE,
-      instructorAltName : object.name2,
-      instructorEmployeeId : object.emplid2,
-      instructionMode : object.instruction_MODE,
-      instructorName : object.name,
-      longDescription : object.descrlong_VC,
-      mon : object.mon,
-      profile : object.profile_PATH,
-      quarter : object.strm,
-      room : object.room,
-      sat : object.sat,
-      sbCourseZccm : object.sb_CRSE_ZCCM,
-      schedulePrint : object.schedule_PRINT,
-      sessionCode : object.session_CODE,
-      ssrComponent : object.ssr_COMPONENT,
-      subject : object.subject,
-      sun : object.sun,
-      textbook : object.book,
-      thurs : object.thurs,
+      instructorAltName: object.name2,
+      instructorEmployeeId: object.emplid2,
+      instructionMode: object.instruction_MODE,
+      instructorName: object.name,
+      longDescription: object.descrlong_VC,
+      mon: object.meeting_TIME[0].mon,
+      profile: object.profile_PATH,
+      quarter: object.strm,
+      room: object.meeting_TIME[0].room,
+      sat: object.meeting_TIME[0].sat,
+      sbCourseZccm: object.sb_CRSE_ZCCM,
+      schedulePrint: object.schedule_PRINT,
+      sessionCode: object.session_CODE,
+      ssrComponent: object.ssr_COMPONENT,
+      subject: object.subject,
+      sun: object.meeting_TIME[0].sun,
+      textbook: object.book,
+      thurs: object.meeting_TIME[0].thurs,
       title: object.course_TITLE_LONG,
       topic: object.crse_TOPIC_DESCR,
-      tues : object.tues,
-      waitlistCapacity : object.wait_CAP,
-      waitlistTotal : object.wait_TOT,
-      wed : object.wed,
+      tues: object.meeting_TIME[0].tues,
+      waitlistCapacity: object.wait_CAP,
+      waitlistTotal: object.wait_TOT,
+      wed: object.meeting_TIME[0].wed,
     };
     return result;
   }
 
   static getAllClasses(onSuccess: (response: any) => void,
-                       onFailure: (error: string) => void,
-                       userInput: UserInput): void {
+    onFailure: (error: string) => void,
+    userInput: UserInput): void {
     const params = {
       strm: userInput.getTerm(),
       class_nbr: userInput.getClassNo(),
@@ -149,18 +148,43 @@ export class Class {
       crse_attr_value: userInput.getGeClassesAttr(),
       meeting_time_start: '',
       ssr_component: '',
-      mon: userInput.isMondayChecked() ? 'Y' : '',
-      tues: userInput.isTuesdayChecked() ? 'Y' : '',
-      wed: userInput.isWednesdayChecked() ? 'Y' : '',
-      thurs: userInput.isThursdayChecked() ? 'Y' : '',
-      fri: userInput.isFridayChecked() ? 'Y' : '',
-      sat: userInput.isSaturdayChecked() ? 'Y' : '',
-      sun: userInput.isSundayChecked() ? 'Y' : '',
+      mon: '',
+      tues: '',
+      wed: '',
+      thurs: '',
+      fri: '',
+      sat: '',
+      sun: '',
       instruction_mode: '',
       acad_career: userInput.getDegreeType(),
     };
-    ClassSearchUtils.fetchWithArg(this.classesUrl, params, onSuccess, onFailure);
+    ClassSearchUtils.fetchWithArg(app.settings.getClassesUrl, params, onSuccess, onFailure);
     Watchdog.log(params);
+  }
+
+  static splitClassesWithMultipleMeetingTimes(classes: any[]): any[] {
+    let splitClasses: any = [];
+
+    for (const _class of classes) {
+      const meetingTimes = _class.meeting_TIME;
+      const totalNumberOfMeetingTimes = meetingTimes.length;
+
+      if (totalNumberOfMeetingTimes <= 1) {
+        splitClasses.push(_class);
+      } else {
+        const copyClasses = [];
+
+        for (let i = 0; i < totalNumberOfMeetingTimes; i++) {
+          const _classCopy = JSON.parse(JSON.stringify(_class));
+          _classCopy.meeting_TIME = [meetingTimes[i]];
+          copyClasses.push(_classCopy);
+        }
+
+        splitClasses = splitClasses.concat(copyClasses);
+      }
+    }
+
+    return splitClasses;
   }
 
   public getClassMeetingDates(): string {

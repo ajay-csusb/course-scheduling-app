@@ -11,7 +11,7 @@ import { app } from './ClassSearch.d';
 
 const searchURL = 'https://search.csusb.edu';
 export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
-                          callbackOnFailure: (error: string) => void): void {
+  callbackOnFailure: (error: string) => void): void {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export function fetchData(url: string, callbackOnSuccess: (response: any) => voi
 }
 
 export function fetchWithArg(url: string, params: {}, callbackOnSuccess: (response: any) => void,
-                             callbackOnFailure: (error: string) => void): void {
+  callbackOnFailure: (error: string) => void): void {
   fetch(url, {
     method: 'POST',
     headers: {
@@ -241,7 +241,7 @@ function combineAttr(prevClass: IClass, currClass: IClass): string {
 }
 
 function isDuplicateClass(prevClass: IClass, currClass: IClass): boolean {
-  return (prevClass.classNumber === currClass.classNumber);
+  return (prevClass.classNumber === currClass.classNumber) && classHasSameStartAndEndTimes(prevClass, currClass);
 }
 
 function sortBySubject(classes: IClass[]): IClass[] {
@@ -269,11 +269,11 @@ export function sortByCatalogNo(classes: IClass[]): IClass[] {
 }
 
 function performSort(a: IClass, b: IClass): number {
-    const [catalogA, catalogB] = normalizeCatalogNo(a.catalogNo, b.catalogNo);
-    return (parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10)
+  const [catalogA, catalogB] = normalizeCatalogNo(a.catalogNo, b.catalogNo);
+  return (parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10)
     || catalogA.localeCompare(catalogB)
     || sortByClassSection(a, b)
-    );
+  );
 }
 
 export function sortClasses(classes: IClass[]): IClass[] {
@@ -282,9 +282,9 @@ export function sortClasses(classes: IClass[]): IClass[] {
 
 export function expandCourseAttribute(courseAttrAbbr: string): string {
   const results: string[] = [];
-  const courseAttrArr = courseAttrAbbr.split(', ');
+  const courseAttrArr = courseAttrAbbr.split(',').map(x => x.trim());
   const courseAttrExpanded = CourseAttributes.getValidCourseAttributes();
-  for (const courseAttr of  courseAttrArr) {
+  for (const courseAttr of courseAttrArr) {
     const fullCourseAttr = courseAttrExpanded[courseAttr];
     if (fullCourseAttr !== undefined) {
       if (!results.includes(fullCourseAttr)) {
@@ -307,7 +307,7 @@ export function parseCourseAttributes(classes: IClass[], geCourseAttrs: IOptionP
 }
 
 function setCourseAttribute(_class: IClass, geCourseAttrs: IOptionProps[]): void {
-  _class.courseAttr =  expandCourseAttribute(_class.courseAttr);
+  _class.courseAttr = expandCourseAttribute(_class.courseAttr);
   if (_class.courseAttr.includes('General Education')) {
     _class.courseAttr = GeCourseAttribute.addGeAttrs(_class, geCourseAttrs);
   }
@@ -343,7 +343,7 @@ export function isValidTermRange(currentTerm: string, classTerm: string, current
   if (currentTermId - currentMonth <= 5 && currentTermId - currentMonth > 0) {
     return true;
   }
-  if (currentTermId === 2 &&  10 >= currentMonth  && currentMonth <= 12) {
+  if (currentTermId === 2 && 10 >= currentMonth && currentMonth <= 12) {
     return true;
   }
   return false;
@@ -364,7 +364,7 @@ export function getInstructorMarkup(_class: IClass): JSX.Element | null {
 
 export function getNoOfAvailableSeatsInWaitlist(_class: IClass): number {
   return (_class.waitlistCapacity - _class.waitlistTotal) < 0 ? 0 :
-  _class.waitlistCapacity - _class.waitlistTotal;
+    _class.waitlistCapacity - _class.waitlistTotal;
 }
 
 export function getTextbookUrl(_class: IClass): string {
@@ -384,16 +384,16 @@ export function exportToExcelPost(classes: IClass[]): Promise<Blob> {
     },
     body: JSON.stringify(classes),
   })
-  .then((res: any) => {
-    if (res.ok) {
-      return res.blob();
-    }
-    Watchdog.log(res);
-  })
-  .catch((err: any) => {
-    Watchdog.log(err);
-    return err;
-  });
+    .then((res: any) => {
+      if (res.ok) {
+        return res.blob();
+      }
+      Watchdog.log(res);
+    })
+    .catch((err: any) => {
+      Watchdog.log(err);
+      return err;
+    });
 }
 
 export function formatSubjectTopic(topic: string): string {
@@ -403,4 +403,8 @@ export function formatSubjectTopic(topic: string): string {
     return ': Truth, Lies and Bullshit';
   }
   return (topicLowercase.trim().length !== 0) ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
+}
+
+function classHasSameStartAndEndTimes(class1: IClass, class2: IClass): boolean {
+  return (class1.classStartTime === class2.classStartTime) && (class1.classEndTime === class2.classEndTime);
 }

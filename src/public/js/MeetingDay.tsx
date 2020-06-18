@@ -1,48 +1,34 @@
-export class MeetingDay {
+import { IClass, IMeetingDate } from './Class';
 
-  private _monday: boolean = false;
-  private _tuesday: boolean = false;
-  private _wednesday: boolean = false;
-  private _thursday: boolean = false;
-  private _friday: boolean = false;
-  private _saturday: boolean = false;
-  private _sunday: boolean = false;
+export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
+  const result: IClass[] = [];
 
-  constructor(mon: string, tue: string, wed: string, thu: string, fri: string, sat: string, sun: string) {
-    this._monday = (mon === 'Y');
-    this._tuesday = (tue === 'Y');
-    this._wednesday = (wed === 'Y');
-    this._thursday = (thu === 'Y');
-    this._friday = (fri === 'Y');
-    this._saturday = (sat === 'Y');
-    this._sunday = (sun === 'Y');
+  if (!atLeastOneDaySelected(meetingDays)) {
+    return classes;
   }
 
-  get monday(): boolean {
-    return this._monday;
-  }
+  classes.forEach((_class) => {
+    if (meetingDays.mon && _class.mon === 'Y') {
+      result.push(_class);
+    } else if (meetingDays.tue && _class.tues === 'Y') {
+      result.push(_class);
+    } else if (meetingDays.wed && _class.wed === 'Y') {
+      result.push(_class);
+    } else if (meetingDays.thu && _class.thurs === 'Y') {
+      result.push(_class);
+    } else if (meetingDays.fri && _class.fri === 'Y') {
+      result.push(_class);
+    } else if (meetingDays.sat && _class.sat === 'Y') {
+      result.push(_class);
+    } else if (meetingDays.sun && _class.sun === 'Y') {
+      result.push(_class);
+    }
+  });
 
-  get tuesday(): boolean {
-    return this._tuesday;
-  }
+  return result;
+}
 
-  get wednesday(): boolean {
-    return this._wednesday;
-  }
-
-  get thursday(): boolean {
-    return this._thursday;
-  }
-
-  get friday(): boolean {
-    return this._friday;
-  }
-
-  get saturday(): boolean {
-    return this._saturday;
-  }
-  get sunday(): boolean {
-    return this._sunday;
-  }
-
+function atLeastOneDaySelected(meetingDays: IMeetingDate): boolean {
+  return (meetingDays.mon || meetingDays.tue || meetingDays.wed ||
+    meetingDays.thu || meetingDays.fri || meetingDays.sat || meetingDays.sun);
 }

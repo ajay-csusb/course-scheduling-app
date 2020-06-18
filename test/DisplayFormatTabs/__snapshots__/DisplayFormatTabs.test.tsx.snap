@@ -49,14 +49,10 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
           selected={true}
           title={
             <React.Fragment>
-              <span
-                className="sr-only"
-              >
-                List View 
-              </span>
               <i
                 className="fas fa-bars"
               />
+               List
             </React.Fragment>
           }
         >
@@ -72,14 +68,10 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
             role="tab"
             tabIndex={0}
           >
-            <span
-              className="sr-only"
-            >
-              List View 
-            </span>
             <i
               className="fas fa-bars"
             />
+             List
           </div>
         </Blueprint3.TabTitle>
         <Blueprint3.TabTitle
@@ -96,14 +88,10 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
           selected={false}
           title={
             <React.Fragment>
-              <span
-                className="sr-only"
-              >
-                Table View 
-              </span>
               <i
                 className="fal fa-table"
               />
+               Table
             </React.Fragment>
           }
         >
@@ -119,14 +107,10 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
             role="tab"
             tabIndex={0}
           >
-            <span
-              className="sr-only"
-            >
-              Table View 
-            </span>
             <i
               className="fal fa-table"
             />
+             Table
           </div>
         </Blueprint3.TabTitle>
       </div>

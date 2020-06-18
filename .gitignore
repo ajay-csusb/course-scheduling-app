@@ -101,3 +101,4 @@ typings/
 
 .cache
 .vscode/launch.json
+cypress.env.json

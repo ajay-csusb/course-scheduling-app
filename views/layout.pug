@@ -14,7 +14,6 @@ html(lang='')
     link(rel='stylesheet', href='https://unpkg.com/@blueprintjs/core@^3.10.0/lib/css/blueprint.css')
     link(rel='stylesheet', href='/css/main.css')
     link(rel='stylesheet', href='/css/master.css')
-    // @Todo commit table.css file
     link(rel='stylesheet', href='/css/table.css')
     style(type='text/css').
       .bp3-popover-content ul {
@@ -23,12 +22,8 @@ html(lang='')
       }
 
   body
-    include partials/header
-
     .container
       block content
-
-    include partials/footer
 
     script(src='/js/lib/jquery-3.1.1.min.js')
     script(src='/js/lib/bootstrap.min.js')
@@ -47,9 +42,3 @@ html(lang='')
     script(src='/js/main.js')
     script(src='/js/course-scheduling-app.js')
     script(src='/js/course-scheduling-app.js.map')
-
-    //- Google Analytics: change UA-38177297-2 to be your site's ID
-    script.
-      window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-      ga('create','UA-38177297-2','auto');ga('send','pageview')
-    script(src='https://www.google-analytics.com/analytics.js' async defer)

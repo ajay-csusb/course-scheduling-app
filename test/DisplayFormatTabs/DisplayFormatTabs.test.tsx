@@ -30,8 +30,8 @@ describe('Display format tabs', () => {
       displayFormatTabsComponent = mountDisplayFormatTabsComponent();
     });
     it('should display two tabs', () => {
-      expect(displayFormatTabsComponent.text()).toContain('List View');
-      expect(displayFormatTabsComponent.text()).toContain('Table View');
+      expect(displayFormatTabsComponent.text()).toContain('List');
+      expect(displayFormatTabsComponent.text()).toContain('Table');
     });
   });
 

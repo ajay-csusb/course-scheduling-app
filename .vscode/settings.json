@@ -1,39 +1,36 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/bower_components": true,
-        "**/dist": true,
-        "**/coverge": true,
-        ".cache/**": true
-    },
-    "typescript.referencesCodeLens.enabled": true,
-    "tslint.ignoreDefinitionFiles": false,
-    "tslint.autoFixOnSave": true,
-    "tslint.exclude": "**/node_modules/**/*",
-    "cSpell.words": [
-        "csrf",
-        "definitelytyped",
-        "promisified"
-    ],
-    "appService.zipIgnorePattern": [
-        "node_modules{,/**}"
-    ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/215299bd-28b3-482b-a91b-f9dca65615e0/resourceGroups/appsvc_rg_linux_centralus/providers/Microsoft.Web/sites/course-scheduling-app",
-    "appService.deploySubpath": "",
-    "files.watcherExclude": {
-        "**/build": true,
-        "**/coverage": true,
-        "**/dist": true,
-        "docs": true
-    },
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true,
-    "editor.rulers": [
-        80
-    ],
-    "[json]": {
-        "editor.formatOnSave": false
-    },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/coverge": true,
+    ".cache/**": true
+  },
+  "typescript.referencesCodeLens.enabled": true,
+  "tslint.ignoreDefinitionFiles": false,
+  "tslint.autoFixOnSave": true,
+  "tslint.exclude": "**/node_modules/**/*",
+  "cSpell.words": [
+    "csrf",
+    "definitelytyped",
+    "promisified"
+  ],
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/215299bd-28b3-482b-a91b-f9dca65615e0/resourceGroups/appsvc_rg_linux_centralus/providers/Microsoft.Web/sites/course-scheduling-app",
+  "appService.deploySubpath": "",
+  "files.watcherExclude": {
+    "**/build": true,
+    "**/coverage": true,
+    "**/dist": true,
+    "docs": true
+  },
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.rulers": [80],
+  "[json]": {
+    "editor.formatOnSave": false
+  },
 }

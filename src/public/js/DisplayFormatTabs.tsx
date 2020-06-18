@@ -28,13 +28,13 @@ export class DisplayFormatTabs extends React.Component<IDisplayFormatTabsProps, 
         <Tab
           id="lists"
           key="lists"
-          title={<><span className="sr-only">List View </span><i className="fas fa-bars" /></>}
+          title={<><i className="fas fa-bars" /> List</>}
           panel={<ul>{this.props.listClasses}</ul>}
         />
         <Tab
           id="table"
           key="table"
-          title={<><span className="sr-only">Table View </span><i className="fal fa-table" /></>}
+          title={<><i className="fal fa-table" /> Table</>}
           panel={<>{this.props.tableClasses}</>}
         />
       </Tabs>

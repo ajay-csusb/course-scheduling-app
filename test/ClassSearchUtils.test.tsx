@@ -1,7 +1,7 @@
 import * as React from 'react';
 import fetchMock from 'fetch-mock';
 import * as ClassSearchUtils from '../src/public/js/ClassSearchUtils';
-import { classJson, baseClassJson, classPDC} from './ClassesJson';
+import { classJson, baseClassJson, classPDC } from './ClassesJson';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { mount, shallow } from 'enzyme';
 import { TestUtils } from './TestUtils';
@@ -308,21 +308,21 @@ describe('fetch parameters', () => {
   });
 
   describe('when Monday is set', () => {
-    it('should pass value for Monday', () => {
+    it('should not pass value for Monday', () => {
       classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const meetingDayArgument = fetchMock.lastOptions();
-      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
+      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
     });
   });
 
   describe('when Monday and Friday are set', () => {
-    it('should pass values for Monday and Friday', () => {
+    it('should not pass values for Monday and Friday', () => {
       classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
       classSearchContainerWrapper.find('.fri > input').simulate('change', { target: { value: 'fri' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const meetingDayArgument = fetchMock.lastOptions();
-      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"Y","tues":"","wed":"","thurs":"","fri":"Y","sat":"","sun":""'));
+      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
     });
   });
 
@@ -551,6 +551,48 @@ describe('when a user performs a search', () => {
         const classes = ClassSearchUtils.mergeAttributes([classJson, copyOfClassJson]);
         expect(classes[0].geCourseAttr).toEqual('GE-BAZ, 1');
       });
+    });
+  });
+
+  describe('and two classes having the same class number but different start and end times', () => {
+    const copyOfClassJson1 = JSON.parse(JSON.stringify(classJson));
+    copyOfClassJson1.classStartTime = '6:00 PM';
+    copyOfClassJson1.classEndTime = '7:00 PM';
+    const copyOfClassJson2 = JSON.parse(JSON.stringify(classJson));
+    copyOfClassJson2.classStartTime = '8:00 PM';
+    copyOfClassJson2.classEndTime = '9:00 PM';
+
+    it('should display two classes', () => {
+      const classes = ClassSearchUtils.mergeAttributes([copyOfClassJson1, copyOfClassJson2]);
+      expect(classes).toHaveLength(2);
+    });
+  });
+
+  describe('and two classes having the same class number and have same start times but different end times', () => {
+    const class1 = JSON.parse(JSON.stringify(classJson));
+    class1.classStartTime = '6:00 PM';
+    class1.classEndTime = '7:00 PM';
+    const class2 = JSON.parse(JSON.stringify(classJson));
+    class2.classStartTime = '6:00 PM';
+    class2.classEndTime = '7:30 PM';
+
+    it('should display two classes', () => {
+      const classes = ClassSearchUtils.mergeAttributes([class1, class2]);
+      expect(classes).toHaveLength(2);
+    });
+  });
+
+  describe('and two classes having the same class number and have different start times but same end times', () => {
+    const class1 = JSON.parse(JSON.stringify(classJson));
+    class1.classStartTime = '6:00 PM';
+    class1.classEndTime = '7:00 PM';
+    const class2 = JSON.parse(JSON.stringify(classJson));
+    class2.classStartTime = '6:30 PM';
+    class2.classEndTime = '7:00 PM';
+
+    it('should display two classes', () => {
+      const classes = ClassSearchUtils.mergeAttributes([class1, class2]);
+      expect(classes).toHaveLength(2);
     });
   });
 });
@@ -1096,7 +1138,7 @@ describe('GE designation attribute', () => {
       describe('if term is quarter', () => {
         const classWithCourseAttributes = TestUtils.copyObject(classJson);
         classWithCourseAttributes.courseAttr = 'ASTD, GE, DES';
-        // GE-FOO won't work for Semester classes. It has to be one of the valid GE attributes for 
+        // GE-FOO won't work for Semester classes. It has to be one of the valid GE attributes for
         // semester.
         // G is an attribute for GE desgination
         classWithCourseAttributes.geCourseAttr = 'GE-FOO';

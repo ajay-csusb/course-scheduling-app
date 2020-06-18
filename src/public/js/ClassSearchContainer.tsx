@@ -6,15 +6,12 @@ import { ISubject, Subject } from './Subject';
 import { UserInput } from './UserInput';
 import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
-import { MeetingTime } from './MeetingTime';
 import * as Watchdog from './Watchdog';
-import { InstructionMode } from './InstructionMode';
-import { FilterClasses } from './FilterClasses';
+import * as FilterClasses from './FilterClasses';
 import { GeCourseAttribute } from './GeCourseAttribute';
-import * as CourseAttributes from './CourseAttributes';
-import * as ClassSearch from './ClassSearch.d';
+import { app } from './ClassSearch.d';
 
-interface IClassSearchContainerState {
+export interface IClassSearchContainerState {
   term: string;
   campus: string;
   subject: ISubject;
@@ -50,8 +47,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private geClassesAttributes: IOptionProps[];
 
   private currentTermId: string;
-
-  private readonly dropDownUrl = 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList';
 
   private userInput: UserInput;
 
@@ -117,7 +112,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     );
   }
   componentDidMount() {
-    ClassSearchUtils.fetchData(this.dropDownUrl, this.processDropDownListData, this.errorProcessingData);
+    ClassSearchUtils.fetchData(app.settings.dropdownUrl, this.processDropDownListData, this.errorProcessingData);
   }
 
   componentDidUpdate() {
@@ -232,45 +227,35 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private classesFound(classes: any): void {
-    const transformedClass: IClass[] = [];
     this.allResults = [];
-    if (classes === null || classes.length === 0) {
-      this.setState({
-        noClasses: true,
-        isLoading: false,
-      });
+    if (this.emptyClasses(classes)) {
+      this.updateStatesAfterProcessingClasses(true, false);
       return;
     }
+    this.updateResults(classes);
+  }
+
+  private updateResults(classes: any): void {
     if (classes !== null && classes.length !== 0) {
+      classes = Class.splitClassesWithMultipleMeetingTimes(classes);
       classes.forEach((_class: any) => {
-        transformedClass.push(Class.transformToClass(_class));
+        this.allResults.push(Class.transformToClass(_class));
       });
     }
 
-    const validClasses = this.filterClasses(transformedClass);
-    const sortedClasses = this.sortClasses(validClasses);
-    const classesWithFullCourseAttributes = this.processCourseAttributes(sortedClasses);
-    const filteredByGeAttributes = GeCourseAttribute.filter(classesWithFullCourseAttributes, this.state.geClassesAttribute, this.state.term);
-    this.allResults = CourseAttributes.filter(filteredByGeAttributes, this.state.courseAttr);
-    this.setState({
-      noClasses: false,
-      isLoading: false,
-    });
+    this.sortClasses();
+    this.processCourseAttributes();
+    this.allResults = FilterClasses.filter(this.allResults, this.state);
+    this.updateStatesAfterProcessingClasses(false, false);
     this.resultsSection.current.scrollIntoView();
   }
 
-  private filterClasses(classes: IClass[]): IClass[] {
-    const activeClasses = FilterClasses.filterByActiveClasses(classes);
-    const filteredClasses = MeetingTime.filter(activeClasses, this.state.startTime, this.state.endTime);
-    return InstructionMode.filter(filteredClasses, this.state.instructionMode);
+  private sortClasses(): void {
+    this.allResults = ClassSearchUtils.sortClasses(this.allResults);
   }
 
-  private sortClasses(classes: IClass[]): IClass[] {
-    return ClassSearchUtils.sortClasses(classes);
-  }
-
-  private processCourseAttributes(classes: IClass[]): IClass[] {
-    return ClassSearchUtils.parseCourseAttributes(classes, this.geClassesAttributes);
+  private processCourseAttributes(): void {
+    this.allResults = ClassSearchUtils.parseCourseAttributes(this.allResults, this.geClassesAttributes);
   }
 
   private classesNotFound(_error: any): void {
@@ -300,7 +285,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       isLoading: true,
     }, () => {
       this.updateAllClasses();
-      }
+    }
     );
   }
 
@@ -358,14 +343,14 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         instructorsArr.push(_instructor.name);
       });
       this.instructors = instructorsArr;
-      this.setState({ forceReload: true});
+      this.setState({ forceReload: true });
     }
   }
 
   private subjectsFound(data: any): void {
     this.allSubjects = data.abbreviationTermList;
     this.subjects = Subject.getDropdownOptions(data.abbreviationTermList, this.state.term);
-    this.setState({ forceReload: true});
+    this.setState({ forceReload: true });
   }
 
   private termFound(data: any): void {
@@ -423,12 +408,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private isMeetingDayEmpty(): boolean {
     return (!this.state.meetingDate.mon
-    && !this.state.meetingDate.tue
-    && !this.state.meetingDate.wed
-    && !this.state.meetingDate.thu
-    && !this.state.meetingDate.fri
-    && !this.state.meetingDate.sat
-    && !this.state.meetingDate.sun);
+      && !this.state.meetingDate.tue
+      && !this.state.meetingDate.wed
+      && !this.state.meetingDate.thu
+      && !this.state.meetingDate.fri
+      && !this.state.meetingDate.sat
+      && !this.state.meetingDate.sun);
   }
 
   private isClassNoEmpty(): boolean {
@@ -609,7 +594,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       this.userInput.setCourseAttr('');
     }
     this.userInput.setGeClassesAttr(value);
-    if (parseInt(this.state.term, 10) >= ClassSearch.app.settings.firstSemester) {
+    if (parseInt(this.state.term, 10) >= app.settings.firstSemester) {
       this.userInput.setCourseAttr('');
       this.userInput.setGeClassesAttr('');
     }
@@ -675,5 +660,16 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private updateSubjectDropdown(term: string): void {
     this.subjects = Subject.getDropdownOptions(this.allSubjects, term);
+  }
+
+  private updateStatesAfterProcessingClasses(noClassesStatus: boolean, isLoadingStatus: boolean): void {
+    this.setState({
+      noClasses: noClassesStatus,
+      isLoading: isLoadingStatus,
+    });
+  }
+
+  private emptyClasses(classes: any): boolean {
+    return (classes === null || classes.length === 0);
   }
 }
