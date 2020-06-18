@@ -6,6 +6,7 @@ import { GeCourseAttribute } from './GeCourseAttribute';
 import * as CourseAttributes from './CourseAttributes';
 import * as MeetingDay from './MeetingDay';
 
+// @Todo create a new module to filter active classes
 export function filterByActiveClasses(classes: IClass[]): IClass[] {
   const results: IClass[] = [];
   for (const _class of classes) {
