@@ -348,22 +348,54 @@ describe('course components', () => {
     });
   });
 
-  describe('course attributes', () => {
-    describe('when a class has missing course attributes', () => {
-      it('should not show empty class attributes', () => {
-        const classWithMissingCourseAttributes = TestUtils.copyObject(classJson);
-        classWithMissingCourseAttributes.courseAttr = ', GE-A4 Critical Thinking, , GE-B2 Life Sciences';
-        const classCards: JSX.Element = (
-          <ClassesCards
-            classes={classWithMissingCourseAttributes}
-            currentTerm={'0000'}
-          />
-        );
-        const classesCardsComponent = mount(classCards);
-        expect(classesCardsComponent.html()).toContain('GE-A4 Critical Thinking, GE-B2 Life Sciences');
-      });
+});
+
+describe('course attributes', () => {
+  describe('when a class has missing course attributes', () => {
+    it('should not show empty class attributes', () => {
+      const classWithMissingCourseAttributes = TestUtils.copyObject(classJson);
+      classWithMissingCourseAttributes.courseAttr = ', GE-A4 Critical Thinking, , GE-B2 Life Sciences';
+      const classCards: JSX.Element = (
+        <ClassesCards
+          classes={classWithMissingCourseAttributes}
+          currentTerm={'0000'}
+        />
+      );
+      const classesCardsComponent = mount(classCards);
+      expect(classesCardsComponent.html()).toContain('GE-A4 Critical Thinking, GE-B2 Life Sciences');
     });
   });
-  
+});
+
+describe('fees', () => {
+  describe('when a course has a fee', () => {
+    it('should display the fee', () => {
+      const classesWithFee: IClass = TestUtils.copyObject(classJson);
+      classesWithFee.fee = '30.00';
+      const classCards: JSX.Element = (
+        <ClassesCards
+          classes={classesWithFee}
+          currentTerm={'0000'}
+        />
+      );
+      const classesCardsComponent = mount(classCards);
+      expect(classesCardsComponent.html()).toContain('$30.00');
+    });
+  });
+
+  describe('when a course does not have a fee', () => {
+    it('should not display the markup', () => {
+      const classWithNoFees: IClass = TestUtils.copyObject(classJson);
+      classWithNoFees.fee = '0.00';
+      const classesCards: JSX.Element = (
+        <ClassesCards
+          classes={classWithNoFees}
+          currentTerm={'0000'}
+        />
+      );
+      const classesCardsComponent = mount(classesCards);
+      expect(classesCardsComponent.html()).not.toContain('<span>Fees </span> $');
+    });
+  });
 
 });

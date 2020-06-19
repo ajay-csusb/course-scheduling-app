@@ -7,6 +7,7 @@ test('dataset', () => {
   acctClass.courseAttr = 'Foo';
   acctClass.topic = 'Special topics in Accounting';
   acctClass.fullSsrComponent = 'Activity';
+  acctClass.fee = '50.75';
   const classes = [acctClass, classPDC];
   const dataset: ExcelData[] = getDataForExcel(classes);
   expect(dataset).toHaveLength(2);
@@ -15,6 +16,7 @@ test('dataset', () => {
   expect(dataset[0].title).toEqual('Introduction to Accounting: Special Topics In Accounting');
   expect(dataset[0].classSection).toEqual('01');
   expect(dataset[0].classNumber).toEqual(101);
+  expect(dataset[0].fee).toEqual('50.75');
   expect(dataset[0].fullSsrComponent).toEqual('Activity');
   expect(dataset[0].csuUnits).toEqual(4);
   expect(dataset[0].instructorName).toEqual('Dyck, Harold');

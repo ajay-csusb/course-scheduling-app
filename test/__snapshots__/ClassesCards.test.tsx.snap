@@ -25,6 +25,7 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -221,6 +222,13 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -270,6 +278,7 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -472,6 +481,13 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
           </span>
           6 Week 1
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -521,6 +537,7 @@ exports[`building code and room number when a class does not have a building cod
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -717,6 +734,13 @@ exports[`building code and room number when a class does not have a building cod
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -766,6 +790,7 @@ exports[`building code and room number when a class has a building code and room
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -962,6 +987,13 @@ exports[`building code and room number when a class has a building code and room
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -1011,6 +1043,7 @@ exports[`building code and room number when a class has a building code as TBD s
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -1207,6 +1240,13 @@ exports[`building code and room number when a class has a building code as TBD s
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -1256,6 +1296,7 @@ exports[`building code and room number when a class has building code as OL shou
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -1452,6 +1493,13 @@ exports[`building code and room number when a class has building code as OL shou
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -1501,6 +1549,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
       "enrolledTotal": 30,
       "enrollmentStatus": "Close",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -1718,6 +1767,13 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -1767,6 +1823,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       "enrolledTotal": 10,
       "enrollmentStatus": "Open",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -1973,6 +2030,13 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -2022,6 +2086,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       "enrolledTotal": 30,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -2244,6 +2309,13 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -2293,6 +2365,7 @@ exports[`seats text verbiage when a class is closed should display available sea
       "enrolledTotal": 30,
       "enrollmentStatus": "Close",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -2514,6 +2587,13 @@ exports[`seats text verbiage when a class is closed should display available sea
             Instruction Mode 
           </span>
           Classroom
+        </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
         </li>
       </ul>
       <div
@@ -2564,6 +2644,7 @@ exports[`seats text verbiage when a class is closed should display available spo
       "enrolledTotal": 30,
       "enrollmentStatus": "Close",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -2786,6 +2867,13 @@ exports[`seats text verbiage when a class is closed should display available spo
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -2835,6 +2923,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "enrolledTotal": 30,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -3031,6 +3120,13 @@ exports[`seats text verbiage when a class is from the previous term and has seat
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -3080,6 +3176,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "enrolledTotal": 20,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -3276,6 +3373,13 @@ exports[`seats text verbiage when a class is from the previous term and has seat
           </span>
           Classroom
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -3325,6 +3429,7 @@ exports[`when a class has low cost course material should display icon for low c
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -3527,6 +3632,13 @@ exports[`when a class has low cost course material should display icon for low c
           </span>
           Low Cost Course Materials, GE1-FOO
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -3584,6 +3696,7 @@ exports[`when a class has zero cost course material should display icon for zero
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -3786,6 +3899,13 @@ exports[`when a class has zero cost course material should display icon for zero
           </span>
           Zero Cost Course Materials
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -3843,6 +3963,7 @@ exports[`when a class has zero cost course materials and low cost course materia
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -4045,6 +4166,13 @@ exports[`when a class has zero cost course materials and low cost course materia
           </span>
           Zero Cost Course Materials, Low Cost Course Materials
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -4106,6 +4234,7 @@ exports[`when a class is a fully online should not display the room number in th
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -4296,6 +4425,13 @@ exports[`when a class is a fully online should not display the room number in th
           </span>
           Fully Online (AB 386)
         </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
+        </li>
       </ul>
       <div
         className="course-books"
@@ -4345,6 +4481,7 @@ exports[`when a class results component is displayed should display the correct 
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -4540,6 +4677,13 @@ exports[`when a class results component is displayed should display the correct 
             Instruction Mode 
           </span>
           Classroom
+        </li>
+        <li>
+          <span>
+            Fees 
+          </span>
+           $
+          0
         </li>
       </ul>
       <div
