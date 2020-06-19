@@ -135,9 +135,11 @@ export class Class {
     return result;
   }
 
-  static getAllClasses(onSuccess: (response: any) => void,
+  static getAllClasses(
+    onSuccess: (response: any) => void,
     onFailure: (error: string) => void,
-    userInput: UserInput): void {
+    userInput: UserInput
+  ): void {
     const params = {
       strm: userInput.getTerm(),
       class_nbr: userInput.getClassNo(),
@@ -229,7 +231,7 @@ export class Class {
   }
 
   public isActive(): boolean {
-    return (this.classInfo.classStatus === 'Active');
+    return this.classInfo.classStatus === 'Active'
   }
 
   public getClassStatus(): string {
@@ -237,6 +239,6 @@ export class Class {
   }
 
   private areStartTimeEndTimeEmpty(): boolean {
-    return (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0);
+    return this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0;
   }
 }

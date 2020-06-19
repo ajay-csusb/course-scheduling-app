@@ -1,4 +1,3 @@
-
 import { IClass, Class } from '../public/js/Class';
 import * as ClassSearchUtils from '../public/js/ClassSearchUtils';
 
@@ -25,13 +24,15 @@ export interface ExcelData {
 
 export function getExcelDocument(data: IClass[]): Buffer {
   const excel = require('node-excel-export');
-  return excel.buildExport([{
-    name: 'Class Search Report',
-    heading: getColumnTitle(),
-    merges: getColumnMergeInfo(),
-    specification: getColumnSpecification(),
-    data: getDataForExcel(data),
-  }]);
+  return excel.buildExport([
+    {
+      name: 'Class Search Report',
+      heading: getColumnTitle(),
+      merges: getColumnMergeInfo(),
+      specification: getColumnSpecification(),
+      data: getDataForExcel(data),
+    },
+  ]);
 }
 
 export function getDataForExcel(classes: IClass[]): ExcelData[] {
@@ -47,9 +48,23 @@ export function getDataForExcel(classes: IClass[]): ExcelData[] {
 
 function extractExcelData(_class: IClass): ExcelData {
   const currClass: Class = new Class(_class);
-  const { campus, catalogNo, classNumber, classSection, courseAttr, csuUnits,
-          enrolledCapacity, fee, fullSsrComponent, instructorName, quarter, subject,
-          title, topic, waitlistCapacity } = _class;
+  const {
+    campus,
+    catalogNo,
+    classNumber,
+    classSection,
+    courseAttr,
+    csuUnits,
+    enrolledCapacity,
+    fee,
+    fullSsrComponent,
+    instructorName,
+    quarter,
+    subject,
+    title,
+    topic,
+    waitlistCapacity,
+  } = _class;
   const rows: ExcelData = {
     buildingCode: ClassSearchUtils.getRoomNumber(_class),
     campus: ClassSearchUtils.getCampusName(campus),

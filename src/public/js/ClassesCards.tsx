@@ -26,9 +26,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
           {courseHeaderMarkup}
           {courseInfoMarkup}
         </div>
-        <div className="item-body">
-          {courseBodyMarkup}
-        </div>
+        <div className="item-body">{courseBodyMarkup}</div>
       </div>
     );
   }
@@ -47,19 +45,40 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     let courseAttrMarkup = null;
 
     if (this.classDetails.courseAttr.length !== 0) {
-      courseAttrMarkup = <li><span>Course Attribute </span>{this.sanitizeCourseAttributes(this.classDetails.courseAttr)}</li>;
+      courseAttrMarkup = (
+        <li>
+          {' '}
+          <span>Course Attribute </span>
+          {this.sanitizeCourseAttributes(this.classDetails.courseAttr)}
+        </li>
+      );
     }
     const courseMaterialIconMarkup = this.getCourseMaterialIconMarkup();
     return (
       <React.Fragment>
         <ul className="course-desc">
-          <li><span>Units </span>{this.classDetails.csuUnits}</li>
-          <li><span>Meeting Time </span>{time}</li>
-          <li><span>Meeting Days </span>{days}</li>
+          <li>
+            <span>Units </span>
+            {this.classDetails.csuUnits}
+          </li>
+          <li>
+            <span>Meeting Time </span>
+            {time}
+          </li>
+          <li>
+            <span>Meeting Days </span>
+            {days}
+          </li>
           {roomNumberMarkup}
-          <li><span>Campus </span>{campus}</li>
+          <li>
+            <span>Campus </span>
+            {campus}
+          </li>
           <li>{instructorMarkup}</li>
-          <li><span>Instruction Mode </span>{instructionMode}</li>
+          <li>
+            <span>Instruction Mode </span>
+            {instructionMode}
+          </li>
           {courseAttrMarkup}
           {sessionMarkup}
           <li>{feeMarkup}</li>
@@ -68,7 +87,6 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
           {textBookMarkup}
           {courseMaterialIconMarkup}
         </div>
-
       </React.Fragment>
     );
   }
@@ -86,20 +104,31 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
 
   public getTextBookMarkup(): JSX.Element {
     const textbookUrl = ClassSearchUtils.getTextbookUrl(this.classDetails);
-    const {subject, catalogNo} = this.classDetails;
+    const { subject, catalogNo } = this.classDetails;
     return (
       <a className="btn btn-white btn-solid" href={textbookUrl} target="_blank">
-        <span className="sr-only">{subject} {catalogNo}</span>
+        <span className="sr-only">
+          {subject} {catalogNo}
+        </span>
         Textbook
       </a>
     );
   }
 
   public getInstructorMarkup(): JSX.Element {
-    let instructor = <><span>Instructor</span> TBD</>;
+    let instructor = (
+      <>
+        <span>Instructor</span> TBD
+      </>
+    );
     if (ClassSearchUtils.getInstructorMarkup(this.classDetails)) {
       const instructorProfile = ClassSearchUtils.getInstructorMarkup(this.classDetails);
-      instructor = (<><span>Instructor</span>{instructorProfile}</>);
+      instructor = (
+        <>
+          <span>Instructor</span>
+          {instructorProfile}
+        </>
+      );
     }
     return instructor;
   }
@@ -120,7 +149,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
         >
           {tooltip}
         </Popover>
-      </div >
+      </div>
     );
   }
 
@@ -128,12 +157,12 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const title = this.getClassFullTitle();
     return (
       <div className="course-header">
-          {title}
-          <div className="course-details">
-              <span>Section {this.classDetails.classSection} • </span>
-              {this.getClassTypeMarkup()}
-              <span className="course-id">Class No. {this.classDetails.classNumber}</span>
-          </div>
+        {title}
+        <div className="course-details">
+          <span>Section {this.classDetails.classSection} • </span>
+          {this.getClassTypeMarkup()}
+          <span className="course-id">Class No. {this.classDetails.classNumber}</span>
+        </div>
       </div>
     );
   }
@@ -149,7 +178,10 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     }
     return (
       <React.Fragment>
-        <div className={classStatusClassName}><span />{classStatus}</div>
+        <div className={classStatusClassName}>
+          <span />
+          {classStatus}
+        </div>
       </React.Fragment>
     );
   }
@@ -158,37 +190,49 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(this.classDetails);
     const waitlistMarkup = <div>{this.getWaitlistMarkup()}</div>;
     if (!this.isValidTerm(this.classDetails.quarter)) {
-      return (<React.Fragment/>);
+      return <React.Fragment />;
     }
-    if (ClassSearchUtils.isWaitlist(this.classDetails) || ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed') {
+    if (
+      ClassSearchUtils.isWaitlist(this.classDetails) ||
+      ClassSearchUtils.getClassStatus(this.classDetails) === 'Closed'
+    ) {
       return (
         <div className="course-availability-wrap">
           <div className="course-availability">
-            Seats available: <span>{noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}</span>
+            Seats available:{' '}
+            <span>
+              {noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}
+            </span>
           </div>
-        {waitlistMarkup}
+          {waitlistMarkup}
         </div>
       );
     }
     return (
       <div className="course-availability">
-        Seats available: <span>{noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}</span>
+        Seats available:{' '}
+        <span>
+          {noOfSeatsAvailable} / {this.classDetails.enrolledCapacity}
+        </span>
       </div>
     );
   }
 
   public getWaitlistMarkup(): JSX.Element {
     const waitlistCapacity = this.classDetails.waitlistCapacity;
-    const numberOfSeatsInWaitlist = this.classDetails.waitlistCapacity -  this.classDetails.waitlistTotal;
+    const numberOfSeatsInWaitlist = this.classDetails.waitlistCapacity - this.classDetails.waitlistTotal;
     if (!this.isValidTerm(this.classDetails.quarter)) {
-      return (<React.Fragment/>);
+      return <React.Fragment />;
     }
     if (this.classDetails.waitlistCapacity === 0) {
-      return (<div className="course-availability">No Waitlist</div>);
+      return <div className="course-availability">No Waitlist</div>;
     }
     return (
       <div className="course-availability">
-        Waitlist spots available: <span>{numberOfSeatsInWaitlist} / {waitlistCapacity}</span>
+        Waitlist spots available:{' '}
+        <span>
+          {numberOfSeatsInWaitlist} / {waitlistCapacity}
+        </span>
       </div>
     );
   }
@@ -205,19 +249,21 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   }
 
   public isNonRegularSession(): boolean {
-    const sessionCodes = [
-      '10W',
-      '6W1',
-      '6W2',
-      '3W1',
-    ];
-    return (sessionCodes.includes(this.classDetails.sessionCode.trim()));
+    const sessionCodes = ['10W', '6W1', '6W2', '3W1'];
+    return sessionCodes.includes(this.classDetails.sessionCode.trim());
   }
 
   public getSessionMarkup(): JSX.Element {
     if (this.isNonRegularSession()) {
       const session = ClassSearchUtils.getSessionCode(this.classDetails);
-      return (<><li><span>Session </span>{session}</li></>);
+      return (
+        <>
+          <li>
+            <span>Session </span>
+            {session}
+          </li>
+        </>
+      );
     }
     return <></>;
   }
@@ -225,7 +271,12 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
   public getRoomNumberMarkup(): JSX.Element {
     const roomNumber = ClassSearchUtils.getRoomNumber(this.classDetails);
     if (this.classDetails.instructionMode !== 'FO') {
-      return (<li><span>Room </span>{roomNumber}</li>);
+      return (
+        <li>
+          <span>Room </span>
+          {roomNumber}
+        </li>
+      );
     }
     return <></>;
   }
@@ -253,19 +304,24 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     if (!zeroCostIcon && !lowCostIcon) {
       return <></>;
     }
-    return (<div className="course--icons">{zeroCostIcon}{lowCostIcon}</div>);
+    return (
+      <div className="course--icons">
+        {zeroCostIcon}
+        {lowCostIcon}
+      </div>
+    );
   }
   public getClassTypeMarkup(): JSX.Element {
     let classType: JSX.Element = <></>;
     if (this.classDetails.fullSsrComponent) {
-      classType = (<span>{this.classDetails.fullSsrComponent} • </span>);
+      classType = <span>{this.classDetails.fullSsrComponent} • </span>;
     }
     return classType;
   }
 
   private isValidTerm(quarter: string): boolean {
     const CurrMonth = new Date().getMonth() + 1;
-    return (ClassSearchUtils.isValidTermRange(this.props.currentTerm, quarter, CurrMonth) === true);
+    return ClassSearchUtils.isValidTermRange(this.props.currentTerm, quarter, CurrMonth) === true;
   }
 
   private sanitizeCourseAttributes(courseAttributes: string): string {
@@ -281,7 +337,11 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     let markup: JSX.Element = <></>;
 
     if (this.classDetails.fee !== '0.00' || this.classDetails.fee.length === 0) {
-      markup = <><span>Fees </span> ${this.classDetails.fee}</>;
+      markup = (
+        <>
+          <span>Fees </span> ${this.classDetails.fee}
+        </>
+      );
     }
 
     return markup;

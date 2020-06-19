@@ -1,8 +1,15 @@
 import * as React from 'react';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { IClass, Class } from './Class';
-import { Cell, Table, Column, ColumnHeaderCell, IMenuContext,
-  CopyCellsMenuItem, TruncatedFormat } from '@blueprintjs/table';
+import {
+  Cell,
+  Table,
+  Column,
+  ColumnHeaderCell,
+  IMenuContext,
+  CopyCellsMenuItem,
+  TruncatedFormat,
+} from '@blueprintjs/table';
 import { Menu, MenuItem } from '@blueprintjs/core';
 import * as Sort from './Sort';
 export interface ITableDisplayProps {
@@ -10,7 +17,6 @@ export interface ITableDisplayProps {
 }
 
 export class Grid extends React.Component<ITableDisplayProps> {
-
   private classes: IClass[];
 
   constructor(props: ITableDisplayProps) {
@@ -41,20 +47,16 @@ export class Grid extends React.Component<ITableDisplayProps> {
       [this.textbookColumnHeader.bind(this), this.getTextbook.bind(this)],
     ];
     const columns = [];
-    const heightVal = (this.classes.length > 200) ? '500px' : '100%';
+    const heightVal = this.classes.length > 200 ? '500px' : '100%';
 
     for (const innerColumn of innerColumns) {
       columns.push(
-        <Column
-          key={innerColumn[0].name}
-          columnHeaderCellRenderer={innerColumn[0]}
-          cellRenderer={innerColumn[1]}
-        />
+        <Column key={innerColumn[0].name} columnHeaderCellRenderer={innerColumn[0]} cellRenderer={innerColumn[1]} />
       );
     }
 
     return (
-      <div style={{height: heightVal}}>
+      <div style={{ height: heightVal }}>
         <Table
           key={new Date().getTime()} // Hack! https://github.com/palantir/blueprint/issues/3757
           numRows={this.classes.length}
@@ -78,80 +80,75 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private titleColumnHeader() {
-    return (<ColumnHeaderCell name={'Title'} menuRenderer={() => this.columnMenu('title')} />);
+    return <ColumnHeaderCell name={'Title'} menuRenderer={() => this.columnMenu('title')} />;
   }
 
   private subjectColumnHeader() {
-    return (<ColumnHeaderCell name={'Subjects'} menuRenderer={() => this.columnMenu('subject')} />);
+    return <ColumnHeaderCell name={'Subjects'} menuRenderer={() => this.columnMenu('subject')} />;
   }
 
   private sectionColumnHeader() {
-    return (<ColumnHeaderCell name={'Section'} menuRenderer={() => this.columnMenu('classSection')} />);
+    return <ColumnHeaderCell name={'Section'} menuRenderer={() => this.columnMenu('classSection')} />;
   }
 
   private classNumberColumnHeader() {
-    return (<ColumnHeaderCell name={'Class Number'} menuRenderer={() => this.columnMenu('classNumber')} />);
+    return <ColumnHeaderCell name={'Class Number'} menuRenderer={() => this.columnMenu('classNumber')} />;
   }
 
   private typeColumnHeader() {
-    return (<ColumnHeaderCell name={'Type'} menuRenderer={() => this.columnMenu('fullSsrComponent')} />);
+    return <ColumnHeaderCell name={'Type'} menuRenderer={() => this.columnMenu('fullSsrComponent')} />;
   }
 
   private unitColumnHeader() {
-    return (<ColumnHeaderCell name={'Unit'} menuRenderer={() => this.columnMenu('csuUnits')} />);
+    return <ColumnHeaderCell name={'Unit'} menuRenderer={() => this.columnMenu('csuUnits')} />;
   }
 
   private instructorColumnHeader() {
-    return (<ColumnHeaderCell name={'Instructor'} menuRenderer={() => this.columnMenu('instructorName')} />);
+    return <ColumnHeaderCell name={'Instructor'} menuRenderer={() => this.columnMenu('instructorName')} />;
   }
 
   private dayColumnHeader() {
-    return (<ColumnHeaderCell name={'Day(s)'} menuRenderer={() => this.columnMenu('meetingDays')} />);
+    return <ColumnHeaderCell name={'Day(s)'} menuRenderer={() => this.columnMenu('meetingDays')} />;
   }
 
   private timeColumnHeader() {
-    return (<ColumnHeaderCell name={'Time'} menuRenderer={() => this.columnMenu('classStartTime')} />);
+    return <ColumnHeaderCell name={'Time'} menuRenderer={() => this.columnMenu('classStartTime')} />;
   }
 
   private instructionModeColumnHeader() {
-    return (<ColumnHeaderCell name={'Mode'} menuRenderer={() => this.columnMenu('instructionMode')} />);
+    return <ColumnHeaderCell name={'Mode'} menuRenderer={() => this.columnMenu('instructionMode')} />;
   }
 
   private sessionCodeColumnHeader() {
-    return (<ColumnHeaderCell name={'Session'} menuRenderer={() => this.columnMenu('sessionCode')} />);
+    return <ColumnHeaderCell name={'Session'} menuRenderer={() => this.columnMenu('sessionCode')} />;
   }
 
   private seatsAvailableColumnHeader() {
-    return (<ColumnHeaderCell name={'Seats Available'} menuRenderer={() => this.columnMenu('enrolledTotal')} />);
+    return <ColumnHeaderCell name={'Seats Available'} menuRenderer={() => this.columnMenu('enrolledTotal')} />;
   }
 
   private waitlistColumnHeader() {
-    return (
-      <ColumnHeaderCell
-        name={'Waitlist Seats Available'}
-        menuRenderer={() => this.columnMenu('waitlistTotal')}
-      />
-    );
+    return <ColumnHeaderCell name={'Waitlist Seats Available'} menuRenderer={() => this.columnMenu('waitlistTotal')} />;
   }
 
   private courseAttrColumnHeader() {
-    return (<ColumnHeaderCell name={'Attribute'} menuRenderer={() => this.columnMenu('courseAttr')} />);
+    return <ColumnHeaderCell name={'Attribute'} menuRenderer={() => this.columnMenu('courseAttr')} />;
   }
 
   private campusColumnHeader() {
-    return (<ColumnHeaderCell name={'Campus'}  menuRenderer={() => this.columnMenu('campus')}/>);
+    return <ColumnHeaderCell name={'Campus'} menuRenderer={() => this.columnMenu('campus')} />;
   }
 
   private feeColumnHeader() {
-    return (<ColumnHeaderCell name={'Fee'} menuRenderer={() => this.columnMenu('fee')} />);
+    return <ColumnHeaderCell name={'Fee'} menuRenderer={() => this.columnMenu('fee')} />;
   }
 
   private textbookColumnHeader() {
-    return (<ColumnHeaderCell name={'Textbook'} />);
+    return <ColumnHeaderCell name={'Textbook'} />;
   }
 
   private roomColumnHeader() {
-    return (<ColumnHeaderCell name={'Building'} menuRenderer={() => this.columnMenu('buildingCode')}/>);
+    return <ColumnHeaderCell name={'Building'} menuRenderer={() => this.columnMenu('buildingCode')} />;
   }
 
   private sortByString(key: string, column: string = 'subject') {
@@ -176,13 +173,13 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private sortCampus(key: string) {
-    this.classes = (key === 'asc') ? Sort.sortByCampus(this.classes, 'asc') : Sort.sortByCampus(this.classes, 'des');
+    this.classes = key === 'asc' ? Sort.sortByCampus(this.classes, 'asc') : Sort.sortByCampus(this.classes, 'des');
     this.forceUpdate();
   }
 
   private sortInstructionMode(key: string) {
-    this.classes = (key === 'asc') ? Sort.sortByInstructionMode(this.classes, 'asc')
-    : Sort.sortByInstructionMode(this.classes, 'des');
+    this.classes =
+      key === 'asc' ? Sort.sortByInstructionMode(this.classes, 'asc') : Sort.sortByInstructionMode(this.classes, 'des');
     this.forceUpdate();
   }
 
@@ -203,14 +200,16 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private sortSeatsAvailable(key: string, id: string) {
-    this.classes = (id === 'enrolledTotal') ? Sort.sortBySeatsAvailable(this.classes, key)
-    : Sort.sortBySeatsAvailableInWaitlist(this.classes, key);
+    this.classes =
+      id === 'enrolledTotal'
+        ? Sort.sortBySeatsAvailable(this.classes, key)
+        : Sort.sortBySeatsAvailableInWaitlist(this.classes, key);
     this.forceUpdate();
   }
 
   private sortBuildingNumber(key: string) {
-    this.classes = (key === 'asc') ? Sort.sortByBuildingNumber(this.classes, key)
-    : Sort.sortByBuildingNumber(this.classes, key);
+    this.classes =
+      key === 'asc' ? Sort.sortByBuildingNumber(this.classes, key) : Sort.sortByBuildingNumber(this.classes, key);
     this.forceUpdate();
   }
   private columnMenu(id: string = 'subject'): JSX.Element {
@@ -289,15 +288,39 @@ export class Grid extends React.Component<ITableDisplayProps> {
     if (!callbacks[id].use_id) {
       menuItems = (
         <>
-          <MenuItem icon="sort-asc" onClick={() => { callbacks[id].cb('asc'); }} text="Sort Asc" />
-          <MenuItem icon="sort-desc" onClick={() => { callbacks[id].cb('des'); }} text="Sort Desc" />
+          <MenuItem
+            icon="sort-asc"
+            onClick={() => {
+              callbacks[id].cb('asc');
+            }}
+            text="Sort Asc"
+          />
+          <MenuItem
+            icon="sort-desc"
+            onClick={() => {
+              callbacks[id].cb('des');
+            }}
+            text="Sort Desc"
+          />
         </>
       );
     } else {
       menuItems = (
         <>
-          <MenuItem icon="sort-asc" onClick={() => { callbacks[id].cb('asc', id); }} text="Sort Asc" />
-          <MenuItem icon="sort-desc" onClick={() => { callbacks[id].cb('des', id); }} text="Sort Desc" />
+          <MenuItem
+            icon="sort-asc"
+            onClick={() => {
+              callbacks[id].cb('asc', id);
+            }}
+            text="Sort Asc"
+          />
+          <MenuItem
+            icon="sort-desc"
+            onClick={() => {
+              callbacks[id].cb('des', id);
+            }}
+            text="Sort Desc"
+          />
         </>
       );
     }
@@ -308,7 +331,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
   private getSubject(rowIndex: number): JSX.Element {
     const _class = this.classes[rowIndex];
     const subject = `${_class.subject} ${_class.catalogNo}`;
-    return (<Cell>{subject}</Cell>);
+    return <Cell>{subject}</Cell>;
   }
 
   private getTitle(rowIndex: number): JSX.Element {
@@ -317,45 +340,46 @@ export class Grid extends React.Component<ITableDisplayProps> {
     const topic = ClassSearchUtils.formatSubjectTopic(_class.topic);
     return (
       <Cell tooltip={`${title}${topic}`}>
-        <TruncatedFormat truncateLength={50} >{`${title}${topic}`}</TruncatedFormat>
-      </Cell>);
+        <TruncatedFormat truncateLength={50}>{`${title}${topic}`}</TruncatedFormat>
+      </Cell>
+    );
   }
 
   private getSection(rowIndex: number): JSX.Element {
-    return (<Cell>{this.classes[rowIndex].classSection}</Cell>);
+    return <Cell>{this.classes[rowIndex].classSection}</Cell>;
   }
 
   private getClassNumber(rowIndex: number): JSX.Element {
-    return (<Cell>{this.classes[rowIndex].classNumber}</Cell>);
+    return <Cell>{this.classes[rowIndex].classNumber}</Cell>;
   }
 
   private getType(rowIndex: number): JSX.Element {
-    return (<Cell>{this.classes[rowIndex].fullSsrComponent}</Cell>);
+    return <Cell>{this.classes[rowIndex].fullSsrComponent}</Cell>;
   }
 
   private getUnit(rowIndex: number): JSX.Element {
-    return (<Cell>{this.classes[rowIndex].csuUnits}</Cell>);
+    return <Cell>{this.classes[rowIndex].csuUnits}</Cell>;
   }
 
   private getInstructor(rowIndex: number): JSX.Element {
     const _class: IClass = this.classes[rowIndex];
-    return (<Cell>{ClassSearchUtils.getInstructorMarkup(_class)}</Cell>);
+    return <Cell>{ClassSearchUtils.getInstructorMarkup(_class)}</Cell>;
   }
 
   private getMode(rowIndex: number): JSX.Element {
-    return (<Cell>{this.getModeUnformatted(rowIndex)}</Cell>);
+    return <Cell>{this.getModeUnformatted(rowIndex)}</Cell>;
   }
 
   private getSession(rowIndex: number): JSX.Element {
-    return (<Cell>{this.getSessionUnformatted(rowIndex)}</Cell>);
+    return <Cell>{this.getSessionUnformatted(rowIndex)}</Cell>;
   }
 
   private getSeatsAvailable(rowIndex: number): JSX.Element {
-    return (<Cell>{this.getSeatsAvailableUnformatted(rowIndex)}</Cell>);
+    return <Cell>{this.getSeatsAvailableUnformatted(rowIndex)}</Cell>;
   }
 
   private getWaitlist(rowIndex: number): JSX.Element {
-    return (<Cell>{this.getWaitlistUnformatted(rowIndex)}</Cell>);
+    return <Cell>{this.getWaitlistUnformatted(rowIndex)}</Cell>;
   }
 
   private getAttribute(rowIndex: number): JSX.Element {
@@ -368,43 +392,45 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private getCampus(rowIndex: number): JSX.Element {
-    return (<Cell>{this.getCampusUnformatted(rowIndex)}</Cell>);
+    return <Cell>{this.getCampusUnformatted(rowIndex)}</Cell>;
   }
 
   private getFee(rowIndex: number): JSX.Element {
     const fee = this.getFeeUnformatted(rowIndex);
 
     if (fee !== '0.00') {
-      return (<Cell>${fee}</Cell>);
+      return <Cell>${fee}</Cell>;
     }
 
-    return (<Cell />);
+    return <Cell />;
   }
 
   private getTextbook(rowIndex: number): JSX.Element {
     const _class: IClass = this.classes[rowIndex];
     const textbookUrl = ClassSearchUtils.getTextbookUrl(_class);
-    const {subject, catalogNo} = _class;
+    const { subject, catalogNo } = _class;
     return (
       <Cell>
         <a href={textbookUrl} target="_blank">
-          <span className="sr-only">{subject} {catalogNo}</span>
+          <span className="sr-only">
+            {subject} {catalogNo}
+          </span>
           Textbook
-      </a>
+        </a>
       </Cell>
     );
   }
 
   private getDay(rowIndex: number): JSX.Element {
-    return (<Cell>{this.getDayUnformatted(rowIndex)}</Cell>);
+    return <Cell>{this.getDayUnformatted(rowIndex)}</Cell>;
   }
 
   private getTime(rowIndex: number): JSX.Element {
-    return (<Cell>{this.getTimeUnformatted(rowIndex)}</Cell>);
+    return <Cell>{this.getTimeUnformatted(rowIndex)}</Cell>;
   }
 
   private getRoom(rowIndex: number): JSX.Element {
-    return (<Cell>{this.getRoomUnformatted(rowIndex)}</Cell>);
+    return <Cell>{this.getRoomUnformatted(rowIndex)}</Cell>;
   }
 
   private getDayUnformatted(rowIndex: number): string {
@@ -508,5 +534,4 @@ export class Grid extends React.Component<ITableDisplayProps> {
     const key = this.getObjectKeyNameFromColumnIndex(columnIndex);
     return this.classes[rowIndex][key];
   }
-
 }
