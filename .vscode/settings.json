@@ -27,9 +27,17 @@
     "**/dist": true,
     "docs": true
   },
+  "eslint.enable": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "editor.rulers": [80],
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
   "[json]": {
     "editor.formatOnSave": false
   },
