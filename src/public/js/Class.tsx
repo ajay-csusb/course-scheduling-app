@@ -29,6 +29,7 @@ export interface IClass {
   enrollmentStatus: string;
   enrolledTotal: number;
   facilityId: string;
+  fee: string;
   fri: string;
   fullSsrComponent: string;
   geCourseAttr: string;
@@ -102,6 +103,7 @@ export class Class {
       enrollmentStatus: object.enrl_STAT,
       enrolledTotal: object.enrl_TOT,
       facilityId: object.facility_ID,
+      fee: object.fee,
       fri: object.meeting_TIME[0].fri,
       fullSsrComponent: object.ssr_COMPONENT_DESCR,
       geCourseAttr: object.crse_ATTR_VALUE,

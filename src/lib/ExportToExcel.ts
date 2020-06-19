@@ -1,7 +1,6 @@
 
 import { IClass, Class } from '../public/js/Class';
 import * as ClassSearchUtils from '../public/js/ClassSearchUtils';
-const excel = require('node-excel-export');
 
 export interface ExcelData {
   buildingCode: string;
@@ -10,6 +9,7 @@ export interface ExcelData {
   classSection: string;
   courseAttr: string;
   csuUnits: number;
+  fee: string;
   fullSsrComponent: string;
   instructionMode: string;
   instructorName: string;
@@ -24,6 +24,7 @@ export interface ExcelData {
 }
 
 export function getExcelDocument(data: IClass[]): Buffer {
+  const excel = require('node-excel-export');
   return excel.buildExport([{
     name: 'Class Search Report',
     heading: getColumnTitle(),
@@ -46,7 +47,9 @@ export function getDataForExcel(classes: IClass[]): ExcelData[] {
 
 function extractExcelData(_class: IClass): ExcelData {
   const currClass: Class = new Class(_class);
-  const { campus, catalogNo, classNumber, classSection, courseAttr, csuUnits, enrolledCapacity, fullSsrComponent, instructorName, quarter, subject, title, topic, waitlistCapacity} = _class;
+  const { campus, catalogNo, classNumber, classSection, courseAttr, csuUnits,
+          enrolledCapacity, fee, fullSsrComponent, instructorName, quarter, subject,
+          title, topic, waitlistCapacity } = _class;
   const rows: ExcelData = {
     buildingCode: ClassSearchUtils.getRoomNumber(_class),
     campus: ClassSearchUtils.getCampusName(campus),
@@ -54,6 +57,7 @@ function extractExcelData(_class: IClass): ExcelData {
     classSection: classSection,
     courseAttr: courseAttr,
     csuUnits: csuUnits,
+    fee: fee,
     fullSsrComponent: fullSsrComponent,
     instructionMode: ClassSearchUtils.getInstructionMode(_class),
     instructorName: instructorName,
@@ -90,6 +94,7 @@ function getColumnSpecification(): any {
     'waitlistSeatsAvailable',
     'courseAttr',
     'campus',
+    'fee',
   ];
 
   for (const i of colName) {
@@ -121,6 +126,7 @@ function getColumnTitle(): string[][] {
       'Wailtist Seats Available',
       'Attribute',
       'Campus',
+      'Fee',
     ],
   ];
 }

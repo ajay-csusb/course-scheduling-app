@@ -32,6 +32,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
       </div>
     );
   }
+
   public getCourseBodyMarkup(): JSX.Element {
     const classObj = new Class(this.classDetails);
     const campus = ClassSearchUtils.getCampusName(this.classDetails.campus);
@@ -42,7 +43,9 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     const textBookMarkup = this.getTextBookMarkup();
     const instructorMarkup = this.getInstructorMarkup();
     const sessionMarkup = this.getSessionMarkup();
+    const feeMarkup = this.getFeeMarkup();
     let courseAttrMarkup = null;
+
     if (this.classDetails.courseAttr.length !== 0) {
       courseAttrMarkup = <li><span>Course Attribute </span>{this.sanitizeCourseAttributes(this.classDetails.courseAttr)}</li>;
     }
@@ -59,6 +62,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
           <li><span>Instruction Mode </span>{instructionMode}</li>
           {courseAttrMarkup}
           {sessionMarkup}
+          <li>{feeMarkup}</li>
         </ul>
         <div className="course-books">
           {textBookMarkup}
@@ -264,7 +268,7 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     return (ClassSearchUtils.isValidTermRange(this.props.currentTerm, quarter, CurrMonth) === true);
   }
 
-  private sanitizeCourseAttributes(courseAttributes: string) {
+  private sanitizeCourseAttributes(courseAttributes: string): string {
     let result = courseAttributes;
     while (result.trim().startsWith(', ')) {
       // remove all ocuurances of ', ' from the start of the string
@@ -273,4 +277,13 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
     return result.replace(' , ', ' ');
   }
 
+  private getFeeMarkup(): JSX.Element {
+    let markup: JSX.Element = <></>;
+
+    if (this.classDetails.fee !== '0.00' || this.classDetails.fee.length === 0) {
+      markup = <><span>Fees </span> ${this.classDetails.fee}</>;
+    }
+
+    return markup;
+  }
 }

@@ -31,12 +31,13 @@ export class Grid extends React.Component<ITableDisplayProps> {
       [this.roomColumnHeader.bind(this), this.getRoom.bind(this)],
       [this.dayColumnHeader.bind(this), this.getDay.bind(this)],
       [this.timeColumnHeader.bind(this), this.getTime.bind(this)],
-      [this.instructionModeColumnHeader.bind(this), this.getMode.bind(this)],
-      [this.sessionCodeColumnHeader.bind(this), this.getSession.bind(this)],
       [this.seatsAvailableColumnHeader.bind(this), this.getSeatsAvailable.bind(this)],
       [this.waitlistColumnHeader.bind(this), this.getWaitlist.bind(this)],
+      [this.instructionModeColumnHeader.bind(this), this.getMode.bind(this)],
+      [this.sessionCodeColumnHeader.bind(this), this.getSession.bind(this)],
       [this.courseAttrColumnHeader.bind(this), this.getAttribute.bind(this)],
       [this.campusColumnHeader.bind(this), this.getCampus.bind(this)],
+      [this.feeColumnHeader.bind(this), this.getFee.bind(this)],
       [this.textbookColumnHeader.bind(this), this.getTextbook.bind(this)],
     ];
     const columns = [];
@@ -60,7 +61,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
           enableColumnResizing={false}
           getCellClipboardData={this.getCopiedData}
           bodyContextMenuRenderer={this.renderBodyMenu}
-          columnWidths={[100, 300, 100, 100, 100, 50, 150, 100, 100, 120, 150, 100, 150, 100, 300, 120, 150]}
+          columnWidths={[100, 300, 50, 70, 90, 30, 150, 70, 70, 130, 60, 70, 140, 70, 300, 110, 60, 80]}
         >
           {columns}
         </Table>
@@ -139,6 +140,10 @@ export class Grid extends React.Component<ITableDisplayProps> {
 
   private campusColumnHeader() {
     return (<ColumnHeaderCell name={'Campus'}  menuRenderer={() => this.columnMenu('campus')}/>);
+  }
+
+  private feeColumnHeader() {
+    return (<ColumnHeaderCell name={'Fee'} menuRenderer={() => this.columnMenu('fee')} />);
   }
 
   private textbookColumnHeader() {
@@ -275,6 +280,10 @@ export class Grid extends React.Component<ITableDisplayProps> {
         use_id: true,
         cb: this.sortSeatsAvailable.bind(this),
       },
+      fee: {
+        use_id: true,
+        cb: this.sortByNumber.bind(this),
+      },
     };
 
     if (!callbacks[id].use_id) {
@@ -362,6 +371,16 @@ export class Grid extends React.Component<ITableDisplayProps> {
     return (<Cell>{this.getCampusUnformatted(rowIndex)}</Cell>);
   }
 
+  private getFee(rowIndex: number): JSX.Element {
+    const fee = this.getFeeUnformatted(rowIndex);
+
+    if (fee !== '0.00') {
+      return (<Cell>${fee}</Cell>);
+    }
+
+    return (<Cell />);
+  }
+
   private getTextbook(rowIndex: number): JSX.Element {
     const _class: IClass = this.classes[rowIndex];
     const textbookUrl = ClassSearchUtils.getTextbookUrl(_class);
@@ -431,6 +450,10 @@ export class Grid extends React.Component<ITableDisplayProps> {
     return ClassSearchUtils.getRoomNumber(_class);
   }
 
+  private getFeeUnformatted(rowIndex: number): string {
+    return this.classes[rowIndex].fee;
+  }
+
   private getObjectKeyNameFromColumnIndex(colIndex: number) {
     const properties = {
       0: 'subject',
@@ -443,12 +466,13 @@ export class Grid extends React.Component<ITableDisplayProps> {
       7: 'buildingCode',
       8: 'meetingDays',
       9: 'meetingTime',
-      10: 'instructionMode',
-      11: 'sessionCode',
-      12: 'seats-available',
-      13: 'waitlist',
+      10: 'seats-available',
+      11: 'waitlist',
+      12: 'instructionMode',
+      13: 'sessionCode',
       14: 'courseAttr',
       15: 'campus',
+      16: 'fee',
     };
     return properties[colIndex];
   }
@@ -467,16 +491,16 @@ export class Grid extends React.Component<ITableDisplayProps> {
       return this.getTimeUnformatted(rowIndex);
     }
     if (columnIndex === 10) {
-      return this.getModeUnformatted(rowIndex);
-    }
-    if (columnIndex === 11) {
-      return this.getSessionUnformatted(rowIndex);
-    }
-    if (columnIndex === 12) {
       return this.getSeatsAvailableUnformatted(rowIndex);
     }
-    if (columnIndex === 13) {
+    if (columnIndex === 11) {
       return this.getWaitlistUnformatted(rowIndex);
+    }
+    if (columnIndex === 12) {
+      return this.getModeUnformatted(rowIndex);
+    }
+    if (columnIndex === 13) {
+      return this.getSessionUnformatted(rowIndex);
     }
     if (columnIndex === 15) {
       return this.getCampusUnformatted(rowIndex);
@@ -484,4 +508,5 @@ export class Grid extends React.Component<ITableDisplayProps> {
     const key = this.getObjectKeyNameFromColumnIndex(columnIndex);
     return this.classes[rowIndex][key];
   }
+
 }
