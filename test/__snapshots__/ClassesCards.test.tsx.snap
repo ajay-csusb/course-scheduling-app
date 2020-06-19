@@ -1702,7 +1702,8 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
           <div
             className="course-availability"
           >
-            Seats available: 
+            Seats available:
+             
             <span>
               0
                / 
@@ -1973,7 +1974,8 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
         <div
           className="course-availability"
         >
-          Seats available: 
+          Seats available:
+           
           <span>
             20
              / 
@@ -2239,7 +2241,8 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
           <div
             className="course-availability"
           >
-            Seats available: 
+            Seats available:
+             
             <span>
               0
                / 
@@ -2250,7 +2253,8 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
             <div
               className="course-availability"
             >
-              Waitlist spots available: 
+              Waitlist spots available:
+               
               <span>
                 5
                  / 
@@ -2518,7 +2522,8 @@ exports[`seats text verbiage when a class is closed should display available sea
           <div
             className="course-availability"
           >
-            Seats available: 
+            Seats available:
+             
             <span>
               0
                / 
@@ -2529,7 +2534,8 @@ exports[`seats text verbiage when a class is closed should display available sea
             <div
               className="course-availability"
             >
-              Waitlist spots available: 
+              Waitlist spots available:
+               
               <span>
                 0
                  / 
@@ -2797,7 +2803,8 @@ exports[`seats text verbiage when a class is closed should display available spo
           <div
             className="course-availability"
           >
-            Seats available: 
+            Seats available:
+             
             <span>
               0
                / 
@@ -2808,7 +2815,8 @@ exports[`seats text verbiage when a class is closed should display available spo
             <div
               className="course-availability"
             >
-              Waitlist spots available: 
+              Waitlist spots available:
+               
               <span>
                 0
                  / 
@@ -3627,6 +3635,7 @@ exports[`when a class has low cost course material should display icon for low c
           Classroom
         </li>
         <li>
+           
           <span>
             Course Attribute 
           </span>
@@ -3894,6 +3903,7 @@ exports[`when a class has zero cost course material should display icon for zero
           Classroom
         </li>
         <li>
+           
           <span>
             Course Attribute 
           </span>
@@ -4161,6 +4171,7 @@ exports[`when a class has zero cost course materials and low cost course materia
           Classroom
         </li>
         <li>
+           
           <span>
             Course Attribute 
           </span>
