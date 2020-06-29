@@ -231,7 +231,7 @@ export class Class {
   }
 
   public isActive(): boolean {
-    return this.classInfo.classStatus === 'Active'
+    return this.classInfo.classStatus === 'Active';
   }
 
   public getClassStatus(): string {
