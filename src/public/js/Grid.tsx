@@ -63,7 +63,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
           enableColumnResizing={false}
           getCellClipboardData={this.getCopiedData}
           bodyContextMenuRenderer={this.renderBodyMenu}
-          columnWidths={[100, 300, 50, 70, 90, 30, 150, 70, 70, 130, 60, 70, 140, 70, 300, 110, 60, 80]}
+          columnWidths={[100, 300, 50, 70, 90, 30, 150, 70, 70, 130, 60, 70, 140, 70, 300, 110, 80, 80]}
         >
           {columns}
         </Table>
@@ -331,7 +331,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
   private getSubject(rowIndex: number): JSX.Element {
     const _class = this.classes[rowIndex];
     const subject = `${_class.subject} ${_class.catalogNo}`;
-    return <Cell>{subject}</Cell>;
+    return <Cell tooltip={subject}>{subject}</Cell>;
   }
 
   private getTitle(rowIndex: number): JSX.Element {
@@ -358,16 +358,17 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private getUnit(rowIndex: number): JSX.Element {
-    return <Cell>{this.classes[rowIndex].csuUnits}</Cell>;
+    const units = this.classes[rowIndex].csuUnits;
+    return <Cell tooltip={units.toString()}>{units}</Cell>;
   }
 
   private getInstructor(rowIndex: number): JSX.Element {
     const _class: IClass = this.classes[rowIndex];
-    return <Cell>{ClassSearchUtils.getInstructorMarkup(_class)}</Cell>;
+    return <Cell tooltip={_class.instructorName}>{ClassSearchUtils.getInstructorMarkup(_class)}</Cell>;
   }
 
   private getMode(rowIndex: number): JSX.Element {
-    return <Cell>{this.getModeUnformatted(rowIndex)}</Cell>;
+    return <Cell tooltip={this.getModeUnformatted(rowIndex)}>{this.getModeUnformatted(rowIndex)}</Cell>;
   }
 
   private getSession(rowIndex: number): JSX.Element {
@@ -375,7 +376,9 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private getSeatsAvailable(rowIndex: number): JSX.Element {
-    return <Cell>{this.getSeatsAvailableUnformatted(rowIndex)}</Cell>;
+    return (
+      <Cell tooltip={this.getSeatsAvailableUnformatted(rowIndex)}>{this.getSeatsAvailableUnformatted(rowIndex)}</Cell>
+    );
   }
 
   private getWaitlist(rowIndex: number): JSX.Element {
