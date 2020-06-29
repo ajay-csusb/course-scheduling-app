@@ -7,7 +7,7 @@ exports[`Course number component Given a class search form snapshot 1`] = `
   id="course-number"
   onChange={[Function]}
   onKeyDown={[Function]}
-  placeholder="E.g. 602"
+  placeholder="E.g. 211 for quarter or 2110 for semester"
   type="text"
   value=""
 />
