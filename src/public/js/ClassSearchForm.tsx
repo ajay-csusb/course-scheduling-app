@@ -48,15 +48,12 @@ export interface IClassSearchFormProps {
 }
 
 export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> {
-
   constructor(props: IClassSearchFormProps) {
     super(props);
   }
   public render(): JSX.Element {
     const form = this.getForm();
-    return (
-      <React.Fragment>{form}</React.Fragment>
-    );
+    return <React.Fragment>{form}</React.Fragment>;
   }
 
   private getForm(): JSX.Element {
@@ -81,10 +78,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                 </div>
                 <div className="col-6">
                   <div className="form-item">
-                    <SelectListCampus
-                      campus={this.props.campus}
-                      onChangeOfCampus={this.props.onChangeOfCampus}
-                    />
+                    <SelectListCampus campus={this.props.campus} onChangeOfCampus={this.props.onChangeOfCampus} />
                   </div>
                 </div>
                 <div className="col-6">
@@ -124,9 +118,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           </div>
           <div className="row">
             <div className="col-md-12">
-              <div className="form-item">
-                {advancedFilter}
-              </div>
+              <div className="form-item">{advancedFilter}</div>
             </div>
           </div>
           <div className="row">
@@ -145,12 +137,12 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                     type="reset"
                     className="btn btn-secondary btn-solid"
                   />
+                </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
-      </FormGroup >
+      </FormGroup>
     );
   }
 
@@ -163,7 +155,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
   }
 
   private isReset(): null | undefined {
-    return (this.props.isReset) ? null : undefined;
+    return this.props.isReset ? null : undefined;
   }
 
   private getSubjectsAutoCompleteComponent(): JSX.Element {
@@ -182,7 +174,6 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           selectedItem={this.isReset()}
         />
       </React.Fragment>
-
     );
   }
 
@@ -213,7 +204,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
           id="course-number"
           className="course-number"
           type="text"
-          placeholder="E.g. 602"
+          placeholder="E.g. 211 for quarter or 2110 for semester"
           dir="auto"
           onChange={this.props.onChangeOfCourseNo}
           value={this.props.courseNo}
@@ -224,9 +215,6 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
   }
 
   private getAdvancedFilterFieldset(): JSX.Element {
-    return (
-      <AdvancedFilterFieldset {...this.props} />
-    );
+    return <AdvancedFilterFieldset {...this.props} />;
   }
-
 }
