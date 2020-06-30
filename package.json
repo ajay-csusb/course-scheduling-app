@@ -132,6 +132,7 @@
     "enzyme-to-json": "^3.3.5",
     "eslint": "^5.16.0",
     "fetch-mock": "^7.3.3",
+    "has-flag": "^4.0.0",
     "jest": "^25.5.4",
     "jsdom": "^13.2.0",
     "jsdom-global": "^3.0.2",
