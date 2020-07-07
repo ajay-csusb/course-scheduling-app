@@ -1,7 +1,6 @@
 import { IClass } from './Class';
 import * as ClassSearchUtils from './ClassSearchUtils';
 export class MeetingTime {
-
   public static filter(classes: IClass[], startTime: Date, endTime: Date): IClass[] {
     const result: IClass[] = [];
     classes.forEach((_class: IClass) => {
@@ -17,5 +16,4 @@ export class MeetingTime {
     });
     return result;
   }
-
 }

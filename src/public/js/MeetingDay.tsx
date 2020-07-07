@@ -7,7 +7,7 @@ export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
     return classes;
   }
 
-  classes.forEach((_class) => {
+  classes.forEach(_class => {
     if (meetingDays.mon && _class.mon === 'Y') {
       result.push(_class);
     } else if (meetingDays.tue && _class.tues === 'Y') {
@@ -29,6 +29,13 @@ export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
 }
 
 function atLeastOneDaySelected(meetingDays: IMeetingDate): boolean {
-  return (meetingDays.mon || meetingDays.tue || meetingDays.wed ||
-    meetingDays.thu || meetingDays.fri || meetingDays.sat || meetingDays.sun);
+  return (
+    meetingDays.mon ||
+    meetingDays.tue ||
+    meetingDays.wed ||
+    meetingDays.thu ||
+    meetingDays.fri ||
+    meetingDays.sat ||
+    meetingDays.sun
+  );
 }
