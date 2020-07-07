@@ -161,6 +161,11 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -222,32 +227,25 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -414,6 +412,11 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -481,32 +484,25 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
           </span>
           6 Week 1
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -673,6 +669,11 @@ exports[`building code and room number when a class does not have a building cod
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -734,32 +735,25 @@ exports[`building code and room number when a class does not have a building cod
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -926,6 +920,11 @@ exports[`building code and room number when a class has a building code and room
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -987,32 +986,25 @@ exports[`building code and room number when a class has a building code and room
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -1179,6 +1171,11 @@ exports[`building code and room number when a class has a building code as TBD s
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -1240,32 +1237,25 @@ exports[`building code and room number when a class has a building code as TBD s
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -1432,6 +1422,11 @@ exports[`building code and room number when a class has building code as OL shou
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -1493,32 +1488,25 @@ exports[`building code and room number when a class has building code as OL shou
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -1685,6 +1673,11 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -1768,32 +1761,25 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -1960,6 +1946,11 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -2032,32 +2023,25 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -2224,6 +2208,11 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -2313,32 +2302,25 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -2505,6 +2487,11 @@ exports[`seats text verbiage when a class is closed should display available sea
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -2594,32 +2581,25 @@ exports[`seats text verbiage when a class is closed should display available sea
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -2786,6 +2766,11 @@ exports[`seats text verbiage when a class is closed should display available spo
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -2875,32 +2860,25 @@ exports[`seats text verbiage when a class is closed should display available spo
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -3067,6 +3045,11 @@ exports[`seats text verbiage when a class is from the previous term and has seat
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -3128,32 +3111,25 @@ exports[`seats text verbiage when a class is from the previous term and has seat
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -3320,6 +3296,11 @@ exports[`seats text verbiage when a class is from the previous term and has seat
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -3381,32 +3362,25 @@ exports[`seats text verbiage when a class is from the previous term and has seat
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -3573,6 +3547,11 @@ exports[`when a class has low cost course material should display icon for low c
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -3641,39 +3620,32 @@ exports[`when a class has low cost course material should display icon for low c
           </span>
           Low Cost Course Materials, GE1-FOO
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-        <div
-          className="course--icons"
-        >
-          <img
-            alt="Low Cost Course Materials"
-            src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
-          />
-        </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
+      <div
+        className="course--icons"
+      >
+        <img
+          alt="Low Cost Course Materials"
+          src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
+        />
       </div>
     </div>
   </div>
@@ -3841,6 +3813,11 @@ exports[`when a class has zero cost course material should display icon for zero
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -3909,39 +3886,32 @@ exports[`when a class has zero cost course material should display icon for zero
           </span>
           Zero Cost Course Materials
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-        <div
-          className="course--icons"
-        >
-          <img
-            alt="Zero Cost Course Materials"
-            src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
-          />
-        </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
+      <div
+        className="course--icons"
+      >
+        <img
+          alt="Zero Cost Course Materials"
+          src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
+        />
       </div>
     </div>
   </div>
@@ -4109,6 +4079,11 @@ exports[`when a class has zero cost course materials and low cost course materia
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -4177,43 +4152,36 @@ exports[`when a class has zero cost course materials and low cost course materia
           </span>
           Zero Cost Course Materials, Low Cost Course Materials
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-        <div
-          className="course--icons"
-        >
-          <img
-            alt="Zero Cost Course Materials"
-            src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
-          />
-          <img
-            alt="Low Cost Course Materials"
-            src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
-          />
-        </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
+      <div
+        className="course--icons"
+      >
+        <img
+          alt="Zero Cost Course Materials"
+          src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
+        />
+        <img
+          alt="Low Cost Course Materials"
+          src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
+        />
       </div>
     </div>
   </div>
@@ -4381,6 +4349,11 @@ exports[`when a class is a fully online should not display the room number in th
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -4436,32 +4409,25 @@ exports[`when a class is a fully online should not display the room number in th
           </span>
           Fully Online (AB 386)
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
@@ -4628,6 +4594,11 @@ exports[`when a class results component is displayed should display the correct 
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -4689,32 +4660,25 @@ exports[`when a class results component is displayed should display the correct 
           </span>
           Classroom
         </li>
-        <li>
-          <span>
-            Fees 
-          </span>
-           $
-          0
-        </li>
       </ul>
-      <div
-        className="course-books"
+    </div>
+    <div
+      className="course-books"
+    >
+      <a
+        className="btn btn-white btn-solid"
+        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+        target="_blank"
       >
-        <a
-          className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
-          target="_blank"
+        <span
+          className="sr-only"
         >
-          <span
-            className="sr-only"
-          >
-            ACCT
-             
-            101
-          </span>
-          Textbook
-        </a>
-      </div>
+          ACCT
+           
+          101
+        </span>
+        Textbook
+      </a>
     </div>
   </div>
 </ClassesCards>
