@@ -10,8 +10,11 @@ import * as Watchdog from './Watchdog';
 import { app } from './ClassSearch.d';
 
 const searchURL = 'https://search.csusb.edu';
-export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
-  callbackOnFailure: (error: string) => void): void {
+export function fetchData(
+  url: string,
+  callbackOnSuccess: (response: any) => void,
+  callbackOnFailure: (error: string) => void
+): void {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -28,13 +31,17 @@ export function fetchData(url: string, callbackOnSuccess: (response: any) => voi
     .catch(callbackOnFailure);
 }
 
-export function fetchWithArg(url: string, params: {}, callbackOnSuccess: (response: any) => void,
-  callbackOnFailure: (error: string) => void): void {
+export function fetchWithArg(
+  url: string,
+  params: {},
+  callbackOnSuccess: (response: any) => void,
+  callbackOnFailure: (error: string) => void
+): void {
   fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
     },
     body: JSON.stringify(params),
   })
@@ -59,7 +66,7 @@ export function saveOrUpdateLocalStorage(key: string, value: string): void {
 }
 
 export function isObjectEmpty(object: any): boolean {
-  return (Object.keys(object).length === 0 && object.constructor === Object);
+  return Object.keys(object).length === 0 && object.constructor === Object;
 }
 
 export function getDateIn12HourFormat(date: Date): string {
@@ -76,7 +83,7 @@ export function compareStartTimes(userTime: string, classTime: string): boolean 
   }
   const userSelectedTime = Moment(userTime, 'h:mma');
   const classesTime = Moment(classTime, 'h:mma');
-  return (userSelectedTime.isSameOrBefore(classesTime));
+  return userSelectedTime.isSameOrBefore(classesTime);
 }
 
 export function compareEndTimes(userTime: string, classTime: string) {
@@ -85,7 +92,7 @@ export function compareEndTimes(userTime: string, classTime: string) {
   }
   const userSelectedTime = Moment(userTime, 'h:mma');
   const classesTime = Moment(classTime, 'h:mma');
-  return (userSelectedTime.isSameOrAfter(classesTime));
+  return userSelectedTime.isSameOrAfter(classesTime);
 }
 
 export function getCampusName(campusMachineName: string): string {
@@ -152,15 +159,15 @@ export function getInstructionMode(classes: IClass): string {
 }
 
 function isTimeEmpty(classTime: string): boolean {
-  return (classTime.length === 0);
+  return classTime.length === 0;
 }
 
 function doesLocalStorageHaveStaleValue(key: string, value: string): boolean {
-  return (localStorage.getItem(key) !== value);
+  return localStorage.getItem(key) !== value;
 }
 
 function isLocalStorageEmpty(key: string): boolean {
-  return (!localStorage.getItem(key));
+  return !localStorage.getItem(key);
 }
 
 export function getSessionCode(classes: IClass): string {
@@ -241,7 +248,7 @@ function combineAttr(prevClass: IClass, currClass: IClass): string {
 }
 
 function isDuplicateClass(prevClass: IClass, currClass: IClass): boolean {
-  return (prevClass.classNumber === currClass.classNumber) && classHasSameStartAndEndTimes(prevClass, currClass);
+  return prevClass.classNumber === currClass.classNumber && classHasSameStartAndEndTimes(prevClass, currClass);
 }
 
 function sortBySubject(classes: IClass[]): IClass[] {
@@ -270,9 +277,10 @@ export function sortByCatalogNo(classes: IClass[]): IClass[] {
 
 function performSort(a: IClass, b: IClass): number {
   const [catalogA, catalogB] = normalizeCatalogNo(a.catalogNo, b.catalogNo);
-  return (parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10)
-    || catalogA.localeCompare(catalogB)
-    || sortByClassSection(a, b)
+  return (
+    parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10) ||
+    catalogA.localeCompare(catalogB) ||
+    sortByClassSection(a, b)
   );
 }
 
@@ -320,10 +328,10 @@ export function isWaitlist(classes: IClass): boolean {
   const inWaitlist = classes.waitlistTotal;
   const waitlistCapacity = classes.waitlistCapacity;
   return (
-    classes.enrolledCapacity - classes.enrolledTotal < 1
-    && inWaitlist >= 0
-    && waitlistCapacity - inWaitlist > 0
-    && waitlistCapacity > 0
+    classes.enrolledCapacity - classes.enrolledTotal < 1 &&
+    inWaitlist >= 0 &&
+    waitlistCapacity - inWaitlist > 0 &&
+    waitlistCapacity > 0
   );
 }
 
@@ -356,15 +364,18 @@ export function getInstructorMarkup(_class: IClass): JSX.Element | null {
     const instructorProfileURL = searchURL + _class.profile;
     profile = <>{instructorName}</>;
     if (_class.profile !== undefined && _class.profile.length !== 0) {
-      profile = <a target="_blank" href={instructorProfileURL}>{instructorName}</a>;
+      profile = (
+        <a target="_blank" href={instructorProfileURL}>
+          {instructorName}
+        </a>
+      );
     }
   }
   return profile;
 }
 
 export function getNoOfAvailableSeatsInWaitlist(_class: IClass): number {
-  return (_class.waitlistCapacity - _class.waitlistTotal) < 0 ? 0 :
-    _class.waitlistCapacity - _class.waitlistTotal;
+  return _class.waitlistCapacity - _class.waitlistTotal < 0 ? 0 : _class.waitlistCapacity - _class.waitlistTotal;
 }
 
 export function getTextbookUrl(_class: IClass): string {
@@ -402,9 +413,60 @@ export function formatSubjectTopic(topic: string): string {
   if (topicLowercase === 'truth, lies and bs') {
     return ': Truth, Lies and Bullshit';
   }
-  return (topicLowercase.trim().length !== 0) ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
+  return topicLowercase.trim().length !== 0 ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
 }
 
 function classHasSameStartAndEndTimes(class1: IClass, class2: IClass): boolean {
-  return (class1.classStartTime === class2.classStartTime) && (class1.classEndTime === class2.classEndTime);
+  return class1.classStartTime === class2.classStartTime && class1.classEndTime === class2.classEndTime;
+}
+
+export function getDuplicateClasses(classes: IClass[]): {} {
+  const result: {} = {};
+  const classNumbers: Map<number, number> = new Map();
+
+  classes.forEach((_class: IClass) => {
+    const cn = _class.classNumber;
+
+    if (classNumbers.has(cn)) {
+      const val = classNumbers.get(cn)!;
+      classNumbers.set(cn, val + 1);
+    } else {
+      classNumbers.set(cn, 1);
+    }
+  });
+
+  classes.forEach((_class: IClass) => {
+    const cn = _class.classNumber;
+    const cnMap = classNumbers.get(cn) ?? 0;
+
+    if (classNumbers.has(cn) && cnMap >= 2) {
+      if (result.hasOwnProperty(cn)) {
+        result[cn].push(_class);
+      } else {
+        result[cn] = [_class];
+      }
+    }
+  });
+
+  return result;
+}
+
+export function removeDuplicateClasses(classes: IClass[], duplicateClassIds: Number[]): IClass[] {
+  const results: IClass[] = [];
+  let classNumbersMap: Map<Number, boolean> = new Map();
+
+  duplicateClassIds.forEach(id => {
+    classNumbersMap.set(id, false);
+  });
+
+  classes.forEach(_class => {
+    if (classNumbersMap.has(_class.classNumber) && !classNumbersMap.get(_class.classNumber)) {
+      classNumbersMap.set(_class.classNumber, true);
+      results.push(_class);
+    } else if (!classNumbersMap.has(_class.classNumber)) {
+      results.push(_class);
+    }
+  });
+
+  return results;
 }
