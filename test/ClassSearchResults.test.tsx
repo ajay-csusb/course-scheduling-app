@@ -6,21 +6,18 @@ import { IClass, Class } from '../src/public/js/Class';
 import { TestUtils } from './TestUtils';
 import { DisplayFormatTabs } from '../src/public/js/DisplayFormatTabs';
 import ExportToExcel from '../src/public/js/ExportToExcel';
+import { ClassesCards } from '../src/public/js/ClassesCards';
+import DuplicateClassesCards from '../src/public/js/DuplicateClassesCards';
 
 function mountClassSearchResultsComponent(results: IClass[], term: string = '2194'): ReactWrapper {
   const onChangeOfLoadingMessage = jest.fn();
   const classSearchResultsComponent: JSX.Element = (
-    <ClassSearchResults
-      classes={results}
-      onChangeOfLoadingMessage={onChangeOfLoadingMessage}
-      currentTerm={term}
-    />
+    <ClassSearchResults classes={results} onChangeOfLoadingMessage={onChangeOfLoadingMessage} currentTerm={term} />
   );
   return mount(classSearchResultsComponent);
 }
 
 describe('Given a class search results component', () => {
-
   beforeAll(() => {
     TestUtils.ajax();
   });
@@ -58,7 +55,6 @@ describe('Given a class search results component', () => {
     it('should display the CSS class name as course-status--open', () => {
       expect(classSearchResultsWrapper.html()).toContain('course-status--open');
     });
-
   });
 
   describe('when a user searches for classes which are are not open for enrollment', () => {
@@ -86,7 +82,6 @@ describe('Given a class search results component', () => {
     it('should display number of seats in waitlist', () => {
       expect(classSearchResultsWrapper.text()).toContain('Waitlist');
     });
-
   });
 
   describe('when a user searches for classes from the pervious term', () => {
@@ -166,7 +161,6 @@ describe('Given a class search results component', () => {
         expect(results.text()).toContain('Foo, bar and baz');
       });
     });
-
   });
 
   describe('instructor name and profile URL', () => {
@@ -208,7 +202,6 @@ describe('Given a class search results component', () => {
         });
       });
     });
-
   });
 
   describe('class title and topic', () => {
@@ -230,7 +223,6 @@ describe('Given a class search results component', () => {
         expect(classSearchResultsComponent.html()).toContain('Foo-title');
       });
     });
-
   });
 
   describe('when a class information is displayed', () => {
@@ -247,7 +239,6 @@ describe('Given a class search results component', () => {
     classPDC.quarter = '2192';
     classJson.profile = '';
   });
-
 });
 
 describe('tabs', () => {
@@ -286,7 +277,9 @@ describe('tabs', () => {
   });
 
   describe('when no classes are present', () => {
-    const classSearchContainerWrapper = shallow(<ClassSearchResults classes={[]} onChangeOfLoadingMessage={() => jest.fn()} currentTerm={'000'}/>);
+    const classSearchContainerWrapper = shallow(
+      <ClassSearchResults classes={[]} onChangeOfLoadingMessage={() => jest.fn()} currentTerm={'000'} />
+    );
     it('should not display tabs', () => {
       expect(classSearchContainerWrapper.find(DisplayFormatTabs)).toHaveLength(0);
     });
@@ -301,17 +294,17 @@ describe('table format', () => {
   describe('when a user selects a table format', () => {
     let classSearchContainerWrapper;
     beforeEach(() => {
-    const acctClass: IClass = TestUtils.copyObject(classJson);
-    const bioClass: IClass = TestUtils.copyObject(classJson);
-    acctClass.subject = 'ACCT';
-    acctClass.title = 'Introduction to Accounting';
-    acctClass.topic = 'Special topics in Accounting';
-    acctClass.classNumber = 100;
-    bioClass.subject = 'BIOL';
-    bioClass.title = 'Introduction to Biology';
-    bioClass.classNumber = 200;
-    classSearchContainerWrapper = mountClassSearchResultsComponent([acctClass, bioClass]);
-    classSearchContainerWrapper.setState({ format: 'table' });
+      const acctClass: IClass = TestUtils.copyObject(classJson);
+      const bioClass: IClass = TestUtils.copyObject(classJson);
+      acctClass.subject = 'ACCT';
+      acctClass.title = 'Introduction to Accounting';
+      acctClass.topic = 'Special topics in Accounting';
+      acctClass.classNumber = 100;
+      bioClass.subject = 'BIOL';
+      bioClass.title = 'Introduction to Biology';
+      bioClass.classNumber = 200;
+      classSearchContainerWrapper = mountClassSearchResultsComponent([acctClass, bioClass]);
+      classSearchContainerWrapper.setState({ format: 'table' });
     });
     it('should display table headers', () => {
       expect(classSearchContainerWrapper.html()).toContain('Subject');
@@ -325,5 +318,36 @@ describe('table format', () => {
       expect(classSearchContainerWrapper.html()).toContain('Introduction to Biology');
     });
   });
+});
 
+describe('classes having multiple times', () => {
+  it('should combine multiple classes into one', () => {
+    const copyClassJson: IClass = TestUtils.copyObject(classJson);
+    const acctClass = TestUtils.copyObject(copyClassJson);
+    acctClass.subject = 'ACCT';
+    acctClass.classNumber = 101;
+    acctClass.classStartTime = '8:00 AM';
+    acctClass.classEndTime = '9:00 AM';
+    const bioClass1 = TestUtils.copyObject(copyClassJson);
+    bioClass1.subject = 'BIOL';
+    bioClass1.classNumber = 100;
+    bioClass1.classStartTime = '9:00 AM';
+    bioClass1.classEndTime = '10:00 AM';
+    const bioClass2 = TestUtils.copyObject(copyClassJson);
+    bioClass2.subject = 'BIOL';
+    bioClass2.classNumber = 100;
+    bioClass2.classStartTime = '11:00 AM';
+    bioClass2.classEndTime = '12:00 PM';
+    const classes: IClass[] = [acctClass, bioClass1, bioClass2];
+    const classSearchResultsWrapper = mountClassSearchResultsComponent(classes);
+
+    expect(classSearchResultsWrapper.find(ClassesCards)).toHaveLength(1);
+    expect(classSearchResultsWrapper.find(DuplicateClassesCards)).toHaveLength(1);
+    expect(classSearchResultsWrapper.find('.course')).toHaveLength(2);
+    expect(classSearchResultsWrapper.html()).toMatch(/BIOL/);
+    expect(classSearchResultsWrapper.html()).toMatch(/ACCT/);
+    expect(classSearchResultsWrapper.html()).toMatch(/8:00 am - 9:00 am/);
+    expect(classSearchResultsWrapper.html()).toMatch(/9:00 am - 10:00 am/);
+    expect(classSearchResultsWrapper.html()).toMatch(/11:00 am - 12:00 pm/);
+  });
 });
