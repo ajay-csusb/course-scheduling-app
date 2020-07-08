@@ -140,6 +140,7 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                 </div>
               </div>
             </div>
+            <p>The majority of Fall classes are online, please select “ALL” to see greater results</p>
           </div>
         </div>
       </FormGroup>
