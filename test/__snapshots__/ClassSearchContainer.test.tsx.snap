@@ -1538,6 +1538,9 @@ exports[`snapshots compare search form snapshot 1`] = `
                   </div>
                 </div>
               </div>
+              <p>
+                The majority of Fall classes are online, please select “ALL” to see greater results
+              </p>
             </div>
           </div>
         </div>
