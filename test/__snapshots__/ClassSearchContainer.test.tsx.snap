@@ -791,7 +791,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                         <div
                           className="label"
                         >
-                          Class Day(s)
+                          Class Day(s)*
                         </div>
                         <div
                           id="meeting-day"
@@ -1152,7 +1152,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                             className="bp3-label"
                             htmlFor="start-time"
                           >
-                            Start Time
+                            Start Time*
                           </label>
                         </Component>
                         <Blueprint3.TimePicker
@@ -1265,7 +1265,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                           <label
                             className="bp3-label"
                           >
-                            End Time
+                            End Time*
                           </label>
                         </Component>
                         <Blueprint3.TimePicker
@@ -1375,6 +1375,9 @@ exports[`snapshots compare search form snapshot 1`] = `
                   </Blueprint3.ControlGroup>
                 </ControlGroupMeetingTime>
               </div>
+              <b>
+                *The majority of Fall classes are online, please select “ALL” to see greater results
+              </b>
             </div>
             <div
               className="row"

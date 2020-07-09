@@ -13,7 +13,7 @@ Array [
       <div
         className="label"
       >
-        Class Day(s)
+        Class Day(s)*
       </div>
       <div
         id="meeting-day"
@@ -356,7 +356,7 @@ Array [
     <div
       className="label"
     >
-      Class Day(s)
+      Class Day(s)*
     </div>
     <div
       id="meeting-day"
