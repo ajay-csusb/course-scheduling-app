@@ -408,3 +408,8 @@ export function formatSubjectTopic(topic: string): string {
 function classHasSameStartAndEndTimes(class1: IClass, class2: IClass): boolean {
   return (class1.classStartTime === class2.classStartTime) && (class1.classEndTime === class2.classEndTime);
 }
+
+export function isOnlineClass(instructionMode: string): boolean {
+  const onlineInstructionModeCodes = ['OL', 'FO', 'HO'];
+  return onlineInstructionModeCodes.includes(instructionMode);
+}
