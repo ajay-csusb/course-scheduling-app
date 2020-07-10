@@ -21,7 +21,7 @@ export let baseClassJson: IClass = {
     description: 'Information technology systems',
     ssrComponent: 'SEM',
     campus: 'MAIN',
-    instructionMode: 'OL',
+    instructionMode: 'P',
     facilityId: 'JB0113',
     mon: 'N',
     tues: 'N',
