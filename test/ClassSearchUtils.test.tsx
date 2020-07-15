@@ -1251,3 +1251,76 @@ describe('removeDuplicateClasses', () => {
     });
   });
 });
+
+describe('mergeDuplicateClasses function', () => {
+  it('mergeDuplicateClasses', () => {
+    const bioClass1 = TestUtils.copyObject(classJson);
+    bioClass1.subject = 'BIOL';
+    bioClass1.classNumber = 100;
+    bioClass1.classStartTime = '8:00 AM';
+    bioClass1.classEndTime = '9:00 AM';
+    bioClass1.buildingCode = 'JB';
+    bioClass1.room = '101';
+    bioClass1.mon = 'Y';
+    const bioClass2 = TestUtils.copyObject(classJson);
+    bioClass2.subject = 'BIOL';
+    bioClass2.classNumber = 100;
+    bioClass2.classStartTime = '10:00 AM';
+    bioClass2.classEndTime = '11:00 AM';
+    bioClass2.buildingCode = 'TBD';
+    bioClass2.room = '101';
+    bioClass2.wed = 'Y';
+    const bioClass3 = TestUtils.copyObject(classJson);
+    bioClass3.subject = 'BIOL';
+    bioClass3.classNumber = 100;
+    bioClass3.classStartTime = '12:00 PM';
+    bioClass3.classEndTime = '1:00 PM';
+    bioClass3.buildingCode = 'N/A';
+    bioClass3.room = '102';
+    bioClass3.fri = 'Y';
+    const bioClass4 = TestUtils.copyObject(classJson);
+    bioClass4.subject = 'BIOL';
+    bioClass4.classNumber = 101;
+    bioClass4.classStartTime = '7:00 PM';
+    bioClass4.classEndTime = '10:00 PM';
+    bioClass4.buildingCode = 'COE';
+    bioClass4.room = '101';
+    bioClass4.tues = 'Y';
+    const classes: IClass[] = [bioClass1, bioClass2, bioClass3, bioClass4];
+    const mergeDuplicateClasses = ClassSearchUtils.mergeDuplicateClasses(classes);
+    expect(mergeDuplicateClasses).toHaveLength(2);
+    const mergeClasses = mergeDuplicateClasses[0];
+    expect(mergeClasses.classStartTime).toEqual('8:00 AM, 10:00 AM, 12:00 PM');
+    expect(mergeClasses.classEndTime).toEqual('9:00 AM, 11:00 AM, 1:00 PM');
+    expect(mergeClasses.buildingCode).toEqual('JB, TBD, N/A');
+    expect(mergeClasses.room).toEqual('101, 101, 102');
+    expect(mergeClasses.mon).toEqual('Y');
+    expect(mergeClasses.tues).toEqual('N');
+    expect(mergeClasses.wed).toEqual('Y');
+    expect(mergeClasses.thurs).toEqual('N');
+    expect(mergeClasses.fri).toEqual('Y');
+    expect(mergeClasses.sat).toEqual('N');
+    expect(mergeClasses.sun).toEqual('N');
+  });
+});
+
+describe.each([
+  ['', '', 'TBD'],
+  ['TBD', '', 'TBD'],
+  ['OL', '', 'TBD'],
+  ['OL', 'ONLINE', 'Online'],
+  ['JB', '100', 'JB 100'],
+  ['JB, COE', '100, 101', 'JB 100, COE 101'],
+  ['OL, OL', 'ONLINE, ONLINE', 'Online'],
+])(`getRoomNumber(%p, %p)`, (a, b, expected) => {
+  const bioClass1 = TestUtils.copyObject(classJson);
+  bioClass1.subject = 'BIOL';
+  bioClass1.classNumber = 100;
+  bioClass1.buildingCode = a;
+  bioClass1.room = b;
+  const roomNumbers = ClassSearchUtils.getRoomNumber(bioClass1);
+
+  it(`should return ${expected}`, () => {
+    expect(roomNumbers).toEqual(expected);
+  });
+});

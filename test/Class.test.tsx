@@ -82,6 +82,13 @@ describe('test meeting times', () => {
     expect(classInstance.getClassMeetingTimes()).toEqual('N/A');
   });
 
+  test('meeting times with multiple values', () => {
+    classJson.classStartTime = '7:00 AM, 6:00 PM';
+    classJson.classEndTime =  '9:00 AM, 8:00 PM';
+    const classInstance: Class = new Class(classJson);
+    expect(classInstance.getClassMeetingTimes()).toEqual('7:00 am - 9:00 am, 6:00 pm - 8:00 pm');
+  })
+
 });
 
 describe('test classes having multiple meeting times', () => {

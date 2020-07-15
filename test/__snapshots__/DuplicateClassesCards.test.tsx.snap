@@ -459,35 +459,35 @@ exports[`when a class has multiple meeting times snapshot 1`] = `
           </li>
         </ul>
       </div>
-    </div>
-    <div
-      className="course-books"
-    >
-      <a
-        className="btn btn-white btn-solid"
-        href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=0&divisionDisplayName=&departmentDisplayName=BIOL&courseDisplayName=101&sectionDisplayName=01"
-        target="_blank"
-      >
-        <span
-          className="sr-only"
-        >
-          BIOL
-           
-          101
-        </span>
-        Textbook
-      </a>
       <div
-        className="course--icons"
+        className="course-books"
       >
-        <img
-          alt="Zero Cost Course Materials"
-          src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
-        />
-        <img
-          alt="Low Cost Course Materials"
-          src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
-        />
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=0&divisionDisplayName=&departmentDisplayName=BIOL&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            BIOL
+             
+            101
+          </span>
+          Textbook
+        </a>
+        <div
+          className="course--icons"
+        >
+          <img
+            alt="Zero Cost Course Materials"
+            src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
+          />
+          <img
+            alt="Low Cost Course Materials"
+            src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
+          />
+        </div>
       </div>
     </div>
   </div>
