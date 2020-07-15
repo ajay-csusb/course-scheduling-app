@@ -7,6 +7,7 @@ import ExportToExcel from './ExportToExcel';
 import DuplicateClassesCards from './DuplicateClassesCards';
 import { getDuplicateClasses, removeDuplicateClasses } from './ClassSearchUtils';
 import * as _ from 'lodash';
+import * as ClassSearchUtils from './ClassSearchUtils';
 
 export interface IClassSearchResultsState {
   format: string;
@@ -92,7 +93,8 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   }
 
   private getClassesInTableFormat(): JSX.Element {
-    return <Grid classes={this.props.classes} />;
+    const classes = ClassSearchUtils.mergeDuplicateClasses(this.props.classes);
+    return <Grid classes={classes} />;
   }
 
   private updateFormat(selectedFormat: string): void {

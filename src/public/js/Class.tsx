@@ -2,6 +2,7 @@ import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
 import * as Watchdog from './Watchdog';
 import { app } from './ClassSearch.d';
+import * as _ from 'lodash';
 
 export interface IClass {
   amount: number;
@@ -222,12 +223,25 @@ export class Class {
     }
     return days;
   }
+
   public getClassMeetingTimes(): string {
-    let meetingTimes = 'N/A';
-    if (!this.areStartTimeEndTimeEmpty()) {
+    let meetingTimes = '';
+    let startTimesList = this.classInfo.classStartTime.split(', ');
+    let endTimesList = this.classInfo.classEndTime.split(', ');
+
+    if (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0) {
+      meetingTimes = 'N/A';
+    } else if (startTimesList.length !== 1 && endTimesList.length !== 1) {
+      const startEndTimesCombined = _.zip(startTimesList, endTimesList);
+
+      startEndTimesCombined.forEach(times => {
+        meetingTimes += `, ${times[0]} - ${times[1]}`.toLowerCase();
+      });
+    } else if (!this.areStartTimeEndTimeEmpty()) {
       meetingTimes = `${this.classInfo.classStartTime} - ${this.classInfo.classEndTime}`.toLowerCase();
     }
-    return meetingTimes;
+
+    return _.trim(meetingTimes, ', ');
   }
 
   public isActive(): boolean {

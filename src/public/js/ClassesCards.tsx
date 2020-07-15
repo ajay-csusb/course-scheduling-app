@@ -32,8 +32,10 @@ export class ClassesCards extends React.Component<IClassesCardsProps> {
           {courseHeaderMarkup}
           {courseInfoMarkup}
         </div>
-        <div className="item-body">{courseBodyMarkup}</div>
-        {courseFooterMarkup}
+        <div className="item-body">
+          {courseBodyMarkup}
+          {courseFooterMarkup}
+        </div>
       </div>
     );
   }

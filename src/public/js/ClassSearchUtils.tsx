@@ -8,6 +8,7 @@ import * as React from 'react';
 import { Textbook } from './Textbook';
 import * as Watchdog from './Watchdog';
 import { app } from './ClassSearch.d';
+import * as _ from 'lodash';
 
 const searchURL = 'https://search.csusb.edu';
 export function fetchData(
@@ -205,6 +206,9 @@ export function getDegreeType(classes: IClass): string {
 export function getRoomNumber(classes: IClass): string {
   const buildingCode = classes.buildingCode;
   const roomNumber = classes.room;
+  const buildingCodeList = classes.buildingCode.split(', ');
+  const roomNumberList = classes.room.split(', ');
+
   if (buildingCode.length === 0 && roomNumber.length === 0) {
     return 'TBD';
   }
@@ -214,19 +218,39 @@ export function getRoomNumber(classes: IClass): string {
   if (buildingCode.trim().toLowerCase() === 'ol') {
     return classes.room.length !== 0 ? Utils.toCapitalizeCase(roomNumber.toLowerCase()) : 'TBD';
   }
+  if (buildingCodeList.length !== 1 && roomNumberList.length !== 1) {
+    const buildingRoomCombined = _.zip(buildingCodeList, roomNumberList);
+    let buildingAndRoom = '';
+
+    buildingRoomCombined.forEach(_class => {
+      if (buildingAndRoom.includes('Online')) {
+        return;
+      } else if (_class[1] === 'ONLINE') {
+        buildingAndRoom += `, Online`;
+      } else {
+        buildingAndRoom += `, ${_class[0]} ${_class[1]}`;
+      }
+    });
+
+    return _.trim(buildingAndRoom, ', ');
+  }
+
   return `${buildingCode} ${roomNumber}`;
 }
 
 export function mergeAttributes(classes: IClass[]): IClass[] {
   const results: IClass[] = [];
   results.push(classes[0]);
+
   for (let _class = 1; _class < classes.length; _class++) {
     const size = results.length - 1;
     const prevClass = results[size];
     const currClass = classes[_class];
+
     if (isDuplicateClass(prevClass, currClass)) {
       results[size].courseAttr = combineAttr(prevClass, currClass);
       results[size].geCourseAttr += ', ' + currClass.geCourseAttr;
+
       if (currClass.courseAttrDescription.length !== 0) {
         results[size].courseAttrDescription += ', ' + currClass.courseAttrDescription;
       }
@@ -234,6 +258,7 @@ export function mergeAttributes(classes: IClass[]): IClass[] {
       results.push(classes[_class]);
     }
   }
+
   return results;
 }
 
@@ -467,6 +492,71 @@ export function removeDuplicateClasses(classes: IClass[], duplicateClassIds: Num
       results.push(_class);
     }
   });
+
+  return results;
+}
+
+export function mergeDuplicateClasses(classes: IClass[]): IClass[] {
+  const results: IClass[] = [];
+  const duplicateClasses = getDuplicateClasses(classes);
+  const duplicateClassIds = Object.keys(duplicateClasses).map(_classNumber => parseInt(_classNumber, 10));
+  const filteredResults = removeDuplicateClasses(classes, duplicateClassIds);
+
+  if (Object.keys(duplicateClasses).length === 0) {
+    return classes;
+  }
+
+  filteredResults.forEach(_class => {
+    if (duplicateClassIds.includes(_class.classNumber)) {
+      const combinedClasses: IClass = combineClasses(duplicateClasses[_class.classNumber]);
+      results.push(combinedClasses);
+    } else {
+      results.push(_class);
+    }
+  });
+
+  return results;
+}
+
+function combineClasses(classes: IClass[]): IClass {
+  let results: IClass = JSON.parse(JSON.stringify(classes[0]));
+  let combinedStartTimes = '';
+  let combinedEndTimes = '';
+  let combinedBuildings = '';
+  let combinedRoomNumber = '';
+
+  classes.forEach(_class => {
+    combinedStartTimes += ', ' + _class.classStartTime;
+    combinedEndTimes += ', ' + _class.classEndTime;
+    if (_class.mon === 'Y') {
+      results.mon = 'Y';
+    }
+    if (_class.tues === 'Y') {
+      results.tues = 'Y';
+    }
+    if (_class.wed === 'Y') {
+      results.wed = 'Y';
+    }
+    if (_class.thurs === 'Y') {
+      results.thurs = 'Y';
+    }
+    if (_class.fri === 'Y') {
+      results.fri = 'Y';
+    }
+    if (_class.sat === 'Y') {
+      results.sat = 'Y';
+    }
+    if (_class.sun === 'Y') {
+      results.sun = 'Y';
+    }
+    combinedBuildings += ', ' + _class.buildingCode;
+    combinedRoomNumber += ', ' + _class.room;
+  });
+
+  results.classStartTime = _.trim(combinedStartTimes, ', ');
+  results.classEndTime = _.trim(combinedEndTimes, ', ');
+  results.buildingCode = _.trim(combinedBuildings, ', ');
+  results.room = _.trim(combinedRoomNumber, ', ');
 
   return results;
 }

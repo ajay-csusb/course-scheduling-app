@@ -24,8 +24,10 @@ export default function DuplicateClassesCards(duplicateClasses: IDuplicateClasse
         {courseHeaderMarkup}
         {courseInfoMarkup}
       </div>
-      <div className="item-body">{courseBodyMarkup}</div>
-      {courseFooterMarkup}
+      <div className="item-body">
+        {courseBodyMarkup}
+        {courseFooterMarkup}
+      </div>
     </div>
   );
 }

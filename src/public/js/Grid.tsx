@@ -425,15 +425,18 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private getDay(rowIndex: number): JSX.Element {
-    return <Cell>{this.getDayUnformatted(rowIndex)}</Cell>;
+    const day = this.getDayUnformatted(rowIndex);
+    return <Cell tooltip={day}>{day}</Cell>;
   }
 
   private getTime(rowIndex: number): JSX.Element {
-    return <Cell>{this.getTimeUnformatted(rowIndex)}</Cell>;
+    const time = this.getTimeUnformatted(rowIndex);
+    return <Cell tooltip={time}>{time}</Cell>;
   }
 
   private getRoom(rowIndex: number): JSX.Element {
-    return <Cell>{this.getRoomUnformatted(rowIndex)}</Cell>;
+    const room = this.getRoomUnformatted(rowIndex);
+    return <Cell tooltip={room}>{room}</Cell>;
   }
 
   private getDayUnformatted(rowIndex: number): string {
