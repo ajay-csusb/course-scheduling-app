@@ -18,7 +18,7 @@ Array [
             className="bp3-label"
             htmlFor="start-time"
           >
-            Start Time
+            Start Time*
           </label>
         </Component>
         <Blueprint3.TimePicker
@@ -131,7 +131,7 @@ Array [
           <label
             className="bp3-label"
           >
-            End Time
+            End Time*
           </label>
         </Component>
         <Blueprint3.TimePicker
@@ -252,7 +252,7 @@ Array [
           className="bp3-label"
           htmlFor="start-time"
         >
-          Start Time
+          Start Time*
         </label>
       </Component>
       <Blueprint3.TimePicker
@@ -365,7 +365,7 @@ Array [
         <label
           className="bp3-label"
         >
-          End Time
+          End Time*
         </label>
       </Component>
       <Blueprint3.TimePicker

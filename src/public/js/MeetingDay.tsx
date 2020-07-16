@@ -1,4 +1,5 @@
 import { IClass, IMeetingDate } from './Class';
+import * as ClassSearchUtils from './ClassSearchUtils';
 
 export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
   const result: IClass[] = [];
@@ -22,7 +23,10 @@ export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
       result.push(_class);
     } else if (meetingDays.sun && _class.sun === 'Y') {
       result.push(_class);
+    } else if (ClassSearchUtils.isOnlineClass(_class.instructionMode)) {
+      result.push(_class);
     }
+
   });
 
   return result;

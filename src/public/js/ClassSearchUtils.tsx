@@ -560,3 +560,8 @@ function combineClasses(classes: IClass[]): IClass {
 
   return results;
 }
+
+export function isOnlineClass(instructionMode: string): boolean {
+  const onlineInstructionModeCodes = ['OL', 'FO', 'HO'];
+  return onlineInstructionModeCodes.includes(instructionMode);
+}
