@@ -19,7 +19,7 @@ jobs:
       - run: npm run build
       - run: npm run start
       - name: Cypress tests
-      - uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v1
         with:
           browser: chrome
           env: url=https://localhost:3000
