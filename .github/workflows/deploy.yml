@@ -17,9 +17,10 @@ jobs:
       - run: npm install
       - run: webpack
       - run: npm run build
-      - run: npm run start
       - name: Cypress tests
         uses: cypress-io/github-action@v1
         with:
+          start: npm run start
+          wait-on: 'http://localhost:3000'
           browser: chrome
           env: url=https://localhost:3000
