@@ -6,5 +6,5 @@
   "responseTimeout": 5000,
   "video": false,
   "projectId": "fu1vwa",
-  "baseUrl": "https://d8-csusb.pantheonsite.io/class-schedule"
+  "baseUrl": "https://d8-csusb.pantheonsite.io"
 }
