@@ -226,22 +226,16 @@ export class Class {
 
   public getClassMeetingTimes(): string {
     let meetingTimes = '';
-    let startTimesList = this.classInfo.classStartTime.split(', ');
-    let endTimesList = this.classInfo.classEndTime.split(', ');
 
     if (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0) {
       meetingTimes = 'N/A';
-    } else if (startTimesList.length !== 1 && endTimesList.length !== 1) {
-      const startEndTimesCombined = _.zip(startTimesList, endTimesList);
-
-      startEndTimesCombined.forEach(times => {
-        meetingTimes += `, ${times[0]} - ${times[1]}`.toLowerCase();
-      });
+    } else if (this.classInfo.classStartTime.includes(', ') || this.classInfo.classEndTime.includes(', ')) {
+      meetingTimes = this.combineStartEndTimes(this.classInfo);
     } else if (!this.areStartTimeEndTimeEmpty()) {
       meetingTimes = `${this.classInfo.classStartTime} - ${this.classInfo.classEndTime}`.toLowerCase();
     }
 
-    return _.trim(meetingTimes, ', ');
+    return meetingTimes;
   }
 
   public isActive(): boolean {
@@ -254,5 +248,21 @@ export class Class {
 
   private areStartTimeEndTimeEmpty(): boolean {
     return this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0;
+  }
+
+  private combineStartEndTimes(classInfo: IClass): string {
+    let combinedMeetingTimes = '';
+    let startTimesList = classInfo.classStartTime.split(', ');
+    let endTimesList = classInfo.classEndTime.split(', ');
+
+    if (startTimesList.length !== 1 && endTimesList.length !== 1) {
+      const startEndTimesCombined = _.zip(startTimesList, endTimesList);
+
+      startEndTimesCombined.forEach(times => {
+        combinedMeetingTimes += `, ${times[0]} - ${times[1]}`.toLowerCase();
+      });
+    }
+
+    return _.trim(combinedMeetingTimes, ', ');
   }
 }

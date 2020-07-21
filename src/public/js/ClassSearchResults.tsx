@@ -57,7 +57,6 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   }
 
   private getClassesInListFormat(): JSX.Element[] {
-    const classes: JSX.Element[] = [];
     let filteredResults = this.props.classes;
     const duplicateClasses = getDuplicateClasses(this.props.classes);
     const duplicateClassIds = Object.keys(duplicateClasses).map(_classNumber => parseInt(_classNumber, 10));
@@ -65,31 +64,10 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
 
     if (duplicateClassIds.length !== 0) {
       filteredResults = removeDuplicateClasses(this.props.classes, duplicateClassIds);
+      return this.getClassesList(filteredResults, duplicateClassIds, duplicateClasses);
     }
 
-    if (this.props.classes.length !== 0) {
-      filteredResults.forEach((_class: IClass) => {
-        this.noOfClasses++;
-        if (duplicateClassIds.includes(_class.classNumber)) {
-          classes.push(
-            <li key={_class.classNumber}>
-              <DuplicateClassesCards
-                classes={duplicateClasses[_class.classNumber]}
-                currentTerm={this.props.currentTerm}
-              />
-            </li>
-          );
-        } else {
-          classes.push(
-            <li key={_class.classNumber}>
-              <ClassesCards classes={_class} currentTerm={this.props.currentTerm} />
-            </li>
-          );
-        }
-      });
-    }
-
-    return classes;
+    return this.getClassesList(filteredResults);
   }
 
   private getClassesInTableFormat(): JSX.Element {
@@ -102,5 +80,29 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
       format: selectedFormat,
     });
     sessionStorage.setItem('format', selectedFormat);
+  }
+
+  private getClassesList(classInfo: IClass[], duplicateClassIds: number[] = [], duplicateClasses = {}): JSX.Element[] {
+    const classes: JSX.Element[] = [];
+
+    if (classInfo.length !== 0) {
+      classInfo.forEach((_class: IClass) => {
+        this.noOfClasses++;
+        let component = <ClassesCards classes={_class} currentTerm={this.props.currentTerm} />;
+
+        if (duplicateClassIds.includes(_class.classNumber)) {
+          component = (
+            <DuplicateClassesCards
+              classes={duplicateClasses[_class.classNumber]}
+              currentTerm={this.props.currentTerm}
+            />
+          );
+        }
+
+        classes.push(<li key={_class.classNumber}>{component}</li>);
+      });
+    }
+
+    return classes;
   }
 }
