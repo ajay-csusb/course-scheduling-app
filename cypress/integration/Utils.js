@@ -59,19 +59,15 @@ function clickAdditionalFilters() {
 }
 
 function waitForResults(timer = 0) {
-  if (timer > 1000) {
-    throw 'Page took too long to load!';
-  }
-
   const results = Cypress.$('.course').length;
 
   if (results === 0) {
     setTimeout(() => {
       waitForResults(timer + 1);
     }, 50);
-  } else {
-    return Promise.resolve(timer);
   }
+
+  return Promise.resolve(timer);
 }
 
 module.exports = {
