@@ -1,12 +1,21 @@
-const { url, enterCourseNumber, submit, selectInstructionMode } = require('./Utils');
+const {
+  url,
+  enterCourseNumber,
+  submit,
+  selectInstructionMode,
+  selectSubject,
+  selectCampus,
+  checkDays,
+} = require('./Utils');
 
 describe('Filter classes by course number', function () {
   context('given class search form', () => {
     context('when a user searches only by course number', () => {
       before(() => {
         cy.visit(url);
+        selectCampus();
+        selectSubject();
         enterCourseNumber('1000');
-        selectInstructionMode('Classroom');
         submit();
       });
 
