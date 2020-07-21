@@ -13,7 +13,6 @@ describe('Filter classes by course number', function () {
     context('when a user searches only by course number', () => {
       before(() => {
         cy.visit(url);
-        selectCampus();
         selectSubject();
         enterCourseNumber('1000');
         submit();
