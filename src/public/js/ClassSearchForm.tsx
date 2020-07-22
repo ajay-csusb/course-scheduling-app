@@ -115,7 +115,9 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                 endTime={this.props.endTime}
               />
             </div>
-            <p><strong>*The majority of Fall classes are online, please select “ALL” to see greater results</strong></p>
+            <p>
+              <strong>*The majority of Fall classes are online, please select “ALL” to see greater results</strong>
+            </p>
           </div>
           <div className="row">
             <div className="col-md-12">
@@ -141,7 +143,6 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
                 </div>
               </div>
             </div>
-            <p>The majority of Fall classes are online, please select “ALL” to see greater results</p>
           </div>
         </div>
       </FormGroup>
