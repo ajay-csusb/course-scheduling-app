@@ -1,7 +1,7 @@
 name: Monitor class schedule on production
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: '*/15 * * * *'
 jobs:
   build:
     runs-on: ubuntu-16.04
@@ -10,15 +10,16 @@ jobs:
         node-version: [13.x]
         containers: [1]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Check for all Biology classes
-      uses: cypress-io/github-action@v1
-      with:
-        browser: chrome
-        headless: true
-        spec: cypress/integration/SubjectTests.js
-        env: url=https://www.csusb.edu/class-schedule
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Check for all Biology classes
+        uses: cypress-io/github-action@v1
+        with:
+          browser: chrome
+          headless: true
+          spec: cypress/integration/SubjectTests.js
+          env: url=https://www.csusb.edu/class-schedule
+          config: baseUrl=https://www.csusb.edu/class-schedule
