@@ -25,6 +25,7 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -160,6 +161,11 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -270,6 +276,7 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -405,6 +412,11 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -521,6 +533,7 @@ exports[`building code and room number when a class does not have a building cod
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -656,6 +669,11 @@ exports[`building code and room number when a class does not have a building cod
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -766,6 +784,7 @@ exports[`building code and room number when a class has a building code and room
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -901,6 +920,11 @@ exports[`building code and room number when a class has a building code and room
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -1011,6 +1035,7 @@ exports[`building code and room number when a class has a building code as TBD s
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -1146,6 +1171,11 @@ exports[`building code and room number when a class has a building code as TBD s
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -1256,6 +1286,7 @@ exports[`building code and room number when a class has building code as OL shou
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -1391,6 +1422,11 @@ exports[`building code and room number when a class has building code as OL shou
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -1501,6 +1537,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
       "enrolledTotal": 30,
       "enrollmentStatus": "Close",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -1636,6 +1673,11 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -1653,7 +1695,8 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
           <div
             className="course-availability"
           >
-            Seats available: 
+            Seats available:
+             
             <span>
               0
                / 
@@ -1767,6 +1810,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       "enrolledTotal": 10,
       "enrollmentStatus": "Open",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -1902,6 +1946,11 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -1916,7 +1965,8 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
         <div
           className="course-availability"
         >
-          Seats available: 
+          Seats available:
+           
           <span>
             20
              / 
@@ -2022,6 +2072,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       "enrolledTotal": 30,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -2157,6 +2208,11 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -2174,7 +2230,8 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
           <div
             className="course-availability"
           >
-            Seats available: 
+            Seats available:
+             
             <span>
               0
                / 
@@ -2185,7 +2242,8 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
             <div
               className="course-availability"
             >
-              Waitlist spots available: 
+              Waitlist spots available:
+               
               <span>
                 5
                  / 
@@ -2293,6 +2351,7 @@ exports[`seats text verbiage when a class is closed should display available sea
       "enrolledTotal": 30,
       "enrollmentStatus": "Close",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -2428,6 +2487,11 @@ exports[`seats text verbiage when a class is closed should display available sea
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -2445,7 +2509,8 @@ exports[`seats text verbiage when a class is closed should display available sea
           <div
             className="course-availability"
           >
-            Seats available: 
+            Seats available:
+             
             <span>
               0
                / 
@@ -2456,7 +2521,8 @@ exports[`seats text verbiage when a class is closed should display available sea
             <div
               className="course-availability"
             >
-              Waitlist spots available: 
+              Waitlist spots available:
+               
               <span>
                 0
                  / 
@@ -2564,6 +2630,7 @@ exports[`seats text verbiage when a class is closed should display available spo
       "enrolledTotal": 30,
       "enrollmentStatus": "Close",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -2699,6 +2766,11 @@ exports[`seats text verbiage when a class is closed should display available spo
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -2716,7 +2788,8 @@ exports[`seats text verbiage when a class is closed should display available spo
           <div
             className="course-availability"
           >
-            Seats available: 
+            Seats available:
+             
             <span>
               0
                / 
@@ -2727,7 +2800,8 @@ exports[`seats text verbiage when a class is closed should display available spo
             <div
               className="course-availability"
             >
-              Waitlist spots available: 
+              Waitlist spots available:
+               
               <span>
                 0
                  / 
@@ -2835,6 +2909,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "enrolledTotal": 30,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -2970,6 +3045,11 @@ exports[`seats text verbiage when a class is from the previous term and has seat
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -3080,6 +3160,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       "enrolledTotal": 20,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -3215,6 +3296,11 @@ exports[`seats text verbiage when a class is from the previous term and has seat
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -3325,6 +3411,7 @@ exports[`when a class has low cost course material should display icon for low c
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -3460,6 +3547,11 @@ exports[`when a class has low cost course material should display icon for low c
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -3522,6 +3614,7 @@ exports[`when a class has low cost course material should display icon for low c
           Classroom
         </li>
         <li>
+           
           <span>
             Course Attribute 
           </span>
@@ -3584,6 +3677,7 @@ exports[`when a class has zero cost course material should display icon for zero
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -3719,6 +3813,11 @@ exports[`when a class has zero cost course material should display icon for zero
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -3781,6 +3880,7 @@ exports[`when a class has zero cost course material should display icon for zero
           Classroom
         </li>
         <li>
+           
           <span>
             Course Attribute 
           </span>
@@ -3843,6 +3943,7 @@ exports[`when a class has zero cost course materials and low cost course materia
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -3978,6 +4079,11 @@ exports[`when a class has zero cost course materials and low cost course materia
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -4040,6 +4146,7 @@ exports[`when a class has zero cost course materials and low cost course materia
           Classroom
         </li>
         <li>
+           
           <span>
             Course Attribute 
           </span>
@@ -4106,6 +4213,7 @@ exports[`when a class is a fully online should not display the room number in th
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -4241,6 +4349,11 @@ exports[`when a class is a fully online should not display the room number in th
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div
@@ -4345,6 +4458,7 @@ exports[`when a class results component is displayed should display the correct 
       "enrolledTotal": 28,
       "enrollmentStatus": "",
       "facilityId": "JB0113",
+      "fee": "0",
       "fri": "N",
       "fullSsrComponent": "",
       "geCourseAttr": "",
@@ -4480,6 +4594,11 @@ exports[`when a class results component is displayed should display the correct 
             Class No. 
             101
           </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          0
         </div>
       </div>
       <div

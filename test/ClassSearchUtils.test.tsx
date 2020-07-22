@@ -6,6 +6,7 @@ import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { mount, shallow } from 'enzyme';
 import { TestUtils } from './TestUtils';
 import { GeCourseAttribute } from '../src/public/js/GeCourseAttribute';
+import { IClass } from '../src/public/js/Class';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -87,7 +88,6 @@ describe('Instruction mode values', () => {
       expect(ClassSearchUtils.getInstructionMode(zClasses)).toEqual('Zero Unit Instruction');
     });
   });
-
 });
 
 describe('Session code values', () => {
@@ -130,7 +130,6 @@ describe('Session code values', () => {
       expect(ClassSearchUtils.getSessionCode(classes62Weeks)).toEqual('6 Week 2');
     });
   });
-
 });
 
 describe('fetch parameters', () => {
@@ -213,7 +212,9 @@ describe('fetch parameters', () => {
 
   describe('when instructionMode is set', () => {
     it('should pass empty string', () => {
-      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper
+        .find('.select-instruction-mode > select')
+        .simulate('change', { target: { value: 'foo' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const instructionModeArgument = fetchMock.lastOptions();
       expect(instructionModeArgument.body).toMatch(new RegExp('"instruction_mode":""'));
@@ -303,7 +304,9 @@ describe('fetch parameters', () => {
     it('should not pass any value for days', () => {
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const meetingDayArgument = fetchMock.lastOptions();
-      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
+      expect(meetingDayArgument.body).toMatch(
+        new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""')
+      );
     });
   });
 
@@ -312,7 +315,9 @@ describe('fetch parameters', () => {
       classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const meetingDayArgument = fetchMock.lastOptions();
-      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
+      expect(meetingDayArgument.body).toMatch(
+        new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""')
+      );
     });
   });
 
@@ -322,7 +327,9 @@ describe('fetch parameters', () => {
       classSearchContainerWrapper.find('.fri > input').simulate('change', { target: { value: 'fri' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const meetingDayArgument = fetchMock.lastOptions();
-      expect(meetingDayArgument.body).toMatch(new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""'));
+      expect(meetingDayArgument.body).toMatch(
+        new RegExp('"mon":"","tues":"","wed":"","thurs":"","fri":"","sat":"","sun":""')
+      );
     });
   });
 
@@ -337,7 +344,9 @@ describe('fetch parameters', () => {
 
   describe('when campus is set to San Bernardino', () => {
     it('should pass MAIN as a parameter', () => {
-      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'san-bernardino' } });
+      classSearchContainerWrapper
+        .find('.campus-select > select')
+        .simulate('change', { target: { value: 'san-bernardino' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const campusArgument = fetchMock.lastOptions();
       expect(campusArgument.body).toMatch(new RegExp('"campus":"MAIN"'));
@@ -346,7 +355,9 @@ describe('fetch parameters', () => {
 
   describe('when campus is set to Palm Desert', () => {
     it('should pass PALM as a parameter', () => {
-      classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'palm-desert' } });
+      classSearchContainerWrapper
+        .find('.campus-select > select')
+        .simulate('change', { target: { value: 'palm-desert' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const campusArgument = fetchMock.lastOptions();
       expect(campusArgument.body).toMatch(new RegExp('"campus":"PALM"'));
@@ -367,7 +378,9 @@ describe('fetch parameters', () => {
       it('should pass the selected value', () => {
         classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '1000' } });
         classSearchContainerWrapper.find('#additional-filters').simulate('click');
-        classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'GE-Foo' } });
+        classSearchContainerWrapper
+          .find('select#ge-classes-attributes')
+          .simulate('change', { target: { value: 'GE-Foo' } });
         classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
         const termArgument = fetchMock.lastOptions();
         expect(termArgument.body).toMatch(new RegExp('"crse_attr_value":"GE-Foo"'));
@@ -378,7 +391,9 @@ describe('fetch parameters', () => {
       beforeEach(() => {
         classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '3000' } });
         classSearchContainerWrapper.find('#additional-filters').simulate('click');
-        classSearchContainerWrapper.find('select#ge-classes-attributes').simulate('change', { target: { value: 'GE-B4 Mathematics/Quant. Reasoning' } });
+        classSearchContainerWrapper
+          .find('select#ge-classes-attributes')
+          .simulate('change', { target: { value: 'GE-B4 Mathematics/Quant. Reasoning' } });
         classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
         termArgument = fetchMock.lastOptions();
       });
@@ -414,7 +429,9 @@ describe('fetch parameters', () => {
       classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'MAIN' } });
       classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });
       classSearchContainerWrapper.find('.fri > input').simulate('change', { target: { value: 'fri' } });
-      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'OL' } });
+      classSearchContainerWrapper
+        .find('.select-instruction-mode > select')
+        .simulate('change', { target: { value: 'OL' } });
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
       classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'foo' } });
       classSearchContainerWrapper.find('.class-number').simulate('change', { target: { value: '2' } });
@@ -469,7 +486,6 @@ describe('fetch parameters', () => {
       expect(fetchArgument.body).toMatch(new RegExp('"acad_career":""'));
     });
   });
-
 });
 
 describe('Degree type values', () => {
@@ -672,7 +688,6 @@ describe('when a class catalog number has numbers and characters', () => {
       expect(classes[1].classSection).toEqual('02');
     });
   });
-
 });
 
 describe('when comparing two classes by catalog number, one having only numbers and the other having numbers and characters', () => {
@@ -710,7 +725,7 @@ describe('when class results are displayed', () => {
       const classBio300 = JSON.parse(JSON.stringify(classJson));
       classBio300.courseAttr = 'WSTD, foo';
       const expandedCourseAttr = ClassSearchUtils.expandCourseAttribute(classBio300.courseAttr);
-      expect(expandedCourseAttr).toEqual('Women\'s Studies');
+      expect(expandedCourseAttr).toEqual("Women's Studies");
     });
 
     it('should not display any information if all the attributes are invalid', () => {
@@ -795,7 +810,6 @@ describe('class status information', () => {
       expect(classes).toEqual('Waitlist');
     });
   });
-
 });
 
 describe('GE class attribute', () => {
@@ -976,7 +990,6 @@ describe('Class status', () => {
         });
       });
     });
-
   });
 });
 
@@ -1001,7 +1014,9 @@ describe('GE designation attribute', () => {
     classAdmGeDesig.courseAttrDescription = 'Diversity & Inclusiveness Pers';
     const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classAdmGeDesig);
     it('should return multiplte attributes and GE designation as course attribute', () => {
-      expect(geDesgCourseAttr).toEqual('Service Learning, Diversity & Inclusiveness Pers, Gender and Sexuality Studies');
+      expect(geDesgCourseAttr).toEqual(
+        'Service Learning, Diversity & Inclusiveness Pers, Gender and Sexuality Studies'
+      );
     });
   });
 
@@ -1132,7 +1147,9 @@ describe('GE designation attribute', () => {
         classWithCourseAttributes.quarter = '3000';
         const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
         it('should display the expanded course attributes and GE attributes', () => {
-          expect(courseAttr[0].courseAttr).toEqual('Asian Studies, Global Perspectives, GE-B5 UD Scientific Inquiry & Quant.');
+          expect(courseAttr[0].courseAttr).toEqual(
+            'Asian Studies, Global Perspectives, GE-B5 UD Scientific Inquiry & Quant.'
+          );
         });
       });
       describe('if term is quarter', () => {
@@ -1154,7 +1171,156 @@ describe('GE designation attribute', () => {
 
 test('exportToExcel', () => {
   const fetchResponse = ClassSearchUtils.exportToExcelPost([classJson, classPDC]);
-  return fetchResponse
-    .then(res => expect(res.constructor.name).toEqual('Blob'))
-    .catch(err => console.log(err));
+  return fetchResponse.then(res => expect(res.constructor.name).toEqual('Blob')).catch(err => console.log(err));
+});
+
+describe('getDuplicateClasses', () => {
+  let classes: IClass[] = [];
+  let filteredClasses;
+
+  describe('if the input has duplicate classes', () => {
+    const acctClass = TestUtils.copyObject(classJson);
+    acctClass.subject = 'ACCT';
+    acctClass.classNumber = 101;
+    const bioClass1 = TestUtils.copyObject(classJson);
+    bioClass1.subject = 'BIOL';
+    bioClass1.classNumber = 100;
+    const bioClass2 = TestUtils.copyObject(classJson);
+    bioClass2.subject = 'BIOL';
+    bioClass2.classNumber = 100;
+
+    it('should return duplicate classes', () => {
+      classes = [acctClass, bioClass1, bioClass2];
+      filteredClasses = ClassSearchUtils.getDuplicateClasses(classes);
+      expect(Object.keys(filteredClasses)).toHaveLength(1);
+      expect(Object.keys(filteredClasses)).toContain('100');
+      expect(filteredClasses['100']).toHaveLength(2);
+    });
+  });
+
+  describe('if the input has no duplicate classes', () => {
+    const acctClass = TestUtils.copyObject(classJson);
+    acctClass.subject = 'ACCT';
+    acctClass.classNumber = 101;
+    const bioClass = TestUtils.copyObject(classJson);
+    bioClass.subject = 'BIOL';
+    bioClass.classNumber = 100;
+
+    it('should return an empty list', () => {
+      classes = [acctClass, bioClass];
+      filteredClasses = ClassSearchUtils.getDuplicateClasses(classes);
+      expect(Object.keys(filteredClasses)).toHaveLength(0);
+    });
+  });
+});
+
+describe('removeDuplicateClasses', () => {
+  describe('if the input has duplicate classes', () => {
+    it('should remove duplicate classes', () => {
+      const acctClass = TestUtils.copyObject(classJson);
+      acctClass.subject = 'ACCT';
+      acctClass.classNumber = 101;
+      const bioClass = TestUtils.copyObject(classJson);
+      bioClass.subject = 'BIOL';
+      bioClass.classNumber = 100;
+      const classes: IClass[] = Array(10).fill(bioClass);
+      classes.push(acctClass);
+      const filteredClasses = ClassSearchUtils.removeDuplicateClasses(classes, [100]);
+
+      expect(filteredClasses).toHaveLength(2);
+      expect(filteredClasses[0].subject).toEqual('BIOL');
+      expect(filteredClasses[1].subject).toEqual('ACCT');
+    });
+  });
+
+  describe('if the input has no duplicate classes', () => {
+    it('should not remove any classes', () => {
+      const acctClass = TestUtils.copyObject(classJson);
+      acctClass.subject = 'ACCT';
+      acctClass.classNumber = 101;
+      const bioClass = TestUtils.copyObject(classJson);
+      bioClass.subject = 'BIOL';
+      bioClass.classNumber = 100;
+      const classes: IClass[] = [];
+      classes.push(acctClass, bioClass);
+      const filteredClasses = ClassSearchUtils.removeDuplicateClasses(classes, []);
+
+      expect(filteredClasses).toHaveLength(2);
+      expect(filteredClasses[0].subject).toEqual('ACCT');
+      expect(filteredClasses[1].subject).toEqual('BIOL');
+    });
+  });
+});
+
+describe('mergeDuplicateClasses function', () => {
+  it('mergeDuplicateClasses', () => {
+    const bioClass1 = TestUtils.copyObject(classJson);
+    bioClass1.subject = 'BIOL';
+    bioClass1.classNumber = 100;
+    bioClass1.classStartTime = '8:00 AM';
+    bioClass1.classEndTime = '9:00 AM';
+    bioClass1.buildingCode = 'JB';
+    bioClass1.room = '101';
+    bioClass1.mon = 'Y';
+    const bioClass2 = TestUtils.copyObject(classJson);
+    bioClass2.subject = 'BIOL';
+    bioClass2.classNumber = 100;
+    bioClass2.classStartTime = '10:00 AM';
+    bioClass2.classEndTime = '11:00 AM';
+    bioClass2.buildingCode = 'TBD';
+    bioClass2.room = '101';
+    bioClass2.wed = 'Y';
+    const bioClass3 = TestUtils.copyObject(classJson);
+    bioClass3.subject = 'BIOL';
+    bioClass3.classNumber = 100;
+    bioClass3.classStartTime = '12:00 PM';
+    bioClass3.classEndTime = '1:00 PM';
+    bioClass3.buildingCode = 'N/A';
+    bioClass3.room = '102';
+    bioClass3.fri = 'Y';
+    const bioClass4 = TestUtils.copyObject(classJson);
+    bioClass4.subject = 'BIOL';
+    bioClass4.classNumber = 101;
+    bioClass4.classStartTime = '7:00 PM';
+    bioClass4.classEndTime = '10:00 PM';
+    bioClass4.buildingCode = 'COE';
+    bioClass4.room = '101';
+    bioClass4.tues = 'Y';
+    const classes: IClass[] = [bioClass1, bioClass2, bioClass3, bioClass4];
+    const mergeDuplicateClasses = ClassSearchUtils.mergeDuplicateClasses(classes);
+    expect(mergeDuplicateClasses).toHaveLength(2);
+    const mergeClasses = mergeDuplicateClasses[0];
+    expect(mergeClasses.classStartTime).toEqual('8:00 AM, 10:00 AM, 12:00 PM');
+    expect(mergeClasses.classEndTime).toEqual('9:00 AM, 11:00 AM, 1:00 PM');
+    expect(mergeClasses.buildingCode).toEqual('JB, TBD, N/A');
+    expect(mergeClasses.room).toEqual('101, 101, 102');
+    expect(mergeClasses.mon).toEqual('Y');
+    expect(mergeClasses.tues).toEqual('N');
+    expect(mergeClasses.wed).toEqual('Y');
+    expect(mergeClasses.thurs).toEqual('N');
+    expect(mergeClasses.fri).toEqual('Y');
+    expect(mergeClasses.sat).toEqual('N');
+    expect(mergeClasses.sun).toEqual('N');
+  });
+});
+
+describe.each([
+  ['', '', 'TBD'],
+  ['TBD', '', 'TBD'],
+  ['OL', '', 'TBD'],
+  ['OL', 'ONLINE', 'Online'],
+  ['JB', '100', 'JB 100'],
+  ['JB, COE', '100, 101', 'JB 100, COE 101'],
+  ['OL, OL', 'ONLINE, ONLINE', 'Online'],
+])(`getRoomNumber(%p, %p)`, (a, b, expected) => {
+  const bioClass1 = TestUtils.copyObject(classJson);
+  bioClass1.subject = 'BIOL';
+  bioClass1.classNumber = 100;
+  bioClass1.buildingCode = a;
+  bioClass1.room = b;
+  const roomNumbers = ClassSearchUtils.getRoomNumber(bioClass1);
+
+  it(`should return ${expected}`, () => {
+    expect(roomNumbers).toEqual(expected);
+  });
 });

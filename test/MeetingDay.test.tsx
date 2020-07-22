@@ -14,13 +14,16 @@ describe('Filter by meeting date', () => {
     sat: false,
     sun: false,
   };
+  let class1: IClass;
+  let class2: IClass;
+  let class3: IClass;
 
   beforeAll(() => {
-    const class1: IClass = TestUtils.copyObject(baseClassJson);
+    class1 = TestUtils.copyObject(baseClassJson);
     class1.mon = 'Y';
-    const class2: IClass = TestUtils.copyObject(baseClassJson);
+    class2 = TestUtils.copyObject(baseClassJson);
     class2.wed = 'Y';
-    const class3: IClass = TestUtils.copyObject(baseClassJson);
+    class3 = TestUtils.copyObject(baseClassJson);
     class3.fri = 'Y';
     classes = [class2, class3, class1];
   });
@@ -63,4 +66,29 @@ describe('Filter by meeting date', () => {
     expect(filteredClasses).toHaveLength(3);
   });
 
+  test.each([
+    ['OL', 4],
+    ['HC', 3],
+    ['FO', 4],
+    ['CM', 3],
+    ['HO', 4],
+    ['P', 3],
+  ])(
+    'when a class has instruction mode set to online',
+    (instructionMode: string, expectedClassCount: number) => {
+      meetingDay.mon = true;
+      meetingDay.tue = false;
+      meetingDay.wed = true;
+      meetingDay.thu = false;
+      meetingDay.fri = true;
+      meetingDay.sat = false;
+      meetingDay.sun = false;
+      const class4: IClass = TestUtils.copyObject(baseClassJson);
+      class4.instructionMode = instructionMode;
+      classes = [class2, class3, class1, class4];
+      const filteredClasses = MeetingDay.filter(classes, meetingDay);
+
+      expect(filteredClasses).toHaveLength(expectedClassCount);
+    }
+  );
 });

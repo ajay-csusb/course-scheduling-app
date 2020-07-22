@@ -479,7 +479,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                         id="course-number"
                         onChange={[Function]}
                         onKeyDown={[Function]}
-                        placeholder="E.g. 602"
+                        placeholder="E.g. 211 for quarter or 2110 for semester"
                         type="text"
                         value=""
                       />
@@ -1375,9 +1375,11 @@ exports[`snapshots compare search form snapshot 1`] = `
                   </Blueprint3.ControlGroup>
                 </ControlGroupMeetingTime>
               </div>
-              <b>
-                *The majority of Fall classes are online, please select “ALL” to see greater results
-              </b>
+              <p>
+                <strong>
+                  *The majority of Fall classes are online, please select “ALL” to see greater results
+                </strong>
+              </p>
             </div>
             <div
               className="row"
@@ -1541,6 +1543,9 @@ exports[`snapshots compare search form snapshot 1`] = `
                   </div>
                 </div>
               </div>
+              <p>
+                The majority of Fall classes are online, please select “ALL” to see greater results
+              </p>
             </div>
           </div>
         </div>

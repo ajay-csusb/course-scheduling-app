@@ -6,7 +6,7 @@ export class TestUtils {
     fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList', {});
     fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/cs/list/search', rawClassesJson);
     fetchMock.mock('/null/api/create/log', {});
-    fetchMock.mock('https://dev-dot-csusb-class-schedule.df.r.appspot.com/export-to-excel', {status: 200, body: {a: 'b', c: 'd'}});
+    fetchMock.mock('end:/export-to-excel', {status: 200, body: {a: 'b', c: 'd'}});
   }
 
   public static copyObject(sourceObject: any): any {

@@ -17,6 +17,10 @@ describe('Markup of search form', () => {
       cy.get('.search-instructor-autocomplete input').invoke('attr', 'placeholder').should('contain', 'First name or last name');
     });
 
+    it('course number field should have the correct placeholder', () => {
+      cy.get('#course-number').invoke('attr', 'placeholder').should('contain', 'E.g. 211 for quarter or 2110 for semester');
+    });
+
     context('when a user does not enter any input', () => {
       before(function () {
         cy.get('.btn-primary').click();

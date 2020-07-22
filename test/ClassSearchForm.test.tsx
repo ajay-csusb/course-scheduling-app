@@ -5,7 +5,6 @@ import { TestUtils } from './TestUtils';
 // tslint:disable:max-line-length
 
 describe('Class search form', () => {
-
   beforeAll(() => {
     TestUtils.ajax();
   });
@@ -28,7 +27,7 @@ describe('Class search form', () => {
       beforeEach(() => {
         searchFormComponent = mount(<ClassSearchContainer />);
         searchFormComponent.find('#additional-filters').simulate('click');
-        searchFormComponent.find('.select-ge-classes-attr select').simulate('change', {target: {value: 'foo'}});
+        searchFormComponent.find('.select-ge-classes-attr select').simulate('change', { target: { value: 'foo' } });
         searchFormComponent.find('button[type="submit"]').simulate('click');
       });
 

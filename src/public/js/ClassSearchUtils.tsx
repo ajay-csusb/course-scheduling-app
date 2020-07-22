@@ -8,10 +8,14 @@ import * as React from 'react';
 import { Textbook } from './Textbook';
 import * as Watchdog from './Watchdog';
 import { app } from './ClassSearch.d';
+import * as _ from 'lodash';
 
 const searchURL = 'https://search.csusb.edu';
-export function fetchData(url: string, callbackOnSuccess: (response: any) => void,
-  callbackOnFailure: (error: string) => void): void {
+export function fetchData(
+  url: string,
+  callbackOnSuccess: (response: any) => void,
+  callbackOnFailure: (error: string) => void
+): void {
   fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -28,13 +32,17 @@ export function fetchData(url: string, callbackOnSuccess: (response: any) => voi
     .catch(callbackOnFailure);
 }
 
-export function fetchWithArg(url: string, params: {}, callbackOnSuccess: (response: any) => void,
-  callbackOnFailure: (error: string) => void): void {
+export function fetchWithArg(
+  url: string,
+  params: {},
+  callbackOnSuccess: (response: any) => void,
+  callbackOnFailure: (error: string) => void
+): void {
   fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
     },
     body: JSON.stringify(params),
   })
@@ -59,7 +67,7 @@ export function saveOrUpdateLocalStorage(key: string, value: string): void {
 }
 
 export function isObjectEmpty(object: any): boolean {
-  return (Object.keys(object).length === 0 && object.constructor === Object);
+  return Object.keys(object).length === 0 && object.constructor === Object;
 }
 
 export function getDateIn12HourFormat(date: Date): string {
@@ -76,7 +84,7 @@ export function compareStartTimes(userTime: string, classTime: string): boolean 
   }
   const userSelectedTime = Moment(userTime, 'h:mma');
   const classesTime = Moment(classTime, 'h:mma');
-  return (userSelectedTime.isSameOrBefore(classesTime));
+  return userSelectedTime.isSameOrBefore(classesTime);
 }
 
 export function compareEndTimes(userTime: string, classTime: string) {
@@ -85,7 +93,7 @@ export function compareEndTimes(userTime: string, classTime: string) {
   }
   const userSelectedTime = Moment(userTime, 'h:mma');
   const classesTime = Moment(classTime, 'h:mma');
-  return (userSelectedTime.isSameOrAfter(classesTime));
+  return userSelectedTime.isSameOrAfter(classesTime);
 }
 
 export function getCampusName(campusMachineName: string): string {
@@ -152,15 +160,15 @@ export function getInstructionMode(classes: IClass): string {
 }
 
 function isTimeEmpty(classTime: string): boolean {
-  return (classTime.length === 0);
+  return classTime.length === 0;
 }
 
 function doesLocalStorageHaveStaleValue(key: string, value: string): boolean {
-  return (localStorage.getItem(key) !== value);
+  return localStorage.getItem(key) !== value;
 }
 
 function isLocalStorageEmpty(key: string): boolean {
-  return (!localStorage.getItem(key));
+  return !localStorage.getItem(key);
 }
 
 export function getSessionCode(classes: IClass): string {
@@ -198,6 +206,9 @@ export function getDegreeType(classes: IClass): string {
 export function getRoomNumber(classes: IClass): string {
   const buildingCode = classes.buildingCode;
   const roomNumber = classes.room;
+  const buildingCodeList = classes.buildingCode.split(', ');
+  const roomNumberList = classes.room.split(', ');
+
   if (buildingCode.length === 0 && roomNumber.length === 0) {
     return 'TBD';
   }
@@ -207,19 +218,39 @@ export function getRoomNumber(classes: IClass): string {
   if (buildingCode.trim().toLowerCase() === 'ol') {
     return classes.room.length !== 0 ? Utils.toCapitalizeCase(roomNumber.toLowerCase()) : 'TBD';
   }
+  if (buildingCodeList.length !== 1 && roomNumberList.length !== 1) {
+    const buildingRoomCombined = _.zip(buildingCodeList, roomNumberList);
+    let buildingAndRoom = '';
+
+    buildingRoomCombined.forEach(_class => {
+      if (buildingAndRoom.includes('Online')) {
+        return;
+      } else if (_class[1] === 'ONLINE') {
+        buildingAndRoom += `, Online`;
+      } else {
+        buildingAndRoom += `, ${_class[0]} ${_class[1]}`;
+      }
+    });
+
+    return _.trim(buildingAndRoom, ', ');
+  }
+
   return `${buildingCode} ${roomNumber}`;
 }
 
 export function mergeAttributes(classes: IClass[]): IClass[] {
   const results: IClass[] = [];
   results.push(classes[0]);
+
   for (let _class = 1; _class < classes.length; _class++) {
     const size = results.length - 1;
     const prevClass = results[size];
     const currClass = classes[_class];
+
     if (isDuplicateClass(prevClass, currClass)) {
       results[size].courseAttr = combineAttr(prevClass, currClass);
       results[size].geCourseAttr += ', ' + currClass.geCourseAttr;
+
       if (currClass.courseAttrDescription.length !== 0) {
         results[size].courseAttrDescription += ', ' + currClass.courseAttrDescription;
       }
@@ -227,6 +258,7 @@ export function mergeAttributes(classes: IClass[]): IClass[] {
       results.push(classes[_class]);
     }
   }
+
   return results;
 }
 
@@ -241,7 +273,7 @@ function combineAttr(prevClass: IClass, currClass: IClass): string {
 }
 
 function isDuplicateClass(prevClass: IClass, currClass: IClass): boolean {
-  return (prevClass.classNumber === currClass.classNumber) && classHasSameStartAndEndTimes(prevClass, currClass);
+  return prevClass.classNumber === currClass.classNumber && classHasSameStartAndEndTimes(prevClass, currClass);
 }
 
 function sortBySubject(classes: IClass[]): IClass[] {
@@ -270,9 +302,10 @@ export function sortByCatalogNo(classes: IClass[]): IClass[] {
 
 function performSort(a: IClass, b: IClass): number {
   const [catalogA, catalogB] = normalizeCatalogNo(a.catalogNo, b.catalogNo);
-  return (parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10)
-    || catalogA.localeCompare(catalogB)
-    || sortByClassSection(a, b)
+  return (
+    parseInt(a.catalogNo, 10) - parseInt(b.catalogNo, 10) ||
+    catalogA.localeCompare(catalogB) ||
+    sortByClassSection(a, b)
   );
 }
 
@@ -320,10 +353,10 @@ export function isWaitlist(classes: IClass): boolean {
   const inWaitlist = classes.waitlistTotal;
   const waitlistCapacity = classes.waitlistCapacity;
   return (
-    classes.enrolledCapacity - classes.enrolledTotal < 1
-    && inWaitlist >= 0
-    && waitlistCapacity - inWaitlist > 0
-    && waitlistCapacity > 0
+    classes.enrolledCapacity - classes.enrolledTotal < 1 &&
+    inWaitlist >= 0 &&
+    waitlistCapacity - inWaitlist > 0 &&
+    waitlistCapacity > 0
   );
 }
 
@@ -356,15 +389,18 @@ export function getInstructorMarkup(_class: IClass): JSX.Element | null {
     const instructorProfileURL = searchURL + _class.profile;
     profile = <>{instructorName}</>;
     if (_class.profile !== undefined && _class.profile.length !== 0) {
-      profile = <a target="_blank" href={instructorProfileURL}>{instructorName}</a>;
+      profile = (
+        <a target="_blank" href={instructorProfileURL}>
+          {instructorName}
+        </a>
+      );
     }
   }
   return profile;
 }
 
 export function getNoOfAvailableSeatsInWaitlist(_class: IClass): number {
-  return (_class.waitlistCapacity - _class.waitlistTotal) < 0 ? 0 :
-    _class.waitlistCapacity - _class.waitlistTotal;
+  return _class.waitlistCapacity - _class.waitlistTotal < 0 ? 0 : _class.waitlistCapacity - _class.waitlistTotal;
 }
 
 export function getTextbookUrl(_class: IClass): string {
@@ -402,9 +438,130 @@ export function formatSubjectTopic(topic: string): string {
   if (topicLowercase === 'truth, lies and bs') {
     return ': Truth, Lies and Bullshit';
   }
-  return (topicLowercase.trim().length !== 0) ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
+  return topicLowercase.trim().length !== 0 ? `: ${Utils.toCapitalizeCase(topicLowercase)}` : '';
 }
 
 function classHasSameStartAndEndTimes(class1: IClass, class2: IClass): boolean {
-  return (class1.classStartTime === class2.classStartTime) && (class1.classEndTime === class2.classEndTime);
+  return class1.classStartTime === class2.classStartTime && class1.classEndTime === class2.classEndTime;
+}
+
+export function getDuplicateClasses(classes: IClass[]): {} {
+  const result: {} = {};
+  const classNumbers: Map<number, number> = new Map();
+
+  classes.forEach((_class: IClass) => {
+    const cn = _class.classNumber;
+
+    if (classNumbers.has(cn)) {
+      const val = classNumbers.get(cn)!;
+      classNumbers.set(cn, val + 1);
+    } else {
+      classNumbers.set(cn, 1);
+    }
+  });
+
+  classes.forEach((_class: IClass) => {
+    const cn = _class.classNumber;
+    const cnMap = classNumbers.get(cn) ?? 0;
+
+    if (classNumbers.has(cn) && cnMap >= 2) {
+      if (result.hasOwnProperty(cn)) {
+        result[cn].push(_class);
+      } else {
+        result[cn] = [_class];
+      }
+    }
+  });
+
+  return result;
+}
+
+export function removeDuplicateClasses(classes: IClass[], duplicateClassIds: Number[]): IClass[] {
+  const results: IClass[] = [];
+  let classNumbersMap: Map<Number, boolean> = new Map();
+
+  duplicateClassIds.forEach(id => {
+    classNumbersMap.set(id, false);
+  });
+
+  classes.forEach(_class => {
+    if (classNumbersMap.has(_class.classNumber) && !classNumbersMap.get(_class.classNumber)) {
+      classNumbersMap.set(_class.classNumber, true);
+      results.push(_class);
+    } else if (!classNumbersMap.has(_class.classNumber)) {
+      results.push(_class);
+    }
+  });
+
+  return results;
+}
+
+export function mergeDuplicateClasses(classes: IClass[]): IClass[] {
+  const results: IClass[] = [];
+  const duplicateClasses = getDuplicateClasses(classes);
+  const duplicateClassIds = Object.keys(duplicateClasses).map(_classNumber => parseInt(_classNumber, 10));
+  const filteredResults = removeDuplicateClasses(classes, duplicateClassIds);
+
+  if (Object.keys(duplicateClasses).length === 0) {
+    return classes;
+  }
+
+  filteredResults.forEach(_class => {
+    if (duplicateClassIds.includes(_class.classNumber)) {
+      const combinedClasses: IClass = combineClasses(duplicateClasses[_class.classNumber]);
+      results.push(combinedClasses);
+    } else {
+      results.push(_class);
+    }
+  });
+
+  return results;
+}
+
+function combineClasses(classes: IClass[]): IClass {
+  let results: IClass = JSON.parse(JSON.stringify(classes[0]));
+  let combinedStartTimes = '';
+  let combinedEndTimes = '';
+  let combinedBuildings = '';
+  let combinedRoomNumber = '';
+
+  classes.forEach(_class => {
+    combinedStartTimes += ', ' + _class.classStartTime;
+    combinedEndTimes += ', ' + _class.classEndTime;
+    if (_class.mon === 'Y') {
+      results.mon = 'Y';
+    }
+    if (_class.tues === 'Y') {
+      results.tues = 'Y';
+    }
+    if (_class.wed === 'Y') {
+      results.wed = 'Y';
+    }
+    if (_class.thurs === 'Y') {
+      results.thurs = 'Y';
+    }
+    if (_class.fri === 'Y') {
+      results.fri = 'Y';
+    }
+    if (_class.sat === 'Y') {
+      results.sat = 'Y';
+    }
+    if (_class.sun === 'Y') {
+      results.sun = 'Y';
+    }
+    combinedBuildings += ', ' + _class.buildingCode;
+    combinedRoomNumber += ', ' + _class.room;
+  });
+
+  results.classStartTime = _.trim(combinedStartTimes, ', ');
+  results.classEndTime = _.trim(combinedEndTimes, ', ');
+  results.buildingCode = _.trim(combinedBuildings, ', ');
+  results.room = _.trim(combinedRoomNumber, ', ');
+
+  return results;
+}
+
+export function isOnlineClass(instructionMode: string): boolean {
+  const onlineInstructionModeCodes = ['OL', 'FO', 'HO'];
+  return onlineInstructionModeCodes.includes(instructionMode);
 }

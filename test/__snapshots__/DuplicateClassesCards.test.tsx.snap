@@ -1,0 +1,495 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when a class has multiple meeting times snapshot 1`] = `
+<DuplicateClassesCards
+  classes={
+    Array [
+      Object {
+        "amount": 0,
+        "buildingCode": "COE",
+        "campus": "MAIN",
+        "catalogNo": "101",
+        "classEndTime": "10:00 AM",
+        "classMeetingNo": 1,
+        "classNumber": 100,
+        "classSection": "01",
+        "classStartTime": "9:00 AM",
+        "classStatus": "Active",
+        "courseAttr": "Zero Cost Course Materials, Low Cost Course Materials",
+        "courseAttrDescription": "",
+        "courseId": "000001",
+        "csuUnits": 4,
+        "degreeType": "PBAC",
+        "description": "ACCT GOVT & NONPROFIT ORG",
+        "employeeId": "001343367",
+        "enrolledCapacity": 30,
+        "enrolledTotal": 28,
+        "enrollmentStatus": "",
+        "facilityId": "JB0113",
+        "fee": "$100.00",
+        "fri": "N",
+        "fullSsrComponent": "Seminar",
+        "geCourseAttr": "",
+        "instructionMode": "P",
+        "instructorName": "Dyck, Harold",
+        "mon": "Y",
+        "quarter": "0000",
+        "room": "101",
+        "sat": "N",
+        "sessionCode": "1",
+        "ssrComponent": "SEM",
+        "subject": "BIOL",
+        "sun": "N",
+        "textbook": "",
+        "thurs": "N",
+        "title": "Introduction to Biology",
+        "topic": "Special topics in Biology",
+        "tues": "N",
+        "waitlistCapacity": 100,
+        "waitlistTotal": 1,
+        "wed": "Y",
+      },
+      Object {
+        "amount": 0,
+        "buildingCode": "COE",
+        "campus": "PALM",
+        "catalogNo": "101",
+        "classEndTime": "12:00 PM",
+        "classMeetingNo": 1,
+        "classNumber": 100,
+        "classSection": "01",
+        "classStartTime": "11:00 AM",
+        "classStatus": "Active",
+        "courseAttr": "Zero Cost Course Materials, Low Cost Course Materials",
+        "courseAttrDescription": "",
+        "courseId": "000001",
+        "csuUnits": 4,
+        "degreeType": "PBAC",
+        "description": "ACCT GOVT & NONPROFIT ORG",
+        "employeeId": "001343367",
+        "enrolledCapacity": 30,
+        "enrolledTotal": 28,
+        "enrollmentStatus": "",
+        "facilityId": "JB0113",
+        "fee": "$100.00",
+        "fri": "Y",
+        "fullSsrComponent": "Seminar",
+        "geCourseAttr": "",
+        "instructionMode": "P",
+        "instructorName": "Dyck, Harold",
+        "mon": "Y",
+        "quarter": "0000",
+        "room": "101",
+        "sat": "N",
+        "sessionCode": "1",
+        "ssrComponent": "SEM",
+        "subject": "BIOL",
+        "sun": "N",
+        "textbook": "",
+        "thurs": "N",
+        "title": "Introduction to Biology",
+        "topic": "Special topics in Biology",
+        "tues": "N",
+        "waitlistCapacity": 100,
+        "waitlistTotal": 1,
+        "wed": "Y",
+      },
+      Object {
+        "amount": 0,
+        "buildingCode": "COE",
+        "campus": "MAIN",
+        "catalogNo": "101",
+        "classEndTime": "3:00 PM",
+        "classMeetingNo": 1,
+        "classNumber": 100,
+        "classSection": "01",
+        "classStartTime": "1:00 PM",
+        "classStatus": "Active",
+        "courseAttr": "Zero Cost Course Materials, Low Cost Course Materials",
+        "courseAttrDescription": "",
+        "courseId": "000001",
+        "csuUnits": 4,
+        "degreeType": "PBAC",
+        "description": "ACCT GOVT & NONPROFIT ORG",
+        "employeeId": "001343367",
+        "enrolledCapacity": 30,
+        "enrolledTotal": 28,
+        "enrollmentStatus": "",
+        "facilityId": "JB0113",
+        "fee": "$100.00",
+        "fri": "N",
+        "fullSsrComponent": "Seminar",
+        "geCourseAttr": "",
+        "instructionMode": "P",
+        "instructorName": "Dyck, Harold",
+        "mon": "Y",
+        "quarter": "0000",
+        "room": "101",
+        "sat": "N",
+        "sessionCode": "1",
+        "ssrComponent": "SEM",
+        "subject": "BIOL",
+        "sun": "N",
+        "textbook": "",
+        "thurs": "N",
+        "title": "Introduction to Biology",
+        "topic": "Special topics in Biology",
+        "tues": "N",
+        "waitlistCapacity": 100,
+        "waitlistTotal": 1,
+        "wed": "Y",
+      },
+    ]
+  }
+  currentTerm="000"
+>
+  <div
+    className="course result-item"
+  >
+    <div
+      className="item-header"
+    >
+      <div
+        className="course-header"
+      >
+        <div
+          className="course-name"
+        >
+          <strong>
+            BIOL 101
+             - Introduction to Biology: Special Topics In Biology
+          </strong>
+          <Blueprint3.Popover
+            boundary="scrollParent"
+            captureDismiss={false}
+            defaultIsOpen={false}
+            disabled={false}
+            fill={false}
+            hasBackdrop={false}
+            hoverCloseDelay={300}
+            hoverOpenDelay={150}
+            inheritDarkTheme={true}
+            interactionKind="click"
+            minimal={false}
+            modifiers={Object {}}
+            openOnTargetFocus={true}
+            popoverClassName="bp3-popover-content-sizing"
+            position="auto"
+            targetTagName="span"
+            transitionDuration={300}
+            usePortal={true}
+            wrapperTagName="span"
+          >
+            <Manager>
+              <span
+                className="bp3-popover-wrapper"
+              >
+                <Reference
+                  innerRef={[Function]}
+                >
+                  <InnerReference
+                    innerRef={[Function]}
+                    setReferenceNode={[Function]}
+                  >
+                    <Blueprint3.ResizeSensor
+                      onResize={[Function]}
+                    >
+                      <span
+                        className="bp3-popover-target"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="bp3-tooltip-indicator"
+                          key=".0"
+                        >
+                          <button
+                            className="course-info-btn"
+                          >
+                            <i
+                              arial-label="hidden"
+                              className="fas fa-info-circle"
+                            />
+                            <span
+                              className="sr-only"
+                            >
+                              BIOL 101
+                            </span>
+                          </button>
+                        </div>
+                      </span>
+                    </Blueprint3.ResizeSensor>
+                  </InnerReference>
+                </Reference>
+                <Blueprint3.Overlay
+                  autoFocus={true}
+                  backdropClassName="bp3-popover-backdrop"
+                  backdropProps={Object {}}
+                  canEscapeKeyClose={true}
+                  canOutsideClickClose={true}
+                  enforceFocus={true}
+                  hasBackdrop={false}
+                  isOpen={false}
+                  lazy={true}
+                  onClose={[Function]}
+                  transitionDuration={300}
+                  transitionName="bp3-popover"
+                  usePortal={true}
+                />
+              </span>
+            </Manager>
+          </Blueprint3.Popover>
+        </div>
+        <div
+          className="course-details"
+        >
+          <span>
+            Section 
+            01
+             • 
+          </span>
+          <span>
+            Seminar
+             • 
+          </span>
+          <span
+            className="course-id"
+          >
+            Class No. 
+            100
+          </span>
+          <span>
+             • Fees 
+          </span>
+           $
+          $100.00
+        </div>
+      </div>
+      <div
+        className="course-info"
+      >
+        <div
+          className="course-status course-status--closed"
+        >
+          <span />
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="item-body"
+    >
+      <div
+        key="9:00 AM10:00 AM"
+      >
+        <ul
+          className="course-desc"
+        >
+          <li>
+            <span>
+              Units 
+            </span>
+            4
+          </li>
+          <li>
+            <span>
+              Meeting Time 
+            </span>
+            9:00 am - 10:00 am
+          </li>
+          <li>
+            <span>
+              Meeting Days 
+            </span>
+            M-W
+          </li>
+          <li>
+            <span>
+              Room 
+            </span>
+            COE 101
+          </li>
+          <li>
+            <span>
+              Campus 
+            </span>
+            San Bernardino
+          </li>
+          <li>
+            <span>
+              Instructor
+            </span>
+            Dyck, Harold
+          </li>
+          <li>
+            <span>
+              Instruction Mode 
+            </span>
+            Classroom
+          </li>
+          <li>
+             
+            <span>
+              Course Attribute 
+            </span>
+            Zero Cost Course Materials, Low Cost Course Materials
+          </li>
+        </ul>
+      </div>
+      <div
+        key="11:00 AM12:00 PM"
+      >
+        <ul
+          className="course-desc"
+        >
+          <li>
+            <span>
+              Units 
+            </span>
+            4
+          </li>
+          <li>
+            <span>
+              Meeting Time 
+            </span>
+            11:00 am - 12:00 pm
+          </li>
+          <li>
+            <span>
+              Meeting Days 
+            </span>
+            M-W-F
+          </li>
+          <li>
+            <span>
+              Room 
+            </span>
+            COE 101
+          </li>
+          <li>
+            <span>
+              Campus 
+            </span>
+            Palm Desert
+          </li>
+          <li>
+            <span>
+              Instructor
+            </span>
+            Dyck, Harold
+          </li>
+          <li>
+            <span>
+              Instruction Mode 
+            </span>
+            Classroom
+          </li>
+          <li>
+             
+            <span>
+              Course Attribute 
+            </span>
+            Zero Cost Course Materials, Low Cost Course Materials
+          </li>
+        </ul>
+      </div>
+      <div
+        key="1:00 PM3:00 PM"
+      >
+        <ul
+          className="course-desc"
+        >
+          <li>
+            <span>
+              Units 
+            </span>
+            4
+          </li>
+          <li>
+            <span>
+              Meeting Time 
+            </span>
+            1:00 pm - 3:00 pm
+          </li>
+          <li>
+            <span>
+              Meeting Days 
+            </span>
+            M-W
+          </li>
+          <li>
+            <span>
+              Room 
+            </span>
+            COE 101
+          </li>
+          <li>
+            <span>
+              Campus 
+            </span>
+            San Bernardino
+          </li>
+          <li>
+            <span>
+              Instructor
+            </span>
+            Dyck, Harold
+          </li>
+          <li>
+            <span>
+              Instruction Mode 
+            </span>
+            Classroom
+          </li>
+          <li>
+             
+            <span>
+              Course Attribute 
+            </span>
+            Zero Cost Course Materials, Low Cost Course Materials
+          </li>
+        </ul>
+      </div>
+      <div
+        className="course-books"
+      >
+        <a
+          className="btn btn-white btn-solid"
+          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=0&divisionDisplayName=&departmentDisplayName=BIOL&courseDisplayName=101&sectionDisplayName=01"
+          target="_blank"
+        >
+          <span
+            className="sr-only"
+          >
+            BIOL
+             
+            101
+          </span>
+          Textbook
+        </a>
+        <div
+          className="course--icons"
+        >
+          <img
+            alt="Zero Cost Course Materials"
+            src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
+          />
+          <img
+            alt="Low Cost Course Materials"
+            src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DuplicateClassesCards>
+`;

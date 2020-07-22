@@ -1,4 +1,4 @@
-const { url, submit ,selectSubject } = require('./Utils');
+const { url, submit ,selectSubject, selectInstructionMode } = require('./Utils');
 
 describe('No classes behavior', function () {
 
@@ -6,6 +6,7 @@ describe('No classes behavior', function () {
     it('should display message for no classes found', () => {
       cy.visit(url);
       selectSubject();
+      selectInstructionMode('Classroom');
       cy.get('.sun > .bp3-control-indicator').click();
       submit();
       cy.get('p').should('contain', '0 classes found');

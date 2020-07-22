@@ -2,6 +2,7 @@ import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
 import * as Watchdog from './Watchdog';
 import { app } from './ClassSearch.d';
+import * as _ from 'lodash';
 
 export interface IClass {
   amount: number;
@@ -29,6 +30,7 @@ export interface IClass {
   enrollmentStatus: string;
   enrolledTotal: number;
   facilityId: string;
+  fee: string;
   fri: string;
   fullSsrComponent: string;
   geCourseAttr: string;
@@ -102,6 +104,7 @@ export class Class {
       enrollmentStatus: object.enrl_STAT,
       enrolledTotal: object.enrl_TOT,
       facilityId: object.facility_ID,
+      fee: object.fee,
       fri: object.meeting_TIME[0].fri,
       fullSsrComponent: object.ssr_COMPONENT_DESCR,
       geCourseAttr: object.crse_ATTR_VALUE,
@@ -133,9 +136,11 @@ export class Class {
     return result;
   }
 
-  static getAllClasses(onSuccess: (response: any) => void,
+  static getAllClasses(
+    onSuccess: (response: any) => void,
     onFailure: (error: string) => void,
-    userInput: UserInput): void {
+    userInput: UserInput
+  ): void {
     const params = {
       strm: userInput.getTerm(),
       class_nbr: userInput.getClassNo(),
@@ -218,16 +223,23 @@ export class Class {
     }
     return days;
   }
+
   public getClassMeetingTimes(): string {
-    let meetingTimes = 'N/A';
-    if (!this.areStartTimeEndTimeEmpty()) {
+    let meetingTimes = '';
+
+    if (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0) {
+      meetingTimes = 'N/A';
+    } else if (this.classInfo.classStartTime.includes(', ') || this.classInfo.classEndTime.includes(', ')) {
+      meetingTimes = this.combineStartEndTimes(this.classInfo);
+    } else if (!this.areStartTimeEndTimeEmpty()) {
       meetingTimes = `${this.classInfo.classStartTime} - ${this.classInfo.classEndTime}`.toLowerCase();
     }
+
     return meetingTimes;
   }
 
   public isActive(): boolean {
-    return (this.classInfo.classStatus === 'Active');
+    return this.classInfo.classStatus === 'Active';
   }
 
   public getClassStatus(): string {
@@ -235,6 +247,22 @@ export class Class {
   }
 
   private areStartTimeEndTimeEmpty(): boolean {
-    return (this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0);
+    return this.classInfo.classStartTime.length === 0 && this.classInfo.classEndTime.length === 0;
+  }
+
+  private combineStartEndTimes(classInfo: IClass): string {
+    let combinedMeetingTimes = '';
+    let startTimesList = classInfo.classStartTime.split(', ');
+    let endTimesList = classInfo.classEndTime.split(', ');
+
+    if (startTimesList.length !== 1 && endTimesList.length !== 1) {
+      const startEndTimesCombined = _.zip(startTimesList, endTimesList);
+
+      startEndTimesCombined.forEach(times => {
+        combinedMeetingTimes += `, ${times[0]} - ${times[1]}`.toLowerCase();
+      });
+    }
+
+    return _.trim(combinedMeetingTimes, ', ');
   }
 }

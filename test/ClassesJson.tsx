@@ -1,6 +1,6 @@
 import { IClass, IMeetingDate } from '../src/public/js/Class';
 
-export let baseClassJson: IClass = {
+export const baseClassJson: IClass = {
     quarter: '2194',
     subject: 'IST',
     catalogNo: ' 468',
@@ -21,7 +21,7 @@ export let baseClassJson: IClass = {
     description: 'Information technology systems',
     ssrComponent: 'SEM',
     campus: 'MAIN',
-    instructionMode: 'OL',
+    instructionMode: 'P',
     facilityId: 'JB0113',
     mon: 'N',
     tues: 'N',
@@ -43,6 +43,7 @@ export let baseClassJson: IClass = {
     courseAttrDescription: '',
     fullSsrComponent: '',
     enrollmentStatus: '',
+    fee: '0',
 };
 
 export const classJson: IClass = {
@@ -88,6 +89,7 @@ export const classJson: IClass = {
     courseAttrDescription: '',
     fullSsrComponent: '',
     enrollmentStatus: '',
+    fee: '0',
 };
 export const classPDC: IClass = {
     quarter: '2192',
@@ -132,6 +134,7 @@ export const classPDC: IClass = {
     courseAttrDescription: '',
     fullSsrComponent: '',
     enrollmentStatus: '',
+    fee: '0',
 };
 
 export let meetingDates: IMeetingDate = {
@@ -203,4 +206,5 @@ export const rawClassesJson = {
     sat: 'N',
     sun: 'N',
   }],
+  fee: '0',
 };

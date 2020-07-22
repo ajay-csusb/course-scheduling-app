@@ -9,8 +9,7 @@ interface IAdvancedFilterFieldsetState {
   isOpen?: boolean;
 }
 
-export class AdvancedFilterFieldset extends React.Component<
-    IClassSearchFormProps, IAdvancedFilterFieldsetState> {
+export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProps, IAdvancedFilterFieldsetState> {
   constructor(props: IClassSearchFormProps) {
     super(props);
     this.state = {
@@ -24,13 +23,13 @@ export class AdvancedFilterFieldset extends React.Component<
     const classNumber = this.getClassNumberComponent();
     const sessionCode = this.getSelectListSessionCodeComponent();
     const geClassesAttribute = this.getSelectListGeClassesAttributesComponent();
-    const arrow = (this.state.isOpen) ? <i className="fal fa-chevron-up"/> : <i className="fal fa-chevron-down"/>;
+    const arrow = this.state.isOpen ? <i className="fal fa-chevron-up" /> : <i className="fal fa-chevron-down" />;
     return (
       <React.Fragment>
         <a id="additional-filters" onClick={this.handleClick}>
           {this.state.isOpen ? 'Hide' : ''} Additional Search Criteria {arrow}
         </a>
-        <Collapse isOpen={this.state.isOpen} >
+        <Collapse isOpen={this.state.isOpen}>
           <div className="row">
             <div className="col-6 col-md-4">
               <div className="form-item">{geClassesAttribute}</div>
@@ -52,14 +51,11 @@ export class AdvancedFilterFieldset extends React.Component<
 
   private handleClick = () => {
     this.setState({ isOpen: !this.state.isOpen });
-  }
+  };
 
   private getSelectListCourseAttrComponent(): JSX.Element {
     return (
-      <SelectListCourseAttr
-        courseAttr={this.props.courseAttr}
-        onChangeOfCourseAttr={this.props.onChangeOfCourseAttr}
-      />
+      <SelectListCourseAttr courseAttr={this.props.courseAttr} onChangeOfCourseAttr={this.props.onChangeOfCourseAttr} />
     );
   }
 
@@ -100,5 +96,4 @@ export class AdvancedFilterFieldset extends React.Component<
       />
     );
   }
-
 }

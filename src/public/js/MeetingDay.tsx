@@ -1,4 +1,5 @@
 import { IClass, IMeetingDate } from './Class';
+import * as ClassSearchUtils from './ClassSearchUtils';
 
 export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
   const result: IClass[] = [];
@@ -7,7 +8,7 @@ export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
     return classes;
   }
 
-  classes.forEach((_class) => {
+  classes.forEach(_class => {
     if (meetingDays.mon && _class.mon === 'Y') {
       result.push(_class);
     } else if (meetingDays.tue && _class.tues === 'Y') {
@@ -22,13 +23,23 @@ export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
       result.push(_class);
     } else if (meetingDays.sun && _class.sun === 'Y') {
       result.push(_class);
+    } else if (ClassSearchUtils.isOnlineClass(_class.instructionMode)) {
+      result.push(_class);
     }
+
   });
 
   return result;
 }
 
 function atLeastOneDaySelected(meetingDays: IMeetingDate): boolean {
-  return (meetingDays.mon || meetingDays.tue || meetingDays.wed ||
-    meetingDays.thu || meetingDays.fri || meetingDays.sat || meetingDays.sun);
+  return (
+    meetingDays.mon ||
+    meetingDays.tue ||
+    meetingDays.wed ||
+    meetingDays.thu ||
+    meetingDays.fri ||
+    meetingDays.sat ||
+    meetingDays.sun
+  );
 }

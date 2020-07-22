@@ -1,12 +1,11 @@
 import * as form from './Utils';
 
-context( 'table format', () => {
+context('table format', () => {
   before(() => {
     cy.visit(form.url);
     form.selectSubject();
     form.submit();
-    cy.get('#bp3-tab-title_display-format-tabs_table')
-      .click();
+    cy.get('#bp3-tab-title_display-format-tabs_table').click();
   });
 
   it('should display classes in table format', () => {
@@ -21,8 +20,8 @@ context( 'table format', () => {
       .should('contain', 'Building')
       .should('contain', 'Day(s)')
       .should('contain', 'Time')
-      .should('contain', 'Mode')
-      .should('contain', 'Session')
+      .should('contain', 'Seats Available')
+      .should('contain', 'Waitlist Seats')
+      .should('contain', 'Mode');
   });
-
 });
