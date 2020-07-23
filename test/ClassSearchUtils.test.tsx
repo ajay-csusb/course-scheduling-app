@@ -1324,3 +1324,27 @@ describe.each([
     expect(roomNumbers).toEqual(expected);
   });
 });
+
+describe.each(
+  getTextbookUrlData()
+)('getTextbookUrl(%p)', (_class, expected) => {
+  const textbookUrl = ClassSearchUtils.getTextbookUrl(_class);
+
+  it(`should return ${expected}`, () => {
+    expect(textbookUrl).toContain(expected);
+  });
+    
+});
+  
+function getTextbookUrlData() {
+  const classSb: IClass = TestUtils.copyObject(classJson);
+  classSb.campus = 'MAIN';
+  const classPalm: IClass = TestUtils.copyObject(classJson);
+  classPalm.campus = 'PALM';
+
+  return [
+    [classSb, '1100'],
+    [classPalm, '1101']
+  ];
+  
+}
