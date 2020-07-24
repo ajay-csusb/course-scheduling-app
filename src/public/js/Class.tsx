@@ -147,7 +147,7 @@ export class Class {
       section_code: userInput.getSessionCode(),
       subject: userInput.getSubject().toUpperCase(),
       name: userInput.getInstructor(),
-      catalog_nbr: userInput.getCourseNo(),
+      catalog_nbr: userInput.getCourseNo().toUpperCase(),
       campus: userInput.getCampus(),
       crse_attr: userInput.getCourseAttr(),
       crse_attr_value: userInput.getGeClassesAttr(),
