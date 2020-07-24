@@ -405,9 +405,12 @@ export function getNoOfAvailableSeatsInWaitlist(_class: IClass): number {
 
 export function getTextbookUrl(_class: IClass): string {
   const term: number = parseInt(_class.quarter, 10);
+  const subject: string = _class.subject;
   const catalogNo: number = parseInt(_class.catalogNo, 10);
   const section: string = _class.classSection;
-  const textbook = new Textbook(term, _class.subject, catalogNo, section);
+  const campus: string = _class.campus;
+  const textbook = new Textbook(term, subject, catalogNo, section, campus);
+
   return textbook.link();
 }
 
