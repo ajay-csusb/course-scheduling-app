@@ -2,6 +2,7 @@ import { IClass, IMeetingDate } from '../src/public/js/Class';
 import { TestUtils } from './TestUtils';
 import { baseClassJson } from './ClassesJson';
 import * as MeetingDay from '../src/public/js/MeetingDay';
+import _ from 'lodash';
 
 describe('Filter by meeting date', () => {
   let classes: IClass[] = [];
@@ -66,29 +67,72 @@ describe('Filter by meeting date', () => {
     expect(filteredClasses).toHaveLength(3);
   });
 
-  test.each([
-    ['OL', 4],
-    ['HC', 3],
-    ['FO', 4],
-    ['CM', 3],
-    ['HO', 4],
-    ['P', 3],
-  ])(
-    'when a class has instruction mode set to online',
-    (instructionMode: string, expectedClassCount: number) => {
-      meetingDay.mon = true;
-      meetingDay.tue = false;
-      meetingDay.wed = true;
-      meetingDay.thu = false;
-      meetingDay.fri = true;
-      meetingDay.sat = false;
-      meetingDay.sun = false;
-      const class4: IClass = TestUtils.copyObject(baseClassJson);
-      class4.instructionMode = instructionMode;
-      classes = [class2, class3, class1, class4];
+  describe.each(getFilterClassData())(
+    'MeetingDay.filter(%o, %o, %i)',
+    (classes, meetingDay, expectedClassCount) => {
       const filteredClasses = MeetingDay.filter(classes, meetingDay);
 
-      expect(filteredClasses).toHaveLength(expectedClassCount);
+      it(`should return ${expectedClassCount}`, () => {
+        expect(filteredClasses).toHaveLength(expectedClassCount);
+      });
     }
   );
+
+  function getFilterClassData() {
+    const onlineClass = TestUtils.copyObject(baseClassJson);
+    onlineClass.mon = 'Y';
+    onlineClass.instructionMode = 'OL';
+    const fullyOnlineClass = TestUtils.copyObject(baseClassJson);
+    fullyOnlineClass.wed = 'Y';
+    fullyOnlineClass.instructionMode = 'FO';
+    const hybridOnline = TestUtils.copyObject(baseClassJson);
+    hybridOnline.fri = 'Y';
+    hybridOnline.instructionMode = 'HO';
+    const asyncOnlineClass: IClass = TestUtils.copyObject(baseClassJson);
+    asyncOnlineClass.classStartTime = '';
+    asyncOnlineClass.classEndTime = '';
+    asyncOnlineClass.instructionMode = _.sample(['OL', 'FO', 'HO']);
+    const inPersonClass: IClass = TestUtils.copyObject(baseClassJson);
+    inPersonClass.mon = 'Y';
+    inPersonClass.wed = 'Y';
+    inPersonClass.fri = 'Y';
+    inPersonClass.instructionMode = 'P';
+    const mon = TestUtils.copyObject(meetingDay);
+    const sun = TestUtils.copyObject(meetingDay);
+    const classesWithAsync = [fullyOnlineClass, hybridOnline, onlineClass, asyncOnlineClass, inPersonClass];
+    const classesWithNoAsync = [fullyOnlineClass, hybridOnline, onlineClass, inPersonClass];
+
+    return [
+      [classesWithNoAsync, _.set(mon, 'mon', true), 2],
+      [classesWithAsync, _.set(mon, 'mon', true), 3],
+      [classesWithNoAsync, _.set(sun, 'sun', true), 0],
+      [classesWithAsync, _.set(sun, 'sun', true), 1],
+      [
+        classesWithNoAsync,
+        {
+          mon: true,
+          tue: false,
+          wed: true,
+          thu: false,
+          fri: true,
+          sat: false,
+          sun: false,
+        },
+        4,
+      ],
+      [
+        classesWithAsync,
+        {
+          mon: true,
+          tue: false,
+          wed: true,
+          thu: false,
+          fri: true,
+          sat: false,
+          sun: false,
+        },
+        5,
+      ],
+    ];
+  }
 });

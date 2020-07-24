@@ -1324,3 +1324,36 @@ describe.each([
     expect(roomNumbers).toEqual(expected);
   });
 });
+
+describe.each(
+  getAsyncClassData()
+)('isAsyncClass(%o)', (classInfo, expected) => {
+  const isAsync = ClassSearchUtils.isAsyncClass(classInfo);
+
+  it(`should return ${expected}`, () => {
+    if (expected) {
+      expect(isAsync).toBeTruthy();
+    } else {
+      expect(isAsync).toBeFalsy();
+    }
+  });
+});
+
+function getAsyncClassData() {
+  const asyncClass: IClass = TestUtils.copyObject(baseClassJson);
+  asyncClass.instructionMode = 'OL';
+  asyncClass.classStartTime = '';
+  asyncClass.classEndTime = '';
+  const syncOnlineClass: IClass = TestUtils.copyObject(baseClassJson);
+  syncOnlineClass.instructionMode = 'OL';
+  syncOnlineClass.classStartTime = '9:00 AM';
+  syncOnlineClass.classEndTime = '10:00 AM';
+  
+  return [
+    [baseClassJson, false],
+    [classJson, false],
+    [asyncClass, true],
+    [syncOnlineClass, false],
+  ];
+}
+
