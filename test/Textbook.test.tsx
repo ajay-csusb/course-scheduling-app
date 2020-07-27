@@ -3,7 +3,7 @@ import { Textbook } from '../src/public/js/Textbook';
 describe('Textbook', () => {
   let textbook: Textbook;
   beforeAll(() => {
-    textbook = new Textbook(111, 'foo', 999, '04');
+    textbook = new Textbook(111, 'foo', 999, '04', 'MAIN');
   });
 
   test('constructor', () => {

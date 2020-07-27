@@ -263,10 +263,10 @@ describe('fetch parameters', () => {
 
   describe('when courseNo is set', () => {
     it('should pass the chosen value', () => {
-      classSearchContainerWrapper.find('.course-number').simulate('change', { target: { value: '100' } });
+      classSearchContainerWrapper.find('.course-number').simulate('change', { target: { value: '1000l' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const courseNoArgument = fetchMock.lastOptions();
-      expect(courseNoArgument.body).toMatch(new RegExp('"catalog_nbr":"100"'));
+      expect(courseNoArgument.body).toMatch(new RegExp('"catalog_nbr":"1000L"'));
     });
   });
 
