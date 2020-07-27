@@ -55,7 +55,7 @@ describe('when a class has multiple meeting times', () => {
     );
     expect(duplicateCardsComponentWrapper.html()).toMatch(/Section 01/);
     expect(duplicateCardsComponentWrapper.html()).toMatch(/Class No. 100/);
-    expect(duplicateCardsComponentWrapper.html()).toMatch(/Fees/);
+    expect(duplicateCardsComponentWrapper.html()).toMatch(/Fee/);
     expect(duplicateCardsComponentWrapper.html()).toMatch(/Seminar/);
     expect(duplicateCardsComponentWrapper.html()).toMatch(/Textbook/);
     expect(duplicateCardsComponentWrapper.find('.course-header')).toHaveLength(1);

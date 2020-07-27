@@ -208,7 +208,7 @@ function getFeeMarkup(): JSX.Element {
   if (fee !== '0.00' || fee.length === 0) {
     markup = (
       <>
-        <span> • Fees </span> ${fee}
+        <span> • Fee </span> ${fee}
       </>
     );
   }
