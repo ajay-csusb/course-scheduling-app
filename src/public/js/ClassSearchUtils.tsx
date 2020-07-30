@@ -574,7 +574,9 @@ export function isAsyncClass(classInfo: IClass): boolean {
     !hasMeetingDays(classInfo) &&
     isOnlineClass(classInfo.instructionMode) &&
     classInfo.classEndTime.length === 0 &&
-    classInfo.classStartTime.length === 0
+    classInfo.classStartTime.length === 0 &&
+    (classInfo.buildingCode.length === 0 || classInfo.buildingCode === 'OL') &&
+    (classInfo.room.length === 0 || classInfo.room === 'ONLINE')
   );
 }
 
