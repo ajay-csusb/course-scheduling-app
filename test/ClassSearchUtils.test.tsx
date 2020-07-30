@@ -1344,16 +1344,39 @@ function getAsyncClassData() {
   asyncClass.instructionMode = 'OL';
   asyncClass.classStartTime = '';
   asyncClass.classEndTime = '';
+  asyncClass.buildingCode = 'OL';
+  asyncClass.room = 'ONLINE';
   const syncOnlineClass: IClass = TestUtils.copyObject(baseClassJson);
   syncOnlineClass.instructionMode = 'OL';
   syncOnlineClass.classStartTime = '9:00 AM';
   syncOnlineClass.classEndTime = '10:00 AM';
+  const syncClassWithBuildingCode: IClass = TestUtils.copyObject(baseClassJson);
+  syncClassWithBuildingCode.instructionMode = 'OL';
+  syncClassWithBuildingCode.classStartTime = '';
+  syncClassWithBuildingCode.classEndTime = '';
+  syncClassWithBuildingCode.buildingCode = 'COE';
+  syncClassWithBuildingCode.room = '101';
+  const syncClassWithNoBuildingCode: IClass = TestUtils.copyObject(baseClassJson);
+  syncClassWithNoBuildingCode.instructionMode = 'OL';
+  syncClassWithNoBuildingCode.classStartTime = '';
+  syncClassWithNoBuildingCode.classEndTime = '';
+  syncClassWithNoBuildingCode.buildingCode = '';
+  syncClassWithNoBuildingCode.room = '';
+  const syncClassWithOnlineBuildingCode: IClass = TestUtils.copyObject(baseClassJson);
+  syncClassWithOnlineBuildingCode.instructionMode = 'OL';
+  syncClassWithOnlineBuildingCode.classStartTime = '';
+  syncClassWithOnlineBuildingCode.classEndTime = '';
+  syncClassWithOnlineBuildingCode.buildingCode = 'OL';
+  syncClassWithOnlineBuildingCode.room = 'ONLINE';
   
   return [
     [baseClassJson, false],
     [classJson, false],
     [asyncClass, true],
     [syncOnlineClass, false],
+    [syncClassWithBuildingCode, false],
+    [syncClassWithNoBuildingCode, true],
+    [syncClassWithOnlineBuildingCode, true],
   ];
 }
 
