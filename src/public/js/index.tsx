@@ -4,10 +4,14 @@ import { ClassSearchContainer } from './ClassSearchContainer';
 import { Utils } from './Utils';
 
 Utils.loadExternalTools();
-if (Utils.isProd()) {
+if (Utils.isProd() && !Utils.is_bot()) {
   const ErrorBoundary = Utils.loadBugsnagComponent();
-  ReactDOM.render(<ErrorBoundary><ClassSearchContainer /></ErrorBoundary>,
-    document.querySelector('#class-search-form-wrapper'));
+  ReactDOM.render(
+    <ErrorBoundary>
+      <ClassSearchContainer />
+    </ErrorBoundary>,
+    document.querySelector('#class-search-form-wrapper')
+  );
 } else {
   ReactDOM.render(<ClassSearchContainer />, document.querySelector('#class-search-form-wrapper'));
 }
