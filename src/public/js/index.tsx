@@ -4,7 +4,7 @@ import { ClassSearchContainer } from './ClassSearchContainer';
 import { Utils } from './Utils';
 
 Utils.loadExternalTools();
-if (Utils.isProd() && !Utils.is_bot()) {
+if (Utils.isProd()) {
   const ErrorBoundary = Utils.loadBugsnagComponent();
   ReactDOM.render(
     <ErrorBoundary>
