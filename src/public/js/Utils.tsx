@@ -6,7 +6,7 @@ import bugsnagReact from '@bugsnag/plugin-react';
 
 export class Utils {
   public static loadExternalTools(): void {
-    if (Utils.isProd()) {
+    if (Utils.isProd() && !Utils.is_bot()) {
       LogRocket.init('jydmpp/course-schedule-app');
       setupLogRocketReact(LogRocket);
     }
@@ -28,7 +28,13 @@ export class Utils {
   }
 
   public static isProd(): boolean {
-    return (window.location.hostname === 'www.csusb.edu');
+    return window.location.hostname === 'www.csusb.edu';
   }
 
+  public static is_bot() {
+    const url = new URL(window.location.toString());
+    const bot = url.searchParams.get('bot');
+
+    return bot !== null && bot === 'true';
+  }
 }

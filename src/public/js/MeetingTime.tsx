@@ -8,7 +8,7 @@ export class MeetingTime {
       const userInputStartTimeParsed = ClassSearchUtils.getDateIn12HourFormat(startTime);
       const userInputEndTimeParsed = ClassSearchUtils.getDateIn12HourFormat(endTime);
 
-      if (ClassSearchUtils.isOnlineClass(_class.instructionMode)) {
+      if (ClassSearchUtils.isAsyncClass(_class)) {
         result.push(_class);
         return;
       }

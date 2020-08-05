@@ -1,7 +1,6 @@
 import { IClass } from './Class';
 
 export class InstructionMode {
-
   private static _classes: IClass[];
 
   public static filter(classes: IClass[], instructionMode: string): IClass[] {
@@ -21,6 +20,12 @@ export class InstructionMode {
   private static filterByOnlineClasses(): IClass[] {
     const results: IClass[] = [];
     InstructionMode._classes.forEach((_class: IClass) => {
+      if (_class.room.length !== 0 && _class.room !== 'ONLINE') {
+        return;
+      }
+      if (_class.buildingCode.length !== 0 && _class.buildingCode !== 'OL') {
+        return;
+      }
       if (_class.instructionMode.toLowerCase() === 'ol') {
         results.push(_class);
       }
@@ -56,5 +61,4 @@ export class InstructionMode {
     });
     return results;
   }
-
 }

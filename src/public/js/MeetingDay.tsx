@@ -23,10 +23,9 @@ export function filter(classes: IClass[], meetingDays: IMeetingDate): IClass[] {
       result.push(_class);
     } else if (meetingDays.sun && _class.sun === 'Y') {
       result.push(_class);
-    } else if (ClassSearchUtils.isOnlineClass(_class.instructionMode)) {
+    } else if (ClassSearchUtils.isAsyncClass(_class)) {
       result.push(_class);
     }
-
   });
 
   return result;

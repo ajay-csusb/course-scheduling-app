@@ -1,5 +1,5 @@
 export class Textbook {
-  readonly bookstoreURL: string = 'https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook';
+  readonly bookstoreURL: string = 'https://www.bkstr.com/webApp/discoverView';
   private _bookstoreId: number = 1100;
   private _term: number;
   private _department: string;
@@ -68,6 +68,6 @@ export class Textbook {
       this._bookstoreId = 1101;
     }
 
-    return `${this.bookstoreURL}?shopBy=discoverViewCourse&bookstoreId=${this.bookstoreId}&termId=${this._term}&divisionDisplayName=&departmentDisplayName=${this._department}&courseDisplayName=${this._catalogNumber}&sectionDisplayName=${this._section}`;
+    return `${this.bookstoreURL}?bookstore_id-1=${this.bookstoreId}&term_id-1=${this._term}&div-1=&dept-1=${this._department}&course-1=${this._catalogNumber}&section-1=${this._section}`;
   }
 }

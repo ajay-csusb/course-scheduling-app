@@ -21,5 +21,5 @@ jobs:
           browser: chrome
           headless: true
           spec: cypress/integration/SubjectTests.js
-          env: url=https://www.csusb.edu/class-schedule
+          env: url=https://www.csusb.edu/class-schedule?bot=true
           config: baseUrl=https://www.csusb.edu/class-schedule
