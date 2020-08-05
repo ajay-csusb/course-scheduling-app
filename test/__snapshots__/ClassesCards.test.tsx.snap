@@ -233,7 +233,7 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -490,7 +490,7 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -741,7 +741,7 @@ exports[`building code and room number when a class does not have a building cod
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -992,7 +992,7 @@ exports[`building code and room number when a class has a building code and room
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -1243,7 +1243,7 @@ exports[`building code and room number when a class has a building code as TBD s
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -1494,7 +1494,7 @@ exports[`building code and room number when a class has building code as OL shou
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -1767,7 +1767,7 @@ exports[`seats text verbiage when a class has no waitlist should display the tex
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=8&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -2029,7 +2029,7 @@ exports[`seats text verbiage when a class has seats available for enrollment sho
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=8&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -2308,7 +2308,7 @@ exports[`seats text verbiage when a class has seats available on the waitlist sh
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=8&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -2587,7 +2587,7 @@ exports[`seats text verbiage when a class is closed should display available sea
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=8&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -2866,7 +2866,7 @@ exports[`seats text verbiage when a class is closed should display available spo
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=8&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=8&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -3117,7 +3117,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -3368,7 +3368,7 @@ exports[`seats text verbiage when a class is from the previous term and has seat
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -3626,7 +3626,7 @@ exports[`when a class has low cost course material should display icon for low c
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -3892,7 +3892,7 @@ exports[`when a class has zero cost course material should display icon for zero
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -4158,7 +4158,7 @@ exports[`when a class has zero cost course materials and low cost course materia
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -4415,7 +4415,7 @@ exports[`when a class is a fully online should not display the room number in th
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
@@ -4666,7 +4666,7 @@ exports[`when a class results component is displayed should display the correct 
       >
         <a
           className="btn btn-white btn-solid"
-          href="https://www.bkstr.com/csusanbernardinostore/follett-discover-view/booklook?shopBy=discoverViewCourse&bookstoreId=1100&termId=2194&divisionDisplayName=&departmentDisplayName=ACCT&courseDisplayName=101&sectionDisplayName=01"
+          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
           target="_blank"
         >
           <span
