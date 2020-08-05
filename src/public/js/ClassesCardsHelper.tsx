@@ -237,13 +237,18 @@ function getCourseMaterialIconMarkup(): JSX.Element {
       <img
         src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
         alt="Zero Cost Course Materials"
+        title="Zero Cost Course Materials"
       />
     );
   }
 
   if (courseAttrArr.includes('Low Cost Course Materials')) {
     lowCostIcon = (
-      <img src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png" alt="Low Cost Course Materials" />
+      <img
+        src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
+        alt="Low Cost Course Materials"
+        title="Low Cost Course Materials"
+      />
     );
   }
 

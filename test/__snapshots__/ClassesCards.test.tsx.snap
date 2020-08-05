@@ -3644,6 +3644,7 @@ exports[`when a class has low cost course material should display icon for low c
           <img
             alt="Low Cost Course Materials"
             src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
+            title="Low Cost Course Materials"
           />
         </div>
       </div>
@@ -3910,6 +3911,7 @@ exports[`when a class has zero cost course material should display icon for zero
           <img
             alt="Zero Cost Course Materials"
             src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
+            title="Zero Cost Course Materials"
           />
         </div>
       </div>
@@ -4176,10 +4178,12 @@ exports[`when a class has zero cost course materials and low cost course materia
           <img
             alt="Zero Cost Course Materials"
             src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
+            title="Zero Cost Course Materials"
           />
           <img
             alt="Low Cost Course Materials"
             src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
+            title="Low Cost Course Materials"
           />
         </div>
       </div>

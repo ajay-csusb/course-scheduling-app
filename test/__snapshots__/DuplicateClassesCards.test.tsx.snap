@@ -482,10 +482,12 @@ exports[`when a class has multiple meeting times snapshot 1`] = `
           <img
             alt="Zero Cost Course Materials"
             src="https://www.csusb.edu/sites/default/files/zero-cost-book-icon-big.png"
+            title="Zero Cost Course Materials"
           />
           <img
             alt="Low Cost Course Materials"
             src="https://www.csusb.edu/sites/default/files/low-cost-book-icon-big.png"
+            title="Low Cost Course Materials"
           />
         </div>
       </div>
