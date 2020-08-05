@@ -160,22 +160,24 @@ describe('Filter by meeting time', () => {
 
   describe.each([
     [new Date('1899-01-01T12:00:00'), new Date('1899-01-01T23:00:00'), 'OL', 4],
-    [new Date('1899-01-01T08:00:00'), new Date('1899-01-01T12:00:00'), 'OL', 2],
-    [new Date('1899-01-01T11:30:00'), new Date('1899-01-01T21:45:00'), 'OL', 3],
+    [new Date('1899-01-01T08:00:00'), new Date('1899-01-01T12:00:00'), 'FO', 2],
+    [new Date('1899-01-01T11:30:00'), new Date('1899-01-01T21:45:00'), 'HO', 3],
     [new Date('1899-01-01T23:00:00'), new Date('1899-01-01T00:00:00'), 'OL', 1],
-    [new Date('1899-01-01T12:00:00'), new Date('1899-01-01T20:00:00'), 'OL', 3],
+    [new Date('1899-01-01T12:00:00'), new Date('1899-01-01T20:00:00'), 'FO', 3],
   ])(
     'when a class has instruction mode set to online',
     (startTime, endTime, instructionMode, count) => {
       it(`should show ${count} classes`, () => {
         classes = [];
-        const onlineClass: IClass = TestUtils.copyObject(baseClassJson);
-        onlineClass.instructionMode = instructionMode;
+        const asyncOnlineClass: IClass = TestUtils.copyObject(baseClassJson);
+        asyncOnlineClass.instructionMode = instructionMode;
+        asyncOnlineClass.classStartTime = '';
+        asyncOnlineClass.classEndTime = '';
         classes.push(classStartingAt8am);
         classes.push(classStartingAt12pm);
         classes.push(classStartingAt6pm);
         classes.push(classStartingAt8pm);
-        classes.push(onlineClass);
+        classes.push(asyncOnlineClass);
         const results = MeetingTime.filter(classes, startTime, endTime);
 
         expect(results).toHaveLength(count);

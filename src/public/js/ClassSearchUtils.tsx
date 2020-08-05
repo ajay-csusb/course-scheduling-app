@@ -568,3 +568,26 @@ export function isOnlineClass(instructionMode: string): boolean {
   const onlineInstructionModeCodes = ['OL', 'FO', 'HO'];
   return onlineInstructionModeCodes.includes(instructionMode);
 }
+
+export function isAsyncClass(classInfo: IClass): boolean {
+  return (
+    !hasMeetingDays(classInfo) &&
+    isOnlineClass(classInfo.instructionMode) &&
+    classInfo.classEndTime.length === 0 &&
+    classInfo.classStartTime.length === 0 &&
+    (classInfo.buildingCode.length === 0 || classInfo.buildingCode === 'OL') &&
+    (classInfo.room.length === 0 || classInfo.room === 'ONLINE')
+  );
+}
+
+function hasMeetingDays(classInfo: IClass): boolean {
+  return (
+    classInfo.mon === 'Y' ||
+    classInfo.tues === 'Y' ||
+    classInfo.wed === 'Y' ||
+    classInfo.thurs === 'Y' ||
+    classInfo.fri === 'Y' ||
+    classInfo.sat === 'Y' ||
+    classInfo.sun === 'Y'
+  );
+}

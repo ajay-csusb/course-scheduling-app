@@ -3,12 +3,14 @@ import { InstructionMode } from '../src/public/js/InstructionMode';
 import { IClass } from '../src/public/js/Class';
 
 describe('Filter by Instruction Mode', () => {
-  const classBioOnline = JSON.parse(JSON.stringify(classJson));
-  const classBioCm = JSON.parse(JSON.stringify(classJson));
-  const classBioClassroom = JSON.parse(JSON.stringify(classJson));
-  const classBioFullyOnlineSync = JSON.parse(JSON.stringify(classJson));
-  const classBioHybridSync = JSON.parse(JSON.stringify(classJson));
-  const classBioHybridClassroom = JSON.parse(JSON.stringify(classJson));
+  classJson.buildingCode = 'OL';
+  classJson.room = 'ONLINE';
+  const classBioOnline: IClass = JSON.parse(JSON.stringify(classJson));
+  const classBioCm: IClass = JSON.parse(JSON.stringify(classJson));
+  const classBioClassroom: IClass = JSON.parse(JSON.stringify(classJson));
+  const classBioFullyOnlineSync: IClass = JSON.parse(JSON.stringify(classJson));
+  const classBioHybridSync: IClass = JSON.parse(JSON.stringify(classJson));
+  const classBioHybridClassroom: IClass = JSON.parse(JSON.stringify(classJson));
   let classesBio: IClass[];
   let classes: IClass[];
 
@@ -18,6 +20,8 @@ describe('Filter by Instruction Mode', () => {
     classBioClassroom.instructionMode = 'p';
     classBioFullyOnlineSync.instructionMode = 'fo';
     classBioHybridSync.instructionMode = 'ho';
+    classBioHybridSync.buildingCode = 'OL';
+    classBioHybridSync.room = 'ONLINE';
     classBioHybridClassroom.instructionMode = 'hc';
     classesBio = [
       classBioOnline,

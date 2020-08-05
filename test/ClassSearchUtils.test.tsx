@@ -1326,25 +1326,57 @@ describe.each([
 });
 
 describe.each(
-  getTextbookUrlData()
-)('getTextbookUrl(%p)', (_class, expected) => {
-  const textbookUrl = ClassSearchUtils.getTextbookUrl(_class);
+  getAsyncClassData()
+)('isAsyncClass(%o)', (classInfo, expected) => {
+  const isAsync = ClassSearchUtils.isAsyncClass(classInfo);
 
   it(`should return ${expected}`, () => {
-    expect(textbookUrl).toContain(expected);
+    if (expected) {
+      expect(isAsync).toBeTruthy();
+    } else {
+      expect(isAsync).toBeFalsy();
+    }
   });
-    
 });
-  
-function getTextbookUrlData() {
-  const classSb: IClass = TestUtils.copyObject(classJson);
-  classSb.campus = 'MAIN';
-  const classPalm: IClass = TestUtils.copyObject(classJson);
-  classPalm.campus = 'PALM';
 
-  return [
-    [classSb, '1100'],
-    [classPalm, '1101']
-  ];
+function getAsyncClassData() {
+  const asyncClass: IClass = TestUtils.copyObject(baseClassJson);
+  asyncClass.instructionMode = 'OL';
+  asyncClass.classStartTime = '';
+  asyncClass.classEndTime = '';
+  asyncClass.buildingCode = 'OL';
+  asyncClass.room = 'ONLINE';
+  const syncOnlineClass: IClass = TestUtils.copyObject(baseClassJson);
+  syncOnlineClass.instructionMode = 'OL';
+  syncOnlineClass.classStartTime = '9:00 AM';
+  syncOnlineClass.classEndTime = '10:00 AM';
+  const syncClassWithBuildingCode: IClass = TestUtils.copyObject(baseClassJson);
+  syncClassWithBuildingCode.instructionMode = 'OL';
+  syncClassWithBuildingCode.classStartTime = '';
+  syncClassWithBuildingCode.classEndTime = '';
+  syncClassWithBuildingCode.buildingCode = 'COE';
+  syncClassWithBuildingCode.room = '101';
+  const syncClassWithNoBuildingCode: IClass = TestUtils.copyObject(baseClassJson);
+  syncClassWithNoBuildingCode.instructionMode = 'OL';
+  syncClassWithNoBuildingCode.classStartTime = '';
+  syncClassWithNoBuildingCode.classEndTime = '';
+  syncClassWithNoBuildingCode.buildingCode = '';
+  syncClassWithNoBuildingCode.room = '';
+  const syncClassWithOnlineBuildingCode: IClass = TestUtils.copyObject(baseClassJson);
+  syncClassWithOnlineBuildingCode.instructionMode = 'OL';
+  syncClassWithOnlineBuildingCode.classStartTime = '';
+  syncClassWithOnlineBuildingCode.classEndTime = '';
+  syncClassWithOnlineBuildingCode.buildingCode = 'OL';
+  syncClassWithOnlineBuildingCode.room = 'ONLINE';
   
+  return [
+    [baseClassJson, false],
+    [classJson, false],
+    [asyncClass, true],
+    [syncOnlineClass, false],
+    [syncClassWithBuildingCode, false],
+    [syncClassWithNoBuildingCode, true],
+    [syncClassWithOnlineBuildingCode, true],
+  ];
 }
+
