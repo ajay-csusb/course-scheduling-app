@@ -19,7 +19,7 @@ describe('snapshots', () => {
 
   test('compare search form snapshot', () => {
     const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-    const classSearchFormWrapper = classSearchContainerWrapper.children().childAt(0);
+    const classSearchFormWrapper = classSearchContainerWrapper.children().find('.container');
     expect(classSearchFormWrapper).toMatchSnapshot();
   });
 

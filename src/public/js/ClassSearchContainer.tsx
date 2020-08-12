@@ -35,7 +35,6 @@ export interface IClassSearchContainerState {
   forceReload: boolean;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
-
   private allResults: IClass[];
 
   private instructors: string[];
@@ -107,7 +106,15 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
           </div>
         </div>
         {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
-        {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) && classSearchResultsComponent}
+        {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) &&
+          classSearchResultsComponent}
+        <a
+          target="_blank"
+          href="https://www.csusb.edu/its/support/digital-transformation/web-services/form/feedback-class-search"
+          className="feedback-btn"
+        >
+          <i className="fas fa-smile"></i> Feedback
+        </a>
       </React.Fragment>
     );
   }
@@ -185,43 +192,43 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private toggleMon(checkBoxValue: string): boolean {
     if (checkBoxValue === 'mon') {
-      return (!this.state.meetingDate.mon);
+      return !this.state.meetingDate.mon;
     }
     return this.state.meetingDate.mon;
   }
   private toggleTue(checkBoxValue: string): boolean {
     if (checkBoxValue === 'tue') {
-      return (!this.state.meetingDate.tue);
+      return !this.state.meetingDate.tue;
     }
     return this.state.meetingDate.tue;
   }
   private toggleWed(checkBoxValue: string): boolean {
     if (checkBoxValue === 'wed') {
-      return (!this.state.meetingDate.wed);
+      return !this.state.meetingDate.wed;
     }
     return this.state.meetingDate.wed;
   }
   private toggleThu(checkBoxValue: string): boolean {
     if (checkBoxValue === 'thu') {
-      return (!this.state.meetingDate.thu);
+      return !this.state.meetingDate.thu;
     }
     return this.state.meetingDate.thu;
   }
   private toggleFri(checkBoxValue: string): boolean {
     if (checkBoxValue === 'fri') {
-      return (!this.state.meetingDate.fri);
+      return !this.state.meetingDate.fri;
     }
     return this.state.meetingDate.fri;
   }
   private toggleSat(checkBoxValue: string): boolean {
     if (checkBoxValue === 'sat') {
-      return (!this.state.meetingDate.sat);
+      return !this.state.meetingDate.sat;
     }
     return this.state.meetingDate.sat;
   }
   private toggleSun(checkBoxValue: string): boolean {
     if (checkBoxValue === 'sun') {
-      return (!this.state.meetingDate.sun);
+      return !this.state.meetingDate.sun;
     }
     return this.state.meetingDate.sun;
   }
@@ -279,23 +286,28 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       return this.displayErrorMessageWhenSubjectIsEmpty();
     }
     this.allResults = [];
-    this.setState({
-      showErrorMessage: false,
-      beforeSubmit: false,
-      isLoading: true,
-    }, () => {
-      this.updateAllClasses();
-    }
+    this.setState(
+      {
+        showErrorMessage: false,
+        beforeSubmit: false,
+        isLoading: true,
+      },
+      () => {
+        this.updateAllClasses();
+      }
     );
   }
 
   private onReset(): void {
     this.setState(this.defaultFormValues());
-    this.setState({
-      isReset: true,
-    }, () => {
-      this.userInput = new UserInput();
-    });
+    this.setState(
+      {
+        isReset: true,
+      },
+      () => {
+        this.userInput = new UserInput();
+      }
+    );
   }
 
   private defaultFormValues(): IClassSearchContainerState {
@@ -361,7 +373,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         this.currentTermId = _term.strm;
       }
       termArr.push({
-        label: _term.display_STR, value: _term.strm,
+        label: _term.display_STR,
+        value: _term.strm,
       });
     });
     this.term = termArr;
@@ -373,7 +386,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private hasCurrentQuarterFlag(quarter: any): boolean {
-    return (quarter.displayed_FLAG === 'Y' && quarter.default_FLG === 'Y');
+    return quarter.displayed_FLAG === 'Y' && quarter.default_FLG === 'Y';
   }
 
   private updateStartTime(e: Date): void {
@@ -391,33 +404,35 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private resetComplete() {
-    return (this.state.isReset && this.state.beforeSubmit && this.state.subject.abbr.length === 0);
+    return this.state.isReset && this.state.beforeSubmit && this.state.subject.abbr.length === 0;
   }
 
   private isSubjectEmpty(): boolean {
-    return (this.state.subject.abbr.length === 0);
+    return this.state.subject.abbr.length === 0;
   }
 
   private isInstructorEmpty(): boolean {
-    return (this.state.instructorName === '');
+    return this.state.instructorName === '';
   }
 
   private isCourseNumberEmpty(): boolean {
-    return (this.state.courseNo === '');
+    return this.state.courseNo === '';
   }
 
   private isMeetingDayEmpty(): boolean {
-    return (!this.state.meetingDate.mon
-      && !this.state.meetingDate.tue
-      && !this.state.meetingDate.wed
-      && !this.state.meetingDate.thu
-      && !this.state.meetingDate.fri
-      && !this.state.meetingDate.sat
-      && !this.state.meetingDate.sun);
+    return (
+      !this.state.meetingDate.mon &&
+      !this.state.meetingDate.tue &&
+      !this.state.meetingDate.wed &&
+      !this.state.meetingDate.thu &&
+      !this.state.meetingDate.fri &&
+      !this.state.meetingDate.sat &&
+      !this.state.meetingDate.sun
+    );
   }
 
   private isClassNoEmpty(): boolean {
-    return (this.state.classNo === '');
+    return this.state.classNo === '';
   }
 
   private isValidInstructionModeSelected(): boolean {
@@ -468,7 +483,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return (
       <Callout className="subject-validation" intent={Intent.WARNING}>
         Please select a Course Subject
-      </Callout >
+      </Callout>
     );
   }
 
@@ -477,7 +492,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private isPageLoad(): boolean {
-    return (!this.state.noClasses && this.allResults.length === 0);
+    return !this.state.noClasses && this.allResults.length === 0;
   }
 
   private getClassSearchResultsComponent(): JSX.Element {
@@ -631,7 +646,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private isDegreeType(degreeAbbr: string): boolean {
-    return (degreeAbbr === 'UGRD' || degreeAbbr === 'PBAC' || degreeAbbr === 'EXED');
+    return degreeAbbr === 'UGRD' || degreeAbbr === 'PBAC' || degreeAbbr === 'EXED';
   }
 
   private geClassesAttributesFound(data: any): void {
@@ -670,6 +685,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private emptyClasses(classes: any): boolean {
-    return (classes === null || classes.length === 0);
+    return classes === null || classes.length === 0;
   }
 }
