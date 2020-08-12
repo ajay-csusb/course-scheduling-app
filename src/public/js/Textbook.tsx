@@ -3,11 +3,11 @@ export class Textbook {
   private _bookstoreId: number = 1100;
   private _term: number;
   private _department: string;
-  private _catalogNumber: number;
+  private _catalogNumber: string;
   private _section: string;
   private _campus: string;
 
-  constructor(term: number, department: string, catalogNumber: number, section: string, campus: string) {
+  constructor(term: number, department: string, catalogNumber: string, section: string, campus: string) {
     this._term = term;
     this._department = department;
     this._catalogNumber = catalogNumber;
@@ -31,7 +31,7 @@ export class Textbook {
     this._department = department;
   }
 
-  set catalogNumber(catalogNumber: number) {
+  set catalogNumber(catalogNumber: string) {
     this._catalogNumber = catalogNumber;
   }
 
