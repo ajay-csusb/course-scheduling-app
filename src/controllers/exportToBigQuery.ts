@@ -31,7 +31,6 @@ export function index(req: Request, res: Response): Response {
     isTermSet = true;
   }
   exportClassSearchData();
-  console.log(terms)
   return res.sendStatus(200);
 }
 
