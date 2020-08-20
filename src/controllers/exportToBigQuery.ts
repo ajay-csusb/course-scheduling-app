@@ -22,21 +22,41 @@ if (process.env && process.env.NODE_ENV !== 'local') {
   bigqueryClient = new BigQuery();
   dataset = bigqueryClient.dataset('ClassSchedule');
 }
+let message = 'Processing...';
+let success: boolean = true;
+let errors = 'No errors';
 
-export function index(req: Request, res: Response): Response {
+export async function index(req: Request, res: Response): Promise<Response> {
   currentTerm = app.settings.firstSemester;
 
   if (req.params.termId) {
     currentTerm = req.params.termId;
     isTermSet = true;
   }
-  exportClassSearchData();
-  return res.sendStatus(200);
+  try {
+    await exportClassSearchData();
+    const responseObj = {
+      message: message,
+      success: success,
+      errors: errors,
+    };
+    console.log(responseObj);
+    return res.status(200).json(responseObj);
+  } catch (error) {
+    const responseObj = {
+      message: 'Error processing request',
+      success: false,
+      errors: error.toString(),
+    };
+    console.log(responseObj);
+    return res.status(400).json(responseObj);
+  }
 }
 
 async function exportClassSearchData() {
   classesCurrentTerm = [];
 
+  // @Todo simplify this
   if (!isTermSet) {
     await setCurrentTerm();
   } else {
@@ -54,10 +74,13 @@ function insertClassesCurrentTerm(): Promise<any> {
     .table(terms[currentTerm])
     .insert(classesCurrentTerm)
     .then(() => {
-      console.log('inserted ' + classesCurrentTerm.length + ' rows in table: ' + terms[currentTerm]);
+      message = 'Added ' + classesCurrentTerm.length + ' rows to table: ' + terms[currentTerm];
     })
     .catch(err => {
-      console.error('Error: insertion error ' + { err });
+      console.error('Error insertion error: ' + { err });
+      errors = 'Error insertion error: ' + { err };
+      success = false;
+      return;
     });
 }
 
@@ -133,6 +156,9 @@ async function createMissingTables(): Promise<any> {
       })
       .catch((error: any) => {
         console.log('Error creating table : ' + error.message);
+        errors = 'Error creating table : check the logs for more information';
+        success = false;
+        return;
       });
   });
 }
@@ -155,7 +181,10 @@ function getMissingTables(): Promise<any> {
       return _.xor(Object.values(terms), tableNames);
     })
     .catch(error => {
-      console.log('Error: ' + error.message);
+      console.log('Error processing table names: ' + error.message);
+      errors = 'Error processing table names: ' + error.message;
+      success = false;
+      return;
     });
 }
 
@@ -170,7 +199,10 @@ async function getTerms(): Promise<any> {
     const jsonData = data.data.termList;
     terms = parseTerms(jsonData);
   } catch (error) {
-    console.log(error);
+    console.log('Error processing terms: ' + error);
+    errors = 'Error processing terms: ' + error;
+    success = false;
+    return;
   }
 }
 
@@ -218,7 +250,10 @@ async function getClassesForTerm(term: number = currentTerm): Promise<any> {
       classesCurrentTerm.push(transformedClass);
     });
   } catch (error) {
-    console.log(error);
+    console.log('Error processing classes: ' + error);
+    errors = 'Error processing classes: ' + error;
+    success = false;
+    return;
   }
 }
 
@@ -243,6 +278,9 @@ async function setCurrentTerm(): Promise<any> {
       }
     });
   } catch (error) {
-    console.log(error);
+    console.log('Error processing current term' + error);
+    errors = 'Error processing current term' + error;
+    success = false;
+    return;
   }
 }
