@@ -1,6 +1,7 @@
 name: Push class search data to BigQuery
 on:
-  push:
+  schedule:
+    - cron: '59 23 */1 * *'
 jobs:
   request:
     runs-on: ubuntu-16.04
@@ -9,5 +10,5 @@ jobs:
       - name: Deploy Stage
         uses: fjogeleit/http-request-action@master
         with:
-          url: 'https://dev-dot-csusb-class-schedule.df.r.appspot.com/export-to-bigquery'
+          url: 'https://csusb-class-schedule.df.r.appspot.com/export-to-bigquery'
           method: 'GET'
