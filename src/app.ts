@@ -1,11 +1,12 @@
 import express from 'express';
-import compression from 'compression';  // compresses requests
+import compression from 'compression'; // compresses requests
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import path from 'path';
 import expressValidator from 'express-validator';
 import * as homeController from './controllers/home';
 import * as exportToExcelController from './controllers/exportToExcel';
+import * as exportToBigQueryController from './controllers/exportToBigQuery';
 import cors from 'cors';
 
 dotenv.config({ path: '.env' });
@@ -15,12 +16,10 @@ app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 app.set('etag', false);
 app.use(compression());
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(expressValidator());
-app.use(
-  express.static(path.join(__dirname, 'public'), { maxAge: 0 })
-);
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 0 }));
 if (process.env && process.env.NODE_ENV === 'local') {
   const nocache = require('nocache');
   app.use(nocache());
@@ -28,5 +27,6 @@ if (process.env && process.env.NODE_ENV === 'local') {
 app.use(cors());
 app.get('/', homeController.index);
 app.post('/export-to-excel', exportToExcelController.index);
+app.get('/export-to-bigquery/:termId?', exportToBigQueryController.index);
 
 export default app;

@@ -13,6 +13,9 @@
 .git
 .gitignore
 .env
+.github
+.vscode
+.cache
 
 # Node.js dependencies:
 node_modules/
