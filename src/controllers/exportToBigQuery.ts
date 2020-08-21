@@ -70,17 +70,36 @@ async function exportClassSearchData() {
 }
 
 function insertClassesCurrentTerm(): Promise<any> {
+  let tableName = terms[currentTerm];
+  if (!tableName) {
+    const previousTerms = {
+      '2184': 'spring2018',
+      '2182': 'winter2018',
+      '2178': 'fall2017',
+      '2176': 'summer2017',
+      '2174': 'spring2017',
+      '2172': 'winter2017',
+      '2168': 'fall2016',
+      '2166': 'summer2016',
+      '2164': 'spring2016',
+      '2162': 'winter2016',
+      '2158': 'fall2015',
+      '2156': 'summer2015',
+      '2154': 'spring2015',
+      '2152': 'winter2015',
+    };
+    tableName = previousTerms[currentTerm];
+  }
   return dataset
-    .table(terms[currentTerm])
+    .table(tableName)
     .insert(classesCurrentTerm)
     .then(() => {
-      message = 'Added ' + classesCurrentTerm.length + ' rows to table: ' + terms[currentTerm];
+      message = 'Added ' + classesCurrentTerm.length + ' rows to table: ' + tableName;
     })
     .catch(err => {
       console.error('Error insertion error: ' + { err });
       errors = 'Error insertion error: ' + { err };
       success = false;
-      return;
     });
 }
 
@@ -153,12 +172,12 @@ async function createMissingTables(): Promise<any> {
       .createTable(id, tableSchema)
       .then((data: any) => {
         console.log('Created table: ' + data[0].id);
+        message = 'Created table: ' + data[0].id;
       })
       .catch((error: any) => {
         console.log('Error creating table : ' + error.message);
         errors = 'Error creating table : check the logs for more information';
         success = false;
-        return;
       });
   });
 }
@@ -184,7 +203,6 @@ function getMissingTables(): Promise<any> {
       console.log('Error processing table names: ' + error.message);
       errors = 'Error processing table names: ' + error.message;
       success = false;
-      return;
     });
 }
 
@@ -202,7 +220,6 @@ async function getTerms(): Promise<any> {
     console.log('Error processing terms: ' + error);
     errors = 'Error processing terms: ' + error;
     success = false;
-    return;
   }
 }
 
@@ -253,7 +270,6 @@ async function getClassesForTerm(term: number = currentTerm): Promise<any> {
     console.log('Error processing classes: ' + error);
     errors = 'Error processing classes: ' + error;
     success = false;
-    return;
   }
 }
 
@@ -281,6 +297,5 @@ async function setCurrentTerm(): Promise<any> {
     console.log('Error processing current term' + error);
     errors = 'Error processing current term' + error;
     success = false;
-    return;
   }
 }
