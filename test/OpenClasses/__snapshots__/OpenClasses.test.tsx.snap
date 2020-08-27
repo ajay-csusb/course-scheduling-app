@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Open classes component component snapshot 1`] = `
+<OpenClasses
+  onChangeOfOpenClasses={[Function]}
+  openClasses={false}
+>
+  <Blueprint3.Switch
+    checked={false}
+    className="open-classes"
+    innerLabel="Off"
+    label="Open Classes"
+    onChange={[Function]}
+  >
+    <Control
+      checked={false}
+      className="open-classes"
+      indicatorChildren={
+        Array [
+          <div
+            className="bp3-control-indicator-child"
+          >
+            <div
+              className="bp3-switch-inner-text"
+            >
+              Off
+            </div>
+          </div>,
+          <div
+            className="bp3-control-indicator-child"
+          >
+            <div
+              className="bp3-switch-inner-text"
+            >
+              Off
+            </div>
+          </div>,
+        ]
+      }
+      label="Open Classes"
+      onChange={[Function]}
+      type="checkbox"
+      typeClassName="bp3-switch"
+    >
+      <label
+        className="bp3-control bp3-switch open-classes"
+      >
+        <input
+          checked={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <span
+          className="bp3-control-indicator"
+        >
+          <div
+            className="bp3-control-indicator-child"
+            key="checked"
+          >
+            <div
+              className="bp3-switch-inner-text"
+            >
+              Off
+            </div>
+          </div>
+          <div
+            className="bp3-control-indicator-child"
+            key="unchecked"
+          >
+            <div
+              className="bp3-switch-inner-text"
+            >
+              Off
+            </div>
+          </div>
+        </span>
+        Open Classes
+      </label>
+    </Control>
+  </Blueprint3.Switch>
+</OpenClasses>
+`;
+
+exports[`Open classes component parent snapshot 1`] = `
+Array [
+  <Blueprint3.Switch
+    checked={false}
+    className="open-classes"
+    innerLabel="Off"
+    label="Open Classes"
+    onChange={[Function]}
+  >
+    <Control
+      checked={false}
+      className="open-classes"
+      indicatorChildren={
+        Array [
+          <div
+            className="bp3-control-indicator-child"
+          >
+            <div
+              className="bp3-switch-inner-text"
+            >
+              Off
+            </div>
+          </div>,
+          <div
+            className="bp3-control-indicator-child"
+          >
+            <div
+              className="bp3-switch-inner-text"
+            >
+              Off
+            </div>
+          </div>,
+        ]
+      }
+      label="Open Classes"
+      onChange={[Function]}
+      type="checkbox"
+      typeClassName="bp3-switch"
+    >
+      <label
+        className="bp3-control bp3-switch open-classes"
+      >
+        <input
+          checked={false}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <span
+          className="bp3-control-indicator"
+        >
+          <div
+            className="bp3-control-indicator-child"
+            key="checked"
+          >
+            <div
+              className="bp3-switch-inner-text"
+            >
+              Off
+            </div>
+          </div>
+          <div
+            className="bp3-control-indicator-child"
+            key="unchecked"
+          >
+            <div
+              className="bp3-switch-inner-text"
+            >
+              Off
+            </div>
+          </div>
+        </span>
+        Open Classes
+      </label>
+    </Control>
+  </Blueprint3.Switch>,
+  <Control
+    checked={false}
+    className="open-classes"
+    indicatorChildren={
+      Array [
+        <div
+          className="bp3-control-indicator-child"
+        >
+          <div
+            className="bp3-switch-inner-text"
+          >
+            Off
+          </div>
+        </div>,
+        <div
+          className="bp3-control-indicator-child"
+        >
+          <div
+            className="bp3-switch-inner-text"
+          >
+            Off
+          </div>
+        </div>,
+      ]
+    }
+    label="Open Classes"
+    onChange={[Function]}
+    type="checkbox"
+    typeClassName="bp3-switch"
+  >
+    <label
+      className="bp3-control bp3-switch open-classes"
+    >
+      <input
+        checked={false}
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <span
+        className="bp3-control-indicator"
+      >
+        <div
+          className="bp3-control-indicator-child"
+          key="checked"
+        >
+          <div
+            className="bp3-switch-inner-text"
+          >
+            Off
+          </div>
+        </div>
+        <div
+          className="bp3-control-indicator-child"
+          key="unchecked"
+        >
+          <div
+            className="bp3-switch-inner-text"
+          >
+            Off
+          </div>
+        </div>
+      </span>
+      Open Classes
+    </label>
+  </Control>,
+  <label
+    className="bp3-control bp3-switch open-classes"
+  >
+    <input
+      checked={false}
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <span
+      className="bp3-control-indicator"
+    >
+      <div
+        className="bp3-control-indicator-child"
+        key="checked"
+      >
+        <div
+          className="bp3-switch-inner-text"
+        >
+          Off
+        </div>
+      </div>
+      <div
+        className="bp3-control-indicator-child"
+        key="unchecked"
+      >
+        <div
+          className="bp3-switch-inner-text"
+        >
+          Off
+        </div>
+      </div>
+    </span>
+    Open Classes
+  </label>,
+]
+`;
