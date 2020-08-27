@@ -29,6 +29,7 @@ export interface IClassSearchFormProps {
   courseAttr: string;
   sessionCode: string;
   currentTermId: string;
+  openClasses: boolean;
   onChangeOfTerm: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
@@ -42,6 +43,7 @@ export interface IClassSearchFormProps {
   onChangeOfSessionCode: (event: any) => void;
   onChangeOfClassNo: (event: any) => void;
   onChangeOfGeClassesAttribute: (event: any) => void;
+  onChangeOfOpenClasses: (event: any) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;

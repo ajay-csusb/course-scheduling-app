@@ -5,6 +5,7 @@ import { InstructionMode } from './InstructionMode';
 import { GeCourseAttribute } from './GeCourseAttribute';
 import * as CourseAttributes from './CourseAttributes';
 import * as MeetingDay from './MeetingDay';
+import { OpenClassesFilter } from './OpenClassesFilter';
 
 // @Todo create a new module to filter active classes
 export function filterByActiveClasses(classes: IClass[]): IClass[] {
@@ -19,18 +20,33 @@ export function filterByActiveClasses(classes: IClass[]): IClass[] {
 }
 
 export function filter(classes: IClass[], params: IClassSearchContainerState): IClass[] {
-  const {startTime, endTime, instructionMode, geClassesAttribute, courseAttr, term, meetingDate} = params;
+  const {
+    startTime,
+    endTime,
+    instructionMode,
+    geClassesAttribute,
+    courseAttr,
+    term,
+    meetingDate,
+    showOpenClasses,
+  } = params;
 
   return CourseAttributes.filter(
     GeCourseAttribute.filter(
       InstructionMode.filter(
         MeetingDay.filter(
           MeetingTime.filter(
-            filterByActiveClasses(classes),
-            startTime, endTime),
-          meetingDate),
-        instructionMode),
-      geClassesAttribute, term),
+            OpenClassesFilter.filter(filterByActiveClasses(classes), showOpenClasses),
+            startTime,
+            endTime
+          ),
+          meetingDate
+        ),
+        instructionMode
+      ),
+      geClassesAttribute,
+      term
+    ),
     courseAttr
   );
 }
