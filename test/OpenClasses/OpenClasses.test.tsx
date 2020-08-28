@@ -13,8 +13,7 @@ describe('Open classes component', () => {
   test('parent snapshot', () => {
     const classSearchContainerWrapper = mount(<ClassSearchContainer />);
     classSearchContainerWrapper.find('#additional-filters').simulate('click');
-    const openClassesComponent = classSearchContainerWrapper.find('.open-classes');
-    expect(openClassesComponent).toMatchSnapshot();
+    expect(classSearchContainerWrapper).toMatchSnapshot();
   });
 
   test('component snapshot', () => {
