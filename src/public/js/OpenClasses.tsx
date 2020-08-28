@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from '@blueprintjs/core';
+import { Switch, Alignment } from '@blueprintjs/core';
 
 export interface IOpenClassesProps {
   openClasses: boolean;
@@ -22,6 +22,8 @@ export class OpenClasses extends React.Component<IOpenClassesProps> {
         innerLabel={innerLabelText}
         className="open-classes"
         onChange={this.onChangeOfOpenClasses}
+        large={true}
+        alignIndicator={Alignment.RIGHT}
       />
     );
   }
