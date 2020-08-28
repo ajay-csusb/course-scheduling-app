@@ -6,13 +6,16 @@ exports[`Open classes component component snapshot 1`] = `
   openClasses={false}
 >
   <Blueprint3.Switch
+    alignIndicator="right"
     checked={false}
     className="open-classes"
     innerLabel="Off"
     label="Open Classes"
+    large={true}
     onChange={[Function]}
   >
     <Control
+      alignIndicator="right"
       checked={false}
       className="open-classes"
       indicatorChildren={
@@ -38,12 +41,13 @@ exports[`Open classes component component snapshot 1`] = `
         ]
       }
       label="Open Classes"
+      large={true}
       onChange={[Function]}
       type="checkbox"
       typeClassName="bp3-switch"
     >
       <label
-        className="bp3-control bp3-switch open-classes"
+        className="bp3-control bp3-switch bp3-large bp3-align-right open-classes"
       >
         <input
           checked={false}
@@ -84,13 +88,16 @@ exports[`Open classes component component snapshot 1`] = `
 exports[`Open classes component parent snapshot 1`] = `
 Array [
   <Blueprint3.Switch
+    alignIndicator="right"
     checked={false}
     className="open-classes"
     innerLabel="Off"
     label="Open Classes"
+    large={true}
     onChange={[Function]}
   >
     <Control
+      alignIndicator="right"
       checked={false}
       className="open-classes"
       indicatorChildren={
@@ -116,12 +123,13 @@ Array [
         ]
       }
       label="Open Classes"
+      large={true}
       onChange={[Function]}
       type="checkbox"
       typeClassName="bp3-switch"
     >
       <label
-        className="bp3-control bp3-switch open-classes"
+        className="bp3-control bp3-switch bp3-large bp3-align-right open-classes"
       >
         <input
           checked={false}
@@ -157,6 +165,7 @@ Array [
     </Control>
   </Blueprint3.Switch>,
   <Control
+    alignIndicator="right"
     checked={false}
     className="open-classes"
     indicatorChildren={
@@ -182,12 +191,13 @@ Array [
       ]
     }
     label="Open Classes"
+    large={true}
     onChange={[Function]}
     type="checkbox"
     typeClassName="bp3-switch"
   >
     <label
-      className="bp3-control bp3-switch open-classes"
+      className="bp3-control bp3-switch bp3-large bp3-align-right open-classes"
     >
       <input
         checked={false}
@@ -222,7 +232,7 @@ Array [
     </label>
   </Control>,
   <label
-    className="bp3-control bp3-switch open-classes"
+    className="bp3-control bp3-switch bp3-large bp3-align-right open-classes"
   >
     <input
       checked={false}
