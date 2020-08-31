@@ -88,6 +88,34 @@ describe('Instruction mode values', () => {
       expect(ClassSearchUtils.getInstructionMode(zClasses)).toEqual('Zero Unit Instruction');
     });
   });
+
+  describe('when the instruction mode is OS', () => {
+    const osClasses = JSON.parse(JSON.stringify(classes));
+    osClasses.instructionMode = 'OS';
+    it('should return Online Synchronous', () => {
+      expect(ClassSearchUtils.getInstructionMode(osClasses)).toEqual('Online Synchronous');
+    });
+  });
+
+  describe('when the instruction mode is CA', () => {
+    const caClasses = JSON.parse(JSON.stringify(classes));
+    caClasses.instructionMode = 'CA';
+    it('should return Hybrid Classroom/face-to-face plus asynchronous online instruction', () => {
+      expect(ClassSearchUtils.getInstructionMode(caClasses)).toEqual(
+        'Hybrid Classroom/face-to-face plus asynchronous online instruction'
+      );
+    });
+  });
+
+  describe('when the instruction mode is CS', () => {
+    const csClasses = JSON.parse(JSON.stringify(classes));
+    csClasses.instructionMode = 'CS';
+    it('should return Hybrid Classroom/face-to-face plus synchronous online instruction', () => {
+      expect(ClassSearchUtils.getInstructionMode(csClasses)).toEqual(
+        'Hybrid Classroom/face-to-face plus synchronous online instruction'
+      );
+    });
+  });
 });
 
 describe('Session code values', () => {
@@ -1325,9 +1353,7 @@ describe.each([
   });
 });
 
-describe.each(
-  getAsyncClassData()
-)('isAsyncClass(%o)', (classInfo, expected) => {
+describe.each(getAsyncClassData())('isAsyncClass(%o)', (classInfo, expected) => {
   const isAsync = ClassSearchUtils.isAsyncClass(classInfo);
 
   it(`should return ${expected}`, () => {
@@ -1368,7 +1394,7 @@ function getAsyncClassData() {
   syncClassWithOnlineBuildingCode.classEndTime = '';
   syncClassWithOnlineBuildingCode.buildingCode = 'OL';
   syncClassWithOnlineBuildingCode.room = 'ONLINE';
-  
+
   return [
     [baseClassJson, false],
     [classJson, false],
@@ -1379,4 +1405,3 @@ function getAsyncClassData() {
     [syncClassWithOnlineBuildingCode, true],
   ];
 }
-
