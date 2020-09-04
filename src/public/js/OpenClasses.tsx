@@ -13,13 +13,10 @@ export class OpenClasses extends React.Component<IOpenClassesProps> {
   }
 
   public render(): React.ReactNode {
-    const innerLabelText = this.props.openClasses ? 'On' : 'Off';
-
     return (
       <Switch
         checked={this.props.openClasses}
         label="Open Classes"
-        innerLabel={innerLabelText}
         className="open-classes"
         onChange={this.onChangeOfOpenClasses}
         large={true}
