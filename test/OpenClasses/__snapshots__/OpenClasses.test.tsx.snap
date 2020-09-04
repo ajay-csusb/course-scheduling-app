@@ -9,7 +9,6 @@ exports[`Open classes component component snapshot 1`] = `
     alignIndicator="right"
     checked={false}
     className="open-classes"
-    innerLabel="Off"
     label="Open Classes"
     large={true}
     onChange={[Function]}
@@ -18,28 +17,7 @@ exports[`Open classes component component snapshot 1`] = `
       alignIndicator="right"
       checked={false}
       className="open-classes"
-      indicatorChildren={
-        Array [
-          <div
-            className="bp3-control-indicator-child"
-          >
-            <div
-              className="bp3-switch-inner-text"
-            >
-              Off
-            </div>
-          </div>,
-          <div
-            className="bp3-control-indicator-child"
-          >
-            <div
-              className="bp3-switch-inner-text"
-            >
-              Off
-            </div>
-          </div>,
-        ]
-      }
+      indicatorChildren={null}
       label="Open Classes"
       large={true}
       onChange={[Function]}
@@ -56,28 +34,7 @@ exports[`Open classes component component snapshot 1`] = `
         />
         <span
           className="bp3-control-indicator"
-        >
-          <div
-            className="bp3-control-indicator-child"
-            key="checked"
-          >
-            <div
-              className="bp3-switch-inner-text"
-            >
-              Off
-            </div>
-          </div>
-          <div
-            className="bp3-control-indicator-child"
-            key="unchecked"
-          >
-            <div
-              className="bp3-switch-inner-text"
-            >
-              Off
-            </div>
-          </div>
-        </span>
+        />
         Open Classes
       </label>
     </Control>
@@ -1964,7 +1921,6 @@ exports[`Open classes component parent snapshot 1`] = `
                                         alignIndicator="right"
                                         checked={false}
                                         className="open-classes"
-                                        innerLabel="Off"
                                         label="Open Classes"
                                         large={true}
                                         onChange={[Function]}
@@ -1973,28 +1929,7 @@ exports[`Open classes component parent snapshot 1`] = `
                                           alignIndicator="right"
                                           checked={false}
                                           className="open-classes"
-                                          indicatorChildren={
-                                            Array [
-                                              <div
-                                                className="bp3-control-indicator-child"
-                                              >
-                                                <div
-                                                  className="bp3-switch-inner-text"
-                                                >
-                                                  Off
-                                                </div>
-                                              </div>,
-                                              <div
-                                                className="bp3-control-indicator-child"
-                                              >
-                                                <div
-                                                  className="bp3-switch-inner-text"
-                                                >
-                                                  Off
-                                                </div>
-                                              </div>,
-                                            ]
-                                          }
+                                          indicatorChildren={null}
                                           label="Open Classes"
                                           large={true}
                                           onChange={[Function]}
@@ -2011,28 +1946,7 @@ exports[`Open classes component parent snapshot 1`] = `
                                             />
                                             <span
                                               className="bp3-control-indicator"
-                                            >
-                                              <div
-                                                className="bp3-control-indicator-child"
-                                                key="checked"
-                                              >
-                                                <div
-                                                  className="bp3-switch-inner-text"
-                                                >
-                                                  Off
-                                                </div>
-                                              </div>
-                                              <div
-                                                className="bp3-control-indicator-child"
-                                                key="unchecked"
-                                              >
-                                                <div
-                                                  className="bp3-switch-inner-text"
-                                                >
-                                                  Off
-                                                </div>
-                                              </div>
-                                            </span>
+                                            />
                                             Open Classes
                                           </label>
                                         </Control>

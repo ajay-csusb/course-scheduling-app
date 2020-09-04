@@ -21,11 +21,4 @@ describe('Open classes component', () => {
     expect(openClassesComponentWrapper).toMatchSnapshot();
   });
 
-  test('status box text', () => {
-    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-    classSearchContainerWrapper.find('#additional-filters').simulate('click');
-    expect(classSearchContainerWrapper.text()).toContain('Off');
-    classSearchContainerWrapper.find('.open-classes > input').simulate('change');
-    expect(classSearchContainerWrapper.text()).toContain('On');
-  });
 });
