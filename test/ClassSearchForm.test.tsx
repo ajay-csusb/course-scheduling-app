@@ -49,11 +49,16 @@ describe('Class search form', () => {
 
     it('should pass the correct props to class search form component', () => {
       expect(searchFormComponent.prop('openClasses')).toBeFalsy();
+      expect(searchFormComponent.prop('careerLevelOptions')).toEqual({ugrd: false, pbac: false, exed: false});
       classSearchContainerComponent.find('#additional-filters').simulate('click');
       classSearchContainerComponent.find('.open-classes > input').simulate('change');
+      classSearchContainerComponent.find('input#ugrd').simulate('change');
+      classSearchContainerComponent.find('input#pbac').simulate('change');
+      classSearchContainerComponent.find('input#exed').simulate('change');
       classSearchContainerComponent.find('button[type="submit"]').simulate('click');
       searchFormComponent = classSearchContainerComponent.find(ClassSearchForm);
       expect(searchFormComponent.prop('openClasses')).toBeTruthy();
+      expect(searchFormComponent.prop('careerLevelOptions')).toEqual({ugrd: true, pbac: true, exed: true});
     });
   });
 });
