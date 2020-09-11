@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ClassSearchForm } from './ClassSearchForm';
 import { ClassSearchResults } from './ClassSearchResults';
-import { IClass, Class, IMeetingDate } from './Class';
+import { IClass, Class, IMeetingDate, ICareerLevels } from './Class';
 import { ISubject, Subject } from './Subject';
 import { UserInput } from './UserInput';
 import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
@@ -34,6 +34,7 @@ export interface IClassSearchContainerState {
   degreeType: string;
   forceReload: boolean;
   showOpenClasses: boolean;
+  careerLevelOptions: ICareerLevels;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
   private allResults: IClass[];
@@ -84,6 +85,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.onEnterKeyPress = this.onEnterKeyPress.bind(this);
     this.updateSubjectDropdown = this.updateSubjectDropdown.bind(this);
     this.updateOpenClasses = this.updateOpenClasses.bind(this);
+    this.updateCareerLevelOptions = this.updateCareerLevelOptions.bind(this);
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
@@ -347,6 +349,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       geClassesAttribute: '',
       forceReload: false,
       showOpenClasses: false,
+      careerLevelOptions: {
+        ugrd: false,
+        pbac: false,
+        exed: false,
+      },
     };
   }
 
@@ -540,6 +547,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfClassNo={this.updateClassNo}
         onChangeOfGeClassesAttribute={this.updateGeClassAttr}
         onChangeOfOpenClasses={this.updateOpenClasses}
+        onChangeOfCareerLevelOptions={this.updateCareerLevelOptions}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         onKeyDown={this.onEnterKeyPress}
@@ -551,6 +559,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         sessionCode={this.state.sessionCode}
         currentTermId={this.state.term}
         openClasses={this.state.showOpenClasses}
+        careerLevelOptions={this.state.careerLevelOptions}
       />
     );
   }
@@ -696,9 +705,30 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateOpenClasses(_event: any): void {
-    this.setState({
-      showOpenClasses: !this.state.showOpenClasses,
-    });
+    this.setState(
+      {
+        showOpenClasses: !this.state.showOpenClasses,
+      },
+      () => {
+        this.userInput.setOpenClassesStatus(!this.state.showOpenClasses);
+      }
+    );
+  }
+
+  private updateCareerLevelOptions(event: any): void {
+    const checkBoxValue = event.target.value;
+    this.setState(
+      {
+        careerLevelOptions: {
+          ugrd: checkBoxValue === 'ugrd' ? !this.state.careerLevelOptions.ugrd : this.state.careerLevelOptions.ugrd,
+          pbac: checkBoxValue === 'pbac' ? !this.state.careerLevelOptions.pbac : this.state.careerLevelOptions.pbac,
+          exed: checkBoxValue === 'exed' ? !this.state.careerLevelOptions.exed : this.state.careerLevelOptions.exed,
+        },
+      },
+      () => {
+        this.userInput.setCareerLevelOptionsStatus(this.state.careerLevelOptions);
+      }
+    );
   }
   private logUserSelectionToBigQuery(): void {
     const startDate: Date = new Date(this.state.startTime);

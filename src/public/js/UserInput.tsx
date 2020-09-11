@@ -1,4 +1,4 @@
-import { IMeetingDate } from './Class';
+import { IMeetingDate, ICareerLevels } from './Class';
 
 export class UserInput {
   private campus: string;
@@ -15,6 +15,8 @@ export class UserInput {
   private classNo: string;
   private degreeType: string;
   private geClassesAttr: string;
+  private openClassesStatus: boolean;
+  private careerLevelStatus: ICareerLevels;
 
   constructor() {
     this.campus = '';
@@ -39,6 +41,12 @@ export class UserInput {
     this.classNo = '';
     this.degreeType = '';
     this.geClassesAttr = '';
+    this.openClassesStatus = false;
+    this.careerLevelStatus = {
+      ugrd: false,
+      pbac: false,
+      exed: false,
+    };
   }
 
   public getCampus(): string {
@@ -51,32 +59,32 @@ export class UserInput {
     return '';
   }
 
-  public isMondayChecked(): boolean  {
-    return (this.day.mon);
+  public isMondayChecked(): boolean {
+    return this.day.mon;
   }
 
-  public isTuesdayChecked(): boolean  {
-    return (this.day.tue);
+  public isTuesdayChecked(): boolean {
+    return this.day.tue;
   }
 
-  public isWednesdayChecked(): boolean  {
-    return (this.day.wed);
+  public isWednesdayChecked(): boolean {
+    return this.day.wed;
   }
 
-  public isThursdayChecked(): boolean  {
-    return (this.day.thu);
+  public isThursdayChecked(): boolean {
+    return this.day.thu;
   }
 
-  public isFridayChecked(): boolean  {
-    return (this.day.fri);
+  public isFridayChecked(): boolean {
+    return this.day.fri;
   }
 
-  public isSaturdayChecked(): boolean  {
-    return (this.day.sat);
+  public isSaturdayChecked(): boolean {
+    return this.day.sat;
   }
 
-  public isSundayChecked(): boolean  {
-    return (this.day.sun);
+  public isSundayChecked(): boolean {
+    return this.day.sun;
   }
 
   public getSubject(): string {
@@ -94,7 +102,7 @@ export class UserInput {
   }
 
   public getInstructionMode(): string {
-    return (this.instructionMode === 'all') ? '' : this.instructionMode;
+    return this.instructionMode === 'all' ? '' : this.instructionMode;
   }
 
   public getStartTime(): Date {
@@ -110,12 +118,12 @@ export class UserInput {
   }
 
   public getCourseAttr(): string {
-
-    if (this.courseAttr === 'UGRD'
-      || this.courseAttr === 'PBAC'
-      || this.courseAttr === 'EXED'
-      || this.courseAttr === 'all'
-      || this.courseAttr === undefined
+    if (
+      this.courseAttr === 'UGRD' ||
+      this.courseAttr === 'PBAC' ||
+      this.courseAttr === 'EXED' ||
+      this.courseAttr === 'all' ||
+      this.courseAttr === undefined
     ) {
       return '';
     }
@@ -123,7 +131,7 @@ export class UserInput {
   }
 
   public getSessionCode(): string | undefined {
-    return (this.sessionCode === 'all' || this.sessionCode === undefined) ? '' : this.sessionCode;
+    return this.sessionCode === 'all' || this.sessionCode === undefined ? '' : this.sessionCode;
   }
 
   public getClassNo(): string | undefined {
@@ -135,11 +143,19 @@ export class UserInput {
   }
 
   public getDegreeType(): string {
-    return (this.degreeType === 'all') ? '' : this.degreeType;
+    return this.degreeType === 'all' ? '' : this.degreeType;
   }
 
   public getGeClassesAttr(): string {
     return this.geClassesAttr;
+  }
+
+  public getOpenClassStatus(): boolean {
+    return this.openClassesStatus;
+  }
+
+  public getCareerLevelOptionsStatus(): ICareerLevels {
+    return this.careerLevelStatus;
   }
 
   public setDegreeType(degreeType: string): void {
@@ -202,4 +218,11 @@ export class UserInput {
     this.geClassesAttr = geClassesAttr;
   }
 
+  public setOpenClassesStatus(status: boolean): void {
+    this.openClassesStatus = status;
+  }
+
+  public setCareerLevelOptionsStatus(status: ICareerLevels): void {
+    this.careerLevelStatus = status;
+  }
 }
