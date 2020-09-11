@@ -18,8 +18,8 @@ export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
 
   public render(): React.ReactNode {
     return (
-      <ControlGroup fill={true} vertical={false} className="career-levels">
-        <div id="career-level">
+      <ControlGroup fill={true} vertical={false} className="career-levels-filter-wrapper">
+        <div id="career-levels-filter">
           <div className="label">Career Levels</div>
           <div className="form-item">
             <Checkbox

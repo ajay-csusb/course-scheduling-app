@@ -3,7 +3,7 @@ import { IClass, ICareerLevels } from './Class';
 export function filter(classes: IClass[], careerLevelOptions: ICareerLevels): IClass[] {
   const result: IClass[] = [];
 
-  if (!atLeastOneDaySelected(careerLevelOptions)) {
+  if (!atLeastOneOptionSelected(careerLevelOptions)) {
     return classes;
   }
 
@@ -22,6 +22,6 @@ export function filter(classes: IClass[], careerLevelOptions: ICareerLevels): IC
   return result;
 }
 
-function atLeastOneDaySelected(careerLevelOptions: ICareerLevels) {
+function atLeastOneOptionSelected(careerLevelOptions: ICareerLevels) {
   return careerLevelOptions.ugrd || careerLevelOptions.pbac || careerLevelOptions.exed;
 }

@@ -1988,15 +1988,15 @@ exports[`Open classes component parent snapshot 1`] = `
                                       onKeyDown={[Function]}
                                     >
                                       <Blueprint3.ControlGroup
-                                        className="career-levels"
+                                        className="career-levels-filter-wrapper"
                                         fill={true}
                                         vertical={false}
                                       >
                                         <div
-                                          className="bp3-control-group bp3-fill career-levels"
+                                          className="bp3-control-group bp3-fill career-levels-filter-wrapper"
                                         >
                                           <div
-                                            id="career-level"
+                                            id="career-levels-filter"
                                           >
                                             <div
                                               className="label"

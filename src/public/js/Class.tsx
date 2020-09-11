@@ -69,6 +69,7 @@ export interface IMeetingDate {
   sat: boolean;
   sun: boolean;
 }
+
 export interface ICareerLevels {
   ugrd: boolean;
   pbac: boolean;
