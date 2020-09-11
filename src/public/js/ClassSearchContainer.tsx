@@ -710,7 +710,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         showOpenClasses: !this.state.showOpenClasses,
       },
       () => {
-        this.userInput.setOpenClassesStatus(!this.state.showOpenClasses);
+        this.userInput.setOpenClassesStatus(this.state.showOpenClasses);
       }
     );
   }

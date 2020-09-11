@@ -18,17 +18,17 @@ describe('Class number component', () => {
   });
 
   test('component snapshot', () => {
-    const careerLevelOptionsState: ICareerLevels = {
+    const careerLevelsOptionsState: ICareerLevels = {
       ugrd: false,
       pbac: false,
       exed: false,
     }
-    const careerLevelComponentWrapper = mount(<CareerLevels
-      careerLevelOptions={careerLevelOptionsState}
+    const careerLevelsComponentWrapper = mount(<CareerLevels
+      careerLevelOptions={careerLevelsOptionsState}
       onChangeOfCareerLevelOptions={() => {}}
       onKeyDown={() => {}}
     />);
-    expect(careerLevelComponentWrapper).toMatchSnapshot();
+    expect(careerLevelsComponentWrapper).toMatchSnapshot();
   });
 
 });
