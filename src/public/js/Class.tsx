@@ -69,6 +69,11 @@ export interface IMeetingDate {
   sat: boolean;
   sun: boolean;
 }
+export interface ICareerLevels {
+  ugrd: boolean;
+  pbac: boolean;
+  exed: boolean;
+}
 
 export class Class {
   private classInfo: IClass;

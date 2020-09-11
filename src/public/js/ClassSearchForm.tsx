@@ -6,7 +6,7 @@ import { SelectListQuarter } from './SelectListQuarter';
 import { SelectListCampus } from './SelectListCampus';
 import { ControlGroupMeetingTime } from './ControlGroupMeetingTime';
 import { ControlGroupMeetingDay } from './ControlGroupMeetingDay';
-import { IMeetingDate } from './Class';
+import { IMeetingDate, ICareerLevels } from './Class';
 import { autocompleteInstructorsProps } from './AutocompleteInstructors';
 import { ISubject } from './Subject';
 import { SelectListInstructionMode } from './SelectListInstructionMode';
@@ -30,6 +30,7 @@ export interface IClassSearchFormProps {
   sessionCode: string;
   currentTermId: string;
   openClasses: boolean;
+  careerLevelOptions: ICareerLevels;
   onChangeOfTerm: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
@@ -44,6 +45,7 @@ export interface IClassSearchFormProps {
   onChangeOfClassNo: (event: any) => void;
   onChangeOfGeClassesAttribute: (event: any) => void;
   onChangeOfOpenClasses: (event: any) => void;
+  onChangeOfCareerLevelOptions: (event: any) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;
