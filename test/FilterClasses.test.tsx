@@ -5,6 +5,7 @@ import {
   endMeetingTime,
   classPDC,
   baseClassJson,
+  careerLevelOptions,
 } from './ClassesJson';
 import { IClass, IMeetingDate } from '../src/public/js/Class';
 import { UserInput } from '../src/public/js/UserInput';
@@ -236,6 +237,8 @@ describe('FilterClasses filter method', () => {
     showErrorMessage: false,
     forceReload: false,
     term: '2194',
+    showOpenClasses: false,
+    careerLevelOptions: careerLevelOptions,
   };
   let updatedParams: IClassSearchContainerState;
 

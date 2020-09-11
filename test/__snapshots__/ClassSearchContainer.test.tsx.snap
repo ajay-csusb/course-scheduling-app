@@ -10,6 +10,13 @@ exports[`snapshots Class search container component snapshot 1`] = `
     >
       <ClassSearchForm
         campus="both"
+        careerLevelOptions={
+          Object {
+            "exed": false,
+            "pbac": false,
+            "ugrd": false,
+          }
+        }
         classNo=""
         courseAttr="all"
         courseNo=""
@@ -31,6 +38,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
           }
         }
         onChangeOfCampus={[Function]}
+        onChangeOfCareerLevelOptions={[Function]}
         onChangeOfClassNo={[Function]}
         onChangeOfCourseAttr={[Function]}
         onChangeOfCourseNo={[Function]}
@@ -74,6 +82,13 @@ exports[`snapshots compare search form snapshot 1`] = `
 >
   <ClassSearchForm
     campus="both"
+    careerLevelOptions={
+      Object {
+        "exed": false,
+        "pbac": false,
+        "ugrd": false,
+      }
+    }
     classNo=""
     courseAttr="all"
     courseNo=""
@@ -95,6 +110,7 @@ exports[`snapshots compare search form snapshot 1`] = `
       }
     }
     onChangeOfCampus={[Function]}
+    onChangeOfCareerLevelOptions={[Function]}
     onChangeOfClassNo={[Function]}
     onChangeOfCourseAttr={[Function]}
     onChangeOfCourseNo={[Function]}
@@ -1406,6 +1422,13 @@ exports[`snapshots compare search form snapshot 1`] = `
                 >
                   <AdvancedFilterFieldset
                     campus="both"
+                    careerLevelOptions={
+                      Object {
+                        "exed": false,
+                        "pbac": false,
+                        "ugrd": false,
+                      }
+                    }
                     classNo=""
                     courseAttr="all"
                     courseNo=""
@@ -1427,6 +1450,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                       }
                     }
                     onChangeOfCampus={[Function]}
+                    onChangeOfCareerLevelOptions={[Function]}
                     onChangeOfClassNo={[Function]}
                     onChangeOfCourseAttr={[Function]}
                     onChangeOfCourseNo={[Function]}

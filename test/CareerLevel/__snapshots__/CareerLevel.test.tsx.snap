@@ -1,48 +1,181 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Open classes component component snapshot 1`] = `
-<OpenClasses
-  onChangeOfOpenClasses={[Function]}
-  openClasses={false}
+exports[`Class number component component snapshot 1`] = `
+<CareerLevels
+  careerLevelOptions={
+    Object {
+      "exed": false,
+      "pbac": false,
+      "ugrd": false,
+    }
+  }
+  onChangeOfCareerLevelOptions={[Function]}
+  onKeyDown={[Function]}
 >
-  <Blueprint3.Switch
-    alignIndicator="right"
-    checked={false}
-    className="open-classes"
-    label="Open Classes"
-    large={true}
-    onChange={[Function]}
+  <Blueprint3.ControlGroup
+    className="career-levels"
+    fill={true}
+    vertical={false}
   >
-    <Control
-      alignIndicator="right"
-      checked={false}
-      className="open-classes"
-      indicatorChildren={null}
-      label="Open Classes"
-      large={true}
-      onChange={[Function]}
-      type="checkbox"
-      typeClassName="bp3-switch"
+    <div
+      className="bp3-control-group bp3-fill career-levels"
     >
-      <label
-        className="bp3-control bp3-switch bp3-large bp3-align-right open-classes"
+      <div
+        id="career-level"
       >
-        <input
-          checked={false}
-          onChange={[Function]}
-          type="checkbox"
-        />
-        <span
-          className="bp3-control-indicator"
-        />
-        Open Classes
-      </label>
-    </Control>
-  </Blueprint3.Switch>
-</OpenClasses>
+        <div
+          className="label"
+        >
+          Career Levels
+        </div>
+        <div
+          className="form-item"
+        >
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="ugrd"
+            id="ugrd"
+            inline={true}
+            label="Undergraduate"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="ugrd"
+          >
+            <Control
+              alignIndicator="left"
+              checked={false}
+              className="ugrd"
+              id="ugrd"
+              inline={true}
+              inputRef={[Function]}
+              label="Undergraduate"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="checkbox"
+              typeClassName="bp3-checkbox"
+              value="ugrd"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left ugrd"
+              >
+                <input
+                  checked={false}
+                  id="ugrd"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="ugrd"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Undergraduate
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+        <div
+          className="form-item"
+        >
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="pbac"
+            id="pbac"
+            inline={true}
+            label="Post baccalaureate"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="pbac"
+          >
+            <Control
+              alignIndicator="left"
+              checked={false}
+              className="pbac"
+              id="pbac"
+              inline={true}
+              inputRef={[Function]}
+              label="Post baccalaureate"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="checkbox"
+              typeClassName="bp3-checkbox"
+              value="pbac"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left pbac"
+              >
+                <input
+                  checked={false}
+                  id="pbac"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="pbac"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Post baccalaureate
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+        <div
+          className="form-item"
+        >
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="exed"
+            id="exed"
+            inline={true}
+            label="Extended education"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="exed"
+          >
+            <Control
+              alignIndicator="left"
+              checked={false}
+              className="exed"
+              id="exed"
+              inline={true}
+              inputRef={[Function]}
+              label="Extended education"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="checkbox"
+              typeClassName="bp3-checkbox"
+              value="exed"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left exed"
+              >
+                <input
+                  checked={false}
+                  id="exed"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="exed"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Extended education
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+      </div>
+    </div>
+  </Blueprint3.ControlGroup>
+</CareerLevels>
 `;
 
-exports[`Open classes component parent snapshot 1`] = `
+exports[`Class number component parent snapshot 1`] = `
 <ClassSearchContainer>
   <div
     className="form-section"
@@ -1448,7 +1581,7 @@ exports[`Open classes component parent snapshot 1`] = `
                           onClick={[Function]}
                         >
                           Hide
-                           Additional Search Criteria 
+                           Additional Search Criteria
                           <i
                             className="fal fa-chevron-up"
                           />

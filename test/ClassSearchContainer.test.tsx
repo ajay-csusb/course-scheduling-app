@@ -158,6 +158,23 @@ describe('states', () => {
     });
   });
 
+  describe('when a user searches for career level classes', () => {
+    it('should set the correct states for career level classes', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({ugrd: false, pbac: false, exed: false});
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('input#ugrd').simulate('change');
+      classSearchContainerWrapper.find('input#pbac').simulate('change');
+      classSearchContainerWrapper.find('input#exed').simulate('change');
+      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({ugrd: true, pbac: true, exed: true});
+      classSearchContainerWrapper.find('input#ugrd').simulate('change');
+      classSearchContainerWrapper.find('input#pbac').simulate('change');
+      classSearchContainerWrapper.find('input#exed').simulate('change');
+      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({ugrd: false, pbac: false, exed: false});
+    });
+  });
+
+
   describe('when user clicks submit', () => {
     let classSearchContainerWrapper = null;
     beforeEach(() => {
@@ -193,6 +210,12 @@ describe('states', () => {
         },
         courseNo: '000',
         classNo: '1111',
+        showOpenClasses: true,
+        careerLevelOptions: {
+          ugrd: true,
+          pbac: true,
+          exed: true,
+        }
       });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       classSearchContainerWrapper.update();
@@ -279,6 +302,14 @@ describe('states', () => {
     it('sets isLoading to false', () => {
       expect(classSearchContainerWrapper.state('isLoading')).toBeFalsy();
     });
+
+    it('sets showOpenClasses to false', () => {
+      expect(classSearchContainerWrapper.state('showOpenClasses')).toBeFalsy();
+    })
+
+    it('sets careerLevelOptions to false', () => {
+      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({ugrd: false, pbac: false, exed: false});
+    })
   });
 });
 
