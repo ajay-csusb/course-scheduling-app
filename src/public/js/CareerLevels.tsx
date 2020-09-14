@@ -4,9 +4,7 @@ import { ICareerLevels } from './Class';
 
 export interface ICareerLevelsProps {
   careerLevelOptions: ICareerLevels;
-
   onChangeOfCareerLevelOptions: (event: any) => void;
-
   onKeyDown: (event: React.KeyboardEvent) => void;
 }
 
