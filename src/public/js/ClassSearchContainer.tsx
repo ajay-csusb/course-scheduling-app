@@ -462,6 +462,16 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return this.state.courseAttr === 'all';
   }
 
+  private isOpenClassesSelected(): boolean {
+    return this.state.showOpenClasses;
+  }
+
+  private atleastOneCareerLevelsOptionSelected() {
+    return (
+      this.state.careerLevelOptions.ugrd || this.state.careerLevelOptions.pbac || this.state.careerLevelOptions.exed
+    );
+  }
+
   private otherFieldsDoNotHaveValidValues(): boolean {
     if (!this.isInstructorEmpty()) {
       return false;
@@ -485,6 +495,12 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       return false;
     }
     if (!this.allCourseAttributesSelected()) {
+      return false;
+    }
+    if (this.isOpenClassesSelected()) {
+      return false;
+    }
+    if (this.atleastOneCareerLevelsOptionSelected()) {
       return false;
     }
     return true;
