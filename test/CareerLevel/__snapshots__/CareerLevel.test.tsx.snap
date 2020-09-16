@@ -1581,7 +1581,7 @@ exports[`Class number component parent snapshot 1`] = `
                           onClick={[Function]}
                         >
                           Hide
-                           Additional Search Criteria
+                           Additional Search Criteria 
                           <i
                             className="fal fa-chevron-up"
                           />
