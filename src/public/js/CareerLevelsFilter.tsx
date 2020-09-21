@@ -1,20 +1,20 @@
 import { IClass, ICareerLevels } from './Class';
 
-export function filter(classes: IClass[], careerLevelOptions: ICareerLevels): IClass[] {
+export function filter(classes: IClass[], careerLevelsOptions: ICareerLevels): IClass[] {
   const result: IClass[] = [];
 
-  if (!atLeastOneOptionSelected(careerLevelOptions)) {
+  if (!atLeastOneOptionSelected(careerLevelsOptions)) {
     return classes;
   }
 
   classes.forEach(_class => {
-    if (careerLevelOptions.ugrd && _class.degreeType.toLowerCase() === 'ugrd') {
+    if (careerLevelsOptions.ugrd && _class.degreeType.toLowerCase() === 'ugrd') {
       result.push(_class);
     }
-    if (careerLevelOptions.pbac && _class.degreeType.toLowerCase() === 'pbac') {
+    if (careerLevelsOptions.pbac && _class.degreeType.toLowerCase() === 'pbac') {
       result.push(_class);
     }
-    if (careerLevelOptions.exed && _class.degreeType.toLowerCase() === 'exed') {
+    if (careerLevelsOptions.exed && _class.degreeType.toLowerCase() === 'exed') {
       result.push(_class);
     }
   });
@@ -22,6 +22,6 @@ export function filter(classes: IClass[], careerLevelOptions: ICareerLevels): IC
   return result;
 }
 
-function atLeastOneOptionSelected(careerLevelOptions: ICareerLevels) {
-  return careerLevelOptions.ugrd || careerLevelOptions.pbac || careerLevelOptions.exed;
+function atLeastOneOptionSelected(careerLevelsOptions: ICareerLevels) {
+  return careerLevelsOptions.ugrd || careerLevelsOptions.pbac || careerLevelsOptions.exed;
 }

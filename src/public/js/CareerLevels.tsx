@@ -11,7 +11,7 @@ export interface ICareerLevelsProps {
 export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
   constructor(props: ICareerLevelsProps) {
     super(props);
-    this.handleChangeOfCareerLevelOptions = this.handleChangeOfCareerLevelOptions.bind(this);
+    this.handleChangeOfCareerLevelsOptions = this.handleChangeOfCareerLevelsOptions.bind(this);
   }
 
   public render(): React.ReactNode {
@@ -23,8 +23,8 @@ export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
             <Checkbox
               id="ugrd"
               value="ugrd"
-              className="ugrd"
-              onChange={(event: React.FormEvent) => this.handleChangeOfCareerLevelOptions(event)}
+              className="career-levels-checkboxes"
+              onChange={(event: React.FormEvent) => this.handleChangeOfCareerLevelsOptions(event)}
               checked={this.props.careerLevelOptions.ugrd}
               onKeyDown={this.props.onKeyDown}
               inline={true}
@@ -36,8 +36,8 @@ export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
             <Checkbox
               id="pbac"
               value="pbac"
-              className="pbac"
-              onChange={(event: React.FormEvent) => this.handleChangeOfCareerLevelOptions(event)}
+              className="career-levels-checkboxes"
+              onChange={(event: React.FormEvent) => this.handleChangeOfCareerLevelsOptions(event)}
               checked={this.props.careerLevelOptions.pbac}
               onKeyDown={this.props.onKeyDown}
               inline={true}
@@ -49,8 +49,8 @@ export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
             <Checkbox
               id="exed"
               value="exed"
-              className="exed"
-              onChange={(event: React.FormEvent) => this.handleChangeOfCareerLevelOptions(event)}
+              className="career-levels-checkboxes"
+              onChange={(event: React.FormEvent) => this.handleChangeOfCareerLevelsOptions(event)}
               checked={this.props.careerLevelOptions.exed}
               onKeyDown={this.props.onKeyDown}
               inline={true}
@@ -63,7 +63,7 @@ export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
     );
   }
 
-  private handleChangeOfCareerLevelOptions(event: React.FormEvent): void {
+  private handleChangeOfCareerLevelsOptions(event: React.FormEvent): void {
     this.props.onChangeOfCareerLevelOptions(event);
   }
 }
