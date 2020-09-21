@@ -161,19 +161,66 @@ describe('states', () => {
   describe('when a user searches for career level classes', () => {
     it('should set the correct states for career level classes', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({ugrd: false, pbac: false, exed: false});
+      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({
+        ugrd: false,
+        pbac: false,
+        exed: false,
+      });
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
       classSearchContainerWrapper.find('input#ugrd').simulate('change');
       classSearchContainerWrapper.find('input#pbac').simulate('change');
       classSearchContainerWrapper.find('input#exed').simulate('change');
-      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({ugrd: true, pbac: true, exed: true});
+      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({ ugrd: true, pbac: true, exed: true });
       classSearchContainerWrapper.find('input#ugrd').simulate('change');
       classSearchContainerWrapper.find('input#pbac').simulate('change');
       classSearchContainerWrapper.find('input#exed').simulate('change');
-      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({ugrd: false, pbac: false, exed: false});
+      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({
+        ugrd: false,
+        pbac: false,
+        exed: false,
+      });
     });
   });
 
+  describe('when a user filters classes by course levels', () => {
+    it('should set the correct states for course levels', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      expect(classSearchContainerWrapper.state('courseLevelsOptions')).toEqual({
+        1000: false,
+        2000: false,
+        3000: false,
+        4000: false,
+        5000: false,
+        6000: false,
+        7000: false,
+      });
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('input#three-thousand').simulate('change');
+      classSearchContainerWrapper.find('input#seven-thousand').simulate('change');
+      expect(classSearchContainerWrapper.state('courseLevelsOptions')).toEqual({
+        1000: false,
+        2000: false,
+        3000: true,
+        4000: false,
+        5000: false,
+        6000: false,
+        7000: true,
+      });
+      classSearchContainerWrapper.find('input#thousand').simulate('change');
+      classSearchContainerWrapper.find('input#three-thousand').simulate('change');
+      classSearchContainerWrapper.find('input#six-thousand').simulate('change');
+      classSearchContainerWrapper.find('input#seven-thousand').simulate('change');
+      expect(classSearchContainerWrapper.state('courseLevelsOptions')).toEqual({
+        1000: true,
+        2000: false,
+        3000: false,
+        4000: false,
+        5000: false,
+        6000: true,
+        7000: false,
+      });
+    });
+  });
 
   describe('when user clicks submit', () => {
     let classSearchContainerWrapper = null;
@@ -215,6 +262,15 @@ describe('states', () => {
           ugrd: true,
           pbac: true,
           exed: true,
+        },
+        courseLevelOptions: {
+          1000: true,
+          2000: true,
+          3000: true,
+          4000: true,
+          5000: true,
+          6000: true,
+          7000: true,
         }
       });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
@@ -305,11 +361,29 @@ describe('states', () => {
 
     it('sets showOpenClasses to false', () => {
       expect(classSearchContainerWrapper.state('showOpenClasses')).toBeFalsy();
-    })
+    });
 
     it('sets careerLevelOptions to false', () => {
-      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({ugrd: false, pbac: false, exed: false});
-    })
+      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({
+        ugrd: false,
+        pbac: false,
+        exed: false,
+      });
+    });
+
+    it('sets the courseLevelOptions to false', () => {
+      expect(classSearchContainerWrapper.state('courseLevelsOptions')).toEqual(
+        {
+          1000: false,
+          2000: false,
+          3000: false,
+          4000: false,
+          5000: false,
+          6000: false,
+          7000: false,
+        }
+      );
+    });
   });
 });
 
