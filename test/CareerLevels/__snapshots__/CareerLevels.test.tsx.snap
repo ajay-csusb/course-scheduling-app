@@ -2,14 +2,22 @@
 
 exports[`Career levels component component snapshot 1`] = `
 <CareerLevels
+<<<<<<< HEAD
   careerLevelsOptions={
+=======
+  careerLevelOptions={
+>>>>>>> a179c38... refactor: update variable and function names
     Object {
       "exed": false,
       "pbac": false,
       "ugrd": false,
     }
   }
+<<<<<<< HEAD
   onChangeOfCareerLevelsOptions={[Function]}
+=======
+  onChangeOfCareerLevelOptions={[Function]}
+>>>>>>> a179c38... refactor: update variable and function names
   onKeyDown={[Function]}
 >
   <Blueprint3.ControlGroup
