@@ -7,6 +7,7 @@ import * as CourseAttributes from './CourseAttributes';
 import * as MeetingDay from './MeetingDay';
 import * as OpenClassesFilter from './OpenClassesFilter';
 import * as CareerLevelsFilter from './CareerLevelsFilter';
+import * as CourseLevelsFilter from './CourseLevelsFilter';
 
 // @Todo create a new module to filter active classes
 export function filterByActiveClasses(classes: IClass[]): IClass[] {
@@ -31,6 +32,7 @@ export function filter(classes: IClass[], params: IClassSearchContainerState): I
     meetingDate,
     showOpenClasses,
     careerLevelOptions,
+    courseLevelsOptions,
   } = params;
 
   return CourseAttributes.filter(
@@ -38,9 +40,12 @@ export function filter(classes: IClass[], params: IClassSearchContainerState): I
       InstructionMode.filter(
         MeetingDay.filter(
           MeetingTime.filter(
-            CareerLevelsFilter.filter(
-              OpenClassesFilter.filter(filterByActiveClasses(classes), showOpenClasses),
-              careerLevelOptions
+            CourseLevelsFilter.filter(
+              CareerLevelsFilter.filter(
+                OpenClassesFilter.filter(filterByActiveClasses(classes), showOpenClasses),
+                careerLevelOptions
+              ),
+              courseLevelsOptions
             ),
             startTime,
             endTime

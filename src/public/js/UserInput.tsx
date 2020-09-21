@@ -1,4 +1,4 @@
-import { IMeetingDate, ICareerLevels } from './Class';
+import { IMeetingDate, ICareerLevels, ICourseLevels } from './Class';
 
 export class UserInput {
   private campus: string;
@@ -17,6 +17,7 @@ export class UserInput {
   private geClassesAttr: string;
   private openClassesStatus: boolean;
   private careerLevelStatus: ICareerLevels;
+  private courseLevelsStatus: ICourseLevels
 
   constructor() {
     this.campus = '';
@@ -47,6 +48,15 @@ export class UserInput {
       pbac: false,
       exed: false,
     };
+    this.courseLevelsStatus = {
+      1000: false,
+      2000: false,
+      3000: false,
+      4000: false,
+      5000: false,
+      6000: false,
+      7000: false,
+    }
   }
 
   public getCampus(): string {
@@ -158,6 +168,10 @@ export class UserInput {
     return this.careerLevelStatus;
   }
 
+  public getCourseLevelsOptionsStatus(): ICourseLevels {
+    return this.courseLevelsStatus
+  }
+
   public setDegreeType(degreeType: string): void {
     this.degreeType = degreeType;
   }
@@ -224,5 +238,9 @@ export class UserInput {
 
   public setCareerLevelOptionsStatus(status: ICareerLevels): void {
     this.careerLevelStatus = status;
+  }
+
+  public setCourseLevelsOptionsStatus(status:ICourseLevels): void {
+    this.courseLevelsStatus = status;
   }
 }

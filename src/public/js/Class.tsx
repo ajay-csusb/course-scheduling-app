@@ -76,6 +76,16 @@ export interface ICareerLevels {
   exed: boolean;
 }
 
+export interface ICourseLevels {
+  1000: boolean,
+  2000: boolean,
+  3000: boolean,
+  4000: boolean,
+  5000: boolean,
+  6000: boolean
+  7000: boolean,
+}
+
 export class Class {
   private classInfo: IClass;
 
