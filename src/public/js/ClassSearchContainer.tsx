@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ClassSearchForm } from './ClassSearchForm';
 import { ClassSearchResults } from './ClassSearchResults';
-import { IClass, Class, IMeetingDate, ICareerLevels } from './Class';
+import { IClass, Class, IMeetingDate, ICareerLevels, ICourseLevels } from './Class';
 import { ISubject, Subject } from './Subject';
 import { UserInput } from './UserInput';
 import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
@@ -35,6 +35,7 @@ export interface IClassSearchContainerState {
   forceReload: boolean;
   showOpenClasses: boolean;
   careerLevelOptions: ICareerLevels;
+  courseLevelsOptions: ICourseLevels;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
   private allResults: IClass[];
@@ -86,6 +87,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.updateSubjectDropdown = this.updateSubjectDropdown.bind(this);
     this.updateOpenClasses = this.updateOpenClasses.bind(this);
     this.updateCareerLevelOptions = this.updateCareerLevelOptions.bind(this);
+    this.updateCourseLevelsOptions = this.updateCourseLevelsOptions.bind(this);
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
@@ -354,6 +356,15 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         pbac: false,
         exed: false,
       },
+      courseLevelsOptions: {
+        1000: false,
+        2000: false,
+        3000: false,
+        4000: false,
+        5000: false,
+        6000: false,
+        7000: false,
+      },
     };
   }
 
@@ -466,9 +477,21 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return this.state.showOpenClasses;
   }
 
-  private atleastOneCareerLevelsOptionSelected() {
+  private atleastOneCareerLevelOptionSelected() {
     return (
       this.state.careerLevelOptions.ugrd || this.state.careerLevelOptions.pbac || this.state.careerLevelOptions.exed
+    );
+  }
+
+  private atleastOneCourseLevelsOptionSelected() {
+    return (
+      this.state.courseLevelsOptions[1000] ||
+      this.state.courseLevelsOptions[2000] ||
+      this.state.courseLevelsOptions[3000] ||
+      this.state.courseLevelsOptions[4000] ||
+      this.state.courseLevelsOptions[5000] ||
+      this.state.courseLevelsOptions[6000] ||
+      this.state.courseLevelsOptions[7000]
     );
   }
 
@@ -500,7 +523,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     if (this.isOpenClassesSelected()) {
       return false;
     }
-    if (this.atleastOneCareerLevelsOptionSelected()) {
+    if (this.atleastOneCareerLevelOptionSelected()) {
+      return false;
+    }
+    if (this.atleastOneCourseLevelsOptionSelected()) {
       return false;
     }
     return true;
@@ -564,6 +590,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfGeClassesAttribute={this.updateGeClassAttr}
         onChangeOfOpenClasses={this.updateOpenClasses}
         onChangeOfCareerLevelOptions={this.updateCareerLevelOptions}
+        onChangeOfCourseLevelsOptions={this.updateCourseLevelsOptions}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         onKeyDown={this.onEnterKeyPress}
@@ -576,6 +603,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         currentTermId={this.state.term}
         openClasses={this.state.showOpenClasses}
         careerLevelOptions={this.state.careerLevelOptions}
+        courseLevelsOptions={this.state.courseLevelsOptions}
       />
     );
   }
@@ -773,5 +801,25 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       tuesday: this.state.meetingDate.tue,
       wednesday: this.state.meetingDate.wed,
     });
+  }
+
+  private updateCourseLevelsOptions(event: any): void {
+    const courseLevel = event.target.value;
+    this.setState(
+      {
+        courseLevelsOptions: {
+          1000: courseLevel === '1000' ? !this.state.courseLevelsOptions[1000] : this.state.courseLevelsOptions[1000],
+          2000: courseLevel === '2000' ? !this.state.courseLevelsOptions[2000] : this.state.courseLevelsOptions[2000],
+          3000: courseLevel === '3000' ? !this.state.courseLevelsOptions[3000] : this.state.courseLevelsOptions[3000],
+          4000: courseLevel === '4000' ? !this.state.courseLevelsOptions[4000] : this.state.courseLevelsOptions[4000],
+          5000: courseLevel === '5000' ? !this.state.courseLevelsOptions[5000] : this.state.courseLevelsOptions[5000],
+          6000: courseLevel === '6000' ? !this.state.courseLevelsOptions[6000] : this.state.courseLevelsOptions[6000],
+          7000: courseLevel === '7000' ? !this.state.courseLevelsOptions[7000] : this.state.courseLevelsOptions[7000],
+        },
+      },
+      () => {
+        this.userInput.setCourseLevelsOptionsStatus(this.state.courseLevelsOptions);
+      }
+    );
   }
 }
