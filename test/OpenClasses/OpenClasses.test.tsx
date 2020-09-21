@@ -10,12 +10,6 @@ describe('Open classes component', () => {
     TestUtils.ajax();
   });
 
-  test('parent snapshot', () => {
-    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-    classSearchContainerWrapper.find('#additional-filters').simulate('click');
-    expect(classSearchContainerWrapper).toMatchSnapshot();
-  });
-
   test('component snapshot', () => {
     const openClassesComponentWrapper = mount(<OpenClasses openClasses={false} onChangeOfOpenClasses={() => {}} />);
     expect(openClassesComponentWrapper).toMatchSnapshot();

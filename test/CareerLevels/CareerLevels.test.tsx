@@ -5,16 +5,10 @@ import { CareerLevels } from '../../src/public/js/CareerLevels';
 import { TestUtils } from '../TestUtils';
 import { ICareerLevels } from '../../src/public/js/Class';
 // tslint:disable:max-line-length
-describe('Class number component', () => {
+describe('Career levels component', () => {
 
   beforeAll(() => {
     TestUtils.ajax();
-  });
-
-  test('parent snapshot', () => {
-    const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-    classSearchContainerWrapper.find('#additional-filters').simulate('click');
-    expect(classSearchContainerWrapper).toMatchSnapshot();
   });
 
   test('component snapshot', () => {
