@@ -6,6 +6,7 @@ import {
   classPDC,
   baseClassJson,
   careerLevelOptions,
+  courseLevelsOptions,
 } from './ClassesJson';
 import { IClass, IMeetingDate } from '../src/public/js/Class';
 import { UserInput } from '../src/public/js/UserInput';
@@ -239,6 +240,7 @@ describe('FilterClasses filter method', () => {
     term: '2194',
     showOpenClasses: false,
     careerLevelOptions: careerLevelOptions,
+    courseLevelsOptions: courseLevelsOptions,
   };
   let updatedParams: IClassSearchContainerState;
 
