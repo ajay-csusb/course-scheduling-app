@@ -1,6 +1,5 @@
 import { mount } from 'enzyme';
 import * as React from 'react';
-import { ClassSearchContainer } from '../../src/public/js/ClassSearchContainer';
 import { CareerLevels } from '../../src/public/js/CareerLevels';
 import { TestUtils } from '../TestUtils';
 import { ICareerLevels } from '../../src/public/js/Class';
@@ -18,8 +17,8 @@ describe('Career levels component', () => {
       exed: false,
     }
     const careerLevelsComponentWrapper = mount(<CareerLevels
-      careerLevelOptions={careerLevelsOptionsState}
-      onChangeOfCareerLevelOptions={() => {}}
+      careerLevelsOptions={careerLevelsOptionsState}
+      onChangeOfCareerLevelsOptions={() => {}}
       onKeyDown={() => {}}
     />);
     expect(careerLevelsComponentWrapper).toMatchSnapshot();

@@ -10,7 +10,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
     >
       <ClassSearchForm
         campus="both"
-        careerLevelOptions={
+        careerLevelsOptions={
           Object {
             "exed": false,
             "pbac": false,
@@ -49,7 +49,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
           }
         }
         onChangeOfCampus={[Function]}
-        onChangeOfCareerLevelOptions={[Function]}
+        onChangeOfCareerLevelsOptions={[Function]}
         onChangeOfClassNo={[Function]}
         onChangeOfCourseAttr={[Function]}
         onChangeOfCourseLevelsOptions={[Function]}
@@ -94,7 +94,7 @@ exports[`snapshots compare search form snapshot 1`] = `
 >
   <ClassSearchForm
     campus="both"
-    careerLevelOptions={
+    careerLevelsOptions={
       Object {
         "exed": false,
         "pbac": false,
@@ -133,7 +133,7 @@ exports[`snapshots compare search form snapshot 1`] = `
       }
     }
     onChangeOfCampus={[Function]}
-    onChangeOfCareerLevelOptions={[Function]}
+    onChangeOfCareerLevelsOptions={[Function]}
     onChangeOfClassNo={[Function]}
     onChangeOfCourseAttr={[Function]}
     onChangeOfCourseLevelsOptions={[Function]}
@@ -1446,7 +1446,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                 >
                   <AdvancedFilterFieldset
                     campus="both"
-                    careerLevelOptions={
+                    careerLevelsOptions={
                       Object {
                         "exed": false,
                         "pbac": false,
@@ -1485,7 +1485,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                       }
                     }
                     onChangeOfCampus={[Function]}
-                    onChangeOfCareerLevelOptions={[Function]}
+                    onChangeOfCareerLevelsOptions={[Function]}
                     onChangeOfClassNo={[Function]}
                     onChangeOfCourseAttr={[Function]}
                     onChangeOfCourseLevelsOptions={[Function]}

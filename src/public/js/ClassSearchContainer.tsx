@@ -34,7 +34,7 @@ export interface IClassSearchContainerState {
   degreeType: string;
   forceReload: boolean;
   showOpenClasses: boolean;
-  careerLevelOptions: ICareerLevels;
+  careerLevelsOptions: ICareerLevels;
   courseLevelsOptions: ICourseLevels;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
@@ -86,7 +86,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.onEnterKeyPress = this.onEnterKeyPress.bind(this);
     this.updateSubjectDropdown = this.updateSubjectDropdown.bind(this);
     this.updateOpenClasses = this.updateOpenClasses.bind(this);
-    this.updateCareerLevelOptions = this.updateCareerLevelOptions.bind(this);
+    this.updateCareerLevelsOptions = this.updateCareerLevelsOptions.bind(this);
     this.updateCourseLevelsOptions = this.updateCourseLevelsOptions.bind(this);
     this.allResults = [];
     this.instructors = [];
@@ -351,7 +351,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       geClassesAttribute: '',
       forceReload: false,
       showOpenClasses: false,
-      careerLevelOptions: {
+      careerLevelsOptions: {
         ugrd: false,
         pbac: false,
         exed: false,
@@ -479,7 +479,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private atleastOneCareerLevelOptionSelected() {
     return (
-      this.state.careerLevelOptions.ugrd || this.state.careerLevelOptions.pbac || this.state.careerLevelOptions.exed
+      this.state.careerLevelsOptions.ugrd || this.state.careerLevelsOptions.pbac || this.state.careerLevelsOptions.exed
     );
   }
 
@@ -589,7 +589,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfClassNo={this.updateClassNo}
         onChangeOfGeClassesAttribute={this.updateGeClassAttr}
         onChangeOfOpenClasses={this.updateOpenClasses}
-        onChangeOfCareerLevelOptions={this.updateCareerLevelOptions}
+        onChangeOfCareerLevelsOptions={this.updateCareerLevelsOptions}
         onChangeOfCourseLevelsOptions={this.updateCourseLevelsOptions}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
@@ -602,7 +602,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         sessionCode={this.state.sessionCode}
         currentTermId={this.state.term}
         openClasses={this.state.showOpenClasses}
-        careerLevelOptions={this.state.careerLevelOptions}
+        careerLevelsOptions={this.state.careerLevelsOptions}
         courseLevelsOptions={this.state.courseLevelsOptions}
       />
     );
@@ -759,18 +759,18 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     );
   }
 
-  private updateCareerLevelOptions(event: any): void {
+  private updateCareerLevelsOptions(event: any): void {
     const checkBoxValue = event.target.value;
     this.setState(
       {
-        careerLevelOptions: {
-          ugrd: checkBoxValue === 'ugrd' ? !this.state.careerLevelOptions.ugrd : this.state.careerLevelOptions.ugrd,
-          pbac: checkBoxValue === 'pbac' ? !this.state.careerLevelOptions.pbac : this.state.careerLevelOptions.pbac,
-          exed: checkBoxValue === 'exed' ? !this.state.careerLevelOptions.exed : this.state.careerLevelOptions.exed,
+        careerLevelsOptions: {
+          ugrd: checkBoxValue === 'ugrd' ? !this.state.careerLevelsOptions.ugrd : this.state.careerLevelsOptions.ugrd,
+          pbac: checkBoxValue === 'pbac' ? !this.state.careerLevelsOptions.pbac : this.state.careerLevelsOptions.pbac,
+          exed: checkBoxValue === 'exed' ? !this.state.careerLevelsOptions.exed : this.state.careerLevelsOptions.exed,
         },
       },
       () => {
-        this.userInput.setCareerLevelOptionsStatus(this.state.careerLevelOptions);
+        this.userInput.setCareerLevelsOptionsStatus(this.state.careerLevelsOptions);
       }
     );
   }

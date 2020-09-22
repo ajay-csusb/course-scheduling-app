@@ -1,6 +1,5 @@
 import { mount } from 'enzyme';
 import * as React from 'react';
-import { ClassSearchContainer } from '../../src/public/js/ClassSearchContainer';
 import { TestUtils } from '../TestUtils';
 import { OpenClasses } from '../../src/public/js/OpenClasses';
 

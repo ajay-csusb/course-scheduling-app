@@ -122,8 +122,8 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
   private getCareerLevelsComponent(): JSX.Element {
     return (
       <CareerLevels
-        careerLevelOptions={this.props.careerLevelOptions}
-        onChangeOfCareerLevelOptions={this.props.onChangeOfCareerLevelOptions}
+        careerLevelsOptions={this.props.careerLevelsOptions}
+        onChangeOfCareerLevelsOptions={this.props.onChangeOfCareerLevelsOptions}
         onKeyDown={this.props.onKeyDown}
       />
     );
