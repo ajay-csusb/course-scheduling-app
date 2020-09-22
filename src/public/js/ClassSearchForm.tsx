@@ -30,7 +30,7 @@ export interface IClassSearchFormProps {
   sessionCode: string;
   currentTermId: string;
   openClasses: boolean;
-  careerLevelOptions: ICareerLevels;
+  careerLevelsOptions: ICareerLevels;
   courseLevelsOptions: ICourseLevels;
   onChangeOfTerm: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
@@ -46,7 +46,7 @@ export interface IClassSearchFormProps {
   onChangeOfClassNo: (event: any) => void;
   onChangeOfGeClassesAttribute: (event: any) => void;
   onChangeOfOpenClasses: (event: any) => void;
-  onChangeOfCareerLevelOptions: (event: any) => void;
+  onChangeOfCareerLevelsOptions: (event: any) => void;
   onChangeOfCourseLevelsOptions: (event: any) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;
   onSubmit: (event: any) => void;

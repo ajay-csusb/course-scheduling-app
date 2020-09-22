@@ -209,7 +209,7 @@ export const rawClassesJson = {
   fee: '0',
 };
 
-export let careerLevelOptions: ICareerLevels = {
+export let careerLevelsOptions: ICareerLevels = {
   ugrd: false,
   pbac: false,
   exed: false

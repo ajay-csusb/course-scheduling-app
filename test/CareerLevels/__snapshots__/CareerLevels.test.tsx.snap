@@ -2,14 +2,14 @@
 
 exports[`Career levels component component snapshot 1`] = `
 <CareerLevels
-  careerLevelOptions={
+  careerLevelsOptions={
     Object {
       "exed": false,
       "pbac": false,
       "ugrd": false,
     }
   }
-  onChangeOfCareerLevelOptions={[Function]}
+  onChangeOfCareerLevelsOptions={[Function]}
   onKeyDown={[Function]}
 >
   <Blueprint3.ControlGroup

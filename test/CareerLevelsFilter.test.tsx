@@ -1,6 +1,6 @@
 import { IClass } from '../src/public/js/Class';
 import { TestUtils } from './TestUtils';
-import { classJson, careerLevelOptions } from './ClassesJson';
+import { classJson, careerLevelsOptions } from './ClassesJson';
 import * as CareerLevelsFilter from '../src/public/js/CareerLevelsFilter';
 import _ from 'lodash';
 
@@ -28,18 +28,18 @@ function getCareerLevelsClassData() {
   const exedClass: IClass = TestUtils.copyObject(classJson);
   exedClass.degreeType = 'EXED';
   exedClass.subject = 'CHEM';
-  const pbac = TestUtils.copyObject(careerLevelOptions);
+  const pbac = TestUtils.copyObject(careerLevelsOptions);
   _.set(pbac, 'pbac', true);
-  const twoOptions = TestUtils.copyObject(careerLevelOptions);
+  const twoOptions = TestUtils.copyObject(careerLevelsOptions);
   _.set(twoOptions, 'ugrd', true);
   _.set(twoOptions, 'exed', true);
-  const allOptions = TestUtils.copyObject(careerLevelOptions);
+  const allOptions = TestUtils.copyObject(careerLevelsOptions);
   _.set(allOptions, 'ugrd', true);
   _.set(allOptions, 'pbac', true);
   _.set(allOptions, 'exed', true);
 
   return [
-    [[ugrdClass, pbacClass, exedClass], careerLevelOptions, 3, ['BIOL', 'ACCT', 'CHEM']],
+    [[ugrdClass, pbacClass, exedClass], careerLevelsOptions, 3, ['BIOL', 'ACCT', 'CHEM']],
     [[ugrdClass, pbacClass, exedClass], pbac, 1, ['ACCT']],
     [[ugrdClass, pbacClass, exedClass], twoOptions, 2, ['BIOL', 'CHEM']],
     [[ugrdClass, pbacClass, exedClass], allOptions, 3, ['BIOL', 'ACCT', 'CHEM']],

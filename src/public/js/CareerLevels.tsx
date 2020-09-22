@@ -3,8 +3,8 @@ import { ControlGroup, Checkbox, Alignment } from '@blueprintjs/core';
 import { ICareerLevels } from './Class';
 
 export interface ICareerLevelsProps {
-  careerLevelOptions: ICareerLevels;
-  onChangeOfCareerLevelOptions: (event: any) => void;
+  careerLevelsOptions: ICareerLevels;
+  onChangeOfCareerLevelsOptions: (event: any) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;
 }
 
@@ -25,7 +25,7 @@ export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
               value="ugrd"
               className="career-levels-checkboxes"
               onChange={(event: React.FormEvent) => this.handleChangeOfCareerLevelsOptions(event)}
-              checked={this.props.careerLevelOptions.ugrd}
+              checked={this.props.careerLevelsOptions.ugrd}
               onKeyDown={this.props.onKeyDown}
               inline={true}
               alignIndicator={Alignment.LEFT}
@@ -38,7 +38,7 @@ export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
               value="pbac"
               className="career-levels-checkboxes"
               onChange={(event: React.FormEvent) => this.handleChangeOfCareerLevelsOptions(event)}
-              checked={this.props.careerLevelOptions.pbac}
+              checked={this.props.careerLevelsOptions.pbac}
               onKeyDown={this.props.onKeyDown}
               inline={true}
               alignIndicator={Alignment.LEFT}
@@ -51,7 +51,7 @@ export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
               value="exed"
               className="career-levels-checkboxes"
               onChange={(event: React.FormEvent) => this.handleChangeOfCareerLevelsOptions(event)}
-              checked={this.props.careerLevelOptions.exed}
+              checked={this.props.careerLevelsOptions.exed}
               onKeyDown={this.props.onKeyDown}
               inline={true}
               alignIndicator={Alignment.LEFT}
@@ -64,6 +64,6 @@ export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
   }
 
   private handleChangeOfCareerLevelsOptions(event: React.FormEvent): void {
-    this.props.onChangeOfCareerLevelOptions(event);
+    this.props.onChangeOfCareerLevelsOptions(event);
   }
 }

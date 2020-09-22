@@ -31,7 +31,7 @@ export function filter(classes: IClass[], params: IClassSearchContainerState): I
     term,
     meetingDate,
     showOpenClasses,
-    careerLevelOptions,
+    careerLevelsOptions,
     courseLevelsOptions,
   } = params;
 
@@ -43,7 +43,7 @@ export function filter(classes: IClass[], params: IClassSearchContainerState): I
             CourseLevelsFilter.filter(
               CareerLevelsFilter.filter(
                 OpenClassesFilter.filter(filterByActiveClasses(classes), showOpenClasses),
-                careerLevelOptions
+                careerLevelsOptions
               ),
               courseLevelsOptions
             ),

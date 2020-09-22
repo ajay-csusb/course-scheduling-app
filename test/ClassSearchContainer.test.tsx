@@ -3,7 +3,6 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { Spinner } from '@blueprintjs/core';
 import { TestUtils } from './TestUtils';
-import { Class } from '../src/public/js/Class';
 // tslint:disable:max-line-length
 
 describe('snapshots', () => {
@@ -161,7 +160,7 @@ describe('states', () => {
   describe('when a user searches for career level classes', () => {
     it('should set the correct states for career level classes', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({
+      expect(classSearchContainerWrapper.state('careerLevelsOptions')).toEqual({
         ugrd: false,
         pbac: false,
         exed: false,
@@ -170,11 +169,11 @@ describe('states', () => {
       classSearchContainerWrapper.find('input#ugrd').simulate('change');
       classSearchContainerWrapper.find('input#pbac').simulate('change');
       classSearchContainerWrapper.find('input#exed').simulate('change');
-      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({ ugrd: true, pbac: true, exed: true });
+      expect(classSearchContainerWrapper.state('careerLevelsOptions')).toEqual({ ugrd: true, pbac: true, exed: true });
       classSearchContainerWrapper.find('input#ugrd').simulate('change');
       classSearchContainerWrapper.find('input#pbac').simulate('change');
       classSearchContainerWrapper.find('input#exed').simulate('change');
-      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({
+      expect(classSearchContainerWrapper.state('careerLevelsOptions')).toEqual({
         ugrd: false,
         pbac: false,
         exed: false,
@@ -363,8 +362,8 @@ describe('states', () => {
       expect(classSearchContainerWrapper.state('showOpenClasses')).toBeFalsy();
     });
 
-    it('sets careerLevelOptions to false', () => {
-      expect(classSearchContainerWrapper.state('careerLevelOptions')).toEqual({
+    it('sets careerLevelsOptions to false', () => {
+      expect(classSearchContainerWrapper.state('careerLevelsOptions')).toEqual({
         ugrd: false,
         pbac: false,
         exed: false,

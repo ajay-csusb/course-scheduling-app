@@ -16,7 +16,7 @@ export class UserInput {
   private degreeType: string;
   private geClassesAttr: string;
   private openClassesStatus: boolean;
-  private careerLevelStatus: ICareerLevels;
+  private careerLevelsStatus: ICareerLevels;
   private courseLevelsStatus: ICourseLevels
 
   constructor() {
@@ -43,7 +43,7 @@ export class UserInput {
     this.degreeType = '';
     this.geClassesAttr = '';
     this.openClassesStatus = false;
-    this.careerLevelStatus = {
+    this.careerLevelsStatus = {
       ugrd: false,
       pbac: false,
       exed: false,
@@ -164,8 +164,8 @@ export class UserInput {
     return this.openClassesStatus;
   }
 
-  public getCareerLevelOptionsStatus(): ICareerLevels {
-    return this.careerLevelStatus;
+  public getCareerLevelsOptionsStatus(): ICareerLevels {
+    return this.careerLevelsStatus;
   }
 
   public getCourseLevelsOptionsStatus(): ICourseLevels {
@@ -236,8 +236,8 @@ export class UserInput {
     this.openClassesStatus = status;
   }
 
-  public setCareerLevelOptionsStatus(status: ICareerLevels): void {
-    this.careerLevelStatus = status;
+  public setCareerLevelsOptionsStatus(status: ICareerLevels): void {
+    this.careerLevelsStatus = status;
   }
 
   public setCourseLevelsOptionsStatus(status:ICourseLevels): void {
