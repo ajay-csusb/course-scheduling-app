@@ -4,7 +4,7 @@ import { ClassSearchResults } from './ClassSearchResults';
 import { IClass, Class, IMeetingDate, ICareerLevels, ICourseLevels } from './Class';
 import { ISubject, Subject } from './Subject';
 import { UserInput } from './UserInput';
-import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
+import { Intent, IOptionProps, Callout, ProgressBar } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import * as Watchdog from './Watchdog';
 import * as FilterClasses from './FilterClasses';
@@ -36,6 +36,10 @@ export interface IClassSearchContainerState {
   showOpenClasses: boolean;
   careerLevelsOptions: ICareerLevels;
   courseLevelsOptions: ICourseLevels;
+  progress: number;
+  cssClasses: {
+    resultsWrapper: string | undefined;
+  };
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
   private allResults: IClass[];
@@ -103,6 +107,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const classSearchResultsComponent = this.getClassSearchResultsComponent();
     const classSearchFormComponent = this.getClassSearchFormComponent();
     const errorMessage: JSX.Element = this.displayErrorMessageWhenSubjectIsEmpty();
+    this.updateProgressBar();
+
     return (
       <React.Fragment>
         <div className="form-section">
@@ -111,9 +117,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
             {classSearchFormComponent}
           </div>
         </div>
-        {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
-        {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) &&
-          classSearchResultsComponent}
+
+        {this.isLoadingClasses() && <ProgressBar intent={Intent.PRIMARY} value={this.state.progress} />}
+        <div className={this.state.cssClasses.resultsWrapper}>
+          {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) &&
+            classSearchResultsComponent}
+        </div>
+
         <a
           target="_blank"
           href="https://www.csusb.edu/its/support/digital-transformation/web-services/form/feedback-class-search"
@@ -241,6 +251,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private classesFound(classes: any): void {
     this.allResults = [];
+    this.setState({
+      progress: 0,
+    });
+
     if (this.emptyClasses(classes)) {
       this.updateStatesAfterProcessingClasses(true, false);
       return;
@@ -297,6 +311,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         showErrorMessage: false,
         beforeSubmit: false,
         isLoading: true,
+        progress: 0.1,
+        cssClasses: {
+          resultsWrapper: 'class-search-results-wrapper',
+        },
       },
       () => {
         this.updateAllClasses();
@@ -364,6 +382,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         5000: false,
         6000: false,
         7000: false,
+      },
+      progress: 0,
+      cssClasses: {
+        resultsWrapper: undefined,
       },
     };
   }
@@ -821,5 +843,15 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         this.userInput.setCourseLevelsOptionsStatus(this.state.courseLevelsOptions);
       }
     );
+  }
+
+  private updateProgressBar(): void {
+    if (this.state.progress > 0 && this.state.progress < 1 && this.state.isLoading) {
+      setTimeout(() => {
+        this.setState({
+          progress: this.state.progress + 0.03,
+        });
+      }, 1000);
+    }
   }
 }
