@@ -1,7 +1,7 @@
 import { shallow, mount } from 'enzyme';
 import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
-import { Spinner } from '@blueprintjs/core';
+import { ProgressBar } from '@blueprintjs/core';
 import { TestUtils } from './TestUtils';
 // tslint:disable:max-line-length
 
@@ -242,6 +242,12 @@ describe('states', () => {
     it('should set isLoading when submit is clicked', () => {
       expect(classSearchContainerWrapper.state('isLoading')).toBeTruthy();
     });
+    it('should set the progress to 0.1', () => {
+      expect(classSearchContainerWrapper.state('progress')).toEqual(0.1)
+    });
+    it('should set the cssClasses.resultsWrapper to class-search-results-wrapper', () => {
+      expect(classSearchContainerWrapper.state('cssClasses')).toEqual({resultsWrapper: 'class-search-results-wrapper'});
+    });
   });
 
   describe('states on reset', () => {
@@ -270,7 +276,7 @@ describe('states', () => {
           5000: true,
           6000: true,
           7000: true,
-        }
+        },
       });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       classSearchContainerWrapper.update();
@@ -371,17 +377,23 @@ describe('states', () => {
     });
 
     it('sets the courseLevelOptions to false', () => {
-      expect(classSearchContainerWrapper.state('courseLevelsOptions')).toEqual(
-        {
-          1000: false,
-          2000: false,
-          3000: false,
-          4000: false,
-          5000: false,
-          6000: false,
-          7000: false,
-        }
-      );
+      expect(classSearchContainerWrapper.state('courseLevelsOptions')).toEqual({
+        1000: false,
+        2000: false,
+        3000: false,
+        4000: false,
+        5000: false,
+        6000: false,
+        7000: false,
+      });
+    });
+
+    it('sets the progress to 0', () => {
+      expect(classSearchContainerWrapper.state('progress')).toEqual(0);
+    });
+
+    it('sets the cssClasses.resultsWrapper to undefined', () => {
+      expect(classSearchContainerWrapper.state('cssClasses')).toEqual({resultsWrapper: undefined});
     });
   });
 });
@@ -446,17 +458,17 @@ describe('Loading message', () => {
     classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
   });
 
-  it('should display a loading indicator when submit is clicked', () => {
+  it('should display a progress bar when submit is clicked', () => {
     const loadingWrapper = classSearchContainerWrapper.childAt(1);
-    expect(loadingWrapper.find(Spinner)).toHaveLength(1);
+    expect(loadingWrapper.find(ProgressBar)).toHaveLength(1);
   });
 
-  it('should not display a loading indicator after isLoading is set to false', () => {
+  it('should not display the progress bar after isLoading is set to false', () => {
     classSearchContainerWrapper.setState({
       isLoading: false,
     });
     const loadingWrapper = classSearchContainerWrapper.childAt(1);
-    expect(loadingWrapper.find(Spinner)).toHaveLength(0);
+    expect(loadingWrapper.find(ProgressBar)).toHaveLength(0);
   });
 
   it('should display no classes found if no classes are found', () => {

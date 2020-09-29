@@ -75,6 +75,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
       />
     </div>
   </div>
+  <div />
   <a
     className="feedback-btn"
     href="https://www.csusb.edu/its/support/digital-transformation/web-services/form/feedback-class-search"
