@@ -251,10 +251,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private classesFound(classes: any): void {
     this.allResults = [];
-    this.setState({
-      progress: 0,
-    });
-
     if (this.emptyClasses(classes)) {
       this.updateStatesAfterProcessingClasses(true, false);
       return;
@@ -763,6 +759,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       noClasses: noClassesStatus,
       isLoading: isLoadingStatus,
+      progress: 0,
     });
   }
 
