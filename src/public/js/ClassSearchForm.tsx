@@ -118,7 +118,9 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
               />
             </div>
             <p>
-              <strong>*The majority of Fall classes are online, please select “ALL” to see greater results</strong>
+              <strong>
+                *The majority of Fall and Spring classes are online, please select “ALL” to see greater results
+              </strong>
             </p>
           </div>
           <div className="row">
