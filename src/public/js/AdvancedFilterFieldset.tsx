@@ -4,6 +4,7 @@ import { SelectListCourseAttr } from './SelectListCourseAttr';
 import { SelectListSessionCode } from './SelectListSessionCode';
 import { SelectListGeClassesAttributes } from './SelectListGeClassesAttributes';
 import { IClassSearchFormProps } from './ClassSearchForm';
+import { OpenClasses } from './OpenClasses';
 
 interface IAdvancedFilterFieldsetState {
   isOpen?: boolean;
@@ -24,6 +25,8 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
     const sessionCode = this.getSelectListSessionCodeComponent();
     const geClassesAttribute = this.getSelectListGeClassesAttributesComponent();
     const arrow = this.state.isOpen ? <i className="fal fa-chevron-up" /> : <i className="fal fa-chevron-down" />;
+    const openClassesComponent = this.getOpenClassesComponent();
+
     return (
       <React.Fragment>
         <a id="additional-filters" onClick={this.handleClick}>
@@ -42,6 +45,9 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
             </div>
             <div className="col-6 col-md-4">
               <div className="form-item">{sessionCode}</div>
+            </div>
+            <div className="col-6 col-md-4">
+              <div className="form-item">{openClassesComponent}</div>
             </div>
           </div>
         </Collapse>
@@ -94,6 +100,12 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
         geClassesAttribute={this.props.geClassesAttribute}
         onChangeOfGeClassesAttribute={this.props.onChangeOfGeClassesAttribute}
       />
+    );
+  }
+
+  private getOpenClassesComponent(): JSX.Element {
+    return (
+      <OpenClasses openClasses={this.props.openClasses} onChangeOfOpenClasses={this.props.onChangeOfOpenClasses} />
     );
   }
 }

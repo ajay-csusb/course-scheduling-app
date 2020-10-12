@@ -39,6 +39,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
         onChangeOfInstructionMode={[Function]}
         onChangeOfInstructor={[Function]}
         onChangeOfMeetingDate={[Function]}
+        onChangeOfOpenClasses={[Function]}
         onChangeOfSessionCode={[Function]}
         onChangeOfStartTime={[Function]}
         onChangeOfSubject={[Function]}
@@ -46,6 +47,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
         onKeyDown={[Function]}
         onReset={[Function]}
         onSubmit={[Function]}
+        openClasses={false}
         sessionCode="all"
         startTime={1899-01-01T08:00:00.000Z}
         subjects={Array []}
@@ -101,6 +103,7 @@ exports[`snapshots compare search form snapshot 1`] = `
     onChangeOfInstructionMode={[Function]}
     onChangeOfInstructor={[Function]}
     onChangeOfMeetingDate={[Function]}
+    onChangeOfOpenClasses={[Function]}
     onChangeOfSessionCode={[Function]}
     onChangeOfStartTime={[Function]}
     onChangeOfSubject={[Function]}
@@ -108,6 +111,7 @@ exports[`snapshots compare search form snapshot 1`] = `
     onKeyDown={[Function]}
     onReset={[Function]}
     onSubmit={[Function]}
+    openClasses={false}
     sessionCode="all"
     startTime={1899-01-01T08:00:00.000Z}
     subjects={Array []}
@@ -1387,7 +1391,7 @@ exports[`snapshots compare search form snapshot 1`] = `
               </div>
               <p>
                 <strong>
-                  *The majority of Fall classes are online, please select “ALL” to see greater results
+                  *The majority of Fall and Spring classes are online, please select “ALL” to see greater results
                 </strong>
               </p>
             </div>
@@ -1431,6 +1435,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                     onChangeOfInstructionMode={[Function]}
                     onChangeOfInstructor={[Function]}
                     onChangeOfMeetingDate={[Function]}
+                    onChangeOfOpenClasses={[Function]}
                     onChangeOfSessionCode={[Function]}
                     onChangeOfStartTime={[Function]}
                     onChangeOfSubject={[Function]}
@@ -1438,6 +1443,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                     onKeyDown={[Function]}
                     onReset={[Function]}
                     onSubmit={[Function]}
+                    openClasses={false}
                     sessionCode="all"
                     startTime={1899-01-01T08:00:00.000Z}
                     subjects={Array []}

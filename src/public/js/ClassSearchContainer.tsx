@@ -33,6 +33,7 @@ export interface IClassSearchContainerState {
   showErrorMessage: boolean;
   degreeType: string;
   forceReload: boolean;
+  showOpenClasses: boolean;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
   private allResults: IClass[];
@@ -55,7 +56,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   constructor(props: any) {
     super(props);
-    this.state = this.defaultFormValues();
+    this.state = this.setDefaultState();
     this.updateTerm = this.updateTerm.bind(this);
     this.updateCampus = this.updateCampus.bind(this);
     this.updateStartTime = this.updateStartTime.bind(this);
@@ -82,6 +83,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.classesNotFound = this.classesNotFound.bind(this);
     this.onEnterKeyPress = this.onEnterKeyPress.bind(this);
     this.updateSubjectDropdown = this.updateSubjectDropdown.bind(this);
+    this.updateOpenClasses = this.updateOpenClasses.bind(this);
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
@@ -299,7 +301,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private onReset(): void {
-    this.setState(this.defaultFormValues());
+    this.setState(this.setDefaultState());
     this.setState(
       {
         isReset: true,
@@ -310,7 +312,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     );
   }
 
-  private defaultFormValues(): IClassSearchContainerState {
+  private setDefaultState(): IClassSearchContainerState {
     return {
       term: this.currentTermId,
       campus: 'both',
@@ -344,6 +346,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       degreeType: 'all',
       geClassesAttribute: '',
       forceReload: false,
+      showOpenClasses: false,
     };
   }
 
@@ -371,6 +374,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     terms.forEach((_term: any) => {
       if (this.hasCurrentQuarterFlag(_term)) {
         this.currentTermId = _term.strm;
+        app.state.currentTerm = _term.strm;
       }
       termArr.push({
         label: _term.display_STR,
@@ -535,6 +539,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfSessionCode={this.updateSessionCode}
         onChangeOfClassNo={this.updateClassNo}
         onChangeOfGeClassesAttribute={this.updateGeClassAttr}
+        onChangeOfOpenClasses={this.updateOpenClasses}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         onKeyDown={this.onEnterKeyPress}
@@ -545,6 +550,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         courseAttr={this.state.courseAttr}
         sessionCode={this.state.sessionCode}
         currentTermId={this.state.term}
+        openClasses={this.state.showOpenClasses}
       />
     );
   }
@@ -686,5 +692,11 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private emptyClasses(classes: any): boolean {
     return classes === null || classes.length === 0;
+  }
+
+  private updateOpenClasses(_event: any): void {
+    this.setState({
+      showOpenClasses: !this.state.showOpenClasses,
+    });
   }
 }

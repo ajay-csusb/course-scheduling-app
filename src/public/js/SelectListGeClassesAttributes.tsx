@@ -11,7 +11,6 @@ export interface ISelectListGeClassesAttributesProps {
 }
 
 export class SelectListGeClassesAttributes extends React.Component<ISelectListGeClassesAttributesProps> {
-
   constructor(props: ISelectListGeClassesAttributesProps) {
     super(props);
     this.onChangeOfGeClassesAttribute = this.onChangeOfGeClassesAttribute.bind(this);
@@ -19,7 +18,6 @@ export class SelectListGeClassesAttributes extends React.Component<ISelectListGe
   }
 
   public render(): React.ReactNode {
-    const geClassesAttrs = this.getGeClassAttributeOptions();
     return (
       <React.Fragment>
         <Label htmlFor="ge-classes-attributes">GE Classes</Label>
@@ -28,7 +26,7 @@ export class SelectListGeClassesAttributes extends React.Component<ISelectListGe
           value={this.props.geClassesAttribute}
           className="select-ge-classes-attr"
           onChange={this.onChangeOfGeClassesAttribute}
-          options={geClassesAttrs}
+          options={this.getGeClassAttributeOptions()}
         />
       </React.Fragment>
     );
@@ -65,5 +63,4 @@ export class SelectListGeClassesAttributes extends React.Component<ISelectListGe
     }
     return quarterOptions;
   }
-
 }

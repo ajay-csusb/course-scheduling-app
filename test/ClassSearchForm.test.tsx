@@ -2,6 +2,7 @@ import { mount } from 'enzyme';
 import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { TestUtils } from './TestUtils';
+import { ClassSearchForm } from '../src/public/js/ClassSearchForm';
 // tslint:disable:max-line-length
 
 describe('Class search form', () => {
@@ -34,6 +35,25 @@ describe('Class search form', () => {
       it('should display error message', () => {
         expect(searchFormComponent.html()).not.toContain('Please select a Course Subject');
       });
+    });
+  });
+
+  describe('When a user performs a search', () => {
+    let searchFormComponent = null;
+    let classSearchContainerComponent = null;
+
+    beforeEach(() => {
+      classSearchContainerComponent = mount(<ClassSearchContainer />);
+      searchFormComponent = classSearchContainerComponent.find(ClassSearchForm);
+    });
+
+    it('should pass the correct props to class search form component', () => {
+      expect(searchFormComponent.prop('openClasses')).toBeFalsy();
+      classSearchContainerComponent.find('#additional-filters').simulate('click');
+      classSearchContainerComponent.find('.open-classes > input').simulate('change');
+      classSearchContainerComponent.find('button[type="submit"]').simulate('click');
+      searchFormComponent = classSearchContainerComponent.find(ClassSearchForm);
+      expect(searchFormComponent.prop('openClasses')).toBeTruthy();
     });
   });
 });

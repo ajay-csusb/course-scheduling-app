@@ -29,6 +29,7 @@ export interface IClassSearchFormProps {
   courseAttr: string;
   sessionCode: string;
   currentTermId: string;
+  openClasses: boolean;
   onChangeOfTerm: (event: React.FormEvent) => void;
   onChangeOfCampus: (event: React.FormEvent) => void;
   onChangeOfStartTime: (event: any) => void;
@@ -42,6 +43,7 @@ export interface IClassSearchFormProps {
   onChangeOfSessionCode: (event: any) => void;
   onChangeOfClassNo: (event: any) => void;
   onChangeOfGeClassesAttribute: (event: any) => void;
+  onChangeOfOpenClasses: (event: any) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;
   onSubmit: (event: any) => void;
   onReset: (event: any) => void;
@@ -116,7 +118,9 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
               />
             </div>
             <p>
-              <strong>*The majority of Fall classes are online, please select “ALL” to see greater results</strong>
+              <strong>
+                *The majority of Fall and Spring classes are online, please select “ALL” to see greater results
+              </strong>
             </p>
           </div>
           <div className="row">

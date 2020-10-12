@@ -7,7 +7,6 @@ import { Class } from '../src/public/js/Class';
 // tslint:disable:max-line-length
 
 describe('snapshots', () => {
-
   beforeAll(() => {
     TestUtils.ajax();
   });
@@ -22,7 +21,6 @@ describe('snapshots', () => {
     const classSearchFormWrapper = classSearchContainerWrapper.children().find('.container');
     expect(classSearchFormWrapper).toMatchSnapshot();
   });
-
 });
 
 describe('states', () => {
@@ -74,7 +72,9 @@ describe('states', () => {
   describe('when an option is selected from instruction mode', () => {
     it('should set the correct state of instructionMode', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      classSearchContainerWrapper.find('.select-instruction-mode > select').simulate('change', { target: { value: 'foo' } });
+      classSearchContainerWrapper
+        .find('.select-instruction-mode > select')
+        .simulate('change', { target: { value: 'foo' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       expect(classSearchContainerWrapper.state('instructionMode')).toEqual('foo');
     });
@@ -112,7 +112,9 @@ describe('states', () => {
     it('should set the correct GE classes attribute state', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
-      classSearchContainerWrapper.find('.select-ge-classes-attr > select').simulate('change', { target: { value: 'GE-001' } });
+      classSearchContainerWrapper
+        .find('.select-ge-classes-attr > select')
+        .simulate('change', { target: { value: 'GE-001' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       expect(classSearchContainerWrapper.state('geClassesAttribute')).toEqual('GE-001');
     });
@@ -121,7 +123,7 @@ describe('states', () => {
   describe('on component update', () => {
     it('should unset forceReload if it is set', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      classSearchContainerWrapper.setState({forceReload: true});
+      classSearchContainerWrapper.setState({ forceReload: true });
       expect(classSearchContainerWrapper.state('forceReload')).toBeFalsy();
     });
   });
@@ -146,7 +148,17 @@ describe('states', () => {
     });
   });
 
-  describe('When user clicks submit', () => {
+  describe('when a user searches for classes open for enrollment', () => {
+    it('should set the openClasses state', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      expect(classSearchContainerWrapper.state('showOpenClasses')).toBeFalsy();
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      classSearchContainerWrapper.find('.open-classes > input').simulate('change');
+      expect(classSearchContainerWrapper.state('showOpenClasses')).toBeTruthy();
+    });
+  });
+
+  describe('when user clicks submit', () => {
     let classSearchContainerWrapper = null;
     beforeEach(() => {
       classSearchContainerWrapper = mount(<ClassSearchContainer />);
@@ -229,7 +241,7 @@ describe('states', () => {
     });
 
     it('unsets subject name and abbreviation', () => {
-      expect(classSearchContainerWrapper.state('subject')).toEqual({name: '', abbr: ''});
+      expect(classSearchContainerWrapper.state('subject')).toEqual({ name: '', abbr: '' });
     });
 
     it('resets start time', () => {
@@ -241,16 +253,15 @@ describe('states', () => {
     });
 
     it('sets meetingDate to false', () => {
-      expect(classSearchContainerWrapper.state('meetingDate')).toEqual(
-        {
-          mon: false,
-          tue: false,
-          wed: false,
-          thu: false,
-          fri: false,
-          sat: false,
-          sun: false,
-        });
+      expect(classSearchContainerWrapper.state('meetingDate')).toEqual({
+        mon: false,
+        tue: false,
+        wed: false,
+        thu: false,
+        fri: false,
+        sat: false,
+        sun: false,
+      });
     });
 
     it('unsets instructorName', () => {

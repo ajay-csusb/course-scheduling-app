@@ -38,6 +38,9 @@ export class InstructionMode {
       if (_class.instructionMode.toLowerCase() === 'ho') {
         results.push(_class);
       }
+      if (_class.instructionMode.toLowerCase() === 'os') {
+        results.push(_class);
+      }
     });
     return results;
   }
@@ -46,6 +49,12 @@ export class InstructionMode {
     const results: IClass[] = [];
     InstructionMode._classes.forEach((_class: IClass) => {
       if (_class.instructionMode.toLowerCase() === 'hc') {
+        results.push(_class);
+      }
+      if (_class.instructionMode.toLowerCase() === 'cs') {
+        results.push(_class);
+      }
+      if (_class.instructionMode.toLowerCase() === 'ca') {
         results.push(_class);
       }
     });

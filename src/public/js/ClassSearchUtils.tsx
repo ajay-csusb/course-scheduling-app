@@ -156,6 +156,15 @@ export function getInstructionMode(classes: IClass): string {
   if (classes.instructionMode === 'Z') {
     return 'Zero Unit Instruction';
   }
+  if (classes.instructionMode === 'OS') {
+    return 'Online Synchronous';
+  }
+  if (classes.instructionMode === 'CA') {
+    return 'Hybrid Classroom/face-to-face plus asynchronous online instruction';
+  }
+  if (classes.instructionMode === 'CS') {
+    return 'Hybrid Classroom/face-to-face plus synchronous online instruction';
+  }
   return 'N/A';
 }
 
