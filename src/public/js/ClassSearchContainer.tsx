@@ -381,7 +381,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         value: _term.strm,
       });
     });
-    this.term = termArr;
+    this.term = ClassSearchUtils.updateWinterTermLabelToWinterIntersession(termArr);
     this.setState({
       // @Todo unit test this.
       term: this.currentTermId,

@@ -600,3 +600,13 @@ function hasMeetingDays(classInfo: IClass): boolean {
     classInfo.sun === 'Y'
   );
 }
+
+export function updateWinterTermLabelToWinterIntersession(terms: IOptionProps[]) {
+  for (const term of terms) {
+    if (term.label?.startsWith('Winter')) {
+      term.label = 'Winter Intersession';
+      break;
+    }
+  }
+  return terms;
+}
