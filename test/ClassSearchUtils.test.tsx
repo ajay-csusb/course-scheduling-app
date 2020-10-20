@@ -7,6 +7,7 @@ import { mount, shallow } from 'enzyme';
 import { TestUtils } from './TestUtils';
 import { GeCourseAttribute } from '../src/public/js/GeCourseAttribute';
 import { IClass } from '../src/public/js/Class';
+import { IOptionProps } from '@blueprintjs/core';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -1405,3 +1406,19 @@ function getAsyncClassData() {
     [syncClassWithOnlineBuildingCode, true],
   ];
 }
+
+test('updateWinterTermToWinterIntersession', () => {
+  const terms: IOptionProps[] = [
+    { label: 'Fall 1900', value: 'fall_1900' },
+    { label: 'Winter 1900', value: 'winter_1900' },
+    { label: 'Spring 1900', value: 'spring_1900' },
+    { label: 'Winter 1899', value: 'winter_1899' },
+    { label: 'Winter 1898', value: 'winter_1898' },
+    { label: 'Winter 1897', value: 'winter_1897' },
+  ];
+  const result = ClassSearchUtils.updateWinterTermLabelToWinterIntersession(terms);
+  expect(result[1].label).toEqual('Winter Intersession');
+  expect(result[3].label).toEqual('Winter 1899');
+  expect(result[4].label).toEqual('Winter 1898');
+  expect(result[5].label).toEqual('Winter 1897');
+});
