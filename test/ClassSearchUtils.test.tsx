@@ -1012,6 +1012,14 @@ describe('Class status', () => {
       });
     });
 
+    describe('when the user searches for a class from term 002', () => {
+      describe('and the current month is October', () => {
+        it('should return true', () => {
+          expect(ClassSearchUtils.isValidTermRange('004', '002', 10)).toBeTruthy();
+        });
+      });
+    })
+
     describe('when the user searches for a class from term 004', () => {
       describe('and the current month is December', () => {
         it('should return true', () => {
