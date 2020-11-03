@@ -203,8 +203,10 @@ function isNonRegularSession(): boolean {
 
 function getFeeMarkup(): JSX.Element {
   let markup: JSX.Element = <></>;
-  const { fee } = currClass;
-
+  const { fee, ssrComponent } = currClass;
+  if (ssrComponent === 'CLN') {
+    return markup;
+  }
   if (fee !== '0.00' || fee.length === 0) {
     markup = (
       <>

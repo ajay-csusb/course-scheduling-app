@@ -394,8 +394,23 @@ describe('fees', () => {
         />
       );
       const classesCardsComponent = mount(classesCards);
-      expect(classesCardsComponent.html()).not.toContain('<span>Fees </span> $');
+      expect(classesCardsComponent.html()).not.toContain('<span> • Fee </span> $');
     });
   });
 
+  describe('when a course has a clinical section', () => {
+    it('should not display the markup', () => {
+      const classWithClinicalSection: IClass = TestUtils.copyObject(classJson);
+      classWithClinicalSection.ssrComponent = 'CLN';
+      classWithClinicalSection.fee = '100.00';
+      const classesCards: JSX.Element = (
+        <ClassesCards
+          classes={classWithClinicalSection}
+          currentTerm={'0000'}
+        />
+      );
+      const classesCardsComponent = mount(classesCards);
+      expect(classesCardsComponent.html()).not.toContain('<span> • Fee </span> $');
+    });
+  });
 });
