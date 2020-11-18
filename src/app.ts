@@ -7,6 +7,7 @@ import expressValidator from 'express-validator';
 import * as homeController from './controllers/home';
 import * as exportToExcelController from './controllers/exportToExcel';
 import * as exportToBigQueryController from './controllers/exportToBigQuery';
+import * as exportDepartmentsController from './controllers/exportDepartments';
 import cors from 'cors';
 
 dotenv.config({ path: '.env' });
@@ -28,5 +29,6 @@ app.use(cors());
 app.get('/', homeController.index);
 app.post('/export-to-excel', exportToExcelController.index);
 app.get('/export-to-bigquery/:termId?', exportToBigQueryController.index);
+app.get('/export-departments', exportDepartmentsController.index);
 
 export default app;

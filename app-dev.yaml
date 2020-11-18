@@ -1,4 +1,4 @@
 service: dev
 runtime: nodejs12
 env_variables:
-  NODE_ENV: "dev"
+  NODE_ENV: 'local'
