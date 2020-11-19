@@ -1,8 +1,7 @@
-name: Export data to BigQuery
+name: Export data to GCP BigQuery
 on:
-  push:
-    branches:
-      - feat_280
+  schedule:
+    - cron: '59 23 */1 * *'
 jobs:
   request:
     runs-on: ubuntu-16.04
@@ -17,12 +16,12 @@ jobs:
       - name: Export department data to BigQuery
         uses: fjogeleit/http-request-action@master
         with:
-          url: 'http://dev-dot-csusb-class-schedule.df.r.appspot.com/export-departments'
+          url: 'https://csusb-class-schedule.df.r.appspot.com/export-departments'
           method: 'GET'
           timeout: 300000
       - name: Export people data to BigQuery
         uses: fjogeleit/http-request-action@master
         with:
-          url: 'http://dev-dot-csusb-class-schedule.df.r.appspot.com/export-people'
+          url: 'https://csusb-class-schedule.df.r.appspot.com/export-people'
           method: 'GET'
           timeout: 300000
