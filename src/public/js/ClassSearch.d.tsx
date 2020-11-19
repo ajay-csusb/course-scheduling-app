@@ -1,5 +1,6 @@
-import dotenv from 'dotenv';
-dotenv.config({ path: '.env' });
+import { loadEnvironmentVariables } from '../../lib/Utils';
+
+loadEnvironmentVariables();
 export const app = {
   state: {
     currentTerm: 2208,
