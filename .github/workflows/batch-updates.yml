@@ -1,14 +1,28 @@
-name: Push class search data to BigQuery
+name: Export data to BigQuery
 on:
-  schedule:
-    - cron: '59 23 */1 * *'
+  push:
+    branches:
+      - feat_280
 jobs:
   request:
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@v2
-      - name: Deploy Stage
+      - name: Export class search data to BigQuery
         uses: fjogeleit/http-request-action@master
         with:
           url: 'https://csusb-class-schedule.df.r.appspot.com/export-to-bigquery'
           method: 'GET'
+          timeout: 300000
+      - name: Export department data to BigQuery
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: 'http://dev-dot-csusb-class-schedule.df.r.appspot.com/export-departments'
+          method: 'GET'
+          timeout: 300000
+      - name: Export people data to BigQuery
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: 'http://dev-dot-csusb-class-schedule.df.r.appspot.com/export-people'
+          method: 'GET'
+          timeout: 300000

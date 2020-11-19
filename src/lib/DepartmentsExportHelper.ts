@@ -8,36 +8,14 @@ import {
   IDepartmentsTableInterface,
   IHoursListInterface,
 } from '../lib/Department';
+import { getWebDxAccessToken } from '../lib/Utils';
 
 let allDepts: IDepartmentsTableInterface[] = [];
 let departmentHours: IDepartmentHoursTableInterface[] = [];
 
-function getAccessToken(): Promise<any> {
-  const axiosOptions: AxiosRequestConfig = {
-    baseURL: app.settings.webdx.departmentPeople.baseUrl,
-    url: '/AuthTokenService/oauth/token',
-    method: 'post',
-    params: {
-      client_id: app.settings.webdx.departmentPeople.clientId,
-      client_secret: app.settings.webdx.departmentPeople.clientSecret,
-      grant_type: 'password',
-      username: app.settings.webdx.departmentPeople.username,
-      password: app.settings.webdx.departmentPeople.password,
-    },
-  };
-  return axios(axiosOptions)
-    .then((response: any) => {
-      return response.data.access_token;
-    })
-    .catch((error: Error) => {
-      console.log('Axios error when fetching access token: ');
-      console.log(error);
-    });
-}
-
 export async function fetchDepartments(): Promise<any> {
   let departments = [];
-  const accessToken = await getAccessToken();
+  const accessToken = await getWebDxAccessToken();
   const axiosOptions: AxiosRequestConfig = {
     baseURL: app.settings.webdx.departmentPeople.baseUrl,
     url: '/OnlineDirectory/v2/api/getAllDept',
@@ -56,7 +34,7 @@ export async function fetchDepartments(): Promise<any> {
     })
     .catch((error: Error) => {
       console.log('Error fetching department list: ');
-      console.log(error);
+      console.log({ error });
     });
 }
 
@@ -68,14 +46,13 @@ function processDepartmentsAndDepartmentHours(departments: any): void {
   depts.forEach(dept => {
     const deptMachineName = _.replace(_.lowerCase(dept.title.trim()), / /gi, '_');
     const bigQueryTimestamp = new BigQueryTimestamp(new Date()).value;
-    let deptTable: IDepartmentsTableInterface | any = {};
-    Object.assign(deptTable, dept);
-    deptTable!.departmentId = deptMachineName;
-    deptTable!.timestamp = bigQueryTimestamp;
+    let deptRow: IDepartmentsTableInterface = dept as IDepartmentsTableInterface;
+    deptRow.departmentId = deptMachineName;
+    deptRow.timestamp = bigQueryTimestamp;
     setDepartmentHours(dept.hoursList, deptMachineName, bigQueryTimestamp);
-    delete deptTable.hoursList;
-    if (deptTable) {
-      allDepts.push(deptTable);
+    delete deptRow.hoursList;
+    if (deptRow) {
+      allDepts.push(deptRow);
     }
   });
 }
@@ -84,8 +61,8 @@ function setDepartmentHours(deptHours: IHoursListInterface[], machineName: strin
   let deptHoursObj: IDepartmentHoursTableInterface | any = {};
   deptHours.forEach(deptHour => {
     Object.assign(deptHoursObj, deptHour);
-    deptHoursObj!.departmentId = machineName;
-    deptHoursObj!.timestamp = timestamp;
+    deptHoursObj.departmentId = machineName;
+    deptHoursObj.timestamp = timestamp;
     if (deptHoursObj) {
       departmentHours.push(deptHoursObj);
     }
