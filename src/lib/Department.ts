@@ -10,23 +10,23 @@ export interface IDepartmentsTableInterface extends IDepartmentInterface {
 
 export interface IHoursListInterface {
   day: string;
-  startTime: number;
   endTime: number;
+  startTime: number;
 }
 
 export interface IDepartmentInterface {
-  title: string;
-  division: string;
-  officialName: string;
   building: string;
-  room: string;
+  division: string;
   email: string;
-  path: string;
-  website: string;
-  mapLink: string;
-  mainNumber: string;
   faxNumber: string;
   hoursList: IHoursListInterface[];
+  mainNumber: string;
+  mapLink: string;
+  officialName: string;
+  path: string;
+  room: string;
+  title: string;
+  website: string;
 }
 
 export class Department implements IDepartmentInterface {

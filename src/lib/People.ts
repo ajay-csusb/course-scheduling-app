@@ -26,6 +26,7 @@ export class People implements IPeopleInterface {
   path: string = '';
   pubExt: string = '';
   room: string = '';
+
   constructor(people: any) {
     Object.assign(this, people);
   }

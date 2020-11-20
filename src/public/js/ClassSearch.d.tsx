@@ -18,8 +18,6 @@ export const app = {
         username: 'webdx',
         password: process.env.WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD,
         baseUrl: 'https://webdx.csusb.edu/',
-        departmentTableName: 'departments',
-        departmentHoursTableName: 'departmentHours',
       },
     },
   },

@@ -24,10 +24,11 @@ export function getWebDxAccessToken(): Promise<any> {
   };
   return axios(axiosOptions)
     .then((response: any) => {
+      console.log('Fetching access token');
       return response.data.access_token;
     })
     .catch((error: Error) => {
-      console.log('Axios error when fetching access token: ');
+      console.log('Error fetching access token');
       console.log({ error });
     });
 }

@@ -1,4 +1,5 @@
 import { BigQuery } from '@google-cloud/bigquery';
+
 export interface IInsertTableDataInterface {
   dataSetName: string;
   rows: [];
@@ -15,8 +16,8 @@ export function getBigQueryConnection() {
   return new BigQuery(bigQueryOptions);
 }
 
-export function insertData(arg: IInsertTableDataInterface): Promise<any> {
-  const { dataSetName, tableName, rows, successMessage, errorMessage } = arg;
+export function insertData(args: IInsertTableDataInterface): Promise<any> {
+  const { dataSetName, tableName, rows, successMessage, errorMessage } = args;
   const bigqueryClient = getBigQueryConnection();
   const dataset = bigqueryClient.dataset(dataSetName);
   return dataset
