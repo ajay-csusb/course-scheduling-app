@@ -30,16 +30,9 @@ export interface IDepartmentInterface {
 }
 
 export class Department implements IDepartmentInterface {
-  title: string = '';
-  division: string = '';
-  officialName: string = '';
   building: string = '';
-  room: string = '';
+  division: string = '';
   email: string = '';
-  path: string = '';
-  website: string = '';
-  mapLink: string = '';
-  mainNumber: string = '';
   faxNumber: string = '';
   hoursList: IHoursListInterface[] = [
     {
@@ -48,6 +41,13 @@ export class Department implements IDepartmentInterface {
       endTime: 0,
     },
   ];
+  mainNumber: string = '';
+  mapLink: string = '';
+  officialName: string = '';
+  path: string = '';
+  room: string = '';
+  title: string = '';
+  website: string = '';
 
   constructor(department: any) {
     Object.assign(this, department);

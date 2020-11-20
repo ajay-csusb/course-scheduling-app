@@ -3,9 +3,9 @@ import { fetchDepartments } from '../lib/DepartmentsExportHelper';
 import { insertData } from '../lib/BigQueryHelper';
 
 let responseMessage = {
-  message: 'Successfully exported department data BigQuery',
+  message: 'Successfully exported department data BigQuery.',
   success: true,
-  errors: 'No errors',
+  errors: 'No errors encountered.',
 };
 
 export async function index(_req: Request, res: Response): Promise<any> {
@@ -32,7 +32,7 @@ export async function index(_req: Request, res: Response): Promise<any> {
   return res.status(200).json(responseMessage);
 }
 
-function updateErrorMessage(tableName: string) {
+function updateErrorMessage(tableName: string): void {
   responseMessage = {
     message: `Error inserting data into the table: ${tableName}.`,
     success: false,
