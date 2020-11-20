@@ -26,10 +26,12 @@ export async function fetchDepartments(): Promise<any> {
       Authorization: 'Bearer ' + accessToken,
     },
   };
+  console.log('Fetching departments...');
   return axios(axiosOptions)
     .then((response: object) => {
       departments = Object.values(response).pop();
       processDepartmentsAndDepartmentHours(departments);
+      console.log('Processing departments...');
       return { allDepts, departmentHours };
     })
     .catch((error: Error) => {
@@ -58,8 +60,8 @@ function processDepartmentsAndDepartmentHours(departments: any): void {
 }
 
 function setDepartmentHours(deptHours: IHoursListInterface[], machineName: string, timestamp: string): void {
-  let deptHoursObj: IDepartmentHoursTableInterface | any = {};
   deptHours.forEach(deptHour => {
+    let deptHoursObj: IDepartmentHoursTableInterface | any = {};
     Object.assign(deptHoursObj, deptHour);
     deptHoursObj.departmentId = machineName;
     deptHoursObj.timestamp = timestamp;

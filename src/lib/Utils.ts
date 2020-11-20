@@ -24,7 +24,7 @@ export function getWebDxAccessToken(): Promise<any> {
   };
   return axios(axiosOptions)
     .then((response: any) => {
-      console.log('Fetching access token');
+      console.log('Fetching access token...');
       return response.data.access_token;
     })
     .catch((error: Error) => {

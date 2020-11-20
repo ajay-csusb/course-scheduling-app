@@ -17,8 +17,10 @@ export async function fetchPeople(): Promise<any> {
       Authorization: 'Bearer ' + accessToken,
     },
   };
+  console.log('Fetching people...');
   return axios(axiosOptions)
     .then((response: object) => {
+      console.log('Processing people...');
       people = Object.values(response).pop();
       return processPeopleData(people);
     })
