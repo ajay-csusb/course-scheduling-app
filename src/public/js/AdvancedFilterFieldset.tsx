@@ -53,11 +53,13 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
             <div className="col-6 col-md-4">
               <div className="form-item">{openClassesComponent}</div>
             </div>
-            <div className="col-6 col-md-4">
-              <div className="form-item">{careerLevelsComponent}</div>
-            </div>
-            <div className="col-6 col-md-4">
-              <div className="form-item">{courseLevelsComponent}</div>
+            <div className="form-elements-wrap">
+              <div className="col-6 col-md-4">
+                <div className="form-item">{careerLevelsComponent}</div>
+              </div>
+              <div className="col-6 col-md-4">
+                <div className="form-item">{courseLevelsComponent}</div>
+              </div>
             </div>
           </div>
         </Collapse>
@@ -131,7 +133,7 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
 
   private getCourseLevelsComponent(): JSX.Element {
     return (
-      <CourseLevels 
+      <CourseLevels
         courseLevelsOptions={this.props.courseLevelsOptions}
         onChangeOfCourseLevelsOptions={this.props.onChangeOfCourseLevelsOptions}
         onKeyDown={this.props.onKeyDown}
