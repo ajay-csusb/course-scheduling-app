@@ -16,16 +16,16 @@ export class CourseLevels extends React.Component<ICourseLevelsProps, {}> {
 
   public render(): React.ReactNode {
     const checkboxData = [
-      ["thousand", "1000"],
-      ["two-thousand", "2000"],
-      ["three-thousand", "3000"],
-      ["four-thousand", "4000"],
-      ["five-thousand", "5000"],
-      ["six-thousand", "6000"],
-      ["seven-thousand", "7000"],
+      ['thousand', '1000'],
+      ['two-thousand', '2000'],
+      ['three-thousand', '3000'],
+      ['four-thousand', '4000'],
+      ['five-thousand', '5000'],
+      ['six-thousand', '6000'],
+      ['seven-thousand', '7000'],
     ];
     const checkboxes: JSX.Element[] = [];
-    
+
     for (let index = 0; index < checkboxData.length; index++) {
       checkboxes.push(
         <div className="form-item" key={index}>
@@ -43,15 +43,13 @@ export class CourseLevels extends React.Component<ICourseLevelsProps, {}> {
         </div>
       );
     }
-      
+
     return (
       <ControlGroup fill={true} vertical={false} className="course-levels-filter-wrapper">
-        <div id="course-levels-filter">
-          <div className="label">Course Levels</div>
-          {checkboxes}          
-        </div>
+        <div className="label">Course Levels</div>
+        <div id="course-levels-filter">{checkboxes}</div>
       </ControlGroup>
-    )
+    );
   }
 
   private handleChangeOfCourseLevelsOptions(event: React.FormEvent): void {

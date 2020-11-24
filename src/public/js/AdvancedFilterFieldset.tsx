@@ -53,13 +53,11 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
             <div className="col-6 col-md-4">
               <div className="form-item">{openClassesComponent}</div>
             </div>
-            <div className="form-elements-wrap">
-              <div className="col-6 col-md-4">
-                <div className="form-item">{careerLevelsComponent}</div>
-              </div>
-              <div className="col-6 col-md-4">
-                <div className="form-item">{courseLevelsComponent}</div>
-              </div>
+            <div className="col-6 col-md-4">
+              <div className="form-item">{careerLevelsComponent}</div>
+            </div>
+            <div className="col-6 col-md-4">
+              <div className="form-item">{courseLevelsComponent}</div>
             </div>
           </div>
         </Collapse>
