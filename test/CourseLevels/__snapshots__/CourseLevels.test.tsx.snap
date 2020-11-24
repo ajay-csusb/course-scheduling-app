@@ -25,13 +25,13 @@ exports[`Course level component component snapshot 1`] = `
       className="bp3-control-group bp3-fill course-levels-filter-wrapper"
     >
       <div
+        className="label"
+      >
+        Course Levels
+      </div>
+      <div
         id="course-levels-filter"
       >
-        <div
-          className="label"
-        >
-          Course Levels
-        </div>
         <div
           className="form-item"
           key="0"

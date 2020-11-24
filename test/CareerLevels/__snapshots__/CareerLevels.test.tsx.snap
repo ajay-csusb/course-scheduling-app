@@ -21,13 +21,13 @@ exports[`Career levels component component snapshot 1`] = `
       className="bp3-control-group bp3-fill career-levels-filter-wrapper"
     >
       <div
+        className="label"
+      >
+        Career Levels
+      </div>
+      <div
         id="career-levels-filter"
       >
-        <div
-          className="label"
-        >
-          Career Levels
-        </div>
         <div
           className="form-item"
         >
