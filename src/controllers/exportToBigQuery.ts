@@ -28,7 +28,6 @@ let errors = 'No errors';
 
 export async function index(req: Request, res: Response): Promise<Response> {
   currentTerm = app.settings.firstSemester;
-
   if (req.params.termId) {
     currentTerm = req.params.termId;
     isTermSet = true;
@@ -55,18 +54,10 @@ export async function index(req: Request, res: Response): Promise<Response> {
 
 async function exportClassSearchData() {
   classesCurrentTerm = [];
-
-  // @Todo simplify this
-  if (!isTermSet) {
-    await setCurrentTerm();
-  } else {
-    await getTerms();
-  }
+  if (!isTermSet) await getTerms();
   await createMissingTables();
   await getClassesForTerm();
   await insertClassesCurrentTerm();
-  // Hack. This line is necessary for successful execution of the script
-  isTermSet = false;
 }
 
 function insertClassesCurrentTerm(): Promise<any> {
@@ -215,6 +206,7 @@ async function getTerms(): Promise<any> {
   try {
     const data = await axios(axiosOptions);
     const jsonData = data.data.termList;
+    setCurrentTerm(jsonData);
     terms = parseTerms(jsonData);
   } catch (error) {
     console.log('Error processing terms: ' + error);
@@ -275,20 +267,15 @@ async function getClassesForTerm(term: number = currentTerm): Promise<any> {
 
 function parseTerms(terms: any): object {
   let parsedTerms: object = {};
-
   terms.forEach((term: any) => {
     parsedTerms[term.strm] = _.camelCase(term.display_STR.replace(/ /, ''));
   });
-
   return parsedTerms;
 }
 
-async function setCurrentTerm(): Promise<any> {
+function setCurrentTerm(terms: any): void {
   try {
-    await getTerms();
-    const term_keys = _.keys(terms);
-
-    term_keys.forEach((term: any) => {
+    terms.forEach((term: any) => {
       if (term.displayed_FLAG === 'Y' && term.default_FLG === 'Y') {
         currentTerm = term.strm;
       }
