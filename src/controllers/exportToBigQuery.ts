@@ -62,6 +62,9 @@ async function exportClassSearchData() {
 
 function insertClassesCurrentTerm(): Promise<any> {
   let tableName = terms[currentTerm];
+  console.log(terms);
+  console.log(currentTerm);
+  console.log(tableName);
   if (!tableName) {
     const previousTerms = {
       '2184': 'spring2018',
