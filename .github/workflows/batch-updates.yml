@@ -25,3 +25,9 @@ jobs:
           url: 'https://csusb-class-schedule.df.r.appspot.com/export-people'
           method: 'GET'
           timeout: 300000
+      - name: Export events to BigQuery
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: 'https://csusb-class-schedule.df.r.appspot.com/export-events'
+          method: 'GET'
+          timeout: 300000
