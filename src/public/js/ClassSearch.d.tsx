@@ -20,5 +20,9 @@ export const app = {
         baseUrl: 'https://webdx.csusb.edu/',
       },
     },
+    getEventsUrl: {
+      dev: 'https://d8-csusb.pantheonsite.io/',
+      live: 'https://www.csusb.edu/',
+    },
   },
 };
