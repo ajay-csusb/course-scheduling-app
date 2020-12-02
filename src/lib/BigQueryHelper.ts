@@ -30,5 +30,6 @@ export function insertData(args: IInsertTableDataInterface): Promise<any> {
     .catch((err: any) => {
       console.error(errorMessage);
       console.error({ err });
+      console.error(err.errors);
     });
 }

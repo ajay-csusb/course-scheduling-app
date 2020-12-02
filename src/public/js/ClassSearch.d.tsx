@@ -24,5 +24,7 @@ export const app = {
       dev: 'https://d8-csusb.pantheonsite.io/',
       live: 'https://www.csusb.edu/',
     },
+    appBaseUrl: 'https://csusb-class-schedule.df.r.appspot.com/',
+    appDevBaseUrl: 'https://dev-dot-csusb-class-schedule.df.r.appspot.com/',
   },
 };

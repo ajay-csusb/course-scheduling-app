@@ -9,6 +9,7 @@ import * as exportToBigQueryController from './controllers/exportToBigQuery';
 import * as exportDepartmentsController from './controllers/exportDepartments';
 import * as exportPeopleController from './controllers/exportPeople';
 import * as exportEventsController from './controllers/exportEvents';
+import * as exportAnalyticsController from './controllers/exportAnalytics';
 import cors from 'cors';
 import { loadEnvironmentVariables } from './lib/Utils';
 
@@ -34,5 +35,6 @@ app.get('/export-to-bigquery/:termId?', exportToBigQueryController.index);
 app.get('/export-departments', exportDepartmentsController.index);
 app.get('/export-people', exportPeopleController.index);
 app.get('/export-events', exportEventsController.index);
+app.post('/export-analytics', exportAnalyticsController.index);
 
 export default app;

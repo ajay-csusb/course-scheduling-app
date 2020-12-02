@@ -1,6 +1,5 @@
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
-import * as Watchdog from './Watchdog';
 import { app } from './ClassSearch.d';
 import * as _ from 'lodash';
 
@@ -164,7 +163,6 @@ export class Class {
       acad_career: userInput.getDegreeType(),
     };
     ClassSearchUtils.fetchWithArg(app.settings.getClassesUrl, params, onSuccess, onFailure);
-    Watchdog.log(params);
   }
 
   static splitClassesWithMultipleMeetingTimes(classes: any[]): any[] {
