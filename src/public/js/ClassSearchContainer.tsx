@@ -642,6 +642,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.userInput.setInstructor(this.state.instructorName);
     this.userInput.setSubject(this.state.subject.abbr);
     this.userInput.setMeetingDay(this.state.meetingDate);
+    this.logUserSelectionToBigQuery();
     Class.getAllClasses(this.classesFound, this.classesNotFound, this.userInput);
   }
 
@@ -697,6 +698,34 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private updateOpenClasses(_event: any): void {
     this.setState({
       showOpenClasses: !this.state.showOpenClasses,
+    });
+  }
+  private logUserSelectionToBigQuery(): void {
+    const startDate: Date = new Date(this.state.startTime);
+    const endDate: Date = new Date(this.state.endTime);
+    const time: string = `${startDate.getHours()}-${startDate.getMinutes()}`;
+    const endTime: string = `${endDate.getHours()}-${endDate.getMinutes()}`;
+    Watchdog.logBigQuery({
+      campus: this.state.campus,
+      catalogNumber: this.state.courseNo,
+      courseAttribute: this.state.courseAttr,
+      classNumber: this.state.classNo,
+      degreeType: this.state.degreeType,
+      friday: this.state.meetingDate.fri,
+      geCourseAttribute: this.state.geClassesAttribute,
+      instructionMode: this.state.instructionMode,
+      instructorName: this.state.instructorName,
+      monday: this.state.meetingDate.mon,
+      saturday: this.state.meetingDate.sat,
+      sessionCode: this.state.sessionCode,
+      startTime: time,
+      endTime: endTime,
+      subject: this.state.subject.name,
+      sunday: this.state.meetingDate.sun,
+      term: this.state.term,
+      thursday: this.state.meetingDate.thu,
+      tuesday: this.state.meetingDate.tue,
+      wednesday: this.state.meetingDate.wed,
     });
   }
 }
