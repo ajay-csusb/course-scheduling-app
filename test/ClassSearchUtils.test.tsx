@@ -192,11 +192,6 @@ describe('fetch parameters', () => {
   });
 
   describe('when the request is logged ', () => {
-    it('should call the correct URL to log the request', () => {
-      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      expect(fetchMock.lastUrl()).toContain('/api/create/log');
-    });
-
     it('should call the URL with correct paramters', () => {
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
       const fetchArgument = fetchMock.lastOptions();
@@ -1018,7 +1013,7 @@ describe('Class status', () => {
           expect(ClassSearchUtils.isValidTermRange('004', '002', 10)).toBeTruthy();
         });
       });
-    })
+    });
 
     describe('when the user searches for a class from term 004', () => {
       describe('and the current month is December', () => {

@@ -1,12 +1,13 @@
 import fetchMock from 'fetch-mock';
-import { rawClassesJson} from './ClassesJson';
+import { rawClassesJson } from './ClassesJson';
 
 export class TestUtils {
   public static ajax(): void {
     fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList', {});
     fetchMock.mock('https://webdx.csusb.edu/ClassSchedule/v2/cs/list/search', rawClassesJson);
     fetchMock.mock('/null/api/create/log', {});
-    fetchMock.mock('end:/export-to-excel', {status: 200, body: {a: 'b', c: 'd'}});
+    fetchMock.mock('end:/export-to-excel', { status: 200, body: { a: 'b', c: 'd' } });
+    fetchMock.mock('end:/export-analytics', { status: 200, body: { foo: 'foo', bar: 'bar' } });
   }
 
   public static copyObject(sourceObject: any): any {
