@@ -5,59 +5,63 @@ exports[`Open classes component component snapshot 1`] = `
   onChangeOfOpenClasses={[Function]}
   openClasses={false}
 >
-  <Blueprint3.FormGroup
-    label="Open Classes"
-    labelFor="open-classes"
+  <div
+    id="open-classes-filter"
   >
-    <div
-      className="bp3-form-group"
+    <Blueprint3.FormGroup
+      label="Open Classes"
+      labelFor="open-classes"
     >
-      <label
-        className="bp3-label"
-        htmlFor="open-classes"
-      >
-        Open Classes
-         
-        <span
-          className="bp3-text-muted"
-        />
-      </label>
       <div
-        className="bp3-form-content"
+        className="bp3-form-group"
       >
-        <Blueprint3.Switch
-          alignIndicator="right"
-          checked={false}
-          className="open-classes"
-          large={true}
-          onChange={[Function]}
+        <label
+          className="bp3-label"
+          htmlFor="open-classes"
         >
-          <Control
+          Open Classes
+           
+          <span
+            className="bp3-text-muted"
+          />
+        </label>
+        <div
+          className="bp3-form-content"
+        >
+          <Blueprint3.Switch
             alignIndicator="right"
             checked={false}
             className="open-classes"
-            indicatorChildren={null}
             large={true}
             onChange={[Function]}
-            type="checkbox"
-            typeClassName="bp3-switch"
           >
-            <label
-              className="bp3-control bp3-switch bp3-large bp3-align-right open-classes"
+            <Control
+              alignIndicator="right"
+              checked={false}
+              className="open-classes"
+              indicatorChildren={null}
+              large={true}
+              onChange={[Function]}
+              type="checkbox"
+              typeClassName="bp3-switch"
             >
-              <input
-                checked={false}
-                onChange={[Function]}
-                type="checkbox"
-              />
-              <span
-                className="bp3-control-indicator"
-              />
-            </label>
-          </Control>
-        </Blueprint3.Switch>
+              <label
+                className="bp3-control bp3-switch bp3-large bp3-align-right open-classes"
+              >
+                <input
+                  checked={false}
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+              </label>
+            </Control>
+          </Blueprint3.Switch>
+        </div>
       </div>
-    </div>
-  </Blueprint3.FormGroup>
+    </Blueprint3.FormGroup>
+  </div>
 </OpenClasses>
 `;
