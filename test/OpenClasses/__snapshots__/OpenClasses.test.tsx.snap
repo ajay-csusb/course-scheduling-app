@@ -6,25 +6,19 @@ exports[`Open classes component component snapshot 1`] = `
   openClasses={false}
 >
   <div
+    className="label"
+  >
+    Open Classes
+  </div>
+  <div
     id="open-classes-filter"
   >
     <Blueprint3.FormGroup
-      label="Open Classes"
       labelFor="open-classes"
     >
       <div
         className="bp3-form-group"
       >
-        <label
-          className="bp3-label"
-          htmlFor="open-classes"
-        >
-          Open Classes
-           
-          <span
-            className="bp3-text-muted"
-          />
-        </label>
         <div
           className="bp3-form-content"
         >
