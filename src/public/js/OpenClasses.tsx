@@ -14,17 +14,20 @@ export class OpenClasses extends React.Component<IOpenClassesProps> {
 
   public render(): React.ReactNode {
     return (
-      <div id="open-classes-filter">
-        <FormGroup label="Open Classes" labelFor="open-classes">
-          <Switch
-            checked={this.props.openClasses}
-            className="open-classes"
-            onChange={this.onChangeOfOpenClasses}
-            large={true}
-            alignIndicator={Alignment.RIGHT}
-          />
-        </FormGroup>
-      </div>
+      <>
+        <div className="label">Open Classes</div>
+        <div id="open-classes-filter">
+          <FormGroup labelFor="open-classes">
+            <Switch
+              checked={this.props.openClasses}
+              className="open-classes"
+              onChange={this.onChangeOfOpenClasses}
+              large={true}
+              alignIndicator={Alignment.RIGHT}
+            />
+          </FormGroup>
+        </div>
+      </>
     );
   }
 
