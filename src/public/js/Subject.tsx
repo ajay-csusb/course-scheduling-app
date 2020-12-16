@@ -3,7 +3,6 @@ export interface ISubject {
   abbr: string;
 }
 export class Subject {
-
   public static getDropdownOptions(allSubjects: any, term: string): ISubject[] {
     const subjects: ISubject[] = [];
     if (Object.keys(allSubjects).includes(term)) {
@@ -16,6 +15,7 @@ export class Subject {
         subjects.push(subject);
       }
     }
+    Subject.updateLabel(subjects);
     subjects.sort((a, b) => {
       return a.name.localeCompare(b.name);
     });
@@ -27,4 +27,11 @@ export class Subject {
     return subjects;
   }
 
+  public static updateLabel(subjects: ISubject[]): void {
+    subjects.forEach(subject => {
+      if (subject.name == 'Arts and Letters') {
+        subject.name = 'CAL';
+      }
+    });
+  }
 }
