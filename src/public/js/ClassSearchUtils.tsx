@@ -282,7 +282,11 @@ function combineAttr(prevClass: IClass, currClass: IClass): string {
 }
 
 function isDuplicateClass(prevClass: IClass, currClass: IClass): boolean {
-  return prevClass.classNumber === currClass.classNumber && classHasSameStartAndEndTimes(prevClass, currClass);
+  return (
+    prevClass.classNumber === currClass.classNumber &&
+    classHasSameStartAndEndTimes(prevClass, currClass) &&
+    classHasSameMeetingDays(prevClass, currClass)
+  );
 }
 
 function sortBySubject(classes: IClass[]): IClass[] {
@@ -461,6 +465,20 @@ export function formatSubjectTopic(topic: string): string {
 
 function classHasSameStartAndEndTimes(class1: IClass, class2: IClass): boolean {
   return class1.classStartTime === class2.classStartTime && class1.classEndTime === class2.classEndTime;
+}
+
+function classHasSameMeetingDays(class1: IClass, class2: IClass): boolean {
+  return _.isEqual(getAllMeetingDays(class1), getAllMeetingDays(class2));
+}
+
+function getAllMeetingDays(classes: IClass) {
+  const meetingDaysClass: string[] = [];
+  for (const [key, value] of Object.entries(classes)) {
+    if (value === 'Y') {
+      meetingDaysClass.push(key);
+    }
+  }
+  return meetingDaysClass;
 }
 
 export function getDuplicateClasses(classes: IClass[]): {} {
