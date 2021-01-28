@@ -8,6 +8,7 @@ export interface IPeopleInterface {
   deptName: string;
   email: string;
   fName: string;
+  fullName: string;
   jobTitle: string;
   lName: string;
   path: string;
@@ -21,6 +22,7 @@ export class People implements IPeopleInterface {
   deptName: string = '';
   email: string = '';
   fName: string = '';
+  fullName: string = '';
   jobTitle: string = '';
   lName: string = '';
   path: string = '';
