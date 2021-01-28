@@ -35,6 +35,7 @@ function processPeopleData(persons: []): IPeopleTableInterface[] {
   persons.forEach((person: object) => {
     const people: People = new People(person);
     sanitizePhoneNumber(people);
+    addFullName(people);
     const peopleRow: IPeopleTableInterface = addTimestamp(people);
     peopleData.push(peopleRow);
   });
@@ -49,4 +50,8 @@ function addTimestamp(people: People): IPeopleTableInterface {
   const peopleRow: IPeopleTableInterface = people as IPeopleTableInterface;
   peopleRow.timestamp = new BigQueryTimestamp(new Date()).value;
   return peopleRow;
+}
+
+function addFullName(people: People): void {
+  people.fullName = `${people.fName} ${people.lName}`.trim();
 }
