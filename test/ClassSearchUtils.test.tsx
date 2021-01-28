@@ -635,6 +635,21 @@ describe('when a user performs a search', () => {
       expect(classes).toHaveLength(2);
     });
   });
+
+  describe('and two classes have the same class number, and same start and end times, but different meeting days', () => {
+    const class1 = JSON.parse(JSON.stringify(classJson));
+    class1.mon = 'Y';
+    class1.wed = 'Y';
+    class1.fri = 'Y';
+    const class2 = JSON.parse(JSON.stringify(classJson));
+    class2.tue = 'Y';
+    class2.thur = 'Y';
+    it('should display two classes', () => {
+      const classes = ClassSearchUtils.mergeAttributes([class1, class2]);
+      expect(classes).toHaveLength(2);
+    });
+  });
+  
 });
 
 describe('when multiple classes are displayed in results', () => {
