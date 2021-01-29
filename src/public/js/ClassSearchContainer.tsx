@@ -368,7 +368,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       careerLevelsOptions: {
         ugrd: false,
         pbac: false,
-        exed: false,
       },
       courseLevelsOptions: {
         1000: false,
@@ -496,9 +495,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private atleastOneCareerLevelOptionSelected() {
-    return (
-      this.state.careerLevelsOptions.ugrd || this.state.careerLevelsOptions.pbac || this.state.careerLevelsOptions.exed
-    );
+    return this.state.careerLevelsOptions.ugrd || this.state.careerLevelsOptions.pbac;
   }
 
   private atleastOneCourseLevelsOptionSelected() {
@@ -785,7 +782,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         careerLevelsOptions: {
           ugrd: checkBoxValue === 'ugrd' ? !this.state.careerLevelsOptions.ugrd : this.state.careerLevelsOptions.ugrd,
           pbac: checkBoxValue === 'pbac' ? !this.state.careerLevelsOptions.pbac : this.state.careerLevelsOptions.pbac,
-          exed: checkBoxValue === 'exed' ? !this.state.careerLevelsOptions.exed : this.state.careerLevelsOptions.exed,
         },
       },
       () => {

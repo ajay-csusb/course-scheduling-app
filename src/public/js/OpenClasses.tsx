@@ -17,7 +17,7 @@ export class OpenClasses extends React.Component<IOpenClassesProps> {
       <>
         <div className="label">Open Classes</div>
         <div id="open-classes-filter">
-          <FormGroup labelFor="open-classes">
+          <FormGroup labelFor="open-classes" helperText="The return results do not include waitlisted classes">
             <Switch
               checked={this.props.openClasses}
               className="open-classes"

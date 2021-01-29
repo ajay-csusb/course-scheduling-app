@@ -14,14 +14,11 @@ export function filter(classes: IClass[], careerLevelsOptions: ICareerLevels): I
     if (careerLevelsOptions.pbac && _class.degreeType.toLowerCase() === 'pbac') {
       result.push(_class);
     }
-    if (careerLevelsOptions.exed && _class.degreeType.toLowerCase() === 'exed') {
-      result.push(_class);
-    }
   });
 
   return result;
 }
 
 function atLeastOneOptionSelected(careerLevelsOptions: ICareerLevels) {
-  return careerLevelsOptions.ugrd || careerLevelsOptions.pbac || careerLevelsOptions.exed;
+  return careerLevelsOptions.ugrd || careerLevelsOptions.pbac;
 }

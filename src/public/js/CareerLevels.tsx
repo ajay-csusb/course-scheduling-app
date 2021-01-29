@@ -45,19 +45,6 @@ export class CareerLevels extends React.Component<ICareerLevelsProps, {}> {
               label="Post baccalaureate"
             />
           </div>
-          <div className="form-item">
-            <Checkbox
-              id="exed"
-              value="exed"
-              className="career-levels-checkboxes"
-              onChange={(event: React.FormEvent) => this.handleChangeOfCareerLevelsOptions(event)}
-              checked={this.props.careerLevelsOptions.exed}
-              onKeyDown={this.props.onKeyDown}
-              inline={true}
-              alignIndicator={Alignment.LEFT}
-              label="Extended education"
-            />
-          </div>
         </div>
       </ControlGroup>
     );
