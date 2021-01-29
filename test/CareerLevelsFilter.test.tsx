@@ -25,23 +25,18 @@ function getCareerLevelsClassData() {
   const pbacClass: IClass = TestUtils.copyObject(classJson);
   pbacClass.degreeType = 'PBAC';
   pbacClass.subject = 'ACCT';
-  const exedClass: IClass = TestUtils.copyObject(classJson);
-  exedClass.degreeType = 'EXED';
-  exedClass.subject = 'CHEM';
   const pbac = TestUtils.copyObject(careerLevelsOptions);
   _.set(pbac, 'pbac', true);
   const twoOptions = TestUtils.copyObject(careerLevelsOptions);
   _.set(twoOptions, 'ugrd', true);
-  _.set(twoOptions, 'exed', true);
   const allOptions = TestUtils.copyObject(careerLevelsOptions);
   _.set(allOptions, 'ugrd', true);
   _.set(allOptions, 'pbac', true);
-  _.set(allOptions, 'exed', true);
 
   return [
-    [[ugrdClass, pbacClass, exedClass], careerLevelsOptions, 3, ['BIOL', 'ACCT', 'CHEM']],
-    [[ugrdClass, pbacClass, exedClass], pbac, 1, ['ACCT']],
-    [[ugrdClass, pbacClass, exedClass], twoOptions, 2, ['BIOL', 'CHEM']],
-    [[ugrdClass, pbacClass, exedClass], allOptions, 3, ['BIOL', 'ACCT', 'CHEM']],
+    [[ugrdClass, pbacClass], careerLevelsOptions, 2, ['BIOL', 'ACCT']],
+    [[ugrdClass, pbacClass], pbac, 1, ['ACCT']],
+    [[ugrdClass, pbacClass], twoOptions, 1, ['BIOL']],
+    [[ugrdClass, pbacClass], allOptions, 2, ['BIOL', 'ACCT']],
   ];
 }

@@ -163,20 +163,16 @@ describe('states', () => {
       expect(classSearchContainerWrapper.state('careerLevelsOptions')).toEqual({
         ugrd: false,
         pbac: false,
-        exed: false,
       });
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
       classSearchContainerWrapper.find('input#ugrd').simulate('change');
       classSearchContainerWrapper.find('input#pbac').simulate('change');
-      classSearchContainerWrapper.find('input#exed').simulate('change');
-      expect(classSearchContainerWrapper.state('careerLevelsOptions')).toEqual({ ugrd: true, pbac: true, exed: true });
+      expect(classSearchContainerWrapper.state('careerLevelsOptions')).toEqual({ ugrd: true, pbac: true });
       classSearchContainerWrapper.find('input#ugrd').simulate('change');
       classSearchContainerWrapper.find('input#pbac').simulate('change');
-      classSearchContainerWrapper.find('input#exed').simulate('change');
       expect(classSearchContainerWrapper.state('careerLevelsOptions')).toEqual({
         ugrd: false,
         pbac: false,
-        exed: false,
       });
     });
   });
@@ -243,10 +239,12 @@ describe('states', () => {
       expect(classSearchContainerWrapper.state('isLoading')).toBeTruthy();
     });
     it('should set the progress to 0.1', () => {
-      expect(classSearchContainerWrapper.state('progress')).toEqual(0.1)
+      expect(classSearchContainerWrapper.state('progress')).toEqual(0.1);
     });
     it('should set the cssClasses.resultsWrapper to class-search-results-wrapper', () => {
-      expect(classSearchContainerWrapper.state('cssClasses')).toEqual({resultsWrapper: 'class-search-results-wrapper'});
+      expect(classSearchContainerWrapper.state('cssClasses')).toEqual({
+        resultsWrapper: 'class-search-results-wrapper',
+      });
     });
   });
 
@@ -372,7 +370,6 @@ describe('states', () => {
       expect(classSearchContainerWrapper.state('careerLevelsOptions')).toEqual({
         ugrd: false,
         pbac: false,
-        exed: false,
       });
     });
 
@@ -393,7 +390,7 @@ describe('states', () => {
     });
 
     it('sets the cssClasses.resultsWrapper to undefined', () => {
-      expect(classSearchContainerWrapper.state('cssClasses')).toEqual({resultsWrapper: undefined});
+      expect(classSearchContainerWrapper.state('cssClasses')).toEqual({ resultsWrapper: undefined });
     });
   });
 });

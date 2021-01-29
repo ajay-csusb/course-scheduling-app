@@ -112,7 +112,7 @@ describe('Class search form', () => {
 
     it('should have the correct default prop values', () => {
       expect(searchFormComponent.prop('openClasses')).toBeFalsy();
-      expect(searchFormComponent.prop('careerLevelsOptions')).toEqual({ ugrd: false, pbac: false, exed: false });
+      expect(searchFormComponent.prop('careerLevelsOptions')).toEqual({ pbac: false, ugrd: false });
       expect(searchFormComponent.prop('courseLevelsOptions')).toEqual({
         1000: false,
         2000: false,
@@ -129,14 +129,13 @@ describe('Class search form', () => {
       classSearchContainerComponent.find('.open-classes > input').simulate('change');
       classSearchContainerComponent.find('input#ugrd').simulate('change');
       classSearchContainerComponent.find('input#pbac').simulate('change');
-      classSearchContainerComponent.find('input#exed').simulate('change');
       classSearchContainerComponent.find('input#thousand').simulate('change');
       classSearchContainerComponent.find('input#seven-thousand').simulate('change');
       classSearchContainerComponent.find('button[type="submit"]').simulate('click');
       searchFormComponent = classSearchContainerComponent.find(ClassSearchForm);
 
       expect(searchFormComponent.prop('openClasses')).toBeTruthy();
-      expect(searchFormComponent.prop('careerLevelsOptions')).toEqual({ ugrd: true, pbac: true, exed: true });
+      expect(searchFormComponent.prop('careerLevelsOptions')).toEqual({ ugrd: true, pbac: true });
       expect(searchFormComponent.prop('courseLevelsOptions')).toEqual({
         1000: true,
         2000: false,

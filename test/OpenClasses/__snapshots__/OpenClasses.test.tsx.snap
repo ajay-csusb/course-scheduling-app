@@ -14,6 +14,7 @@ exports[`Open classes component component snapshot 1`] = `
     id="open-classes-filter"
   >
     <Blueprint3.FormGroup
+      helperText="The return results do not include waitlisted classes"
       labelFor="open-classes"
     >
       <div
@@ -53,6 +54,11 @@ exports[`Open classes component component snapshot 1`] = `
               </label>
             </Control>
           </Blueprint3.Switch>
+          <div
+            className="bp3-form-helper-text"
+          >
+            The return results do not include waitlisted classes
+          </div>
         </div>
       </div>
     </Blueprint3.FormGroup>

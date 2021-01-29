@@ -122,53 +122,6 @@ exports[`Career levels component component snapshot 1`] = `
             </Control>
           </Blueprint3.Checkbox>
         </div>
-        <div
-          className="form-item"
-        >
-          <Blueprint3.Checkbox
-            alignIndicator="left"
-            checked={false}
-            className="career-levels-checkboxes"
-            id="exed"
-            inline={true}
-            label="Extended education"
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            value="exed"
-          >
-            <Control
-              alignIndicator="left"
-              checked={false}
-              className="career-levels-checkboxes"
-              id="exed"
-              inline={true}
-              inputRef={[Function]}
-              label="Extended education"
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              type="checkbox"
-              typeClassName="bp3-checkbox"
-              value="exed"
-            >
-              <label
-                className="bp3-control bp3-checkbox bp3-inline bp3-align-left career-levels-checkboxes"
-              >
-                <input
-                  checked={false}
-                  id="exed"
-                  onChange={[Function]}
-                  onKeyDown={[Function]}
-                  type="checkbox"
-                  value="exed"
-                />
-                <span
-                  className="bp3-control-indicator"
-                />
-                Extended education
-              </label>
-            </Control>
-          </Blueprint3.Checkbox>
-        </div>
       </div>
     </div>
   </Blueprint3.ControlGroup>
