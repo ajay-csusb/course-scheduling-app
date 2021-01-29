@@ -14,7 +14,7 @@ describe('Given a class search form', function () {
       cy.get('#course-attribute').select('eBook');
       cy.get('#ge-classes-attributes').select('GE-B2 Life Science');
       cy.get('.class-number').type('0000');
-      cy.get('.session-code select').select('Regular');
+      cy.get('.session-code select').select('Fall and Spring (Regular)');
       form.submit();
       cy.contains('Reset').click();
     });
