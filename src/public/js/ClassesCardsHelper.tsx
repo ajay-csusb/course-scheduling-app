@@ -104,7 +104,7 @@ export function getCourseBodyMarkup(_class: IClass): JSX.Element {
       <ul className="course-desc">
         <li>
           <span>Units </span>
-          {csuUnits}
+          {csuUnits ? csuUnits : 0}
         </li>
         <li>
           <span>Meeting Time </span>

@@ -359,6 +359,9 @@ export class Grid extends React.Component<ITableDisplayProps> {
 
   private getUnit(rowIndex: number): JSX.Element {
     const units = this.classes[rowIndex].csuUnits;
+    if (units === null) {
+      return <Cell tooltip="0">0</Cell>;
+    }
     return <Cell tooltip={units.toString()}>{units}</Cell>;
   }
 
