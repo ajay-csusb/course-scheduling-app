@@ -6,7 +6,6 @@ import { SelectListGeClassesAttributes } from './SelectListGeClassesAttributes';
 import { IClassSearchFormProps } from './ClassSearchForm';
 import { OpenClasses } from './OpenClasses';
 import { CareerLevels } from './CareerLevels';
-import { CourseLevels } from './CourseLevels';
 
 interface IAdvancedFilterFieldsetState {
   isOpen?: boolean;
@@ -29,7 +28,6 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
     const arrow = this.state.isOpen ? <i className="fal fa-chevron-up" /> : <i className="fal fa-chevron-down" />;
     const openClassesComponent = this.getOpenClassesComponent();
     const careerLevelsComponent = this.getCareerLevelsComponent();
-    const courseLevelsComponent = this.getCourseLevelsComponent();
 
     return (
       <React.Fragment>
@@ -55,9 +53,6 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
             </div>
             <div className="col-6 col-md-4">
               <div className="form-item">{careerLevelsComponent}</div>
-            </div>
-            <div className="col-6 col-md-4">
-              <div className="form-item">{courseLevelsComponent}</div>
             </div>
           </div>
         </Collapse>
@@ -124,16 +119,6 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
       <CareerLevels
         careerLevelsOptions={this.props.careerLevelsOptions}
         onChangeOfCareerLevelsOptions={this.props.onChangeOfCareerLevelsOptions}
-        onKeyDown={this.props.onKeyDown}
-      />
-    );
-  }
-
-  private getCourseLevelsComponent(): JSX.Element {
-    return (
-      <CourseLevels
-        courseLevelsOptions={this.props.courseLevelsOptions}
-        onChangeOfCourseLevelsOptions={this.props.onChangeOfCourseLevelsOptions}
         onKeyDown={this.props.onKeyDown}
       />
     );

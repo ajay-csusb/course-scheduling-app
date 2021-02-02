@@ -74,33 +74,6 @@ describe('Class search form', () => {
     });
   });
 
-  describe('when a user selects options from Course Levels checkboxes', () => {
-    let searchFormComponent = null;
-
-    describe('and does not select a subject', () => {
-      describe('when one option is checked', () => {
-        it('should not display error message', () => {
-          searchFormComponent = mount(<ClassSearchContainer />);
-          searchFormComponent.find('#additional-filters').simulate('click');
-          searchFormComponent.find('input#five-thousand').simulate('change');
-          searchFormComponent.find('button[type="submit"]').simulate('click');
-          expect(searchFormComponent.html()).not.toContain('Please select a Course Subject');
-        });
-      });
-
-      describe('when two options are checked', () => {
-        it('should not display error message', () => {
-          searchFormComponent = mount(<ClassSearchContainer />);
-          searchFormComponent.find('#additional-filters').simulate('click');
-          searchFormComponent.find('input#four-thousand').simulate('change');
-          searchFormComponent.find('input#five-thousand').simulate('change');
-          searchFormComponent.find('button[type="submit"]').simulate('click');
-          expect(searchFormComponent.html()).not.toContain('Please select a Course Subject');
-        });
-      });
-    });
-  });
-
   describe('When a user performs a search', () => {
     let searchFormComponent = null;
     let classSearchContainerComponent = null;
@@ -113,15 +86,6 @@ describe('Class search form', () => {
     it('should have the correct default prop values', () => {
       expect(searchFormComponent.prop('openClasses')).toBeFalsy();
       expect(searchFormComponent.prop('careerLevelsOptions')).toEqual({ pbac: false, ugrd: false });
-      expect(searchFormComponent.prop('courseLevelsOptions')).toEqual({
-        1000: false,
-        2000: false,
-        3000: false,
-        4000: false,
-        5000: false,
-        6000: false,
-        7000: false,
-      });
     });
 
     it('should pass the correct props to class search form component', () => {
@@ -129,22 +93,10 @@ describe('Class search form', () => {
       classSearchContainerComponent.find('.open-classes > input').simulate('change');
       classSearchContainerComponent.find('input#ugrd').simulate('change');
       classSearchContainerComponent.find('input#pbac').simulate('change');
-      classSearchContainerComponent.find('input#thousand').simulate('change');
-      classSearchContainerComponent.find('input#seven-thousand').simulate('change');
       classSearchContainerComponent.find('button[type="submit"]').simulate('click');
       searchFormComponent = classSearchContainerComponent.find(ClassSearchForm);
-
       expect(searchFormComponent.prop('openClasses')).toBeTruthy();
       expect(searchFormComponent.prop('careerLevelsOptions')).toEqual({ ugrd: true, pbac: true });
-      expect(searchFormComponent.prop('courseLevelsOptions')).toEqual({
-        1000: true,
-        2000: false,
-        3000: false,
-        4000: false,
-        5000: false,
-        6000: false,
-        7000: true,
-      });
     });
   });
 });

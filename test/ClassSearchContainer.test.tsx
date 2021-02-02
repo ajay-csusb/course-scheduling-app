@@ -177,46 +177,6 @@ describe('states', () => {
     });
   });
 
-  describe('when a user filters classes by course levels', () => {
-    it('should set the correct states for course levels', () => {
-      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      expect(classSearchContainerWrapper.state('courseLevelsOptions')).toEqual({
-        1000: false,
-        2000: false,
-        3000: false,
-        4000: false,
-        5000: false,
-        6000: false,
-        7000: false,
-      });
-      classSearchContainerWrapper.find('#additional-filters').simulate('click');
-      classSearchContainerWrapper.find('input#three-thousand').simulate('change');
-      classSearchContainerWrapper.find('input#seven-thousand').simulate('change');
-      expect(classSearchContainerWrapper.state('courseLevelsOptions')).toEqual({
-        1000: false,
-        2000: false,
-        3000: true,
-        4000: false,
-        5000: false,
-        6000: false,
-        7000: true,
-      });
-      classSearchContainerWrapper.find('input#thousand').simulate('change');
-      classSearchContainerWrapper.find('input#three-thousand').simulate('change');
-      classSearchContainerWrapper.find('input#six-thousand').simulate('change');
-      classSearchContainerWrapper.find('input#seven-thousand').simulate('change');
-      expect(classSearchContainerWrapper.state('courseLevelsOptions')).toEqual({
-        1000: true,
-        2000: false,
-        3000: false,
-        4000: false,
-        5000: false,
-        6000: true,
-        7000: false,
-      });
-    });
-  });
-
   describe('when user clicks submit', () => {
     let classSearchContainerWrapper = null;
     beforeEach(() => {
