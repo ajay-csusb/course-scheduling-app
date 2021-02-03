@@ -82,6 +82,7 @@ describe('states', () => {
   describe('when an option is selected from session code', () => {
     it('should set the correct state of sessionCode', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '1116' } });
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
       classSearchContainerWrapper.find('.session-code > select').simulate('change', { target: { value: 'foo' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');

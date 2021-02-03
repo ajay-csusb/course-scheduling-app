@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SelectListSessionCode> Given a class search form snapshot 1`] = `
+exports[`<SelectListSessionCode> Given a class search form snapshot if the selected term is not summer 1`] = `null`;
+
+exports[`<SelectListSessionCode> Given a class search form snapshot if the selected term is summer 1`] = `
 Array [
   <HTMLSelect
     className="session-code"
@@ -8,14 +10,6 @@ Array [
     onChange={[Function]}
     options={
       Array [
-        Object {
-          "label": "All",
-          "value": "all",
-        },
-        Object {
-          "label": "Fall and Spring (Regular)",
-          "value": "1",
-        },
         Object {
           "label": "Summer terms (6 Week 1)",
           "value": "6W1",
@@ -27,10 +21,6 @@ Array [
         Object {
           "label": "Summer terms (10 Week)",
           "value": "10W",
-        },
-        Object {
-          "label": "Winter Intersession (3 Week 1)",
-          "value": "3W1",
         },
       ]
     }
@@ -45,20 +35,6 @@ Array [
         onChange={[Function]}
         value="all"
       >
-        <option
-          key="all"
-          label="All"
-          value="all"
-        >
-          All
-        </option>
-        <option
-          key="1"
-          label="Fall and Spring (Regular)"
-          value="1"
-        >
-          Fall and Spring (Regular)
-        </option>
         <option
           key="6W1"
           label="Summer terms (6 Week 1)"
@@ -79,13 +55,6 @@ Array [
           value="10W"
         >
           Summer terms (10 Week)
-        </option>
-        <option
-          key="3W1"
-          label="Winter Intersession (3 Week 1)"
-          value="3W1"
-        >
-          Winter Intersession (3 Week 1)
         </option>
       </select>
       <Blueprint3.Icon
@@ -124,20 +93,6 @@ Array [
       value="all"
     >
       <option
-        key="all"
-        label="All"
-        value="all"
-      >
-        All
-      </option>
-      <option
-        key="1"
-        label="Fall and Spring (Regular)"
-        value="1"
-      >
-        Fall and Spring (Regular)
-      </option>
-      <option
         key="6W1"
         label="Summer terms (6 Week 1)"
         value="6W1"
@@ -157,13 +112,6 @@ Array [
         value="10W"
       >
         Summer terms (10 Week)
-      </option>
-      <option
-        key="3W1"
-        label="Winter Intersession (3 Week 1)"
-        value="3W1"
-      >
-        Winter Intersession (3 Week 1)
       </option>
     </select>
     <Blueprint3.Icon
