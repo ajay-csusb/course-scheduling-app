@@ -46,17 +46,17 @@ export class AdvancedFilterFieldset extends React.Component<IClassSearchFormProp
               <div className="form-item">{classNumber}</div>
             </div>
             <div className="col-6 col-md-4">
+              <div className="form-item">{openClassesComponent}</div>
+            </div>
+            <div className="col-6 col-md-4">
+              <div className="form-item">{careerLevelsComponent}</div>
+            </div>
+            <div className="col-6 col-md-4">
               <div className="form-item">
                 {this.props.currentTermId !== undefined && this.props.currentTermId.substr(-1) === '6'
                   ? sessionCode
                   : null}
               </div>
-            </div>
-            <div className="col-6 col-md-4">
-              <div className="form-item">{openClassesComponent}</div>
-            </div>
-            <div className="col-6 col-md-4">
-              <div className="form-item">{careerLevelsComponent}</div>
             </div>
           </div>
         </Collapse>
