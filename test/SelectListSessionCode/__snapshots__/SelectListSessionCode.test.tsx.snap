@@ -11,15 +11,15 @@ Array [
     options={
       Array [
         Object {
-          "label": "Summer terms (6 Week 1)",
+          "label": "Summer Session (6 Week 1)",
           "value": "6W1",
         },
         Object {
-          "label": "Summer terms (6 Week 2)",
+          "label": "Summer Session (6 Week 2)",
           "value": "6W2",
         },
         Object {
-          "label": "Summer terms (10 Week)",
+          "label": "Summer Session (10 Week)",
           "value": "10W",
         },
       ]
@@ -37,24 +37,24 @@ Array [
       >
         <option
           key="6W1"
-          label="Summer terms (6 Week 1)"
+          label="Summer Session (6 Week 1)"
           value="6W1"
         >
-          Summer terms (6 Week 1)
+          Summer Session (6 Week 1)
         </option>
         <option
           key="6W2"
-          label="Summer terms (6 Week 2)"
+          label="Summer Session (6 Week 2)"
           value="6W2"
         >
-          Summer terms (6 Week 2)
+          Summer Session (6 Week 2)
         </option>
         <option
           key="10W"
-          label="Summer terms (10 Week)"
+          label="Summer Session (10 Week)"
           value="10W"
         >
-          Summer terms (10 Week)
+          Summer Session (10 Week)
         </option>
       </select>
       <Blueprint3.Icon
@@ -94,24 +94,24 @@ Array [
     >
       <option
         key="6W1"
-        label="Summer terms (6 Week 1)"
+        label="Summer Session (6 Week 1)"
         value="6W1"
       >
-        Summer terms (6 Week 1)
+        Summer Session (6 Week 1)
       </option>
       <option
         key="6W2"
-        label="Summer terms (6 Week 2)"
+        label="Summer Session (6 Week 2)"
         value="6W2"
       >
-        Summer terms (6 Week 2)
+        Summer Session (6 Week 2)
       </option>
       <option
         key="10W"
-        label="Summer terms (10 Week)"
+        label="Summer Session (10 Week)"
         value="10W"
       >
-        Summer terms (10 Week)
+        Summer Session (10 Week)
       </option>
     </select>
     <Blueprint3.Icon
