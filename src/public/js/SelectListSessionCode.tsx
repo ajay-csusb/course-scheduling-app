@@ -8,9 +8,9 @@ export interface ISelectListSessionCodeProps {
 
 export class SelectListSessionCode extends React.Component<ISelectListSessionCodeProps, {}> {
   private readonly sessionCodes: IOptionProps[] = [
-    { label: 'Summer terms (6 Week 1)', value: '6W1' },
-    { label: 'Summer terms (6 Week 2)', value: '6W2' },
-    { label: 'Summer terms (10 Week)', value: '10W' },
+    { label: 'Summer Session (6 Week 1)', value: '6W1' },
+    { label: 'Summer Session (6 Week 2)', value: '6W2' },
+    { label: 'Summer Session (10 Week)', value: '10W' },
   ];
 
   public render(): React.ReactNode {
