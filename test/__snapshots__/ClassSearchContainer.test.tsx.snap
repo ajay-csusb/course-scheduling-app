@@ -10,8 +10,25 @@ exports[`snapshots Class search container component snapshot 1`] = `
     >
       <ClassSearchForm
         campus="both"
+        careerLevelsOptions={
+          Object {
+            "pbac": false,
+            "ugrd": false,
+          }
+        }
         classNo=""
         courseAttr="all"
+        courseLevelsOptions={
+          Object {
+            "1000": false,
+            "2000": false,
+            "3000": false,
+            "4000": false,
+            "5000": false,
+            "6000": false,
+            "7000": false,
+          }
+        }
         courseNo=""
         endTime={1899-01-02T07:00:00.000Z}
         geClassesAttribute=""
@@ -31,8 +48,10 @@ exports[`snapshots Class search container component snapshot 1`] = `
           }
         }
         onChangeOfCampus={[Function]}
+        onChangeOfCareerLevelsOptions={[Function]}
         onChangeOfClassNo={[Function]}
         onChangeOfCourseAttr={[Function]}
+        onChangeOfCourseLevelsOptions={[Function]}
         onChangeOfCourseNo={[Function]}
         onChangeOfEndTime={[Function]}
         onChangeOfGeClassesAttribute={[Function]}
@@ -55,6 +74,7 @@ exports[`snapshots Class search container component snapshot 1`] = `
       />
     </div>
   </div>
+  <div />
   <a
     className="feedback-btn"
     href="https://www.csusb.edu/its/support/digital-transformation/web-services/form/feedback-class-search"
@@ -74,8 +94,25 @@ exports[`snapshots compare search form snapshot 1`] = `
 >
   <ClassSearchForm
     campus="both"
+    careerLevelsOptions={
+      Object {
+        "pbac": false,
+        "ugrd": false,
+      }
+    }
     classNo=""
     courseAttr="all"
+    courseLevelsOptions={
+      Object {
+        "1000": false,
+        "2000": false,
+        "3000": false,
+        "4000": false,
+        "5000": false,
+        "6000": false,
+        "7000": false,
+      }
+    }
     courseNo=""
     endTime={1899-01-02T07:00:00.000Z}
     geClassesAttribute=""
@@ -95,8 +132,10 @@ exports[`snapshots compare search form snapshot 1`] = `
       }
     }
     onChangeOfCampus={[Function]}
+    onChangeOfCareerLevelsOptions={[Function]}
     onChangeOfClassNo={[Function]}
     onChangeOfCourseAttr={[Function]}
+    onChangeOfCourseLevelsOptions={[Function]}
     onChangeOfCourseNo={[Function]}
     onChangeOfEndTime={[Function]}
     onChangeOfGeClassesAttribute={[Function]}
@@ -1406,8 +1445,25 @@ exports[`snapshots compare search form snapshot 1`] = `
                 >
                   <AdvancedFilterFieldset
                     campus="both"
+                    careerLevelsOptions={
+                      Object {
+                        "pbac": false,
+                        "ugrd": false,
+                      }
+                    }
                     classNo=""
                     courseAttr="all"
+                    courseLevelsOptions={
+                      Object {
+                        "1000": false,
+                        "2000": false,
+                        "3000": false,
+                        "4000": false,
+                        "5000": false,
+                        "6000": false,
+                        "7000": false,
+                      }
+                    }
                     courseNo=""
                     endTime={1899-01-02T07:00:00.000Z}
                     geClassesAttribute=""
@@ -1427,8 +1483,10 @@ exports[`snapshots compare search form snapshot 1`] = `
                       }
                     }
                     onChangeOfCampus={[Function]}
+                    onChangeOfCareerLevelsOptions={[Function]}
                     onChangeOfClassNo={[Function]}
                     onChangeOfCourseAttr={[Function]}
+                    onChangeOfCourseLevelsOptions={[Function]}
                     onChangeOfCourseNo={[Function]}
                     onChangeOfEndTime={[Function]}
                     onChangeOfGeClassesAttribute={[Function]}

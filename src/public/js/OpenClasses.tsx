@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Alignment } from '@blueprintjs/core';
+import { Switch, Alignment, FormGroup } from '@blueprintjs/core';
 
 export interface IOpenClassesProps {
   openClasses: boolean;
@@ -13,18 +13,21 @@ export class OpenClasses extends React.Component<IOpenClassesProps> {
   }
 
   public render(): React.ReactNode {
-    const innerLabelText = this.props.openClasses ? 'On' : 'Off';
-
     return (
-      <Switch
-        checked={this.props.openClasses}
-        label="Open Classes"
-        innerLabel={innerLabelText}
-        className="open-classes"
-        onChange={this.onChangeOfOpenClasses}
-        large={true}
-        alignIndicator={Alignment.RIGHT}
-      />
+      <>
+        <div className="label">Open Classes</div>
+        <div id="open-classes-filter">
+          <FormGroup labelFor="open-classes" helperText="The return results do not include waitlisted classes">
+            <Switch
+              checked={this.props.openClasses}
+              className="open-classes"
+              onChange={this.onChangeOfOpenClasses}
+              large={true}
+              alignIndicator={Alignment.RIGHT}
+            />
+          </FormGroup>
+        </div>
+      </>
     );
   }
 

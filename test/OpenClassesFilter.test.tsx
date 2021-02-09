@@ -1,7 +1,7 @@
 import { IClass } from '../src/public/js/Class';
 import { TestUtils } from './TestUtils';
 import { classJson } from './ClassesJson';
-import { OpenClassesFilter } from '../src/public/js/OpenClassesFilter';
+import * as OpenClassesFilter from '../src/public/js/OpenClassesFilter';
 import _ from 'lodash';
 import { app } from '../src/public/js/ClassSearch.d';
 

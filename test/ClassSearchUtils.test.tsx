@@ -265,18 +265,9 @@ describe('fetch parameters', () => {
     });
   });
 
-  describe('when sessionCode is set to all', () => {
-    it('should pass an empty string', () => {
-      classSearchContainerWrapper.find('#additional-filters').simulate('click');
-      classSearchContainerWrapper.find('.session-code > select').simulate('change', { target: { value: 'all' } });
-      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-      const sessionCodeArgument = fetchMock.lastOptions();
-      expect(sessionCodeArgument.body).toMatch(new RegExp('"section_code":""'));
-    });
-  });
-
   describe('when sessionCode is set', () => {
     it('should pass the chosen value', () => {
+      classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '1116' } });
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
       classSearchContainerWrapper.find('.session-code > select').simulate('change', { target: { value: 'foo' } });
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
@@ -449,6 +440,7 @@ describe('fetch parameters', () => {
         startTime: new Date('1899-01-01T11:00:00'),
         endTime: new Date('1899-01-01T19:00:00'),
       });
+      classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '0006' } });
       classSearchContainerWrapper.find('.course-number').simulate('change', { target: { value: '100' } });
       classSearchContainerWrapper.find('.campus-select > select').simulate('change', { target: { value: 'MAIN' } });
       classSearchContainerWrapper.find('.mon > input').simulate('change', { target: { value: 'mon' } });

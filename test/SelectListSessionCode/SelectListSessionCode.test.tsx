@@ -10,7 +10,7 @@ describe('<SelectListSessionCode>', () => {
   });
 
   describe('Given a class search form', () => {
-    test('snapshot', () => {
+    test('snapshot if the selected term is summer', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
       classSearchContainerWrapper.setState({
         subject: {
@@ -18,6 +18,21 @@ describe('<SelectListSessionCode>', () => {
           name: 'Bar',
         },
       });
+      classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '0006' } });
+      classSearchContainerWrapper.find('#additional-filters').simulate('click');
+      const sessionCodeWrapper = classSearchContainerWrapper.find('.session-code');
+      expect(sessionCodeWrapper).toMatchSnapshot();
+    });
+
+    test('snapshot if the selected term is not summer', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      classSearchContainerWrapper.setState({
+        subject: {
+          abbr: 'bar',
+          name: 'Bar',
+        },
+      });
+      classSearchContainerWrapper.find('.select-term > select').simulate('change', { target: { value: '2222' } });
       classSearchContainerWrapper.find('#additional-filters').simulate('click');
       const sessionCodeWrapper = classSearchContainerWrapper.find('.session-code');
       expect(sessionCodeWrapper).toMatchSnapshot();

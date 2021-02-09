@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ClassSearchForm } from './ClassSearchForm';
 import { ClassSearchResults } from './ClassSearchResults';
-import { IClass, Class, IMeetingDate } from './Class';
+import { IClass, Class, IMeetingDate, ICareerLevels, ICourseLevels } from './Class';
 import { ISubject, Subject } from './Subject';
 import { UserInput } from './UserInput';
-import { Intent, IOptionProps, Callout, Spinner } from '@blueprintjs/core';
+import { Intent, IOptionProps, Callout, ProgressBar } from '@blueprintjs/core';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import * as Watchdog from './Watchdog';
 import * as FilterClasses from './FilterClasses';
@@ -34,6 +34,12 @@ export interface IClassSearchContainerState {
   degreeType: string;
   forceReload: boolean;
   showOpenClasses: boolean;
+  careerLevelsOptions: ICareerLevels;
+  courseLevelsOptions: ICourseLevels;
+  progress: number;
+  cssClasses: {
+    resultsWrapper: string | undefined;
+  };
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
   private allResults: IClass[];
@@ -84,6 +90,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.onEnterKeyPress = this.onEnterKeyPress.bind(this);
     this.updateSubjectDropdown = this.updateSubjectDropdown.bind(this);
     this.updateOpenClasses = this.updateOpenClasses.bind(this);
+    this.updateCareerLevelsOptions = this.updateCareerLevelsOptions.bind(this);
+    this.updateCourseLevelsOptions = this.updateCourseLevelsOptions.bind(this);
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
@@ -99,6 +107,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const classSearchResultsComponent = this.getClassSearchResultsComponent();
     const classSearchFormComponent = this.getClassSearchFormComponent();
     const errorMessage: JSX.Element = this.displayErrorMessageWhenSubjectIsEmpty();
+    this.updateProgressBar();
+
     return (
       <React.Fragment>
         <div className="form-section">
@@ -107,9 +117,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
             {classSearchFormComponent}
           </div>
         </div>
-        {this.isLoadingClasses() && <Spinner intent={Intent.PRIMARY} size={25} />}
-        {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) &&
-          classSearchResultsComponent}
+
+        {this.isLoadingClasses() && <ProgressBar intent={Intent.PRIMARY} value={this.state.progress} />}
+        <div className={this.state.cssClasses.resultsWrapper}>
+          {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) &&
+            classSearchResultsComponent}
+        </div>
+
         <a
           target="_blank"
           href="https://www.csusb.edu/its/support/digital-transformation/web-services/form/feedback-class-search"
@@ -293,6 +307,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         showErrorMessage: false,
         beforeSubmit: false,
         isLoading: true,
+        progress: 0.1,
+        cssClasses: {
+          resultsWrapper: 'class-search-results-wrapper',
+        },
       },
       () => {
         this.updateAllClasses();
@@ -347,6 +365,23 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       geClassesAttribute: '',
       forceReload: false,
       showOpenClasses: false,
+      careerLevelsOptions: {
+        ugrd: false,
+        pbac: false,
+      },
+      courseLevelsOptions: {
+        1000: false,
+        2000: false,
+        3000: false,
+        4000: false,
+        5000: false,
+        6000: false,
+        7000: false,
+      },
+      progress: 0,
+      cssClasses: {
+        resultsWrapper: undefined,
+      },
     };
   }
 
@@ -455,6 +490,26 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return this.state.courseAttr === 'all';
   }
 
+  private isOpenClassesSelected(): boolean {
+    return this.state.showOpenClasses;
+  }
+
+  private atleastOneCareerLevelOptionSelected() {
+    return this.state.careerLevelsOptions.ugrd || this.state.careerLevelsOptions.pbac;
+  }
+
+  private atleastOneCourseLevelsOptionSelected() {
+    return (
+      this.state.courseLevelsOptions[1000] ||
+      this.state.courseLevelsOptions[2000] ||
+      this.state.courseLevelsOptions[3000] ||
+      this.state.courseLevelsOptions[4000] ||
+      this.state.courseLevelsOptions[5000] ||
+      this.state.courseLevelsOptions[6000] ||
+      this.state.courseLevelsOptions[7000]
+    );
+  }
+
   private otherFieldsDoNotHaveValidValues(): boolean {
     if (!this.isInstructorEmpty()) {
       return false;
@@ -478,6 +533,15 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       return false;
     }
     if (!this.allCourseAttributesSelected()) {
+      return false;
+    }
+    if (this.isOpenClassesSelected()) {
+      return false;
+    }
+    if (this.atleastOneCareerLevelOptionSelected()) {
+      return false;
+    }
+    if (this.atleastOneCourseLevelsOptionSelected()) {
       return false;
     }
     return true;
@@ -540,6 +604,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         onChangeOfClassNo={this.updateClassNo}
         onChangeOfGeClassesAttribute={this.updateGeClassAttr}
         onChangeOfOpenClasses={this.updateOpenClasses}
+        onChangeOfCareerLevelsOptions={this.updateCareerLevelsOptions}
+        onChangeOfCourseLevelsOptions={this.updateCourseLevelsOptions}
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         onKeyDown={this.onEnterKeyPress}
@@ -551,6 +617,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         sessionCode={this.state.sessionCode}
         currentTermId={this.state.term}
         openClasses={this.state.showOpenClasses}
+        careerLevelsOptions={this.state.careerLevelsOptions}
+        courseLevelsOptions={this.state.courseLevelsOptions}
       />
     );
   }
@@ -688,6 +756,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.setState({
       noClasses: noClassesStatus,
       isLoading: isLoadingStatus,
+      progress: 0,
     });
   }
 
@@ -696,9 +765,29 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   }
 
   private updateOpenClasses(_event: any): void {
-    this.setState({
-      showOpenClasses: !this.state.showOpenClasses,
-    });
+    this.setState(
+      {
+        showOpenClasses: !this.state.showOpenClasses,
+      },
+      () => {
+        this.userInput.setOpenClassesStatus(this.state.showOpenClasses);
+      }
+    );
+  }
+
+  private updateCareerLevelsOptions(event: any): void {
+    const checkBoxValue = event.target.value;
+    this.setState(
+      {
+        careerLevelsOptions: {
+          ugrd: checkBoxValue === 'ugrd' ? !this.state.careerLevelsOptions.ugrd : this.state.careerLevelsOptions.ugrd,
+          pbac: checkBoxValue === 'pbac' ? !this.state.careerLevelsOptions.pbac : this.state.careerLevelsOptions.pbac,
+        },
+      },
+      () => {
+        this.userInput.setCareerLevelsOptionsStatus(this.state.careerLevelsOptions);
+      }
+    );
   }
   private logUserSelectionToBigQuery(): void {
     const startDate: Date = new Date(this.state.startTime);
@@ -727,5 +816,35 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       tuesday: this.state.meetingDate.tue,
       wednesday: this.state.meetingDate.wed,
     });
+  }
+
+  private updateCourseLevelsOptions(event: any): void {
+    const courseLevel = event.target.value;
+    this.setState(
+      {
+        courseLevelsOptions: {
+          1000: courseLevel === '1000' ? !this.state.courseLevelsOptions[1000] : this.state.courseLevelsOptions[1000],
+          2000: courseLevel === '2000' ? !this.state.courseLevelsOptions[2000] : this.state.courseLevelsOptions[2000],
+          3000: courseLevel === '3000' ? !this.state.courseLevelsOptions[3000] : this.state.courseLevelsOptions[3000],
+          4000: courseLevel === '4000' ? !this.state.courseLevelsOptions[4000] : this.state.courseLevelsOptions[4000],
+          5000: courseLevel === '5000' ? !this.state.courseLevelsOptions[5000] : this.state.courseLevelsOptions[5000],
+          6000: courseLevel === '6000' ? !this.state.courseLevelsOptions[6000] : this.state.courseLevelsOptions[6000],
+          7000: courseLevel === '7000' ? !this.state.courseLevelsOptions[7000] : this.state.courseLevelsOptions[7000],
+        },
+      },
+      () => {
+        this.userInput.setCourseLevelsOptionsStatus(this.state.courseLevelsOptions);
+      }
+    );
+  }
+
+  private updateProgressBar(): void {
+    if (this.state.progress > 0 && this.state.progress < 1 && this.state.isLoading) {
+      setTimeout(() => {
+        this.setState({
+          progress: this.state.progress + 0.03,
+        });
+      }, 1000);
+    }
   }
 }

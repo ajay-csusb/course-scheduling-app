@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Career levels component component snapshot 1`] = `
+<CareerLevels
+  careerLevelsOptions={
+    Object {
+      "exed": false,
+      "pbac": false,
+      "ugrd": false,
+    }
+  }
+  onChangeOfCareerLevelsOptions={[Function]}
+  onKeyDown={[Function]}
+>
+  <Blueprint3.ControlGroup
+    className="career-levels-filter-wrapper"
+    fill={true}
+    vertical={false}
+  >
+    <div
+      className="bp3-control-group bp3-fill career-levels-filter-wrapper"
+    >
+      <div
+        className="label"
+      >
+        Career Levels
+      </div>
+      <div
+        id="career-levels-filter"
+      >
+        <div
+          className="form-item"
+        >
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="career-levels-checkboxes"
+            id="ugrd"
+            inline={true}
+            label="Undergraduate"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="ugrd"
+          >
+            <Control
+              alignIndicator="left"
+              checked={false}
+              className="career-levels-checkboxes"
+              id="ugrd"
+              inline={true}
+              inputRef={[Function]}
+              label="Undergraduate"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="checkbox"
+              typeClassName="bp3-checkbox"
+              value="ugrd"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left career-levels-checkboxes"
+              >
+                <input
+                  checked={false}
+                  id="ugrd"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="ugrd"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Undergraduate
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+        <div
+          className="form-item"
+        >
+          <Blueprint3.Checkbox
+            alignIndicator="left"
+            checked={false}
+            className="career-levels-checkboxes"
+            id="pbac"
+            inline={true}
+            label="Post baccalaureate"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            value="pbac"
+          >
+            <Control
+              alignIndicator="left"
+              checked={false}
+              className="career-levels-checkboxes"
+              id="pbac"
+              inline={true}
+              inputRef={[Function]}
+              label="Post baccalaureate"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="checkbox"
+              typeClassName="bp3-checkbox"
+              value="pbac"
+            >
+              <label
+                className="bp3-control bp3-checkbox bp3-inline bp3-align-left career-levels-checkboxes"
+              >
+                <input
+                  checked={false}
+                  id="pbac"
+                  onChange={[Function]}
+                  onKeyDown={[Function]}
+                  type="checkbox"
+                  value="pbac"
+                />
+                <span
+                  className="bp3-control-indicator"
+                />
+                Post baccalaureate
+              </label>
+            </Control>
+          </Blueprint3.Checkbox>
+        </div>
+      </div>
+    </div>
+  </Blueprint3.ControlGroup>
+</CareerLevels>
+`;

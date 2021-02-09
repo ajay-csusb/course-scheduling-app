@@ -11,14 +11,14 @@ describe('Loading message behavior', function () {
     });
 
     it('should show loading message', () => {
-      cy.get('div').should('contain.class', 'bp3-spinner-animation');
+      cy.get('div').should('contain.class', 'bp3-progress-bar');
     });
 
     it('should show loading message if the results are filtered further', () => {
       cy.get('.course-number').type('300');
       cy.get('.btn-primary').click();
       cy.get('.mon > .bp3-control-indicator').click();
-      cy.get('div').should('contain.class', 'bp3-spinner-animation');
+      cy.get('div').should('contain.class', 'bp3-progress-bar');
     });
 
     it('should show loading message after a search is made where no results are found', () => {
@@ -29,7 +29,7 @@ describe('Loading message behavior', function () {
       cy.get('.btn-primary').click();
       cy.get('.sun > .bp3-control-indicator').click();
       cy.get('.btn-primary').click();
-      cy.get('div').should('contain.class', 'bp3-spinner-animation');
+      cy.get('div').should('contain.class', 'bp3-progress-bar');
     });
   });
 });

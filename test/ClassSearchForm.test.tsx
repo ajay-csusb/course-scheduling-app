@@ -10,30 +10,66 @@ describe('Class search form', () => {
     TestUtils.ajax();
   });
 
-  describe('When a search is performed without entering subject', () => {
-    let classSearchContainerWrapper = null;
-    beforeEach(() => {
+  describe('when a search is performed without entering subject', () => {
+    it('should display error message', () => {
+      let classSearchContainerWrapper = null;
       classSearchContainerWrapper = mount(<ClassSearchContainer />);
       classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
-    });
-
-    it('should display error message', () => {
       expect(classSearchContainerWrapper.html()).toContain('Please select a Course Subject');
     });
   });
 
-  describe('When a user selects a GE course attribute', () => {
+  describe('when a user selects a GE course attribute', () => {
     let searchFormComponent = null;
+
     describe('and does not select a subject', () => {
-      beforeEach(() => {
+      it('should not display error message', () => {
         searchFormComponent = mount(<ClassSearchContainer />);
         searchFormComponent.find('#additional-filters').simulate('click');
         searchFormComponent.find('.select-ge-classes-attr select').simulate('change', { target: { value: 'foo' } });
         searchFormComponent.find('button[type="submit"]').simulate('click');
+        expect(searchFormComponent.html()).not.toContain('Please select a Course Subject');
+      });
+    });
+  });
+
+  describe('when a user check Open Classes status box', () => {
+    let searchFormComponent = null;
+
+    describe('and does not select a subject', () => {
+      it('should not display error message', () => {
+        searchFormComponent = mount(<ClassSearchContainer />);
+        searchFormComponent.find('#additional-filters').simulate('click');
+        searchFormComponent.find('.open-classes input').simulate('change');
+        searchFormComponent.find('button[type="submit"]').simulate('click');
+        expect(searchFormComponent.html()).not.toContain('Please select a Course Subject');
+      });
+    });
+  });
+
+  describe('when a user selects options from Career Levels checkboxes', () => {
+    let searchFormComponent = null;
+
+    describe('and does not select a subject', () => {
+      describe('when one option is checked', () => {
+        it('should not display error message', () => {
+          searchFormComponent = mount(<ClassSearchContainer />);
+          searchFormComponent.find('#additional-filters').simulate('click');
+          searchFormComponent.find('input#pbac').simulate('change');
+          searchFormComponent.find('button[type="submit"]').simulate('click');
+          expect(searchFormComponent.html()).not.toContain('Please select a Course Subject');
+        });
       });
 
-      it('should display error message', () => {
-        expect(searchFormComponent.html()).not.toContain('Please select a Course Subject');
+      describe('when two options are checked', () => {
+        it('should not display error message', () => {
+          searchFormComponent = mount(<ClassSearchContainer />);
+          searchFormComponent.find('#additional-filters').simulate('click');
+          searchFormComponent.find('input#ugrd').simulate('change');
+          searchFormComponent.find('input#pbac').simulate('change');
+          searchFormComponent.find('button[type="submit"]').simulate('click');
+          expect(searchFormComponent.html()).not.toContain('Please select a Course Subject');
+        });
       });
     });
   });
@@ -42,18 +78,25 @@ describe('Class search form', () => {
     let searchFormComponent = null;
     let classSearchContainerComponent = null;
 
-    beforeEach(() => {
+    beforeAll(() => {
       classSearchContainerComponent = mount(<ClassSearchContainer />);
       searchFormComponent = classSearchContainerComponent.find(ClassSearchForm);
     });
 
-    it('should pass the correct props to class search form component', () => {
+    it('should have the correct default prop values', () => {
       expect(searchFormComponent.prop('openClasses')).toBeFalsy();
+      expect(searchFormComponent.prop('careerLevelsOptions')).toEqual({ pbac: false, ugrd: false });
+    });
+
+    it('should pass the correct props to class search form component', () => {
       classSearchContainerComponent.find('#additional-filters').simulate('click');
       classSearchContainerComponent.find('.open-classes > input').simulate('change');
+      classSearchContainerComponent.find('input#ugrd').simulate('change');
+      classSearchContainerComponent.find('input#pbac').simulate('change');
       classSearchContainerComponent.find('button[type="submit"]').simulate('click');
       searchFormComponent = classSearchContainerComponent.find(ClassSearchForm);
       expect(searchFormComponent.prop('openClasses')).toBeTruthy();
+      expect(searchFormComponent.prop('careerLevelsOptions')).toEqual({ ugrd: true, pbac: true });
     });
   });
 });

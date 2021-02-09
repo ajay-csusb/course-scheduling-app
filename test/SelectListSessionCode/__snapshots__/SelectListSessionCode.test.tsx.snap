@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SelectListSessionCode> Given a class search form snapshot 1`] = `
+exports[`<SelectListSessionCode> Given a class search form snapshot if the selected term is not summer 1`] = `null`;
+
+exports[`<SelectListSessionCode> Given a class search form snapshot if the selected term is summer 1`] = `
 Array [
   <HTMLSelect
     className="session-code"
@@ -9,28 +11,16 @@ Array [
     options={
       Array [
         Object {
-          "label": "All",
-          "value": "all",
-        },
-        Object {
-          "label": "Regular",
-          "value": "1",
-        },
-        Object {
-          "label": "6 Week 1",
+          "label": "Summer Session (6 Week 1)",
           "value": "6W1",
         },
         Object {
-          "label": "6 Week 2",
+          "label": "Summer Session (6 Week 2)",
           "value": "6W2",
         },
         Object {
-          "label": "10 Week",
+          "label": "Summer Session (10 Week)",
           "value": "10W",
-        },
-        Object {
-          "label": "3 Week 1",
-          "value": "3W1",
         },
       ]
     }
@@ -46,46 +36,25 @@ Array [
         value="all"
       >
         <option
-          key="all"
-          label="All"
-          value="all"
-        >
-          All
-        </option>
-        <option
-          key="1"
-          label="Regular"
-          value="1"
-        >
-          Regular
-        </option>
-        <option
           key="6W1"
-          label="6 Week 1"
+          label="Summer Session (6 Week 1)"
           value="6W1"
         >
-          6 Week 1
+          Summer Session (6 Week 1)
         </option>
         <option
           key="6W2"
-          label="6 Week 2"
+          label="Summer Session (6 Week 2)"
           value="6W2"
         >
-          6 Week 2
+          Summer Session (6 Week 2)
         </option>
         <option
           key="10W"
-          label="10 Week"
+          label="Summer Session (10 Week)"
           value="10W"
         >
-          10 Week
-        </option>
-        <option
-          key="3W1"
-          label="3 Week 1"
-          value="3W1"
-        >
-          3 Week 1
+          Summer Session (10 Week)
         </option>
       </select>
       <Blueprint3.Icon
@@ -124,46 +93,25 @@ Array [
       value="all"
     >
       <option
-        key="all"
-        label="All"
-        value="all"
-      >
-        All
-      </option>
-      <option
-        key="1"
-        label="Regular"
-        value="1"
-      >
-        Regular
-      </option>
-      <option
         key="6W1"
-        label="6 Week 1"
+        label="Summer Session (6 Week 1)"
         value="6W1"
       >
-        6 Week 1
+        Summer Session (6 Week 1)
       </option>
       <option
         key="6W2"
-        label="6 Week 2"
+        label="Summer Session (6 Week 2)"
         value="6W2"
       >
-        6 Week 2
+        Summer Session (6 Week 2)
       </option>
       <option
         key="10W"
-        label="10 Week"
+        label="Summer Session (10 Week)"
         value="10W"
       >
-        10 Week
-      </option>
-      <option
-        key="3W1"
-        label="3 Week 1"
-        value="3W1"
-      >
-        3 Week 1
+        Summer Session (10 Week)
       </option>
     </select>
     <Blueprint3.Icon

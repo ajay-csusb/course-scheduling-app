@@ -1,4 +1,4 @@
-import { IClass, IMeetingDate } from '../src/public/js/Class';
+import { IClass, IMeetingDate, ICareerLevels, ICourseLevels } from '../src/public/js/Class';
 
 export const baseClassJson: IClass = {
     quarter: '2194',
@@ -208,3 +208,19 @@ export const rawClassesJson = {
   }],
   fee: '0',
 };
+
+export let careerLevelsOptions: ICareerLevels = {
+  ugrd: false,
+  pbac: false,
+  exed: false
+}
+
+export let courseLevelsOptions: ICourseLevels = {
+  1000: false,
+  2000: false,
+  3000: false,
+  4000: false,
+  5000: false,
+  6000: false,
+  7000: false,
+}
