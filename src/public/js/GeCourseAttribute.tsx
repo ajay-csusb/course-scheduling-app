@@ -4,7 +4,6 @@ import * as ClassSearch from './ClassSearch.d';
 import * as CourseAttributes from './CourseAttributes';
 
 export class GeCourseAttribute {
-
   private static courseAttrArr: string[] = [];
 
   public static addGeAttrs(_class: IClass, geAttrs: IOptionProps[]): string {
@@ -38,7 +37,10 @@ export class GeCourseAttribute {
     }
     const geCourseAttributeParsed = GeCourseAttribute.normalizeGeCourseAttributesLabel(semGeCourseAttr);
     for (const _class of classes) {
-      if (_class.courseAttr.toLowerCase().includes(geCourseAttributeParsed)) {
+      if (
+        _class.courseAttr.toLowerCase().includes(geCourseAttributeParsed) &&
+        _class.geCourseAttr.includes(courseAttr)
+      ) {
         _class.courseAttrDescription = semGeCourseAttr;
         results.push(_class);
       }
@@ -49,6 +51,7 @@ export class GeCourseAttribute {
   public static normalizeCourseDescription(courseDescription: string): string {
     return courseDescription.trim().toLowerCase().split(' ').join('-');
   }
+
   public static addGeDesignationAttrs(_class: IClass): string {
     if (parseInt(_class.quarter, 10) < ClassSearch.app.settings.firstSemester) {
       return _class.courseAttr;
@@ -63,65 +66,57 @@ export class GeCourseAttribute {
   }
 
   public static getCourseAttributesSemester(): IOptionProps[] {
-    return (
-      [
-        { label: 'GE-A1 Oral Communication', value: 'GE-A1' },
-        { label: 'GE-A2 Written Communication', value: 'GE-A2' },
-        { label: 'GE-A3 Critical Thinking', value: 'GE-A3' },
-        { label: 'GE-B1 Physical Science', value: 'GE-B1' },
-        { label: 'GE-B2 Life Science', value: 'GE-B2' },
-        { label: 'GE-B3 Laboratory Activity', value: 'GE-B3' },
-        { label: 'GE-B4 Mathematics/Quant. Reasoning', value: 'GE-B4' },
-        { label: 'GE-B5 UD Scientific Inquiry & Quant.', value: 'GE-B5' },
-        { label: 'GE-C1 Arts', value: 'GE-C1' },
-        { label: 'GE-C2 Humanities', value: 'GE-C2' },
-        { label: 'GE-C3 Additional C1 or C2 Course', value: 'GE-C3' },
-        { label: 'GE-C4 UD Arts and Humanities', value: 'GE-C4' },
-        { label: 'GE-D1 United States Government', value: 'GE-D1' },
-        { label: 'GE-D2 United States History', value: 'GE-D2' },
-        { label: 'GE-D3 Social Sciences Discipline', value: 'GE-D3' },
-        { label: 'GE-D4 UD Social Sciences', value: 'GE-D4' },
-        { label: 'GE-E  First-Year Seminar', value: 'GE-E' },
-      ]
-    );
+    return [
+      { label: 'GE-A1 Oral Communication', value: 'GE-A1' },
+      { label: 'GE-A2 Written Communication', value: 'GE-A2' },
+      { label: 'GE-A3 Critical Thinking', value: 'GE-A3' },
+      { label: 'GE-B1 Physical Science', value: 'GE-B1' },
+      { label: 'GE-B2 Life Science', value: 'GE-B2' },
+      { label: 'GE-B3 Laboratory Activity', value: 'GE-B3' },
+      { label: 'GE-B4 Mathematics/Quant. Reasoning', value: 'GE-B4' },
+      { label: 'GE-B5 UD Scientific Inquiry & Quant.', value: 'GE-B5' },
+      { label: 'GE-C1 Arts', value: 'GE-C1' },
+      { label: 'GE-C2 Humanities', value: 'GE-C2' },
+      { label: 'GE-C3 Additional C1 or C2 Course', value: 'GE-C3' },
+      { label: 'GE-C4 UD Arts and Humanities', value: 'GE-C4' },
+      { label: 'GE-D1 United States Government', value: 'GE-D1' },
+      { label: 'GE-D2 United States History', value: 'GE-D2' },
+      { label: 'GE-D3 Social Sciences Discipline', value: 'GE-D3' },
+      { label: 'GE-D4 UD Social Sciences', value: 'GE-D4' },
+      { label: 'GE-E  First-Year Seminar', value: 'GE-E' },
+    ];
   }
 
   public static getCourseAttributesQuarter(): IOptionProps[] {
-    return (
-      [
-        { label: 'GE-A1 Written Communication', value: 'GE-A1' },
-        { label: 'GE-A2 Oral Communication', value: 'GE-A2' },
-        { label: 'GE-A4 Critical Thinking', value: 'GE-A4' },
-        { label: 'GE-B1 Mathematics', value: 'GE-B1' },
-        { label: 'GE-B2 Life Sciences', value: 'GE-B2' },
-        { label: 'GE-B3 Physical Sciences', value: 'GE-B3' },
-        { label: 'GE-B4 Special Topics Science a', value: 'GE-B4' },
-        { label: 'GE-B5 Capstone Natural Science', value: 'GE-B5' },
-        { label: 'GE-C1 Arts', value: 'GE-C1' },
-        { label: 'GE-C2 Literature', value: 'GE-C2' },
-        { label: 'GE-C3 Foreign Language', value: 'GE-C3' },
-        { label: 'GE-C4 Philosophy', value: 'GE-C4' },
-        { label: 'GE-C5 Capstone Humanities', value: 'GE-C5' },
-        { label: 'GE-D1 Am. History and Civ.', value: 'GE-D1' },
-        { label: 'GE-D2 American Institutions', value: 'GE-D2' },
-        { label: 'GE-D3 World Cultures', value: 'GE-D3' },
-        { label: 'GE-D4 Discipline Perspectives', value: 'GE-D4' },
-        { label: 'GE-D5 Capstone SBS', value: 'GE-D5' },
-        { label: 'GE-E1 Whole Person - Physical', value: 'GE-E1' },
-        { label: 'GE-E2 Whole Person - Social an', value: 'GE-E2' },
-        { label: 'GE-E3 Physical Education', value: 'GE-E3' },
-        { label: 'GE-G1 Multicultural/Gender Cap', value: 'GE-G1' },
-        { label: 'GE-G2 Multicultural/Gender Ele', value: 'GE-G2' },
-      ]
-    );
+    return [
+      { label: 'GE-A1 Written Communication', value: 'GE-A1' },
+      { label: 'GE-A2 Oral Communication', value: 'GE-A2' },
+      { label: 'GE-A4 Critical Thinking', value: 'GE-A4' },
+      { label: 'GE-B1 Mathematics', value: 'GE-B1' },
+      { label: 'GE-B2 Life Sciences', value: 'GE-B2' },
+      { label: 'GE-B3 Physical Sciences', value: 'GE-B3' },
+      { label: 'GE-B4 Special Topics Science a', value: 'GE-B4' },
+      { label: 'GE-B5 Capstone Natural Science', value: 'GE-B5' },
+      { label: 'GE-C1 Arts', value: 'GE-C1' },
+      { label: 'GE-C2 Literature', value: 'GE-C2' },
+      { label: 'GE-C3 Foreign Language', value: 'GE-C3' },
+      { label: 'GE-C4 Philosophy', value: 'GE-C4' },
+      { label: 'GE-C5 Capstone Humanities', value: 'GE-C5' },
+      { label: 'GE-D1 Am. History and Civ.', value: 'GE-D1' },
+      { label: 'GE-D2 American Institutions', value: 'GE-D2' },
+      { label: 'GE-D3 World Cultures', value: 'GE-D3' },
+      { label: 'GE-D4 Discipline Perspectives', value: 'GE-D4' },
+      { label: 'GE-D5 Capstone SBS', value: 'GE-D5' },
+      { label: 'GE-E1 Whole Person - Physical', value: 'GE-E1' },
+      { label: 'GE-E2 Whole Person - Social an', value: 'GE-E2' },
+      { label: 'GE-E3 Physical Education', value: 'GE-E3' },
+      { label: 'GE-G1 Multicultural/Gender Cap', value: 'GE-G1' },
+      { label: 'GE-G2 Multicultural/Gender Ele', value: 'GE-G2' },
+    ];
   }
 
   private static getValidGeCourseAttributes(courseDescription: string): string {
-    const validGeDesignationAttributes = [
-      'Diversity & Inclusiveness Pers',
-      'Global Perspectives',
-      'Writing Intensive',
-    ];
+    const validGeDesignationAttributes = ['Diversity & Inclusiveness Pers', 'Global Perspectives', 'Writing Intensive'];
     const result: string[] = [];
     // To expand GE attributes use the values from Course Attribute field whereas
     // to expand GE Designation attributes use the values from the Couse Description field.
@@ -194,7 +189,7 @@ export class GeCourseAttribute {
   }
 
   private static isSemesterTerm(_class: IClass): boolean {
-    return (parseInt(_class.quarter, 10) >= ClassSearch.app.settings.firstSemester);
+    return parseInt(_class.quarter, 10) >= ClassSearch.app.settings.firstSemester;
   }
 
   private static addSemesterGeAttrs(_class: IClass, fullGeCourseAttr: string[], geCourseAttrArr: string[]) {
@@ -227,5 +222,4 @@ export class GeCourseAttribute {
     }
     return results;
   }
-
 }
