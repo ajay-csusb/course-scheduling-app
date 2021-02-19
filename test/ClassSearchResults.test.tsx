@@ -18,7 +18,7 @@ function mountClassSearchResultsComponent(results: IClass[], term: string = '219
   return mount(classSearchResultsComponent);
 }
 
-describe('Given a class search results component', () => {
+describe('Given a class search results component', () => { 
   beforeAll(() => {
     TestUtils.ajax();
   });
@@ -385,8 +385,13 @@ describe('classes having multiple times', () => {
   });
 });
 
-describe('when a user selects an option from SelectListSortBy component', () => {
-  it('should set the sortBy state to the selected value', () => {
+describe('SelectListSortBy component', () => {
+  it('should be displayed only when the result has atleast one class', () => {
+    const classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson, classJson]);
+    expect(classSearchResultsWrapper.find(SelectListSortBy)).toHaveLength(1);
+  });
+
+  it('should update sortBy state when a user selects an option', () => {
     const classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson, classJson]);
     classSearchResultsWrapper.find('.sort-by-select > select').simulate('change', {target: {value: 'foo'}});
     expect(classSearchResultsWrapper.state('sortBy')).toEqual('foo');
@@ -478,3 +483,11 @@ describe('sorting behavior', () => {
     expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/ACCT 101/);
   });
 });
+
+describe('markup', () => {
+  test('HTML markup of the results component', () => {
+    const classSearchResultsWrapper = mountClassSearchResultsComponent([classJson]);
+    expect(classSearchResultsWrapper.find('.form-controls')).toMatchSnapshot();
+  });
+});
+
