@@ -367,7 +367,8 @@ export class Grid extends React.Component<ITableDisplayProps> {
 
   private getInstructor(rowIndex: number): JSX.Element {
     const _class: IClass = this.classes[rowIndex];
-    return <Cell tooltip={_class.instructorName}>{ClassSearchUtils.getInstructorMarkup(_class)}</Cell>;
+    const instructorName = ClassSearchUtils.getInstructorMarkup(_class) ? ClassSearchUtils.getInstructorMarkup(_class) : 'TBD';
+    return <Cell tooltip={_class.instructorName}>{instructorName}</Cell>;
   }
 
   private getMode(rowIndex: number): JSX.Element {
