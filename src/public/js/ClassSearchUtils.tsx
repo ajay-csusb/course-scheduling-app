@@ -387,7 +387,7 @@ export function isValidTermRange(currentTerm: string, classTerm: string): boolea
 
 export function getInstructorMarkup(_class: IClass): JSX.Element | null {
   let profile = null;
-  if (_class.instructorName.trim().length !== 0) {
+  if (_class.instructorName.trim() !== 'TBD') {
     const instructorName = _class.instructorName;
     const instructorProfileURL = searchURL + _class.profile;
     profile = <>{instructorName}</>;
