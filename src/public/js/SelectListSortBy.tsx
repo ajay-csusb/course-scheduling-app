@@ -31,7 +31,7 @@ export class SelectListSortBy extends React.Component<ISelectListSortByProps, {}
       { label: 'Waitlist: high to low', value: 'seatsWaitlist-desc' },
     ];
     return (
-      <>
+      <div id='form-sort'>
         <Label htmlFor="sort by">Sort By</Label>
         <HTMLSelect
           value={this.props.sortBy}
@@ -39,7 +39,7 @@ export class SelectListSortBy extends React.Component<ISelectListSortByProps, {}
           onChange={this.handleChangeOfSortBy}
           className="sort-by-select"
         />
-      </>
+      </div>
     );
   }
 
