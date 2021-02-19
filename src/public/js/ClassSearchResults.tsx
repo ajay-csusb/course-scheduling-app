@@ -48,8 +48,10 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     if (this.noOfClasses !== 0) {
       renderMarkup = (
         <>
-          <ExportToExcel classes={this.classes} />
-          {sortByComponent}
+          <div className='form-controls'>
+            {sortByComponent}
+            <ExportToExcel classes={this.classes} />
+          </div>
           <DisplayFormatTabs
             format={this.state.format}
             onChangeOfFormat={this.onChangeOfFormat}
