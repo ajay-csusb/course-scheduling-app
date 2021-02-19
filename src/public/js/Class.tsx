@@ -125,7 +125,7 @@ export class Class {
       instructorAltName: object.name2,
       instructorEmployeeId: object.emplid2,
       instructionMode: object.instruction_MODE,
-      instructorName: object.name,
+      instructorName: object.name.trim() ? object.name : 'TBD',
       longDescription: object.descrlong_VC,
       mon: object.meeting_TIME[0].mon,
       profile: object.profile_PATH,
