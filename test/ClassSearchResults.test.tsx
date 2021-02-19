@@ -8,6 +8,7 @@ import { DisplayFormatTabs } from '../src/public/js/DisplayFormatTabs';
 import ExportToExcel from '../src/public/js/ExportToExcel';
 import { ClassesCards } from '../src/public/js/ClassesCards';
 import DuplicateClassesCards from '../src/public/js/DuplicateClassesCards';
+import { SelectListSortBy } from '../src/public/js/SelectListSortBy';
 
 function mountClassSearchResultsComponent(results: IClass[], term: string = '2194'): ReactWrapper {
   const onChangeOfLoadingMessage = jest.fn();
@@ -22,11 +23,38 @@ describe('Given a class search results component', () => {
     TestUtils.ajax();
   });
 
+  describe('states', () => {
+    const classSearchResultsWrapper = mountClassSearchResultsComponent([]);
+
+    test('format should have the default value of lists', () => {
+      expect(classSearchResultsWrapper.state('format')).toEqual('lists');
+    });
+
+    test('sortBy should have the default value of catalogNo', () => {
+      expect(classSearchResultsWrapper.state('sortBy')).toEqual('catalogNo');
+    });
+  });
+  
   describe('when no classes are displayed in the results', () => {
-    it('should display the 0 classes in the message', () => {
+    const classSearchResultsWrapper = mountClassSearchResultsComponent([]);
+
+    it('should display 0 classes in the message', () => {
       const classSearchResultsWrapper = mountClassSearchResultsComponent([]);
       expect(classSearchResultsWrapper.html()).toContain('0 classes found');
       expect(classSearchResultsWrapper.html()).toContain('Try refining the search above to get more results');
+    });
+
+    it('should not display the SelectListSortBy component', () => {
+      const sortByWrapper = classSearchResultsWrapper.find(SelectListSortBy);
+      expect(sortByWrapper).toHaveLength(0);
+    });
+
+    it('should not display tabs', () => {
+      expect(classSearchResultsWrapper.find(DisplayFormatTabs)).toHaveLength(0);
+    });
+
+    it('should not display export to excel component', () => {
+      expect(classSearchResultsWrapper.find(ExportToExcel)).toHaveLength(0);
     });
   });
 
@@ -52,8 +80,13 @@ describe('Given a class search results component', () => {
       expect(classSearchResultsWrapper.html()).toContain(markup);
     });
 
-    it('should display the CSS class name as course-status--open', () => {
+    it('should have the CSS class name as course-status--open', () => {
       expect(classSearchResultsWrapper.html()).toContain('course-status--open');
+    });
+
+    it('should display the SelectListSortBy component', () => {
+      const selectListSortByWrapper = classSearchResultsWrapper.find(SelectListSortBy);
+      expect(selectListSortByWrapper).toHaveLength(1);
     });
   });
 
@@ -73,7 +106,7 @@ describe('Given a class search results component', () => {
       expect(classSearchResultsWrapper.html()).toContain('Closed');
     });
 
-    it('should display the CSS class name as course-status--close', () => {
+    it('should have the CSS class name as course-status--close', () => {
       expect(classSearchResultsWrapper.html()).toContain('course-status--close');
     });
     it('should display available seats for classes which are closed', () => {
@@ -100,11 +133,11 @@ describe('Given a class search results component', () => {
     });
 
     it('should not display available seats text', () => {
-      expect(classSearchResultsWrapper.text()).not.toContain('Seats available');
+      expect(classSearchResultsWrapper.text()).not.toContain('.course-availability');
     });
 
     it('should not display the text Waitlist', () => {
-      expect(classSearchResultsWrapper.text()).not.toContain('Waitlist');
+      expect(classSearchResultsWrapper.text()).not.toContain('Waitlist spots available');
     });
   });
 
@@ -138,7 +171,7 @@ describe('Given a class search results component', () => {
         baseClassJson.enrolledTotal = 20;
         baseClassJson.enrollmentStatus = 'Open';
         const results = mountClassSearchResultsComponent([baseClassJson]);
-        expect(results.text()).not.toContain('Waitlist');
+        expect(results.text()).not.toContain('Waitlist spots available');
       });
     });
   });
@@ -165,7 +198,7 @@ describe('Given a class search results component', () => {
 
   describe('instructor name and profile URL', () => {
     describe('when the instructor name is not available', () => {
-      classJson.instructorName = '';
+      classJson.instructorName = 'TBD';
       const classSearchResultsWrapper = mountClassSearchResultsComponent([classJson]);
       it('should display TBD', () => {
         expect(classSearchResultsWrapper.html()).toContain('<span>Instructor</span> TBD');
@@ -261,10 +294,10 @@ describe('tabs', () => {
     let classSearchResultsComponent;
     beforeEach(() => {
       classSearchResultsComponent = mountClassSearchResultsComponent([classJson]);
-    });
-    it('should set the format state to table', () => {
-      expect(classSearchResultsComponent.state('format')).toEqual('lists');
       classSearchResultsComponent.find('#table').simulate('click');
+    });
+    
+    it('should set the format state to table', () => {
       expect(classSearchResultsComponent.state('format')).toEqual('table');
       expect(sessionStorage.setItem).toBeCalledWith('format', 'table');
     });
@@ -276,16 +309,16 @@ describe('tabs', () => {
     });
   });
 
-  describe('when no classes are present', () => {
-    const classSearchContainerWrapper = shallow(
-      <ClassSearchResults classes={[]} onChangeOfLoadingMessage={() => jest.fn()} currentTerm={'000'} />
-    );
-    it('should not display tabs', () => {
-      expect(classSearchContainerWrapper.find(DisplayFormatTabs)).toHaveLength(0);
+  describe('when the lists display format is selected', () => {
+    let classSearchResultsComponent = null;
+    beforeEach(() => {
+      classSearchResultsComponent = mountClassSearchResultsComponent([classJson]);
+      classSearchResultsComponent.find('#lists').simulate('click');
     });
 
-    it('should not display export to excel component', () => {
-      expect(classSearchContainerWrapper.find(ExportToExcel)).toHaveLength(0);
+    it('should set the format state to lists', () => {
+      expect(classSearchResultsComponent.state('format')).toEqual('lists');
+      expect(sessionStorage.setItem).toBeCalledWith('format', 'lists');
     });
   });
 });
@@ -349,5 +382,99 @@ describe('classes having multiple times', () => {
     expect(classSearchResultsWrapper.html()).toMatch(/8:00 am - 9:00 am/);
     expect(classSearchResultsWrapper.html()).toMatch(/9:00 am - 10:00 am/);
     expect(classSearchResultsWrapper.html()).toMatch(/11:00 am - 12:00 pm/);
+  });
+});
+
+describe('when a user selects an option from SelectListSortBy component', () => {
+  it('should set the sortBy state to the selected value', () => {
+    const classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson, classJson]);
+    classSearchResultsWrapper.find('.sort-by-select > select').simulate('change', {target: {value: 'foo'}});
+    expect(classSearchResultsWrapper.state('sortBy')).toEqual('foo');
+  });
+});
+
+describe('sorting behavior', () => {
+  let classSearchResultsComponentWrapper;
+  beforeEach(() => {
+    const acctClass: IClass = TestUtils.copyObject(classJson);
+    const bioClass: IClass = TestUtils.copyObject(classJson);
+    acctClass.subject = 'ACCT';
+    acctClass.title = 'Introduction to Accounting';
+    acctClass.topic = 'Special topics in Accounting';
+    acctClass.classNumber = 100;
+    acctClass.catalogNo = '101';
+    acctClass.instructorName = 'Zain';
+    acctClass.mon = 'Y';
+    acctClass.wed= 'N';
+    acctClass.classStartTime = '7:00 PM';
+    acctClass.classEndTime = '8:00 PM';
+    acctClass.enrolledTotal = 10;
+    acctClass.enrolledCapacity = 30;
+    acctClass.waitlistTotal = 30;
+    acctClass.enrolledCapacity = 50;
+    bioClass.subject = 'BIOL';
+    bioClass.title = 'Introduction to Biology';
+    bioClass.classNumber = 200;
+    bioClass.catalogNo = '102';
+    bioClass.instructorName = 'Alan';
+    bioClass.mon = 'N';
+    bioClass.wed= 'N';
+    bioClass.fri = 'Y';
+    bioClass.classStartTime = '9:00 AM';
+    bioClass.classEndTime = '10:00 AM';
+    bioClass.enrolledTotal = 20;
+    bioClass.enrolledCapacity= 30;
+    bioClass.waitlistTotal = 40;
+    bioClass.enrolledCapacity = 50;
+    classSearchResultsComponentWrapper = mountClassSearchResultsComponent([acctClass, bioClass]);
+  });
+
+  test('sort by class number', () => {
+    classSearchResultsComponentWrapper.find('.sort-by-select > select').simulate('change', {target: {value: 'classNumber-asc'}});
+    expect(classSearchResultsComponentWrapper.find(ClassesCards)).toHaveLength(2);
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/ACCT 101/);
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/BIOL 102/);
+  });
+
+  test('sort by subject', () => {
+    classSearchResultsComponentWrapper.find('.sort-by-select > select').simulate('change', {target: {value: 'subject-desc'}});
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/BIOL 102/);
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/ACCT 101/);
+  });
+
+  test('sort by title', () => {
+    classSearchResultsComponentWrapper.find('.sort-by-select > select').simulate('change', {target: {value: 'title-desc'}});
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/Introduction to Biology/);
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/Introduction to Accounting/);
+  });
+  
+  test('sort by instructor', () => {
+    classSearchResultsComponentWrapper.find('.sort-by-select > select').simulate('change', {target: {value: 'instructorName-asc'}});
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/Alan/);
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/Zain/);
+  });
+    
+  test('sort by meeting days', () => {
+    classSearchResultsComponentWrapper.find('.sort-by-select > select').simulate('change', {target: {value: 'days-desc'}});
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/M/);
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/F/);
+  });
+  
+  test('sort by meeting times', () => {
+    classSearchResultsComponentWrapper.find('.sort-by-select > select').simulate('change', {target: {value: 'time-asc'}});
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/9:00 am - 10:00 am/);
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/7:00 pm - 8:00 pm/);
+  });
+  
+  test('sort by seats available', () => {
+    classSearchResultsComponentWrapper.find('.sort-by-select > select').simulate('change', {target: {value: 'seatsAvailable-desc'}});
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/ACCT 101/);
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/BIOL 102/);
+  });
+ 
+  test('sort by waitlist', () => {
+    classSearchResultsComponentWrapper.find('.sort-by-select > select').simulate('change', {target: {value: 'seatsWaitlist-asc'}});
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/BIOL 102/);
+    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/ACCT 101/);
   });
 });
