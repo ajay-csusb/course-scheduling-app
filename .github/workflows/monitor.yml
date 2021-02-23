@@ -15,11 +15,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Check for all Biology classes
+      - name: Check for classes
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
           headless: true
-          spec: cypress/integration/SubjectTests.js
+          spec: cypress/integration/CampusTests.js
           env: url=https://www.csusb.edu/class-schedule?bot=true
           config: baseUrl=https://www.csusb.edu/class-schedule

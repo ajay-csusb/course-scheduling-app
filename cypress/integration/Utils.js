@@ -8,7 +8,7 @@ if (url === undefined) {
 
 function selectSubject(subject = 'Biology') {
   cy.get('.search-autocomplete input').type(subject).click();
-  cy.get('div').contains(subject).click();
+  cy.get('.search-autocomplete-items div').contains(subject).click();
 }
 
 function selectCampus(campus = 'San Bernardino') {
