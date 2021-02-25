@@ -10,6 +10,7 @@ import * as exportDepartmentsController from './controllers/exportDepartments';
 import * as exportPeopleController from './controllers/exportPeople';
 import * as exportEventsController from './controllers/exportEvents';
 import * as exportAnalyticsController from './controllers/exportAnalytics';
+import * as exportUniversityCalendarController from './controllers/exportUniversityCalendarController';
 import cors from 'cors';
 import { loadEnvironmentVariables } from './lib/Utils';
 
@@ -36,5 +37,6 @@ app.get('/export-departments', exportDepartmentsController.index);
 app.get('/export-people', exportPeopleController.index);
 app.get('/export-events', exportEventsController.index);
 app.post('/export-analytics', exportAnalyticsController.index);
+app.get('/export-university-calendar', exportUniversityCalendarController.index);
 
 export default app;
