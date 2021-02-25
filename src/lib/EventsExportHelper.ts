@@ -6,8 +6,8 @@ export async function fetchEvents(): Promise<any> {
   let events: [] = [];
   const url =
     process.env && process.env.NODE_ENV === 'production'
-      ? app.settings.getEventsUrl.live
-      : app.settings.getEventsUrl.dev;
+      ? app.settings.getBaseUrl.live
+      : app.settings.getBaseUrl.dev;
   const axiosOptions: AxiosRequestConfig = {
     baseURL: url,
     url: '/events?_format=json',
