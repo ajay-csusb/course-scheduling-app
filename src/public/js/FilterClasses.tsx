@@ -34,7 +34,6 @@ export function filter(classes: IClass[], params: IClassSearchContainerState): I
     careerLevelsOptions,
     courseLevelsOptions,
   } = params;
-
   return CourseAttributes.filter(
     GeCourseAttribute.filter(
       InstructionMode.filter(

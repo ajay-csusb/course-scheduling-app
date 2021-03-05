@@ -6,11 +6,28 @@ export const app = {
     currentTerm: 2214,
   },
   settings: {
-    dropdownUrl: 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList',
+    dropdownUrl: { 
+      v0: 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList',
+      v1: 'https://webdx-sso.csusb.edu/ClassSchedule/rest/v1/getDropDownList',
+    },
     excelUrlDev: 'https://dev-dot-csusb-class-schedule.df.r.appspot.com/export-to-excel',
     excelUrl: 'https://csusb-class-schedule.df.r.appspot.com/export-to-excel',
     firstSemester: 2208,
-    getClassesUrl: 'https://webdx.csusb.edu/ClassSchedule/v2/cs/list/search',
+    classSearchApiUrl: {
+      v0: 'https://webdx.csusb.edu/ClassSchedule/v2/cs/list/search',
+      v1: {
+        full: 'https://webdx-sso.csusb.edu/ClassSchedule/rest/v1/getClassScheduleList',
+        pager: 'https://webdx-sso.csusb.edu/ClassSchedule/rest/v1/getClassScheduleListByPage',
+      },
+    },
+    proxyDropdownUrl: {
+      dev: 'https://dev-dot-csusb-class-schedule.df.r.appspot.com/get-class-search-options',
+      live: 'https://csusb-class-schedule.df.r.appspot.com/get-class-search-options',
+    },
+    proxyClassDataUrl: {
+      dev: 'https://dev-dot-csusb-class-schedule.df.r.appspot.com/get-class-search-data',
+      live: 'https://csusb-class-schedule.df.r.appspot.com/get-class-search-data',
+    },
     webdx: {
       departmentPeople: {
         clientSecret: process.env.WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET,

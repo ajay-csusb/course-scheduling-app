@@ -3,11 +3,18 @@ import * as React from 'react';
 import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { ProgressBar } from '@blueprintjs/core';
 import { TestUtils } from './TestUtils';
+import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
+import fetchMock from 'fetch-mock';
 // tslint:disable:max-line-length
 
 describe('snapshots', () => {
   beforeAll(() => {
     TestUtils.ajax();
+    sessionStorage.getItem = jest.fn(format => {
+      if (format === 'format') {
+        return null;
+      }
+    });
   });
 
   test('Class search container component snapshot', () => {
@@ -32,6 +39,7 @@ describe('states', () => {
       expect(classSearchContainerWrapper.state('courseAttr')).toEqual('ge');
     });
   });
+
   describe('when Undergraduate is selected from course attribute', () => {
     it('should set the correct state of degreeType', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
@@ -41,6 +49,7 @@ describe('states', () => {
       expect(classSearchContainerWrapper.state('degreeType')).toEqual('UGRD');
     });
   });
+
   describe('when class number is entered', () => {
     it('should set the correct classNo state', () => {
       const classSearchContainerWrapper = mount(<ClassSearchContainer />);
@@ -174,6 +183,92 @@ describe('states', () => {
       expect(classSearchContainerWrapper.state('careerLevelsOptions')).toEqual({
         ugrd: false,
         pbac: false,
+      });
+    });
+  });
+
+  describe('currentPage state', () => {
+    it('should be set to 1 by default', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      expect(classSearchContainerWrapper.state('currentPage')).toEqual(1);
+    });
+    describe('when a user clicks on a page in the pager', () => {
+      it('should set the currentPage state', () => {
+        const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+        classSearchContainerWrapper.setState({
+          subject: {
+            name: 'All',
+            abbr: 'all',
+          },
+        });
+        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+        classSearchContainerWrapper.setState({
+          isLoading: false,
+        });
+        setImmediate(() => {
+          classSearchContainerWrapper.update();
+          const classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
+          classSearchResultsWrapper.props().onChangeOfPageNumber({ target: { hash: '#2' } });
+          expect(classSearchContainerWrapper.state('currentPage')).toEqual(2);
+        });
+      });
+    });
+  });
+
+  describe('tab state', () => {
+    test('tab state on page load', () => {
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      expect(classSearchContainerWrapper.state('tab')).toEqual('list');
+    });
+
+    test('tab state when session storage is set', () => {
+      sessionStorage.getItem = jest.fn(format => 'table');
+      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
+      expect(classSearchContainerWrapper.state('tab')).toEqual('table');
+      sessionStorage.getItem = jest.fn(format => null);
+    });
+
+    describe('when a user clicks on the table tab', () => {
+      let classSearchContainerWrapper;
+      let classSearchResultsWrapper;
+      beforeAll(() => {
+        classSearchContainerWrapper = mount(<ClassSearchContainer />);
+        classSearchContainerWrapper.setState({
+          subject: {
+            name: 'English',
+            abbr: 'ENG',
+          },
+          quarter: '2194',
+        });
+        classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+        classSearchContainerWrapper.setState({
+          isLoading: false,
+        });
+        setImmediate(() => {
+          classSearchContainerWrapper.update();
+          classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
+          classSearchResultsWrapper.props().onChangeOfTab('table');
+        });
+      });
+
+      it('should set the tab state to table', () => {
+        setImmediate(() => {
+          expect(classSearchContainerWrapper.state('tab')).toEqual('table');
+        });
+      });
+
+      it('should set the Session Storage with the key of "format" and value of "table"', () => {
+        setImmediate(() => {
+          expect(sessionStorage.setItem).toBeCalledWith('format', 'table');
+        });
+      });
+
+      it('should set the tab state to "list" if the list tab is clicked', () => {
+        setImmediate(() => {
+          classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
+          classSearchResultsWrapper.props().onChangeOfTab('list');
+          expect(classSearchContainerWrapper.state('tab')).toEqual('list');
+        });
       });
     });
   });
@@ -400,6 +495,62 @@ describe('props on reset', () => {
     classSearchContainerWrapper.find('#additional-filters').simulate('click');
     const geClassesAttrWrapper = classSearchContainerWrapper.find('#ge-classes-attributes');
     expect(geClassesAttrWrapper.at(0).prop('value')).toHaveLength(0);
+  });
+});
+describe('props', () => {
+  let classSearchContainerWrapper = null;
+  beforeAll(() => {
+    classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+      subject: {
+        name: 'English',
+        abbr: 'ENG',
+      },
+    });
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    classSearchContainerWrapper.setState({
+      isLoading: false,
+    });
+  });
+  it('should set the numberOfClasses prop', () => {
+    classSearchContainerWrapper.update();
+    let classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
+    expect(classSearchResultsWrapper.prop('numberOfClasses')).toEqual(52);
+  });
+  it('should set the numberOfClasses prop', () => {
+    classSearchContainerWrapper.update();
+    const classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
+    expect(classSearchResultsWrapper.prop('totalPages')).toEqual(2);
+  });
+  it('should set the currentPage props', () => {
+    let classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
+    expect(classSearchResultsWrapper.prop('currentPage')).toEqual(1);
+  });
+  it('should set the currentPage props after list tab is clicked', () => {
+    let classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
+    classSearchResultsWrapper.props().onChangeOfTab('table');
+    classSearchContainerWrapper.update();
+    classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
+    expect(classSearchResultsWrapper.prop('currentPage')).toEqual(0);
+  });
+  it('should set the currentPage prop to 0 when sessionStorage is table', () => {
+    sessionStorage.getItem = jest.fn(format => 'table');
+    classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+      subject: {
+        name: 'English',
+        abbr: 'ENG',
+      },
+      forceReload: true,
+    });
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    classSearchContainerWrapper.setState({
+      isLoading: false,
+    });
+    classSearchContainerWrapper.update();
+    const classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
+    expect(classSearchResultsWrapper.prop('currentPage')).toEqual(0);
+    sessionStorage.getItem = jest.fn(format => null);
   });
 });
 

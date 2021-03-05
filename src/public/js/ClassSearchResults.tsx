@@ -10,54 +10,79 @@ import * as _ from 'lodash';
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { SelectListSortBy } from './SelectListSortBy';
 import * as Sort from './Sort';
+import Pagination from './Pagination';
 
 export interface IClassSearchResultsState {
-  format: string;
   sortBy: string;
 }
 
 export interface IClassSearchResultsProps {
   classes: IClass[];
   currentTerm: string;
+  currentPage: number;
+  numberOfClasses: number;
+  tab: string;
+  totalPages: number;
   onChangeOfLoadingMessage: () => void;
+  onChangeOfPageNumber: (event: any) => void;
+  onChangeOfTab: (event: any) => void;
 }
 
 export class ClassSearchResults extends React.Component<IClassSearchResultsProps, IClassSearchResultsState> {
   private noOfClasses: number;
   private classes: IClass[];
+  private hideSortByFilter: boolean;
+
   constructor(props: IClassSearchResultsProps) {
     super(props);
     this.noOfClasses = 0;
     this.classes = this.props.classes;
     this.state = {
-      format: 'lists',
       sortBy: 'catalogNo',
     };
-    this.onChangeOfFormat = this.onChangeOfFormat.bind(this);
     this.onChangeOfSortBy = this.onChangeOfSortBy.bind(this);
+    this.onChangeOfTab = this.onChangeOfTab.bind(this);
+    this.onChangeOfPageNumber = this.onChangeOfPageNumber.bind(this);
+    this.hideSortByFilter = true;
   }
 
   public render(): JSX.Element {
     const classesList: JSX.Element[] = this.getClassesInListFormat();
-    const classesTable: JSX.Element = this.getClassesInTableFormat();
-    let renderMarkup = <i>Try refining the search above to get more results</i>;
-    const sortByComponent =
-      this.state.format === 'lists' ? (
+    const classesTable: JSX.Element = this.props.tab === 'table' ? this.getClassesInTableFormat() : <></>;
+    const selectListSortBy: JSX.Element =
+      this.hideSortByFilter === false ? (
         <SelectListSortBy sortBy={this.state.sortBy} onChangeOfSortBy={this.onChangeOfSortBy} />
-      ) : null;
+      ) : (
+        <></>
+      );
+    const sortByComponent: JSX.Element = this.props.tab === 'list' ? selectListSortBy : <></>;
+    const exportToExcelComponent: JSX.Element =
+      this.props.tab === 'table' ? <ExportToExcel classes={this.classes} /> : <></>;
+    // @Todo delete this. This is redundant
+    const totalNumberOfPages: number = this.getTotalNumberOfPages();
+    const pagination = (
+      <Pagination
+        numberPages={totalNumberOfPages}
+        onChangeOfPageNumber={this.onChangeOfPageNumber}
+        currentPage={this.props.currentPage}
+      />
+    );
+    const paginationComponent: JSX.Element = this.noOfClasses > 30 && this.props.tab === 'list' ? pagination : <></>;
+    let renderMarkup: JSX.Element = <i>Try refining the search above to get more results</i>;
     if (this.noOfClasses !== 0) {
       renderMarkup = (
         <>
-          <div className='form-controls'>
+          <div className="form-controls">
             {sortByComponent}
-            <ExportToExcel classes={this.classes} />
+            {exportToExcelComponent}
           </div>
           <DisplayFormatTabs
-            format={this.state.format}
-            onChangeOfFormat={this.onChangeOfFormat}
+            format={this.props.tab ?? 'list'}
+            onChangeOfFormat={this.onChangeOfTab}
             listClasses={classesList}
             tableClasses={classesTable}
           />
+          {paginationComponent}
         </>
       );
     }
@@ -72,15 +97,13 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
 
   private getClassesInListFormat(): JSX.Element[] {
     let filteredResults = this.classes;
-    const duplicateClasses = getDuplicateClasses(this.classes);
+    const duplicateClasses = getDuplicateClasses(this.props.classes);
     const duplicateClassIds = Object.keys(duplicateClasses).map(_classNumber => parseInt(_classNumber, 10));
     this.noOfClasses = 0;
-
     if (duplicateClassIds.length !== 0) {
       filteredResults = removeDuplicateClasses(this.classes, duplicateClassIds);
       return this.getClassesList(filteredResults, duplicateClassIds, duplicateClasses);
     }
-
     return this.getClassesList(filteredResults);
   }
 
@@ -89,16 +112,8 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     return <Grid classes={classes} />;
   }
 
-  private onChangeOfFormat(selectedFormat: string): void {
-    this.setState({
-      format: selectedFormat,
-    });
-    sessionStorage.setItem('format', selectedFormat);
-  }
-
   private getClassesList(classInfo: IClass[], duplicateClassIds: number[] = [], duplicateClasses = {}): JSX.Element[] {
-    const classes: JSX.Element[] = [];
-
+    let classes: JSX.Element[] = [];
     if (classInfo.length !== 0) {
       classInfo.forEach((_class: IClass) => {
         this.noOfClasses++;
@@ -115,8 +130,9 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
         classes.push(<li key={_class.classNumber}>{component}</li>);
       });
     }
-
-    return classes;
+    const startIndex = Math.max(0, (this.props.currentPage - 1) * 30);
+    const endIndex = startIndex + 30;
+    return classes.slice(startIndex, endIndex);
   }
 
   private onChangeOfSortBy(selectedFormat: string): void {
@@ -143,5 +159,17 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     this.setState({
       sortBy: selectedFormat,
     });
+  }
+
+  private getTotalNumberOfPages(): number {
+    return Math.ceil(this.noOfClasses / 30) === 1 ? 0 : Math.ceil(this.noOfClasses / 30);
+  }
+
+  private onChangeOfTab(tabValue: any) {
+    this.props.onChangeOfTab(tabValue);
+  }
+
+  private onChangeOfPageNumber(event: any) {
+    this.props.onChangeOfPageNumber(event);
   }
 }

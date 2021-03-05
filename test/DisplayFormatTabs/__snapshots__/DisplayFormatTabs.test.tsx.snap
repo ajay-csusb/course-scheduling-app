@@ -29,9 +29,7 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
           className="bp3-tab-indicator-wrapper"
           style={
             Object {
-              "height": 0,
-              "transform": "translateX(0px) translateY(0px)",
-              "width": 0,
+              "display": "none",
             }
           }
         >
@@ -41,12 +39,12 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
         </div>
         <Blueprint3.TabTitle
           disabled={false}
-          id="lists"
-          key=".$lists"
+          id="list"
+          key=".$list"
           onClick={[Function]}
           panel={<ul />}
           parentId="display-format-tabs"
-          selected={true}
+          selected={false}
           title={
             <React.Fragment>
               <i
@@ -57,13 +55,13 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
           }
         >
           <div
-            aria-controls="bp3-tab-panel_display-format-tabs_lists"
+            aria-controls="bp3-tab-panel_display-format-tabs_list"
             aria-disabled={false}
-            aria-expanded={true}
-            aria-selected={true}
+            aria-expanded={false}
+            aria-selected={false}
             className="bp3-tab"
-            data-tab-id="lists"
-            id="bp3-tab-title_display-format-tabs_lists"
+            data-tab-id="list"
+            id="bp3-tab-title_display-format-tabs_list"
             onClick={[Function]}
             role="tab"
             tabIndex={0}
@@ -115,11 +113,11 @@ exports[`Display format tabs Given a display format tabs component snapshot 1`] 
         </Blueprint3.TabTitle>
       </div>
       <div
-        aria-hidden={false}
-        aria-labelledby="bp3-tab-title_display-format-tabs_lists"
+        aria-hidden={true}
+        aria-labelledby="bp3-tab-title_display-format-tabs_list"
         className="bp3-tab-panel"
-        id="bp3-tab-panel_display-format-tabs_lists"
-        key="lists"
+        id="bp3-tab-panel_display-format-tabs_list"
+        key="list"
         role="tabpanel"
       >
         <ul />

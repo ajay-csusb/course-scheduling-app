@@ -26,8 +26,8 @@ export class DisplayFormatTabs extends React.Component<IDisplayFormatTabsProps, 
         selectedTabId={userSelection}
       >
         <Tab
-          id="lists"
-          key="lists"
+          id="list"
+          key="list"
           title={<><i className="fas fa-bars" /> List</>}
           panel={<ul>{this.props.listClasses}</ul>}
         />

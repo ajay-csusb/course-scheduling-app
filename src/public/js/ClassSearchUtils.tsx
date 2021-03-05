@@ -11,12 +11,13 @@ import { app } from './ClassSearch.d';
 import * as _ from 'lodash';
 
 const searchURL = 'https://search.csusb.edu';
+
 export function fetchData(
-  url: string,
   callbackOnSuccess: (response: any) => void,
   callbackOnFailure: (error: string) => void
 ): void {
-  fetch(url, {
+  const proxyUrl = getProxyUrl('dropdown');
+  fetch(proxyUrl, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -468,10 +469,8 @@ function getAllMeetingDays(classes: IClass) {
 export function getDuplicateClasses(classes: IClass[]): {} {
   const result: {} = {};
   const classNumbers: Map<number, number> = new Map();
-
   classes.forEach((_class: IClass) => {
     const cn = _class.classNumber;
-
     if (classNumbers.has(cn)) {
       const val = classNumbers.get(cn)!;
       classNumbers.set(cn, val + 1);
@@ -479,11 +478,9 @@ export function getDuplicateClasses(classes: IClass[]): {} {
       classNumbers.set(cn, 1);
     }
   });
-
   classes.forEach((_class: IClass) => {
     const cn = _class.classNumber;
     const cnMap = classNumbers.get(cn) ?? 0;
-
     if (classNumbers.has(cn) && cnMap >= 2) {
       if (result.hasOwnProperty(cn)) {
         result[cn].push(_class);
@@ -492,7 +489,6 @@ export function getDuplicateClasses(classes: IClass[]): {} {
       }
     }
   });
-
   return result;
 }
 
@@ -617,4 +613,28 @@ export function updateWinterTermLabelToWinterIntersession(terms: IOptionProps[])
     }
   }
   return terms;
+}
+
+export function updatePages(pages: JSX.Element[], currentPage: number): JSX.Element[] {
+  let startIndex = 0;
+  let lastIndex = pages.length >= 10 ? 10 : pages.length;
+  if (currentPage > 5) {
+    startIndex = currentPage - 5;
+    lastIndex = currentPage + 5;
+  }
+  if (currentPage > pages.length - 5) {
+    startIndex = pages.length - 10;
+    lastIndex = pages.length;
+  }
+  return pages.length > 10 ? pages.slice(startIndex, lastIndex) : pages;
+}
+
+export function getProxyUrl(option = 'dropdown'): string {
+  if (window.location.host.includes('www.csusb.edu')) {
+    return option === 'dropdown' ? app.settings.proxyDropdownUrl.live : app.settings.proxyClassDataUrl.live;
+  }
+  if (window.location.host.includes('csusb')) {
+    return option === 'dropdown' ? app.settings.proxyDropdownUrl.dev : app.settings.proxyClassDataUrl.dev;
+  }
+  return option === 'dropdown' ? '/get-class-search-options' : '/get-class-search-data';
 }

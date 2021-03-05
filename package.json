@@ -136,6 +136,8 @@
     "cypress": "^4.4.0",
     "enzyme-to-json": "^3.3.5",
     "eslint": "^5.16.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "fetch-mock": "^7.3.3",
     "has-flag": "^4.0.0",
     "jest": "^25.5.4",

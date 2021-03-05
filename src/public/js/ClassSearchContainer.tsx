@@ -40,6 +40,8 @@ export interface IClassSearchContainerState {
   cssClasses: {
     resultsWrapper: string | undefined;
   };
+  currentPage: number;
+  tab: string;
 }
 export class ClassSearchContainer extends React.Component<{}, IClassSearchContainerState> {
   private allResults: IClass[];
@@ -59,6 +61,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
   private resultsSection: any;
 
   private allSubjects: any;
+
+  private numberOfClasses: number;
+
+  private totalPages: number;
 
   constructor(props: any) {
     super(props);
@@ -92,6 +98,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.updateOpenClasses = this.updateOpenClasses.bind(this);
     this.updateCareerLevelsOptions = this.updateCareerLevelsOptions.bind(this);
     this.updateCourseLevelsOptions = this.updateCourseLevelsOptions.bind(this);
+    this.updateCurrentPage = this.updateCurrentPage.bind(this);
+    this.updateTab = this.updateTab.bind(this);
     this.allResults = [];
     this.instructors = [];
     this.subjects = [];
@@ -101,6 +109,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.userInput = new UserInput();
     this.resultsSection = React.createRef();
     this.allSubjects = '';
+    this.numberOfClasses = 0;
+    this.totalPages = 0;
   }
 
   public render(): JSX.Element {
@@ -108,7 +118,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const classSearchFormComponent = this.getClassSearchFormComponent();
     const errorMessage: JSX.Element = this.displayErrorMessageWhenSubjectIsEmpty();
     this.updateProgressBar();
-
+    // @Todo abstract the feedback button
     return (
       <React.Fragment>
         <div className="form-section">
@@ -123,7 +133,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
           {((this.didSubmit() && !this.hasNoClasses()) || (this.didSubmit() && !this.isLoadingClasses())) &&
             classSearchResultsComponent}
         </div>
-
         <a
           target="_blank"
           href="https://www.csusb.edu/its/support/digital-transformation/web-services/form/feedback-class-search"
@@ -135,10 +144,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     );
   }
   componentDidMount() {
-    ClassSearchUtils.fetchData(app.settings.dropdownUrl, this.processDropDownListData, this.errorProcessingData);
+    ClassSearchUtils.fetchData(this.processDropDownListData, this.errorProcessingData);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(_prevProps: any, _prevState: any, _snapshot: any) {
     if (this.resetComplete()) {
       this.setState({
         isReset: false,
@@ -249,7 +258,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     return this.state.meetingDate.sun;
   }
 
-  private classesFound(classes: any): void {
+  private classesFound(data: any): void {
+    let classes = data.contentList ? data.contentList : data;
+    this.numberOfClasses = data.totalRecords ? data.totalRecords : data.length;
+    this.totalPages = data.totalPage ? data.totalPage : 0;
     this.allResults = [];
     if (this.emptyClasses(classes)) {
       this.updateStatesAfterProcessingClasses(true, false);
@@ -265,7 +277,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         this.allResults.push(Class.transformToClass(_class));
       });
     }
-
     this.sortClasses();
     this.processCourseAttributes();
     this.allResults = FilterClasses.filter(this.allResults, this.state);
@@ -311,8 +322,10 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         cssClasses: {
           resultsWrapper: 'class-search-results-wrapper',
         },
+        currentPage: this.state.tab === 'list' ? 1 : 0,
       },
       () => {
+        this.userInput.setPageNumber(this.state.currentPage);
         this.updateAllClasses();
       }
     );
@@ -382,6 +395,8 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       cssClasses: {
         resultsWrapper: undefined,
       },
+      currentPage: sessionStorage.getItem('format') === null || sessionStorage.getItem('format') === 'list' ? 1 : 0,
+      tab: sessionStorage.getItem('format') ?? 'list',
     };
   }
 
@@ -570,7 +585,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         <ClassSearchResults
           classes={this.allResults}
           currentTerm={this.currentTermId}
+          currentPage={this.state.currentPage}
+          numberOfClasses={this.numberOfClasses}
+          tab={this.state.tab}
+          totalPages={this.totalPages}
           onChangeOfLoadingMessage={this.updateLoadingMessage}
+          onChangeOfPageNumber={this.updateCurrentPage}
+          onChangeOfTab={this.updateTab}
         />
       </React.Fragment>
     );
@@ -846,5 +867,28 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
         });
       }, 1000);
     }
+  }
+
+  private updateCurrentPage(event: any): void {
+    const currentPageNumber = parseInt(event.target.hash.slice(1), 10);
+    this.updatePageNumber(currentPageNumber);
+  }
+
+  private updateTab(tabValue: string): void {
+    const pageNumber = tabValue === 'table' ? 0 : 1;
+    this.setState(
+      {
+        tab: tabValue,
+      },
+      () => this.updatePageNumber(pageNumber)
+    );
+    sessionStorage.setItem('format', tabValue);
+  }
+
+  private updatePageNumber(currentPageNumber: number): void {
+    this.setState({
+      currentPage: currentPageNumber,
+    });
+    this.userInput.setPageNumber(currentPageNumber);
   }
 }
