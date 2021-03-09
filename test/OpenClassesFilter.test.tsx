@@ -19,6 +19,7 @@ describe('Filter by open classes', () => {
 });
 
 function getOpenClosedClassData() {
+  app.state.currentTerm = 2208;
   const openClasses: IClass = TestUtils.copyObject(classJson);
   openClasses.enrollmentStatus = 'Open';
   openClasses.subject = 'BIOL';
@@ -32,16 +33,17 @@ function getOpenClosedClassData() {
   const openClassPrevTerm: IClass = TestUtils.copyObject(classJson);
   openClassPrevTerm.enrollmentStatus = 'Open';
   openClassPrevTerm.quarter = '2206';
+  openClassPrevTerm.subject = 'BIOL';
   const inactiveClass: IClass = TestUtils.copyObject(classJson);
   inactiveClass.classStatus = 'Closed';
 
   return [
     [[openClasses, closedClasses], false, 2],
     [[openClasses, closedClasses], true, 1],
-    [[openClassCurrTerm, openClassPrevTerm], true, 1],
+    [[openClassCurrTerm, openClassPrevTerm], true, 2],
     [[openClasses, inactiveClass], true, 1],
     [[closedClasses, inactiveClass], true, 0],
     [[openClassCurrTerm, inactiveClass], true, 1],
-    [[openClassPrevTerm, inactiveClass], true, 0],
+    [[openClassPrevTerm, inactiveClass], true, 1],
   ];
 }
