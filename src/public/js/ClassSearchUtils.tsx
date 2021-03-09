@@ -373,32 +373,16 @@ export function isWaitlist(classes: IClass): boolean {
   );
 }
 
-export function isValidTermRange(currentTerm: string, classTerm: string, currentMonth: number): boolean {
+export function isValidTermRange(currentTerm: string, classTerm: string): boolean {
   const fullCurrentTermId = parseInt(currentTerm, 10);
   const fullClassTermId = parseInt(classTerm, 10);
-  const currentTermId = parseInt(currentTerm.charAt(currentTerm.length - 1), 10);
-  const classTermId = parseInt(classTerm.charAt(classTerm.length - 1), 10);
-
-  if (parseInt(currentTerm, 10) - parseInt(classTerm, 10) >= 6) {
-    return false;
-  }
-  if (currentTermId === classTermId) {
+  if (fullClassTermId >= fullCurrentTermId) {
     return true;
   }
-  if (currentMonth >= 10 && currentMonth <= 12) {
-    // If the current month is between October and December, then, ideally, the
-    // current term id should end in '2', '4', or maybe '6'.
-    if (currentTermId >= classTermId && fullCurrentTermId - fullClassTermId <= 4 && currentTermId < 8) {
-      return true;
-    }
-  }
-  if (currentTermId < currentMonth) {
+  if (fullCurrentTermId - fullClassTermId >= 6) {
     return false;
   }
-  if (currentTermId - currentMonth <= 5 && currentTermId - currentMonth > 0) {
-    return true;
-  }
-  return false;
+  return true;
 }
 
 export function getInstructorMarkup(_class: IClass): JSX.Element | null {

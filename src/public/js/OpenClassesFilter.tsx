@@ -13,7 +13,7 @@ export function filter(classes: IClass[], openClasses: boolean = false) {
     if (
       _class.enrollmentStatus === 'Open' &&
       _class.classStatus === 'Active' &&
-      ClassSearchUtils.isValidTermRange(app.state.currentTerm.toString(), _class.quarter, new Date().getMonth() + 1)
+      ClassSearchUtils.isValidTermRange(app.state.currentTerm.toString(), _class.quarter)
     ) {
       result.push(_class);
     }
