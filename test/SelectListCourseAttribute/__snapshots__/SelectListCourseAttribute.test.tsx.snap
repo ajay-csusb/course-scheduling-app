@@ -50,7 +50,7 @@ exports[`<SelectListCourseAttr> Course attribute select list snapshot 1`] = `
           "value": "GSS",
         },
         Object {
-          "label": "Hight Impact Practices",
+          "label": "High Impact Practices",
           "value": "HIPS",
         },
         Object {
@@ -70,7 +70,7 @@ exports[`<SelectListCourseAttr> Course attribute select list snapshot 1`] = `
           "value": "SA",
         },
         Object {
-          "label": "Writing Intensive (non-GE)",
+          "label": "Writing Intensive (Non-GE)",
           "value": "WI",
         },
         Object {
@@ -145,10 +145,10 @@ exports[`<SelectListCourseAttr> Course attribute select list snapshot 1`] = `
         </option>
         <option
           key="HIPS"
-          label="Hight Impact Practices"
+          label="High Impact Practices"
           value="HIPS"
         >
-          Hight Impact Practices
+          High Impact Practices
         </option>
         <option
           key="LTAM"
@@ -180,10 +180,10 @@ exports[`<SelectListCourseAttr> Course attribute select list snapshot 1`] = `
         </option>
         <option
           key="WI"
-          label="Writing Intensive (non-GE)"
+          label="Writing Intensive (Non-GE)"
           value="WI"
         >
-          Writing Intensive (non-GE)
+          Writing Intensive (Non-GE)
         </option>
         <option
           key="WSTD"

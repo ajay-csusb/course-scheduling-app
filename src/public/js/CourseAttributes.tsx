@@ -14,7 +14,7 @@ export function getValidCourseAttributes(): object {
     LCCM: 'Low Cost Course Materials',
     LTAM: 'Latin American Studies',
     SA: 'Study Abroad',
-    WI: 'Writing Intensive (non-GE)',
+    WI: 'Writing Intensive (Non-GE)',
     WSTD: 'Women\'s Studies',
     ZCCM: 'Zero Cost Course Materials',
   };

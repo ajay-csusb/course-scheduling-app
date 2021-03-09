@@ -6,25 +6,25 @@ describe('Filter by course attribute', () => {
   describe('when a user searches for classes related to a course attribute: ASTD', () => {
     it('should show classes that have the course attribute', () => {
       const classBioFoo = TestUtils.copyObject(classJson);
-      classBioFoo.courseAttr = 'Writing Intensive (non-GE)';
+      classBioFoo.courseAttr = 'Writing Intensive (Non-GE)';
       const classBioBar = TestUtils.copyObject(classJson);
       classBioBar.courseAttr = 'Bar';
       const classesWithCourseAttribute = [classBioBar, classBioFoo];
       const classes = CourseAttributes.filter(classesWithCourseAttribute, 'WI');
       expect(classes).toHaveLength(1);
-      expect(classes[0].courseAttr).toEqual('Writing Intensive (non-GE)');
+      expect(classes[0].courseAttr).toEqual('Writing Intensive (Non-GE)');
     });
   });
   describe('when a class has multiple course attributes', () => {
     it('should filter classes by course attributes', () => {
       const classBio1 = TestUtils.copyObject(classJson);
-      classBio1.courseAttr = 'Writing Intensive (non-GE), Buzz, Baz';
+      classBio1.courseAttr = 'Writing Intensive (Non-GE), Buzz, Baz';
       const classBio2 = TestUtils.copyObject(classJson);
       classBio2.courseAttr = 'Bar';
       const classesWithCourseAttribute = [classBio1, classBio2];
       const classes = CourseAttributes.filter(classesWithCourseAttribute, 'WI');
       expect(classes).toHaveLength(1);
-      expect(classes[0].courseAttr).toEqual('Writing Intensive (non-GE), Buzz, Baz');
+      expect(classes[0].courseAttr).toEqual('Writing Intensive (Non-GE), Buzz, Baz');
     });
   });
   describe('when a class has a GE Designation as a course attribute', () => {
