@@ -10,9 +10,11 @@ export function getValidCourseAttributes(): object {
     ETHN: 'Ethnic Studies',
     GE: 'General Education',
     GSS: 'Gender and Sexuality Studies',
+    HIPS: 'High Impact Practices',
     LCCM: 'Low Cost Course Materials',
     LTAM: 'Latin American Studies',
     SA: 'Study Abroad',
+    WI: 'Writing Intensive (non-GE)',
     WSTD: 'Women\'s Studies',
     ZCCM: 'Zero Cost Course Materials',
   };
