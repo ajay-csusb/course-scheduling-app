@@ -3,7 +3,7 @@ import { classJson } from "./ClassesJson";
 import * as CourseAttributes from '../src/public/js/CourseAttributes';
 
 describe('Filter by course attribute', () => {
-  describe('when a user searches for classes related to a course attribute: ASTD', () => {
+  describe('when a user searches for classes related to a course attribute: WI', () => {
     it('should show classes that have the course attribute', () => {
       const classBioFoo = TestUtils.copyObject(classJson);
       classBioFoo.courseAttr = 'Writing Intensive (Non-GE)';
@@ -15,8 +15,8 @@ describe('Filter by course attribute', () => {
       expect(classes[0].courseAttr).toEqual('Writing Intensive (Non-GE)');
     });
   });
-  describe('when a class has multiple course attributes', () => {
-    it('should filter classes by course attributes', () => {
+  describe('and a class has multiple course attributes', () => {
+    it('should show classes that have the course attributes', () => {
       const classBio1 = TestUtils.copyObject(classJson);
       classBio1.courseAttr = 'Writing Intensive (Non-GE), Buzz, Baz';
       const classBio2 = TestUtils.copyObject(classJson);
@@ -27,7 +27,7 @@ describe('Filter by course attribute', () => {
       expect(classes[0].courseAttr).toEqual('Writing Intensive (Non-GE), Buzz, Baz');
     });
   });
-  describe('when a class has a GE Designation as a course attribute', () => {
+  describe('and a class has GE Designation as a course attribute', () => {
     it('should filter classes by GE Designation', () => {
       const classBioGe = TestUtils.copyObject(classJson);
       classBioGe.courseAttr = 'Foo, Bar, Global Perspectives';
