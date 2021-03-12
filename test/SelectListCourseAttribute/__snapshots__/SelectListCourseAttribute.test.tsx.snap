@@ -70,12 +70,12 @@ exports[`<SelectListCourseAttr> Course attribute select list snapshot 1`] = `
           "value": "SA",
         },
         Object {
-          "label": "Writing Intensive (Non-GE)",
-          "value": "WI",
-        },
-        Object {
           "label": "Women's Studies",
           "value": "WSTD",
+        },
+        Object {
+          "label": "Writing Intensive (Non-GE)",
+          "value": "WI",
         },
         Object {
           "label": "Zero Cost Course Materials",
@@ -179,18 +179,18 @@ exports[`<SelectListCourseAttr> Course attribute select list snapshot 1`] = `
           Study Abroad
         </option>
         <option
-          key="WI"
-          label="Writing Intensive (Non-GE)"
-          value="WI"
-        >
-          Writing Intensive (Non-GE)
-        </option>
-        <option
           key="WSTD"
           label="Women's Studies"
           value="WSTD"
         >
           Women's Studies
+        </option>
+        <option
+          key="WI"
+          label="Writing Intensive (Non-GE)"
+          value="WI"
+        >
+          Writing Intensive (Non-GE)
         </option>
         <option
           key="ZCCM"
