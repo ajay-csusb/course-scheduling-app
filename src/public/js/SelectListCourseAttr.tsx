@@ -20,13 +20,13 @@ export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrP
     { label: 'Low Cost Course Materials', value: 'LCCM' },
     { label: 'Service Learning', value: 'CSLI' },
     { label: 'Study Abroad', value: 'SA' },
+    { label: "Women's Studies", value: 'WSTD' },
     { label: 'Writing Intensive (Non-GE)', value: 'WI' },
-    { label: 'Women\'s Studies', value: 'WSTD' },
     { label: 'Zero Cost Course Materials', value: 'ZCCM' },
   ];
 
   public render(): React.ReactNode {
-    return(
+    return (
       <React.Fragment>
         <Label htmlFor="course-attribute">Course Attribute</Label>
         <HTMLSelect
@@ -39,5 +39,4 @@ export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrP
       </React.Fragment>
     );
   }
-
 }

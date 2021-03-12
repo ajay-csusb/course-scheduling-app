@@ -14,8 +14,8 @@ export function getValidCourseAttributes(): object {
     LCCM: 'Low Cost Course Materials',
     LTAM: 'Latin American Studies',
     SA: 'Study Abroad',
+    WSTD: "Women's Studies",
     WI: 'Writing Intensive (Non-GE)',
-    WSTD: 'Women\'s Studies',
     ZCCM: 'Zero Cost Course Materials',
   };
 }
@@ -42,14 +42,14 @@ export function filter(classes: IClass[], courseAttrSearchString: string): IClas
 }
 
 function isGeDesignationAttributeInClass(classAttrs: string[], geDesgAttrs: string[]): boolean {
-  return classAttrs.some((classAttr) => {
+  return classAttrs.some(classAttr => {
     return geDesgAttrs.includes(classAttr);
   });
 }
 
 function isValidCoureAttribute(searchString: string): boolean {
   const courseAttributes = getValidCourseAttributes();
-  return (Object.keys(courseAttributes).includes(searchString));
+  return Object.keys(courseAttributes).includes(searchString);
 }
 
 function getFullCourseAttribute(courseAttribute: string): string {
