@@ -14,20 +14,22 @@ describe('Filter by course attribute', () => {
       expect(classes).toHaveLength(1);
       expect(classes[0].courseAttr).toEqual('Writing Intensive (Non-GE)');
     });
-  });
-  describe('and a class has multiple course attributes', () => {
-    it('should show classes that have the course attributes', () => {
-      const classBio1 = TestUtils.copyObject(classJson);
-      classBio1.courseAttr = 'Writing Intensive (Non-GE), Buzz, Baz';
-      const classBio2 = TestUtils.copyObject(classJson);
-      classBio2.courseAttr = 'Bar';
-      const classesWithCourseAttribute = [classBio1, classBio2];
-      const classes = CourseAttributes.filter(classesWithCourseAttribute, 'WI');
-      expect(classes).toHaveLength(1);
-      expect(classes[0].courseAttr).toEqual('Writing Intensive (Non-GE), Buzz, Baz');
+    
+    describe('and a class has multiple course attributes', () => {
+      it('should show classes that have the course attributes the user was searching for', () => {
+        const classBio1 = TestUtils.copyObject(classJson);
+        classBio1.courseAttr = 'Writing Intensive (Non-GE), Buzz, Baz';
+        const classBio2 = TestUtils.copyObject(classJson);
+        classBio2.courseAttr = 'Bar';
+        const classesWithCourseAttribute = [classBio1, classBio2];
+        const classes = CourseAttributes.filter(classesWithCourseAttribute, 'WI');
+        expect(classes).toHaveLength(1);
+        expect(classes[0].courseAttr).toEqual('Writing Intensive (Non-GE), Buzz, Baz');
+      });
     });
   });
-  describe('and a class has GE Designation as a course attribute', () => {
+
+  describe('when a class has GE Designation as a course attribute', () => {
     it('should filter classes by GE Designation', () => {
       const classBioGe = TestUtils.copyObject(classJson);
       classBioGe.courseAttr = 'Foo, Bar, Global Perspectives';
@@ -37,16 +39,17 @@ describe('Filter by course attribute', () => {
       expect(classes).toHaveLength(1);
       expect(classes[0].courseAttr).toEqual('Foo, Bar, Global Perspectives');
     });
-  });
-  describe('when a class has multiple GE Designation as a course attributes', () => {
-    it('should filter classes by GE Designation', () => {
-      const classBioGeDes = TestUtils.copyObject(classJson);
-      classBioGeDes.courseAttr = 'Foo, Global Perspectives, Writing Intensive';
-      const classBioNoGeDes = TestUtils.copyObject(classJson);
-      classBioNoGeDes.courseAttr = 'Buzz';
-      const classes = CourseAttributes.filter([classBioGeDes, classBioNoGeDes], 'DES');
-      expect(classes).toHaveLength(1);
-      expect(classes[0].courseAttr).toEqual('Foo, Global Perspectives, Writing Intensive');
+
+    describe('and a class has multiple GE Designation as a course attributes', () => {
+      it('should filter classes by GE Designation the user searched for', () => {
+        const classBioGeDes = TestUtils.copyObject(classJson);
+        classBioGeDes.courseAttr = 'Foo, Global Perspectives, Writing Intensive';
+        const classBioNoGeDes = TestUtils.copyObject(classJson);
+        classBioNoGeDes.courseAttr = 'Buzz';
+        const classes = CourseAttributes.filter([classBioGeDes, classBioNoGeDes], 'DES');
+        expect(classes).toHaveLength(1);
+        expect(classes[0].courseAttr).toEqual('Foo, Global Perspectives, Writing Intensive');
+      });
     });
   });
 });
