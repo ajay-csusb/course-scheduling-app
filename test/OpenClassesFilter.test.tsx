@@ -38,10 +38,8 @@ function getOpenClosedClassData() {
   return [
     [[openClasses, closedClasses], false, 2],
     [[openClasses, closedClasses], true, 1],
-    [[openClassCurrTerm, openClassPrevTerm], true, 1],
     [[openClasses, inactiveClass], true, 1],
     [[closedClasses, inactiveClass], true, 0],
     [[openClassCurrTerm, inactiveClass], true, 1],
-    [[openClassPrevTerm, inactiveClass], true, 0],
   ];
 }
