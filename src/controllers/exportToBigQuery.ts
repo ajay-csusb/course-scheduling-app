@@ -54,7 +54,7 @@ export async function index(req: Request, res: Response): Promise<Response> {
 
 async function exportClassSearchData() {
   classesCurrentTerm = [];
-  if (!isTermSet) await getTerms();
+  await getTerms();
   await createMissingTables();
   await getClassesForTerm();
   await insertClassesCurrentTerm();
@@ -180,7 +180,6 @@ function getMissingTables(): Promise<any> {
     .getTables()
     .then(data => {
       const tables = data[0];
-
       tables.forEach(table => {
         tableNames.push(table.id!);
       });
@@ -244,7 +243,6 @@ async function getClassesForTerm(term: number = currentTerm): Promise<any> {
         acad_career: '',
       },
     });
-
     data.data.forEach((_class: any) => {
       const transformedClass = Class.transformToClass(_class);
       transformedClass['date'] = bigqueryClient.datetime({
@@ -255,7 +253,8 @@ async function getClassesForTerm(term: number = currentTerm): Promise<any> {
         minutes: new Date().getMinutes(),
         seconds: new Date().getSeconds(),
       }).value;
-
+      const formattedInstructorName = transformedClass['instructorName'] !== ' ' ? transformedClass['instructorName'].split(', ') : '';
+      transformedClass['instructorName'] = typeof(formattedInstructorName) === 'object' ? `${formattedInstructorName[1]} ${formattedInstructorName[0]}` : ''; 
       classesCurrentTerm.push(transformedClass);
     });
   } catch (error) {
@@ -274,6 +273,9 @@ function parseTerms(terms: any): object {
 }
 
 function setCurrentTerm(terms: any): void {
+  if (currentTerm !== app.settings.firstSemester && isTermSet) {
+    return;
+  }
   try {
     terms.forEach((term: any) => {
       if (term.displayed_FLAG === 'Y' && term.default_FLG === 'Y') {
