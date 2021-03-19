@@ -955,7 +955,7 @@ describe('GE class attribute', () => {
 });
 
 describe('valid term range', () => {
-  describe('Given the current term as 0008', () => {
+  describe('given the current term as 0008', () => {
     describe('when the user search for a class from term 0002', () => {
       it('should return false', () => {
         expect(ClassSearchUtils.isValidTermRange('0008', '0002')).toBeFalsy();
