@@ -123,8 +123,8 @@ export class ClassSearchForm extends React.Component<IClassSearchFormProps, {}> 
             </div>
             <p>
               <strong>
-                *The majority of Spring and Winter Intersession classes are online, please select “ALL” to see greater
-                results
+                *The majority of Spring, Summer, and Winter Intersession classes are online, please select “ALL” to see
+                greater results.
               </strong>
             </p>
           </div>
