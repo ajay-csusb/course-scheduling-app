@@ -155,7 +155,7 @@ async function createMissingTables(): Promise<any> {
       'tues: string,' +
       'waitlistCapacity: integer,' +
       'waitlistTotal: integer,' +
-      'wed: string' +
+      'wed: string,' +
       'timestamp: timestamp',
   };
 
