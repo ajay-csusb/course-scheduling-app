@@ -150,13 +150,13 @@ async function createMissingTables(): Promise<any> {
       'sun: string,' +
       'textbook: string,' +
       'thurs: string,' +
+      'timestamp: timestamp,' +
       'title: string,' +
       'topic: string,' +
       'tues: string,' +
       'waitlistCapacity: integer,' +
       'waitlistTotal: integer,' +
-      'wed: string,' +
-      'timestamp: timestamp',
+      'wed: string'
   };
 
   tableIds.forEach((id: string) => {
