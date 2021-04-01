@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { BigQuery, TableMetadata } from '@google-cloud/bigquery';
+import { BigQuery, BigQueryTimestamp, TableMetadata } from '@google-cloud/bigquery';
 import * as _ from 'lodash';
 import axios from 'axios';
 import { Class, IClass } from '../public/js/Class';
@@ -155,7 +155,8 @@ async function createMissingTables(): Promise<any> {
       'tues: string,' +
       'waitlistCapacity: integer,' +
       'waitlistTotal: integer,' +
-      'wed: string',
+      'wed: string' +
+      'timestamp: timestamp',
   };
 
   tableIds.forEach((id: string) => {
@@ -245,16 +246,9 @@ async function getClassesForTerm(term: number = currentTerm): Promise<any> {
     });
     data.data.forEach((_class: any) => {
       const transformedClass = Class.transformToClass(_class);
-      transformedClass['date'] = bigqueryClient.datetime({
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-        day: new Date().getDate(),
-        hours: new Date().getHours(),
-        minutes: new Date().getMinutes(),
-        seconds: new Date().getSeconds(),
-      }).value;
+      transformedClass['timestamp'] = new BigQueryTimestamp(new Date()).value;
       const formattedInstructorName = transformedClass['instructorName'] !== ' ' ? transformedClass['instructorName'].split(', ') : '';
-      transformedClass['instructorName'] = typeof(formattedInstructorName) === 'object' ? `${formattedInstructorName[1]} ${formattedInstructorName[0]}` : ''; 
+      transformedClass['instructorName'] = typeof (formattedInstructorName) === 'object' ? `${formattedInstructorName[1]} ${formattedInstructorName[0]}` : '';
       classesCurrentTerm.push(transformedClass);
     });
   } catch (error) {
