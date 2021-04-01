@@ -1,7 +1,6 @@
-import { BigQueryDatetime } from '@google-cloud/bigquery/build/src/bigquery';
+import { BigQueryDatetime, BigQueryTimestamp } from '@google-cloud/bigquery/build/src/bigquery';
 import axios, { AxiosRequestConfig } from 'axios';
 import { app } from '../public/js/ClassSearch.d';
-import { getBigQueryConnection } from './BigQueryHelper';
 
 export async function fetchUniversityCalendarData(): Promise<any> {
   let universityCalendarData: [] = [];
@@ -39,23 +38,11 @@ function processUniversityCalendarData(data: []): any {
   return universityCalendarData;
 }
 
-function getCurrentTime(): any {
-  const bigqueryClient = getBigQueryConnection()
-  return bigqueryClient.datetime({
-    year: new Date().getFullYear(),
-    month: new Date().getMonth() + 1,
-    day: new Date().getDate(),
-    hours: new Date().getHours(),
-    minutes: new Date().getMinutes(),
-    seconds: new Date().getSeconds(),
-  }).value;
-}
-
 function updateDates(event: any) {
-  event['timestamp'] = new BigQueryDatetime(getCurrentTime()).value;
   let start_date, end_date;
   [start_date, end_date] = event.date.split(" : ");
   event['start_date'] = new BigQueryDatetime(start_date.trim()).value;
   event['end_date'] = end_date === undefined ? event['start_date'] : new BigQueryDatetime(end_date.trim()).value;
+  event['timestamp'] = new BigQueryTimestamp(new Date()).value;
   delete event['date'];
 }
