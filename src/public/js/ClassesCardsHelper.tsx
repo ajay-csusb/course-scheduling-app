@@ -369,6 +369,5 @@ function getWaitlistMarkup(): JSX.Element {
 }
 
 function isValidTerm(quarter: string): boolean {
-  const CurrMonth = new Date().getMonth() + 1;
-  return ClassSearchUtils.isValidTermRange(currentTerm, quarter, CurrMonth) === true;
+  return ClassSearchUtils.isValidTermRange(currentTerm, quarter);
 }

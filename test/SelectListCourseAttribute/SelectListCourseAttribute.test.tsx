@@ -1,27 +1,12 @@
 import { mount } from 'enzyme';
 import * as React from 'react';
-import { ClassSearchContainer } from '../../src/public/js/ClassSearchContainer';
-import { TestUtils } from '../TestUtils';
+import { SelectListCourseAttr } from '../../src/public/js/SelectListCourseAttr';
 // tslint:disable:max-line-length
 describe('<SelectListCourseAttr>', () => {
 
-  beforeAll(() => {
-    TestUtils.ajax();
-  });
-
-  describe('Given a class search form', () => {
+  describe('Course attribute select list', () => {
     test('snapshot', () => {
-      const classSearchContainerWrapper = mount(<ClassSearchContainer />);
-      classSearchContainerWrapper.setState({
-        subject: {
-          abbr: 'bar',
-          name: 'Bar',
-        },
-      });
-      classSearchContainerWrapper.find('#additional-filters').simulate('click');
-      const courseAttributeSelectWrapper = classSearchContainerWrapper.find('.course-attribute');
-      classSearchContainerWrapper.find('.course-attribute > select').simulate('change', { target: { value: 'foo' } });
-      classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+      const courseAttributeSelectWrapper = mount(<SelectListCourseAttr courseAttr='all' onChangeOfCourseAttr={() => {}}/>);
       expect(courseAttributeSelectWrapper).toMatchSnapshot();
     });
   });

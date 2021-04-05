@@ -3,7 +3,7 @@ import { loadEnvironmentVariables } from '../../lib/Utils';
 loadEnvironmentVariables();
 export const app = {
   state: {
-    currentTerm: 2208,
+    currentTerm: 2214,
   },
   settings: {
     dropdownUrl: 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList',
