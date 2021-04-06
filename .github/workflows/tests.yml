@@ -17,6 +17,12 @@ jobs:
       - run: npm install
       - run: webpack
       - run: npm run build
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD: ${{ secrets.WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD }}
+          envkey_WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET: ${{ secrets.WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET }}
+          file_name: .env
       - name: Cypress tests
         uses: cypress-io/github-action@v2
         with:
