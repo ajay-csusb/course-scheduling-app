@@ -208,7 +208,7 @@ describe('states', () => {
         setImmediate(() => {
           classSearchContainerWrapper.update();
           const classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
-          classSearchResultsWrapper.props().onChangeOfPageNumber({ target: { hash: '#2' } });
+          classSearchResultsWrapper.props().onChangeOfPageNumber(2);
           expect(classSearchContainerWrapper.state('currentPage')).toEqual(2);
         });
       });

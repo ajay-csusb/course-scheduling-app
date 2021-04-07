@@ -16,7 +16,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="current page-number"
-          href="#1"
+          data-page="1"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 1"
         >
@@ -29,7 +30,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="current page-number"
-          href="#1"
+          data-page="1"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 1"
         >
@@ -42,7 +44,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#2"
+          data-page="2"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 2"
         >
@@ -55,7 +58,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#3"
+          data-page="3"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 3"
         >
@@ -68,7 +72,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#4"
+          data-page="4"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 4"
         >
@@ -81,7 +86,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#5"
+          data-page="5"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 5"
         >
@@ -94,7 +100,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#6"
+          data-page="6"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 6"
         >
@@ -107,7 +114,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#7"
+          data-page="7"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 7"
         >
@@ -120,7 +128,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#8"
+          data-page="8"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 8"
         >
@@ -133,7 +142,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#9"
+          data-page="9"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 9"
         >
@@ -146,7 +156,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#10"
+          data-page="10"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 10"
         >
@@ -159,7 +170,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#2"
+          data-page="2"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 2"
         >
@@ -172,7 +184,8 @@ exports[`Pagination component pagination component snapshot 1`] = `
       >
         <a
           className="page-number"
-          href="#10"
+          data-page="10"
+          href="#class-search-results-component"
           onClick={[Function]}
           title="Go to page 10"
         >

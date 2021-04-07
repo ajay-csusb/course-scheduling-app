@@ -869,8 +869,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     }
   }
 
-  private updateCurrentPage(event: any): void {
-    const currentPageNumber = parseInt(event.target.hash.slice(1), 10);
+  private updateCurrentPage(currentPageNumber: number): void {
     this.updatePageNumber(currentPageNumber);
   }
 

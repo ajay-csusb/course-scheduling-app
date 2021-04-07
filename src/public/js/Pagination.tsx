@@ -48,7 +48,8 @@ export default class Pagination extends Component<IPaginationProps, {}> {
   }
 
   private handleOnChangeOfPageNumber(event: any): void {
-    this.props.onChangeOfPageNumber(event);
+    const currentPageNumber = parseInt(event.target.getAttribute('data-page'), 10);
+    this.props.onChangeOfPageNumber(currentPageNumber);
   }
 
   private getPagerMarkup(pageNumber: number, label: string, key: number): JSX.Element {
@@ -58,8 +59,9 @@ export default class Pagination extends Component<IPaginationProps, {}> {
         <a
           title={`Go to page ${pageNumber}`}
           onClick={this.handleOnChangeOfPageNumber}
-          href={`#${pageNumber}`}
+          data-page={`${pageNumber}`}
           className={cssClass}
+          href='#class-search-results-component'
         >
           {label}
         </a>
