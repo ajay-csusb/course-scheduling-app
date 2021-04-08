@@ -8,15 +8,17 @@ jobs:
       matrix:
         node-version: [12.x]
         containers: [1]
-    env:
-      WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD: 'mrGWdIIRH0muw1u62v5Op8skycTc5qay' 
-      WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET: '08n23hqB7WKBIIBWpr3aa3V1EIXxZW48' 
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: create env file      
+        run: |
+          touch .env
+          echo WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD: ${{ secrets.WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD }} >> .env
+          echo WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET: ${{ secrets.WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET }} >> .env
       - run: npm install
       - run: webpack
       - run: npm run build
