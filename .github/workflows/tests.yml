@@ -17,8 +17,8 @@ jobs:
       - name: create env file      
         run: |
           touch .env
-          echo WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD: ${{ secrets.WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD }} >> .env
-          echo WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET: ${{ secrets.WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET }} >> .env
+          echo WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD: mrGWdIIRH0muw1u62v5Op8skycTc5qay >> .env
+          echo WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET: 08n23hqB7WKBIIBWpr3aa3V1EIXxZW48 >> .env
       - run: npm install
       - run: webpack
       - run: npm run build
