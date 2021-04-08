@@ -30,10 +30,10 @@ export const app = {
     },
     webdx: {
       departmentPeople: {
-        clientSecret: '08n23hqB7WKBIIBWpr3aa3V1EIXxZW48',
+        clientSecret: process.env.WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET,
         clientId: 'webdx',
         username: 'webdx',
-        password: 'mrGWdIIRH0muw1u62v5Op8skycTc5qay',
+        password: process.env.WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD,
         baseUrl: 'https://webdx.csusb.edu/',
       },
     },
