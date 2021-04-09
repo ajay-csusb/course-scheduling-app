@@ -63,8 +63,8 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     const pagination = (
       <Pagination
         numberPages={totalNumberOfPages}
-        onChangeOfPageNumber={this.onChangeOfPageNumber}
         currentPage={this.props.currentPage}
+        onChangeOfPageNumber={this.onChangeOfPageNumber}
       />
     );
     const paginationComponent: JSX.Element = this.noOfClasses > 30 && this.props.tab === 'list' ? pagination : <></>;
@@ -78,9 +78,9 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
           </div>
           <DisplayFormatTabs
             format={this.props.tab ?? 'list'}
-            onChangeOfFormat={this.onChangeOfTab}
             listClasses={classesList}
             tableClasses={classesTable}
+            onChangeOfFormat={this.onChangeOfTab}
           />
           {paginationComponent}
         </>

@@ -22,7 +22,6 @@ export function getWebDxAccessToken(): Promise<any> {
       password: app.settings.webdx.departmentPeople.password,
     },
   };
-  console.log(axiosOptions.params);
   return axios(axiosOptions)
     .then((response: any) => {
       console.log('Fetching access token...');

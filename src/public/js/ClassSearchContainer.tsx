@@ -147,7 +147,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     ClassSearchUtils.fetchData(this.processDropDownListData, this.errorProcessingData);
   }
 
-  componentDidUpdate(_prevProps: any, _prevState: any, _snapshot: any) {
+  componentDidUpdate() {
     if (this.resetComplete()) {
       this.setState({
         isReset: false,

@@ -623,7 +623,7 @@ export function updatePages(pages: JSX.Element[], currentPage: number): JSX.Elem
     lastIndex = currentPage + 5;
   }
   if (currentPage > pages.length - 5) {
-    startIndex = pages.length - 10;
+    startIndex = Math.max(0, pages.length - 10);
     lastIndex = pages.length;
   }
   return pages.length > 10 ? pages.slice(startIndex, lastIndex) : pages;

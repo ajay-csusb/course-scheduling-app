@@ -22,5 +22,6 @@ export async function index(_req: Request, res: Response): Promise<any> {
     })
     .then((res: any) => (responseMessage = res))
     .catch((error: Error) => console.error(error));
+  // @Todo what is the responseMessage when we get an error?
   return res.status(200).json(responseMessage);
 }

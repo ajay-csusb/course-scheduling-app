@@ -6,8 +6,7 @@ import { app } from '../public/js/ClassSearch.d';
 export async function index(req: Request, res: Response): Promise<any> {
   let responseMessage = {};
   const accessToken = await getWebDxAccessToken();
-  // @Todo update the URL.
-  const url = app.settings.classSearchApiUrl.v0;
+  const url = app.settings.classSearchApiUrl.v1.full;
   await axios
     .post(url, req.body, {
       headers: {
@@ -28,5 +27,6 @@ export async function index(req: Request, res: Response): Promise<any> {
     .catch((error: Error) => {
       console.error(error);
     });
+  // @Todo what is the responseMessage when we get an error?
   return res.status(200).json(responseMessage);
 }
