@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import dotenv from 'dotenv';
+import _ from 'lodash';
 import { app } from '../public/js/ClassSearch.d';
 
 export function loadEnvironmentVariables(): void {
@@ -35,4 +36,53 @@ export function getWebDxAccessToken(): Promise<any> {
 
 export function removeHtmlTags(str: string): string {
   return str.replace(/<(.|\n)*?>|\'\\n\'\s\+/g, '');
+}
+
+export function filterClasses(classes: any[], searchParameters: any): any[] {
+  let filteredClasses = [];
+  filteredClasses = _.filter(classes, classObj => {
+    return (
+      matchSubject(searchParameters, classObj) &&
+      matchCampus(searchParameters, classObj) &&
+      matchCatalogNumber(searchParameters, classObj) &&
+      matchInstructorName(searchParameters, classObj) &&
+      matchClassNumber(searchParameters, classObj)
+    );
+  });
+  return filteredClasses;
+}
+
+function matchSubject(params: any, classObj: any): boolean {
+  if (params.subject.trim().length === 0) {
+    return true;
+  }
+  return classObj.subject.trim() === params.subject;
+}
+
+function matchCampus(params: any, classObj: any): boolean {
+  if (params.campus.trim().length === 0) {
+    return true;
+  }
+  return classObj.campus.trim() === params.campus;
+}
+
+function matchCatalogNumber(params: any, classObj: any): boolean {
+  if (params.catalog_nbr.trim().length === 0) {
+    return true;
+  }
+  return classObj.catalog_NBR.trim() === params.catalog_nbr;
+}
+
+function matchInstructorName(params: any, classObj: any): boolean {
+  if (params.name.trim().length === 0) {
+    return true;
+  }
+  return classObj.name.trim() === params.name;
+}
+
+function matchClassNumber(params: any, classObj: any): boolean {
+  if (params.class_nbr.trim().length === 0) {
+    return true;
+  }
+  return classObj.class_NBR === parseInt(params.class_nbr.trim(), 10);
 }
