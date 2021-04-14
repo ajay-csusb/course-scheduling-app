@@ -20,7 +20,7 @@ import { loadEnvironmentVariables } from './lib/Utils';
 
 loadEnvironmentVariables();
 const app = express();
-let cache = apicache.options({ debug: true, enabled: true, appendKey: getKeys }).middleware;
+let cache = apicache.options({ debug: false, enabled: true, appendKey: getKeys }).middleware;
 const cacheClasses = cache('3 minutes', shouldCache);
 
 app.set('port', process.env.PORT || 3000);
@@ -37,6 +37,7 @@ if (process.env && process.env.NODE_ENV === 'local') {
   app.use(nocache());
 }
 app.use(cors());
+app.use(compression());
 app.get('/', homeController.index);
 app.post('/export-to-excel', exportToExcelController.index);
 app.get('/export-to-bigquery/:termId?', exportToBigQueryController.index);
