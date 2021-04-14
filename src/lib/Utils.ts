@@ -53,35 +53,35 @@ export function filterClasses(classes: any[], searchParameters: any): any[] {
 }
 
 function matchSubject(params: any, classObj: any): boolean {
-  if (params.subject.trim().length === 0) {
+  if (params.subject.length === 0) {
     return true;
   }
   return classObj.subject.trim() === params.subject;
 }
 
 function matchCampus(params: any, classObj: any): boolean {
-  if (params.campus.trim().length === 0) {
+  if (params.campus.length === 0) {
     return true;
   }
   return classObj.campus.trim() === params.campus;
 }
 
 function matchCatalogNumber(params: any, classObj: any): boolean {
-  if (params.catalog_nbr.trim().length === 0) {
+  if (params.catalog_nbr.length === 0) {
     return true;
   }
   return classObj.catalog_NBR.trim() === params.catalog_nbr;
 }
 
 function matchInstructorName(params: any, classObj: any): boolean {
-  if (params.name.trim().length === 0) {
+  if (params.name.length === 0) {
     return true;
   }
   return classObj.name.trim() === params.name;
 }
 
 function matchClassNumber(params: any, classObj: any): boolean {
-  if (params.class_nbr.trim().length === 0) {
+  if (params.class_nbr.length === 0) {
     return true;
   }
   return classObj.class_NBR === parseInt(params.class_nbr.trim(), 10);
