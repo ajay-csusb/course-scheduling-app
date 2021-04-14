@@ -8,6 +8,7 @@ const cache = new NodeCache();
 
 export async function index(req: Request, res: Response): Promise<any> {
   let responseMessage = {};
+  console.log('Cache keys:', cache.keys());
   if (req.body && cache.has(req.body.strm)) {
     const classes = filterClasses(cache.get(req.body.strm) || [], req.body);
     fetchClassesAsync(req);

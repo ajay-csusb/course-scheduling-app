@@ -2,8 +2,20 @@ import axios, { AxiosResponse } from 'axios';
 import { Request, Response } from 'express';
 import { getWebDxAccessToken } from '../lib/Utils';
 import { app } from '../public/js/ClassSearch.d';
+import NodeCache from 'node-cache';
+const cache = new NodeCache();
 
 export async function index(_req: Request, res: Response): Promise<any> {
+  let responseMessage = {};
+  if (cache.has('dropdown')) {
+    fetchDropdown();
+    return res.status(200).json(cache.get('dropdown'));
+  }
+  responseMessage = await fetchDropdown(); 
+  return res.status(200).json(responseMessage);
+}
+
+async function fetchDropdown(): Promise<any> {
   let responseMessage = {};
   const accessToken = await getWebDxAccessToken();
   const url = app.settings.dropdownUrl.v1;
@@ -18,10 +30,16 @@ export async function index(_req: Request, res: Response): Promise<any> {
       if (response) {
         return response.data;
       }
+      responseMessage = { error: 'Error encountered while fetching dropdown data' };
       throw new Error('Something went wrong during fetching data');
     })
-    .then((res: any) => (responseMessage = res))
-    .catch((error: Error) => console.error(error));
-  // @Todo what is the responseMessage when we get an error?
-  return res.status(200).json(responseMessage);
+    .then((res: any) => {
+      cache.set('dropdown', res);
+      responseMessage = res;
+    })
+    .catch((error: Error) => {
+      console.error(error)
+      responseMessage = { error: 'Error encountered while fetching dropdown data' };
+    });
+  return responseMessage;
 }
