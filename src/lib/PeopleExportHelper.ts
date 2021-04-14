@@ -3,18 +3,23 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { app } from '../public/js/ClassSearch.d';
 import { IPeopleTableInterface, People } from './People';
 import { BigQueryTimestamp } from '@google-cloud/bigquery/build/src/bigquery';
+import he from 'he';
 
 export async function fetchPeople(): Promise<any> {
   let people: [] = [];
   const accessToken = await getWebDxAccessToken();
   const axiosOptions: AxiosRequestConfig = {
-    baseURL: app.settings.webdx.departmentPeople.baseUrl,
-    url: '/OnlineDirectory/v2/api/getAllPeople',
+    baseURL: app.settings.webdxSsoBaseUrl,
+    url: '/OD/rest/v1/searchPeople',
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
       Authorization: 'Bearer ' + accessToken,
+    },
+    data: {
+      uuid: '',
+      keyword: '',
     },
   };
   console.log('Fetching people...');
@@ -36,6 +41,7 @@ function processPeopleData(persons: []): IPeopleTableInterface[] {
     const people: People = new People(person);
     sanitizePhoneNumber(people);
     addFullName(people);
+    sanitizeDepartmentName(people);
     const peopleRow: IPeopleTableInterface = addTimestamp(people);
     peopleData.push(peopleRow);
   });
@@ -54,4 +60,8 @@ function addTimestamp(people: People): IPeopleTableInterface {
 
 function addFullName(people: People): void {
   people.fullName = `${people.fName} ${people.lName}`.trim();
+}
+
+function sanitizeDepartmentName(people: People): void {
+  people.deptName = he.decode(people.deptName);
 }

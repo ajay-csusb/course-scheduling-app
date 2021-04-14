@@ -1,7 +1,7 @@
 import { BigQueryTimestamp } from '@google-cloud/bigquery';
 import axios, { AxiosRequestConfig } from 'axios';
 import { app } from '../public/js/ClassSearch.d';
-import * as _ from 'lodash';
+import he from 'he';
 import {
   Department,
   IDepartmentHoursTableInterface,
@@ -9,6 +9,7 @@ import {
   IHoursListInterface,
 } from '../lib/Department';
 import { getWebDxAccessToken } from '../lib/Utils';
+import _ from 'lodash';
 
 let allDepts: IDepartmentsTableInterface[] = [];
 let departmentHours: IDepartmentHoursTableInterface[] = [];
@@ -17,13 +18,16 @@ export async function fetchDepartments(): Promise<any> {
   let departments = [];
   const accessToken = await getWebDxAccessToken();
   const axiosOptions: AxiosRequestConfig = {
-    baseURL: app.settings.webdx.departmentPeople.baseUrl,
-    url: '/OnlineDirectory/v2/api/getAllDept',
+    baseURL: app.settings.webdxSsoBaseUrl,
+    url: '/OD/rest/v1/searchDept2',
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
       Authorization: 'Bearer ' + accessToken,
+    },
+    data: {
+      deptTitle: '',
     },
   };
   console.log('Fetching departments...');
@@ -43,6 +47,7 @@ export async function fetchDepartments(): Promise<any> {
 function processDepartmentsAndDepartmentHours(departments: any): void {
   const depts: Department[] = [];
   departments.forEach((department: any) => {
+    department.division = he.decode(department.division);
     depts.push(new Department(department));
   });
   depts.forEach(dept => {
