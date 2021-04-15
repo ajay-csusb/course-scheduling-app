@@ -86,3 +86,16 @@ function matchClassNumber(params: any, classObj: any): boolean {
   }
   return classObj.class_NBR === parseInt(params.class_nbr.trim(), 10);
 }
+
+export function getKeys(req: Request, _res: Response) {
+  let objectValues = '';
+  for (let key in req.body) {
+    objectValues += key + '=' + req.body[key];
+  }
+  return objectValues.length !== 0 ? objectValues : 'options';
+}
+
+export function shouldCache(_req: Request, res: Response): boolean {
+  // @ts-ignore:
+  return res.statusCode === 200;
+}

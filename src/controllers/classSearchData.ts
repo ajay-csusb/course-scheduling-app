@@ -10,7 +10,8 @@ export async function index(req: Request, res: Response): Promise<any> {
   let responseMessage = {};
   console.log('Cache keys:', cache.keys());
   if (req.body && cache.has(req.body.strm)) {
-    const classes = filterClasses(cache.get(req.body.strm) || [], req.body);
+    const cacheContents: [] = cache.get(req.body.strm) || [];
+    const classes = filterClasses(cacheContents, req.body);
     fetchClassesAsync(req);
     return res.status(200).json(classes);
   }
@@ -21,9 +22,7 @@ export async function index(req: Request, res: Response): Promise<any> {
 function santizeFetchArguments(args: any): any {
   let sanitizedArgs = _.cloneDeep(args);
   for (const [key] of Object.entries(sanitizedArgs)) {
-    if (key !== 'strm') {
-      sanitizedArgs[key] = '';
-    }
+    sanitizedArgs[key] = key === 'strm' ? sanitizedArgs[key] : '';
   }
   return sanitizedArgs;
 }

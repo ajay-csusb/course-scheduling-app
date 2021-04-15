@@ -16,7 +16,7 @@ import * as exportUniversityCalendarController from './controllers/exportUnivers
 import * as exportCourseleafDataController from './controllers/exportCourseleafData';
 import * as getClassSearchOptions from './controllers/classSearchOptions';
 import * as getClassSearchData from './controllers/classSearchData';
-import { loadEnvironmentVariables } from './lib/Utils';
+import { loadEnvironmentVariables, getKeys, shouldCache } from './lib/Utils';
 
 loadEnvironmentVariables();
 const app = express();
@@ -50,16 +50,4 @@ app.get('/export-courseleaf-data', exportCourseleafDataController.index);
 app.get('/get-class-search-options', cache('1 day'), getClassSearchOptions.index);
 app.post('/get-class-search-data', cacheClasses, getClassSearchData.index);
 
-function shouldCache(_req: Request, res: Response): boolean {
-  // @ts-ignore: Unreachable code error
-  return res.statusCode === 200;
-}
-
-function getKeys(req: Request, _res: Response) {
-  let objectValues = '';
-  for (let key in req.body) {
-    objectValues += key + '=' + req.body[key];
-  }
-  return objectValues.length !== 0 ? objectValues : 'options';
-}
 export default app;
