@@ -32,3 +32,7 @@ export function getWebDxAccessToken(): Promise<any> {
       console.log({ error });
     });
 }
+
+export function removeHtmlTags(str: string): string {
+  return str.replace(/<(.|\n)*?>|\'\\n\'\s\+/g, '');
+}

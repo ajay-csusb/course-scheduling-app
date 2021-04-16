@@ -1,13 +1,13 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { app } from '../public/js/ClassSearch.d';
 import { BigQueryTimestamp } from '@google-cloud/bigquery/build/src/bigquery';
+import { removeHtmlTags } from '../lib/Utils';
+import he from 'he';
 
 export async function fetchEvents(): Promise<any> {
   let events: [] = [];
   const url =
-    process.env && process.env.NODE_ENV === 'production'
-      ? app.settings.getBaseUrl.live
-      : app.settings.getBaseUrl.dev;
+    process.env && process.env.NODE_ENV === 'production' ? app.settings.getBaseUrl.live : app.settings.getBaseUrl.dev;
   const axiosOptions: AxiosRequestConfig = {
     baseURL: url,
     url: '/events?_format=json',
@@ -32,6 +32,8 @@ export async function fetchEvents(): Promise<any> {
 function processEventsData(events: []): any {
   let eventsData: any[] = [];
   events.forEach((event: object) => {
+    event['title'] = he.decode(event['title'].trim());
+    event['description'] = he.decode(removeHtmlTags(event['description'].trim()));
     event['timestamp'] = new BigQueryTimestamp(new Date()).value;
     eventsData.push(event);
   });
