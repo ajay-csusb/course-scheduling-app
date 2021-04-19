@@ -15,10 +15,23 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+const { url, selectSubject, enterCourseNumber, selectPreviousTerm, submit } = require('../integration/Utils');
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   return false
+});
+
+before(function () {
+  cy.visit(url);
+  cy.get('.search-autocomplete input').type('All').click();
+  cy.get('.bp3-menu').contains('All').click();
+  cy.get('.btn-primary').click();
+  cy.wait(10000);
+  selectPreviousTerm();
+  selectSubject();
+  submit();
+  cy.wait(10000);
 });
