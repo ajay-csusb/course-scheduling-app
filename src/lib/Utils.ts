@@ -46,7 +46,8 @@ export function filterClasses(classes: any[], searchParameters: any): any[] {
       matchCampus(searchParameters, classObj) &&
       matchCatalogNumber(searchParameters, classObj) &&
       matchInstructorName(searchParameters, classObj) &&
-      matchClassNumber(searchParameters, classObj)
+      matchClassNumber(searchParameters, classObj) &&
+      matchSessionCode(searchParameters, classObj)
     );
   });
   return filteredClasses;
@@ -87,7 +88,15 @@ function matchClassNumber(params: any, classObj: any): boolean {
   return classObj.class_NBR === parseInt(params.class_nbr.trim(), 10);
 }
 
-export function getKeys(req: Request, _res: Response) {
+function matchSessionCode(params: any, classObj: any): boolean {
+  if (params.section_code.length === 0) {
+    return true;
+  }
+  return classObj.session_CODE.trim() === params.section_code;
+  
+}
+
+export function getKeys(req: Request, _res: Response): string {
   let objectValues = '';
   for (let key in req.body) {
     objectValues += key + '=' + req.body[key];
