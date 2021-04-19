@@ -31,10 +31,12 @@ function getClasses() {
     catalog_nbr: '',
     name: '',
     class_nbr: '',
+    section_code: '',
   }
   let acctClass = _.cloneDeep(rawClassesJson);
   acctClass.name = 'Doe, John';
   acctClass.class_NBR = 1000;
+  acctClass.session_CODE = '6W1';
   return [
     [[acctClass], _.defaults({subject: 'ACCT'}, searchParams), 1],
     [[acctClass], _.defaults({subject: 'BIOL'}, searchParams), 0],
@@ -51,6 +53,9 @@ function getClasses() {
     [[acctClass], _.defaults({class_nbr: '1000'}, searchParams), 1],
     [[acctClass], _.defaults({class_nbr: '1001'}, searchParams), 0],
     [[acctClass], _.defaults({class_nbr: ''}, searchParams), 1],
+    [[acctClass], _.defaults({section_code: '6W1'}, searchParams), 1],
+    [[acctClass], _.defaults({section_code: '6W2'}, searchParams), 0],
+    [[acctClass], _.defaults({section_code: ''}, searchParams), 1],
     [[acctClass], _.defaults({subject: 'ACCT', campus: 'MAIN'}, searchParams), 1],
     [[acctClass], _.defaults({subject: 'ACCT', campus: 'PDC'}, searchParams), 0],
     [[acctClass], _.defaults({subject: 'BIOL', campus: 'MAIN'}, searchParams), 0],
