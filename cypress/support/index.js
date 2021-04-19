@@ -26,8 +26,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 before(function () {
   cy.visit(url);
-  cy.get('.search-autocomplete input').type('All').click();
-  cy.get('.bp3-menu').contains('All').click();
+  selectSubject();
   cy.get('.btn-primary').click();
   cy.wait(10000);
   selectPreviousTerm();
