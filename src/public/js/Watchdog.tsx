@@ -11,9 +11,9 @@ export function log(data: any): void {
 }
 
 export function logBigQuery(data: any): void {
-  let url = app.settings.appBaseUrl + 'export-analytics';
+  let url = app.settings.appBaseUrl + '/export-analytics';
   if (window.location.origin !== 'https://www.csusb.edu') {
-    url = app.settings.appDevBaseUrl + 'export-analytics';
+    url = app.settings.appDevBaseUrl + '/export-analytics';
   }
   fetch(url, {
     method: 'POST',

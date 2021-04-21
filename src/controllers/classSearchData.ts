@@ -4,7 +4,8 @@ import { getWebDxAccessToken, filterClasses } from '../lib/Utils';
 import { app } from '../public/js/ClassSearch.d';
 import NodeCache from 'node-cache';
 import _ from 'lodash';
-const cache = new NodeCache();
+
+const cache = new NodeCache({ stdTTL: 3600 });
 
 export async function index(req: Request, res: Response): Promise<any> {
   let responseMessage = {};
@@ -29,7 +30,7 @@ function santizeFetchArguments(args: any): any {
 
 async function fetchClassesAsync(req: any): Promise<any> {
   let responseMessage = {};
-  const url = app.settings.classSearchApiUrl.v1.full;
+  const url = app.settings.webdxSsoBaseUrl + app.settings.classSearchApiUrl.v1.full;
   const accessToken = await getWebDxAccessToken();
   const args = santizeFetchArguments(req.body);
   console.log(`Fetching all classes for ${args.strm}...`);

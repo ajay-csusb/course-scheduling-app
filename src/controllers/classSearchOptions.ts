@@ -11,14 +11,14 @@ export async function index(_req: Request, res: Response): Promise<any> {
     fetchDropdown();
     return res.status(200).json(cache.get('dropdown'));
   }
-  responseMessage = await fetchDropdown(); 
+  responseMessage = await fetchDropdown();
   return res.status(200).json(responseMessage);
 }
 
 async function fetchDropdown(): Promise<any> {
   let responseMessage = {};
   const accessToken = await getWebDxAccessToken();
-  const url = app.settings.dropdownUrl.v1;
+  const url = app.settings.webdxSsoBaseUrl + app.settings.dropdownUrl.v1;
   await axios(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ async function fetchDropdown(): Promise<any> {
       responseMessage = res;
     })
     .catch((error: Error) => {
-      console.error(error)
+      console.error(error);
       responseMessage = { error: 'Error encountered while fetching dropdown data' };
     });
   return responseMessage;

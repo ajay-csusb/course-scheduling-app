@@ -93,7 +93,6 @@ function matchSessionCode(params: any, classObj: any): boolean {
     return true;
   }
   return classObj.session_CODE.trim() === params.section_code;
-  
 }
 
 export function getKeys(req: Request, _res: Response): string {

@@ -6,27 +6,27 @@ export const app = {
     currentTerm: 2214,
   },
   settings: {
-    dropdownUrl: { 
-      v0: 'https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList',
-      v1: 'https://webdx-sso.csusb.edu/ClassSchedule/rest/v1/getDropDownList',
+    dropdownUrl: {
+      v0: '/ClassSchedule/v2/getDropDownList',
+      v1: '/ClassSchedule/rest/v1/getDropDownList',
     },
-    excelUrlDev: 'https://dev-dot-csusb-class-schedule.df.r.appspot.com/export-to-excel',
-    excelUrl: 'https://csusb-class-schedule.df.r.appspot.com/export-to-excel',
+    excelUrlDev: '/export-to-excel',
+    excelUrl: '/export-to-excel',
     firstSemester: 2208,
     classSearchApiUrl: {
-      v0: 'https://webdx.csusb.edu/ClassSchedule/v2/cs/list/search',
+      v0: '/ClassSchedule/v2/cs/list/search',
       v1: {
-        full: 'https://webdx-sso.csusb.edu/ClassSchedule/rest/v1/getClassScheduleList',
-        pager: 'https://webdx-sso.csusb.edu/ClassSchedule/rest/v1/getClassScheduleListByPage',
+        full: '/ClassSchedule/rest/v1/getClassScheduleList',
+        pager: '/ClassSchedule/rest/v1/getClassScheduleListByPage',
       },
     },
     proxyDropdownUrl: {
-      dev: 'https://dev-dot-csusb-class-schedule.df.r.appspot.com/get-class-search-options',
-      live: 'https://csusb-class-schedule.df.r.appspot.com/get-class-search-options',
+      dev: '/get-class-search-options',
+      live: '/get-class-search-options',
     },
     proxyClassDataUrl: {
-      dev: 'https://dev-dot-csusb-class-schedule.df.r.appspot.com/get-class-search-data',
-      live: 'https://csusb-class-schedule.df.r.appspot.com/get-class-search-data',
+      dev: '/get-class-search-data',
+      live: '/get-class-search-data',
     },
     webdx: {
       departmentPeople: {
@@ -41,8 +41,9 @@ export const app = {
       dev: 'https://d8-csusb.pantheonsite.io/',
       live: 'https://www.csusb.edu/',
     },
-    webdxSsoBaseUrl: 'https://webdx-sso.csusb.edu/',
-    appBaseUrl: 'https://csusb-class-schedule.df.r.appspot.com/',
-    appDevBaseUrl: 'https://dev-dot-csusb-class-schedule.df.r.appspot.com/',
+    webdxBaseUrl: 'https://webdx.csusb.edu',
+    webdxSsoBaseUrl: 'https://webdx-sso.csusb.edu',
+    appBaseUrl: 'https://csusb-class-schedule.df.r.appspot.com',
+    appDevBaseUrl: 'https://dev-dot-csusb-class-schedule.df.r.appspot.com',
   },
 };

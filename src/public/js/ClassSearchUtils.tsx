@@ -419,7 +419,8 @@ export function getTextbookUrl(_class: IClass): string {
 }
 
 export function exportToExcelPost(classes: IClass[]): Promise<Blob> {
-  const url = Utils.isProd() ? app.settings.excelUrl : app.settings.excelUrlDev;
+  const baseUrl = Utils.isProd() ? app.settings.appBaseUrl : app.settings.appDevBaseUrl;
+  const url = Utils.isProd() ? baseUrl + app.settings.excelUrl : baseUrl + app.settings.excelUrlDev;
   return fetch(url, {
     method: 'POST',
     headers: {
@@ -631,10 +632,14 @@ export function updatePages(pages: JSX.Element[], currentPage: number): JSX.Elem
 
 export function getProxyUrl(option = 'dropdown'): string {
   if (window.location.host.includes('www.csusb.edu')) {
-    return option === 'dropdown' ? app.settings.proxyDropdownUrl.live : app.settings.proxyClassDataUrl.live;
+    return option === 'dropdown'
+      ? app.settings.appBaseUrl + app.settings.proxyDropdownUrl.live
+      : app.settings.appBaseUrl + app.settings.proxyClassDataUrl.live;
   }
   if (window.location.host.includes('csusb')) {
-    return option === 'dropdown' ? app.settings.proxyDropdownUrl.dev : app.settings.proxyClassDataUrl.dev;
+    return option === 'dropdown'
+      ? app.settings.appDevBaseUrl + app.settings.proxyDropdownUrl.dev
+      : app.settings.appDevBaseUrl + app.settings.proxyClassDataUrl.dev;
   }
   return option === 'dropdown' ? '/get-class-search-options' : '/get-class-search-data';
 }
