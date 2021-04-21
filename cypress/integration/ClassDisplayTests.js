@@ -26,7 +26,7 @@ describe('Correct class information is displayed in results', function () {
         });
 
         it('should show description when info icon is clicked', () => {
-          cy.get('.course:first').find('span.sr-only:first').click();
+          cy.get('.course:first').find('.bp3-popover-wrapper').click();
           cy.get('.bp3-popover-content').should('have.length', '1');
         });
 
