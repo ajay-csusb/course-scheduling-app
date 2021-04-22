@@ -28,7 +28,7 @@ function santizeFetchArguments(args: any): any {
   return sanitizedArgs;
 }
 
-async function fetchClassesAsync(req: any): Promise<any> {
+async function fetchClassesAsync(req: Request): Promise<any> {
   let responseMessage = {};
   const url = app.settings.webdxSsoBaseUrl + app.settings.classSearchApiUrl.v1.full;
   const accessToken = await getWebDxAccessToken();
@@ -43,7 +43,7 @@ async function fetchClassesAsync(req: any): Promise<any> {
       },
     })
     .then((response: AxiosResponse): object => {
-      if (response) {
+      if (response && response.status === 200) {
         return response.data;
       }
       responseMessage = { error: 'Error encountered while fetching classes' };
@@ -51,8 +51,10 @@ async function fetchClassesAsync(req: any): Promise<any> {
     })
     .then((res: any) => {
       const classes = filterClasses(res, req.body);
-      cache.set(req.body.strm.toString(), res);
-      responseMessage = classes;
+      if (res.length !== 0) {
+        cache.set(req.body.strm.toString(), res);
+        responseMessage = classes;
+      }
     })
     .catch((error: Error) => {
       console.error(error);

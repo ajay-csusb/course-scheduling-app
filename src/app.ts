@@ -14,8 +14,8 @@ import * as exportEventsController from './controllers/exportEvents';
 import * as exportAnalyticsController from './controllers/exportAnalytics';
 import * as exportUniversityCalendarController from './controllers/exportUniversityCalendarController';
 import * as exportCourseleafDataController from './controllers/exportCourseleafData';
-import * as getClassSearchOptions from './controllers/classSearchOptions';
-import * as getClassSearchData from './controllers/classSearchData';
+import * as classSearchOptions from './controllers/classSearchOptions';
+import * as classSearchData from './controllers/classSearchData';
 import { loadEnvironmentVariables, getKeys, shouldCache } from './lib/Utils';
 
 loadEnvironmentVariables();
@@ -47,7 +47,7 @@ app.get('/export-events', exportEventsController.index);
 app.post('/export-analytics', exportAnalyticsController.index);
 app.get('/export-university-calendar', exportUniversityCalendarController.index);
 app.get('/export-courseleaf-data', exportCourseleafDataController.index);
-app.get('/get-class-search-options', cache('1 day'), getClassSearchOptions.index);
-app.post('/get-class-search-data', cacheClasses, getClassSearchData.index);
+app.get('/get-class-search-options', cache('1 day'), classSearchOptions.index);
+app.post('/get-class-search-data', cacheClasses, classSearchData.index);
 
 export default app;

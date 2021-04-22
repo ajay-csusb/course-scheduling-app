@@ -14,26 +14,7 @@ export default class Pagination extends Component<IPaginationProps, {}> {
   }
 
   public render(): React.ReactNode {
-    let prevPage = <></>;
-    let nextPage = <></>;
-    let firstPage = <></>;
-    let lastPage = <></>;
-    let pages: JSX.Element[] = [];
-    const firstPageNumber = 1;
-    const lastPageNumber = this.props.numberPages;
-    const prevPageNumber = this.props.currentPage !== 1 ? this.props.currentPage - 1 : null;
-    const nextPageNumber = this.props.currentPage !== this.props.numberPages ? this.props.currentPage + 1 : null;
-    if (this.props.numberPages > 1) {
-      prevPage = prevPageNumber ? this.getPagerMarkup(prevPageNumber, 'Previous', 0) : <></>;
-      nextPage = nextPageNumber ? this.getPagerMarkup(nextPageNumber, 'Next', this.props.currentPage + 1) : <></>;
-      firstPage = this.getPagerMarkup(firstPageNumber, 'First', firstPageNumber - 2);
-      lastPage = this.getPagerMarkup(lastPageNumber, 'Last', lastPageNumber + 2);
-    }
-    for (let index = 0; index < this.props.numberPages; index++) {
-      const pageNumber = index + 1;
-      pages.push(this.getPagerMarkup(pageNumber, pageNumber.toString(), pageNumber));
-    }
-    pages = ClassSearchUtils.updatePages(pages, this.props.currentPage);
+    const [firstPage, nextPage, pages, prevPage, lastPage] = this.getPager();
     return (
       <div>
         <ul className="pagination">
@@ -61,11 +42,35 @@ export default class Pagination extends Component<IPaginationProps, {}> {
           onClick={this.handleOnChangeOfPageNumber}
           data-page={`${pageNumber}`}
           className={cssClass}
-          href='#class-search-results-component'
+          href="#class-search-results-component"
         >
           {label}
         </a>
       </li>
     );
+  }
+
+  private getPager() {
+    let prevPage = <></>;
+    let nextPage = <></>;
+    let firstPage = <></>;
+    let lastPage = <></>;
+    let pages: JSX.Element[] = [];
+    const firstPageNumber = 1;
+    const lastPageNumber = this.props.numberPages;
+    const prevPageNumber = this.props.currentPage !== 1 ? this.props.currentPage - 1 : null;
+    const nextPageNumber = this.props.currentPage !== this.props.numberPages ? this.props.currentPage + 1 : null;
+    if (this.props.numberPages > 1) {
+      prevPage = prevPageNumber ? this.getPagerMarkup(prevPageNumber, 'Previous', 0) : <></>;
+      nextPage = nextPageNumber ? this.getPagerMarkup(nextPageNumber, 'Next', this.props.currentPage + 1) : <></>;
+      firstPage = this.getPagerMarkup(firstPageNumber, 'First', firstPageNumber - 2);
+      lastPage = this.getPagerMarkup(lastPageNumber, 'Last', lastPageNumber + 2);
+    }
+    for (let index = 0; index < this.props.numberPages; index++) {
+      const pageNumber = index + 1;
+      pages.push(this.getPagerMarkup(pageNumber, pageNumber.toString(), pageNumber));
+    }
+    pages = ClassSearchUtils.updatePages(pages, this.props.currentPage);
+    return [firstPage, nextPage, pages, prevPage, lastPage];
   }
 }

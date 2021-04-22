@@ -27,15 +27,17 @@ async function fetchDropdown(): Promise<any> {
     },
   })
     .then((response: AxiosResponse): object => {
-      if (response) {
+      if (response && response.status === 200) {
         return response.data;
       }
-      responseMessage = { error: 'Error encountered while fetching dropdown data' };
-      throw new Error('Something went wrong during fetching data');
+      responseMessage = { error: 'Error encountered while fetching dropdown dropdown' };
+      throw new Error('Something went wrong during fetching dropdown');
     })
     .then((res: any) => {
-      cache.set('dropdown', res);
-      responseMessage = res;
+      if (res.length !== 0) {
+        cache.set('dropdown', res);
+        responseMessage = res;
+      }
     })
     .catch((error: Error) => {
       console.error(error);
