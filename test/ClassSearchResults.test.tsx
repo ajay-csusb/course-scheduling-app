@@ -18,7 +18,6 @@ function mountClassSearchResultsComponent(results: IClass[], term: string = '219
       classes={results}
       currentPage={1}
       tab={'list'}
-      numberOfClasses={results.length}
       totalPages={Math.ceil(results.length / 30)}
       onChangeOfLoadingMessage={mockCallback}
       onChangeOfPageNumber={mockCallback}
@@ -502,7 +501,7 @@ describe.skip('sorting behavior', () => {
 describe('markup', () => {
   test('HTML markup of the results component', () => {
     const classSearchResultsWrapper = mountClassSearchResultsComponent([classJson]);
-    expect(classSearchResultsWrapper.find('.form-controls')).toMatchSnapshot();
+    expect(classSearchResultsWrapper).toMatchSnapshot();
   });
 });
 

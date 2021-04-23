@@ -1,4 +1,3 @@
-import { after } from 'lodash';
 import * as form from './Utils';
 
 context('table format', () => {

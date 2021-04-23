@@ -14,7 +14,7 @@ describe('Export to Excel component', () => {
   });
 
   test('snapshot', () => {
-    const exportToExcelComponent = <ExportToExcel classes={classes} />
+    const exportToExcelComponent = mount(<ExportToExcel classes={classes} />);
     expect(exportToExcelComponent).toMatchSnapshot();
   });
 

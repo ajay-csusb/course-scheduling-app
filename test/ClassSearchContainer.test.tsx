@@ -512,12 +512,7 @@ describe('props', () => {
       isLoading: false,
     });
   });
-  it('should set the numberOfClasses prop', () => {
-    classSearchContainerWrapper.update();
-    let classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
-    expect(classSearchResultsWrapper.prop('numberOfClasses')).toEqual(52);
-  });
-  it('should set the numberOfClasses prop', () => {
+  it('should set the totalPages prop', () => {
     classSearchContainerWrapper.update();
     const classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
     expect(classSearchResultsWrapper.prop('totalPages')).toEqual(2);
