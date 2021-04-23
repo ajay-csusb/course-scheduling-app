@@ -20,7 +20,6 @@ export interface IClassSearchResultsProps {
   classes: IClass[];
   currentTerm: string;
   currentPage: number;
-  numberOfClasses: number;
   tab: string;
   totalPages: number;
   onChangeOfLoadingMessage: () => void;
@@ -47,44 +46,9 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   }
 
   public render(): JSX.Element {
-    const classesList: JSX.Element[] = this.getClassesInListFormat();
-    const classesTable: JSX.Element = this.props.tab === 'table' ? this.getClassesInTableFormat() : <></>;
-    const selectListSortBy: JSX.Element =
-      this.hideSortByFilter === false ? (
-        <SelectListSortBy sortBy={this.state.sortBy} onChangeOfSortBy={this.onChangeOfSortBy} />
-      ) : (
-        <></>
-      );
-    const sortByComponent: JSX.Element = this.props.tab === 'list' ? selectListSortBy : <></>;
-    const exportToExcelComponent: JSX.Element =
-      this.props.tab === 'table' ? <ExportToExcel classes={this.classes} /> : <></>;
-    // @Todo delete this. This is redundant
-    const totalNumberOfPages: number = this.getTotalNumberOfPages();
-    const pagination = (
-      <Pagination
-        numberPages={totalNumberOfPages}
-        currentPage={this.props.currentPage}
-        onChangeOfPageNumber={this.onChangeOfPageNumber}
-      />
-    );
-    const paginationComponent: JSX.Element = this.noOfClasses > 30 && this.props.tab === 'list' ? pagination : <></>;
-    let renderMarkup: JSX.Element = <i>Try refining the search above to get more results</i>;
-    if (this.noOfClasses !== 0) {
-      renderMarkup = (
-        <>
-          <div className="form-controls">
-            {sortByComponent}
-            {exportToExcelComponent}
-          </div>
-          <DisplayFormatTabs
-            format={this.props.tab ?? 'list'}
-            listClasses={classesList}
-            tableClasses={classesTable}
-            onChangeOfFormat={this.onChangeOfTab}
-          />
-          {paginationComponent}
-        </>
-      );
+    let renderMarkup: JSX.Element = this.getResults();
+    if (this.noOfClasses === 0) {
+      renderMarkup = <i>Try refining the search above to get more results</i>;
     }
     this.props.onChangeOfLoadingMessage();
     return (
@@ -116,6 +80,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     let classes: JSX.Element[] = [];
     if (classInfo.length !== 0) {
       classInfo.forEach((_class: IClass) => {
+        // @Todo Fix this. The number of duplicate classes should be separate from the actual number of classes.
         this.noOfClasses++;
         let component = <ClassesCards classes={_class} currentTerm={this.props.currentTerm} />;
 
@@ -171,5 +136,61 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
 
   private onChangeOfPageNumber(event: any) {
     this.props.onChangeOfPageNumber(event);
+  }
+
+  private getResults(): JSX.Element {
+    const tabsComponent: JSX.Element = this.getTabsComponent();
+    const paginationComponent = this.getPaginationComponent();
+    const sortByComponent: JSX.Element = this.getSortByComponent();
+    const exportToExcelComponent: JSX.Element = this.getExcelComponent();
+    return (
+      <>
+        {sortByComponent}
+        {exportToExcelComponent}
+        {tabsComponent}
+        {paginationComponent}
+      </>
+    );
+  }
+
+  private getTabsComponent(): JSX.Element {
+    const classesList: JSX.Element[] = this.getClassesInListFormat();
+    const classesTable: JSX.Element = this.props.tab === 'table' ? this.getClassesInTableFormat() : <></>;
+    return (
+      <DisplayFormatTabs
+        format={this.props.tab ?? 'list'}
+        listClasses={classesList}
+        tableClasses={classesTable}
+        onChangeOfFormat={this.onChangeOfTab}
+      />
+    );
+  }
+
+  private getPaginationComponent(): JSX.Element {
+    const totalNumberOfPages: number = this.getTotalNumberOfPages();
+    const pagination = (
+      <Pagination
+        numberPages={totalNumberOfPages}
+        currentPage={this.props.currentPage}
+        onChangeOfPageNumber={this.onChangeOfPageNumber}
+      />
+    );
+    return this.noOfClasses > 30 && this.props.tab === 'list' ? pagination : <></>;
+  }
+
+  private getSortByComponent(): JSX.Element {
+    const selectListSortBy: JSX.Element =
+      this.hideSortByFilter === false ? (
+        <div className="form-controls">
+          <SelectListSortBy sortBy={this.state.sortBy} onChangeOfSortBy={this.onChangeOfSortBy} />
+        </div>
+      ) : (
+        <></>
+      );
+    return this.props.tab === 'list' ? selectListSortBy : <></>;
+  }
+
+  private getExcelComponent(): JSX.Element {
+    return this.props.tab === 'table' ? <ExportToExcel classes={this.classes} /> : <></>;
   }
 }

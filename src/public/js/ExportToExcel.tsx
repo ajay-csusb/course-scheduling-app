@@ -16,7 +16,7 @@ export default class ExportToExcel extends React.Component<IExportToExcelProps> 
 
   render() {
     return (
-      <div className="align-right">
+      <div className="text-align-right">
         <button id="export-to-excel" className="btn-utility" onClick={this.exportToExcelOnClickHandler}>
           <i className="fas fa-file-download"></i>Export to Excel
         </button>

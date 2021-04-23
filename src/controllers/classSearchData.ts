@@ -8,7 +8,6 @@ import _ from 'lodash';
 const cache = new NodeCache({ stdTTL: 3600 });
 
 export async function index(req: Request, res: Response): Promise<any> {
-  let responseMessage = {};
   console.log('Cache keys:', cache.keys());
   if (req.body && cache.has(req.body.strm)) {
     const cacheContents: [] = cache.get(req.body.strm) || [];
@@ -16,8 +15,9 @@ export async function index(req: Request, res: Response): Promise<any> {
     fetchClassesAsync(req);
     return res.status(200).json(classes);
   }
-  responseMessage = await fetchClassesAsync(req);
-  return res.status(200).json(responseMessage);
+  const allClasses = await fetchClassesAsync(req);
+  const classes = filterClasses(allClasses, req.body);
+  return res.status(200).json(classes);
 }
 
 function santizeFetchArguments(args: any): any {
@@ -50,10 +50,9 @@ async function fetchClassesAsync(req: Request): Promise<any> {
       throw new Error('Something went wrong during fetching data');
     })
     .then((res: any) => {
-      const classes = filterClasses(res, req.body);
       if (res.length !== 0) {
         cache.set(req.body.strm.toString(), res);
-        responseMessage = classes;
+        responseMessage = res;
       }
     })
     .catch((error: Error) => {
