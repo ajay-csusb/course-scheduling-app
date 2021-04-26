@@ -62,8 +62,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private allSubjects: any;
 
-  private totalPages: number;
-
   constructor(props: any) {
     super(props);
     this.state = this.setDefaultState();
@@ -107,7 +105,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     this.userInput = new UserInput();
     this.resultsSection = React.createRef();
     this.allSubjects = '';
-    this.totalPages = 0;
   }
 
   public render(): JSX.Element {
@@ -257,7 +254,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
 
   private classesFound(data: any): void {
     let classes = data.contentList ? data.contentList : data;
-    this.totalPages = data.totalPage ? data.totalPage : 0;
     this.allResults = [];
     if (this.emptyClasses(classes)) {
       this.updateStatesAfterProcessingClasses(true, false);
@@ -583,7 +579,6 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
           currentTerm={this.currentTermId}
           currentPage={this.state.currentPage}
           tab={this.state.tab}
-          totalPages={this.totalPages}
           onChangeOfLoadingMessage={this.updateLoadingMessage}
           onChangeOfPageNumber={this.updateCurrentPage}
           onChangeOfTab={this.updateTab}

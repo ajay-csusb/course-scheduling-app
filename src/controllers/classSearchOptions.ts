@@ -33,7 +33,6 @@ async function fetchDropdown(): Promise<any> {
       if (response && response.status === 200) {
         return response.data;
       }
-      responseMessage = { error: 'Error encountered while fetching dropdown dropdown' };
       throw new Error('Something went wrong during fetching dropdown');
     })
     .then((res: any) => {
@@ -44,7 +43,7 @@ async function fetchDropdown(): Promise<any> {
     })
     .catch((error: Error) => {
       console.error(error);
-      responseMessage = { error: 'Error encountered while fetching dropdown data' };
+      throw new Error('Something went wrong when making a request to fetch dropdown options');
     });
   return responseMessage;
 }

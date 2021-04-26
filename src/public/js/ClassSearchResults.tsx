@@ -21,7 +21,6 @@ export interface IClassSearchResultsProps {
   currentTerm: string;
   currentPage: number;
   tab: string;
-  totalPages: number;
   onChangeOfLoadingMessage: () => void;
   onChangeOfPageNumber: (event: any) => void;
   onChangeOfTab: (event: any) => void;
