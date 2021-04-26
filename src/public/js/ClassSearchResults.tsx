@@ -47,9 +47,6 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
 
   public render(): JSX.Element {
     let renderMarkup: JSX.Element = this.getResults();
-    if (this.noOfClasses === 0) {
-      renderMarkup = <i>Try refining the search above to get more results</i>;
-    }
     this.props.onChangeOfLoadingMessage();
     return (
       <div id="class-search-results-component">
@@ -130,19 +127,22 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     return Math.ceil(this.noOfClasses / 30) === 1 ? 0 : Math.ceil(this.noOfClasses / 30);
   }
 
-  private onChangeOfTab(tabValue: any) {
+  private onChangeOfTab(tabValue: any): void {
     this.props.onChangeOfTab(tabValue);
   }
 
-  private onChangeOfPageNumber(event: any) {
+  private onChangeOfPageNumber(event: any): void {
     this.props.onChangeOfPageNumber(event);
   }
 
   private getResults(): JSX.Element {
     const tabsComponent: JSX.Element = this.getTabsComponent();
-    const paginationComponent = this.getPaginationComponent();
+    const paginationComponent: JSX.Element = this.getPaginationComponent();
     const sortByComponent: JSX.Element = this.getSortByComponent();
     const exportToExcelComponent: JSX.Element = this.getExcelComponent();
+    if (this.noOfClasses === 0) {
+      return <i>Try refining the search above to get more results</i>;
+    }
     return (
       <>
         {sortByComponent}
