@@ -512,11 +512,6 @@ describe('props', () => {
       isLoading: false,
     });
   });
-  it('should set the totalPages prop', () => {
-    classSearchContainerWrapper.update();
-    const classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
-    expect(classSearchResultsWrapper.prop('totalPages')).toEqual(2);
-  });
   it('should set the currentPage props', () => {
     let classSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
     expect(classSearchResultsWrapper.prop('currentPage')).toEqual(1);

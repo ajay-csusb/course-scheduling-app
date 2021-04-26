@@ -18,7 +18,6 @@ function mountClassSearchResultsComponent(results: IClass[], term: string = '219
       classes={results}
       currentPage={1}
       tab={'list'}
-      totalPages={Math.ceil(results.length / 30)}
       onChangeOfLoadingMessage={mockCallback}
       onChangeOfPageNumber={mockCallback}
       onChangeOfTab={mockCallback}

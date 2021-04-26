@@ -79,7 +79,6 @@ exports[`markup HTML markup of the results component 1`] = `
     }
   }
   tab="list"
-  totalPages={1}
 >
   <div
     id="class-search-results-component"
