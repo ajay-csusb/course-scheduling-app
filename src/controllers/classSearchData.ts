@@ -9,15 +9,19 @@ const cache = new NodeCache({ stdTTL: 3600 });
 
 export async function index(req: Request, res: Response): Promise<any> {
   console.log('Cache keys:', cache.keys());
-  if (req.body && cache.has(req.body.strm)) {
-    const cacheContents: [] = cache.get(req.body.strm) || [];
-    const classes = filterClasses(cacheContents, req.body);
-    fetchClassesAsync(req);
+  try {
+    if (req.body && cache.has(req.body.strm)) {
+      const cacheContents: [] = cache.get(req.body.strm) || [];
+      const classes = filterClasses(cacheContents, req.body);
+      fetchClassesAsync(req);
+      return res.status(200).json(classes);
+    }
+    const allClasses = await fetchClassesAsync(req);
+    const classes = filterClasses(allClasses, req.body);
     return res.status(200).json(classes);
+  } catch (error) {
+    return res.status(400).json({});
   }
-  const allClasses = await fetchClassesAsync(req);
-  const classes = filterClasses(allClasses, req.body);
-  return res.status(200).json(classes);
 }
 
 function santizeFetchArguments(args: any): any {
@@ -46,7 +50,6 @@ async function fetchClassesAsync(req: Request): Promise<any> {
       if (response && response.status === 200) {
         return response.data;
       }
-      responseMessage = { error: 'Error encountered while fetching classes' };
       throw new Error('Something went wrong during fetching data');
     })
     .then((res: any) => {
@@ -57,7 +60,7 @@ async function fetchClassesAsync(req: Request): Promise<any> {
     })
     .catch((error: Error) => {
       console.error(error);
-      responseMessage = { error: 'Error encountered while fetching classes' };
+      throw new Error('Something went wrong during fetching data');
     });
   return responseMessage;
 }

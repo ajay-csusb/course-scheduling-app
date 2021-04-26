@@ -6,12 +6,16 @@ import NodeCache from 'node-cache';
 const cache = new NodeCache();
 
 export async function index(_req: Request, res: Response): Promise<any> {
-  if (cache.has('dropdown')) {
-    fetchDropdown();
-    return res.status(200).json(cache.get('dropdown'));
+  try {
+    if (cache.has('dropdown')) {
+      fetchDropdown();
+      return res.status(200).json(cache.get('dropdown'));
+    }
+    const responseMessage = await fetchDropdown();
+    return res.status(200).json(responseMessage);
+  } catch (error) {
+    return res.status(400).json({});
   }
-  const responseMessage = await fetchDropdown();
-  return res.status(200).json(responseMessage);
 }
 
 async function fetchDropdown(): Promise<any> {
