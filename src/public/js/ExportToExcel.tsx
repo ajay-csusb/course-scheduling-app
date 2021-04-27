@@ -8,7 +8,7 @@ interface IExportToExcelProps {
   classes: IClass[];
 }
 
-export default class ExportToExcel extends React.Component<IExportToExcelProps>  {
+export default class ExportToExcel extends React.Component<IExportToExcelProps> {
   constructor(props: IExportToExcelProps) {
     super(props);
     this.exportToExcelOnClickHandler = this.exportToExcelOnClickHandler.bind(this);
@@ -16,7 +16,7 @@ export default class ExportToExcel extends React.Component<IExportToExcelProps> 
 
   render() {
     return (
-      <div className="align-right">
+      <div className="text-align-right">
         <button id="export-to-excel" className="btn-utility" onClick={this.exportToExcelOnClickHandler}>
           <i className="fas fa-file-download"></i>Export to Excel
         </button>
@@ -26,12 +26,11 @@ export default class ExportToExcel extends React.Component<IExportToExcelProps> 
 
   private exportToExcelOnClickHandler(): void {
     ClassSearchUtils.exportToExcelPost(this.props.classes)
-    .then((blob: Blob) => {
-      FileSaver.saveAs(blob, 'class-search.xlsx');
-    })
-    .catch((err: Error) => {
-      Watchdog.log(err);
-    });
+      .then((blob: Blob) => {
+        FileSaver.saveAs(blob, 'class-search.xlsx');
+      })
+      .catch((err: Error) => {
+        Watchdog.log(err);
+      });
   }
-
 }

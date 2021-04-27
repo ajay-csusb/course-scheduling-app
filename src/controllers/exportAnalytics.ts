@@ -8,21 +8,19 @@ let responseMessage = {
   errors: 'No errors encountered',
 };
 
-export async function index(req: Request, res: Response): Promise<any> {
+export function index(req: Request, res: Response): Response {
   const tableName = process.env && process.env.NODE_ENV === 'production' ? 'analytics' : 'testAnalytics';
   const analyticsData = req.body;
   analyticsData['timestamp'] = new BigQueryTimestamp(new Date()).value;
   try {
-    const response = await insertData({
+    insertData({
       dataSetName: 'Analytics',
       tableName: tableName,
       rows: analyticsData,
       successMessage: `Successfully added analytics data into table: ${tableName}`,
       errorMessage: `Error adding analytics data into table: ${tableName}`,
     });
-    if (typeof response === 'undefined') updateResponseMessage(tableName);
     console.log(analyticsData);
-    console.log(responseMessage);
     return res.status(200).json(responseMessage);
   } catch (error) {
     updateResponseMessage(tableName);

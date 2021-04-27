@@ -1,0 +1,603 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`markup HTML markup of the results component 1`] = `
+<ClassSearchResults
+  classes={
+    Array [
+      Object {
+        "amount": 0,
+        "buildingCode": "COE",
+        "campus": "MAIN",
+        "catalogNo": "101",
+        "classEndTime": "1:50 PM",
+        "classMeetingNo": 1,
+        "classNumber": 101,
+        "classSection": "01",
+        "classStartTime": "12:00 PM",
+        "classStatus": "Active",
+        "courseAttr": "",
+        "courseAttrDescription": "",
+        "courseId": "000001",
+        "csuUnits": 4,
+        "degreeType": "PBAC",
+        "description": "ACCT GOVT & NONPROFIT ORG",
+        "employeeId": "001343367",
+        "enrolledCapacity": 30,
+        "enrolledTotal": 27,
+        "enrollmentStatus": "Open",
+        "facilityId": "JB0113",
+        "fee": "0",
+        "fri": "N",
+        "fullSsrComponent": "",
+        "geCourseAttr": "",
+        "instructionMode": "P",
+        "instructorName": "Bakeman, Melissa",
+        "mon": "Y",
+        "profile": "",
+        "quarter": "2194",
+        "room": "101",
+        "sat": "N",
+        "sessionCode": "1",
+        "ssrComponent": "SEM",
+        "subject": "ACCT",
+        "sun": "N",
+        "textbook": "",
+        "thurs": "N",
+        "title": "Foo-title",
+        "topic": "",
+        "tues": "N",
+        "waitlistCapacity": 100,
+        "waitlistTotal": 0,
+        "wed": "Y",
+      },
+    ]
+  }
+  currentPage={1}
+  currentTerm="2194"
+  onChangeOfLoadingMessage={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": undefined,
+    }
+  }
+  onChangeOfPageNumber={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": undefined,
+    }
+  }
+  onChangeOfTab={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": undefined,
+    }
+  }
+  tab="list"
+>
+  <div
+    id="class-search-results-component"
+  >
+    <p>
+      1
+       classes found
+    </p>
+    <DisplayFormatTabs
+      format="list"
+      listClasses={
+        Array [
+          <li>
+            <ClassesCards
+              classes={
+                Object {
+                  "amount": 0,
+                  "buildingCode": "COE",
+                  "campus": "MAIN",
+                  "catalogNo": "101",
+                  "classEndTime": "1:50 PM",
+                  "classMeetingNo": 1,
+                  "classNumber": 101,
+                  "classSection": "01",
+                  "classStartTime": "12:00 PM",
+                  "classStatus": "Active",
+                  "courseAttr": "",
+                  "courseAttrDescription": "",
+                  "courseId": "000001",
+                  "csuUnits": 4,
+                  "degreeType": "PBAC",
+                  "description": "ACCT GOVT & NONPROFIT ORG",
+                  "employeeId": "001343367",
+                  "enrolledCapacity": 30,
+                  "enrolledTotal": 27,
+                  "enrollmentStatus": "Open",
+                  "facilityId": "JB0113",
+                  "fee": "0",
+                  "fri": "N",
+                  "fullSsrComponent": "",
+                  "geCourseAttr": "",
+                  "instructionMode": "P",
+                  "instructorName": "Bakeman, Melissa",
+                  "mon": "Y",
+                  "profile": "",
+                  "quarter": "2194",
+                  "room": "101",
+                  "sat": "N",
+                  "sessionCode": "1",
+                  "ssrComponent": "SEM",
+                  "subject": "ACCT",
+                  "sun": "N",
+                  "textbook": "",
+                  "thurs": "N",
+                  "title": "Foo-title",
+                  "topic": "",
+                  "tues": "N",
+                  "waitlistCapacity": 100,
+                  "waitlistTotal": 0,
+                  "wed": "Y",
+                }
+              }
+              currentTerm="2194"
+            />
+          </li>,
+        ]
+      }
+      onChangeOfFormat={[Function]}
+      tableClasses={<React.Fragment />}
+    >
+      <Blueprint3.Tabs
+        animate={true}
+        id="display-format-tabs"
+        large={false}
+        onChange={[Function]}
+        renderActiveTabPanelOnly={false}
+        selectedTabId="list"
+        vertical={false}
+      >
+        <div
+          className="bp3-tabs"
+        >
+          <div
+            className="bp3-tab-list"
+            onKeyDown={[Function]}
+            onKeyPress={[Function]}
+            role="tablist"
+          >
+            <div
+              className="bp3-tab-indicator-wrapper"
+              style={
+                Object {
+                  "height": 0,
+                  "transform": "translateX(0px) translateY(0px)",
+                  "width": 0,
+                }
+              }
+            >
+              <div
+                className="bp3-tab-indicator"
+              />
+            </div>
+            <Blueprint3.TabTitle
+              disabled={false}
+              id="list"
+              key=".$list"
+              onClick={[Function]}
+              panel={
+                <ul>
+                  <li>
+                    <ClassesCards
+                      classes={
+                        Object {
+                          "amount": 0,
+                          "buildingCode": "COE",
+                          "campus": "MAIN",
+                          "catalogNo": "101",
+                          "classEndTime": "1:50 PM",
+                          "classMeetingNo": 1,
+                          "classNumber": 101,
+                          "classSection": "01",
+                          "classStartTime": "12:00 PM",
+                          "classStatus": "Active",
+                          "courseAttr": "",
+                          "courseAttrDescription": "",
+                          "courseId": "000001",
+                          "csuUnits": 4,
+                          "degreeType": "PBAC",
+                          "description": "ACCT GOVT & NONPROFIT ORG",
+                          "employeeId": "001343367",
+                          "enrolledCapacity": 30,
+                          "enrolledTotal": 27,
+                          "enrollmentStatus": "Open",
+                          "facilityId": "JB0113",
+                          "fee": "0",
+                          "fri": "N",
+                          "fullSsrComponent": "",
+                          "geCourseAttr": "",
+                          "instructionMode": "P",
+                          "instructorName": "Bakeman, Melissa",
+                          "mon": "Y",
+                          "profile": "",
+                          "quarter": "2194",
+                          "room": "101",
+                          "sat": "N",
+                          "sessionCode": "1",
+                          "ssrComponent": "SEM",
+                          "subject": "ACCT",
+                          "sun": "N",
+                          "textbook": "",
+                          "thurs": "N",
+                          "title": "Foo-title",
+                          "topic": "",
+                          "tues": "N",
+                          "waitlistCapacity": 100,
+                          "waitlistTotal": 0,
+                          "wed": "Y",
+                        }
+                      }
+                      currentTerm="2194"
+                    />
+                  </li>
+                </ul>
+              }
+              parentId="display-format-tabs"
+              selected={true}
+              title={
+                <React.Fragment>
+                  <i
+                    className="fas fa-bars"
+                  />
+                   List
+                </React.Fragment>
+              }
+            >
+              <div
+                aria-controls="bp3-tab-panel_display-format-tabs_list"
+                aria-disabled={false}
+                aria-expanded={true}
+                aria-selected={true}
+                className="bp3-tab"
+                data-tab-id="list"
+                id="bp3-tab-title_display-format-tabs_list"
+                onClick={[Function]}
+                role="tab"
+                tabIndex={0}
+              >
+                <i
+                  className="fas fa-bars"
+                />
+                 List
+              </div>
+            </Blueprint3.TabTitle>
+            <Blueprint3.TabTitle
+              disabled={false}
+              id="table"
+              key=".$table"
+              onClick={[Function]}
+              panel={
+                <React.Fragment>
+                  <React.Fragment />
+                </React.Fragment>
+              }
+              parentId="display-format-tabs"
+              selected={false}
+              title={
+                <React.Fragment>
+                  <i
+                    className="fal fa-table"
+                  />
+                   Table
+                </React.Fragment>
+              }
+            >
+              <div
+                aria-controls="bp3-tab-panel_display-format-tabs_table"
+                aria-disabled={false}
+                aria-expanded={false}
+                aria-selected={false}
+                className="bp3-tab"
+                data-tab-id="table"
+                id="bp3-tab-title_display-format-tabs_table"
+                onClick={[Function]}
+                role="tab"
+                tabIndex={0}
+              >
+                <i
+                  className="fal fa-table"
+                />
+                 Table
+              </div>
+            </Blueprint3.TabTitle>
+          </div>
+          <div
+            aria-hidden={false}
+            aria-labelledby="bp3-tab-title_display-format-tabs_list"
+            className="bp3-tab-panel"
+            id="bp3-tab-panel_display-format-tabs_list"
+            key="list"
+            role="tabpanel"
+          >
+            <ul>
+              <li
+                key="101"
+              >
+                <ClassesCards
+                  classes={
+                    Object {
+                      "amount": 0,
+                      "buildingCode": "COE",
+                      "campus": "MAIN",
+                      "catalogNo": "101",
+                      "classEndTime": "1:50 PM",
+                      "classMeetingNo": 1,
+                      "classNumber": 101,
+                      "classSection": "01",
+                      "classStartTime": "12:00 PM",
+                      "classStatus": "Active",
+                      "courseAttr": "",
+                      "courseAttrDescription": "",
+                      "courseId": "000001",
+                      "csuUnits": 4,
+                      "degreeType": "PBAC",
+                      "description": "ACCT GOVT & NONPROFIT ORG",
+                      "employeeId": "001343367",
+                      "enrolledCapacity": 30,
+                      "enrolledTotal": 27,
+                      "enrollmentStatus": "Open",
+                      "facilityId": "JB0113",
+                      "fee": "0",
+                      "fri": "N",
+                      "fullSsrComponent": "",
+                      "geCourseAttr": "",
+                      "instructionMode": "P",
+                      "instructorName": "Bakeman, Melissa",
+                      "mon": "Y",
+                      "profile": "",
+                      "quarter": "2194",
+                      "room": "101",
+                      "sat": "N",
+                      "sessionCode": "1",
+                      "ssrComponent": "SEM",
+                      "subject": "ACCT",
+                      "sun": "N",
+                      "textbook": "",
+                      "thurs": "N",
+                      "title": "Foo-title",
+                      "topic": "",
+                      "tues": "N",
+                      "waitlistCapacity": 100,
+                      "waitlistTotal": 0,
+                      "wed": "Y",
+                    }
+                  }
+                  currentTerm="2194"
+                >
+                  <div
+                    className="course result-item"
+                  >
+                    <div
+                      className="item-header"
+                    >
+                      <div
+                        className="course-header"
+                      >
+                        <div
+                          className="course-name"
+                        >
+                          <strong>
+                            ACCT 101
+                             - Foo-title
+                          </strong>
+                          <Blueprint3.Popover
+                            boundary="scrollParent"
+                            captureDismiss={false}
+                            defaultIsOpen={false}
+                            disabled={false}
+                            fill={false}
+                            hasBackdrop={false}
+                            hoverCloseDelay={300}
+                            hoverOpenDelay={150}
+                            inheritDarkTheme={true}
+                            interactionKind="click"
+                            minimal={false}
+                            modifiers={Object {}}
+                            openOnTargetFocus={true}
+                            popoverClassName="bp3-popover-content-sizing"
+                            position="auto"
+                            targetTagName="span"
+                            transitionDuration={300}
+                            usePortal={true}
+                            wrapperTagName="span"
+                          >
+                            <Manager>
+                              <span
+                                className="bp3-popover-wrapper"
+                              >
+                                <Reference
+                                  innerRef={[Function]}
+                                >
+                                  <InnerReference
+                                    innerRef={[Function]}
+                                    setReferenceNode={[Function]}
+                                  >
+                                    <Blueprint3.ResizeSensor
+                                      onResize={[Function]}
+                                    >
+                                      <span
+                                        className="bp3-popover-target"
+                                        onClick={[Function]}
+                                      >
+                                        <div
+                                          className="bp3-tooltip-indicator"
+                                          key=".0"
+                                        >
+                                          <button
+                                            className="course-info-btn"
+                                          >
+                                            <i
+                                              arial-label="hidden"
+                                              className="fas fa-info-circle"
+                                            />
+                                            <span
+                                              className="sr-only"
+                                            >
+                                              ACCT 101
+                                            </span>
+                                          </button>
+                                        </div>
+                                      </span>
+                                    </Blueprint3.ResizeSensor>
+                                  </InnerReference>
+                                </Reference>
+                                <Blueprint3.Overlay
+                                  autoFocus={true}
+                                  backdropClassName="bp3-popover-backdrop"
+                                  backdropProps={Object {}}
+                                  canEscapeKeyClose={true}
+                                  canOutsideClickClose={true}
+                                  enforceFocus={true}
+                                  hasBackdrop={false}
+                                  isOpen={false}
+                                  lazy={true}
+                                  onClose={[Function]}
+                                  transitionDuration={300}
+                                  transitionName="bp3-popover"
+                                  usePortal={true}
+                                />
+                              </span>
+                            </Manager>
+                          </Blueprint3.Popover>
+                        </div>
+                        <div
+                          className="course-details"
+                        >
+                          <span>
+                            Section 
+                            01
+                             • 
+                          </span>
+                          <span
+                            className="course-id"
+                          >
+                            Class No. 
+                            101
+                          </span>
+                          <span>
+                             • Fee 
+                          </span>
+                           $
+                          0
+                        </div>
+                      </div>
+                      <div
+                        className="course-info"
+                      >
+                        <div
+                          className="course-status course-status--open"
+                        >
+                          <span />
+                          Open
+                        </div>
+                        <div
+                          className="course-availability"
+                        >
+                          Seats available:
+                           
+                          <span>
+                            3
+                             / 
+                            30
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="item-body"
+                    >
+                      <ul
+                        className="course-desc"
+                      >
+                        <li>
+                          <span>
+                            Units 
+                          </span>
+                          4
+                        </li>
+                        <li>
+                          <span>
+                            Meeting Time 
+                          </span>
+                          12:00 pm - 1:50 pm
+                        </li>
+                        <li>
+                          <span>
+                            Meeting Days 
+                          </span>
+                          M-W
+                        </li>
+                        <li>
+                          <span>
+                            Room 
+                          </span>
+                          COE 101
+                        </li>
+                        <li>
+                          <span>
+                            Campus 
+                          </span>
+                          San Bernardino
+                        </li>
+                        <li>
+                          <span>
+                            Instructor
+                          </span>
+                          Bakeman, Melissa
+                        </li>
+                        <li>
+                          <span>
+                            Instruction Mode 
+                          </span>
+                          Classroom
+                        </li>
+                      </ul>
+                      <div
+                        className="course-books"
+                      >
+                        <a
+                          className="btn btn-white btn-solid"
+                          href="https://www.bkstr.com/webApp/discoverView?bookstore_id-1=1100&term_id-1=2194&div-1=&dept-1=ACCT&course-1=101&section-1=01"
+                          target="_blank"
+                        >
+                          <span
+                            className="sr-only"
+                          >
+                            ACCT
+                             
+                            101
+                          </span>
+                          Textbook
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </ClassesCards>
+              </li>
+            </ul>
+          </div>
+          <div
+            aria-hidden={true}
+            aria-labelledby="bp3-tab-title_display-format-tabs_table"
+            className="bp3-tab-panel"
+            id="bp3-tab-panel_display-format-tabs_table"
+            key="table"
+            role="tabpanel"
+          />
+        </div>
+      </Blueprint3.Tabs>
+    </DisplayFormatTabs>
+  </div>
+</ClassSearchResults>
+`;

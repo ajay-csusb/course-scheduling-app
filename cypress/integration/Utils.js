@@ -70,6 +70,15 @@ function waitForResults(timer = 0) {
   return Promise.resolve(timer);
 }
 
+function selectPreviousTerm() {
+  let prevYear = [];
+  cy.get('#term option').each((e) => {
+    prevYear.push(Cypress.$(e).text());
+  }).then(() => {
+    cy.get("#term").select(prevYear[3])
+  });
+}
+
 module.exports = {
   url: url,
   selectSubject: selectSubject,
@@ -81,4 +90,5 @@ module.exports = {
   submit: submit,
   clickAdditionalFilters: clickAdditionalFilters,
   waitForResults: waitForResults,
+  selectPreviousTerm: selectPreviousTerm,
 };

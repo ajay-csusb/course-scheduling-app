@@ -1,6 +1,5 @@
 import * as ClassSearchUtils from './ClassSearchUtils';
 import { UserInput } from './UserInput';
-import { app } from './ClassSearch.d';
 import * as _ from 'lodash';
 
 export interface IClass {
@@ -125,7 +124,7 @@ export class Class {
       instructorAltName: object.name2,
       instructorEmployeeId: object.emplid2,
       instructionMode: object.instruction_MODE,
-      instructorName: object.name,
+      instructorName: object.name.trim() ? object.name.trim() : 'TBD',
       longDescription: object.descrlong_VC,
       mon: object.meeting_TIME[0].mon,
       profile: object.profile_PATH,
@@ -177,16 +176,15 @@ export class Class {
       instruction_mode: '',
       acad_career: userInput.getDegreeType(),
     };
-    ClassSearchUtils.fetchWithArg(app.settings.getClassesUrl, params, onSuccess, onFailure);
+    const proxyUrl = ClassSearchUtils.getProxyUrl('data');
+    ClassSearchUtils.fetchWithArg(proxyUrl, params, onSuccess, onFailure);
   }
 
   static splitClassesWithMultipleMeetingTimes(classes: any[]): any[] {
     let splitClasses: any = [];
-
     for (const _class of classes) {
       const meetingTimes = _class.meeting_TIME;
       const totalNumberOfMeetingTimes = meetingTimes.length;
-
       if (totalNumberOfMeetingTimes <= 1) {
         splitClasses.push(_class);
       } else {

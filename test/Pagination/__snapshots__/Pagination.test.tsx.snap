@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination component pagination component snapshot 1`] = `
+<Pagination
+  currentPage={1}
+  numberPages={10}
+  onChangeOfPageNumber={[Function]}
+>
+  <div>
+    <ul
+      className="pagination"
+    >
+      <li
+        className="page-1"
+        key="-1"
+      >
+        <a
+          className="current page-number"
+          data-page="1"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 1"
+        >
+          First
+        </a>
+      </li>
+      <li
+        className="page-1"
+        key="1"
+      >
+        <a
+          className="current page-number"
+          data-page="1"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 1"
+        >
+          1
+        </a>
+      </li>
+      <li
+        className="page-2"
+        key="2"
+      >
+        <a
+          className="page-number"
+          data-page="2"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 2"
+        >
+          2
+        </a>
+      </li>
+      <li
+        className="page-3"
+        key="3"
+      >
+        <a
+          className="page-number"
+          data-page="3"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 3"
+        >
+          3
+        </a>
+      </li>
+      <li
+        className="page-4"
+        key="4"
+      >
+        <a
+          className="page-number"
+          data-page="4"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 4"
+        >
+          4
+        </a>
+      </li>
+      <li
+        className="page-5"
+        key="5"
+      >
+        <a
+          className="page-number"
+          data-page="5"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 5"
+        >
+          5
+        </a>
+      </li>
+      <li
+        className="page-6"
+        key="6"
+      >
+        <a
+          className="page-number"
+          data-page="6"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 6"
+        >
+          6
+        </a>
+      </li>
+      <li
+        className="page-7"
+        key="7"
+      >
+        <a
+          className="page-number"
+          data-page="7"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 7"
+        >
+          7
+        </a>
+      </li>
+      <li
+        className="page-8"
+        key="8"
+      >
+        <a
+          className="page-number"
+          data-page="8"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 8"
+        >
+          8
+        </a>
+      </li>
+      <li
+        className="page-9"
+        key="9"
+      >
+        <a
+          className="page-number"
+          data-page="9"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 9"
+        >
+          9
+        </a>
+      </li>
+      <li
+        className="page-10"
+        key="10"
+      >
+        <a
+          className="page-number"
+          data-page="10"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 10"
+        >
+          10
+        </a>
+      </li>
+      <li
+        className="page-2"
+        key="2"
+      >
+        <a
+          className="page-number"
+          data-page="2"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 2"
+        >
+          Next
+        </a>
+      </li>
+      <li
+        className="page-10"
+        key="12"
+      >
+        <a
+          className="page-number"
+          data-page="10"
+          href="#class-search-results-component"
+          onClick={[Function]}
+          title="Go to page 10"
+        >
+          Last
+        </a>
+      </li>
+    </ul>
+  </div>
+</Pagination>
+`;

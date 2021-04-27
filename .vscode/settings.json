@@ -21,20 +21,10 @@
     "**/dist": true,
     "docs": true
   },
-  "eslint.enable": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "editor.rulers": [80],
-  "[javascript]": {
-    "editor.formatOnSave": true
-  },
-  "[typescript]": {
-    "editor.formatOnSave": true
-  },
   "[json]": {
     "editor.formatOnSave": false
   },
-  "eslint.format.enable": true,
-  "eslint.run": "onSave",
-  "editor.formatOnSave": true
 }

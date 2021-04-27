@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import dotenv from 'dotenv';
+import _ from 'lodash';
 import { app } from '../public/js/ClassSearch.d';
 
 export function loadEnvironmentVariables(): void {
@@ -35,4 +36,74 @@ export function getWebDxAccessToken(): Promise<any> {
 
 export function removeHtmlTags(str: string): string {
   return str.replace(/<(.|\n)*?>|\'\\n\'\s\+/g, '');
+}
+
+export function filterClasses(classes: any[], searchParameters: any): any[] {
+  let filteredClasses = [];
+  filteredClasses = _.filter(classes, classObj => {
+    return (
+      matchSubject(searchParameters, classObj) &&
+      matchCampus(searchParameters, classObj) &&
+      matchCatalogNumber(searchParameters, classObj) &&
+      matchInstructorName(searchParameters, classObj) &&
+      matchClassNumber(searchParameters, classObj) &&
+      matchSessionCode(searchParameters, classObj)
+    );
+  });
+  return filteredClasses;
+}
+
+function matchSubject(params: any, classObj: any): boolean {
+  if (params.subject.length === 0) {
+    return true;
+  }
+  return classObj.subject.trim() === params.subject;
+}
+
+function matchCampus(params: any, classObj: any): boolean {
+  if (params.campus.length === 0) {
+    return true;
+  }
+  return classObj.campus.trim() === params.campus;
+}
+
+function matchCatalogNumber(params: any, classObj: any): boolean {
+  if (params.catalog_nbr.length === 0) {
+    return true;
+  }
+  return classObj.catalog_NBR.trim() === params.catalog_nbr;
+}
+
+function matchInstructorName(params: any, classObj: any): boolean {
+  if (params.name.length === 0) {
+    return true;
+  }
+  return classObj.name.trim() === params.name;
+}
+
+function matchClassNumber(params: any, classObj: any): boolean {
+  if (params.class_nbr.length === 0) {
+    return true;
+  }
+  return classObj.class_NBR === parseInt(params.class_nbr.trim(), 10);
+}
+
+function matchSessionCode(params: any, classObj: any): boolean {
+  if (params.section_code.length === 0) {
+    return true;
+  }
+  return classObj.session_CODE.trim() === params.section_code;
+}
+
+export function getKeys(req: Request, _res: Response): string {
+  let objectValues = '';
+  for (let key in req.body) {
+    objectValues += key + '=' + req.body[key];
+  }
+  return objectValues.length !== 0 ? objectValues : 'options';
+}
+
+export function shouldCache(_req: Request, res: Response): boolean {
+  // @ts-ignore:
+  return res.statusCode === 200;
 }

@@ -14,7 +14,7 @@ describe('Export to Excel component', () => {
   });
 
   test('snapshot', () => {
-    const exportToExcelComponent = <ExportToExcel classes={classes} />
+    const exportToExcelComponent = mount(<ExportToExcel classes={classes} />);
     expect(exportToExcelComponent).toMatchSnapshot();
   });
 
@@ -28,7 +28,6 @@ describe('Export to Excel component', () => {
 
   test('markup', () => {
     const exportToExcelComponent = shallow(<ExportToExcel classes={classes} />);
-    expect(exportToExcelComponent.html()).toContain('align-right');
     expect(exportToExcelComponent.html()).toContain('export-to-excel');
     expect(exportToExcelComponent.html()).toContain('fa-file-download');
     expect(exportToExcelComponent.html()).toContain('Export to Excel');

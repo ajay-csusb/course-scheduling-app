@@ -212,7 +212,6 @@ export const rawClassesJson = {
 export let careerLevelsOptions: ICareerLevels = {
   ugrd: false,
   pbac: false,
-  exed: false
 }
 
 export let courseLevelsOptions: ICourseLevels = {

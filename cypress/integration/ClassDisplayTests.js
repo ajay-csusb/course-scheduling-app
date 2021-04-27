@@ -7,7 +7,6 @@ describe('Correct class information is displayed in results', function () {
         before(function () {
           cy.visit(form.url);
           form.selectSubject();
-          form.enterCourseNumber();
           form.submit();
         });
 
@@ -27,7 +26,7 @@ describe('Correct class information is displayed in results', function () {
         });
 
         it('should show description when info icon is clicked', () => {
-          cy.get(':nth-child(1) > .course > .item-header > .course-header > .course-name > .bp3-popover-wrapper > .bp3-popover-target > .bp3-tooltip-indicator > .course-info-btn > .fas').click();
+          cy.get('.course:first').find('.bp3-popover-wrapper').click();
           cy.get('.bp3-popover-content').should('have.length', '1');
         });
 
@@ -43,7 +42,6 @@ describe('Correct class information is displayed in results', function () {
           cy.visit(form.url);
           selectPreviousTerm();
           form.selectSubject();
-          form.enterCourseNumber('100');
           form.submit();
         });
 
@@ -59,12 +57,12 @@ describe('Correct class information is displayed in results', function () {
     });
 
     function selectPreviousTerm() {
-      let prevYear = '';
+      let prevYear = [];
       cy.wait(5000).then(() => {
         cy.get('#term option').each((e) => {
-          prevYear = Cypress.$(e).text();
+          prevYear.push(Cypress.$(e).text());
         }).then(() => {
-          cy.get("#term").select(prevYear)
+          cy.get("#term").select(prevYear[3])
         });
       });
     }
