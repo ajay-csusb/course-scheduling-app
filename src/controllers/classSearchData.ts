@@ -5,7 +5,7 @@ import { app } from '../public/js/ClassSearch.d';
 import NodeCache from 'node-cache';
 import _ from 'lodash';
 
-const cache = new NodeCache({ stdTTL: 3600 });
+const cache = new NodeCache({ stdTTL: 15768000 });
 
 export async function index(req: Request, res: Response): Promise<any> {
   console.log('Cache keys:', cache.keys());
