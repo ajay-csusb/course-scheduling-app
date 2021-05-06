@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { getWebDxAccessToken } from '../lib/Utils';
 import { app } from '../public/js/ClassSearch.d';
 import NodeCache from 'node-cache';
+import _ from 'lodash';
 const cache = new NodeCache();
 
 export async function index(_req: Request, res: Response): Promise<any> {
@@ -36,7 +37,7 @@ async function fetchDropdown(): Promise<any> {
       throw new Error('Something went wrong during fetching dropdown');
     })
     .then((res: any) => {
-      if (res.length !== 0) {
+      if (!_.isEmpty(res)) {
         cache.set('dropdown', res);
         responseMessage = res;
       }
