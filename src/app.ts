@@ -47,7 +47,7 @@ app.get('/export-events', exportEventsController.index);
 app.post('/export-analytics', exportAnalyticsController.index);
 app.get('/export-university-calendar', exportUniversityCalendarController.index);
 app.get('/export-courseleaf-data', exportCourseleafDataController.index);
-app.get('/get-class-search-options', cache('1 day'), classSearchOptions.index);
+app.get('/get-class-search-options', classSearchOptions.index);
 app.post('/get-class-search-data', cacheClasses, classSearchData.index);
 
 export default app;
