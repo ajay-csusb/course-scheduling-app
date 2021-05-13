@@ -384,18 +384,21 @@ describe('fees', () => {
   });
 
   describe('when a course does not have a fee', () => {
-    it('should not display the markup', () => {
-      const classWithNoFees: IClass = TestUtils.copyObject(classJson);
-      classWithNoFees.fee = '0.00';
-      const classesCards: JSX.Element = (
-        <ClassesCards
-          classes={classWithNoFees}
-          currentTerm={'0000'}
-        />
-      );
-      const classesCardsComponent = mount(classesCards);
-      expect(classesCardsComponent.html()).not.toContain('<span> • Fee </span> $');
-    });
+    const classWithNoFees: IClass = TestUtils.copyObject(classJson);
+    const fee = ['0.00', ''];
+    for (let i = 0; i < 2; i++) {
+      it('should not display the markup for fee', () => {
+        classWithNoFees.fee = fee[i];
+        const classesCards: JSX.Element = (
+          <ClassesCards
+            classes={classWithNoFees}
+            currentTerm={'0000'}
+          />
+        );
+        const classesCardsComponent = mount(classesCards);
+        expect(classesCardsComponent.html()).not.toContain('<span> • Fee </span> $');
+      });
+    }
   });
 
   describe('when a course has a clinical section', () => {
