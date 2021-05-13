@@ -207,7 +207,7 @@ function getFeeMarkup(): JSX.Element {
   if (ssrComponent === 'CLN') {
     return markup;
   }
-  if (fee !== '0.00' || fee.length === 0) {
+  if (fee !== '0.00' && fee.length !== 0) {
     markup = (
       <>
         <span> • Fee </span> ${fee}
