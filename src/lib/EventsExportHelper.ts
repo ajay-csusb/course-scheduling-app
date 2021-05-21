@@ -15,6 +15,10 @@ export async function fetchEvents(): Promise<any> {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
+    auth: {
+      username: process.env.DRUPAL_USERNAME ?? '',
+      password: process.env.DRUPAL_PASSWORD ?? '',
+    },
   };
   console.log('Fetching events...');
   return axios(axiosOptions)

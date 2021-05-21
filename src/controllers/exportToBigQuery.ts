@@ -156,7 +156,7 @@ async function createMissingTables(): Promise<any> {
       'tues: string,' +
       'waitlistCapacity: integer,' +
       'waitlistTotal: integer,' +
-      'wed: string'
+      'wed: string',
   };
 
   tableIds.forEach((id: string) => {
@@ -199,10 +199,9 @@ function getMissingTables(): Promise<any> {
 
 async function getTerms(): Promise<any> {
   const axiosOptions = {
-    baseURL: 'http://webdx.csusb.edu',
-    url: '/ClassSchedule/v2/getDropDownList',
+    baseURL: app.settings.appBaseUrl,
+    url: app.settings.proxyDropdownUrl.live,
   };
-
   try {
     const data = await axios(axiosOptions);
     const jsonData = data.data.termList;
@@ -218,9 +217,9 @@ async function getTerms(): Promise<any> {
 async function getClassesForTerm(term: number = currentTerm): Promise<any> {
   try {
     const data = await axios({
-      baseURL: 'http://webdx.csusb.edu',
+      baseURL: app.settings.appBaseUrl,
       method: 'post',
-      url: '/ClassSchedule/v2/cs/list/search',
+      url: app.settings.proxyClassDataUrl.live,
       data: {
         strm: term,
         class_nbr: '',
@@ -247,8 +246,12 @@ async function getClassesForTerm(term: number = currentTerm): Promise<any> {
     data.data.forEach((_class: any) => {
       const transformedClass = Class.transformToClass(_class);
       transformedClass['timestamp'] = new BigQueryTimestamp(new Date()).value;
-      const formattedInstructorName = transformedClass['instructorName'] !== ' ' ? transformedClass['instructorName'].split(', ') : '';
-      transformedClass['instructorName'] = typeof (formattedInstructorName) === 'object' ? `${formattedInstructorName[1]} ${formattedInstructorName[0]}` : '';
+      const formattedInstructorName =
+        transformedClass['instructorName'] !== ' ' ? transformedClass['instructorName'].split(', ') : '';
+      transformedClass['instructorName'] =
+        typeof formattedInstructorName === 'object'
+          ? `${formattedInstructorName[1]} ${formattedInstructorName[0]}`
+          : '';
       classesCurrentTerm.push(transformedClass);
     });
   } catch (error) {
