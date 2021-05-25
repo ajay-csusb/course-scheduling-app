@@ -800,7 +800,13 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
       }
     );
   }
+
   private logUserSelectionToBigQuery(): void {
+    const urlParams = new URLSearchParams(window.location.search);
+    const isBotParamSet = urlParams.get('bot');
+    if (isBotParamSet) {
+      return;
+    }
     const startDate: Date = new Date(this.state.startTime);
     const endDate: Date = new Date(this.state.endTime);
     const time: string = `${startDate.getHours()}-${startDate.getMinutes()}`;
