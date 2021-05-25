@@ -16,3 +16,13 @@ global.sessionStorage = sessionStorageMock;
 global.requestAnimationFrame = (callback) => {
   setTimeout(callback, 0);
 };
+
+class URLSearchParamsMock {
+  constructor() {
+  }
+
+  get(param) {
+    return false;
+  }
+}
+global.URLSearchParams = URLSearchParamsMock;
