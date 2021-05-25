@@ -10,6 +10,7 @@ import { ClassesCards } from '../src/public/js/ClassesCards';
 import DuplicateClassesCards from '../src/public/js/DuplicateClassesCards';
 import { SelectListSortBy } from '../src/public/js/SelectListSortBy';
 import Pagination from '../src/public/js/Pagination';
+import SelectListResultsOptions from '../src/public/js/SelectListResultsOptions';
 
 function mountClassSearchResultsComponent(results: IClass[], term: string = '2194'): ReactWrapper {
   const mockCallback = jest.fn();
@@ -548,6 +549,79 @@ describe('pagination', () => {
       const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses);
       classSearchResultsWrapper.setProps({ tab: 'table' });
       expect(classSearchResultsWrapper.find('.pagination')).toHaveLength(0);
+    });
+  });
+
+  describe.only('ClassSearchResultsOptions', () => {
+    let resultClasses: IClass[] = [];
+    let hours = 9;
+    let minutes = 10;
+    for (let index = 0; index < 102; index++) {
+      const copyObject = TestUtils.copyObject(classJson);
+      copyObject.classNumber = index;
+      copyObject.classStartTime = `${hours} : ${minutes} PM`;
+      copyObject.classEndTime = `${hours} : ${minutes + 1} PM`;
+      minutes += 1;
+      resultClasses.push(copyObject);
+    }
+    test('limit state', () => {
+      const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses);
+      const selectListResultsOptionsWrapper = classSearchResultsWrapper.find(SelectListResultsOptions);
+      selectListResultsOptionsWrapper.find('option').at(0).simulate('change');
+      expect(classSearchResultsWrapper.state('limit')).toEqual(-1);
+    });
+    describe('when table tab is active', () => {
+      it('should not display the results list option', () => {
+        const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses);
+        classSearchResultsWrapper.setProps({ tab: 'table' });
+        const selectListResultsOptionsWrapper = classSearchResultsWrapper.find(SelectListResultsOptions);
+        expect(selectListResultsOptionsWrapper).toHaveLength(0);
+      });
+    });
+    describe('when no classes are in the results', () => {
+      it('should not display the results list option', () => {
+        const classSearchResultsWrapper = mountClassSearchResultsComponent([]);
+        const selectListResultsOptionsWrapper = classSearchResultsWrapper.find(SelectListResultsOptions);
+        expect(selectListResultsOptionsWrapper).toHaveLength(0);
+      });
+    });
+    test.todo('number of classes when the ClassSearchResultsOptions option is changed');
+    describe('when 30 is selected in SelectListResultsOptions component', () => {
+      it('should display 30 classes in the results', () => {
+        const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses);
+        const selectListResultsOptionsWrapper = classSearchResultsWrapper.find(SelectListResultsOptions);
+        selectListResultsOptionsWrapper.find('option').at(1).simulate('change');
+        expect(classSearchResultsWrapper.find('.course')).toHaveLength(30);
+      });
+    });
+    describe('when 60 is selected in SelectListResultsOptions component', () => {
+      it('should display 60 classes in the results', () => {
+        const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses);
+        const selectListResultsOptionsWrapper = classSearchResultsWrapper.find(SelectListResultsOptions);
+        selectListResultsOptionsWrapper.find('option').at(2).simulate('change');
+        expect(classSearchResultsWrapper.find('.course')).toHaveLength(60);
+      });
+      it('should display 3 pages', () => {
+        const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses);
+        const selectListResultsOptionsWrapper = classSearchResultsWrapper.find(SelectListResultsOptions);
+        selectListResultsOptionsWrapper.find('option').at(2).simulate('change');
+        // console.log(classSearchResultsWrapper.debug());
+        expect(classSearchResultsWrapper.find('.pagination li')).toHaveLength(5);
+      });
+    });
+    describe('when all is selected in SelectListResultsOptions component', () => {
+      it('should display all classes in the results', () => {
+        const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses);
+        const selectListResultsOptionsWrapper = classSearchResultsWrapper.find(SelectListResultsOptions);
+        selectListResultsOptionsWrapper.find('option').at(0).simulate('change');
+        expect(classSearchResultsWrapper.find('.course')).toHaveLength(102);
+      });
+      it('should not display the pager component', () => {
+        const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses);
+        const selectListResultsOptionsWrapper = classSearchResultsWrapper.find(SelectListResultsOptions);
+        selectListResultsOptionsWrapper.find('option').at(0).simulate('change');
+        expect(classSearchResultsWrapper.find(Pagination)).toHaveLength(0);
+      });
     });
   });
 });
