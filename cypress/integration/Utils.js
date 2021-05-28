@@ -79,6 +79,23 @@ function selectPreviousTerm() {
   });
 }
 
+function selectClassFromFallTerm(subject = 'English') {
+  let lastFallTerm;
+  const nextFallTerms = ['Fall 2021', 'Fall 2022', 'Fall 2023', 'Fall 2024', 'Fall 2025', 'Fall 2026', 'Fall 2027'];
+  let index = 0;
+  cy.visit(url);
+  while (index < nextFallTerms.length) {
+    if (cy.get('#term').contains(nextFallTerms[index])) {
+      lastFallTerm = nextFallTerms[index];
+      break;
+    }
+    index += 1;
+  }
+  cy.get('#term').select(lastFallTerm);
+  selectSubject(subject);
+  submit();
+}
+
 module.exports = {
   url: url,
   selectSubject: selectSubject,
@@ -91,4 +108,5 @@ module.exports = {
   clickAdditionalFilters: clickAdditionalFilters,
   waitForResults: waitForResults,
   selectPreviousTerm: selectPreviousTerm,
+  selectClassFromFallTerm: selectClassFromFallTerm,
 };
