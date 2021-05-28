@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectListResultsOptions component SelectListResultsOptions component snapshot 1`] = `
+<SelectListResultsOptions
+  limit={30}
+  onChangeOfLimit={[Function]}
+>
+  <div
+    className="show-dropdown text-align-right"
+  >
+    <Component
+      htmlFor="results-options"
+    >
+      <label
+        className="bp3-label"
+        htmlFor="results-options"
+      >
+        Items Per Page
+      </label>
+    </Component>
+    <HTMLSelect
+      className="results-options"
+      id="results-options"
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "label": "All classes",
+            "value": "all",
+          },
+          Object {
+            "label": "30 classes",
+            "value": "30",
+          },
+          Object {
+            "label": "60 classes",
+            "value": "60",
+          },
+        ]
+      }
+      value={30}
+    >
+      <div
+        className="bp3-html-select results-options"
+      >
+        <select
+          id="results-options"
+          multiple={false}
+          onChange={[Function]}
+          value={30}
+        >
+          <option
+            key="all"
+            label="All classes"
+            value="all"
+          >
+            All classes
+          </option>
+          <option
+            key="30"
+            label="30 classes"
+            value="30"
+          >
+            30 classes
+          </option>
+          <option
+            key="60"
+            label="60 classes"
+            value="60"
+          >
+            60 classes
+          </option>
+        </select>
+        <Blueprint3.Icon
+          icon="double-caret-vertical"
+        >
+          <span
+            className="bp3-icon bp3-icon-double-caret-vertical"
+            icon="double-caret-vertical"
+          >
+            <svg
+              data-icon="double-caret-vertical"
+              height={16}
+              viewBox="0 0 16 16"
+              width={16}
+            >
+              <desc>
+                double-caret-vertical
+              </desc>
+              <path
+                d="M5 7h6a1.003 1.003 0 00.71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 005 7zm6 2H5a1.003 1.003 0 00-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0011 9z"
+                fillRule="evenodd"
+                key="0"
+              />
+            </svg>
+          </span>
+        </Blueprint3.Icon>
+      </div>
+    </HTMLSelect>
+  </div>
+</SelectListResultsOptions>
+`;

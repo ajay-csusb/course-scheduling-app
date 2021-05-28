@@ -2,25 +2,8 @@ import * as form from './Utils';
 
 context('Pagination', () => {
   before(() => {
-    getEnglishClasses();
+    form.selectClassFromFallTerm();
   });
-
-  function getEnglishClasses() {
-    let lastFallTerm;
-    const nextFallTerms = ['Fall 2021', 'Fall 2022', 'Fall 2023', 'Fall 2024', 'Fall 2025', 'Fall 2026', 'Fall 2027'];
-    let index = 0;
-    cy.visit(form.url);
-    while (index < nextFallTerms.length) {
-      if (cy.get('#term').contains(nextFallTerms[index])) {
-        lastFallTerm = nextFallTerms[index];
-        break;
-      }
-      index += 1;
-    }
-    cy.get('select#term').select(lastFallTerm);
-    form.selectSubject('English');
-    form.submit();
-  }
 
   it('should display a pager', () => {
     cy.get('.pagination').should('contain', 'First').should('contain', 'Next').should('contain', 'Last');

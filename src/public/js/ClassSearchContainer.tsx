@@ -811,6 +811,7 @@ export class ClassSearchContainer extends React.Component<{}, IClassSearchContai
     const endDate: Date = new Date(this.state.endTime);
     const time: string = `${startDate.getHours()}-${startDate.getMinutes()}`;
     const endTime: string = `${endDate.getHours()}-${endDate.getMinutes()}`;
+    // @Todo add a field for show classes filter
     Watchdog.logBigQuery({
       campus: this.state.campus,
       catalogNumber: this.state.courseNo,

@@ -11,9 +11,11 @@ import * as ClassSearchUtils from './ClassSearchUtils';
 import { SelectListSortBy } from './SelectListSortBy';
 import * as Sort from './Sort';
 import Pagination from './Pagination';
+import SelectListResultsOptions from './SelectListResultsOptions';
 
 export interface IClassSearchResultsState {
   sortBy: string;
+  limit: number;
 }
 
 export interface IClassSearchResultsProps {
@@ -37,11 +39,13 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     this.classes = this.props.classes;
     this.state = {
       sortBy: 'catalogNo',
+      limit: 30,
     };
     this.onChangeOfSortBy = this.onChangeOfSortBy.bind(this);
     this.onChangeOfTab = this.onChangeOfTab.bind(this);
     this.onChangeOfPageNumber = this.onChangeOfPageNumber.bind(this);
     this.hideSortByFilter = true;
+    this.onChangeOfLimit = this.onChangeOfLimit.bind(this);
   }
 
   public render(): JSX.Element {
@@ -91,8 +95,12 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
         classes.push(<li key={_class.classNumber}>{component}</li>);
       });
     }
-    const startIndex = Math.max(0, (this.props.currentPage - 1) * 30);
-    const endIndex = startIndex + 30;
+    // @Todo abstract this
+    let startIndex = Math.max(0, (this.props.currentPage - 1) * this.state.limit);
+    if (startIndex > classes.length) {
+      startIndex = Math.max(0, classes.length - this.state.limit);
+    }
+    const endIndex = this.state.limit !== -1 ? startIndex + this.state.limit : 1000000;
     return classes.slice(startIndex, endIndex);
   }
 
@@ -123,7 +131,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   }
 
   private getTotalNumberOfPages(): number {
-    return Math.ceil(this.noOfClasses / 30) === 1 ? 0 : Math.ceil(this.noOfClasses / 30);
+    return Math.ceil(this.noOfClasses / this.state.limit) === 1 ? 0 : Math.ceil(this.noOfClasses / this.state.limit);
   }
 
   private onChangeOfTab(tabValue: any): void {
@@ -139,11 +147,13 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     const paginationComponent: JSX.Element = this.getPaginationComponent();
     const sortByComponent: JSX.Element = this.getSortByComponent();
     const exportToExcelComponent: JSX.Element = this.getExcelComponent();
+    const resultsLimitComponent: JSX.Element = this.getSelectListResultsOptionsComponent();
     if (this.noOfClasses === 0) {
       return <i>Try refining the search above to get more results</i>;
     }
     return (
       <>
+        {resultsLimitComponent}
         {sortByComponent}
         {exportToExcelComponent}
         {tabsComponent}
@@ -174,7 +184,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
         onChangeOfPageNumber={this.onChangeOfPageNumber}
       />
     );
-    return this.noOfClasses > 30 && this.props.tab === 'list' ? pagination : <></>;
+    return this.noOfClasses > 30 && this.props.tab === 'list' && this.state.limit !== -1 ? pagination : <></>;
   }
 
   private getSortByComponent(): JSX.Element {
@@ -191,5 +201,18 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
 
   private getExcelComponent(): JSX.Element {
     return this.props.tab === 'table' ? <ExportToExcel classes={this.classes} /> : <></>;
+  }
+
+  private getSelectListResultsOptionsComponent(): JSX.Element {
+    return this.props.tab === 'list' && this.noOfClasses > 30 ? (
+      <SelectListResultsOptions limit={this.state.limit} onChangeOfLimit={this.onChangeOfLimit} />
+    ) : (
+      <></>
+    );
+  }
+
+  private onChangeOfLimit(event: any): void {
+    const selectedValue = event.target.value === 'all' ? -1 : parseInt(event.target.value, 10);
+    this.setState({ limit: selectedValue });
   }
 }
