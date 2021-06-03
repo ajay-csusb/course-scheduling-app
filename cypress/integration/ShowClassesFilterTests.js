@@ -19,11 +19,6 @@ context('ShowClassFilter', () => {
     cy.get('#results-options').should('exist');
   });
 
-  it('should show the show classes filter if the list tab is clicked', () => {
-    cy.get('#bp3-tab-title_display-format-tabs_list').click();
-    cy.get('#results-options').should('have.length', 1);
-  });
-
   it('should display 30 classes by default', () => {
     cy.get('.course').should('have.length', 30);
   });
