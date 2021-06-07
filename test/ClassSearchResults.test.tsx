@@ -28,7 +28,7 @@ function mountClassSearchResultsComponent(results: IClass[], term: string = '219
   return mount(classSearchResultsComponent);
 }
 
-describe('Given a class search results component', () => {
+describe('Given a class search results component', () => { 
   beforeAll(() => {
     TestUtils.ajax();
   });
@@ -40,7 +40,6 @@ describe('Given a class search results component', () => {
       expect(classSearchResultsWrapper.state('sortBy')).toEqual('catalogNo');
     });
   });
-
   describe('when no classes are displayed in the results', () => {
     const classSearchResultsWrapper = mountClassSearchResultsComponent([]);
 

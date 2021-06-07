@@ -104,32 +104,6 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     return classes.slice(startIndex, endIndex);
   }
 
-  private onChangeOfSortBy(selectedFormat: string): void {
-    const order = selectedFormat.split('-').pop();
-    const criteria = selectedFormat.split('-').shift();
-    if (criteria === 'classNumber') {
-      this.classes = Sort.sortByInt(this.classes, order, criteria);
-    }
-    if (criteria === 'subject' || criteria === 'title' || criteria == 'instructorName') {
-      this.classes = Sort.sortByString(this.classes, order, criteria);
-    }
-    if (criteria === 'days') {
-      this.classes = Sort.sortByMeetingDays(this.classes, order);
-    }
-    if (criteria === 'time') {
-      this.classes = Sort.sortByMeetingTime(this.classes, order);
-    }
-    if (criteria === 'seatsAvailable') {
-      this.classes = Sort.sortBySeatsAvailable(this.classes, order);
-    }
-    if (criteria === 'seatsWaitlist') {
-      this.classes = Sort.sortBySeatsAvailableInWaitlist(this.classes, order);
-    }
-    this.setState({
-      sortBy: selectedFormat,
-    });
-  }
-
   private getTotalNumberOfPages(): number {
     return Math.ceil(this.noOfClasses / this.state.limit) === 1 ? 0 : Math.ceil(this.noOfClasses / this.state.limit);
   }
@@ -214,5 +188,31 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   private onChangeOfLimit(event: any): void {
     const selectedValue = event.target.value === 'all' ? -1 : parseInt(event.target.value, 10);
     this.setState({ limit: selectedValue });
+  }
+
+  private onChangeOfSortBy(selectedFormat: string): void {
+    const order = selectedFormat.split('-').pop();
+    const criteria = selectedFormat.split('-').shift();
+    if (criteria === 'classNumber') {
+      this.classes = Sort.sortByInt(this.classes, order, criteria);
+    }
+    if (criteria === 'subject' || criteria === 'title' || criteria == 'instructorName') {
+      this.classes = Sort.sortByString(this.classes, order, criteria);
+    }
+    if (criteria === 'days') {
+      this.classes = Sort.sortByMeetingDays(this.classes, order);
+    }
+    if (criteria === 'time') {
+      this.classes = Sort.sortByMeetingTime(this.classes, order);
+    }
+    if (criteria === 'seatsAvailable') {
+      this.classes = Sort.sortBySeatsAvailable(this.classes, order);
+    }
+    if (criteria === 'seatsWaitlist') {
+      this.classes = Sort.sortBySeatsAvailableInWaitlist(this.classes, order);
+    }
+    this.setState({
+      sortBy: selectedFormat,
+    });
   }
 }
