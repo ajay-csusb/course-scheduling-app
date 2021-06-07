@@ -44,7 +44,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     this.onChangeOfSortBy = this.onChangeOfSortBy.bind(this);
     this.onChangeOfTab = this.onChangeOfTab.bind(this);
     this.onChangeOfPageNumber = this.onChangeOfPageNumber.bind(this);
-    this.hideSortByFilter = true;
+    this.hideSortByFilter = false;
     this.onChangeOfLimit = this.onChangeOfLimit.bind(this);
   }
 
