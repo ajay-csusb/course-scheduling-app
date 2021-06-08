@@ -6,7 +6,7 @@ exports[`SelectListResultsOptions component SelectListResultsOptions component s
   onChangeOfLimit={[Function]}
 >
   <div
-    className="show-dropdown text-align-right"
+    className="show-dropdown"
   >
     <Component
       htmlFor="results-options"

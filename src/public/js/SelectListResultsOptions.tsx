@@ -7,16 +7,15 @@ export interface ISelectListResultsOptionsProps {
 }
 
 export default class SelectListResultsOptions extends Component<ISelectListResultsOptionsProps, {}> {
-
   private readonly limits: IOptionProps[] = [
-    {label: 'All classes', value: 'all'},
-    {label: '30 classes', value: '30'},
-    {label: '60 classes', value: '60'},
+    { label: 'All classes', value: 'all' },
+    { label: '30 classes', value: '30' },
+    { label: '60 classes', value: '60' },
   ];
 
   public render(): React.ReactNode {
     return (
-      <div className="show-dropdown text-align-right">
+      <div className="show-dropdown">
         <Label htmlFor="results-options">Items Per Page</Label>
         <HTMLSelect
           id="results-options"

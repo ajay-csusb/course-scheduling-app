@@ -28,7 +28,7 @@ function mountClassSearchResultsComponent(results: IClass[], term: string = '219
   return mount(classSearchResultsComponent);
 }
 
-describe('Given a class search results component', () => { 
+describe('Given a class search results component', () => {
   beforeAll(() => {
     TestUtils.ajax();
   });
@@ -89,7 +89,7 @@ describe('Given a class search results component', () => {
       expect(classSearchResultsWrapper.html()).toContain('course-status--open');
     });
 
-    it.skip('should display the SelectListSortBy component', () => {
+    it('should display the SelectListSortBy component', () => {
       const selectListSortByWrapper = classSearchResultsWrapper.find(SelectListSortBy);
       expect(selectListSortByWrapper).toHaveLength(1);
     });
@@ -382,7 +382,7 @@ describe('classes having multiple times', () => {
   });
 });
 
-describe.skip('SelectListSortBy component', () => {
+describe('SelectListSortBy component', () => {
   it('should be displayed only when the result has atleast one class', () => {
     const classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson, classJson]);
     expect(classSearchResultsWrapper.find(SelectListSortBy)).toHaveLength(1);
@@ -393,9 +393,15 @@ describe.skip('SelectListSortBy component', () => {
     classSearchResultsWrapper.find('.sort-by-select > select').simulate('change', { target: { value: 'foo' } });
     expect(classSearchResultsWrapper.state('sortBy')).toEqual('foo');
   });
+
+  it('should update the currentPage props to 1 when a user selects an option', () => {
+    const classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson, classJson]);
+    classSearchResultsWrapper.find('.sort-by-select > select').simulate('change', { target: { value: 'foo' } });
+    expect(classSearchResultsWrapper.props().onChangeOfPageNumber).toHaveBeenCalledWith(1);
+  });
 });
 
-describe.skip('sorting behavior', () => {
+describe('sorting behavior', () => {
   let classSearchResultsComponentWrapper;
   beforeEach(() => {
     const acctClass: IClass = TestUtils.copyObject(classJson);
@@ -487,14 +493,6 @@ describe.skip('sorting behavior', () => {
     expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/ACCT 101/);
     expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/BIOL 102/);
   });
-
-  test('sort by waitlist', () => {
-    classSearchResultsComponentWrapper
-      .find('.sort-by-select > select')
-      .simulate('change', { target: { value: 'seatsWaitlist-asc' } });
-    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/BIOL 102/);
-    expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/ACCT 101/);
-  });
 });
 
 describe('markup', () => {
@@ -505,17 +503,7 @@ describe('markup', () => {
 });
 
 describe('pagination', () => {
-  let resultClasses: IClass[] = [];
-  let hours = 9;
-  let minutes = 10;
-  for (let index = 0; index < 52; index++) {
-    const copyObject = TestUtils.copyObject(classJson);
-    copyObject.classNumber = index;
-    copyObject.classStartTime = `${hours} : ${minutes} PM`;
-    copyObject.classEndTime = `${hours} : ${minutes + 1} PM`;
-    minutes += 1;
-    resultClasses.push(copyObject);
-  }
+  let resultClasses: IClass[] = getClasses();
 
   describe('when we have more than 30 classes', () => {
     it('should display a pager', () => {
@@ -525,13 +513,13 @@ describe('pagination', () => {
 
     it('should display the correct number of pages', () => {
       const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses);
-      expect(classSearchResultsWrapper.find('.pagination li')).toHaveLength(5);
+      expect(classSearchResultsWrapper.find('.pagination li')).toHaveLength(7);
     });
   });
 
-  describe('when we have less than 25 classes', () => {
+  describe('when we have less than 30 classes', () => {
     it('should not display a pager', () => {
-      const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses.splice(0, 20));
+      const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses.splice(0, 28));
       expect(classSearchResultsWrapper.find('.pagination')).toHaveLength(0);
     });
   });
@@ -552,17 +540,7 @@ describe('pagination', () => {
   });
 
   describe('SelectListResultsOptions', () => {
-    let resultClasses: IClass[] = [];
-    let hours = 9;
-    let minutes = 10;
-    for (let index = 0; index < 102; index++) {
-      const copyObject = TestUtils.copyObject(classJson);
-      copyObject.classNumber = index;
-      copyObject.classStartTime = `${hours} : ${minutes} PM`;
-      copyObject.classEndTime = `${hours} : ${minutes + 1} PM`;
-      minutes += 1;
-      resultClasses.push(copyObject);
-    }
+    let resultClasses: IClass[] = getClasses();
 
     test('limit state', () => {
       const classSearchResultsWrapper = mountClassSearchResultsComponent(resultClasses);
@@ -614,7 +592,7 @@ describe('pagination', () => {
       it('should display 30 classes in the result', () => {
         expect(classSearchResultsWrapper.find('.course')).toHaveLength(30);
       });
-      
+
       it('should display 7 pager links', () => {
         expect(classSearchResultsWrapper.find('.pagination li')).toHaveLength(7);
       });
@@ -649,3 +627,18 @@ describe('pagination', () => {
     });
   });
 });
+
+function getClasses() {
+  let resultClasses: IClass[] = [];
+  let hours = 9;
+  let minutes = 10;
+  for (let index = 0; index < 102; index++) {
+    const copyObject = TestUtils.copyObject(classJson);
+    copyObject.classNumber = index;
+    copyObject.classStartTime = `${hours} : ${minutes} PM`;
+    copyObject.classEndTime = `${hours} : ${minutes + 1} PM`;
+    minutes += 1;
+    resultClasses.push(copyObject);
+  }
+  return resultClasses;
+}
