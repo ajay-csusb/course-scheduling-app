@@ -31,12 +31,16 @@ export interface IClassSearchResultsProps {
 export class ClassSearchResults extends React.Component<IClassSearchResultsProps, IClassSearchResultsState> {
   private noOfClasses: number;
   private classes: IClass[];
+  // @Todo delete this
   private hideSortByFilter: boolean;
+
+  private page: number;
 
   constructor(props: IClassSearchResultsProps) {
     super(props);
     this.noOfClasses = 0;
     this.classes = this.props.classes;
+    this.page = this.props.currentPage;
     this.state = {
       sortBy: 'catalogNo',
       limit: 30,
@@ -44,6 +48,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     this.onChangeOfSortBy = this.onChangeOfSortBy.bind(this);
     this.onChangeOfTab = this.onChangeOfTab.bind(this);
     this.onChangeOfPageNumber = this.onChangeOfPageNumber.bind(this);
+    // @Todo delete this.
     this.hideSortByFilter = false;
     this.onChangeOfLimit = this.onChangeOfLimit.bind(this);
   }
@@ -57,6 +62,15 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
         {renderMarkup}
       </div>
     );
+  }
+
+  public componentDidUpdate(prevProps: IClassSearchResultsProps, prevState: IClassSearchResultsState): void {
+    if (prevProps.currentPage != this.props.currentPage) {
+      this.page = this.props.currentPage;
+    }
+    if (prevState.sortBy != this.state.sortBy) {
+      this.page = 1;
+    }
   }
 
   private getClassesInListFormat(): JSX.Element[] {
@@ -207,9 +221,6 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     }
     if (criteria === 'seatsAvailable') {
       this.classes = Sort.sortBySeatsAvailable(this.classes, order);
-    }
-    if (criteria === 'seatsWaitlist') {
-      this.classes = Sort.sortBySeatsAvailableInWaitlist(this.classes, order);
     }
     this.setState({
       sortBy: selectedFormat,

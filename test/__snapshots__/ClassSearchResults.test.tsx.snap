@@ -168,14 +168,6 @@ exports[`markup HTML markup of the results component 1`] = `
                   "label": "Seats available: high to low",
                   "value": "seatsAvailable-desc",
                 },
-                Object {
-                  "label": "Waitlist: low to high",
-                  "value": "seatsWaitlist-asc",
-                },
-                Object {
-                  "label": "Waitlist: high to low",
-                  "value": "seatsWaitlist-desc",
-                },
               ]
             }
             value="catalogNo"
@@ -285,20 +277,6 @@ exports[`markup HTML markup of the results component 1`] = `
                   value="seatsAvailable-desc"
                 >
                   Seats available: high to low
-                </option>
-                <option
-                  key="seatsWaitlist-asc"
-                  label="Waitlist: low to high"
-                  value="seatsWaitlist-asc"
-                >
-                  Waitlist: low to high
-                </option>
-                <option
-                  key="seatsWaitlist-desc"
-                  label="Waitlist: high to low"
-                  value="seatsWaitlist-desc"
-                >
-                  Waitlist: high to low
                 </option>
               </select>
               <Blueprint3.Icon

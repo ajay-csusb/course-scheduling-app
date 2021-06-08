@@ -11,6 +11,7 @@ export class SelectListSortBy extends React.Component<ISelectListSortByProps, {}
     super(props);
     this.handleChangeOfSortBy = this.handleChangeOfSortBy.bind(this);
   }
+
   public render(): React.ReactNode {
     const options: IOptionProps[] = [
       { label: 'Class number: low to high', value: 'classNumber-asc' },
@@ -27,8 +28,6 @@ export class SelectListSortBy extends React.Component<ISelectListSortByProps, {}
       { label: 'Meeting time: PM-AM', value: 'time-desc' },
       { label: 'Seats available: low to high', value: 'seatsAvailable-asc' },
       { label: 'Seats available: high to low', value: 'seatsAvailable-desc' },
-      { label: 'Waitlist: low to high', value: 'seatsWaitlist-asc' },
-      { label: 'Waitlist: high to low', value: 'seatsWaitlist-desc' },
     ];
     return (
       <div id='form-sort'>
