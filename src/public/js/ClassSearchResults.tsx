@@ -196,33 +196,11 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     if (criteria === 'classNumber') {
       this.classes = Sort.sortByInt(this.classes, order, criteria);
     }
-    if (criteria === 'subject' || criteria === 'title' || criteria == 'instructorName') {
-      this.classes = Sort.sortByString(this.classes, order, criteria);
+    if (criteria === 'subject') {
+      this.classes = Sort.sortByInt(this.classes, order, 'catalogNo');
+      this.classes = Sort.sortByString(this.classes, order, 'subject');
     }
-    if (criteria === 'days') {
-      this.classes = Sort.sortByMeetingDays(this.classes, order);
-    }
-    if (criteria === 'time') {
-      this.classes = Sort.sortByMeetingTime(this.classes, order);
-    }
-    if (criteria === 'seatsAvailable') {
-      this.classes = Sort.sortBySeatsAvailable(this.classes, order);
-    }
-    if (criteria === 'seatsWaitlist') {
-      this.classes = Sort.sortBySeatsAvailableInWaitlist(this.classes, order);
-    }
-    this.setState({
-      sortBy: selectedFormat,
-    });
-  }
-
-  private onChangeOfSortBy(selectedFormat: string): void {
-    const order = selectedFormat.split('-').pop();
-    const criteria = selectedFormat.split('-').shift();
-    if (criteria === 'classNumber') {
-      this.classes = Sort.sortByInt(this.classes, order, criteria);
-    }
-    if (criteria === 'subject' || criteria === 'title' || criteria == 'instructorName') {
+    if (criteria === 'title' || criteria == 'instructorName') {
       this.classes = Sort.sortByString(this.classes, order, criteria);
     }
     if (criteria === 'days') {
