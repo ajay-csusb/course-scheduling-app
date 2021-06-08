@@ -207,7 +207,7 @@ function getFeeMarkup(): JSX.Element {
   if (ssrComponent === 'CLN') {
     return markup;
   }
-  if (fee !== '0.00' || fee.length === 0) {
+  if (fee !== '0.00' && fee.length !== 0) {
     markup = (
       <>
         <span> • Fee </span> ${fee}
@@ -369,6 +369,5 @@ function getWaitlistMarkup(): JSX.Element {
 }
 
 function isValidTerm(quarter: string): boolean {
-  const CurrMonth = new Date().getMonth() + 1;
-  return ClassSearchUtils.isValidTermRange(currentTerm, quarter, CurrMonth) === true;
+  return ClassSearchUtils.isValidTermRange(currentTerm, quarter);
 }

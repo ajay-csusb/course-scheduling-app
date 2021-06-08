@@ -1,12 +1,11 @@
 const { url, selectSubject, submit, clickAdditionalFilters } = require('./Utils');
 
 describe('Filter classes by instruction mode', function () {
-
   context('given a class search form', () => {
     context('when a user searches for online classes', () => {
       before(function () {
         cy.visit(url);
-        selectSubject("Administration");
+        selectSubject('Administration');
         clickAdditionalFilters();
         cy.get('.select-instruction-mode select').select('Online');
         submit();
@@ -18,10 +17,6 @@ describe('Filter classes by instruction mode', function () {
 
       it('should not show classes that have Instruction mode as Classroom', () => {
         cy.get('ul.course-desc li').should('not.contain', 'Classroom');
-      });
-
-      it('should not show classes that have Instruction mode as Hybrid', () => {
-        cy.get('ul.course-desc li').should('contain', 'Hybrid');
       });
     });
   });

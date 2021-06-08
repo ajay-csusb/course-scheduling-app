@@ -11,18 +11,17 @@ export function log(data: any): void {
 }
 
 export function logBigQuery(data: any): void {
-  let url = app.settings.appBaseUrl + 'export-analytics';
-  if (window.location.origin !== 'https://www.csusb.edu') {
-    url = app.settings.appDevBaseUrl + 'export-analytics';
+  let url = app.settings.appBaseUrl + '/export-analytics';
+  if (window.location.origin === 'https://www.csusb.edu') {
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
   }
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
 }
 
 function getUrl(): string {

@@ -11,12 +11,13 @@ import { app } from './ClassSearch.d';
 import * as _ from 'lodash';
 
 const searchURL = 'https://search.csusb.edu';
+
 export function fetchData(
-  url: string,
   callbackOnSuccess: (response: any) => void,
   callbackOnFailure: (error: string) => void
 ): void {
-  fetch(url, {
+  const proxyUrl = getProxyUrl('dropdown');
+  fetch(proxyUrl, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -373,32 +374,16 @@ export function isWaitlist(classes: IClass): boolean {
   );
 }
 
-export function isValidTermRange(currentTerm: string, classTerm: string, currentMonth: number): boolean {
+export function isValidTermRange(currentTerm: string, classTerm: string): boolean {
   const fullCurrentTermId = parseInt(currentTerm, 10);
   const fullClassTermId = parseInt(classTerm, 10);
-  const currentTermId = parseInt(currentTerm.charAt(currentTerm.length - 1), 10);
-  const classTermId = parseInt(classTerm.charAt(classTerm.length - 1), 10);
-
-  if (parseInt(currentTerm, 10) - parseInt(classTerm, 10) >= 6) {
-    return false;
-  }
-  if (currentTermId === classTermId) {
+  if (fullClassTermId >= fullCurrentTermId) {
     return true;
   }
-  if (currentMonth >= 10 && currentMonth <= 12) {
-    // If the current month is between October and December, then, ideally, the
-    // current term id should end in '2', '4', or maybe '6'.
-    if (currentTermId >= classTermId && fullCurrentTermId - fullClassTermId <= 4 && currentTermId < 8) {
-      return true;
-    }
-  }
-  if (currentTermId < currentMonth) {
+  if (fullCurrentTermId - fullClassTermId >= 6) {
     return false;
   }
-  if (currentTermId - currentMonth <= 5 && currentTermId - currentMonth > 0) {
-    return true;
-  }
-  return false;
+  return true;
 }
 
 export function getInstructorMarkup(_class: IClass): JSX.Element | null {
@@ -434,7 +419,8 @@ export function getTextbookUrl(_class: IClass): string {
 }
 
 export function exportToExcelPost(classes: IClass[]): Promise<Blob> {
-  const url = Utils.isProd() ? app.settings.excelUrl : app.settings.excelUrlDev;
+  const baseUrl = Utils.isProd() ? app.settings.appBaseUrl : app.settings.appDevBaseUrl;
+  const url = Utils.isProd() ? baseUrl + app.settings.excelUrl : baseUrl + app.settings.excelUrlDev;
   return fetch(url, {
     method: 'POST',
     headers: {
@@ -484,10 +470,8 @@ function getAllMeetingDays(classes: IClass) {
 export function getDuplicateClasses(classes: IClass[]): {} {
   const result: {} = {};
   const classNumbers: Map<number, number> = new Map();
-
   classes.forEach((_class: IClass) => {
     const cn = _class.classNumber;
-
     if (classNumbers.has(cn)) {
       const val = classNumbers.get(cn)!;
       classNumbers.set(cn, val + 1);
@@ -495,11 +479,9 @@ export function getDuplicateClasses(classes: IClass[]): {} {
       classNumbers.set(cn, 1);
     }
   });
-
   classes.forEach((_class: IClass) => {
     const cn = _class.classNumber;
     const cnMap = classNumbers.get(cn) ?? 0;
-
     if (classNumbers.has(cn) && cnMap >= 2) {
       if (result.hasOwnProperty(cn)) {
         result[cn].push(_class);
@@ -508,7 +490,6 @@ export function getDuplicateClasses(classes: IClass[]): {} {
       }
     }
   });
-
   return result;
 }
 
@@ -633,4 +614,32 @@ export function updateWinterTermLabelToWinterIntersession(terms: IOptionProps[])
     }
   }
   return terms;
+}
+
+export function updatePages(pages: JSX.Element[], currentPage: number): JSX.Element[] {
+  let startIndex = 0;
+  let lastIndex = pages.length >= 10 ? 10 : pages.length;
+  if (currentPage > 5) {
+    startIndex = currentPage - 5;
+    lastIndex = currentPage + 5;
+  }
+  if (currentPage > pages.length - 5) {
+    startIndex = Math.max(0, pages.length - 10);
+    lastIndex = pages.length;
+  }
+  return pages.length > 10 ? pages.slice(startIndex, lastIndex) : pages;
+}
+
+export function getProxyUrl(option = 'dropdown'): string {
+  if (window.location.host.includes('www.csusb.edu')) {
+    return option === 'dropdown'
+      ? app.settings.appBaseUrl + app.settings.proxyDropdownUrl.live
+      : app.settings.appBaseUrl + app.settings.proxyClassDataUrl.live;
+  }
+  if (window.location.host.includes('csusb')) {
+    return option === 'dropdown'
+      ? app.settings.appDevBaseUrl + app.settings.proxyDropdownUrl.dev
+      : app.settings.appDevBaseUrl + app.settings.proxyClassDataUrl.dev;
+  }
+  return option === 'dropdown' ? '/get-class-search-options' : '/get-class-search-data';
 }

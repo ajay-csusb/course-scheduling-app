@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { BigQuery, TableMetadata } from '@google-cloud/bigquery';
+import { BigQuery, BigQueryTimestamp, TableMetadata } from '@google-cloud/bigquery';
 import * as _ from 'lodash';
 import axios from 'axios';
 import { Class, IClass } from '../public/js/Class';
@@ -54,7 +54,7 @@ export async function index(req: Request, res: Response): Promise<Response> {
 
 async function exportClassSearchData() {
   classesCurrentTerm = [];
-  if (!isTermSet) await getTerms();
+  await getTerms();
   await createMissingTables();
   await getClassesForTerm();
   await insertClassesCurrentTerm();
@@ -150,6 +150,7 @@ async function createMissingTables(): Promise<any> {
       'sun: string,' +
       'textbook: string,' +
       'thurs: string,' +
+      'timestamp: timestamp,' +
       'title: string,' +
       'topic: string,' +
       'tues: string,' +
@@ -180,7 +181,6 @@ function getMissingTables(): Promise<any> {
     .getTables()
     .then(data => {
       const tables = data[0];
-
       tables.forEach(table => {
         tableNames.push(table.id!);
       });
@@ -199,10 +199,9 @@ function getMissingTables(): Promise<any> {
 
 async function getTerms(): Promise<any> {
   const axiosOptions = {
-    baseURL: 'http://webdx.csusb.edu',
-    url: '/ClassSchedule/v2/getDropDownList',
+    baseURL: app.settings.appBaseUrl,
+    url: app.settings.proxyDropdownUrl.live,
   };
-
   try {
     const data = await axios(axiosOptions);
     const jsonData = data.data.termList;
@@ -218,9 +217,9 @@ async function getTerms(): Promise<any> {
 async function getClassesForTerm(term: number = currentTerm): Promise<any> {
   try {
     const data = await axios({
-      baseURL: 'http://webdx.csusb.edu',
+      baseURL: app.settings.appBaseUrl,
       method: 'post',
-      url: '/ClassSchedule/v2/cs/list/search',
+      url: app.settings.proxyClassDataUrl.live,
       data: {
         strm: term,
         class_nbr: '',
@@ -244,18 +243,15 @@ async function getClassesForTerm(term: number = currentTerm): Promise<any> {
         acad_career: '',
       },
     });
-
     data.data.forEach((_class: any) => {
       const transformedClass = Class.transformToClass(_class);
-      transformedClass['date'] = bigqueryClient.datetime({
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-        day: new Date().getDate(),
-        hours: new Date().getHours(),
-        minutes: new Date().getMinutes(),
-        seconds: new Date().getSeconds(),
-      }).value;
-
+      transformedClass['timestamp'] = new BigQueryTimestamp(new Date()).value;
+      const formattedInstructorName =
+        transformedClass['instructorName'] !== ' ' ? transformedClass['instructorName'].split(', ') : '';
+      transformedClass['instructorName'] =
+        typeof formattedInstructorName === 'object'
+          ? `${formattedInstructorName[1]} ${formattedInstructorName[0]}`
+          : '';
       classesCurrentTerm.push(transformedClass);
     });
   } catch (error) {
@@ -274,6 +270,9 @@ function parseTerms(terms: any): object {
 }
 
 function setCurrentTerm(terms: any): void {
+  if (currentTerm !== app.settings.firstSemester && isTermSet) {
+    return;
+  }
   try {
     terms.forEach((term: any) => {
       if (term.displayed_FLAG === 'Y' && term.default_FLG === 'Y') {

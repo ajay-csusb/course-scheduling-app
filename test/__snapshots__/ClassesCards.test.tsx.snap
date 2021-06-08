@@ -175,7 +175,17 @@ exports[`Session codes label and markup when a class is on a regular schedule sh
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>
@@ -426,7 +436,17 @@ exports[`Session codes label and markup when a class is on a summer schedule sho
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>
@@ -683,7 +703,17 @@ exports[`building code and room number when a class does not have a building cod
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>
@@ -934,7 +964,17 @@ exports[`building code and room number when a class has a building code and room
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>
@@ -1185,7 +1225,17 @@ exports[`building code and room number when a class has a building code as TBD s
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>
@@ -1436,7 +1486,17 @@ exports[`building code and room number when a class has building code as OL shou
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>
@@ -3561,7 +3621,17 @@ exports[`when a class has low cost course material should display icon for low c
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>
@@ -3828,7 +3898,17 @@ exports[`when a class has zero cost course material should display icon for zero
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>
@@ -4095,7 +4175,17 @@ exports[`when a class has zero cost course materials and low cost course materia
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>
@@ -4367,7 +4457,17 @@ exports[`when a class is a fully online should not display the room number in th
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>
@@ -4612,7 +4712,17 @@ exports[`when a class results component is displayed should display the correct 
           className="course-status course-status--closed"
         >
           <span />
-          Closed
+        </div>
+        <div
+          className="course-availability"
+        >
+          Seats available:
+           
+          <span>
+            2
+             / 
+            30
+          </span>
         </div>
       </div>
     </div>

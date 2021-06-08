@@ -14,7 +14,6 @@ describe('Career levels component', () => {
     const careerLevelsOptionsState: ICareerLevels = {
       ugrd: false,
       pbac: false,
-      exed: false,
     }
     const careerLevelsComponentWrapper = mount(<CareerLevels
       careerLevelsOptions={careerLevelsOptionsState}

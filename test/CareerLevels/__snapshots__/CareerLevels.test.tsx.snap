@@ -4,7 +4,6 @@ exports[`Career levels component component snapshot 1`] = `
 <CareerLevels
   careerLevelsOptions={
     Object {
-      "exed": false,
       "pbac": false,
       "ugrd": false,
     }

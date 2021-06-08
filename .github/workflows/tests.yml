@@ -8,6 +8,9 @@ jobs:
       matrix:
         node-version: [12.x]
         containers: [1]
+    env:
+      WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD: ${{ secrets.WEBDX_DEPARTMENT_PEOPLE_CLIENT_PASSWORD }}
+      WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET: ${{ secrets.WEBDX_DEPARTMENT_PEOPLE_CLIENT_SECRET }}
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}

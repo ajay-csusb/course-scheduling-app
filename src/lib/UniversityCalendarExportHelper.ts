@@ -1,14 +1,11 @@
-import { BigQueryDatetime } from '@google-cloud/bigquery/build/src/bigquery';
+import { BigQueryDatetime, BigQueryTimestamp } from '@google-cloud/bigquery/build/src/bigquery';
 import axios, { AxiosRequestConfig } from 'axios';
 import { app } from '../public/js/ClassSearch.d';
-import { getBigQueryConnection } from './BigQueryHelper';
 
 export async function fetchUniversityCalendarData(): Promise<any> {
   let universityCalendarData: [] = [];
   const url =
-    process.env && process.env.NODE_ENV === 'production'
-      ? app.settings.getBaseUrl.live
-      : app.settings.getBaseUrl.dev;
+    process.env && process.env.NODE_ENV === 'production' ? app.settings.getBaseUrl.live : app.settings.getBaseUrl.dev;
   const axiosOptions: AxiosRequestConfig = {
     baseURL: url,
     url: '/university-calendar-export?_format=json',
@@ -16,7 +13,11 @@ export async function fetchUniversityCalendarData(): Promise<any> {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-  }
+    auth: {
+      username: process.env.DRUPAL_USERNAME ?? '',
+      password: process.env.DRUPAL_PASSWORD ?? '',
+    },
+  };
   console.log('Fetching university calendar data...');
   return axios(axiosOptions)
     .then((response: object) => {
@@ -39,23 +40,11 @@ function processUniversityCalendarData(data: []): any {
   return universityCalendarData;
 }
 
-function getCurrentTime(): any {
-  const bigqueryClient = getBigQueryConnection()
-  return bigqueryClient.datetime({
-    year: new Date().getFullYear(),
-    month: new Date().getMonth() + 1,
-    day: new Date().getDate(),
-    hours: new Date().getHours(),
-    minutes: new Date().getMinutes(),
-    seconds: new Date().getSeconds(),
-  }).value;
-}
-
 function updateDates(event: any) {
-  event['timestamp'] = new BigQueryDatetime(getCurrentTime()).value;
   let start_date, end_date;
-  [start_date, end_date] = event.date.split(" : ");
+  [start_date, end_date] = event.date.split(' : ');
   event['start_date'] = new BigQueryDatetime(start_date.trim()).value;
   event['end_date'] = end_date === undefined ? event['start_date'] : new BigQueryDatetime(end_date.trim()).value;
+  event['timestamp'] = new BigQueryTimestamp(new Date()).value;
   delete event['date'];
 }

@@ -19,29 +19,27 @@ describe('Filter by open classes', () => {
 });
 
 function getOpenClosedClassData() {
+  const currentTerm = app.state.currentTerm;
   const openClasses: IClass = TestUtils.copyObject(classJson);
   openClasses.enrollmentStatus = 'Open';
   openClasses.subject = 'BIOL';
-  openClasses.quarter = app.state.currentTerm.toString();
+  openClasses.quarter = currentTerm.toString();
   const closedClasses: IClass = TestUtils.copyObject(classJson);
   closedClasses.enrollmentStatus = 'Closed';
-  const openClassCurrTerm: IClass = TestUtils.copyObject(classJson);
-  openClassCurrTerm.enrollmentStatus = 'Open';
-  openClassCurrTerm.quarter = '2208';
-  openClassCurrTerm.subject = 'BIOL';
   const openClassPrevTerm: IClass = TestUtils.copyObject(classJson);
   openClassPrevTerm.enrollmentStatus = 'Open';
-  openClassPrevTerm.quarter = '2206';
+  openClassPrevTerm.quarter = (currentTerm - 2).toString();
+  openClassPrevTerm.subject = 'BIOL';
   const inactiveClass: IClass = TestUtils.copyObject(classJson);
-  inactiveClass.classStatus = 'Closed';
+  inactiveClass.classStatus = 'Cancelled';
 
   return [
     [[openClasses, closedClasses], false, 2],
     [[openClasses, closedClasses], true, 1],
-    [[openClassCurrTerm, openClassPrevTerm], true, 1],
+    [[openClasses, openClassPrevTerm], true, 2],
     [[openClasses, inactiveClass], true, 1],
     [[closedClasses, inactiveClass], true, 0],
-    [[openClassCurrTerm, inactiveClass], true, 1],
-    [[openClassPrevTerm, inactiveClass], true, 0],
+    [[openClasses, inactiveClass], true, 1],
+    [[openClassPrevTerm, inactiveClass], true, 1],
   ];
 }

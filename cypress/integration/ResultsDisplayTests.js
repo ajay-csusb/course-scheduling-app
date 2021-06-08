@@ -13,15 +13,12 @@ describe('Class information displays accurate data', function () {
     });
 
     it('should display the tabs', () => {
-      cy.get('.bp3-tabs')
-        .should('contain', 'List')
-        .should('contain', 'Table');
+      cy.get('.bp3-tabs').should('contain', 'List').should('contain', 'Table');
     });
 
     it('should show Export to Excel link', () => {
-      cy.get('#export-to-excel')
-        .should('contain', 'Export to Excel')
+      cy.get('#bp3-tab-title_display-format-tabs_table').click();
+      cy.get('#export-to-excel').should('contain', 'Export to Excel');
     });
   });
-
 });

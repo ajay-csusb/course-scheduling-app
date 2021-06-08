@@ -96,5 +96,20 @@ exports[`Export to Excel component snapshot 1`] = `
       },
     ]
   }
-/>
+>
+  <div
+    className="text-align-right"
+  >
+    <button
+      className="btn-utility"
+      id="export-to-excel"
+      onClick={[Function]}
+    >
+      <i
+        className="fas fa-file-download"
+      />
+      Export to Excel
+    </button>
+  </div>
+</ExportToExcel>
 `;

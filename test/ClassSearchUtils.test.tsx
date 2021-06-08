@@ -8,6 +8,7 @@ import { TestUtils } from './TestUtils';
 import { GeCourseAttribute } from '../src/public/js/GeCourseAttribute';
 import { IClass } from '../src/public/js/Class';
 import { IOptionProps } from '@blueprintjs/core';
+import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -180,7 +181,7 @@ describe('fetch parameters', () => {
 
   test('fetch is called with correct URL on page load', () => {
     shallow(<ClassSearchContainer />);
-    expect(fetchMock.lastUrl()).toMatch(new RegExp('https://webdx.csusb.edu/ClassSchedule/v2/getDropDownList'));
+    expect(fetchMock.lastUrl()).toMatch(new RegExp('/get-class-search-options'));
   });
 
   describe('when subject is updated', () => {
@@ -641,7 +642,6 @@ describe('when a user performs a search', () => {
       expect(classes).toHaveLength(2);
     });
   });
-  
 });
 
 describe('when multiple classes are displayed in results', () => {
@@ -954,79 +954,35 @@ describe('GE class attribute', () => {
   });
 });
 
-describe('Class status', () => {
-  describe('Given the current term as 0008', () => {
+describe('valid term range', () => {
+  describe('given the current term as 0008', () => {
     describe('when the user search for a class from term 0002', () => {
       it('should return false', () => {
-        expect(ClassSearchUtils.isValidTermRange('0008', '0002', 8)).toBeFalsy();
+        expect(ClassSearchUtils.isValidTermRange('0008', '0002')).toBeFalsy();
       });
     });
 
     describe('when the user search for a class from term 0008', () => {
       it('should return true', () => {
-        expect(ClassSearchUtils.isValidTermRange('0008', '0008', 8)).toBeTruthy();
+        expect(ClassSearchUtils.isValidTermRange('0008', '0008')).toBeTruthy();
       });
     });
 
     describe('when the user search for a class from term 0006', () => {
-      describe('and the current month is April', () => {
-        it('should return true', () => {
-          expect(ClassSearchUtils.isValidTermRange('0008', '0006', 4)).toBeTruthy();
-        });
-      });
-      describe('and the current month is September', () => {
-        it('should return false', () => {
-          expect(ClassSearchUtils.isValidTermRange('0008', '0006', 9)).toBeFalsy();
-        });
+      it('should return true', () => {
+        expect(ClassSearchUtils.isValidTermRange('0008', '0006')).toBeTruthy();
       });
     });
 
-    describe('when a user searches for a class from term 004', () => {
-      describe('and the current month is March', () => {
-        it('should return true', () => {
-          expect(ClassSearchUtils.isValidTermRange('008', '004', 3)).toBeTruthy();
-        });
-      });
-      describe('and the current month is December', () => {
-        it('should return false', () => {
-          expect(ClassSearchUtils.isValidTermRange('008', '004', 12)).toBeFalsy();
-        });
-      });
-    });
-  });
-
-  describe('Given the current term as 002', () => {
-    describe('when a user searches for class from term 008', () => {
-      describe('and the current month is December', () => {
-        it('should return false', () => {
-          expect(ClassSearchUtils.isValidTermRange('002', '008', 12)).toBeFalsy();
-        });
-      });
-    });
-  });
-
-  describe('Given the current term as 004', () => {
-    describe('when the user searches for a class from term 002', () => {
-      describe('and the current month is March', () => {
-        it('should return false', () => {
-          expect(ClassSearchUtils.isValidTermRange('004', '002', 4)).toBeFalsy();
-        });
+    describe('when a user searches for a class from term 0004', () => {
+      it('should return true', () => {
+        expect(ClassSearchUtils.isValidTermRange('0008', '0004')).toBeTruthy();
       });
     });
 
-    describe('when the user searches for a class from term 002', () => {
-      describe('and the current month is October', () => {
-        it('should return true', () => {
-          expect(ClassSearchUtils.isValidTermRange('004', '002', 10)).toBeTruthy();
-        });
-      });
-    });
-
-    describe('when the user searches for a class from term 004', () => {
-      describe('and the current month is December', () => {
-        it('should return true', () => {
-          expect(ClassSearchUtils.isValidTermRange('004', '004', 12)).toBeTruthy();
-        });
+    describe('when a user searches for class from term 0012', () => {
+      it('should return true', () => {
+        expect(ClassSearchUtils.isValidTermRange('0008', '0012')).toBeTruthy();
       });
     });
   });
@@ -1432,3 +1388,30 @@ test('updateWinterTermToWinterIntersession', () => {
   expect(result[4].label).toEqual('Winter 1898');
   expect(result[5].label).toEqual('Winter 1897');
 });
+
+describe.each(getPagerData())('updatePages(%p, %d)', (pager, currentPage, expected) => {
+  const result = ClassSearchUtils.updatePages(pager, currentPage);
+
+  it(`should return ${expected}`, () => {
+    expect(result).toEqual(expected);
+  });
+});
+
+function getPagerData() {
+  const pager = [];
+  for (let i = 1; i < 102; i++) {
+    pager.push(i);
+  }
+  return [
+    [pager, 1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
+    [pager, 6, [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]],
+    [pager, 95, [91, 92, 93, 94, 95, 96, 97, 98, 99, 100]],
+    [pager, 101, [92, 93, 94, 95, 96, 97, 98, 99, 100, 101]],
+    [pager, 0, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
+    [pager, 102, [92, 93, 94, 95, 96, 97, 98, 99, 100, 101]],
+    [pager.slice(0, 5), 1, [1, 2, 3, 4, 5]],
+    [pager.slice(0, 5), 5, [1, 2, 3, 4, 5]],
+    [pager.slice(0, 8), 4, [1, 2, 3, 4, 5, 6, 7, 8]],
+    [pager.slice(0, 8), 8, [1, 2, 3, 4, 5, 6, 7, 8]],
+  ];
+}

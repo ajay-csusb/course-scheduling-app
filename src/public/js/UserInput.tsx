@@ -18,6 +18,7 @@ export class UserInput {
   private openClassesStatus: boolean;
   private careerLevelsStatus: ICareerLevels;
   private courseLevelsStatus: ICourseLevels;
+  private pageNumber: number;
 
   constructor() {
     this.campus = '';
@@ -56,6 +57,7 @@ export class UserInput {
       6000: false,
       7000: false,
     };
+    this.pageNumber = 1;
   }
 
   public getCampus(): string {
@@ -183,6 +185,10 @@ export class UserInput {
     return this.day;
   }
 
+  public getPageNumber(): number {
+    return this.pageNumber;
+  }
+
   public setMeetingDay(meetingDay: IMeetingDate): void {
     this.day = meetingDay;
   }
@@ -241,5 +247,9 @@ export class UserInput {
 
   public setCourseLevelsOptionsStatus(status: ICourseLevels): void {
     this.courseLevelsStatus = status;
+  }
+
+  public setPageNumber(pageNumber: number): void {
+    this.pageNumber = pageNumber;
   }
 }
