@@ -127,8 +127,10 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     }
     return (
       <>
-        {resultsLimitComponent}
-        {sortByComponent}
+        <div className="filter-group">
+          {resultsLimitComponent}
+          {sortByComponent}
+        </div>
         {exportToExcelComponent}
         {tabsComponent}
         {paginationComponent}
