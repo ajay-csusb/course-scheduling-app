@@ -16,7 +16,7 @@ export default class SelectListResultsOptions extends Component<ISelectListResul
 
   public render(): React.ReactNode {
     return (
-      <div className="show-dropdown text-align-right">
+      <div className="show-dropdown">
         <Label htmlFor="results-options">Items Per Page</Label>
         <HTMLSelect
           id="results-options"

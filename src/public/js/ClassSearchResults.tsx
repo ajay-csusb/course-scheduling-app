@@ -141,8 +141,10 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     }
     return (
       <>
-        {resultsLimitComponent}
-        {sortByComponent}
+        <div className="filter-group">
+          {resultsLimitComponent}
+          {sortByComponent}
+        </div>
         {exportToExcelComponent}
         {tabsComponent}
         {paginationComponent}
@@ -210,7 +212,11 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     if (criteria === 'classNumber') {
       this.classes = Sort.sortByInt(this.classes, order, criteria);
     }
-    if (criteria === 'subject' || criteria === 'title' || criteria == 'instructorName') {
+    if (criteria === 'subject') {
+      this.classes = Sort.sortByInt(this.classes, order, 'catalogNo');
+      this.classes = Sort.sortByString(this.classes, order, 'subject');
+    }
+    if (criteria === 'title' || criteria == 'instructorName') {
       this.classes = Sort.sortByString(this.classes, order, criteria);
     }
     if (criteria === 'days') {

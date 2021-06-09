@@ -88,225 +88,251 @@ exports[`markup HTML markup of the results component 1`] = `
        classes found
     </p>
     <div
-      className="form-controls"
+      className="filter-group"
     >
-      <SelectListSortBy
-        onChangeOfSortBy={[Function]}
-        sortBy="catalogNo"
+      <div
+        className="form-controls"
       >
-        <div
-          id="form-sort"
+        <SelectListSortBy
+          onChangeOfSortBy={[Function]}
+          sortBy="catalogNo"
         >
-          <Component
-            htmlFor="sort by"
+          <div
+            id="form-sort"
           >
-            <label
-              className="bp3-label"
+            <Component
               htmlFor="sort by"
             >
-              Sort By
-            </label>
-          </Component>
-          <HTMLSelect
-            className="sort-by-select"
-            onChange={[Function]}
-            options={
-              Array [
-                Object {
-                  "label": "Class number: low to high",
-                  "value": "classNumber-asc",
-                },
-                Object {
-                  "label": "Class number: high to low",
-                  "value": "classNumber-desc",
-                },
-                Object {
-                  "label": "Subject: ascending",
-                  "value": "subject-asc",
-                },
-                Object {
-                  "label": "Subject: descending",
-                  "value": "subject-desc",
-                },
-                Object {
-                  "label": "Class name: ascending",
-                  "value": "title-asc",
-                },
-                Object {
-                  "label": "Class name: descending",
-                  "value": "title-desc",
-                },
-                Object {
-                  "label": "Instructor: ascending",
-                  "value": "instructorName-asc",
-                },
-                Object {
-                  "label": "Instructor: descending",
-                  "value": "instructorName-desc",
-                },
-                Object {
-                  "label": "Meeting days: A-Z",
-                  "value": "days-asc",
-                },
-                Object {
-                  "label": "Meeting days: Z-A",
-                  "value": "days-desc",
-                },
-                Object {
-                  "label": "Meeting time: AM-PM",
-                  "value": "time-asc",
-                },
-                Object {
-                  "label": "Meeting time: PM-AM",
-                  "value": "time-desc",
-                },
-                Object {
-                  "label": "Seats available: low to high",
-                  "value": "seatsAvailable-asc",
-                },
-                Object {
-                  "label": "Seats available: high to low",
-                  "value": "seatsAvailable-desc",
-                },
-              ]
-            }
-            value="catalogNo"
-          >
-            <div
-              className="bp3-html-select sort-by-select"
+              <label
+                className="bp3-label"
+                htmlFor="sort by"
+              >
+                Sort By
+              </label>
+            </Component>
+            <HTMLSelect
+              className="sort-by-select"
+              onChange={[Function]}
+              options={
+                Array [
+                  Object {
+                    "label": "Class number: low to high",
+                    "value": "classNumber-asc",
+                  },
+                  Object {
+                    "label": "Class number: high to low",
+                    "value": "classNumber-desc",
+                  },
+                  Object {
+                    "label": "Subject: ascending",
+                    "value": "subject-asc",
+                  },
+                  Object {
+                    "label": "Subject: descending",
+                    "value": "subject-desc",
+                  },
+                  Object {
+                    "label": "Class name: ascending",
+                    "value": "title-asc",
+                  },
+                  Object {
+                    "label": "Class name: descending",
+                    "value": "title-desc",
+                  },
+                  Object {
+                    "label": "Instructor: ascending",
+                    "value": "instructorName-asc",
+                  },
+                  Object {
+                    "label": "Instructor: descending",
+                    "value": "instructorName-desc",
+                  },
+                  Object {
+                    "label": "Meeting days: A-Z",
+                    "value": "days-asc",
+                  },
+                  Object {
+                    "label": "Meeting days: Z-A",
+                    "value": "days-desc",
+                  },
+                  Object {
+                    "label": "Meeting time: AM-PM",
+                    "value": "time-asc",
+                  },
+                  Object {
+                    "label": "Meeting time: PM-AM",
+                    "value": "time-desc",
+                  },
+                  Object {
+                    "label": "Seats available: low to high",
+                    "value": "seatsAvailable-asc",
+                  },
+                  Object {
+                    "label": "Seats available: high to low",
+                    "value": "seatsAvailable-desc",
+                  },
+                  Object {
+                    "label": "Waitlist: low to high",
+                    "value": "seatsWaitlist-asc",
+                  },
+                  Object {
+                    "label": "Waitlist: high to low",
+                    "value": "seatsWaitlist-desc",
+                  },
+                ]
+              }
+              value="catalogNo"
             >
-              <select
-                multiple={false}
-                onChange={[Function]}
-                value="catalogNo"
+              <div
+                className="bp3-html-select sort-by-select"
               >
-                <option
-                  key="classNumber-asc"
-                  label="Class number: low to high"
-                  value="classNumber-asc"
+                <select
+                  multiple={false}
+                  onChange={[Function]}
+                  value="catalogNo"
                 >
-                  Class number: low to high
-                </option>
-                <option
-                  key="classNumber-desc"
-                  label="Class number: high to low"
-                  value="classNumber-desc"
-                >
-                  Class number: high to low
-                </option>
-                <option
-                  key="subject-asc"
-                  label="Subject: ascending"
-                  value="subject-asc"
-                >
-                  Subject: ascending
-                </option>
-                <option
-                  key="subject-desc"
-                  label="Subject: descending"
-                  value="subject-desc"
-                >
-                  Subject: descending
-                </option>
-                <option
-                  key="title-asc"
-                  label="Class name: ascending"
-                  value="title-asc"
-                >
-                  Class name: ascending
-                </option>
-                <option
-                  key="title-desc"
-                  label="Class name: descending"
-                  value="title-desc"
-                >
-                  Class name: descending
-                </option>
-                <option
-                  key="instructorName-asc"
-                  label="Instructor: ascending"
-                  value="instructorName-asc"
-                >
-                  Instructor: ascending
-                </option>
-                <option
-                  key="instructorName-desc"
-                  label="Instructor: descending"
-                  value="instructorName-desc"
-                >
-                  Instructor: descending
-                </option>
-                <option
-                  key="days-asc"
-                  label="Meeting days: A-Z"
-                  value="days-asc"
-                >
-                  Meeting days: A-Z
-                </option>
-                <option
-                  key="days-desc"
-                  label="Meeting days: Z-A"
-                  value="days-desc"
-                >
-                  Meeting days: Z-A
-                </option>
-                <option
-                  key="time-asc"
-                  label="Meeting time: AM-PM"
-                  value="time-asc"
-                >
-                  Meeting time: AM-PM
-                </option>
-                <option
-                  key="time-desc"
-                  label="Meeting time: PM-AM"
-                  value="time-desc"
-                >
-                  Meeting time: PM-AM
-                </option>
-                <option
-                  key="seatsAvailable-asc"
-                  label="Seats available: low to high"
-                  value="seatsAvailable-asc"
-                >
-                  Seats available: low to high
-                </option>
-                <option
-                  key="seatsAvailable-desc"
-                  label="Seats available: high to low"
-                  value="seatsAvailable-desc"
-                >
-                  Seats available: high to low
-                </option>
-              </select>
-              <Blueprint3.Icon
-                icon="double-caret-vertical"
-              >
-                <span
-                  className="bp3-icon bp3-icon-double-caret-vertical"
+                  <option
+                    key="classNumber-asc"
+                    label="Class number: low to high"
+                    value="classNumber-asc"
+                  >
+                    Class number: low to high
+                  </option>
+                  <option
+                    key="classNumber-desc"
+                    label="Class number: high to low"
+                    value="classNumber-desc"
+                  >
+                    Class number: high to low
+                  </option>
+                  <option
+                    key="subject-asc"
+                    label="Subject: ascending"
+                    value="subject-asc"
+                  >
+                    Subject: ascending
+                  </option>
+                  <option
+                    key="subject-desc"
+                    label="Subject: descending"
+                    value="subject-desc"
+                  >
+                    Subject: descending
+                  </option>
+                  <option
+                    key="title-asc"
+                    label="Class name: ascending"
+                    value="title-asc"
+                  >
+                    Class name: ascending
+                  </option>
+                  <option
+                    key="title-desc"
+                    label="Class name: descending"
+                    value="title-desc"
+                  >
+                    Class name: descending
+                  </option>
+                  <option
+                    key="instructorName-asc"
+                    label="Instructor: ascending"
+                    value="instructorName-asc"
+                  >
+                    Instructor: ascending
+                  </option>
+                  <option
+                    key="instructorName-desc"
+                    label="Instructor: descending"
+                    value="instructorName-desc"
+                  >
+                    Instructor: descending
+                  </option>
+                  <option
+                    key="days-asc"
+                    label="Meeting days: A-Z"
+                    value="days-asc"
+                  >
+                    Meeting days: A-Z
+                  </option>
+                  <option
+                    key="days-desc"
+                    label="Meeting days: Z-A"
+                    value="days-desc"
+                  >
+                    Meeting days: Z-A
+                  </option>
+                  <option
+                    key="time-asc"
+                    label="Meeting time: AM-PM"
+                    value="time-asc"
+                  >
+                    Meeting time: AM-PM
+                  </option>
+                  <option
+                    key="time-desc"
+                    label="Meeting time: PM-AM"
+                    value="time-desc"
+                  >
+                    Meeting time: PM-AM
+                  </option>
+                  <option
+                    key="seatsAvailable-asc"
+                    label="Seats available: low to high"
+                    value="seatsAvailable-asc"
+                  >
+                    Seats available: low to high
+                  </option>
+                  <option
+                    key="seatsAvailable-desc"
+                    label="Seats available: high to low"
+                    value="seatsAvailable-desc"
+                  >
+                    Seats available: high to low
+                  </option>
+                  <option
+                    key="seatsWaitlist-asc"
+                    label="Waitlist: low to high"
+                    value="seatsWaitlist-asc"
+                  >
+                    Waitlist: low to high
+                  </option>
+                  <option
+                    key="seatsWaitlist-desc"
+                    label="Waitlist: high to low"
+                    value="seatsWaitlist-desc"
+                  >
+                    Waitlist: high to low
+                  </option>
+                </select>
+                <Blueprint3.Icon
                   icon="double-caret-vertical"
                 >
-                  <svg
-                    data-icon="double-caret-vertical"
-                    height={16}
-                    viewBox="0 0 16 16"
-                    width={16}
+                  <span
+                    className="bp3-icon bp3-icon-double-caret-vertical"
+                    icon="double-caret-vertical"
                   >
-                    <desc>
-                      double-caret-vertical
-                    </desc>
-                    <path
-                      d="M5 7h6a1.003 1.003 0 00.71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 005 7zm6 2H5a1.003 1.003 0 00-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0011 9z"
-                      fillRule="evenodd"
-                      key="0"
-                    />
-                  </svg>
-                </span>
-              </Blueprint3.Icon>
-            </div>
-          </HTMLSelect>
-        </div>
-      </SelectListSortBy>
+                    <svg
+                      data-icon="double-caret-vertical"
+                      height={16}
+                      viewBox="0 0 16 16"
+                      width={16}
+                    >
+                      <desc>
+                        double-caret-vertical
+                      </desc>
+                      <path
+                        d="M5 7h6a1.003 1.003 0 00.71-1.71l-3-3C8.53 2.11 8.28 2 8 2s-.53.11-.71.29l-3 3A1.003 1.003 0 005 7zm6 2H5a1.003 1.003 0 00-.71 1.71l3 3c.18.18.43.29.71.29s.53-.11.71-.29l3-3A1.003 1.003 0 0011 9z"
+                        fillRule="evenodd"
+                        key="0"
+                      />
+                    </svg>
+                  </span>
+                </Blueprint3.Icon>
+              </div>
+            </HTMLSelect>
+          </div>
+        </SelectListSortBy>
+      </div>
     </div>
     <DisplayFormatTabs
       format="list"
