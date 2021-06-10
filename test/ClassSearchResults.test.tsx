@@ -394,6 +394,12 @@ describe('SelectListSortBy component', () => {
     expect(classSearchResultsWrapper.state('sortBy')).toEqual('foo');
   });
 
+  it('should update the currentPage props to 1 when a user selects an option', () => {
+    const classSearchResultsWrapper = mountClassSearchResultsComponent([baseClassJson, classJson]);
+    classSearchResultsWrapper.find('.sort-by-select > select').simulate('change', { target: { value: 'foo' } });
+    expect(classSearchResultsWrapper.props().onChangeOfPageNumber).toHaveBeenCalledWith(1);
+  });
+
 });
 
 describe('sorting behavior', () => {
