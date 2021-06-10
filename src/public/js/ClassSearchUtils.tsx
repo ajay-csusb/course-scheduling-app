@@ -161,10 +161,10 @@ export function getInstructionMode(classes: IClass): string {
     return 'Online Synchronous';
   }
   if (classes.instructionMode === 'CA') {
-    return 'Hybrid Classroom/face-to-face plus asynchronous online instruction';
+    return 'Hybrid Classroom/Face-to-face Plus Asynchronous Online Instruction';
   }
   if (classes.instructionMode === 'CS') {
-    return 'Hybrid Classroom/face-to-face plus synchronous online instruction';
+    return 'Hybrid Classroom/Face-to-face Plus Synchronous Online Instruction';
   }
   return 'N/A';
 }
