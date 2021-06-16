@@ -20,8 +20,8 @@ context('table format', () => {
       .should('contain', 'Building')
       .should('contain', 'Day(s)')
       .should('contain', 'Time')
-      .should('contain', 'Seats Available')
+      .should('contain', 'Enrollment')
+      .should('contain', 'Enrollment Capacity')
       .should('contain', 'Waitlist Seats')
-      .should('contain', 'Mode');
   });
 });
