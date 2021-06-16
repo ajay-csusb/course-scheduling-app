@@ -10,7 +10,7 @@ export function sortClasses(classes: IClass[], format: string): IClass[] {
   }
   if (criteria === 'subject') {
     sortedClasses = Sort.sortByInt(classes, order, 'catalogNo');
-    sortedClasses = Sort.sortByString(classes, order, 'subject');
+    sortedClasses = Sort.sortByString(sortedClasses, order, 'subject');
   }
   if (criteria === 'title' || criteria === 'instructorName') {
     sortedClasses = Sort.sortByString(classes, order, criteria);
