@@ -64,7 +64,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
           enableColumnResizing={false}
           getCellClipboardData={this.getCopiedData}
           bodyContextMenuRenderer={this.renderBodyMenu}
-          columnWidths={[100, 300, 80, 100, 70, 80, 150, 70, 70, 130, 100, 140, 90, 140, 70, 300, 110, 80, 80]}
+          columnWidths={[100, 300, 80, 100, 90, 80, 150, 70, 70, 130, 100, 140, 90, 140, 70, 300, 110, 80, 80]}
         >
           {columns}
         </Table>
