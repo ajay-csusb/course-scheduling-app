@@ -12,6 +12,7 @@ import {
 } from '@blueprintjs/table';
 import { Menu, MenuItem } from '@blueprintjs/core';
 import * as Sort from './Sort';
+
 export interface ITableDisplayProps {
   classes: IClass[];
 }
@@ -25,6 +26,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
     this.getCopiedData = this.getCopiedData.bind(this);
     this.renderBodyMenu = this.renderBodyMenu.bind(this);
   }
+
   public render(): JSX.Element {
     const innerColumns = [
       [this.subjectColumnHeader.bind(this), this.getSubject.bind(this)],
@@ -37,7 +39,8 @@ export class Grid extends React.Component<ITableDisplayProps> {
       [this.roomColumnHeader.bind(this), this.getRoom.bind(this)],
       [this.dayColumnHeader.bind(this), this.getDay.bind(this)],
       [this.timeColumnHeader.bind(this), this.getTime.bind(this)],
-      [this.seatsAvailableColumnHeader.bind(this), this.getSeatsAvailable.bind(this)],
+      [this.enrollmentColumnHeader.bind(this), this.getEnrollment.bind(this)],
+      [this.enrollmentCapacityColumnHeader.bind(this), this.getEnrollmentCapacity.bind(this)],
       [this.waitlistColumnHeader.bind(this), this.getWaitlist.bind(this)],
       [this.instructionModeColumnHeader.bind(this), this.getMode.bind(this)],
       [this.sessionCodeColumnHeader.bind(this), this.getSession.bind(this)],
@@ -48,13 +51,11 @@ export class Grid extends React.Component<ITableDisplayProps> {
     ];
     const columns = [];
     const heightVal = this.classes.length > 200 ? '500px' : '100%';
-
     for (const innerColumn of innerColumns) {
       columns.push(
         <Column key={innerColumn[0].name} columnHeaderCellRenderer={innerColumn[0]} cellRenderer={innerColumn[1]} />
       );
     }
-
     return (
       <div style={{ height: heightVal }}>
         <Table
@@ -63,7 +64,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
           enableColumnResizing={false}
           getCellClipboardData={this.getCopiedData}
           bodyContextMenuRenderer={this.renderBodyMenu}
-          columnWidths={[100, 300, 50, 70, 90, 30, 150, 70, 70, 130, 60, 70, 140, 70, 300, 110, 80, 80]}
+          columnWidths={[100, 300, 80, 100, 70, 80, 150, 70, 70, 130, 100, 140, 90, 140, 70, 300, 110, 80, 80]}
         >
           {columns}
         </Table>
@@ -123,8 +124,12 @@ export class Grid extends React.Component<ITableDisplayProps> {
     return <ColumnHeaderCell name={'Session'} menuRenderer={() => this.columnMenu('sessionCode')} />;
   }
 
-  private seatsAvailableColumnHeader() {
-    return <ColumnHeaderCell name={'Seats Available'} menuRenderer={() => this.columnMenu('enrolledTotal')} />;
+  private enrollmentColumnHeader() {
+    return <ColumnHeaderCell name={'Enrollment'} menuRenderer={() => this.columnMenu('enrolledTotal')} />;
+  }
+
+  private enrollmentCapacityColumnHeader() {
+    return <ColumnHeaderCell name={'Enrollment Capacity'} menuRenderer={() => this.columnMenu('enrolledCapacity')} />;
   }
 
   private waitlistColumnHeader() {
@@ -199,11 +204,8 @@ export class Grid extends React.Component<ITableDisplayProps> {
     this.forceUpdate();
   }
 
-  private sortSeatsAvailable(key: string, id: string) {
-    this.classes =
-      id === 'enrolledTotal'
-        ? Sort.sortBySeatsAvailable(this.classes, key)
-        : Sort.sortBySeatsAvailableInWaitlist(this.classes, key);
+  private sortWaitlistSeats(key: string) {
+    this.classes = Sort.sortBySeatsAvailableInWaitlist(this.classes, key);
     this.forceUpdate();
   }
 
@@ -212,6 +214,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
       key === 'asc' ? Sort.sortByBuildingNumber(this.classes, key) : Sort.sortByBuildingNumber(this.classes, key);
     this.forceUpdate();
   }
+
   private columnMenu(id: string = 'subject'): JSX.Element {
     let menuItems = <></>;
     const callbacks = {
@@ -273,18 +276,21 @@ export class Grid extends React.Component<ITableDisplayProps> {
       },
       enrolledTotal: {
         use_id: true,
-        cb: this.sortSeatsAvailable.bind(this),
+        cb: this.sortByNumber.bind(this),
+      },
+      enrolledCapacity: {
+        use_id: true,
+        cb: this.sortByNumber.bind(this),
       },
       waitlistTotal: {
-        use_id: true,
-        cb: this.sortSeatsAvailable.bind(this),
+        use_id: false,
+        cb: this.sortWaitlistSeats.bind(this),
       },
       fee: {
         use_id: true,
         cb: this.sortByNumber.bind(this),
       },
     };
-
     if (!callbacks[id].use_id) {
       menuItems = (
         <>
@@ -324,7 +330,6 @@ export class Grid extends React.Component<ITableDisplayProps> {
         </>
       );
     }
-
     return <Menu>{menuItems}</Menu>;
   }
 
@@ -379,9 +384,15 @@ export class Grid extends React.Component<ITableDisplayProps> {
     return <Cell>{this.getSessionUnformatted(rowIndex)}</Cell>;
   }
 
-  private getSeatsAvailable(rowIndex: number): JSX.Element {
+  private getEnrollment(rowIndex: number): JSX.Element {
     return (
-      <Cell tooltip={this.getSeatsAvailableUnformatted(rowIndex)}>{this.getSeatsAvailableUnformatted(rowIndex)}</Cell>
+      <Cell tooltip={this.getEnrollmentUnformatted(rowIndex)}>{this.getEnrollmentUnformatted(rowIndex)}</Cell>
+    );
+  }
+
+  private getEnrollmentCapacity(rowIndex: number): JSX.Element {
+    return (
+      <Cell tooltip={this.getEnrollmentCapacityUnformatted(rowIndex)}>{this.getEnrollmentCapacityUnformatted(rowIndex)}</Cell>
     );
   }
 
@@ -404,11 +415,9 @@ export class Grid extends React.Component<ITableDisplayProps> {
 
   private getFee(rowIndex: number): JSX.Element {
     const fee = this.getFeeUnformatted(rowIndex);
-
     if (fee !== '0.00') {
       return <Cell>${fee}</Cell>;
     }
-
     return <Cell />;
   }
 
@@ -463,10 +472,14 @@ export class Grid extends React.Component<ITableDisplayProps> {
     return ClassSearchUtils.getSessionCode(_class);
   }
 
-  private getSeatsAvailableUnformatted(rowIndex: number) {
+  private getEnrollmentUnformatted(rowIndex: number) {
     const _class: IClass = this.classes[rowIndex];
-    const noOfSeatsAvailable = ClassSearchUtils.getNoOfAvailableSeats(_class);
-    return `${noOfSeatsAvailable}/${_class.enrolledCapacity}`;
+    return _class.enrolledTotal.toString();
+  }
+
+  private getEnrollmentCapacityUnformatted(rowIndex: number) {
+    const _class: IClass = this.classes[rowIndex];
+    return _class.enrolledCapacity.toString();
   }
 
   private getWaitlistUnformatted(rowIndex: number) {
@@ -502,13 +515,14 @@ export class Grid extends React.Component<ITableDisplayProps> {
       7: 'buildingCode',
       8: 'meetingDays',
       9: 'meetingTime',
-      10: 'seats-available',
-      11: 'waitlist',
-      12: 'instructionMode',
-      13: 'sessionCode',
-      14: 'courseAttr',
-      15: 'campus',
-      16: 'fee',
+      10: 'enrolledTotal',
+      11: 'enrolledCapacity',
+      12: 'waitlist',
+      13: 'instructionMode',
+      14: 'sessionCode',
+      15: 'courseAttr',
+      16: 'campus',
+      17: 'fee',
     };
     return properties[colIndex];
   }
@@ -526,19 +540,16 @@ export class Grid extends React.Component<ITableDisplayProps> {
     if (columnIndex === 9) {
       return this.getTimeUnformatted(rowIndex);
     }
-    if (columnIndex === 10) {
-      return this.getSeatsAvailableUnformatted(rowIndex);
-    }
-    if (columnIndex === 11) {
+    if (columnIndex === 12) {
       return this.getWaitlistUnformatted(rowIndex);
     }
-    if (columnIndex === 12) {
+    if (columnIndex === 13) {
       return this.getModeUnformatted(rowIndex);
     }
-    if (columnIndex === 13) {
+    if (columnIndex === 14) {
       return this.getSessionUnformatted(rowIndex);
     }
-    if (columnIndex === 15) {
+    if (columnIndex === 16) {
       return this.getCampusUnformatted(rowIndex);
     }
     const key = this.getObjectKeyNameFromColumnIndex(columnIndex);
