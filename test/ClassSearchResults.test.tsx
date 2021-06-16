@@ -28,7 +28,7 @@ function mountClassSearchResultsComponent(results: IClass[], term: string = '219
   return mount(classSearchResultsComponent);
 }
 
-describe('Given a class search results component', () => { 
+describe('Given a class search results component', () => {
   beforeAll(() => {
     TestUtils.ajax();
   });
@@ -399,7 +399,6 @@ describe('SelectListSortBy component', () => {
     classSearchResultsWrapper.find('.sort-by-select > select').simulate('change', { target: { value: 'foo' } });
     expect(classSearchResultsWrapper.props().onChangeOfPageNumber).toHaveBeenCalledWith(1);
   });
-
 });
 
 describe('sorting behavior', () => {
@@ -494,7 +493,6 @@ describe('sorting behavior', () => {
     expect(classSearchResultsComponentWrapper.find(ClassesCards).at(0).html()).toMatch(/ACCT 101/);
     expect(classSearchResultsComponentWrapper.find(ClassesCards).at(1).html()).toMatch(/BIOL 102/);
   });
-
 });
 
 describe('markup', () => {
@@ -594,7 +592,7 @@ describe('pagination', () => {
       it('should display 30 classes in the result', () => {
         expect(classSearchResultsWrapper.find('.course')).toHaveLength(30);
       });
-      
+
       it('should display 7 pager links', () => {
         expect(classSearchResultsWrapper.find('.pagination li')).toHaveLength(7);
       });

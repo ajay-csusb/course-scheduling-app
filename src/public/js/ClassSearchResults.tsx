@@ -30,12 +30,10 @@ export interface IClassSearchResultsProps {
 }
 
 export class ClassSearchResults extends React.Component<IClassSearchResultsProps, IClassSearchResultsState> {
-  private noOfClasses: number;
   private classes: IClass[];
 
   constructor(props: IClassSearchResultsProps) {
     super(props);
-    this.noOfClasses = 0;
     this.classes = this.props.classes;
     this.state = {
       sortBy: 'catalogNo',
@@ -52,7 +50,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     this.props.onChangeOfLoadingMessage();
     return (
       <div id="class-search-results-component">
-        <p>{this.noOfClasses} classes found</p>
+        <p>{this.classes.length} classes found</p>
         {renderMarkup}
       </div>
     );
@@ -67,14 +65,8 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   private getClassesInListFormat(): JSX.Element[] {
     const duplicateClasses = getDuplicateClasses(this.props.classes);
     const duplicateClassIds = Object.keys(duplicateClasses).map(_classNumber => parseInt(_classNumber, 10));
-    this.noOfClasses = 0;
-    if (duplicateClassIds.length !== 0) {
-      this.classes = removeDuplicateClasses(this.classes, duplicateClassIds);
-      this.noOfClasses = this.classes.length;
-      return this.getClassesList(this.classes, duplicateClassIds, duplicateClasses);
-    }
-    this.noOfClasses = this.classes.length;
-    return this.getClassesList(this.classes);
+    this.classes = removeDuplicateClasses(this.classes, duplicateClassIds);
+    return this.getClassesList(this.classes, duplicateClassIds, duplicateClasses);
   }
 
   private getClassesInTableFormat(): JSX.Element {
@@ -86,7 +78,6 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     let classes: JSX.Element[] = [];
     if (classInfo.length !== 0) {
       classInfo.forEach((_class: IClass) => {
-        // @Todo Fix this. The number of duplicate classes should be separate from the actual number of classes.
         let component = <ClassesCards classes={_class} currentTerm={this.props.currentTerm} />;
         if (duplicateClassIds.includes(_class.classNumber)) {
           component = (
@@ -103,7 +94,9 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   }
 
   private getTotalNumberOfPages(): number {
-    return Math.ceil(this.noOfClasses / this.state.limit) === 1 ? 0 : Math.ceil(this.noOfClasses / this.state.limit);
+    return Math.ceil(this.classes.length / this.state.limit) === 1
+      ? 0
+      : Math.ceil(this.classes.length / this.state.limit);
   }
 
   private onChangeOfTab(tabValue: any): void {
@@ -120,7 +113,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
     const sortByComponent: JSX.Element = this.getSortByComponent();
     const exportToExcelComponent: JSX.Element = this.getExcelComponent();
     const resultsLimitComponent: JSX.Element = this.getSelectListResultsOptionsComponent();
-    if (this.noOfClasses === 0) {
+    if (this.classes.length === 0) {
       return <i>Try refining the search above to get more results</i>;
     }
     return (
@@ -158,7 +151,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
         onChangeOfPageNumber={this.onChangeOfPageNumber}
       />
     );
-    return this.noOfClasses > 30 && this.props.tab === 'list' && this.state.limit !== -1 ? pagination : <></>;
+    return this.classes.length > 30 && this.props.tab === 'list' && this.state.limit !== -1 ? pagination : <></>;
   }
 
   private getSortByComponent(): JSX.Element {
@@ -175,7 +168,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   }
 
   private getSelectListResultsOptionsComponent(): JSX.Element {
-    return this.props.tab === 'list' && this.noOfClasses > 30 ? (
+    return this.props.tab === 'list' && this.classes.length > 30 ? (
       <SelectListResultsOptions limit={this.state.limit} onChangeOfLimit={this.onChangeOfLimit} />
     ) : (
       <></>
@@ -188,7 +181,7 @@ export class ClassSearchResults extends React.Component<IClassSearchResultsProps
   }
 
   private onChangeOfSortBy(selectedFormat: string): void {
-    this.classes = sortClasses(this.classes, selectedFormat); 
+    this.classes = sortClasses(this.classes, selectedFormat);
     this.setState({
       sortBy: selectedFormat,
     });

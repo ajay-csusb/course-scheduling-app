@@ -102,9 +102,9 @@ describe('Instruction mode values', () => {
   describe('when the instruction mode is CA', () => {
     const caClasses = JSON.parse(JSON.stringify(classes));
     caClasses.instructionMode = 'CA';
-    it('should return Hybrid Classroom/face-to-face plus asynchronous online instruction', () => {
+    it('should return Hybrid Classroom/Face-to-face Plus Asynchronous Online Instruction', () => {
       expect(ClassSearchUtils.getInstructionMode(caClasses)).toEqual(
-        'Hybrid Classroom/face-to-face plus asynchronous online instruction'
+        'Hybrid Classroom/Face-to-face Plus Asynchronous Online Instruction'
       );
     });
   });
@@ -112,9 +112,9 @@ describe('Instruction mode values', () => {
   describe('when the instruction mode is CS', () => {
     const csClasses = JSON.parse(JSON.stringify(classes));
     csClasses.instructionMode = 'CS';
-    it('should return Hybrid Classroom/face-to-face plus synchronous online instruction', () => {
+    it('should return Hybrid Classroom/Face-to-face Plus Synchronous Online Instruction', () => {
       expect(ClassSearchUtils.getInstructionMode(csClasses)).toEqual(
-        'Hybrid Classroom/face-to-face plus synchronous online instruction'
+        'Hybrid Classroom/Face-to-face Plus Synchronous Online Instruction'
       );
     });
   });
