@@ -4,18 +4,26 @@ import Moment from 'moment';
 
 export function sortByString(classes: IClass[], key: string = 'asc', column: string = 'subject'): IClass[] {
   if (key === 'asc') {
-    classes.sort((a, b) => { return a[column].localeCompare(b[column]); });
+    classes.sort((a, b) => {
+      return a[column].localeCompare(b[column]);
+    });
   } else {
-    classes.sort((a, b) => { return b[column].localeCompare(a[column]); });
+    classes.sort((a, b) => {
+      return b[column].localeCompare(a[column]);
+    });
   }
   return classes;
 }
 
 export function sortByInt(classes: IClass[], key: string = 'asc', column: string = 'classSection'): IClass[] {
   if (key === 'asc') {
-    classes.sort((a, b) => { return (parseInt(a[column], 10) - parseInt(b[column], 10)); });
+    classes.sort((a, b) => {
+      return parseInt(a[column], 10) - parseInt(b[column], 10);
+    });
   } else {
-    classes.sort((a, b) => { return (parseInt(b[column], 10) - parseInt(a[column], 10)); });
+    classes.sort((a, b) => {
+      return parseInt(b[column], 10) - parseInt(a[column], 10);
+    });
   }
   return classes;
 }
@@ -59,11 +67,11 @@ export function sortByInstructionMode(classes: IClass[], key: string = 'asc'): I
 }
 
 export function sortByMeetingTime(classes: IClass[], key: string = 'asc'): IClass[] {
-  const classesHavingStartTime = classes.filter((_class) => {
-    return (_class.classStartTime.length !== 0);
+  const classesHavingStartTime = classes.filter(_class => {
+    return _class.classStartTime.length !== 0;
   });
-  const classesHavingNoStartTime = classes.filter((_class) => {
-    return (_class.classStartTime.length === 0);
+  const classesHavingNoStartTime = classes.filter(_class => {
+    return _class.classStartTime.length === 0;
   });
   if (key === 'asc') {
     classesHavingStartTime.sort((a, b) => {
@@ -141,5 +149,22 @@ export function sortByBuildingNumber(classes: IClass[], key: string = 'asc'): IC
     });
   }
 
+  return classes;
+}
+
+export function sortByFee(classes: IClass[], key: string = 'asc'): IClass[] {
+  if (key === 'asc') {
+    classes.sort((a, b) => {
+      let aFee = a.fee.length === 0 ? 0 : parseFloat(a.fee);
+      let bFee = b.fee.length === 0 ? 0 : parseFloat(b.fee);
+      return aFee - bFee;
+    });
+  } else {
+    classes.sort((a, b) => {
+      let aFee = a.fee.length === 0 ? 0 : parseFloat(a.fee);
+      let bFee = b.fee.length === 0 ? 0 : parseFloat(b.fee);
+      return bFee - aFee;
+    });
+  }
   return classes;
 }

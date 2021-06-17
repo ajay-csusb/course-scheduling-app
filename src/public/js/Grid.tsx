@@ -215,6 +215,11 @@ export class Grid extends React.Component<ITableDisplayProps> {
     this.forceUpdate();
   }
 
+  private sortFee(key: string) {
+    this.classes == Sort.sortByFee(this.classes, key);
+    this.forceUpdate();
+  }
+
   private columnMenu(id: string = 'subject'): JSX.Element {
     let menuItems = <></>;
     const callbacks = {
@@ -288,7 +293,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
       },
       fee: {
         use_id: true,
-        cb: this.sortByNumber.bind(this),
+        cb: this.sortFee.bind(this),
       },
     };
     if (!callbacks[id].use_id) {
@@ -372,7 +377,9 @@ export class Grid extends React.Component<ITableDisplayProps> {
 
   private getInstructor(rowIndex: number): JSX.Element {
     const _class: IClass = this.classes[rowIndex];
-    const instructorName = ClassSearchUtils.getInstructorMarkup(_class) ? ClassSearchUtils.getInstructorMarkup(_class) : 'TBD';
+    const instructorName = ClassSearchUtils.getInstructorMarkup(_class)
+      ? ClassSearchUtils.getInstructorMarkup(_class)
+      : 'TBD';
     return <Cell tooltip={_class.instructorName}>{instructorName}</Cell>;
   }
 
@@ -385,14 +392,14 @@ export class Grid extends React.Component<ITableDisplayProps> {
   }
 
   private getEnrollment(rowIndex: number): JSX.Element {
-    return (
-      <Cell tooltip={this.getEnrollmentUnformatted(rowIndex)}>{this.getEnrollmentUnformatted(rowIndex)}</Cell>
-    );
+    return <Cell tooltip={this.getEnrollmentUnformatted(rowIndex)}>{this.getEnrollmentUnformatted(rowIndex)}</Cell>;
   }
 
   private getEnrollmentCapacity(rowIndex: number): JSX.Element {
     return (
-      <Cell tooltip={this.getEnrollmentCapacityUnformatted(rowIndex)}>{this.getEnrollmentCapacityUnformatted(rowIndex)}</Cell>
+      <Cell tooltip={this.getEnrollmentCapacityUnformatted(rowIndex)}>
+        {this.getEnrollmentCapacityUnformatted(rowIndex)}
+      </Cell>
     );
   }
 
@@ -415,7 +422,7 @@ export class Grid extends React.Component<ITableDisplayProps> {
 
   private getFee(rowIndex: number): JSX.Element {
     const fee = this.getFeeUnformatted(rowIndex);
-    if (fee !== '0.00') {
+    if (fee !== '0.00' && fee.length !== 0) {
       return <Cell>${fee}</Cell>;
     }
     return <Cell />;
