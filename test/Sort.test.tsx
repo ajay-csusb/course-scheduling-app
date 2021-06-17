@@ -5,6 +5,7 @@ import { TestUtils } from './TestUtils';
 describe('sorting classes', () => {
   let bioClass;
   let acctClass;
+
   beforeEach(() => {
     acctClass = TestUtils.copyObject(classJson);
     acctClass.subject = 'ACCT';
@@ -56,7 +57,7 @@ describe('sorting classes', () => {
     });
 
     test('sort by class number', () => {
-      const classNumberSortClasses = Sort.sortByInt([acctClass, bioClass], 'asc', 'classNumber'); 
+      const classNumberSortClasses = Sort.sortByInt([acctClass, bioClass], 'asc', 'classNumber');
       expect(classNumberSortClasses[0].classNumber).toEqual(100);
       expect(classNumberSortClasses[1].classNumber).toEqual(200);
     });
@@ -82,7 +83,12 @@ describe('sorting classes', () => {
       acctClassHybrid.instructionMode = 'HC';
       const acctClassCourseMatch = TestUtils.copyObject(classJson);
       acctClassCourseMatch.instructionMode = 'CM';
-      const sortByInstructionMode = Sort.sortByInstructionMode([acctClassHybrid, acctClassCourseMatch, acctClass, bioClass]);
+      const sortByInstructionMode = Sort.sortByInstructionMode([
+        acctClassHybrid,
+        acctClassCourseMatch,
+        acctClass,
+        bioClass,
+      ]);
       // P maps to classroom
       expect(sortByInstructionMode[0].instructionMode).toEqual('P');
       // HC maps to Hybrid
@@ -92,12 +98,16 @@ describe('sorting classes', () => {
       // OL maps to Online, Coursematch
       expect(sortByInstructionMode[3].instructionMode).toEqual('CM');
     });
+
     test('descending sort', () => {
       const acctClassHybrid = TestUtils.copyObject(classJson);
       acctClassHybrid.instructionMode = 'HC';
       const acctClassCourseMatch = TestUtils.copyObject(classJson);
       acctClassCourseMatch.instructionMode = 'CM';
-      const sortByInstructionMode = Sort.sortByInstructionMode([acctClassHybrid, acctClassCourseMatch, acctClass, bioClass], 'desc');
+      const sortByInstructionMode = Sort.sortByInstructionMode(
+        [acctClassHybrid, acctClassCourseMatch, acctClass, bioClass],
+        'desc'
+      );
       expect(sortByInstructionMode[0].instructionMode).toEqual('CM');
       expect(sortByInstructionMode[1].instructionMode).toEqual('OL');
       expect(sortByInstructionMode[2].instructionMode).toEqual('HC');
@@ -109,6 +119,7 @@ describe('sorting classes', () => {
     let acctClassBeforeNoon;
     let acctClassAfterNoon;
     let acctClassWithNoStartTime;
+
     beforeEach(() => {
       acctClassBeforeNoon = TestUtils.copyObject(classJson);
       acctClassBeforeNoon.classStartTime = '08:00 AM';
@@ -117,8 +128,13 @@ describe('sorting classes', () => {
       acctClassWithNoStartTime = TestUtils.copyObject(classJson);
       acctClassWithNoStartTime.classStartTime = '';
     });
+
     test('default behavior', () => {
-      const sortClassesByMeetingTime = Sort.sortByMeetingTime([acctClassWithNoStartTime, acctClassAfterNoon, acctClassBeforeNoon]);
+      const sortClassesByMeetingTime = Sort.sortByMeetingTime([
+        acctClassWithNoStartTime,
+        acctClassAfterNoon,
+        acctClassBeforeNoon,
+      ]);
       expect(sortClassesByMeetingTime[0].classStartTime).toEqual('08:00 AM');
       expect(sortClassesByMeetingTime[1].classStartTime).toEqual('06:00 PM');
       expect(sortClassesByMeetingTime[2].classStartTime).toEqual('');
@@ -127,19 +143,25 @@ describe('sorting classes', () => {
     test('default behavior with times before noon', () => {
       const acctClassBeforeNoon2 = TestUtils.copyObject(acctClassBeforeNoon);
       acctClassBeforeNoon2.classStartTime = '10:00 AM';
-      const sortClassesByMeetingTime = Sort.sortByMeetingTime([acctClassWithNoStartTime, acctClassBeforeNoon, acctClassBeforeNoon2]);
+      const sortClassesByMeetingTime = Sort.sortByMeetingTime([
+        acctClassWithNoStartTime,
+        acctClassBeforeNoon,
+        acctClassBeforeNoon2,
+      ]);
       expect(sortClassesByMeetingTime[0].classStartTime).toEqual('08:00 AM');
       expect(sortClassesByMeetingTime[1].classStartTime).toEqual('10:00 AM');
       expect(sortClassesByMeetingTime[2].classStartTime).toEqual('');
     });
 
     test('descending sort', () => {
-      const sortClassesByMeetingTime = Sort.sortByMeetingTime([acctClassWithNoStartTime, acctClassBeforeNoon, acctClassAfterNoon], 'desc');
+      const sortClassesByMeetingTime = Sort.sortByMeetingTime(
+        [acctClassWithNoStartTime, acctClassBeforeNoon, acctClassAfterNoon],
+        'desc'
+      );
       expect(sortClassesByMeetingTime[0].classStartTime).toEqual('06:00 PM');
       expect(sortClassesByMeetingTime[1].classStartTime).toEqual('08:00 AM');
       expect(sortClassesByMeetingTime[2].classStartTime).toEqual('');
     });
-
   });
 
   describe('sort by meeting day', () => {
@@ -154,6 +176,7 @@ describe('sorting classes', () => {
     const acctClassSat = TestUtils.copyObject(copyOfClassJson);
     const acctClassSun = TestUtils.copyObject(copyOfClassJson);
     let allClasses = [];
+
     beforeEach(() => {
       acctClassMon.mon = 'Y';
       acctClassTue.tues = 'Y';
@@ -162,16 +185,9 @@ describe('sorting classes', () => {
       acctClassFri.fri = 'Y';
       acctClassSat.sat = 'Y';
       acctClassSun.sun = 'Y';
-      allClasses = [
-        acctClassSun,
-        acctClassSat,
-        acctClassFri,
-        acctClassWed,
-        acctClassMon,
-        acctClassThur,
-        acctClassTue,
-      ];
+      allClasses = [acctClassSun, acctClassSat, acctClassFri, acctClassWed, acctClassMon, acctClassThur, acctClassTue];
     });
+
     test('default sorting behavior', () => {
       const sortClassesByMeetingDates = Sort.sortByMeetingDays([acctClassMon, acctClassTue]);
       expect(sortClassesByMeetingDates[0].mon).toEqual('Y');
@@ -210,6 +226,7 @@ describe('sorting classes', () => {
   describe('sort by seats available', () => {
     const acctClassSa = TestUtils.copyObject(classJson);
     const bioClassSa = TestUtils.copyObject(classJson);
+
     beforeEach(() => {
       acctClassSa.subject = 'ACCT';
       acctClassSa.enrolledTotal = 20;
@@ -218,6 +235,7 @@ describe('sorting classes', () => {
       bioClassSa.enrolledTotal = 2;
       bioClassSa.enrolledCapacity = 30;
     });
+
     test('default sorting behavior', () => {
       const sortClassesBySeatsAvailable = Sort.sortBySeatsAvailable([acctClassSa, bioClassSa]);
       // Sort by no of seats available, not by no of seats occupied
@@ -235,6 +253,7 @@ describe('sorting classes', () => {
   describe('sort by waitlist capacity', () => {
     const acctClassWc = TestUtils.copyObject(classJson);
     const bioClassWc = TestUtils.copyObject(classJson);
+
     beforeEach(() => {
       acctClassWc.subject = 'ACCT';
       acctClassWc.waitlistTotal = 5;
@@ -243,6 +262,7 @@ describe('sorting classes', () => {
       bioClassWc.waitlistTotal = 15;
       bioClassWc.waitlistCapacity = 30;
     });
+
     test('default sorting behavior', () => {
       const sortClassesByWaitlistCapacity = Sort.sortBySeatsAvailableInWaitlist([acctClassWc, bioClassWc]);
       // Sort by no of seats available in waitlist, not number of seats in waitlist
@@ -261,6 +281,7 @@ describe('sorting classes', () => {
     const acctClassOnline = TestUtils.copyObject(classJson);
     const bioClassNoBuildingInfo = TestUtils.copyObject(classJson);
     const philClassWithBuilding = TestUtils.copyObject(classJson);
+
     beforeEach(() => {
       acctClassOnline.buildingCode = 'TBD';
       bioClassNoBuildingInfo.buildingCode = 'TBD';
@@ -269,19 +290,50 @@ describe('sorting classes', () => {
     });
 
     test('default sorting behavior', () => {
-      const sortClassesByBuildingNumber = Sort.sortByBuildingNumber([philClassWithBuilding, acctClassOnline, bioClassNoBuildingInfo]);
+      const sortClassesByBuildingNumber = Sort.sortByBuildingNumber([
+        philClassWithBuilding,
+        acctClassOnline,
+        bioClassNoBuildingInfo,
+      ]);
       expect(sortClassesByBuildingNumber[0].buildingCode).toEqual('TBD');
       expect(sortClassesByBuildingNumber[1].buildingCode).toEqual('TBD');
       expect(sortClassesByBuildingNumber[2].buildingCode).toEqual('UH');
     });
 
     test('desceding sort', () => {
-      const sortClassesByBuildingNumber = Sort.sortByBuildingNumber([philClassWithBuilding, acctClassOnline, bioClassNoBuildingInfo],'des');
+      const sortClassesByBuildingNumber = Sort.sortByBuildingNumber(
+        [philClassWithBuilding, acctClassOnline, bioClassNoBuildingInfo],
+        'des'
+      );
       expect(sortClassesByBuildingNumber[0].buildingCode).toEqual('UH');
       expect(sortClassesByBuildingNumber[1].buildingCode).toEqual('TBD');
       expect(sortClassesByBuildingNumber[2].buildingCode).toEqual('TBD');
     });
-    
-  })
-  
+  });
+
+  describe('sort by fee', () => {
+    const acctClass = TestUtils.copyObject(classJson);
+    const bioClass = TestUtils.copyObject(classJson);
+    const philClass = TestUtils.copyObject(classJson);
+
+    beforeEach(() => {
+      acctClass.fee = '';
+      bioClass.fee = '1.50';
+      philClass.fee = '2.00';
+    });
+
+    test('default sorting behavior', () => {
+      const sortClassesByFee = Sort.sortByFee([acctClass, bioClass, philClass]);
+      expect(sortClassesByFee[0].fee).toEqual('');
+      expect(sortClassesByFee[1].fee).toEqual('1.50');
+      expect(sortClassesByFee[2].fee).toEqual('2.00');
+    });
+
+    test('sort in descending order', () => {
+      const sortClassesByFee = Sort.sortByFee([acctClass, bioClass, philClass], 'des');
+      expect(sortClassesByFee[0].fee).toEqual('2.00');
+      expect(sortClassesByFee[1].fee).toEqual('1.50');
+      expect(sortClassesByFee[2].fee).toEqual('');
+    });
+  });
 });
