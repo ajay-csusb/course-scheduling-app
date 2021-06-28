@@ -4,11 +4,14 @@ import { getWebDxAccessToken, filterClasses } from '../lib/Utils';
 import { app } from '../public/js/ClassSearch.d';
 import NodeCache from 'node-cache';
 import _ from 'lodash';
+import { getClassesFromDataStore, addClassesToDataStore } from '../lib/FirestoreHelper';
 
 const cache = new NodeCache({ stdTTL: 15768000 });
 
+
 export async function index(req: Request, res: Response): Promise<any> {
   console.log('Cache keys:', cache.keys());
+  const term: string = req.body.strm.toString();
   try {
     if (req.body && cache.has(req.body.strm)) {
       const cacheContents: [] = cache.get(req.body.strm) || [];
@@ -16,11 +19,13 @@ export async function index(req: Request, res: Response): Promise<any> {
       fetchClassesAsync(req);
       return res.status(200).json(classes);
     }
-    const allClasses = await fetchClassesAsync(req);
+    fetchClassesAsync(req);
+    const allClasses = await getClassesFromDataStore(term);    
     const classes = filterClasses(allClasses, req.body);
     return res.status(200).json(classes);
   } catch (error) {
-    return res.status(400).json({});
+      // @Todo Fetch classes from Firebase
+      return getClassesFromDataStore(term);
   }
 }
 
@@ -51,6 +56,11 @@ async function fetchClassesAsync(req: Request): Promise<any> {
         return response.data;
       }
       throw new Error('Something went wrong during fetching data');
+    })
+    // @Todo add another .then statement to push data to Firebase
+    .then((res: any) => {
+      addClassesToDataStore(req.body.strm.toString(), res); 
+      return res;
     })
     .then((res: any) => {
       if (res.length !== 0) {
