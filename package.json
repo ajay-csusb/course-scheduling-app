@@ -69,7 +69,7 @@
     "express-validator": "^4.3.0",
     "fbgraph": "^1.4.4",
     "file-saver": "^2.0.2",
-    "firebase": "^7.15.2",
+    "firebase": "^8.6.8",
     "he": "^1.2.0",
     "lodash": "^4.17.5",
     "logrocket": "^1.0.6",
