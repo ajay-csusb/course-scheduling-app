@@ -8,10 +8,8 @@ import { getClassesFromDataStore, addClassesToDataStore } from '../lib/Firestore
 
 const cache = new NodeCache({ stdTTL: 15768000 });
 
-
 export async function index(req: Request, res: Response): Promise<any> {
   console.log('Cache keys:', cache.keys());
-  const term: string = req.body.strm.toString();
   try {
     if (req.body && cache.has(req.body.strm)) {
       const cacheContents: [] = cache.get(req.body.strm) || [];
@@ -19,13 +17,11 @@ export async function index(req: Request, res: Response): Promise<any> {
       fetchClassesAsync(req);
       return res.status(200).json(classes);
     }
-    fetchClassesAsync(req);
-    const allClasses = await getClassesFromDataStore(term);    
+    const allClasses = await fetchClassesAsync(req);
     const classes = filterClasses(allClasses, req.body);
     return res.status(200).json(classes);
   } catch (error) {
-      // @Todo Fetch classes from Firebase
-      return getClassesFromDataStore(term);
+    return res.status(400).json({});
   }
 }
 
@@ -55,11 +51,12 @@ async function fetchClassesAsync(req: Request): Promise<any> {
       if (response && response.status === 200) {
         return response.data;
       }
-      throw new Error('Something went wrong during fetching data');
+      throw new Error(`Receieved status code of ${response.status} for ${url}`);
     })
-    // @Todo add another .then statement to push data to Firebase
     .then((res: any) => {
-      addClassesToDataStore(req.body.strm.toString(), res); 
+      if (isBot(req)) {
+        addClassesToDataStore(req.body.strm.toString(), res);
+      }
       return res;
     })
     .then((res: any) => {
@@ -69,8 +66,16 @@ async function fetchClassesAsync(req: Request): Promise<any> {
       }
     })
     .catch((error: Error) => {
-      console.error(error);
-      throw new Error('Something went wrong during fetching data');
+      console.error(error.message);
+    })
+    .then(() => {
+      console.log('then');
+      const term: string = req.body.strm.toString();
+      responseMessage = getClassesFromDataStore(term);
     });
   return responseMessage;
+}
+
+function isBot(req: Request): boolean | undefined {
+  return req.header('referer')?.includes('?bot=true');
 }
