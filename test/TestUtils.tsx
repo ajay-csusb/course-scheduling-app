@@ -24,26 +24,18 @@ export class TestUtils {
     fetchMock.mock('/null/api/create/log', {});
     fetchMock.mock('end:/export-to-excel', { status: 200, body: { a: 'b', c: 'd' } });
     fetchMock.mock('end:/export-analytics', { status: 200, body: { foo: 'foo', bar: 'bar' } });
-    // @Todo add a mock URL for the pager
-    const pagerResults = {
-      index: 1,
-      totalRecords: 52,
-      totalPage: 2,
-      contentList: resultClasses
-    }
     fetchMock.mock(
-      (url, opts) => {
+    (url, opts) => {
         return (
           url === '/get-class-search-data' &&
           opts &&
           opts.body &&
-          opts.body.toString().includes('ENG')
+          opts.body.toString().includes('CHEM')
         );
       },
-      JSON.stringify(pagerResults),
+      500,
       { method: 'POST', overwriteRoutes: true }
     );
-    fetchMock.mock('https://csusb-class-schedule.df.r.appspot.com/get-class-search-data', rawClassesJson);
     fetchMock.mock('/get-class-search-data', rawClassesJson);
   }
   

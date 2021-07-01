@@ -4,7 +4,6 @@ import { ClassSearchContainer } from '../src/public/js/ClassSearchContainer';
 import { ProgressBar } from '@blueprintjs/core';
 import { TestUtils } from './TestUtils';
 import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
-import fetchMock from 'fetch-mock';
 // tslint:disable:max-line-length
 
 describe('snapshots', () => {

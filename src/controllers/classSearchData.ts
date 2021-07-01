@@ -4,6 +4,7 @@ import { getWebDxAccessToken, filterClasses } from '../lib/Utils';
 import { app } from '../public/js/ClassSearch.d';
 import NodeCache from 'node-cache';
 import _ from 'lodash';
+import { getClassesFromDataStore, addClassesToDataStore } from '../lib/FirestoreHelper';
 
 const cache = new NodeCache({ stdTTL: 15768000 });
 
@@ -50,7 +51,13 @@ async function fetchClassesAsync(req: Request): Promise<any> {
       if (response && response.status === 200) {
         return response.data;
       }
-      throw new Error('Something went wrong during fetching data');
+      throw new Error(`Receieved status code of ${response.status} for ${url}`);
+    })
+    .then((res: any) => {
+      if (isBot(req)) {
+        addClassesToDataStore(req.body.strm.toString(), res);
+      }
+      return res;
     })
     .then((res: any) => {
       if (res.length !== 0) {
@@ -59,8 +66,16 @@ async function fetchClassesAsync(req: Request): Promise<any> {
       }
     })
     .catch((error: Error) => {
-      console.error(error);
-      throw new Error('Something went wrong during fetching data');
+      console.error(error.message);
+    })
+    .then(() => {
+      console.log('then');
+      const term: string = req.body.strm.toString();
+      responseMessage = getClassesFromDataStore(term);
     });
   return responseMessage;
+}
+
+function isBot(req: Request): boolean | undefined {
+  return req.header('referer')?.includes('?bot=true');
 }
