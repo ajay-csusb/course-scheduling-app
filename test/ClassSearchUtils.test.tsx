@@ -9,6 +9,7 @@ import { GeCourseAttribute } from '../src/public/js/GeCourseAttribute';
 import { IClass } from '../src/public/js/Class';
 import { IOptionProps } from '@blueprintjs/core';
 import { ClassSearchResults } from '../src/public/js/ClassSearchResults';
+import { getClassesFromDataStore, addClassesToDataStore } from '../src/lib/FirestoreHelper'
 // tslint:disable:max-line-length
 
 describe('Instruction mode values', () => {
@@ -1415,3 +1416,27 @@ function getPagerData() {
     [pager.slice(0, 8), 8, [1, 2, 3, 4, 5, 6, 7, 8]],
   ];
 }
+
+describe.only('when we receive a response status code > 400 from the service', () => {
+  let classSearchContainerWrapper;
+
+  beforeEach(() => {
+    classSearchContainerWrapper = mount(<ClassSearchContainer />);
+    classSearchContainerWrapper.setState({
+      subject: {
+        name: 'Chemistry',
+        abbr: 'CHEM',
+      },
+    });
+  });
+
+  it('should call the function that receives data from Firestore', () => {
+    classSearchContainerWrapper.find('button[type="submit"]').simulate('click');
+    classSearchContainerWrapper.setState({
+      isLoading: false,
+    });
+    const ClassSearchResultsWrapper = classSearchContainerWrapper.find(ClassSearchResults);
+    expect(ClassSearchResultsWrapper.html()).toContain('<p>0 classes found');
+    // expect(getClassesFromDataStore).toHaveBeenCalled();
+  });
+});
