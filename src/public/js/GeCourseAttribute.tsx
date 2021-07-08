@@ -27,6 +27,9 @@ export class GeCourseAttribute {
     if (courseAttr.length === 0) {
       return classes;
     }
+    if (courseAttr === 'all') {
+      return GeCourseAttribute.getAllGeClasses(classes);
+    }
     if (parseInt(term, 10) < ClassSearch.app.settings.firstSemester) {
       return GeCourseAttribute.filterClassesByGeAttributesQuarter(classes, courseAttr);
     }
@@ -221,5 +224,15 @@ export class GeCourseAttribute {
       }
     }
     return results;
+  }
+
+  private static getAllGeClasses(classes: IClass[]): IClass[] {
+    const filteredClasses: IClass[] = [];
+    for (const _class of classes) {
+      if (_class.courseAttr.includes('GE-')) {
+        filteredClasses.push(_class)
+      }
+    }
+    return filteredClasses;
   }
 }
