@@ -46,20 +46,25 @@ export class SelectListGeClassesAttributes extends React.Component<ISelectListGe
   private getDropdownOptions(term: string): IOptionProps[] {
     const options: IOptionProps[] = this.props.geClassesAttributes;
     const termId: number = parseInt(term, 10);
-    const noOption: IOptionProps = {
+    const noOption: IOptionProps[] = [{
       value: '',
-      label: 'All',
-    };
+      label: 'General Education Classes',
+    },
+    {
+      value: 'all',
+      label: 'All GE Classes',
+    }
+    ];
     let semOptions: IOptionProps[] = [];
-    const quarterOptions: IOptionProps[] = [noOption];
+    if (termId >= ClassSearch.app.settings.firstSemester) {
+      semOptions = noOption.concat(GeCourseAttribute.getCourseAttributesSemester());
+      return semOptions;
+    }
+    const quarterOptions: IOptionProps[] = noOption;
     for (const option of options) {
       if (option.label!.startsWith('GE-')) {
         quarterOptions.push(option);
       }
-    }
-    if (termId >= ClassSearch.app.settings.firstSemester) {
-      semOptions = [noOption].concat(GeCourseAttribute.getCourseAttributesSemester());
-      return semOptions;
     }
     return quarterOptions;
   }
