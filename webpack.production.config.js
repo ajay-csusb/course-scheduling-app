@@ -47,6 +47,13 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [new UglifyJsPlugin()],
+    minimizer: [new UglifyJsPlugin({
+      sourceMap: true,
+      uglifyOptions: {
+          output: {
+            comments: false,
+          },
+        },
+    })],
   },
 };

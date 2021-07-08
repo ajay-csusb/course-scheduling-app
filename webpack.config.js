@@ -1,4 +1,5 @@
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -43,5 +44,16 @@ module.exports = {
   ],
   node: {
     fs: 'empty',
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new UglifyJsPlugin({
+      sourceMap: true,
+      uglifyOptions: {
+          output: {
+            comments: false,
+          },
+        },
+    })],
   },
 };
