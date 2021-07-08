@@ -15,7 +15,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - run: webpack
+    - run: webpack --config ./webpack.production.config.js
     - run: npm run build
     - run: npm run test
     - uses: actions-hub/gcloud@master
