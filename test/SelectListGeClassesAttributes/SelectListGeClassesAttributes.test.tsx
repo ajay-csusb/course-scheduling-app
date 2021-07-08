@@ -34,7 +34,7 @@ describe('GE classes attributes component', () => {
         onChangeOfGeClassesAttribute: jest.fn(),
       };
       const selectListGeClassesAttributesWrapper = mount(<SelectListGeClassesAttributes {...geAttrsProps} />);
-      expect(selectListGeClassesAttributesWrapper.html()).toContain('All');
+      expect(selectListGeClassesAttributesWrapper.html()).toContain('All GE Classes');
       expect(selectListGeClassesAttributesWrapper.html()).toContain('GE-B5 UD Scientific Inquiry &amp; Quant.');
       expect(selectListGeClassesAttributesWrapper.html()).not.toContain('GE-FOO');
       expect(selectListGeClassesAttributesWrapper.html()).toMatchSnapshot();
@@ -50,7 +50,7 @@ describe('GE classes attributes component', () => {
         onChangeOfGeClassesAttribute: jest.fn(),
       };
       const geAttrsComponent = mount(<SelectListGeClassesAttributes {...geAttrsProps} />);
-      expect(geAttrsComponent.html()).toContain('All');
+      expect(geAttrsComponent.html()).toContain('All GE Classes');
       expect(geAttrsComponent.html()).toContain('GE-FOO');
       expect(geAttrsComponent.html()).not.toContain('GE-B5 UD Scientific Inquiry &amp; Quant.');
       expect(geAttrsComponent.html()).toMatchSnapshot();

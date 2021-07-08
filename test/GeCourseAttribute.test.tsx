@@ -19,9 +19,11 @@ describe('Filter by GE course attribute', () => {
     classArtsGe1.courseAttrDescription =
       'Diversity & Inclusiveness Pers, Global Perspectives, Student Opinion - Paper, UD Arts and Humanities, Upper Division, Writing Intensive';
     classArtsGe1.geCourseAttr = 'GE-C4, DI, G, Y';
+    classArtsGe1.quarter = 2208;
     classArtsGe2.courseAttr = '"Diversity & Inclusiveness Pers, GE-C1 Arts';
     classArtsGe2.courseAttrDescription = 'Arts, Diversity & Inclusiveness Pers, Lower Divison, Student Opinion - Paper';
     classArtsGe2.geCourseAttr = 'GE-C1, DI, 1, Y';
+    classArtsGe2.quarter = 2208;
     classesGe = [classBioGe, classArtsGe1, classArtsGe2];
   });
 
@@ -47,6 +49,14 @@ describe('Filter by GE course attribute', () => {
       it('should not return any classes', () => {
         classes = GeCourseAttribute.filter(classesGe, 'invalid-option', '2208');
         expect(classes).toHaveLength(0);
+      });
+    });
+
+    describe('if a user chooses all as an option in the GE course attribte', () => {
+      it('should return all the classes', () => {
+        classes = GeCourseAttribute.filter(classesGe, 'all', '2208');
+        expect(classes).toHaveLength(3);
+        expect(classes[0].courseAttr).toEqual('GE-F0 Life Sciences');
       });
     });
   });
