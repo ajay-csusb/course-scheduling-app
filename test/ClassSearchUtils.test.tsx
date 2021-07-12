@@ -585,6 +585,14 @@ describe('when a user performs a search', () => {
         expect(classes[0].geCourseAttr).toEqual('GE-BAZ, 1');
       });
     });
+    describe('if the two classes have the same course attribute description', () => {
+      it('should only display unique values from course attribute description field', () => {
+        classJson.courseAttrDescription = 'foo, bar, baz';
+        copyOfClassJson.courseAttrDescription = 'foo, bar, baz';
+        const classes = ClassSearchUtils.mergeAttributes([classJson, copyOfClassJson]);
+        expect(classes[0].courseAttrDescription).toEqual('foo, bar, baz');
+      });
+    });
   });
 
   describe('and two classes having the same class number but different start and end times', () => {
@@ -879,7 +887,7 @@ describe('GE class attribute', () => {
 
     const courseAttr = GeCourseAttribute.addGeAttrs(classBio500, geAttrs);
     it('should return classes with all valid course attributes and dispaly GE course attribute', () => {
-      expect(courseAttr).toEqual('loreum, ipsum, General Education BAR');
+      expect(courseAttr).toEqual('General Education BAR, ipsum, loreum');
     });
   });
 
@@ -890,7 +898,7 @@ describe('GE class attribute', () => {
 
     const courseAttr = GeCourseAttribute.addGeAttrs(classBio600, geAttrs);
     it('should return all course attributes and multiple GE course attributes', () => {
-      expect(courseAttr).toEqual('loreum, ipsum, General Education BAR, General Education FOO');
+      expect(courseAttr).toEqual('General Education BAR, General Education FOO, ipsum, loreum');
     });
   });
 
@@ -912,7 +920,7 @@ describe('GE class attribute', () => {
 
     const geCourseAttr = GeCourseAttribute.addGeAttrs(classBio800, geAttrs);
     it('should return all unique GE course attributes', () => {
-      expect(geCourseAttr).toEqual('General Education FOO, General Education BAR');
+      expect(geCourseAttr).toEqual('General Education BAR, General Education FOO');
     });
   });
 
@@ -1010,7 +1018,7 @@ describe('GE designation attribute', () => {
     const geDesgCourseAttr = GeCourseAttribute.addGeDesignationAttrs(classAdmGeDesig);
     it('should return multiplte attributes and GE designation as course attribute', () => {
       expect(geDesgCourseAttr).toEqual(
-        'Service Learning, Diversity & Inclusiveness Pers, Gender and Sexuality Studies'
+        'Diversity & Inclusiveness Pers, Gender and Sexuality Studies, Service Learning'
       );
     });
   });
@@ -1080,7 +1088,7 @@ describe('GE designation attribute', () => {
     classBioMultipleAttr.courseAttrDescription = 'Invalid course description, Global Perspectives, Service Learning';
     const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classBioMultipleAttr);
     it('should return GE designation attribute, GE attribute and the valid attribute', () => {
-      expect(geCourseDesc).toEqual('Global Perspectives, Service Learning, GE-B5 UD Scientific Inquiry & Quant.');
+      expect(geCourseDesc).toEqual('GE-B5 UD Scientific Inquiry & Quant., Global Perspectives, Service Learning');
     });
   });
 
@@ -1091,7 +1099,7 @@ describe('GE designation attribute', () => {
     classMultipleAttr.courseAttrDescription = 'Global Perspectives, Writing Intensive';
     const geCourseDesc = GeCourseAttribute.addGeDesignationAttrs(classMultipleAttr);
     it('should return the valid attribute and multiple GE Designation attribute', () => {
-      expect(geCourseDesc).toEqual('Service Learning, Global Perspectives, Writing Intensive');
+      expect(geCourseDesc).toEqual('Global Perspectives, Service Learning, Writing Intensive');
     });
   });
 
@@ -1143,7 +1151,7 @@ describe('GE designation attribute', () => {
         const courseAttr = ClassSearchUtils.parseCourseAttributes([classWithCourseAttributes], geCourseAttr);
         it('should display the expanded course attributes and GE attributes', () => {
           expect(courseAttr[0].courseAttr).toEqual(
-            'Asian Studies, Global Perspectives, GE-B5 UD Scientific Inquiry & Quant.'
+            'Asian Studies, GE-B5 UD Scientific Inquiry & Quant., Global Perspectives'
           );
         });
       });
