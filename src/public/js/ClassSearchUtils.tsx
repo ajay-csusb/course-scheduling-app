@@ -256,12 +256,13 @@ export function mergeAttributes(classes: IClass[]): IClass[] {
     const size = results.length - 1;
     const prevClass = results[size];
     const currClass = classes[_class];
-
     if (isDuplicateClass(prevClass, currClass)) {
       results[size].courseAttr = combineAttr(prevClass, currClass);
       results[size].geCourseAttr += ', ' + currClass.geCourseAttr;
-
-      if (currClass.courseAttrDescription.length !== 0) {
+      if (
+        currClass.courseAttrDescription.length !== 0 &&
+        results[size].courseAttrDescription !== currClass.courseAttrDescription
+      ) {
         results[size].courseAttrDescription += ', ' + currClass.courseAttrDescription;
       }
     } else {
@@ -342,7 +343,7 @@ export function expandCourseAttribute(courseAttrAbbr: string): string {
   if (results.length === 0) {
     return '';
   }
-  return results.join(', ');
+  return _.sortBy(results).join(', ');
 }
 
 export function parseCourseAttributes(classes: IClass[], geCourseAttrs: IOptionProps[]): IClass[] {
