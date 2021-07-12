@@ -1,4 +1,5 @@
 import { IOptionProps } from '@blueprintjs/core';
+import _ from 'lodash';
 import { IClass } from './Class';
 import * as ClassSearch from './ClassSearch.d';
 import * as CourseAttributes from './CourseAttributes';
@@ -20,7 +21,7 @@ export class GeCourseAttribute {
     } else {
       fullGeCourseAttr = GeCourseAttribute.addFullGeCourseAttribute(geCourseAttrArr, geAttrs);
     }
-    return fullGeCourseAttr.join(', ');
+    return _.sortBy(fullGeCourseAttr).join(', ');
   }
 
   public static filter(classes: IClass[], courseAttr: string, term: string): IClass[] {
@@ -65,7 +66,8 @@ export class GeCourseAttribute {
       const index = validCourseAttributes.indexOf('GE Designation');
       validCourseAttributes[index] = GeCourseAttribute.getValidGeCourseAttributes(_class.courseAttrDescription);
     }
-    return validCourseAttributes.join(', ');
+    let validCourseAttributesArr = GeCourseAttribute.sortCourseAttributes(validCourseAttributes);
+    return validCourseAttributesArr.join(', ');
   }
 
   public static getCourseAttributesSemester(): IOptionProps[] {
@@ -230,9 +232,13 @@ export class GeCourseAttribute {
     const filteredClasses: IClass[] = [];
     for (const _class of classes) {
       if (_class.courseAttr.includes('GE-')) {
-        filteredClasses.push(_class)
+        filteredClasses.push(_class);
       }
     }
     return filteredClasses;
+  }
+
+  private static sortCourseAttributes(attrs: string[]): string[] {
+    return _.uniq(_.orderBy(_.flatten(_.map(attrs, values => values.split(', ')))));
   }
 }
