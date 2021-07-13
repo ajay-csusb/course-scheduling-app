@@ -8,7 +8,7 @@ export interface ISelectListCourseAttrProps {
 
 export class SelectListCourseAttr extends React.Component<ISelectListCourseAttrProps, {}> {
   private readonly courseAttr: IOptionProps[] = [
-    { label: 'All', value: 'all' },
+    { label: 'Add course attribute', value: 'all' },
     { label: 'Asian Studies', value: 'ASTD' },
     { label: 'Chicano(a)/Latino(a) Studies', value: 'CLST' },
     { label: 'eBook', value: 'EBK' },

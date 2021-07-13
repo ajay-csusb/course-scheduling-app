@@ -725,7 +725,7 @@ exports[`snapshots compare search form snapshot 1`] = `
                           options={
                             Array [
                               Object {
-                                "label": "All",
+                                "label": "Add instruction mode",
                                 "value": "all",
                               },
                               Object {
@@ -754,10 +754,10 @@ exports[`snapshots compare search form snapshot 1`] = `
                             >
                               <option
                                 key="all"
-                                label="All"
+                                label="Add instruction mode"
                                 value="all"
                               >
-                                All
+                                Add instruction mode
                               </option>
                               <option
                                 key="p"

@@ -8,7 +8,7 @@ Array [
     options={
       Array [
         Object {
-          "label": "All",
+          "label": "Add instruction mode",
           "value": "all",
         },
         Object {
@@ -37,10 +37,10 @@ Array [
       >
         <option
           key="all"
-          label="All"
+          label="Add instruction mode"
           value="all"
         >
-          All
+          Add instruction mode
         </option>
         <option
           key="p"
@@ -100,10 +100,10 @@ Array [
     >
       <option
         key="all"
-        label="All"
+        label="Add instruction mode"
         value="all"
       >
-        All
+        Add instruction mode
       </option>
       <option
         key="p"
