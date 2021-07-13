@@ -48,7 +48,7 @@ export class SelectListGeClassesAttributes extends React.Component<ISelectListGe
     const termId: number = parseInt(term, 10);
     const noOption: IOptionProps[] = [{
       value: '',
-      label: 'General Education Classes',
+      label: 'Add GE classes',
     },
     {
       value: 'all',
