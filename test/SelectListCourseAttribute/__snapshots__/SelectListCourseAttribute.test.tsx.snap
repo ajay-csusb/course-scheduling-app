@@ -22,7 +22,7 @@ exports[`<SelectListCourseAttr> Course attribute select list snapshot 1`] = `
     options={
       Array [
         Object {
-          "label": "All",
+          "label": "Add course attribute",
           "value": "all",
         },
         Object {
@@ -96,10 +96,10 @@ exports[`<SelectListCourseAttr> Course attribute select list snapshot 1`] = `
       >
         <option
           key="all"
-          label="All"
+          label="Add course attribute"
           value="all"
         >
-          All
+          Add course attribute
         </option>
         <option
           key="ASTD"
