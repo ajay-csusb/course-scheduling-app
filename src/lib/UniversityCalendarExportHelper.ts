@@ -34,17 +34,23 @@ export async function fetchUniversityCalendarData(): Promise<any> {
 function processUniversityCalendarData(data: []): any {
   let universityCalendarData: any[] = [];
   data.forEach((event: any) => {
+    updateTitle(event);
     updateDates(event);
     universityCalendarData.push(event);
   });
   return universityCalendarData;
 }
 
-function updateDates(event: any) {
-  let start_date, end_date;
-  [start_date, end_date] = event.date.split(' : ');
-  event['start_date'] = new BigQueryDatetime(start_date.trim()).value;
-  event['end_date'] = end_date === undefined ? event['start_date'] : new BigQueryDatetime(end_date.trim()).value;
+function updateDates(event: any): void {
+  let startDate, endDate;
+  [startDate, endDate] = event.date.split(' : ');
+  event['start_date'] = new BigQueryDatetime(startDate.trim()).value;
+  event['end_date'] = endDate === undefined ? event['start_date'] : new BigQueryDatetime(endDate.trim()).value;
   event['timestamp'] = new BigQueryTimestamp(new Date()).value;
   delete event['date'];
+}
+
+function updateTitle(event: any): void {
+  const year = new Date(event.date).getFullYear();
+  event['title'] = `${event['title']} ${year}`;
 }
