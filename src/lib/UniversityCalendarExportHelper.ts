@@ -43,12 +43,13 @@ function processUniversityCalendarData(data: []): any {
 }
 
 function updateDates(event: any): void {
-  let startDate, endDate;
-  [startDate, endDate] = event.date.split(' : ');
-  event['start_date'] = new BigQueryDatetime(startDate.trim()).value;
-  event['end_date'] = endDate === undefined ? event['start_date'] : new BigQueryDatetime(endDate.trim()).value;
-  event['timestamp'] = new BigQueryTimestamp(new Date()).value;
-  delete event['date'];
+  let startDateTime, endDateTime;
+  [startDateTime, endDateTime] = event.date.split(' : ');
+  const startDate = startDateTime.trim().split(' ')[0].split("-")
+  event['start_date'] = new BigQueryDatetime(startDateTime.trim());
+  event['end_date'] = endDateTime === undefined ? event['start_date'] : new BigQueryDatetime(endDateTime.trim());
+  event['timestamp'] = new BigQueryTimestamp(new Date());
+  event['date'] = `${startDate[1]}/${startDate[2]}/${startDate[0]}`;
 }
 
 function updateTitle(event: any): void {
