@@ -1,6 +1,7 @@
 import { BigQueryDatetime, BigQueryTimestamp } from '@google-cloud/bigquery/build/src/bigquery';
 import axios, { AxiosRequestConfig } from 'axios';
 import { app } from '../public/js/ClassSearch.d';
+import { decode } from 'he';
 
 export async function fetchUniversityCalendarData(): Promise<any> {
   let universityCalendarData: [] = [];
@@ -51,6 +52,9 @@ function updateDates(event: any): void {
 }
 
 function updateTitle(event: any): void {
-  const year = new Date(event.date).getFullYear();
-  event['title'] = `${event['title']} ${year}`;
+  let startDate, rest;
+  [startDate, ...rest] = event.date.split(' : ');
+  const year = new Date(startDate.trim()).getFullYear();
+  const title = decode(event['title'].trim());
+  event['title'] = `${title} ${year}`;
 }
