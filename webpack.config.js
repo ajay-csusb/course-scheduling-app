@@ -50,10 +50,10 @@ module.exports = {
     minimizer: [new UglifyJsPlugin({
       sourceMap: true,
       uglifyOptions: {
-          output: {
-            comments: false,
-          },
+        output: {
+          comments: false,
         },
+      },
     })],
   },
 };
