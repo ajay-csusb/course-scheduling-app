@@ -27,5 +27,6 @@ jobs:
         CLI: gsutil
       with:
         args: -h "Cache-Control:no-cache,max-age=0" mv -a public-read dist/public/js/course-scheduling-app.js gs://csusb-class-schedule.appspot.com/course-scheduling-app-prod.js
+      with:
         args: -h "Cache-Control:no-cache,max-age=0" mv -a public-read dist/public/js/course-scheduling-app.js.map gs://csusb-class-schedule.appspot.com/course-scheduling-app.js.map
 
